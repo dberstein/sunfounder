@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2.1 Fotoresistor &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="2.2.2 Termistor" href="pi5_2.2.2_thermistor_python.html" />
+    <link rel="prev" title="2.1.6 Joystick" href="pi5_2.1.6_joystick_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_2.2.1_photoresistor_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Para Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Juega con Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Verificar <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">Salida</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_input_python.html">Entrada</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_input_python.html#controladores">2.1 Controladores</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pi5_input_python.html#sensores">2.2 Sensores</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_extension_python.html">Extensión</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Play with C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Juega con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Para Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Juega con Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_input_python.html">Entrada</a></li>
+      <li class="breadcrumb-item active">2.2.1 Fotoresistor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_2.2.1_photoresistor_python.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>¡Hola! Bienvenidos a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Explora en profundidad Raspberry Pi, Arduino y ESP32 junto a otros apasionados.</p>
+<p><strong>¿Por qué unirse?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte Experto</strong>: Resuelve problemas postventa y desafíos técnicos con ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprende y Comparte</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Acceso Exclusivo</strong>: Sé el primero en conocer los nuevos productos y obtener una vista previa.</p></li>
+<li><p><strong>Descuentos Especiales</strong>: Disfruta de descuentos exclusivos en nuestros productos más recientes.</p></li>
+<li><p><strong>Promociones y Sorteos Festivos</strong>: Participa en sorteos y promociones durante las festividades.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy.</p>
+</div>
+<section id="fotoresistor">
+<span id="py-pi5"></span><h1>2.2.1 Fotoresistor<a class="headerlink" href="pi5_2.2.1_photoresistor_python.html#fotoresistor" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="pi5_2.2.1_photoresistor_python.html#introduccion" title="Link to this heading"></a></h2>
+<p>El fotoresistor es un componente comúnmente utilizado para medir la
+intensidad de la luz ambiental. Ayuda al controlador a distinguir
+entre día y noche, y permite funciones de control de luz, como lámparas
+nocturnas. Este proyecto es muy similar al del potenciómetro, y podrás
+notar que la variación en el voltaje permite detectar la intensidad de la luz.</p>
+</section>
+<section id="componentes-necesarios">
+<h2>Componentes Necesarios<a class="headerlink" href="pi5_2.2.1_photoresistor_python.html#componentes-necesarios" title="Link to this heading"></a></h2>
+<p>En este proyecto, necesitaremos los siguientes componentes.</p>
+<img alt="../_images/2.2.1_photoresistor_list.png" src="../_images/2.2.1_photoresistor_list.png" />
+</section>
+<section id="diagrama-esquematico">
+<h2>Diagrama Esquemático<a class="headerlink" href="pi5_2.2.1_photoresistor_python.html#diagrama-esquematico" title="Link to this heading"></a></h2>
+<img alt="../_images/2.2.1_photoresistor_schematic_1.png" src="../_images/2.2.1_photoresistor_schematic_1.png" />
+<img alt="../_images/2.2.1_photoresistor_schematic_2.png" src="../_images/2.2.1_photoresistor_schematic_2.png" />
+</section>
+<section id="procedimientos-experimentales">
+<h2>Procedimientos Experimentales<a class="headerlink" href="pi5_2.2.1_photoresistor_python.html#procedimientos-experimentales" title="Link to this heading"></a></h2>
+<p><strong>Paso 1:</strong> Monta el circuito.</p>
+<img alt="../_images/2.2.1_photoresistor_circuit.png" src="../_images/2.2.1_photoresistor_circuit.png" />
+<p><strong>Paso 2:</strong> Accede a la carpeta del código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Paso 3:</strong> Ejecuta el archivo.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">2.2.1</span><span class="n">_Photoresistor</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Cuando el código esté en ejecución, la intensidad del LED cambiará en función de la luz detectada por el fotoresistor.</p>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Si aparece el error <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code>, consulta <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">Si gpiozero no funciona.</span></a></p>
+</div>
+<p><strong>Código</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puedes <strong>Modificar/Restablecer/Copiar/Ejecutar/Detener</strong> el código a continuación. Antes de eso, asegúrate de estar en la ruta de origen <code class="docutils literal notranslate"><span class="pre">raphael-kit/python-pi5</span></code>. Una vez modificado el código, puedes ejecutarlo para ver el efecto.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">PWMLED</span>
+<span class="kn">import</span> <span class="nn">ADC0834</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Inicializar un LED PWM en el pin GPIO 22</span>
+<span class="n">led</span> <span class="o">=</span> <span class="n">PWMLED</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+
+<span class="c1"># Configurar el módulo ADC0834</span>
+<span class="n">ADC0834</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+
+<span class="c1"># Definir una función para mapear valores de un rango a otro</span>
+<span class="k">def</span> <span class="nf">MAP</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">in_min</span><span class="p">,</span> <span class="n">in_max</span><span class="p">,</span> <span class="n">out_min</span><span class="p">,</span> <span class="n">out_max</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">out_max</span> <span class="o">-</span> <span class="n">out_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">in_max</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">out_min</span>
+
+<span class="c1"># Bucle principal para leer el valor ADC y controlar el brillo del LED</span>
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Leer valor analógico del ADC</span>
+        <span class="n">analogVal</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;value = </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">analogVal</span><span class="p">)</span>
+
+        <span class="c1"># Mapear el valor ADC a un valor PWM y ajustar el brillo del LED</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">analogVal</span> <span class="o">/</span> <span class="mi">255</span><span class="p">)</span>
+
+        <span class="c1"># Esperar 0.2 segundos</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># Ejecutar el bucle principal y manejar la interrupción del teclado para una salida ordenada</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">loop</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Apagar el LED antes de salir</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<ol class="arabic">
+<li><p>Este segmento importa la clase PWMLED de la biblioteca gpiozero, necesaria para controlar LEDs PWM. También incluye el módulo ADC0834 para interactuar con el convertidor analógico-digital y el módulo de tiempo para ejecutar funciones basadas en tiempo como sleep.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">PWMLED</span>
+<span class="kn">import</span> <span class="nn">ADC0834</span>
+<span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+</li>
+<li><p>Inicializa un LED PWM conectado al pin GPIO 22 y configura el módulo ADC0834, preparándolo para su uso en el proyecto.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inicializar un LED PWM en el pin GPIO 22</span>
+<span class="n">led</span> <span class="o">=</span> <span class="n">PWMLED</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+
+<span class="c1"># Configurar el módulo ADC0834</span>
+<span class="n">ADC0834</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Define una función para mapear un valor de un rango a otro, crucial para convertir las lecturas del ADC a un rango adecuado para el control PWM.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definir una función para mapear valores de un rango a otro</span>
+<span class="k">def</span> <span class="nf">MAP</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">in_min</span><span class="p">,</span> <span class="n">in_max</span><span class="p">,</span> <span class="n">out_min</span><span class="p">,</span> <span class="n">out_max</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">out_max</span> <span class="o">-</span> <span class="n">out_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">in_max</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">out_min</span>
+</pre></div>
+</div>
+</li>
+<li><p>Esta sección contiene un bucle que lee continuamente el valor analógico del ADC0834, lo mapea a un valor PWM correspondiente y ajusta el brillo del LED. Se incluye una breve demora (<cite>time.sleep(0.2)</cite>) para hacer visibles los cambios y evitar sobrecargar la CPU.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bucle principal para leer el valor ADC y controlar el brillo del LED</span>
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Leer valor analógico del ADC</span>
+        <span class="n">analogVal</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;value = </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">analogVal</span><span class="p">)</span>
+
+        <span class="c1"># Mapear el valor ADC a un valor PWM y ajustar el brillo del LED</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">analogVal</span> <span class="o">/</span> <span class="mi">255</span><span class="p">)</span>
+
+        <span class="c1"># Esperar 0.2 segundos</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Ejecuta la función loop y maneja errores para una finalización ordenada con KeyboardInterrupt. Asegura que el LED se apague cuando el programa se detenga.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejecutar el bucle principal y manejar la interrupción del teclado para una salida ordenada</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">loop</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Apagar el LED antes de salir</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="pi5_2.1.6_joystick_python.html" class="btn btn-neutral float-left" title="2.1.6 Joystick" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="pi5_2.2.2_thermistor_python.html" class="btn btn-neutral float-right" title="2.2.2 Termistor" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

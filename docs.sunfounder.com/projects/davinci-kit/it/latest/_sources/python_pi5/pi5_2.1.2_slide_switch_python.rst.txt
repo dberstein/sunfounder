@@ -1,0 +1,171 @@
+.. note::
+
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Esplora a fondo il mondo di Raspberry Pi, Arduino ed ESP32 insieme a tanti altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto da Esperti**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti inediti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _2.1.2_py_pi5:
+
+2.1.2 Interruttore a Scorrimento
+===================================
+
+Introduzione
+---------------
+
+In questo progetto impareremo a utilizzare un interruttore a scorrimento. 
+Solitamente, l’interruttore a scorrimento viene saldato su una PCB come 
+interruttore di alimentazione, ma qui lo inseriremo nella breadboard, anche 
+se potrebbe non essere molto stabile. Lo useremo sulla breadboard per mostrare 
+la sua funzione.
+
+Componenti Necessari
+------------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti.
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schema Elettrico
+--------------------
+
+Collega il pin centrale dell’interruttore a scorrimento al GPIO17 e i due LED 
+ai pin GPIO22 e GPIO27 rispettivamente. Quando si muove l’interruttore, i due 
+LED si accenderanno alternativamente.
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_schematic_2.png
+
+
+Procedure Sperimentali
+-------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_circuit.png
+
+**Passo 2**: Entra nella cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Passo 3**: Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.2_Slider.py
+
+Mentre il codice è in esecuzione, sposta l’interruttore verso sinistra e il 
+LED giallo si accenderà; spostalo a destra e si accenderà la luce rossa.
+
+.. warning::
+
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, potrai eseguirlo direttamente per vedere il risultato.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button  # Importa le classi LED e Button per il controllo dei GPIO
+   from time import sleep  # Importa la funzione sleep per aggiungere ritardi
+
+   # Inizializza l'interruttore microscopico sul pin GPIO 17 con il pull-up disabilitato
+   micro_switch = Button(17, pull_up=False)
+   # Inizializza LED1 sul pin GPIO 22
+   led1 = LED(22)
+   # Inizializza LED2 sul pin GPIO 27
+   led2 = LED(27)
+
+   try:
+       # Ciclo principale per controllare lo stato dei LED in base allo stato del micro switch
+       while True:
+           if micro_switch.is_pressed:  # Verifica se il micro switch è premuto
+               print('    LED1 ON    ')  # Stampa il messaggio di stato
+               led1.on()   # Accende LED1
+               led2.off()  # Spegne LED2
+           else:  # Se il micro switch non è premuto
+               print('    LED2 ON    ')  # Stampa il messaggio di stato
+               led1.off()  # Spegne LED1
+               led2.on()   # Accende LED2
+
+           sleep(0.5)  # Attende 0,5 secondi prima di controllare nuovamente lo stato dell'interruttore
+
+   except KeyboardInterrupt:
+       # Gestisce un'interruzione da tastiera (Ctrl+C) per uscire dal ciclo in modo pulito
+       pass
+  
+
+**Spiegazione del Codice**
+
+#. Questa linea imposta lo script per l’esecuzione con Python 3. Importa ``LED`` e ``Button`` da ``gpiozero`` per controllare i dispositivi GPIO, e ``sleep`` da ``time`` per i ritardi.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button  # Importa le classi LED e Button per il controllo dei GPIO
+       from time import sleep  # Importa la funzione sleep per aggiungere ritardi
+
+#. Inizializza un micro switch collegato al pin GPIO 17 con il pull-up disabilitato e due LED collegati ai pin GPIO 22 e 27.
+
+   .. code-block:: python
+
+       # Inizializza l'interruttore microscopico sul pin GPIO 17 con il pull-up disabilitato
+       micro_switch = Button(17, pull_up=False)
+       # Inizializza LED1 sul pin GPIO 22
+       led1 = LED(22)
+       # Inizializza LED2 sul pin GPIO 27
+       led2 = LED(27)
+
+#. Il ciclo principale verifica lo stato del micro switch. Se premuto, accende LED1 e spegne LED2; se non premuto, spegne LED1 e accende LED2. Il ciclo si ripete ogni 0,5 secondi e rileva un'interruzione da tastiera (come Ctrl+C) per permettere una chiusura sicura dello script.
+
+   .. code-block:: python
+
+       try:
+       # Ciclo principale per controllare lo stato dei LED in base allo stato del micro switch
+       while True:
+           if micro_switch.is_pressed:  # Verifica se il micro switch è premuto
+               print('    LED1 ON    ')  # Stampa il messaggio di stato
+               led1.on()   # Accende LED1
+               led2.off()  # Spegne LED2
+           else:  # Se il micro switch non è premuto
+               print('    LED2 ON    ')  # Stampa il messaggio di stato
+               led1.off()  # Spegne LED1
+               led2.on()   # Accende LED2
+
+           sleep(0.5)  # Attende 0,5 secondi prima di controllare nuovamente lo stato dell'interruttore
+
+       except KeyboardInterrupt:
+           # Gestisce un'interruzione da tastiera (Ctrl+C) per uscire dal ciclo in modo pulito
+           pass

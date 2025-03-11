@@ -1,0 +1,200 @@
+.. note::
+
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirte?**
+
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Accede anticipadamente a anuncios de nuevos productos y vistas previas.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones navideñas.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
+
+1.3.4 Relé
+=============
+
+Introducción
+---------------
+
+En esta lección, aprenderemos a utilizar un relé. Es uno de los componentes 
+más comunes en los sistemas de control automático. Cuando el voltaje, la 
+corriente, la temperatura, la presión, etc., alcanzan, superan o son inferiores 
+al valor predeterminado, el relé conectará o interrumpirá el circuito, para 
+controlar y proteger el equipo.
+
+Componentes
+-------------
+
+.. image:: img/list_1.3.4.png
+
+Principio
+------------
+
+**Diodo**
+
+Un diodo es un componente electrónico de dos terminales que permite el flujo 
+unidireccional de la corriente. Ofrece baja resistencia en la dirección del 
+flujo de corriente y alta resistencia en la dirección opuesta. Los diodos se 
+utilizan principalmente para prevenir daños a los componentes, especialmente 
+debido a la fuerza electromotriz en circuitos que generalmente están polarizados.
+
+.. image:: img/image344.png
+
+Los dos terminales de un diodo están polarizados, siendo el extremo positivo 
+llamado ánodo y el extremo negativo llamado cátodo. El cátodo generalmente está 
+hecho de plata o tiene una banda de color. Controlar la dirección del flujo de 
+corriente es una de las características clave de los diodos: la corriente en un 
+diodo fluye del ánodo al cátodo. El comportamiento de un diodo es similar al de 
+una válvula de retención. Una de las características más importantes de un diodo 
+es su curva característica de corriente y voltaje. Si se conecta un voltaje mayor 
+al ánodo, la corriente fluye del ánodo al cátodo, lo que se conoce como polarización 
+directa. Sin embargo, si el voltaje mayor se conecta al cátodo, el diodo no conduce 
+electricidad, y el proceso se llama polarización inversa.
+
+**Relé**
+
+Como sabemos, un relé es un dispositivo que se utiliza para proporcionar conexión entre 
+dos o más puntos o dispositivos en respuesta a una señal de entrada aplicada. En otras 
+palabras, los relés proporcionan aislamiento entre el controlador y el dispositivo, ya que 
+los dispositivos pueden funcionar tanto con CA como con CC. Sin embargo, reciben señales de 
+un microcontrolador que funciona con CC, por lo que se requiere un relé para cerrar la brecha. 
+El relé es extremadamente útil cuando necesitas controlar una gran cantidad de corriente o voltaje 
+con una pequeña señal eléctrica.
+
+Hay 5 partes en cada relé:
+
+**Electroimán** - Consiste en un núcleo de hierro enrollado con un bobinado de 
+alambre. Cuando pasa electricidad a través de él, se vuelve magnético. Por lo 
+tanto, se llama electroimán.
+
+**Armadura** - La tira magnética móvil se conoce como armadura. Cuando la 
+corriente fluye a través de ella, la bobina se energiza, produciendo un campo 
+magnético que se utiliza para abrir o cerrar los puntos normalmente abiertos 
+(N/O) o normalmente cerrados (N/C). Y la armadura puede moverse con corriente 
+continua (CC) así como con corriente alterna (CA).
+
+**Resorte** - Cuando no hay corriente fluyendo a través de la bobina del 
+electroimán, el resorte aleja la armadura, por lo que el circuito no se completa.
+
+**Conjunto de contactos eléctricos** - Hay dos puntos de contacto:
+
+- Normalmente abierto: conectado cuando el relé está activado y desconectado cuando está inactivo.
+
+- Normalmente cerrado: no conectado cuando el relé está activado y conectado cuando está inactivo.
+
+**Marco moldeado** - Los relés están cubiertos de plástico para protección.
+
+**Funcionamiento del relé**
+
+El principio de funcionamiento del relé es simple. Cuando se suministra energía 
+al relé, comienza a fluir corriente a través de la bobina de control; como 
+resultado, el electroimán comienza a energizarse. Luego, la armadura es atraída 
+hacia la bobina, bajando el contacto móvil y conectándose con los contactos 
+normalmente abiertos. Así, el circuito con la carga se energiza. Romper el 
+circuito sería un caso similar, ya que el contacto móvil será levantado hacia 
+los contactos normalmente cerrados bajo la fuerza del resorte. De esta manera, 
+el encendido y apagado del relé puede controlar el estado de un circuito de carga.
+
+.. image:: img/image142.jpeg
+
+Diagrama esquemático
+------------------------
+
+.. image:: img/image345.png
+
+
+Procedimientos experimentales
+--------------------------------
+
+**Paso 1:** Construir el circuito.
+
+.. image:: img/image144.png
+    :width: 800
+
+**Paso 2**: Abrir el archivo de código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/1.3.4
+
+**Paso 3:** Compilar el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.3.4_Relay.c -lwiringPi
+
+**Paso 4:** Ejecutar el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Después de ejecutar el código, el LED se encenderá. Además, podrás escuchar 
+un tic-tac causado por la ruptura del contacto normalmente cerrado y el cierre 
+del contacto normalmente abierto.
+
+.. note::
+
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`C code is not working?`.
+
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #define RelayPin 0
+
+    int main(void){
+        if(wiringPiSetup() == -1){ //cuando la inicialización de wiring falla, imprime un mensaje en pantalla
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(RelayPin, OUTPUT);   //configura GPIO17(GPIO0) como salida
+        while(1){
+            // Tick
+            printf("Relay Open......\n");
+            delay(100);
+            digitalWrite(RelayPin, LOW);
+            delay(1000);
+            // Tock
+            printf("......Relay Close\n");
+            delay(100);
+            digitalWrite(RelayPin, HIGH);
+            delay(1000);
+        }
+
+        return 0;
+    }
+
+**Explicación del código**
+
+.. code-block:: c
+
+    digitalWrite(RelayPin, LOW);
+
+Establece el puerto de E/S como nivel bajo (0V), por lo que el transistor 
+no se energiza y la bobina no recibe corriente. No hay fuerza electromagnética, 
+por lo que el relé se abre y el LED no se enciende.
+
+.. code-block:: c
+
+    digitalWrite(RelayPin, HIGH);
+
+Establece el puerto de E/S como nivel alto (5V) para energizar el transistor. 
+La bobina del relé se alimenta y genera fuerza electromagnética, y el relé se 
+cierra, encendiendo el LED.

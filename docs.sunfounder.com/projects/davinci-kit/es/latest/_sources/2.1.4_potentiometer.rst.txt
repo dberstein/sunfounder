@@ -1,0 +1,589 @@
+.. note::
+
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete para profundizar en Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
+
+    **¿Por qué unirse?**
+
+    - **Soporte de expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Acceso exclusivo**: Obtén primicias sobre nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+2.1.4 Potenciómetro
+======================
+
+Introducción
+----------------
+
+La función de ADC permite convertir señales analógicas en digitales, 
+y en este experimento se usa el ADC0834 para realizar esta conversión 
+mediante un potenciómetro. El potenciómetro modifica la cantidad física 
+de voltaje, que luego es convertida por la función ADC.
+
+Componentes
+---------------
+
+.. image:: img/list_2.1.4_potentiometer.png
+
+Principio
+-------------
+
+**ADC0834**
+
+El ADC0834 es un convertidor analógico-digital de 8 bits `successive
+approximation <https://cn.bing.com/dict/search?q=successive approximations&FORM=BDVSP6&mkt=zh-cn>`__con aproximación 
+sucesiva, equipado con un multiplexor multicanal configurable de entrada y 
+salida en serie. La entrada y salida en serie están configuradas para interactuar 
+con registros de desplazamiento estándar o microprocesadores.
+
+.. image:: img/image309.png
+
+
+**Secuencia de Operación**
+
+La conversión se inicia colocando CS en bajo, lo que habilita todos los 
+circuitos lógicos. CS debe mantenerse en bajo durante todo el proceso de 
+conversión. El procesador proporciona una entrada de reloj, y con cada 
+transición de bajo a alto de la entrada de reloj, los datos en DI se desplazan 
+al registro de dirección del multiplexor. El primer valor alto en la entrada 
+es el bit de inicio, seguido de una palabra de asignación de 3 a 4 bits. 
+Con cada transición de reloj, el bit de inicio y la palabra de asignación se 
+desplazan a través del registro de desplazamiento.
+
+Cuando el bit de inicio alcanza la posición de inicio en el registro del 
+multiplexor, se selecciona el canal de entrada y comienza la conversión. 
+La salida de estado de SAR (SARS) pasa a alto indicando que la conversión 
+está en progreso, y DI en el registro de desplazamiento del multiplexor se 
+desactiva durante la conversión.
+
+Se inserta automáticamente un período de reloj para permitir que el canal 
+seleccionado se estabilice. La salida de datos DO sale del estado de alta 
+impedancia y proporciona un nivel bajo inicial durante este período de 
+estabilización del multiplexor. El comparador SAR compara salidas sucesivas 
+de la escalera resistiva con la señal analógica entrante. A medida que avanza 
+la conversión, los datos de conversión se envían en serie desde el pin de salida 
+DO, comenzando por el bit más significativo (MSB).
+
+Después de ocho períodos de reloj, la conversión se completa y la salida SARS 
+pasa a bajo. Finalmente, se emite el bit menos significativo después de la 
+secuencia de datos comenzando por el MSB.
+
+.. image:: img/image175.png
+    :width: 800
+    :align: center
+
+**Tabla de Lógica de Control de Dirección del MUX ADC0834**
+
+.. image:: img/image176.png
+    :width: 800
+    :align: center
+
+
+**Potenciómetro**
+
+El potenciómetro es un componente de resistencia con tres terminales, y su 
+valor de resistencia puede ajustarse según ciertas variaciones. Consiste en 
+una resistencia y un cepillo móvil. Cuando el cepillo se desplaza a lo largo 
+de la resistencia, se obtiene una salida de resistencia o voltaje que varía 
+según el desplazamiento.
+
+.. image:: img/image310.png
+    :width: 300
+    :align: center
+
+Las funciones del potenciómetro en el circuito son las siguientes:
+
+1. Actuar como divisor de voltaje
+
+El potenciómetro es una resistencia ajustable de forma continua. Cuando ajustas 
+el eje o la manija deslizante del potenciómetro, el contacto móvil se desplaza 
+sobre la resistencia. En este punto, se puede obtener un voltaje de salida 
+dependiendo del voltaje aplicado al potenciómetro y del ángulo de rotación del 
+brazo móvil o de la distancia que se mueva.
+
+Diagrama Esquemático
+------------------------
+
+.. image:: img/image311.png
+
+.. image:: img/image312.png
+
+
+Procedimientos Experimentales
+-------------------------------
+
+**Paso 1:** Construye el circuito.
+
+.. image:: img/image180.png
+    :width: 800
+
+.. note::
+    Coloca el chip siguiendo la posición correspondiente en la imagen. Ten en 
+    cuenta que las ranuras en el chip deben estar hacia la izquierda al colocarlo.
+
+Para Usuarios de Lenguaje C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Paso 2:** Abre el archivo de código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.1.4/
+
+**Paso 3:** Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.4_Potentiometer.c -lwiringPi
+
+**Paso 4:** Ejecuta.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Después de ejecutar el código, gira el mando del potenciómetro y la intensidad 
+del LED cambiará en consecuencia.
+
+.. note::
+
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <softPwm.h>
+
+    typedef unsigned char uchar;
+    typedef unsigned int uint;
+
+    #define     ADC_CS    0
+    #define     ADC_CLK   1
+    #define     ADC_DIO   2
+    #define     LedPin    3
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+        int odd = channel & 1;
+
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Start bit
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // Modo de entrada única
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // IMPAR
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // Selección
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);
+
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+
+        for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+        for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+        digitalWrite(ADC_CS,1);
+        pinMode(ADC_DIO, OUTPUT);
+        return(dat1==dat2) ? dat1 : 0;
+    }
+
+    int main(void)
+    {
+        uchar analogVal;
+        if(wiringPiSetup() == -1){ // Si la inicialización de wiring falla, imprime mensaje en pantalla
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        softPwmCreate(LedPin,  0, 100);
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+
+        while(1){
+            analogVal = get_ADC_Result(0);
+            printf("Current analogVal : %d\n", analogVal);
+            delay(100);
+            softPwmWrite(LedPin, analogVal);
+            delay(100);
+        }
+        return 0;
+    }
+
+**Explicación del Código**
+
+.. code-block:: c
+
+    #define     ADC_CS    0
+    #define     ADC_CLK   1
+    #define     ADC_DIO   2
+    #define     LedPin    3
+
+Define CS, CLK, DIO del ADC0834 y conéctalos a GPIO0, GPIO1 y GPIO2, 
+respectivamente. Luego, conecta el LED al GPIO3.
+
+.. code-block:: c
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+        int odd = channel & 1;
+
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Bit de inicio
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // Modo de entrada única
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // IMPAR
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // Selección
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);
+
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+        for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+        digitalWrite(ADC_CS,1);
+        pinMode(ADC_DIO, OUTPUT);
+        return(dat1==dat2) ? dat1 : 0;
+    }
+
+Esta es una función del ADC0834 para obtener la conversión de analógico a 
+digital. El flujo de trabajo específico es el siguiente:
+
+.. code-block:: c
+
+    digitalWrite(ADC_CS, 0);
+Establece CS en nivel bajo y comienza a habilitar la conversión AD.
+
+.. code-block:: c
+
+    // Bit de inicio
+    digitalWrite(ADC_CLK,0);
+    digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+    digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+
+Cuando ocurre la primera transición de bajo a alto en la entrada de reloj, 
+establece DIO en 1 como bit de inicio. En los tres pasos siguientes, se envían 
+3 palabras de asignación.
+
+.. code-block:: c
+
+    // Modo de entrada única
+    digitalWrite(ADC_CLK,0);
+    digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+    digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+
+Cuando ocurre la segunda transición de bajo a alto en la entrada de reloj, 
+configura DIO en 1 y selecciona el modo SGL.
+
+.. code-block:: c
+
+    // IMPAR
+    digitalWrite(ADC_CLK,0);
+    digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+    digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+
+Al ocurrir la tercera transición, el valor de DIO es controlado por la 
+variable **odd**.
+
+.. code-block:: c
+
+    // Selección
+    digitalWrite(ADC_CLK,0);
+    digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+    digitalWrite(ADC_CLK,1);
+
+Con la cuarta transición de bajo a alto de CLK, el valor de DIO es controlado 
+por la variable **sel**.
+
+Bajo la condición de que channel=0, sel=0, odd=0, las fórmulas de operación 
+para **sel** y **odd** son las siguientes:
+
+.. code-block:: c
+
+    int sel = channel > 1 & 1;
+    int odd = channel & 1;
+
+Cuando se cumple la condición channel=1, sel=0, odd=1, consulta la siguiente 
+tabla de lógica de control de direcciones. Aquí se elige CH1, y el bit de 
+inicio se desplaza a la ubicación inicial del registro del multiplexor, 
+comenzando la conversión.
+
+.. image:: img/image313.png
+
+
+.. code-block:: c
+
+    digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+    digitalWrite(ADC_CLK,0);
+    digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+
+Aquí, se establece DIO en 1 dos veces; puedes ignorarlo.
+
+.. code-block:: c
+
+    for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+En la primera declaración for(), tan pronto como el quinto pulso de CLK pasa 
+de alto a bajo, establece DIO en modo de entrada. Luego comienza la conversión 
+y el valor convertido se almacena en la variable dat1. Después de ocho períodos 
+de reloj, la conversión se completa.
+
+.. code-block:: c
+
+    for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+En la segunda declaración for(), se envían los valores convertidos a través de 
+DO después de otros ocho períodos de reloj y se almacenan en la variable dat2.
+
+.. code-block:: c
+
+    digitalWrite(ADC_CS,1);
+    pinMode(ADC_DIO, OUTPUT);
+    return(dat1==dat2) ? dat1 : 0;
+
+return(dat1==dat2) ? dat1 : 0 se usa para comparar el valor obtenido durante 
+la conversión con el valor de salida. Si son iguales, se devuelve el valor de 
+conversión dat1; de lo contrario, se devuelve 0. Aquí, el flujo de trabajo del 
+ADC0834 se completa.
+
+.. code-block:: c
+
+    softPwmCreate(LedPin,  0, 100);
+
+La función crea un pin PWM en software, LedPin, luego establece el ancho de pulso 
+inicial en 0, y el período de PWM es 100 x 100us.
+
+.. code-block:: c
+
+    while(1){
+            analogVal = get_ADC_Result(0);
+            printf("Current analogVal : %d\n", analogVal);
+            softPwmWrite(LedPin, analogVal);
+            delay(100);
+        }
+
+En el programa principal, lee el valor del canal 0, que está conectado a un 
+potenciómetro. Almacena el valor en la variable analogVal y luego escríbelo 
+en LedPin. Ahora puedes ver cómo la intensidad del LED cambia con el valor 
+del potenciómetro.
+
+Para Usuarios de Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Paso 2:** Abre el archivo de código
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python/
+
+**Paso 3:** Ejecuta.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.4_Potentiometer.py
+
+Después de ejecutar el código, gira el mando del potenciómetro y la 
+intensidad del LED cambiará en consecuencia.
+
+**Código**
+
+.. note::
+
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes, debes ir a la ruta de origen del código, como ``davinci-kit-for-raspberry-pi/python``.
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import ADC0834
+    import time
+
+    LedPin = 22
+
+    def setup():
+        global led_val
+        # Configura los modos de GPIO en numeración BCM
+        GPIO.setmode(GPIO.BCM)
+        # Configura el modo de LedPin como salida y el nivel inicial en alto (3.3v)
+        GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
+        ADC0834.setup()
+        # Configura el LED como canal PWM con frecuencia de 2KHz
+        led_val = GPIO.PWM(LedPin, 2000)
+        # Inicia con valor 0
+        led_val.start(0)
+
+    def destroy():
+        # Detiene todos los canales PWM
+        led_val.stop()
+        # Libera recursos
+        GPIO.cleanup()
+    def loop():
+        while True:
+            analogVal = ADC0834.getResult()
+            print ('analog value = %d' % analogVal)
+            led_val.ChangeDutyCycle(analogVal*100/255)
+            time.sleep(0.2)
+    if __name__ == '__main__':
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt: # Cuando se presiona 'Ctrl+C', se ejecutará el programa destroy().
+            destroy()
+
+**Explicación del Código**
+
+.. code-block:: python
+
+    import ADC0834
+
+Importa la biblioteca ADC0834. Puedes revisar el contenido de la biblioteca usando el comando nano ADC0834.py.
+
+.. code-block:: python
+
+    def setup():
+        global led_val
+        # Configura los modos de GPIO en numeración BCM
+        GPIO.setmode(GPIO.BCM)
+        # Configura el modo de LedPin como salida y el nivel inicial en alto (3.3v)
+        GPIO.setup(LedPin, GPIO.OUT, initial=GPIO.HIGH)
+        ADC0834.setup()
+        # Configura el LED como canal PWM con frecuencia de 2KHz
+        led_val = GPIO.PWM(LedPin, 2000)
+
+        # Inicia con valor 0
+        led_val.start(0)
+
+En setup(), define el modo de nombramiento como BCM, configura LedPin como 
+canal PWM y establece una frecuencia de 2Khz.
+
+**ADC0834.setup():** Inicializa ADC0834 y conecta los pines definidos CS, CLK, DIO del ADC0834 a GPIO17, GPIO18 y GPIO27, respectivamente.
+
+.. code-block:: python
+
+    def loop():
+        while True:
+            res = ADC0834.getResult()
+            print ('res = %d' % res)
+            R_val = MAP(res, 0, 255, 0, 100)
+            led_val.ChangeDutyCycle(R_val)
+            time.sleep(0.2)
+
+La función getResult() se usa para leer los valores analógicos de los cuatro 
+canales de ADC0834. Por defecto, la función lee el valor de CH0, y si deseas 
+leer otros canales, ingresa el número de canal en **( )**, por ejemplo, getResult(1).
+
+La función loop() primero lee el valor de CH0 y luego lo asigna a la variable 
+res. Después, llama a la función MAP para asignar el valor leído del potenciómetro 
+al rango de 0~100. Este paso se utiliza para controlar el ciclo de trabajo de 
+LedPin. Ahora, puedes observar que el brillo del LED cambia con el valor del 
+potenciómetro.
+
+
+Imagen del Fenómeno
+----------------------
+
+.. image:: img/image181.jpeg
+
+

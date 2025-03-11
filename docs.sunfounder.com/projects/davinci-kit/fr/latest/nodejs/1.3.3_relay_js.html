@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.3.3 Relais &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Entrée" href="input_js.html" />
+    <link rel="prev" title="1.3.2 Servo" href="1.3.2_servo_js.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/nodejs/1.3.3_relay_js.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Pour le Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html">Bibliothèques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 Sorties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 Entrée</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/play_with_processing.html">Jouer avec Processing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_nodejs.html">Jouer avec Node.js</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="install_nodejs.html">Qu’est-ce que Node.js ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="check_pigpio.html">Vérification de pigpio</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="output_js.html">Output</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="output_js.html#affichages">1.1 Affichages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output_js.html#son">1.2 Son</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="output_js.html#commandes-de-moteurs">1.3 Commandes de moteurs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="input_js.html">Entrée</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+          <li class="breadcrumb-item"><a href="play_with_nodejs.html">Jouer avec Node.js</a></li>
+          <li class="breadcrumb-item"><a href="output_js.html">Output</a></li>
+      <li class="breadcrumb-item active">1.3.3 Relais</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nodejs/1.3.3_relay_js.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour, bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, de l’Arduino et de l’ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez vos problèmes après-vente et surmontez vos défis techniques grâce à l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprenez et Partagez</strong> : Échangez des conseils et des tutoriels pour améliorer vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Bénéficiez d’un accès anticipé aux annonces de nouveaux produits et à des avant-premières.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de remises exclusives sur nos derniers produits.</p></li>
+<li><p><strong>Promotions festives et cadeaux</strong> : Participez à des concours et des promotions spéciales.</p></li>
+</ul>
+<p>👉 Prêt à explorer et créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="relais">
+<h1>1.3.3 Relais<a class="headerlink" href="1.3.3_relay_js.html#relais" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="1.3.3_relay_js.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>Dans ce projet, nous allons apprendre à utiliser un relais. Il s’agit de l’un des
+composants les plus couramment utilisés dans les systèmes de contrôle automatique.
+Lorsque la tension, le courant, la température, la pression, etc., atteignent,
+dépassent ou sont inférieurs à la valeur prédéterminée, le relais se ferme ou s’ouvre
+pour contrôler et protéger les équipements.</p>
+</section>
+<section id="composants">
+<h2>Composants<a class="headerlink" href="1.3.3_relay_js.html#composants" title="Lien vers cette rubrique"></a></h2>
+<img alt="../_images/list_1.3.4.png" src="../_images/list_1.3.4.png" />
+</section>
+<section id="schema-de-cablage">
+<h2>Schéma de câblage<a class="headerlink" href="1.3.3_relay_js.html#schema-de-cablage" title="Lien vers cette rubrique"></a></h2>
+<img alt="../_images/image345.png" src="../_images/image345.png" />
+</section>
+<section id="procedures-experimentales">
+<h2>Procédures expérimentales<a class="headerlink" href="1.3.3_relay_js.html#procedures-experimentales" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1 :</strong> Construire le circuit.</p>
+<img alt="../_images/image144.png" src="../_images/image144.png" />
+<p><strong>Étape 2 :</strong> Accéder au dossier du code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">nodejs</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Étape 3 :</strong> Exécuter le code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">node</span> <span class="n">relay</span><span class="o">.</span><span class="n">js</span>
+</pre></div>
+</div>
+<p>Pendant l’exécution du programme, la LED s’allume. De plus, vous entendrez un
+déclic causé par la fermeture du contact normalement ouvert et l’ouverture du
+contact normalement fermé.</p>
+<p><strong>Code</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">relay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">17</span><span class="p">,{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">});</span>
+
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">relay</span><span class="p">.</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="o">!</span><span class="nx">relay</span><span class="p">.</span><span class="nx">digitalRead</span><span class="p">());</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span>
+
+<span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;SIGINT&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+<span class="w">    </span><span class="nx">relay</span><span class="p">.</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Explication du code</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">relay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">17</span><span class="p">,{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Importer le module <code class="docutils literal notranslate"><span class="pre">pigpio</span></code> et instancier un objet <code class="docutils literal notranslate"><span class="pre">relay</span></code> de la classe Gpio pour contrôler le port IO Gpio17, en le définissant en mode sortie.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">relay</span><span class="p">.</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="o">!</span><span class="nx">relay</span><span class="p">.</span><span class="nx">digitalRead</span><span class="p">());</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Le relais s’ouvre et se ferme en continu, et la LED s’allume et s’éteint toutes les 500 ms.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;SIGINT&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+<span class="w">    </span><span class="nx">relay</span><span class="p">.</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Lorsque <strong>Ctrl+C</strong> est détecté, le relais s’ouvre pour arrêter le fonctionnement.</p>
+</section>
+<section id="image-du-resultat">
+<h2>Image du résultat<a class="headerlink" href="1.3.3_relay_js.html#image-du-resultat" title="Lien vers cette rubrique"></a></h2>
+<img alt="../_images/image145.jpeg" src="../_images/image145.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="1.3.2_servo_js.html" class="btn btn-neutral float-left" title="1.3.2 Servo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="input_js.html" class="btn btn-neutral float-right" title="Entrée" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+.. note::
+
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara & Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti.
+    - **Sconti Speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Omaggi**: Partecipa a omaggi e promozioni speciali per le festività.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+2.2.1 Fotoresistenza
+=========================
+
+Introduzione
+------------
+
+La fotoresistenza è un componente comunemente utilizzato per misurare 
+l'intensità della luce ambientale. Aiuta il controller a distinguere 
+tra giorno e notte e a realizzare funzioni di controllo della luce, 
+come la lampada notturna. Questo progetto è molto simile a quello del 
+potenziometro, ma in questo caso la resistenza varia con l'intensità della luce.
+
+Componenti
+-------------
+
+.. image:: ../img/list_2.2.1_photoresistor.png
+
+
+Schema a Blocchi
+-------------------
+
+.. image:: ../img/image321.png
+
+
+.. image:: ../img/image322.png
+
+
+Procedure Sperimentali
+--------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../img/image198.png
+
+**Passo 2:** Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Passo 3:** Esegui il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node photoresistor.js
+
+Quando il codice è in esecuzione, la luminosità del LED varierà in 
+base all'intensità della luce rilevata dalla fotoresistenza.
+
+**Codice**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+    exports.ADC0834 = ADC0834;
+
+    const adc = new ADC0834(17, 18, 27);
+
+    const led = new Gpio(22, {mode: Gpio.OUTPUT});
+
+    setInterval(() => {
+      adc.read(0).then((value) => {
+        console.log(value);
+        led.pwmWrite(value);
+      }, (error)=>{
+        console.log("Error: " + error);
+      });
+    }, 100);
+
+**Spiegazione del Codice**
+
+Il codice è lo stesso della sezione 2.1.4 Potenziometro. Consulta la 
+spiegazione del codice in :ref:`2.1.4 Potenziometro` per ulteriori dettagli.
+
+Immagine del Fenomeno
+-----------------------
+
+.. image:: ../img/image199.jpeg

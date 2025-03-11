@@ -1,0 +1,218 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des concours et des promotions spéciales lors des fêtes.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+.. _2.2.1_py_pi5:
+
+2.2.1 Photoresistor
+=====================
+
+Introduction
+------------------
+
+La photorésistance est un composant couramment utilisé pour mesurer l'intensité 
+de la lumière ambiante. Elle permet au contrôleur de distinguer le jour et la nuit, 
+et d'implémenter des fonctions de contrôle de la lumière, comme l'activation d'une 
+lampe de nuit. Ce projet est très similaire à celui du potentiomètre, mais au lieu 
+de changer la tension, la photorésistance détecte la lumière.
+
+Composants nécessaires
+--------------------------
+
+Pour ce projet, nous aurons besoin des composants suivants :
+
+.. image:: ../python_pi5/img/2.2.1_photoresistor_list.png
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`led`
+..         - |link_led_buy|
+..     *   - :ref:`adc0834`
+..         - \-
+..     *   - :ref:`photoresistor`
+..         - |link_photoresistor_buy|
+
+Schematic Diagram
+-------------------
+
+.. image:: ../python_pi5/img/2.2.1_photoresistor_schematic_1.png
+
+.. image:: ../python_pi5/img/2.2.1_photoresistor_schematic_2.png
+
+
+Procédure expérimentale
+---------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: ../python_pi5/img/2.2.1_photoresistor_circuit.png
+
+**Étape 2 :** Accédez au répertoire contenant le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Étape 3 :** Exécutez le fichier.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.2.1_Photoresistor.py
+
+Lorsque le code s'exécute, la luminosité de la LED variera en fonction de l'intensité lumineuse détectée par la photorésistance.
+
+.. warning::
+
+    En cas d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`.
+
+**Code**
+
+.. note::
+
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le répertoire source tel que ``davinci-kit-for-raspberry-pi/python-pi5``. Après modification, vous pouvez exécuter le code pour voir le résultat.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import PWMLED
+   import ADC0834
+   import time
+
+   # Initialiser une LED PWM sur la broche GPIO 22
+   led = PWMLED(22)
+
+   # Configurer le module ADC0834
+   ADC0834.setup()
+
+   # Définir une fonction pour mapper les valeurs d'une plage à une autre
+   def MAP(x, in_min, in_max, out_min, out_max):
+       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+   # Boucle principale pour lire les valeurs de l'ADC et contrôler la luminosité de la LED
+   def loop():
+       while True:
+           # Lire la valeur analogique depuis l'ADC
+           analogVal = ADC0834.getResult()
+           print('value = %d' % analogVal)
+
+           # Mapper la valeur de l'ADC sur une valeur PWM et régler la luminosité de la LED
+           led.value = float(analogVal/255)
+
+           # Attendre 0,2 seconde
+           time.sleep(0.2)
+
+   # Exécuter la boucle principale et gérer KeyboardInterrupt pour un arrêt propre
+   try:
+       loop()
+   except KeyboardInterrupt: 
+       # Éteindre la LED avant de quitter
+       led.value = 0
+
+
+**Explication du code**
+
+#. Ce segment importe la classe ``PWMLED`` de la bibliothèque ``gpiozero``, nécessaire pour contrôler les LED en PWM. Il inclut également le module ``ADC0834`` pour interfacer avec le convertisseur analogique-numérique, ainsi que le module ``time`` pour les fonctions basées sur le temps, telles que ``sleep``.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import PWMLED
+       import ADC0834
+       import time
+
+#. Initialise une LED PWM connectée à la broche GPIO 22 et configure le module ADC0834 pour son utilisation dans le projet.
+
+   .. code-block:: python
+
+       # Initialiser une LED PWM sur la broche GPIO 22
+       led = PWMLED(22)
+
+       # Configurer le module ADC0834
+       ADC0834.setup()
+
+#. Définit une fonction pour mapper une valeur d'entrée d'une plage à une autre. Cette fonction est essentielle pour traduire les lectures de l'ADC en une plage appropriée pour le contrôle PWM de la LED.
+
+   .. code-block:: python
+
+       # Définir une fonction pour mapper les valeurs d'une plage à une autre
+       def MAP(x, in_min, in_max, out_min, out_max):
+           return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+#. Cette section contient une boucle qui lit continuellement la valeur analogique de l'ADC0834, la mappe sur une valeur PWM correspondante et ajuste la luminosité de la LED. Une brève pause (`time.sleep(0.2)`) est incluse pour rendre les changements visibles et éviter une surcharge du processeur.
+
+   .. code-block:: python
+
+       # Boucle principale pour lire les valeurs de l'ADC et contrôler la luminosité de la LED
+       def loop():
+           while True:
+               # Lire la valeur analogique depuis l'ADC
+               analogVal = ADC0834.getResult()
+               print('value = %d' % analogVal)
+
+               # Mapper la valeur de l'ADC sur une valeur PWM et régler la luminosité de la LED
+               led.value = float(analogVal/255)
+
+               # Attendre 0,2 seconde
+               time.sleep(0.2)
+
+#. Exécute la fonction ``loop`` et inclut la gestion des erreurs pour un arrêt propre lors d'un ``KeyboardInterrupt``. Cela garantit que la LED est éteinte lorsque le programme se termine.
+
+   .. code-block:: python
+
+       # Exécuter la boucle principale et gérer KeyboardInterrupt pour un arrêt propre
+       try:
+           loop()
+       except KeyboardInterrupt: 
+           # Éteindre la LED avant de quitter
+           led.value = 0
+

@@ -1,0 +1,653 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2.3 DHT-11 &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="2.2.4 Capteur PIR" href="2.2.4_pir.html" />
+    <link rel="prev" title="2.2.2 Thermistor" href="2.2.2_thermistor.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/2.2.3_dht-11.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Pour le Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Bibliothèques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_output.html">1 Sorties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="2_input.html">2 Entrée</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="2.1.1_button.html">2.1.1 Bouton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.2_slide&#32;Switch.html">2.1.2 Interrupteur à glissière</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.3_tilt_switch.html">2.1.3 Interrupteur à bascule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.4_potentiometer.html">2.1.4 Potentiomètre</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.5_keypad.html">2.1.5 Keypad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.6_joystick.html">2.1.6 Joystick</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.1_photoresistor.html">2.2.1 Photoresistor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.2_thermistor.html">2.2.2 Thermistor</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="2.2.3_dht-11.html#">2.2.3 DHT-11</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="2.2.3_dht-11.html#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.3_dht-11.html#composants">Composants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.3_dht-11.html#principe">Principe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.3_dht-11.html#schema-de-principe">Schéma de principe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.3_dht-11.html#procedures-experimentales">Procédures expérimentales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.3_dht-11.html#photo-du-phenomene">Photo du phénomène</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.4_pir.html">2.2.4 Capteur PIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html">2.2.5 Module de Capteur Ultrasonique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.6_mpu6050_module.html">2.2.6 Module MPU6050</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.7_mfrc522_rfid_module.html">2.2.7 Module RFID MFRC522</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3_extension.html">3 Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Jouer avec Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Jouer avec Node.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+          <li class="breadcrumb-item"><a href="2_input.html">2 Entrée</a></li>
+      <li class="breadcrumb-item active">2.2.3 DHT-11</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/2.2.3_dht-11.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasts sur Facebook ! Explorez en profondeur Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez les problèmes après-vente et les défis techniques avec l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprendre &amp; Partager</strong> : Échangez des astuces et des tutoriels pour améliorer vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Accédez en avant-première aux annonces de nouveaux produits et aperçus exclusifs.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de réductions exclusives sur nos nouveaux produits.</p></li>
+<li><p><strong>Promotions festives et tirages au sort</strong> : Participez à des tirages au sort et à des promotions spéciales pour les fêtes.</p></li>
+</ul>
+<p>👉 Prêt à explorer et créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="dht-11">
+<h1>2.2.3 DHT-11<a class="headerlink" href="2.2.3_dht-11.html#dht-11" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="2.2.3_dht-11.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>Le capteur numérique de température et d’humidité DHT11 est un capteur composite
+qui contient un signal numérique calibré de température et d’humidité. La technologie
+de collecte de modules numériques dédiés ainsi que la technologie de détection de la
+température et de l’humidité sont appliquées pour assurer une haute fiabilité et une
+excellente stabilité.</p>
+<p>Les capteurs comprennent un capteur de résistance à l’humidité et un capteur de
+température NTC, tous deux connectés à un microcontrôleur haute performance 8 bits.</p>
+</section>
+<section id="composants">
+<h2>Composants<a class="headerlink" href="2.2.3_dht-11.html#composants" title="Lien vers cette rubrique"></a></h2>
+<img alt="_images/list_2.2.3_dht-11.png" src="_images/list_2.2.3_dht-11.png" />
+</section>
+<section id="principe">
+<h2>Principe<a class="headerlink" href="2.2.3_dht-11.html#principe" title="Lien vers cette rubrique"></a></h2>
+<p>Le DHT11 est un capteur numérique basique, très économique, qui mesure la température
+et l’humidité. Il utilise un capteur d’humidité capacitif et une thermistance pour
+mesurer l’air ambiant, puis transmet un signal numérique via la broche de données
+(aucune entrée analogique n’est requise).</p>
+<a class="reference internal image-reference" href="_images/image205.png"><img alt="_images/image205.png" src="_images/image205.png" style="width: 200px;" />
+</a>
+<p>Seules trois broches sont disponibles : VCC, GND et DATA. Le processus de communication
+commence par l’envoi de signaux de démarrage au DHT11 via la ligne DATA, et le DHT11
+répond par un signal de confirmation. Ensuite, l’hôte reçoit ce signal de réponse et
+commence à recevoir 40 bits de données d’humidité et de température (8 bits pour l’humidité
+entière, 8 bits pour la décimale de l’humidité, 8 bits pour la température entière, 8 bits
+pour la décimale de la température et 8 bits pour le checksum). Pour plus d’informations,
+veuillez consulter la fiche technique du DHT11.</p>
+</section>
+<section id="schema-de-principe">
+<h2>Schéma de principe<a class="headerlink" href="2.2.3_dht-11.html#schema-de-principe" title="Lien vers cette rubrique"></a></h2>
+<img alt="_images/image326.png" src="_images/image326.png" />
+</section>
+<section id="procedures-experimentales">
+<h2>Procédures expérimentales<a class="headerlink" href="2.2.3_dht-11.html#procedures-experimentales" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1 :</strong> Construisez le circuit.</p>
+<a class="reference internal image-reference" href="_images/image207.png"><img alt="_images/image207.png" src="_images/image207.png" style="width: 800px;" />
+</a>
+<section id="pour-les-utilisateurs-c">
+<h3>Pour les utilisateurs C<a class="headerlink" href="2.2.3_dht-11.html#pour-les-utilisateurs-c" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Étape 2 :</strong> Accédez au dossier du code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">2.2.3</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Étape 3 :</strong> Compilez le code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">2.2.3</span><span class="n">_DHT</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Étape 4 :</strong> Exécutez le fichier exécutable.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Après l’exécution du code, le programme affichera la température et
+l’humidité détectées par le DHT11 sur l’écran de l’ordinateur.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Si cela ne fonctionne pas après l’exécution, ou s’il y a un message d’erreur : « wiringPi.h : Aucun fichier ou répertoire de ce type », veuillez
+vous référer à <a class="reference internal" href="faq.html#c-code-is-not-working"><span class="std std-ref">C code is not working?</span></a>.</p>
+</div>
+<p><strong>Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+
+<span class="cp">#define MAXTIMINGS 85  </span><span class="c1">// Maximum number of timing transitions</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span><span class="w">  </span><span class="c1">// Data array to hold sensor values</span>
+
+<span class="c1">// Function to read data from DHT11 sensor</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">read_dht11_dat</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">GPIOPIN</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">currState</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">laststate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HIGH</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">f</span><span class="p">;</span><span class="w"> </span><span class="c1">// Temperature in Fahrenheit</span>
+
+<span class="w">    </span><span class="c1">// Reset data array before each read</span>
+<span class="w">    </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Pull pin down for 18 milliseconds to initiate communication</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">GPIOPIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">GPIOPIN</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">18</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Then pull it up for 40 microseconds</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">GPIOPIN</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Prepare to read the pin</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">GPIOPIN</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Detect change and read data</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAXTIMINGS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Count how long each state lasts</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">GPIOPIN</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">laststate</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">255</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Save the current state</span>
+<span class="w">        </span><span class="n">laststate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">GPIOPIN</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Ignore first 3 transitions (DHT11 response signal)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Shift bits and store data</span>
+<span class="w">            </span><span class="n">dht11_dat</span><span class="p">[</span><span class="n">j</span><span class="o">/</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">dht11_dat</span><span class="p">[</span><span class="n">j</span><span class="o">/</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">j</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check if we received 40 bits (5 bytes) and verify checksum</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">j</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">((</span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">))</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Convert temperature to Fahrenheit</span>
+<span class="w">        </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">9.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">5.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Humidity = %d.%d %% Temperature = %d.%d °C (%.1f °F)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">               </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="n">f</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Data not good, skip</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Raspberry Pi wiringPi DHT11 Temperature test program</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Initialize wiringPi using BCM GPIO pin numbering</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wiringPiSetupGpio</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Read data from DHT11 connected to GPIO pin 17</span>
+<span class="w">        </span><span class="n">read_dht11_dat</span><span class="p">(</span><span class="mi">17</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wait 1 second before next read</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explication du code</strong></p>
+<ol class="arabic">
+<li><p>Inclure les en-têtes : Le code inclut les en-têtes nécessaires pour les fonctions wiringPi et l’entrée/sortie standard.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Définir les constantes :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MAXTIMINGS</span></code> : Le nombre maximum de transitions de temps attendu du capteur DHT11 (85).</p></li>
+</ul>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#define MAXTIMINGS 85  </span><span class="c1">// Nombre maximum de transitions de temps</span>
+</pre></div>
+</div>
+</li>
+<li><p>Tableau de données global :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dht11_dat[5]</span></code> : Un tableau pour stocker les 5 octets de données reçus du capteur DHT11.</p></li>
+</ul>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span><span class="w">  </span><span class="c1">// Tableau de données pour stocker les valeurs du capteur</span>
+</pre></div>
+</div>
+</li>
+<li><p>Fonction <code class="docutils literal notranslate"><span class="pre">read_dht11_dat(int</span> <span class="pre">GPIOPIN)</span></code> : Lit les données du capteur DHT11 connecté à la broche GPIO spécifiée.</p>
+<ul>
+<li><p>Initialisation : Réinitialise le tableau <code class="docutils literal notranslate"><span class="pre">dht11_dat</span></code> à zéro avant chaque lecture.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Signal de démarrage : Met la broche GPIO à bas pendant au moins 18 millisecondes pour signaler au DHT11 de commencer à envoyer des données.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">pinMode</span><span class="p">(</span><span class="n">GPIOPIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">GPIOPIN</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">18</span><span class="p">);</span><span class="w">  </span><span class="c1">// 18 millisecondes</span>
+</pre></div>
+</div>
+</li>
+<li><p>Met la broche GPIO à haut pendant 40 microsecondes.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">GPIOPIN</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span><span class="w">  </span><span class="c1">// 40 microsecondes</span>
+</pre></div>
+</div>
+</li>
+<li><p>Configure la broche GPIO en mode entrée pour lire les données du capteur.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">pinMode</span><span class="p">(</span><span class="n">GPIOPIN</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>Boucle de lecture des données : La boucle s’exécute jusqu’à <code class="docutils literal notranslate"><span class="pre">MAXTIMINGS</span></code> fois pour lire les bits de données.</p>
+<p>Pour chaque transition (de haut à bas ou de bas à haut), elle mesure combien de temps la broche reste dans chaque état.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAXTIMINGS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">GPIOPIN</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">laststate</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">255</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">laststate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">GPIOPIN</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ... reste de la boucle</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Extraction de bits de données : Les 3 premières transitions sont ignorées car elles font partie de la réponse initiale du DHT11.</p>
+<p>Pour chaque bit de données, elle détermine si le bit est 0 ou 1 en fonction de la durée pendant laquelle la broche reste à haut.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">dht11_dat</span><span class="p">[</span><span class="n">j</span><span class="o">/</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">dht11_dat</span><span class="p">[</span><span class="n">j</span><span class="o">/</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">j</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Vérification de la somme de contrôle : Après avoir reçu tous les bits, le code vérifie la somme de contrôle pour garantir l’intégrité des données.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">j</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">((</span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">))</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Si la somme de contrôle est correcte, elle affiche les valeurs d’humidité et de température.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">9.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">5.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">32</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Humidité = %d.%d %% Température = %d.%d °C (%.1f °F)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">dht11_dat</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="n">f</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>Si la somme de contrôle échoue, elle affiche un message d’erreur.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">else</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Données incorrectes, saut</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Fonction principale :</p>
+<ul class="simple">
+<li><p>Affiche un message de démarrage.</p></li>
+</ul>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Programme de test de température DHT11 pour Raspberry Pi avec wiringPi</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Initialise wiringPi en utilisant la numérotation des broches GPIO BCM.</p></li>
+</ul>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wiringPiSetupGpio</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Entre dans une boucle infinie pour lire les données du capteur DHT11 chaque seconde.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">read_dht11_dat</span><span class="p">(</span><span class="mi">17</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// attendre 1 seconde</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="pour-les-utilisateurs-de-python">
+<h3>Pour les utilisateurs de Python<a class="headerlink" href="2.2.3_dht-11.html#pour-les-utilisateurs-de-python" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Étape 2:</strong> Allez dans le dossier du code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Étape 3:</strong> Exécutez le fichier exécutable.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">2.2.3</span><span class="n">_DHT</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Une fois le code exécuté, le programme affichera la température et l’humidité
+détectées par le DHT11 à l’écran de l’ordinateur.</p>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vous pouvez <strong>Modifier/Réinitialiser/Copier/Exécuter/Arrêter</strong> le code ci-dessous. Mais avant cela, vous devez accéder au chemin source du code comme <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span><span class="p">,</span> <span class="n">InputDevice</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="k">class</span> <span class="nc">DHT11</span><span class="p">():</span>
+   <span class="n">MAX_DELAY_COUINT</span> <span class="o">=</span> <span class="mi">100</span>
+   <span class="n">BIT_1_DELAY_COUNT</span> <span class="o">=</span> <span class="mi">10</span>
+   <span class="n">BITS_LEN</span> <span class="o">=</span> <span class="mi">40</span>
+
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pin</span><span class="p">,</span> <span class="n">pull_up</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_pin</span> <span class="o">=</span> <span class="n">pin</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_pull_up</span> <span class="o">=</span> <span class="n">pull_up</span>
+
+
+   <span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="n">bit_count</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">delay_count</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">bits</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+      <span class="c1"># -------------- send start --------------</span>
+      <span class="n">gpio</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pin</span><span class="p">)</span>
+      <span class="n">gpio</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+      <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)</span>
+
+      <span class="n">gpio</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+      <span class="n">gpio</span> <span class="o">=</span> <span class="n">InputDevice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pin</span><span class="p">,</span> <span class="n">pull_up</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_pull_up</span><span class="p">)</span>
+
+      <span class="c1"># -------------- wait response --------------</span>
+      <span class="k">while</span> <span class="n">gpio</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+      <span class="c1"># -------------- read data --------------</span>
+      <span class="k">while</span> <span class="n">bit_count</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">BITS_LEN</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">gpio</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+               <span class="k">pass</span>
+
+            <span class="c1"># st = time.time()</span>
+            <span class="k">while</span> <span class="n">gpio</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+               <span class="n">delay_count</span> <span class="o">+=</span> <span class="mi">1</span>
+               <span class="c1"># break</span>
+               <span class="k">if</span> <span class="n">delay_count</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_DELAY_COUINT</span><span class="p">:</span>
+                  <span class="k">break</span>
+            <span class="k">if</span> <span class="n">delay_count</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">BIT_1_DELAY_COUNT</span><span class="p">:</span>
+               <span class="n">bits</span> <span class="o">+=</span> <span class="s2">&quot;1&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+               <span class="n">bits</span> <span class="o">+=</span> <span class="s2">&quot;0&quot;</span>
+
+            <span class="n">delay_count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">bit_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+      <span class="c1"># -------------- verify --------------</span>
+      <span class="n">humidity_integer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bits</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="n">humidity_decimal</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bits</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">16</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="n">temperature_integer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bits</span><span class="p">[</span><span class="mi">16</span><span class="p">:</span><span class="mi">24</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="n">temperature_decimal</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bits</span><span class="p">[</span><span class="mi">24</span><span class="p">:</span><span class="mi">32</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="n">check_sum</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bits</span><span class="p">[</span><span class="mi">32</span><span class="p">:</span><span class="mi">40</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+
+      <span class="n">_sum</span> <span class="o">=</span> <span class="n">humidity_integer</span> <span class="o">+</span> <span class="n">humidity_decimal</span> <span class="o">+</span> <span class="n">temperature_integer</span> <span class="o">+</span> <span class="n">temperature_decimal</span>
+
+      <span class="c1"># print(bits)</span>
+      <span class="c1"># print(humidity_integer, humidity_decimal, temperature_integer, temperature_decimal)</span>
+      <span class="c1"># print(f&#39;sum:{_sum}, check_sum:{check_sum}&#39;)</span>
+      <span class="c1"># print()</span>
+
+      <span class="k">if</span> <span class="n">check_sum</span> <span class="o">!=</span> <span class="n">_sum</span><span class="p">:</span>
+            <span class="n">humidity</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">temperature</span> <span class="o">=</span> <span class="mf">0.0</span>
+      <span class="k">else</span><span class="p">:</span>
+            <span class="n">humidity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">humidity_integer</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">humidity_decimal</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">temperature</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">temperature_integer</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">temperature_decimal</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+      <span class="c1"># -------------- return --------------</span>
+      <span class="k">return</span> <span class="n">humidity</span><span class="p">,</span> <span class="n">temperature</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">dht11</span> <span class="o">=</span> <span class="n">DHT11</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+   <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+      <span class="n">humidity</span><span class="p">,</span> <span class="n">temperature</span> <span class="o">=</span> <span class="n">dht11</span><span class="o">.</span><span class="n">read_data</span><span class="p">()</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">  temperature:</span><span class="si">{</span><span class="n">temperature</span><span class="si">}</span><span class="s2">°C  humidity: </span><span class="si">{</span><span class="n">humidity</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+      <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Explication du Code</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">bit_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">delay_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">bits</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="c1"># -------------- send start --------------</span>
+    <span class="n">gpio</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pin</span><span class="p">)</span>
+    <span class="n">gpio</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)</span>
+
+    <span class="n">gpio</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">gpio</span> <span class="o">=</span> <span class="n">InputDevice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pin</span><span class="p">,</span> <span class="n">pull_up</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_pull_up</span><span class="p">)</span>
+    <span class="c1">#...</span>
+</pre></div>
+</div>
+<p>Cette fonction est utilisée pour implémenter les fonctions du DHT11. Elle stocke les données
+détectées dans le tableau bits[]. Le DHT11 transmet des données de 40 bits à la fois.
+Les 16 premiers bits sont liés à l’humidité, les 16 bits du milieu sont liés à la température,
+et les huit derniers bits sont utilisés pour la vérification.</p>
+<p>Le format des données est le suivant :</p>
+<p><strong>8 bits de données entières d’humidité</strong> + <strong>8 bits de données décimales d’humidité</strong>
++ <strong>8 bits de données entières de température</strong> + <strong>8 bits de données décimales de température</strong>
++ <strong>8 bits de bit de contrôle</strong>.</p>
+<p>Lorsque la validité est détectée via le bit de contrôle, la fonction renvoie
+deux résultats : 1. erreur ; 2. humidité et température.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_sum</span> <span class="o">=</span> <span class="n">humidity_integer</span> <span class="o">+</span> <span class="n">humidity_decimal</span> <span class="o">+</span> <span class="n">temperature_integer</span> <span class="o">+</span> <span class="n">temperature_decimal</span>
+
+<span class="k">if</span> <span class="n">check_sum</span> <span class="o">!=</span> <span class="n">_sum</span><span class="p">:</span>
+   <span class="n">humidity</span> <span class="o">=</span> <span class="mf">0.0</span>
+   <span class="n">temperature</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">else</span><span class="p">:</span>
+   <span class="n">humidity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">humidity_integer</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">humidity_decimal</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+   <span class="n">temperature</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">temperature_integer</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">temperature_decimal</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Par exemple, si les données reçues sont 00101011 (valeur de 8 bits de l’entier d’humidité)
+00000000 (valeur de 8 bits de la décimale d’humidité) 00111100 (valeur de 8 bits de l’entier
+de température) 00000000 (valeur de 8 bits de la décimale de température) 01100111 (bit de contrôle)</p>
+<p><strong>Calcul :</strong></p>
+<p>00101011+00000000+00111100+00000000=01100111.</p>
+<p>Si le résultat final est égal aux données du bit de contrôle, la transmission des données est
+anormale : retour False.</p>
+<p>Si le résultat final est égal aux données du bit de contrôle, les données reçues sont correctes,
+alors il y aura un retour de <code class="docutils literal notranslate"><span class="pre">humidity</span></code> et <code class="docutils literal notranslate"><span class="pre">temperature</span></code> et l’affichage
+« Humidité = 43%, Température = 60℃ ».</p>
+</section>
+</section>
+<section id="photo-du-phenomene">
+<h2>Photo du phénomène<a class="headerlink" href="2.2.3_dht-11.html#photo-du-phenomene" title="Lien vers cette rubrique"></a></h2>
+<img alt="_images/image209.jpeg" src="_images/image209.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="2.2.2_thermistor.html" class="btn btn-neutral float-left" title="2.2.2 Thermistor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="2.2.4_pir.html" class="btn btn-neutral float-right" title="2.2.4 Capteur PIR" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

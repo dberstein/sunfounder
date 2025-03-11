@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.1.4 Potentiomètre &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="2.1.5 Clavier" href="2.1.5_keypad.html" />
+    <link rel="prev" title="2.1.3 Interrupteur à bascule" href="2.1.3_tilt_switch.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/c_pi5/2.1.4_potentiometer.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Pour le Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Jouez avec Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_c.html">Play with C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_wiringpi_c.html">Installer et vérifier WiringPi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1_output.html">1 Sortie</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="2_input.html">2 Entrée</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="2.1.1_button.html">2.1.1 Bouton</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.2_slide&#32;Switch.html">2.1.2 Interrupteur à glissière</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.3_tilt_switch.html">2.1.3 Interrupteur à bascule</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="2.1.4_potentiometer.html#">2.1.4 Potentiomètre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.5_keypad.html">2.1.5 Clavier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.6_joystick.html">2.1.6 Joystick</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.1_photoresistor.html">2.2.1 Photoresistor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.2_thermistor.html">2.2.2 Thermistor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.3_dht-11.html">2.2.3 DHT-11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.4_pir.html">2.2.4 Détecteur PIR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html">2.2.5 Module de Capteur Ultrasonique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.6_mpu6050_module.html">2.2.6 Module MPU6050</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.7_mfrc522_rfid_module.html">2.2.7 Module RFID MFRC522</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="3_extension.html">3 Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Pour le Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_c.html">Play with C</a></li>
+          <li class="breadcrumb-item"><a href="2_input.html">2 Entrée</a></li>
+      <li class="breadcrumb-item active">2.1.4 Potentiomètre</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c_pi5/2.1.4_potentiometer.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l’univers du Raspberry Pi, d’Arduino et d’ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez vos problèmes après-vente et relevez des défis techniques avec l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprendre &amp; Partager</strong> : Échangez des conseils et des tutoriels pour améliorer vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Accédez en avant-première aux nouvelles annonces de produits et aux avant-premières.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de remises exclusives sur nos nouveaux produits.</p></li>
+<li><p><strong>Promotions festives et cadeaux</strong> : Participez à des tirages au sort et à des promotions spéciales pour les fêtes.</p></li>
+</ul>
+<p>👉 Prêt(e) à explorer et à créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="potentiometre">
+<h1>2.1.4 Potentiomètre<a class="headerlink" href="2.1.4_potentiometer.html#potentiometre" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="2.1.4_potentiometer.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>La fonction ADC peut être utilisée pour convertir des signaux analogiques en
+signaux numériques. Dans cette expérience, nous utilisons l’ADC0834 pour réaliser
+cette conversion. Ici, nous mettons en œuvre ce processus à l’aide d’un potentiomètre.
+Le potentiomètre modifie la grandeur physique — la tension — qui est convertie par
+la fonction ADC.</p>
+</section>
+<section id="composants">
+<h2>Composants<a class="headerlink" href="2.1.4_potentiometer.html#composants" title="Lien vers cette rubrique"></a></h2>
+<img alt="../_images/list_2.1.4_potentiometer1.png" src="../_images/list_2.1.4_potentiometer1.png" />
+</section>
+<section id="principe">
+<h2>Principe<a class="headerlink" href="2.1.4_potentiometer.html#principe" title="Lien vers cette rubrique"></a></h2>
+<p><strong>ADC0834</strong></p>
+<p>L’ADC0834 est un convertisseur analogique-numérique 8 bits de type
+<a class="reference external" href="https://cn.bing.com/dict/search?q=successiveapproximations&amp;FORM=BDVSP6&amp;mkt=zh-cn">approximation successive</a>
+équipé d’un multiplexeur multicanal configurable en entrée et d’une interface d’entrée/sortie série. L’interface série est
+conçue pour interagir avec des registres à décalage standard ou des microprocesseurs.</p>
+<img alt="../_images/image3091.png" src="../_images/image3091.png" />
+<p><strong>Séquence d’opération</strong></p>
+<p>Une conversion est lancée en mettant CS à un niveau bas, ce qui active tous les
+circuits logiques. CS doit être maintenu bas pendant toute la durée du processus
+de conversion. Une horloge d’entrée est alors envoyée par le processeur. À chaque
+transition de l’horloge de bas en haut, les données sur DI sont horodatées dans le
+registre de décalage d’adressage du multiplexeur. Le premier niveau logique haut
+est le bit de départ. Un mot d’affectation de 3 à 4 bits suit ce bit de départ. À
+chaque transition de l’horloge de bas en haut, le bit de départ et le mot d’affectation
+sont décalés dans le registre de décalage. Lorsque le bit de départ atteint la position
+de démarrage du registre du multiplexeur, le canal d’entrée est sélectionné et la
+conversion commence. La sortie de statut du SAR (SARS) passe à un niveau haut pour
+indiquer qu’une conversion est en cours, et DI est désactivé pendant toute la durée
+de la conversion.</p>
+<p>Une période d’horloge est automatiquement insérée pour permettre au canal multiplexé
+sélectionné de se stabiliser. La sortie de données DO quitte l’état haute impédance
+et fournit un niveau bas initial pour cette période d’horloge de stabilisation. Le
+comparateur du SAR compare successivement les sorties de l’échelle résistive avec le
+signal analogique d’entrée. La sortie du comparateur indique si l’entrée analogique
+est supérieure ou inférieure à la sortie de l’échelle résistive. Au fur et à mesure
+que la conversion avance, les données de conversion sont simultanément sorties par
+la broche de sortie DO, avec le bit de poids fort (MSB) en premier.</p>
+<p>Après huit périodes d’horloge, la conversion est terminée et la sortie SARS passe à
+un niveau bas. Enfin, les données sont émises en ordre du bit de poids faible après
+la séquence MSB en premier.</p>
+<a class="reference internal image-reference" href="../_images/image1751.png"><img alt="../_images/image1751.png" class="align-center" src="../_images/image1751.png" style="width: 800px;" />
+</a>
+<p><strong>Table de contrôle d’adresse du MUX de l’ADC0834</strong></p>
+<a class="reference internal image-reference" href="../_images/image1761.png"><img alt="../_images/image1761.png" class="align-center" src="../_images/image1761.png" style="width: 800px;" />
+</a>
+<p><strong>Potentiomètre</strong></p>
+<p>Le potentiomètre est un composant résistif à trois bornes dont la valeur de résistance
+peut être ajustée selon une variation régulière. Il se compose généralement d’une
+résistance et d’une brosse mobile. Lorsque la brosse se déplace le long de la résistance,
+une certaine résistance ou tension de sortie est générée en fonction du déplacement.</p>
+<a class="reference internal image-reference" href="../_images/image3101.png"><img alt="../_images/image3101.png" class="align-center" src="../_images/image3101.png" style="width: 300px;" />
+</a>
+<p>Les fonctions du potentiomètre dans le circuit sont les suivantes :</p>
+<ol class="arabic simple">
+<li><p>Fonction de diviseur de tension.</p></li>
+</ol>
+<p>Le potentiomètre est une résistance réglable en continu. Lorsque vous ajustez l’axe ou
+la poignée de glissement du potentiomètre, le contact mobile se déplace sur la résistance.
+À ce moment, une tension peut être émise en fonction de la tension appliquée sur le
+potentiomètre et de l’angle ou de la distance parcourue par le bras mobile.</p>
+</section>
+<section id="schema-de-cablage">
+<h2>Schéma de câblage<a class="headerlink" href="2.1.4_potentiometer.html#schema-de-cablage" title="Lien vers cette rubrique"></a></h2>
+<img alt="../_images/image3111.png" src="../_images/image3111.png" />
+<img alt="../_images/image3121.png" src="../_images/image3121.png" />
+</section>
+<section id="procedures-experimentales">
+<h2>Procédures expérimentales<a class="headerlink" href="2.1.4_potentiometer.html#procedures-experimentales" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1 :</strong> Montez le circuit.</p>
+<a class="reference internal image-reference" href="../_images/image1801.png"><img alt="../_images/image1801.png" src="../_images/image1801.png" style="width: 800px;" />
+</a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Veuillez placer la puce en vous référant à la position correspondante indiquée
+sur l’image. Notez que les encoches de la puce doivent être à gauche lorsqu’elle
+est positionnée.</p>
+</div>
+<p><strong>Étape 2 :</strong> Ouvrez le fichier de code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">2.1.4</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Étape 3 :</strong> Compilez le code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">2.1.4</span><span class="n">_Potentiometer</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Étape 4 :</strong> Exécutez le programme.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Après l’exécution du code, tournez le bouton du potentiomètre et l’intensité de
+la LED changera en conséquence.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Si cela ne fonctionne pas après l’exécution, ou s’il y a un message d’erreur
+indiquant : &quot;wiringPi.h: No such file or directory&quot;, veuillez consulter <a class="reference internal" href="../faq.html#c-code-is-not-working"><span class="std std-ref">C code is not working?</span></a>.</p>
+</div>
+<p><strong>Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;softPwm.h&gt;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">uchar</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">uint</span><span class="p">;</span>
+
+<span class="cp">#define     ADC_CS    0</span>
+<span class="cp">#define     ADC_CLK   1</span>
+<span class="cp">#define     ADC_DIO   2</span>
+<span class="cp">#define     LedPin    3</span>
+
+<span class="n">uchar</span><span class="w"> </span><span class="nf">get_ADC_Result</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">channel</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w"> </span><span class="n">dat1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">dat2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">odd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Bit de démarrage</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Mode Single End</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ODD (Impair)</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="n">odd</span><span class="p">);</span><span class="w">  </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Sélection</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="n">sel</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">        </span><span class="n">dat1</span><span class="o">=</span><span class="n">dat1</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">dat2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">((</span><span class="n">uchar</span><span class="p">)(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">))</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">(</span><span class="n">dat1</span><span class="o">==</span><span class="n">dat2</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">dat1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w"> </span><span class="n">analogVal</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span><span class="w"> </span><span class="c1">// lorsque l&#39;initialisation de wiringPi échoue, afficher un message à l&#39;écran</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">softPwmCreate</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w">  </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="w">  </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">analogVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_ADC_Result</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Current analogVal : %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">analogVal</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w"> </span><span class="n">analogVal</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explication du Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define     ADC_CS    0</span>
+<span class="cp">#define     ADC_CLK   1</span>
+<span class="cp">#define     ADC_DIO   2</span>
+<span class="cp">#define     LedPin    3</span>
+</pre></div>
+</div>
+<p>Définit les broches CS, CLK et DIO de l’ADC0834, connectées respectivement
+à GPIO0, GPIO1 et GPIO2. Puis, la LED est attachée à GPIO3.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">uchar</span><span class="w"> </span><span class="nf">get_ADC_Result</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">channel</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w"> </span><span class="n">dat1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">dat2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">odd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Bit de démarrage</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Mode Single End</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ODD (Impair)</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="n">odd</span><span class="p">);</span><span class="w">  </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Sélection</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="n">sel</span><span class="p">);</span><span class="w">  </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">        </span><span class="n">dat1</span><span class="o">=</span><span class="n">dat1</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">dat2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">((</span><span class="n">uchar</span><span class="p">)(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">))</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">(</span><span class="n">dat1</span><span class="o">==</span><span class="n">dat2</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">dat1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Cette fonction de l’ADC0834 effectue la conversion analogique-numérique (ADC).
+Le flux de travail détaillé est le suivant :</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Met CS à un niveau bas pour commencer à activer la conversion analogique-numérique.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Bit de démarrage</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Lors de la première transition du signal d’horloge de bas à haut, DIO est mis à 1 comme bit de démarrage. Au cours des trois étapes suivantes, 3 bits d’affectation sont envoyés.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Mode Single End</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Lors de la deuxième transition de bas à haut du signal d’horloge, DIO est à nouveau défini à 1, ce qui active le mode Single End.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// ODD</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="n">odd</span><span class="p">);</span><span class="w">  </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Lorsque cette opération se produit pour la troisième fois, la valeur de DIO est déterminée par la variable <strong>odd</strong>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//Sélection</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="n">sel</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Lors du quatrième changement de niveau du signal d’horloge de bas à haut,
+la valeur de DIO est déterminée par la variable <strong>sel</strong>.</p>
+<p>Lorsque channel=0, sel=0, odd=0, les formules de calcul pour <strong>sel</strong> et <strong>odd</strong>
+sont les suivantes :</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">sel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">odd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Pour la condition channel=1, sel=0, odd=1, référez-vous au tableau de la
+logique de contrôle d’adresse ci-dessous. Ici, CH1 est sélectionné, et le
+bit de démarrage est décalé dans la position de départ du registre du multiplexeur,
+et la conversion commence.</p>
+<img alt="../_images/image3131.png" src="../_images/image3131.png" />
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Ici, DIO est mis à 1 deux fois, cette opération peut être ignorée.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">        </span><span class="n">dat1</span><span class="o">=</span><span class="n">dat1</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Dans la première boucle for(), dès que le cinquième changement de niveau du
+signal CLK de haut à bas se produit, DIO est défini en mode entrée. La conversion
+commence alors, et la valeur convertie est stockée dans la variable dat1. Après
+huit cycles d’horloge, la conversion est terminée.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">dat2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">((</span><span class="n">uchar</span><span class="p">)(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">))</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Dans la deuxième boucle for(), les valeurs converties sont envoyées via DO
+après huit autres cycles d’horloge et stockées dans la variable dat2.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="k">return</span><span class="p">(</span><span class="n">dat1</span><span class="o">==</span><span class="n">dat2</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">dat1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>return(dat1==dat2) ? dat1 : 0 est utilisé pour comparer la valeur obtenue
+pendant la conversion avec la valeur de sortie. Si elles sont égales, la
+valeur convertie dat1 est retournée, sinon la valeur retournée est 0. Ici,
+le flux de travail de l’ADC0834 est terminé.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">softPwmCreate</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w">  </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Cette fonction permet de créer par logiciel une broche PWM, LedPin. La largeur
+d’impulsion initiale est fixée à 0, et la période du signal PWM est définie à 100 x 100 us.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">analogVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_ADC_Result</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Current analogVal : %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">analogVal</span><span class="p">);</span>
+<span class="w">        </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w"> </span><span class="n">analogVal</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Dans le programme principal, la valeur du canal 0, qui est connecté à un
+potentiomètre, est lue et stockée dans la variable analogVal, puis elle
+est écrite dans LedPin. Vous pouvez ainsi observer la variation de la
+luminosité de la LED en fonction de la valeur du potentiomètre.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="2.1.3_tilt_switch.html" class="btn btn-neutral float-left" title="2.1.3 Interrupteur à bascule" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="2.1.5_keypad.html" class="btn btn-neutral float-right" title="2.1.5 Clavier" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

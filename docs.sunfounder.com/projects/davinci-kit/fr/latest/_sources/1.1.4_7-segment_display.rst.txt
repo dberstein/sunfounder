@@ -1,0 +1,396 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    - **Réductions exclusives** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions saisonnières.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+1.1.4 Affichage 7 segments
+==============================
+
+Introduction
+---------------
+
+Essayons de piloter un afficheur 7 segments pour afficher des chiffres de 0 à 9 et des lettres de A à F.
+
+Composants
+-------------
+
+.. image:: img/list_7_segment.png
+
+Principe
+-----------
+
+**Afficheur 7 segments**
+
+Un afficheur 7 segments est un composant en forme de 8 qui regroupe 7 LEDs. Chaque 
+LED est appelée un segment. Lorsqu'un segment est alimenté, il forme une partie du 
+chiffre ou de la lettre à afficher.
+
+Il existe deux types de connexions de broches : cathode commune (CC) et anode commune 
+(CA). Comme leur nom l'indique, un afficheur CC a toutes les cathodes des 7 LEDs 
+connectées ensemble, tandis qu'un afficheur CA a toutes les anodes connectées ensemble. 
+Dans ce kit, nous utilisons le modèle à cathode commune.
+
+.. image:: img/image70.jpeg
+   :width: 3.89514in
+   :height: 3.32222in
+   :align: center
+
+Chaque LED de l'afficheur est associée à un segment positionnel, avec une broche de 
+connexion correspondante. Ces broches sont étiquetées de "a" à "g", représentant chaque 
+LED individuelle. Les autres broches sont connectées ensemble pour former une broche 
+commune. En polarisant les broches appropriées dans un ordre particulier, certains 
+segments s'illumineront tandis que d'autres resteront éteints, affichant ainsi le 
+chiffre ou la lettre désirée.
+
+**Codes d'affichage**
+
+Pour mieux comprendre comment les afficheurs 7 segments (cathode commune) affichent les 
+chiffres, nous avons dressé le tableau suivant. Les chiffres de 0 à F sont représentés 
+sur l'afficheur 7 segments. Le tableau GFEDCBA se réfère aux LED correspondantes qui sont 
+activées (0 ou 1). Par exemple, 00111111 signifie que DP et G sont réglés à 0, tandis que 
+les autres sont à 1. Cela affiche le chiffre 0 sur l'afficheur 7 segments, tandis que le 
+code HEX correspond au nombre en hexadécimal.
+
+.. image:: img/common_cathode.png
+
+**74HC595**
+
+Le 74HC595 est composé d'un registre à décalage de 8 bits et d'un registre de stockage avec 
+sorties parallèles à trois états. Il convertit l'entrée série en sortie parallèle, permettant 
+ainsi d'économiser les ports d'E/S d'un microcontrôleur.
+
+Lorsque MR (broche 10) est à niveau haut et que OE (broche 13) est à niveau bas, les données 
+sont saisies sur le front montant de SHcp et vont dans le registre de mémoire via le front 
+montant de SHcp. Si les deux horloges sont connectées ensemble, le registre à décalage est 
+toujours un impulsion en avance par rapport au registre de mémoire. Il y a une broche 
+d'entrée série (Ds), une broche de sortie série (Q) et un bouton de réinitialisation 
+asynchrone (niveau bas) dans le registre de mémoire. Le registre de mémoire fournit 
+une sortie parallèle 8 bits en trois états. Lorsque OE est activé (niveau bas), les 
+données du registre de mémoire sont envoyées sur le bus.
+
+.. image:: img/74hc595_sche.png
+    :width: 400
+    :align: center
+
+**Broches du 74HC595 et leurs fonctions** :
+
+* **Q0-Q7** : Broches de sortie de données parallèles 8 bits, capables de contrôler directement 8 LEDs ou 8 segments d'un afficheur 7 segments.
+* **Q7'** : Broche de sortie série, connectée à DS d'un autre 74HC595 pour les connecter en série.
+* **MR** : Broche de réinitialisation, active à niveau bas.
+* **SHcp** : Entrée de séquence temporelle du registre à décalage. Sur le front montant, les données du registre à décalage se déplacent successivement d'un bit, par exemple, les données en Q1 se déplacent vers Q2, et ainsi de suite. Sur le front descendant, les données du registre à décalage restent inchangées.
+
+* **STcp** : Entrée de séquence temporelle du registre de stockage. Sur le front montant, les données du registre à décalage se déplacent dans le registre de mémoire.
+
+* **CE** : Broche d'activation de sortie, active à niveau bas.
+* **DS** : Broche d'entrée de données série.
+* **VCC** : Tension d'alimentation positive.
+* **GND** : Masse.
+
+Schéma de montage
+-------------------
+
+Connectez la broche ST_CP du 74HC595 au GPIO18 du Raspberry Pi, SH_CP au GPIO27, DS 
+au GPIO17, et les ports de sortie parallèles aux 8 segments de l'afficheur à 7 segments. 
+Les données sont saisies via la broche DS dans le registre à décalage lorsque SH_CP 
+(l'entrée d'horloge du registre à décalage) est au front montant, et dans le registre de 
+mémoire lorsque ST_CP (l'entrée d'horloge du registre de mémoire) est au front montant. 
+Vous pouvez ensuite contrôler les états de SH_CP et ST_CP via les GPIOs du Raspberry Pi 
+pour convertir les données d'entrée série en sortie parallèle, économisant ainsi des GPIOs 
+du Raspberry Pi et pilotant l'affichage.
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+============ ======== ======== ===
+
+.. image:: img/schematic_7_segment.png
+    :width: 800
+
+Procédures expérimentales
+-----------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: img/image73.png
+    :width: 800
+
+Pour les utilisateurs du langage C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Étape 2 : Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/1.1.4/
+
+Étape 3 : Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.1.4_7-Segment.c -lwiringPi
+
+Étape 4 : Exécutez le fichier exécutable ci-dessus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Après l'exécution du code, vous verrez l'affichage 7 segments afficher les chiffres de 0 à 9, puis les lettres de A à F.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou si un message d'erreur apparaît : "wiringPi.h: No such file or directory", veuillez consulter :ref:`C code is not working?`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #define   SDI   0   //entrée de données série
+    #define   RCLK  1   //entrée d'horloge mémoire (STCP)
+    #define   SRCLK 2   //entrée d'horloge registre à décalage (SHCP)
+    unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+
+    void init(void){
+        pinMode(SDI, OUTPUT); 
+        pinMode(RCLK, OUTPUT);
+        pinMode(SRCLK, OUTPUT); 
+        digitalWrite(SDI, 0);
+        digitalWrite(RCLK, 0);
+        digitalWrite(SRCLK, 0);
+    }
+
+    void hc595_shift(unsigned char dat){
+        int i;
+        for(i=0;i<8;i++){
+            digitalWrite(SDI, 0x80 & (dat << i));
+            digitalWrite(SRCLK, 1);
+            delay(1);
+            digitalWrite(SRCLK, 0);
+        }
+            digitalWrite(RCLK, 1);
+            delay(1);
+            digitalWrite(RCLK, 0);
+    }
+
+    int main(void){
+        int i;
+        if(wiringPiSetup() == -1){ //en cas d'échec de l'initialisation de wiring, afficher un message à l'écran
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        init();
+        while(1){
+            for(i=0;i<16;i++){
+                printf("Print %1X on Segment\n", i); // %X means hex output
+                hc595_shift(SegCode[i]);
+                delay(500);
+            }
+        }
+        return 0;
+    }
+
+
+**Explication du Code**
+
+unsigned char SegCode[16] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+Un tableau de codes de segments de 0 à F en Hexadécimal (cathode commune).
+
+.. code-block:: c
+
+    void init(void){
+        pinMode(SDI, OUTPUT); 
+        pinMode(RCLK, OUTPUT); 
+        pinMode(SRCLK, OUTPUT); 
+        digitalWrite(SDI, 0);
+        digitalWrite(RCLK, 0);
+        digitalWrite(SRCLK, 0);
+    }
+
+Configurer les trois broches ds, st_cp, sh_cp comme des sorties, et définir 
+l'état initial à 0.
+
+.. code-block:: c
+
+    digitalWrite(SDI, 0x80 & (dat << i));
+
+Assigner les données dat à SDI(DS) bit par bit. Si dat=0x3f(0011 1111), quand i=2, 
+0x3f se décalera de 2 bits vers la gauche. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) 
+= 1000 0000, est vrai.
+
+.. code-block:: c
+
+    digitalWrite(SRCLK, 1);
+
+La valeur initiale de SRCLK était à 0, et ici elle est mise à 1, ce qui génère une impulsion montante, puis déplace la donnée DS vers le registre à décalage.
+
+.. code-block:: c
+        
+    digitalWrite(RCLK, 1);
+
+La valeur initiale de RCLK était à 0, et ici elle est mise à 1, ce qui génère une impulsion montante, puis déplace les données du registre à décalage vers le registre de stockage.
+
+.. code-block:: c
+
+    while(1){
+            for(i=0;i<16;i++){
+                printf("Print %1X on Segment\n", i); // %X means hex output
+                hc595_shift(SegCode[i]);
+                delay(500);
+            }
+        }
+
+Dans cette boucle for, nous utilisons \"%1X\" pour afficher i en tant que nombre hexadécimal. Appliquez i pour trouver le code de segment correspondant dans le tableau SegCode[], et utilisez hc595_shift() pour passer le code SegCode au registre à décalage du 74HC595.
+
+Pour les utilisateurs du langage Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Étape 2 : Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python/
+
+Étape 3 : Exécutez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.4_7-Segment.py
+
+Après l'exécution du code, l'affichage 7 segments affichera 0-9, A-F.
+
+**Code**
+
+.. note::
+
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin source du code comme ``davinci-kit-for-raspberry-pi/python``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+
+    # Définir les broches
+    SDI   = 17
+    RCLK  = 18
+    SRCLK = 27
+
+    # Définir un code de segment de 0 à F en Hexadécimal
+    # Cathode commune
+    segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71]
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(SDI, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(RCLK, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(SRCLK, GPIO.OUT, initial=GPIO.LOW)
+
+    # Transférer les données au 74HC595
+    def hc595_shift(dat):
+        for bit in range(0, 8):    
+            GPIO.output(SDI, 0x80 & (dat << bit))
+            GPIO.output(SRCLK, GPIO.HIGH)
+            time.sleep(0.001)
+            GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.HIGH)
+        time.sleep(0.001)
+        GPIO.output(RCLK, GPIO.LOW)
+
+    def main():
+        while True:
+            # Transférer le code un par un depuis la liste segCode
+            for code in segCode:
+                hc595_shift(code)
+                print ("segCode[%s]: 0x%02X"%(segCode.index(code), code)) # %02X means double digit HEX to print
+                time.sleep(0.5)
+
+    def destroy():
+        GPIO.cleanup()
+
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy()
+
+**Explication du Code**
+
+.. code-block:: python
+
+    segCode = [0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71]
+
+Un tableau de codes de segments de 0 à F en Hexadécimal (cathode commune). 
+
+.. code-block:: python
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(SDI, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(RCLK, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(SRCLK, GPIO.OUT, initial=GPIO.LOW)
+
+Configurer les trois broches ds, st_cp, sh_cp comme des sorties, et définir l'état initial à bas niveau.
+
+.. code-block:: python
+
+    GPIO.output(SDI, 0x80 & (dat << bit))
+
+Assigner les données dat à SDI(DS) bit par bit. Ici, si dat=0x3f (0011 1111), lorsque bit=2, 0x3f sera décalé de 2 bits vers la gauche. 1111 1100 (0x3f << 2) & 1000 0000 (0x80) = 1000 0000, ce qui est vrai.
+
+.. code-block:: python
+
+    GPIO.output(SRCLK, GPIO.HIGH)
+
+La valeur initiale de SRCLK était à LOW, et ici elle est définie à HIGH, ce qui génère une impulsion montante, déplaçant ensuite la donnée DS vers le registre à décalage.
+
+.. code-block:: python
+
+    GPIO.output(RCLK, GPIO.HIGH)
+
+La valeur initiale de RCLK était à LOW, et ici elle est définie à HIGH, ce qui génère une impulsion montante, puis transfère les données du registre à décalage vers le registre de stockage.
+
+.. note::
+    Le format hexadécimal des nombres de 0 à 15 est (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
+
+Image du phénomène
+-------------------------
+
+.. image:: img/image74.jpeg
+

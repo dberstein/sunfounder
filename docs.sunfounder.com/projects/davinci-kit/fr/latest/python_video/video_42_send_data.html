@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vidéo 42 : Comment envoyer des données au PC via WiFi ou Ethernet en utilisant UDP &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Vidéo 43 : Comment créer un système client-serveur simple avec Raspberry Pi" href="video_43_simple_client_server.html" />
+    <link rel="prev" title="Vidéo 41 : Comment configurer un bureau à distance sur Raspberry Pi avec VNC" href="video_41_vnc.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_video/video_42_send_data.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Pour le Pi 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="python_video.html">Cours vidéo Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="video_1_instroduction.html">Vidéo 1 : Premier démarrage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_2_mastering_linux.html">Vidéo 2 : Maîtriser les bases de Linux et les commandes essentielles sur Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_3_python_essentials.html">Vidéo 3 : Les fondamentaux de Python en une session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_4_gpio_pin.html">Vidéo 4 : Comprendre et utiliser les broches GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_5_binary_number.html">Vidéo 5 : Comprendre les nombres binaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_6_gpio_input.html">Vidéo 6 : Comprendre les entrées GPIO, les résistances pull-up et pull-down</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_7_button.html">Vidéo 7 : Entrées GPIO à partir d’un bouton-poussoir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_8_button_toggle.html">Vidéo 8 : Utiliser un Bouton comme Interrupteur à Bascule pour le Contrôle de LED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_9_pwm.html">Vidéo 9 : Utilisation des broches GPIO pour le PWM afin de simuler une sortie analogique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_10_dimmable_led.html">Vidéo 10 : Réalisation d’une LED dimmable avec deux boutons-poussoirs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_11_rgb.html">Vidéo 11 : Comprendre et utiliser une LED RVB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_12_button_rgb.html">Vidéo 12 : Contrôle d’une LED RVB avec un bouton-poussoir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_13_set_color_rgb_button.html">Vidéo 13 : Définir la couleur de la LED RVB avec des boutons-poussoirs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_14_vpython.html">Vidéo 14 : Installation de Visual Python sur le Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_15_analog_input.html">Vidéo 15 : Entrée analogique sur le Raspberry Pi avec l’ADC0834</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_16_pot_led.html">Vidéo 16 : Créer une LED dimmable contrôlée par un potentiomètre</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_17_mixing_color.html">Vidéo 17 : Mélange de toutes les couleurs sur une LED RVB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_18_joystick.html">Vidéo 18 : Utiliser un Joystick avec le Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_19_servo.html">Vidéo 19 : Contrôle simple d’un servomoteur avec le Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_20_servo_pot.html">Vidéo 20 : Contrôle de la position d’un servomoteur avec un potentiomètre</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_21_ultrasonic.html">Vidéo 21 : Utilisation d’un capteur ultrasonique HC-SR04 pour l’écholocalisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_22_distance.html">Vidéo 22 : Mesurer la distance avec le capteur ultrasonique HC-SR04</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_23_sound_speed.html">Vidéo 23 : Mesurer la vitesse du son avec un capteur ultrasonique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_24_pir.html">Vidéo 24 : Utiliser un capteur de mouvement PIR avec le Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_25_dht11.html">Vidéo 25 : Mesurer la température et l’humidité avec le capteur DHT-11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_26_lcd.html">Vidéo 26 : Utiliser un écran LCD1602 avec communication I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_27_lcd_dht11.html">Vidéo 27 : Construire un système de température et d’humidité avec un écran LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_28_buzzer.html">Vidéo 28 : Comprendre et utiliser les buzzers actifs et passifs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_29_temp_alarm.html">Vidéo 29 : Construire un système d’alarme programmable pour la détection de température</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_30_photoresistor.html">Vidéo 30 : Utiliser une photorésistance pour détecter la lumière avec le Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_31_alarm_motion.html">Vidéo 31 : Alarme de détection de mouvement dans le noir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_32_keypad.html">Vidéo 32 : Comprendre et utiliser un pavé numérique avec le Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_33_keypad_incorporate.html">Vidéo 33 : Comment intégrer un pavé numérique dans un projet Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_34_keypad_class.html">Vidéo 34 : Création d’une classe Python et d’une bibliothèque pour la lecture d’un pavé numérique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_35_keypad_lcd.html">Vidéo 35 : Créez des projets mobiles avec le Raspberry Pi, un pavé numérique et un écran LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_36_keypad_threading.html">Vidéo 36 : Surveillance de l’entrée utilisateur via un pavé numérique avec le multithreading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_37_keypad_lcd_motion.html">Vidéo 37 : Système d’alarme avec détection de mouvement, écran LCD et pavé numérique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_38_security.html">Vidéo 38 : Système de sécurité Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_39_security_multiple_alarms.html">Vidéo 39 : Système de sécurité Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_40_security_putty.html">Vidéo 40 : Contrôlez votre projet de sécurité à distance avec Putty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_41_vnc.html">Vidéo 41 : Comment configurer un bureau à distance sur Raspberry Pi avec VNC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="video_42_send_data.html#">Vidéo 42 : Comment envoyer des données au PC via WiFi ou Ethernet en utilisant UDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_43_simple_client_server.html">Vidéo 43 : Comment créer un système client-serveur simple avec Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_44_improved_client_server.html">Vidéo 44 : Créer une Connexion Client-Serveur Améliorée avec le Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_45_camera.html">Vidéo 45 : Se Préparer à Maîtriser la Caméra du Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_46_opencv.html">Vidéo 46 : Utiliser la Caméra du Raspberry Pi avec Bullseye et OpenCV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_47_fps.html">Vidéo 47 : Calculer les images par seconde (FPS) avec OpenCV et les afficher sur l’image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_48_annotating_opencv.html">Vidéo 48 : Ajouter des boîtes, des rectangles et des cercles sur des images avec OpenCV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_49_bouncing_box_opencv.html">Vidéo 49 : Créer une boîte rebondissante avec OpenCV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_50_image_array.html">Vidéo 50 : Comprendre les images en tant qu’ensembles de données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_51_modify_opencv_image.html">Vidéo 51 : Modifier des images avec OpenCV et créer des régions d’intérêt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_52_hsv.html">Vidéo 52 : Comprendre et travailler avec l’espace colorimétrique HSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_53_trackbars.html">Vidéo 53 : Comprendre et utiliser les barres de réglage dans OpenCV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_54_trackbars_color.html">Vidéo 54 : Utilisation des barres de réglage pour suivre des objets colorés dans OpenCV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_55_track_object.html">Vidéo 55 : Suivi d’un objet d’intérêt avec OpenCV en utilisant les contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_56_pan_tilt.html">Vidéo 56 : Préparation pour les prochains cours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_57_assemble_pan_tilt.html">Vidéo 57 : Assemblage du module Pan/Tilt SunFounder pour la caméra RPi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_58_track_pan_tilt.html">Vidéo 58 : Suivi d’un Objet d’Intérêt avec un Support Pan/Tilt pour Caméra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_59_contrtol_system_pan_tilt.html">Vidéo 59 : Système de contrôle pour la caméra Pan/Tilt sur Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_60_improved_pan_tilt.html">Vidéo 60 : Algorithme de Contrôle Amélioré pour le Suivi Pan/Tilt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_61_cascades.html">Vidéo 61 : Détection et Suivi de Visages avec OpenCV et les Haar Cascades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_62_face_opencv.html">Vidéo 62 : Détection et Suivi de Visages avec OpenCV et les Haar Cascades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_63_track_face_opencv.html">Vidéo 63 : Suivi de Visages avec OpenCV et une Caméra Pan/Tilt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_64_tensorflow.html">Vidéo 64 : Détection d’objets sur Raspberry Pi avec TensorFlow Lite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_65_tensorflow_data_structure.html">Vidéo 65 : Comprendre la structure des données de détection d’objets TensorFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_66_tensorflow_speed.html">Vidéo 66 : Accélérer TensorFlow Lite pour la détection d’objets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_67_cap_touch.html">Vidéo 67 : Utiliser un Capteur Tactile Capacitif avec Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_68_rgb_cap_touch.html">Vidéo 68 : Contrôler une LED RGB avec un Capteur Tactile Capacitif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_69_mfrc522.html">Vidéo 69 : Utilisation du Module RFID MFRC522 et d’un Tag sur Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_70_rgb_rfid.html">Vidéo 70 : Utilisation du module RFID MFRC522 et des tags sur Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_71_ir_proximity.html">Vidéo 71 : Utilisation d’un capteur de proximité IR pour éviter les collisions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="python_video.html">Cours vidéo Python</a></li>
+      <li class="breadcrumb-item active">Vidéo 42 : Comment envoyer des données au PC via WiFi ou Ethernet en utilisant UDP</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_video/video_42_send_data.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour et bienvenue dans la communauté des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder sur Facebook ! Plongez plus profondément dans l’univers de Raspberry Pi, Arduino et ESP32 avec d’autres amateurs.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez les problèmes après-vente et surmontez les défis techniques grâce à l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprendre &amp; Partager</strong> : Échangez des conseils et des tutoriels pour perfectionner vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Bénéficiez d’un accès anticipé aux nouvelles annonces de produits et à des avant-premières.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de remises exclusives sur nos nouveaux produits.</p></li>
+<li><p><strong>Promotions et cadeaux festifs</strong> : Participez à des concours et des promotions spéciales à l’occasion des fêtes.</p></li>
+</ul>
+<p>👉 Prêt à explorer et à créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="video-42-comment-envoyer-des-donnees-au-pc-via-wifi-ou-ethernet-en-utilisant-udp">
+<h1>Vidéo 42 : Comment envoyer des données au PC via WiFi ou Ethernet en utilisant UDP<a class="headerlink" href="video_42_send_data.html#video-42-comment-envoyer-des-donnees-au-pc-via-wifi-ou-ethernet-en-utilisant-udp" title="Lien vers cette rubrique"></a></h1>
+<p>Cette vidéo montre comment configurer une communication client-serveur entre un Raspberry Pi et un PC en utilisant Python et le protocole UDP (User Datagram Protocol). Elle aborde la création des programmes serveur et client, l’initialisation et la liaison des sockets, l’échange de données, ainsi que la mise en œuvre de fonctionnalités de base.</p>
+<ol class="arabic simple">
+<li><p><strong>Introduction à la communication client-serveur</strong> : Comprendre la nécessité de connexions distantes plus claires.</p></li>
+<li><p><strong>Création du programme serveur</strong> : Guide étape par étape pour créer un programme serveur sur Raspberry Pi à l’aide de la bibliothèque socket de Python.</p></li>
+<li><p><strong>Initialisation et liaison des sockets</strong> : Apprendre à initialiser et à lier les sockets pour la communication.</p></li>
+<li><p><strong>Échange de données</strong> : Explorer le processus d’envoi et de réception de données entre le PC et le Raspberry Pi.</p></li>
+<li><p><strong>Création du programme client</strong> : Découvrir comment créer un programme client sur le PC pour communiquer avec le serveur Raspberry Pi.</p></li>
+<li><p><strong>Configuration de l’adresse du serveur</strong> : Spécifier l’adresse du serveur (l’IP du Raspberry Pi) dans le code client.</p></li>
+<li><p><strong>Création d’un client UDP</strong> : Utiliser la bibliothèque socket pour créer un client UDP côté client.</p></li>
+<li><p><strong>Initiation de la communication</strong> : Initier la communication en envoyant des requêtes du client vers le serveur.</p></li>
+<li><p><strong>Traitement des requêtes côté serveur</strong> : Traiter les requêtes client et renvoyer des réponses côté serveur.</p></li>
+<li><p><strong>Décodage des données</strong> : Décoder les données reçues à l’aide de l’encodage UTF-8 pour une meilleure lisibilité.</p></li>
+<li><p><strong>Mise en œuvre de fonctionnalités de base</strong> : Démontrer la communication bidirectionnelle à travers un exemple simple de manipulation de compteur.</p></li>
+</ol>
+<p><strong>Vidéo</strong></p>
+<iframe width="700" height="500" src="https://www.youtube.com/embed/S7Yle8clJ30?si=6PugK0FVZ9w5Pfy5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="video_41_vnc.html" class="btn btn-neutral float-left" title="Vidéo 41 : Comment configurer un bureau à distance sur Raspberry Pi avec VNC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="video_43_simple_client_server.html" class="btn btn-neutral float-right" title="Vidéo 43 : Comment créer un système client-serveur simple avec Raspberry Pi" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

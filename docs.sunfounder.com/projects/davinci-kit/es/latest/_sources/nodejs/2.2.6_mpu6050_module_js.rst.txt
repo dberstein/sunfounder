@@ -1,0 +1,162 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
+
+    **¿Por qué unirte?**
+
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+2.2.6 Módulo MPU6050
+========================
+
+Introducción
+----------------
+
+El MPU-6050 es el primer dispositivo de seguimiento de movimiento de 6 ejes 
+del mundo (giroscopio de 3 ejes y acelerómetro de 3 ejes) diseñado para 
+smartphones, tabletas y sensores portátiles. Cumple con los requisitos de 
+bajo consumo, bajo costo y alto rendimiento.
+
+En este experimento, utilizaremos I2C para obtener los valores del sensor de 
+aceleración de tres ejes y el giroscopio de tres ejes del MPU6050 y mostrarlos 
+en la pantalla.
+
+Componentes
+--------------
+
+.. image:: ../img/list_2.2.6.png
+
+Diagrama del Circuito
+-------------------------
+
+El MPU6050 se comunica con el microcontrolador mediante la interfaz del 
+bus I2C. Los pines SDA1 y SCL1 deben estar conectados a los pines 
+correspondientes.
+
+.. image:: ../img/image330.png
+
+
+Procedimientos Experimentales
+--------------------------------
+
+**Paso 1:** Construye el circuito.
+
+.. image:: ../img/image227.png
+
+
+**Paso 2**: Configura I2C (consulta el Anexo :ref:`i2c_config`. Si ya tienes configurado I2C, omite este paso.)
+
+**Paso 3:** Dirígete a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Paso 4:** Instala las dependencias.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo npm install mpu6050-gyro
+
+**Paso 5:** Ejecuta el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node mpu6050_module.js
+
+Al ejecutar el código, el ángulo de inclinación en los ejes x e y, 
+junto con la aceleración y velocidad angular en cada eje, se mostrarán 
+en pantalla después de ser calculados por el MPU6050.
+
+**Código**
+
+.. code-block:: js
+
+    var gyro = require("mpu6050-gyro");
+    
+    var address = 0x68; // Dirección MPU6050
+    var bus = 1; // Bus i2c utilizado   
+    var gyro = new gyro(bus, address);
+    
+    async function update_telemetry() {
+        
+        var gyro_xyz = gyro.get_gyro_xyz();
+        var accel_xyz = gyro.get_accel_xyz();
+        
+        var gyro_data = {
+            gyro_xyz: gyro_xyz,
+            accel_xyz: accel_xyz,
+            rollpitch: gyro.get_roll_pitch( gyro_xyz, accel_xyz )
+        }
+        
+        console.log(gyro_data);
+        
+        setTimeout(update_telemetry, 500);
+    }
+    
+    if ( gyro ) {
+        update_telemetry();
+    }
+
+**Explicación del Código**
+
+.. code-block:: js
+
+    var gyro = require("mpu6050-gyro");
+    
+    var address = 0x68; // Dirección MPU6050
+    var bus = 1; // Bus i2c utilizado   
+    var gyro = new gyro(bus, address);
+
+Importamos el módulo ``mpu6050-gyro``, determinamos la dirección del 
+MPU6050 y el bus para crear el objeto gyro, facilitando el uso de las 
+funciones encapsuladas en el módulo.
+
+.. note:: 
+    Para más detalles sobre este módulo, visita: https://www.npmjs.com/package/mpu6050-gyro
+
+.. code-block:: js
+
+    var gyro_xyz = gyro.get_gyro_xyz();
+    var accel_xyz = gyro.get_accel_xyz();
+    
+    var gyro_data = {
+        gyro_xyz: gyro_xyz,
+        accel_xyz: accel_xyz,
+        rollpitch: gyro.get_roll_pitch( gyro_xyz, accel_xyz )
+    }
+    
+    console.log(gyro_data);
+    
+    setTimeout(update_telemetry, 500);
+
+El módulo encapsula tres funciones disponibles:
+
+``gyro.get_gyro_xyz()``: Devuelve un objeto JSON con los datos x, y, z en bruto del giroscopio.
+
+``gyro.get_accel_xyz()``: Devuelve un objeto JSON con los datos x, y, z en bruto del acelerómetro.
+
+``gyro.get_roll_pitch(gyro_xyz, accel_xyz)``: Devuelve un objeto JSON con el ángulo de inclinación (roll y pitch) en grados.
+
+Imagen del Fenómeno
+------------------------
+
+.. image:: ../img/image228.jpeg

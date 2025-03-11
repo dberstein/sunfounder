@@ -1,0 +1,485 @@
+.. note:: 
+
+    Ciao e benvenuto nella Community su Facebook dedicata agli appassionati di SunFounder Raspberry Pi, Arduino & ESP32! Approfondisci il mondo di Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto da Esperti**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara & Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima agli annunci dei nuovi prodotti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a giveaway e promozioni per le festività.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
+
+3.1.3 Allarme Retromarcia
+===========================
+
+Introduzione
+----------------
+
+In questo progetto, utilizzeremo LCD, buzzer e sensori a ultrasuoni per 
+realizzare un sistema di assistenza alla retromarcia. Potrai installarlo 
+su un veicolo telecomandato per simulare il processo reale di parcheggio 
+in retromarcia in un garage.
+
+Componenti
+----------------
+
+.. image:: img/list_Reversing_Alarm.png
+    :align: center
+
+Schema a Blocchi
+--------------------
+
+Il sensore a ultrasuoni rileva la distanza tra sé stesso e l’ostacolo e 
+visualizza la distanza rilevata sul display LCD in formato numerico. Allo 
+stesso tempo, il sensore a ultrasuoni attiva un buzzer che emette suoni di 
+frequenze diverse in base alla distanza rilevata.
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO17       Pin 11   0        17
+SDA1         Pin 3             
+SCL1         Pin 5             
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one3.png
+    :width: 800
+    :align: center
+
+Procedure Sperimentali
+------------------------
+
+**Step 1:** Montare il circuito.
+
+.. image:: img/image242.png
+    :width: 800
+    :align: center
+
+**Per Utenti Linguaggio C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Step 2:** Cambiare directory.
+
+.. raw:: html
+
+    <run></run>
+ 
+.. code-block:: 
+ 
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.3/
+ 
+**Step 3:** Compilare.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.3_ReversingAlarm.c -lwiringPi
+
+**Step 4:** Eseguire.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Quando il codice viene eseguito, il modulo del sensore a ultrasuoni rileva 
+la distanza dall'ostacolo e visualizza l'informazione sul display LCD1602; 
+inoltre, il buzzer emette un segnale acustico di avviso con frequenza variabile 
+a seconda della distanza.
+
+.. note::
+
+    * Se compare l'errore ``wiringPi.h: No such file or directory``, consulta :ref:`install_wiringpi`.
+    * Se compare l'errore ``Unable to open I2C device: No such file or directory``, consulta :ref:`i2c_config` per abilitare l'I2C e controllare che il cablaggio sia corretto.
+    * Se il codice e il cablaggio sono corretti ma l’LCD non mostra contenuto, regola il potenziometro sul retro per aumentare il contrasto.
+
+**Codice**
+
+.. note::
+    Il codice seguente è incompleto. Per visualizzare il codice completo, 
+    usa il comando ``nano 3.1.1_ReversingAlarm.c``.
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <sys/time.h>
+    #include <wiringPi.h>
+    #include <wiringPiI2C.h>
+    #include <string.h>
+
+    #define Trig    4
+    #define Echo    5
+    #define Buzzer  0
+
+    int LCDAddr = 0x27;
+    int BLEN = 1;
+    int fd;
+
+    // Funzioni per LCD
+    void write_word(int data){...}
+
+    void send_command(int comm){...}
+
+    void send_data(int data){...}
+
+    void lcdInit(){...}
+
+    void clear(){...}
+
+    void write(int x, int y, char data[]){...}
+
+    // Funzioni per Ultrasonico
+    void ultraInit(void){...}
+
+    float disMeasure(void){...}
+
+    // Funzione principale
+    int main(void)
+    {
+        float dis;
+        char result[10];
+        if(wiringPiSetup() == -1){ 
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        pinMode(Buzzer,OUTPUT);
+        fd = wiringPiI2CSetup(LCDAddr);
+        lcdInit();
+        ultraInit();
+
+        clear();
+        write(0, 0, "Ultrasonic Starting"); 
+        write(1, 1, "By Sunfounder");   
+
+        while(1){
+            dis = disMeasure();
+            printf("%.2f cm \n",dis);
+            delay(100);
+            digitalWrite(Buzzer,LOW);
+            if (dis > 400){
+                clear();
+                write(0, 0, "Error");
+                write(3, 1, "Out of range");    
+                delay(500);
+            }
+            else
+            {
+                clear();
+                write(0, 0, "Distance is");
+                sprintf(result,"%.2f cm",dis);
+                write(5, 1, result);
+
+                if(dis>=50)
+                {delay(500);}
+                else if(dis<50 & dis>20) {
+                    for(int i=0;i<2;i++){
+                    digitalWrite(Buzzer,HIGH);
+                    delay(50);
+                    digitalWrite(Buzzer,LOW);
+                    delay(200);
+                    }
+                }
+                else if(dis<=20){
+                    for(int i=0;i<5;i++){
+                    digitalWrite(Buzzer,HIGH);
+                    delay(50);
+                    digitalWrite(Buzzer,LOW);
+                    delay(50);
+                    }
+                }
+            }   
+        }
+
+        return 0;
+    }
+**Spiegazione del Codice**
+
+.. code-block:: c
+
+    pinMode(Buzzer,OUTPUT);
+    fd = wiringPiI2CSetup(LCDAddr);
+    lcdInit();
+    ultraInit();
+
+In questo programma utilizziamo in modo integrato i componenti trattati 
+precedentemente. Qui usiamo il buzzer, il display LCD e il sensore ultrasonico, 
+che possiamo inizializzare allo stesso modo di prima.
+
+.. code-block:: c
+
+    dis = disMeasure();
+    printf("%.2f cm \n",dis);
+    digitalWrite(Buzzer,LOW);
+    if (dis > 400){
+         write(0, 0, "Error");
+         write(3, 1, "Out of range");    
+    }
+    else
+    {
+        write(0, 0, "Distance is");
+        sprintf(result,"%.2f cm",dis);
+        write(5, 1, result);
+	}
+
+Qui otteniamo il valore del sensore ultrasonico e calcoliamo la distanza.
+
+Se il valore della distanza è superiore al valore limite da rilevare, viene 
+visualizzato un messaggio di errore sul display LCD. In caso contrario, se 
+il valore della distanza rientra nel range, verrà mostrato il risultato corrispondente.
+
+.. code-block:: c
+
+    sprintf(result,"%.2f cm",dis);
+
+Poiché il display LCD supporta solo il tipo di dati carattere e la variabile 
+`dis` memorizza un valore in virgola mobile (float), è necessario usare 
+`sprintf()`. Questa funzione converte il valore di tipo float in caratteri e 
+lo memorizza nella variabile stringa `result[]`. `%.2f` indica che si vogliono 
+mantenere due decimali.
+
+.. code-block:: c
+
+    if(dis>=50)
+    {delay(500);}
+    else if(dis<50 & dis>20) {
+        for(int i=0;i<2;i++){
+        digitalWrite(Buzzer,HIGH);
+        delay(50);
+        digitalWrite(Buzzer,LOW);
+        delay(200);
+        }
+    }
+    else if(dis<=20){
+        for(int i=0;i<5;i++){
+        digitalWrite(Buzzer,HIGH);
+        delay(50);
+        digitalWrite(Buzzer,LOW);
+        delay(50);
+        }
+    }
+
+Questa condizione viene utilizzata per controllare il suono del buzzer. 
+A seconda della distanza rilevata, si distinguono tre casi con frequenze 
+di suono diverse. Poiché il valore totale di delay è 500, ogni caso garantisce 
+un intervallo di 500 ms per il sensore ultrasonico.
+
+
+**Per Utenti Linguaggio Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Step 2:** Cambiare directory.
+
+.. raw:: html
+
+    <run></run>
+ 
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python/
+ 
+**Step 3:** Eseguire.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 3.1.3_ReversingAlarm.py
+
+Quando il codice viene eseguito, il modulo del sensore ultrasonico rileva 
+la distanza dall’ostacolo e visualizza l’informazione sul display LCD1602; 
+inoltre, il buzzer emette un segnale acustico di avviso la cui frequenza 
+varia in base alla distanza.
+
+.. note::
+
+    * Se compare l'errore ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, consulta :ref:`i2c_config` per abilitare l'I2C.
+    * Se compare l'errore ``ModuleNotFoundError: No module named 'smbus2'``, esegui il comando ``sudo pip3 install smbus2``.
+    * Se appare l'errore ``OSError: [Errno 121] Remote I/O``, significa che il modulo è cablato in modo errato o è guasto.
+    * Se il codice e il cablaggio sono corretti ma l’LCD non mostra contenuti, regola il potenziometro sul retro per aumentare il contrasto.
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Arrestare** il codice qui sotto. Prima di farlo, però, assicurati di essere nel percorso del codice sorgente come ``davinci-kit-for-raspberry-pi/python``.
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import LCD1602
+    import time
+    import RPi.GPIO as GPIO
+
+    TRIG = 16
+    ECHO = 18
+    BUZZER = 11
+
+    def lcdsetup():
+        LCD1602.init(0x27, 1)   # init(indirizzo slave, retroilluminazione)
+        LCD1602.clear()   
+        LCD1602.write(0, 0, 'Ultrasonic Starting')
+        LCD1602.write(1, 1, 'By SunFounder')
+        time.sleep(2)
+
+    def setup():
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(TRIG, GPIO.OUT)
+        GPIO.setup(ECHO, GPIO.IN)
+        GPIO.setup(BUZZER, GPIO.OUT, initial=GPIO.LOW)
+        lcdsetup()
+
+    def distance():
+        GPIO.output(TRIG, 0)
+        time.sleep(0.000002)
+
+        GPIO.output(TRIG, 1)
+        time.sleep(0.00001)
+        GPIO.output(TRIG, 0)
+
+        while GPIO.input(ECHO) == 0:
+            a = 0
+        time1 = time.time()
+        while GPIO.input(ECHO) == 1:
+            a = 1
+        time2 = time.time()
+
+        during = time2 - time1
+        return during * 340 / 2 * 100
+
+    def destroy():
+        GPIO.output(BUZZER, GPIO.LOW)
+        GPIO.cleanup()
+        LCD1602.clear()
+
+    def loop():
+        while True:
+            dis = distance()
+            print (dis, 'cm')
+            print ('')
+            GPIO.output(BUZZER, GPIO.LOW)
+            if (dis > 400):
+                LCD1602.clear()
+                LCD1602.write(0, 0, 'Error')
+                LCD1602.write(3, 1, 'Out of range')
+                time.sleep(0.5)
+            else:
+                LCD1602.clear()
+                LCD1602.write(0, 0, 'Distance is')
+                LCD1602.write(5, 1, str(round(dis,2)) +' cm')
+                if(dis>=50):
+                    time.sleep(0.5)
+                elif(dis<50 and dis>20):
+                    for i in range(0,2,1):
+                        GPIO.output(BUZZER, GPIO.HIGH)
+                        time.sleep(0.05)
+                        GPIO.output(BUZZER, GPIO.LOW)
+                        time.sleep(0.2)
+                elif(dis<=20):
+                    for i in range(0,5,1):
+                        GPIO.output(BUZZER, GPIO.HIGH)
+                        time.sleep(0.05)
+                        GPIO.output(BUZZER, GPIO.LOW)
+                        time.sleep(0.05)
+
+
+    if __name__ == "__main__":
+        setup()
+        try:       
+            loop()
+        except KeyboardInterrupt:
+            destroy()
+
+
+**Spiegazione del Codice**
+
+.. code-block:: python
+
+    def lcdsetup():
+        LCD1602.init(0x27, 1)   # init(indirizzo slave, retroilluminazione)
+
+    def setup():
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(TRIG, GPIO.OUT)
+        GPIO.setup(ECHO, GPIO.IN)
+        GPIO.setup(BUZZER, GPIO.OUT, initial=GPIO.LOW)
+        lcdsetup()
+
+In questo programma, applichiamo i componenti utilizzati in precedenza in modo 
+sintetico. Qui usiamo buzzer, LCD e sensore ultrasonico, che possiamo inizializzare 
+allo stesso modo di prima.
+
+.. code-block:: python
+
+    dis = distance()
+    print (dis, 'cm')
+    print ('')
+    GPIO.output(BUZZER, GPIO.LOW)
+    if (dis > 400):
+        LCD1602.clear()
+        LCD1602.write(0, 0, 'Error')
+        LCD1602.write(3, 1, 'Out of range')
+        time.sleep(0.5)
+    else:
+        LCD1602.clear()
+        LCD1602.write(0, 0, 'Distance is')
+        LCD1602.write(5, 1, str(round(dis,2)) +' cm')
+
+Qui otteniamo il valore del sensore ultrasonico e calcoliamo la distanza. 
+Se il valore della distanza è maggiore del range di rilevamento, sul display 
+LCD verrà visualizzato un messaggio di errore. Se invece la distanza rientra 
+nel range operativo, verranno mostrati i risultati corrispondenti.
+
+LCD1602.write(5, 1, str(round(dis,2)) +' cm')
+
+Poiché il display LCD supporta solo i caratteri, dobbiamo usare **str()** per 
+convertire i valori numerici in caratteri. Applichiamo un arrotondamento a due 
+decimali.
+
+.. code-block:: python
+
+    if(dis>=50)
+    {delay(500);}
+    else if(dis<50 & dis>20) {
+        for(int i=0;i<2;i++){
+            digitalWrite(Buzzer,HIGH);
+            delay(50);
+            digitalWrite(Buzzer,LOW);
+            delay(200);
+            }
+        }
+        else if(dis<=20){
+            for(int i=0;i<5;i++){
+            digitalWrite(Buzzer,HIGH);
+            delay(50);
+            digitalWrite(Buzzer,LOW);
+            delay(50);
+            }
+        }
+
+Questa condizione viene utilizzata per controllare il suono del buzzer. 
+In base alla distanza rilevata, si distinguono tre casi con frequenze di 
+suono diverse. Poiché il valore totale di delay è 500, ogni caso garantisce 
+un intervallo di 500 ms per consentire al sensore ultrasonico di funzionare 
+correttamente.
+
+Immagine del Fenomeno
+-------------------------
+
+.. image:: img/image243.jpeg
+   :align: center

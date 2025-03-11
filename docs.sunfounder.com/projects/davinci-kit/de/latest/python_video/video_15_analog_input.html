@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video 15: Analogeingabe am Raspberry Pi mit dem ADC0834 &mdash; SunFounder davinci-kit-for-raspberry-pi  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=245627df"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=70a09b52"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/de/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Video 16: Dimmbare LED mit Potentiometer erstellen" href="video_16_pot_led.html" />
+    <link rel="prev" title="Video 14: Installation von Visual Python auf dem Raspberry Pi" href="video_14_vpython.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-de" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_video/video_15_analog_input.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Komponentenliste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO-Erweiterungskarte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Laden Sie die Kode herunter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/preparation.html">Installation und Einrichtung des Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Für Pi 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="python_video.html">Python Videokurs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="video_1_instroduction.html">Video 1: Erster Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_2_mastering_linux.html">Video 2: Linux- und Kommandozeilen-Basics mit dem Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_3_python_essentials.html">Video 3: Python-Grundlagen kompakt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_4_gpio_pin.html">Video 4: GPIO-Pins am Raspberry Pi nutzen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_5_binary_number.html">Video 5: Verständnis binärer Zahlen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_6_gpio_input.html">Video 6: GPIO-Eingänge und Widerstände verstehen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_7_button.html">Video 7: GPIO-Eingänge über Tastenschalter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_8_button_toggle.html">Video 8: Verwendung eines Tasters als Umschalter für die LED-Steuerung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_9_pwm.html">Video 9: Nutzung von GPIO-Pins für PWM zur Simulation von Analogausgaben</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_10_dimmable_led.html">Video 10: Erstellung einer dimmbaren LED mit zwei Tastern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_11_rgb.html">Video 11: Verständnis und Nutzung einer RGB-LED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_12_button_rgb.html">Video 12: Steuerung einer RGB-LED mit Tastern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_13_set_color_rgb_button.html">Video 13: Farbe einer RGB-LED mit Tastern einstellen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_14_vpython.html">Video 14: Installation von Visual Python auf dem Raspberry Pi</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="video_15_analog_input.html#">Video 15: Analogeingabe am Raspberry Pi mit dem ADC0834</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_16_pot_led.html">Video 16: Dimmbare LED mit Potentiometer erstellen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_17_mixing_color.html">Video 17: Jede Farbe mit einer RGB-LED mischen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_18_joystick.html">Video 18: Einsatz eines Joysticks mit dem Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_19_servo.html">Video 19: Einfache Steuerung eines Servos mit dem Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_20_servo_pot.html">Video 20: Servoposition mit einem Potentiometer kontrollieren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_21_ultrasonic.html">Video 21: Verwendung eines HC-SR04 Ultraschallsensors zur Echolokalisierung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_22_distance.html">Video 22: Distanzmessung mit dem HC-SR04 Ultraschallsensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_23_sound_speed.html">Video 23: Messen der Schallgeschwindigkeit mit einem Ultraschallsensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_24_pir.html">Video 24: Verwendung eines PIR-Bewegungssensors mit dem Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_25_dht11.html">Video 25: Temperatur und Luftfeuchtigkeit mit dem DHT-11 Sensor messen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_26_lcd.html">Video 26: Verwendung eines LCD1602 LCD-Displays mit I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_27_lcd_dht11.html">Video 27: Bau eines Temperatur- und Feuchtigkeitssystems mit LCD-Anzeige</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_28_buzzer.html">Video 28: Verständnis und Verwendung von aktiven und passiven Summer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_29_temp_alarm.html">Video 29: Aufbau eines programmierbaren Temperatursensor-Alarmsystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_30_photoresistor.html">Video 30: Verwendung eines Fotowiderstands zur Lichterkennung auf dem Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_31_alarm_motion.html">Video 31: Alarm zur Bewegungserkennung im Dunkeln</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_32_keypad.html">Video 32: Verständnis und Verwendung eines Tastenfelds mit dem Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_33_keypad_incorporate.html">Video 33: Wie man ein Tastenfeld in ein Raspberry Pi-Projekt integriert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_34_keypad_class.html">Video 34: Creating a Python Class and Library for Reading a Keypad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_35_keypad_lcd.html">Video 35: Mobile Raspberry Pi-Projekte mit Tastenfeld und LCD erstellen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_36_keypad_threading.html">Video 36: Überwachung der Benutzereingabe vom Tastenfeld mit Threading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_37_keypad_lcd_motion.html">Video 37: Bewegungserkennungs-Alarmsystem mit LCD und Tastenfeld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_38_security.html">Video 38: Raspberry Pi Sicherheitssystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_39_security_multiple_alarms.html">Video 39: Raspberry Pi Sicherheitssystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_40_security_putty.html">Video 40: Führen Sie Ihr Sicherheitsprojekt mit Putty remote aus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_41_vnc.html">Video 41: So richten Sie einen Remote-Desktop auf dem Raspberry Pi mit VNC ein</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_42_send_data.html">Video 42: Datenübertragung zum PC über WiFi oder Ethernet unter Verwendung von UDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_43_simple_client_server.html">Video 43: Wie man ein einfaches Client-Server-System mit dem Raspberry Pi erstellt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_44_improved_client_server.html">Video 44: Aufbau einer verbesserten Client-Server-Verbindung zum Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_45_camera.html">Video 45: Vorbereitung zur Beherrschung der Raspberry Pi Kamera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_46_opencv.html">Video 46: Verwendung der Raspberry Pi Kamera in Bullseye mit OpenCV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_47_fps.html">Video 47: Berechnung der Bilder pro Sekunde (FPS) in OpenCV und Überlagerung auf dem Frame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_48_annotating_opencv.html">Video 48: Hinzufügen von Rechtecken, Quadraten und Kreisen auf Bildern in OpenCV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_49_bouncing_box_opencv.html">Video 49: Erstellen einer animierten Box-Überlagerung in OpenCV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_50_image_array.html">Video 50: Verständnis von Bildern als Datenarrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_51_modify_opencv_image.html">Video 51: OpenCV-Bildbearbeitung und ROI-Erstellung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_52_hsv.html">Video 52: Verständnis und Arbeit im HSV-Farbraum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_53_trackbars.html">Video 53: Trackbars in OpenCV nutzen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_54_trackbars_color.html">Video 54: Verfolgung farbiger Objekte in OpenCV mit Trackbars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_55_track_object.html">Video 55: Verfolgung eines Interessenobjekts in OpenCV mittels Konturen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_56_pan_tilt.html">Video 56: Vorbereitung auf die nächsten Lektionen des Kurses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_57_assemble_pan_tilt.html">Video 57: Montage des SunFounder Schwenk-/Neige-Huts für die RPi-Kamera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_58_track_pan_tilt.html">Video 58: Verfolgung eines Interessenobjekts mit einer Schwenk-/Neige-Kamerahalterung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_59_contrtol_system_pan_tilt.html">Video 59: Steuerungssystem für Schwenk-/Neige-Kamerahalterung für die RPi-Kamera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_60_improved_pan_tilt.html">Video 60: Verbesserter Schwenk-/Neige-Verfolgungsalgorithmus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_61_cascades.html">Video 61: Gesichtserkennung und -verfolgung in OpenCV mit Haar-Kaskaden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_62_face_opencv.html">Video 62: Gesichts- und Augenerkennung mit OpenCV und Haar-Kaskaden</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_63_track_face_opencv.html">Video 63: Gesichtsverfolgung mit OpenCV und einer Schwenk-/Neige-Kamera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_64_tensorflow.html">Video 64: Objekterkennung auf dem Raspberry Pi mit TensorFlow Lite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_65_tensorflow_data_structure.html">Video 65: Verständnis der Datenstruktur bei der TensorFlow Objekterkennung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_66_tensorflow_speed.html">Video 66: Beschleunigung von TensorFlow Lite für Objekterkennung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_67_cap_touch.html">Video 67: Verwendung eines kapazitiven Touchsensors mit Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_68_rgb_cap_touch.html">Video 68: Steuerung einer RGB-LED mit einem kapazitiven Touchsensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_69_mfrc522.html">Video 69: Einsatz des MFRC522 RFID-Moduls und -Tags am Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_70_rgb_rfid.html">Video 70: Einsatz des MFRC522 RFID-Moduls und -Tags am Raspberry Pi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_71_ir_proximity.html">Video 71: Verwendung eines IR-Näherungssensors zur Kollisionsvermeidung</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="python_video.html">Python Videokurs</a></li>
+      <li class="breadcrumb-item active">Video 15: Analogeingabe am Raspberry Pi mit dem ADC0834</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_video/video_15_analog_input.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Hallo und willkommen in der SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.</p>
+<p><strong>Warum beitreten?</strong></p>
+<ul class="simple">
+<li><p><strong>Expertenunterstützung</strong>: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.</p></li>
+<li><p><strong>Lernen &amp; Teilen</strong>: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.</p></li>
+<li><p><strong>Exklusive Vorschauen</strong>: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.</p></li>
+<li><p><strong>Spezialrabatte</strong>: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.</p></li>
+<li><p><strong>Festliche Aktionen und Gewinnspiele</strong>: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.</p></li>
+</ul>
+<p>👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [<a href="https://bit.ly/raphaelkit " target="_blank">hier</a>] und treten Sie heute bei!</p>
+</div>
+<section id="video-15-analogeingabe-am-raspberry-pi-mit-dem-adc0834">
+<h1>Video 15: Analogeingabe am Raspberry Pi mit dem ADC0834<a class="headerlink" href="video_15_analog_input.html#video-15-analogeingabe-am-raspberry-pi-mit-dem-adc0834" title="Link to this heading"></a></h1>
+<p>Lernen Sie, wie Sie den analogen Eingang an Ihrem Raspberry Pi mit dem Analog-Digital-Wandler ADC0834 aktivieren können, einschließlich Hardware-Setup, Bibliotheksinstallation und dem Wechsel zur Thonny IDE für die Python-Entwicklung.</p>
+<ol class="arabic simple">
+<li><p>Einführung in den analogen Eingang und die Notwendigkeit eines ADC am Raspberry Pi.</p></li>
+<li><p>Hardware-Setup und GPIO-Pin-Verbindungen für den ADC0834-Chip.</p></li>
+<li><p>Herstellung korrekter Strom- und Masseverbindungen für Komponenten.</p></li>
+<li><p>Installation und Nutzung der ADC0834-Bibliothek für Python.</p></li>
+<li><p>Wechsel zu Thonny als moderne IDE für sauberes und effizientes Programmieren.</p></li>
+<li><p>Best Practices für die Fehlersuche und Überprüfung der Verbindungen vor dem Programmieren.</p></li>
+<li><p>Bibliotheksinstallation: Installieren Sie die ADC-Bibliothek für Raspberry Pi.</p></li>
+<li><p>Python-Setup: Speichern Sie den Bibliothekscode in einer Python-Datei und verschieben Sie ihn in das richtige Verzeichnis.</p></li>
+<li><p>GPIO-Nutzung: Richten Sie ein Python-Programm ein, um analogen Eingang über GPIO-Pins zu lesen.</p></li>
+<li><p>Analoge Lesung: Schreiben Sie ein Python-Skript, um kontinuierlich analoge Werte vom Potentiometer zu lesen.</p></li>
+<li><p>Kanalwechsel: Demonstration des Wechsels zwischen verschiedenen Kanälen des ADC-Chips.</p></li>
+<li><p>Hausaufgabe: Erstellen Sie eine dimmbare LED, die durch die Position des Potentiometers gesteuert wird.</p></li>
+</ol>
+<p><strong>Video</strong></p>
+<iframe width="700" height="500" src="https://www.youtube.com/embed/_PnVt8XtFcw?si=B3mupzoCGO-7MSHA" title="YouTube-Video-Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="video_14_vpython.html" class="btn btn-neutral float-left" title="Video 14: Installation von Visual Python auf dem Raspberry Pi" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="video_16_pot_led.html" class="btn btn-neutral float-right" title="Video 16: Dimmbare LED mit Potentiometer erstellen" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l’univers du Raspberry Pi, d’Arduino et de l’ESP32 avec d’autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d’experts** : Résolvez vos problèmes après-vente et surmontez vos défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprendre et Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d’un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions pendant les fêtes.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
+
+1.3.1 Moteur
+=================
+
+Introduction
+---------------
+
+Dans ce projet, nous allons apprendre à utiliser le L293D pour piloter un moteur 
+à courant continu (DC) et le faire tourner dans le sens horaire et antihoraire. 
+Comme le moteur DC nécessite un courant plus élevé, nous utilisons ici le module 
+d'alimentation pour alimenter les moteurs par mesure de sécurité.
+
+Composants
+------------
+
+.. image:: ../img/list_1.3.1.png
+
+
+Schéma de câblage
+--------------------
+
+Branchez le module d'alimentation sur la plaque de montage (breadboard) et insérez 
+le cavalier (jumper) sur la broche 5V, de manière à obtenir une sortie de tension de 5V. 
+Connectez la broche 1 de L293D à GPIO22 et définissez-la sur un niveau haut. Connectez 
+la broche 2 à GPIO27 et la broche 7 à GPIO17, puis définissez une broche sur un niveau 
+haut et l'autre sur un niveau bas. Cela vous permet de changer le sens de rotation du moteur.
+
+.. image:: ../img/image336.png
+
+
+Procédures expérimentales
+---------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image117.png
+
+
+.. note::
+    Le module d’alimentation peut être connecté à une batterie 9V à l’aide du 
+    connecteur 9V fourni dans le kit. Insérez le cavalier du module d’alimentation 
+    dans la rangée 5V de la plaque de montage.
+
+.. image:: ../img/image118.jpeg
+
+**Étape 2 :** Accéder au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Étape 4 :** Exécuter le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node motor.js
+
+Lorsque le code s’exécute, le moteur commence par tourner dans le sens horaire 
+pendant 1 seconde, puis s’arrête pendant 1 seconde. Ensuite, il tourne dans le 
+sens antihoraire pendant 1 seconde, avant de s’arrêter à nouveau pendant 1 seconde. 
+Cette série d’actions se répétera en boucle.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    MotorPin1 = new Gpio(17, { mode: Gpio.OUTPUT });
+    MotorPin2 = new Gpio(27, { mode: Gpio.OUTPUT });
+    MotorEnable = new Gpio(22, { mode: Gpio.OUTPUT });
+
+
+    // Définir une fonction pour piloter le moteur
+    // direction : 2 (horaire), 1 (antihoraire), 0 (arrêt)
+    function motor(direction) {
+        switch (direction) {
+            case 2: // Sens horaire
+                // Définir le sens
+                MotorPin1.digitalWrite(1)
+                MotorPin2.digitalWrite(0)
+                // Activer le moteur
+                MotorEnable.digitalWrite(1)
+                console.log('Clockwise')
+                break;
+            case 1:  // Sens antihoraire
+                // Définir le sens
+                MotorPin1.digitalWrite(0)
+                MotorPin2.digitalWrite(1)
+                // Activer le moteur
+                MotorEnable.digitalWrite(1)
+                console.log('Counterclockwise')
+                break;
+            case 0: // Arrêt
+                // Désactiver le moteur
+                MotorEnable.digitalWrite(0)
+                console.log('Stop')
+
+        }
+    }
+
+    process.on('SIGINT', function () {
+        MotorEnable.digitalWrite(0)
+        process.exit();
+    })
+
+    let index=-1
+    setInterval(() => {
+        index=(index+1)%3
+        motor(index)
+    }, 1000)    
+ 
+
+**Explication du code**
+
+.. code-block:: js
+
+    MotorPin1 = new Gpio(17, { mode: Gpio.OUTPUT });
+    MotorPin2 = new Gpio(27, { mode: Gpio.OUTPUT });
+    MotorEnable = new Gpio(22, { mode: Gpio.OUTPUT });
+
+Importer le module pigpio et créer trois objets de la classe Gpio pour contrôler les 
+trois ports Gpio17, Gpio27 et Gpio22.
+
+.. code-block:: js
+
+    function motor(direction) {
+        switch (direction) {
+            case 2: // Clockwise
+                // Set direction
+                MotorPin1.digitalWrite(1)
+                MotorPin2.digitalWrite(0)
+                // Enable the motor
+                MotorEnable.digitalWrite(1)
+                console.log('Clockwise')
+                break;
+            case 1:  // Counterclockwise
+                // Set direction
+                MotorPin1.digitalWrite(0)
+                MotorPin2.digitalWrite(1)
+                // Enable the motor
+                MotorEnable.digitalWrite(1)
+                console.log('Counterclockwise')
+                break;
+            case 0: // Stop
+                // Disable the motor
+                MotorEnable.digitalWrite(0)
+                console.log('Stop')
+
+        }
+    }
+
+Définir une fonction ``motor()`` pour contrôler le moteur :
+
+#. Lorsque ``direction`` est égal à 2, la broche MotorPin1 passe à un niveau haut, MotorPin2 à un niveau bas et MotorEnable à un niveau haut, ce qui fait tourner le moteur dans le sens horaire.
+#. Lorsque ``direction`` est égal à 1, la broche MotorPin1 passe à un niveau bas, MotorPin2 à un niveau haut et MotorEnable à un niveau haut, ce qui fait tourner le moteur dans le sens antihoraire.
+#. Lorsque ``direction`` est égal à 0, MotorEnable passe à un niveau bas et le moteur s’arrête de tourner.
+
+.. code-block:: js
+
+    let index=-1
+    setInterval(() => {
+        index=(index+1)%3
+        motor(index)
+    }, 1000)    
+
+Fait tourner le moteur alternativement dans le sens horaire et antihoraire, avec un intervalle de 1 seconde.
+
+.. code-block:: js
+
+    process.on('SIGINT', function () {
+        MotorEnable.digitalWrite(0)
+        process.exit();
+    })
+
+
+
+Lorsque la touche **Ctrl+C** est détectée, MotorEnable est mis à un 
+niveau bas pour arrêter le moteur.
+
+
+
+Image du résultat
+----------------------
+
+.. image:: ../img/image119.jpeg

@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.5 4-stelliges 7-Segment-Display &mdash; SunFounder davinci-kit-for-raspberry-pi  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=245627df"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=70a09b52"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/de/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="1.1.6 I2C LCD1602" href="1.1.6_i2c_lcd1602_js.html" />
+    <link rel="prev" title="1.1.4 7-Segment-Anzeige" href="1.1.4_7-segment_display_js.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-de" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/nodejs/1.1.5_4_digit_7_segment_display_js.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Komponentenliste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO-Erweiterungskarte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Laden Sie die Kode herunter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/preparation.html">Installation und Einrichtung des Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Für Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html">Bibliotheken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 Ausgabe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 Eingabe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 Erweiterung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/play_with_processing.html">Spielen Sie mit der Processing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_nodejs.html">Spiel mit Nodejs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="install_nodejs.html">Was ist Node.js?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="check_pigpio.html">Überprüfung der pigpio-Bibliothek</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="output_js.html">Ausgabe</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="output_js.html#anzeigen">1.1 Anzeigen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output_js.html#ton">1.2 Ton</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output_js.html#treiber">1.3 Treiber</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="input_js.html">Input</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch/play_with_scratch.html">Spielen mit Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Videokurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a></li>
+          <li class="breadcrumb-item"><a href="play_with_nodejs.html">Spiel mit Nodejs</a></li>
+          <li class="breadcrumb-item"><a href="output_js.html">Ausgabe</a></li>
+      <li class="breadcrumb-item active">1.1.5 4-stelliges 7-Segment-Display</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nodejs/1.1.5_4_digit_7_segment_display_js.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Hallo, willkommen in der SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.</p>
+<p><strong>Warum beitreten?</strong></p>
+<ul class="simple">
+<li><p><strong>Expertenunterstützung</strong>: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.</p></li>
+<li><p><strong>Lernen &amp; Teilen</strong>: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.</p></li>
+<li><p><strong>Exklusive Vorschauen</strong>: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.</p></li>
+<li><p><strong>Spezielle Rabatte</strong>: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.</p></li>
+<li><p><strong>Festliche Aktionen und Gewinnspiele</strong>: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.</p></li>
+</ul>
+<p>👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [<a href="https://bit.ly/raphaelkit " target="_blank">hier</a>] und treten Sie noch heute bei!</p>
+</div>
+<section id="stelliges-7-segment-display">
+<h1>1.1.5 4-stelliges 7-Segment-Display<a class="headerlink" href="1.1.5_4_digit_7_segment_display_js.html#stelliges-7-segment-display" title="Link to this heading"></a></h1>
+<section id="einfuhrung">
+<h2>Einführung<a class="headerlink" href="1.1.5_4_digit_7_segment_display_js.html#einfuhrung" title="Link to this heading"></a></h2>
+<p>Als nächstes versuchen wir, das 4-stellige 7-Segment-Display zu steuern.</p>
+</section>
+<section id="komponenten">
+<h2>Komponenten<a class="headerlink" href="1.1.5_4_digit_7_segment_display_js.html#komponenten" title="Link to this heading"></a></h2>
+<img alt="../_images/list_4_digit2.png" src="../_images/list_4_digit2.png" />
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>In diesem Projekt sollten wir für das 4-stellige 7-Segment-Display das BS-Modell verwenden. Wenn Sie das AS-Modell verwenden, leuchtet es möglicherweise nicht.</p>
+</div>
+</section>
+<section id="schaltplan">
+<h2>Schaltplan<a class="headerlink" href="1.1.5_4_digit_7_segment_display_js.html#schaltplan" title="Link to this heading"></a></h2>
+<img alt="../_images/schmatic_4_digit2.png" src="../_images/schmatic_4_digit2.png" />
+</section>
+<section id="experimentelle-vorgehensweise">
+<h2>Experimentelle Vorgehensweise<a class="headerlink" href="1.1.5_4_digit_7_segment_display_js.html#experimentelle-vorgehensweise" title="Link to this heading"></a></h2>
+<p><strong>Schritt 1:</strong> Bauen Sie die Schaltung auf.</p>
+<img alt="../_images/image802.png" src="../_images/image802.png" />
+<p><strong>Schritt 2:</strong> Gehen Sie zum Ordner des Codes.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">nodejs</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Schritt 3:</strong> Führen Sie den Code aus.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">node</span> <span class="mi">4</span><span class="n">_digit_7_segment_display</span><span class="o">.</span><span class="n">js</span>
+</pre></div>
+</div>
+<p>Nachdem der Code ausgeführt wurde, zählt das Programm jede Sekunde um 1 hoch, und das 4-stellige 7-Segment-Display zeigt den Zählerstand an.</p>
+<p><strong>Code</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mh">0xc0</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf9</span><span class="p">,</span><span class="w"> </span><span class="mh">0xa4</span><span class="p">,</span><span class="w"> </span><span class="mh">0xb0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x99</span><span class="p">,</span><span class="w"> </span><span class="mh">0x92</span><span class="p">,</span><span class="w"> </span><span class="mh">0x82</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf8</span><span class="p">,</span><span class="w"> </span><span class="mh">0x80</span><span class="p">,</span><span class="w"> </span><span class="mh">0x90</span><span class="p">];</span><span class="w"> </span><span class="c1">//für BS</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">SDI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">24</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">RCLK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">23</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">SRCLK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">18</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="w"> </span><span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">pin1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pin2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">22</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pin3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">27</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pin4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">17</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">placePin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">pin1</span><span class="p">,</span><span class="w"> </span><span class="nx">pin2</span><span class="p">,</span><span class="w"> </span><span class="nx">pin3</span><span class="p">,</span><span class="w"> </span><span class="nx">pin4</span><span class="p">];</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">clearDisplay</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">hc595_shift</span><span class="p">(</span><span class="mh">0xff</span><span class="p">);</span><span class="w"> </span><span class="c1">//für BS</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">hc595_shift</span><span class="p">(</span><span class="nx">dat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">8</span><span class="p">;</span><span class="w"> </span><span class="nx">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x80</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="nx">dat</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="nx">j</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">code</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">SDI</span><span class="p">.</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="nx">code</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">SRCLK</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">RCLK</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">pickDigit</span><span class="p">(</span><span class="nx">digit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mf">4</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">placePin</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">placePin</span><span class="p">[</span><span class="nx">digit</span><span class="p">].</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">digit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">;</span>
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">digit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">digit</span><span class="w"> </span><span class="o">+</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="w"> </span><span class="mf">4</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">pickDigit</span><span class="p">(</span><span class="nx">digit</span><span class="p">);</span>
+<span class="w">    </span><span class="k">switch</span><span class="p">(</span><span class="nx">digit</span><span class="p">){</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mf">0</span><span class="o">:</span>
+<span class="w">            </span><span class="nx">hc595_shift</span><span class="p">(</span><span class="nx">number</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">10</span><span class="p">)]);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mf">1</span><span class="o">:</span>
+<span class="w">            </span><span class="nx">hc595_shift</span><span class="p">(</span><span class="nx">number</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">100</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">10</span><span class="p">)]);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mf">2</span><span class="o">:</span>
+<span class="w">            </span><span class="nx">hc595_shift</span><span class="p">(</span><span class="nx">number</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">1000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">100</span><span class="p">)]);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mf">3</span><span class="o">:</span>
+<span class="w">            </span><span class="nx">hc595_shift</span><span class="p">(</span><span class="nx">number</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">10000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1000</span><span class="p">)]);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span>
+
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Code Erklärung</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">pin1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pin2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">25</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pin3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">27</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pin4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">17</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">placePin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">pin1</span><span class="p">,</span><span class="w"> </span><span class="nx">pin2</span><span class="p">,</span><span class="w"> </span><span class="nx">pin3</span><span class="p">,</span><span class="w"> </span><span class="nx">pin4</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>Initialisieren Sie die Pins 10, 25, 27 und 17 im Ausgabemodus und platzieren Sie sie im Array <code class="docutils literal notranslate"><span class="pre">placePin</span></code>, um die gemeinsame Anode des vierstelligen 7-Segment-Displays zu steuern.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mh">0xc0</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf9</span><span class="p">,</span><span class="w"> </span><span class="mh">0xa4</span><span class="p">,</span><span class="w"> </span><span class="mh">0xb0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x99</span><span class="p">,</span><span class="w"> </span><span class="mh">0x92</span><span class="p">,</span><span class="w"> </span><span class="mh">0x82</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf8</span><span class="p">,</span><span class="w"> </span><span class="mh">0x80</span><span class="p">,</span><span class="w"> </span><span class="mh">0x90</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>Definieren Sie ein konstantes Array <code class="docutils literal notranslate"><span class="pre">number</span></code>, um den hexadezimalen Segmentcode von 0 bis 9 (gemeinsame Anode) darzustellen.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">clearDisplay</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">hc595_shift</span><span class="p">(</span><span class="mh">0xff</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Schreiben Sie 0xff, um die Anzeige auszuschalten.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">pickDigit</span><span class="p">(</span><span class="nx">digit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mf">4</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">placePin</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">placePin</span><span class="p">[</span><span class="nx">digit</span><span class="p">].</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Wählen Sie die Stelle des Wertes aus.
+Es sollte jeweils nur eine Stelle aktiviert sein.
+Die aktivierte Stelle wird auf HIGH gesetzt.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">digit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">;</span>
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">digit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">digit</span><span class="w"> </span><span class="o">+</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="w"> </span><span class="mf">4</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">pickDigit</span><span class="p">(</span><span class="nx">digit</span><span class="p">);</span>
+<span class="w">    </span><span class="k">switch</span><span class="p">(</span><span class="nx">digit</span><span class="p">){</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mf">0</span><span class="o">:</span>
+<span class="w">            </span><span class="nx">hc595_shift</span><span class="p">(</span><span class="nx">number</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">10</span><span class="p">)]);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mf">1</span><span class="o">:</span>
+<span class="w">            </span><span class="nx">hc595_shift</span><span class="p">(</span><span class="nx">number</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">100</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">10</span><span class="p">)]);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mf">2</span><span class="o">:</span>
+<span class="w">            </span><span class="nx">hc595_shift</span><span class="p">(</span><span class="nx">number</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">1000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">100</span><span class="p">)]);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mf">3</span><span class="o">:</span>
+<span class="w">            </span><span class="nx">hc595_shift</span><span class="p">(</span><span class="nx">number</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">10000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1000</span><span class="p">)]);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Dieser Code wird verwendet, um die auf dem 4-stelligen 7-Segment-Display angezeigte Zahl einzustellen.</p>
+<p>Zuerst starten wir das vierte Segmentdisplay und schreiben die einstellige Zahl.
+Dann starten wir das dritte Segmentdisplay und geben die Zehnerstelle ein;
+danach starten wir nacheinander das zweite und das erste Segmentdisplay und schreiben jeweils die Hunderter- und Tausenderstellen.
+Da die Aktualisierungsgeschwindigkeit sehr hoch ist, sehen wir eine vollständige vierstellige Anzeige.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Erhöhen Sie jede Sekunde den <code class="docutils literal notranslate"><span class="pre">counter</span></code> um eins
+(das vierstellige Digitaldisplay zeigt die um eins erhöhte Zahl an).</p>
+</section>
+<section id="phanomenbild">
+<h2>Phänomenbild<a class="headerlink" href="1.1.5_4_digit_7_segment_display_js.html#phanomenbild" title="Link to this heading"></a></h2>
+<img alt="../_images/image811.jpeg" src="../_images/image811.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1.1.4_7-segment_display_js.html" class="btn btn-neutral float-left" title="1.1.4 7-Segment-Anzeige" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="1.1.6_i2c_lcd1602_js.html" class="btn btn-neutral float-right" title="1.1.6 I2C LCD1602" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

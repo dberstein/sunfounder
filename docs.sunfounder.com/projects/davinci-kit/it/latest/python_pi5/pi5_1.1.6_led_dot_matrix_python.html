@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="it" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.6 Matrice di LED &mdash; SunFounder davinci-kit-for-raspberry-pi  documentazione</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=3fd72285"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=0173e136"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/it/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Indice" href="../genindex.html" />
+    <link rel="search" title="Cerca" href="../search.html" />
+    <link rel="next" title="1.1.7 LCD1602 I2C" href="pi5_1.1.7_i2c_lcd1602_python.html" />
+    <link rel="prev" title="1.1.5 Display a 4 Cifre e 7 Segmenti" href="pi5_1.1.5_4-Digit_7-segment_display_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-it" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_1.1.6_led_dot_matrix_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Cerca documenti" aria-label="Cerca documenti" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu di navigazione">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Elenco dei Componenti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Scheda di Estensione GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Scarica il Codice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installazione e configurazione di Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Per Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Divertiti con Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Verifica di <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_output_python.html">Output</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="pi5_output_python.html#display">1.1 Display</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_output_python.html#suono">1.2 Suono</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_output_python.html#driver">1.3 Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_extension_python.html">Estensioni</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Gioca con C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Giocare con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Corso Video Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Grazie</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu navigazione dispositivi mobili" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Naviga tra le pagine">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Per Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Divertiti con Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_output_python.html">Output</a></li>
+      <li class="breadcrumb-item active">1.1.6 Matrice di LED</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_1.1.6_led_dot_matrix_python.rst.txt" rel="nofollow"> Visualizza sorgente pagina</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Ciao, benvenuto nella Community di Facebook dedicata agli appassionati di SunFounder Raspberry Pi, Arduino ed ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.</p>
+<p><strong>Perché unirsi a noi?</strong></p>
+<ul class="simple">
+<li><p><strong>Supporto Esperto</strong>: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra comunità e del nostro team.</p></li>
+<li><p><strong>Impara e Condividi</strong>: Scambia consigli e tutorial per migliorare le tue competenze.</p></li>
+<li><p><strong>Anteprime Esclusive</strong>: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.</p></li>
+<li><p><strong>Sconti Speciali</strong>: Approfitta di sconti esclusivi sui nostri prodotti più recenti.</p></li>
+<li><p><strong>Promozioni Festive e Giveaway</strong>: Partecipa a concorsi e promozioni speciali.</p></li>
+</ul>
+<p>👉 Sei pronto a esplorare e creare con noi? Clicca su [<a href="https://bit.ly/raphaelkit " target="_blank">Qui</a>] e unisciti subito!</p>
+</div>
+<section id="matrice-di-led">
+<span id="py-pi5"></span><h1>1.1.6 Matrice di LED<a class="headerlink" href="pi5_1.1.6_led_dot_matrix_python.html#matrice-di-led" title="Link to this heading"></a></h1>
+<section id="introduzione">
+<h2>Introduzione<a class="headerlink" href="pi5_1.1.6_led_dot_matrix_python.html#introduzione" title="Link to this heading"></a></h2>
+<p>Come suggerisce il nome, una matrice di LED è una struttura composta da
+LED disposti in matrice. L’accensione e lo spegnimento dei LED formano
+diversi caratteri e schemi.</p>
+</section>
+<section id="componenti-necessari">
+<h2>Componenti Necessari<a class="headerlink" href="pi5_1.1.6_led_dot_matrix_python.html#componenti-necessari" title="Link to this heading"></a></h2>
+<p>Per questo progetto, avremo bisogno dei seguenti componenti.</p>
+<a class="reference internal image-reference" href="../_images/1.1.6_led_dot_matrix_list.png"><img alt="../_images/1.1.6_led_dot_matrix_list.png" class="align-center" src="../_images/1.1.6_led_dot_matrix_list.png" style="width: 800px;" />
+</a>
+<br/></section>
+<section id="principio">
+<h2>Principio<a class="headerlink" href="pi5_1.1.6_led_dot_matrix_python.html#principio" title="Link to this heading"></a></h2>
+<p><strong>Matrice di LED</strong></p>
+<p>In generale, le matrici di LED possono essere classificate in due tipi:
+catodo comune (CC) e anodo comune (CA). Sebbene appaiano simili, presentano
+differenze interne che possono essere verificate con un test. In questo kit
+viene utilizzato un modello CA, riconoscibile dal codice 788BS sul lato.</p>
+<p>Osserva la figura sottostante: i pin sono disposti alle estremità posteriori.
+Prendendo come riferimento il lato con l’etichetta, i pin su questo lato vanno
+da 1 a 8, mentre sull’altro lato sono da 9 a 16.</p>
+<p>Vista esterna:</p>
+<a class="reference internal image-reference" href="../_images/1.1.6_led_dot_matrix_1.png"><img alt="../_images/1.1.6_led_dot_matrix_1.png" class="align-center" src="../_images/1.1.6_led_dot_matrix_1.png" style="width: 400px;" />
+</a>
+<p>Le figure seguenti mostrano la struttura interna. In una matrice di LED CA,
+ROW rappresenta l’anodo del LED e COL è il catodo; nel caso di una matrice CC,
+è il contrario. In entrambi i casi, i pin 13, 3, 4, 10, 6, 11, 15 e 16
+corrispondono a COL, mentre i pin 9, 14, 8, 12, 1, 7, 2 e 5 corrispondono a ROW.
+Per accendere il primo LED nell’angolo in alto a sinistra in una matrice CA,
+imposta il pin 9 su High e il pin 13 su Low; per una matrice CC, imposta il
+pin 13 su High e il pin 9 su Low. Per accendere l’intera prima colonna, nel
+caso CA imposta il pin 13 su Low e ROW 9, 14, 8, 12, 1, 7, 2 e 5 su High;
+per il CC, imposta il pin 13 su High e ROW 9, 14, 8, 12, 1, 7, 2 e 5 su Low.</p>
+<p>Vista interna:</p>
+<a class="reference internal image-reference" href="../_images/1.1.6_led_dot_matrix_2.png"><img alt="../_images/1.1.6_led_dot_matrix_2.png" class="align-center" src="../_images/1.1.6_led_dot_matrix_2.png" style="width: 400px;" />
+</a>
+<p>Numerazione dei pin corrispondente a righe e colonne:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>COL</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>5</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>8</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Pin No.</strong></p></td>
+<td><p><strong>13</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>10</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>11</strong></p></td>
+<td><p><strong>15</strong></p></td>
+<td><p><strong>16</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ROW</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>5</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>8</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Pin No.</strong></p></td>
+<td><p><strong>9</strong></p></td>
+<td><p><strong>14</strong></p></td>
+<td><p><strong>8</strong></p></td>
+<td><p><strong>12</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>5</strong></p></td>
+</tr>
+</tbody>
+</table>
+<p>Inoltre, in questo progetto vengono utilizzati due chip 74HC595. Uno
+controlla le righe della matrice LED, mentre l’altro controlla le colonne.</p>
+</section>
+<section id="schema-a-blocchi">
+<h2>Schema a Blocchi<a class="headerlink" href="pi5_1.1.6_led_dot_matrix_python.html#schema-a-blocchi" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Nome T-Board</p></td>
+<td><p>fisico</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/1.1.6_led_dot_matrix_schematic.png"><img alt="../_images/1.1.6_led_dot_matrix_schematic.png" src="../_images/1.1.6_led_dot_matrix_schematic.png" style="width: 800px;" />
+</a>
+</section>
+<section id="procedure-sperimentali">
+<h2>Procedure Sperimentali<a class="headerlink" href="pi5_1.1.6_led_dot_matrix_python.html#procedure-sperimentali" title="Link to this heading"></a></h2>
+<p><strong>Passo 1:</strong> Costruisci il circuito. Poiché il cablaggio è complesso,
+procediamo passo per passo. Per prima cosa, inserisci il T-Cobbler, la
+matrice di LED e i due chip 74HC595 nella breadboard. Collega il 3.3V e
+il GND del T-Cobbler ai fori sui due lati della board, quindi collega i
+pin 16 e 10 dei due chip 74HC595 a VCC, e i pin 13 e 8 a GND.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Nell’immagine Fritzing sopra, il lato con l’etichetta si trova in basso.</p>
+</div>
+<a class="reference internal image-reference" href="../_images/1.1.6_LedMatrix_circuit_1.png"><img alt="../_images/1.1.6_LedMatrix_circuit_1.png" src="../_images/1.1.6_LedMatrix_circuit_1.png" style="width: 800px;" />
+</a>
+<p><strong>Passo 2:</strong> Collega insieme il pin 11 dei due chip 74HC595 e quindi a GPIO27;
+poi il pin 12 dei due chip, e a GPIO18; successivamente, il pin 14 del 74HC595
+sul lato sinistro a GPIO17 e il pin 9 al pin 14 del secondo 74HC595.</p>
+<a class="reference internal image-reference" href="../_images/1.1.6_LedMatrix_circuit_2.png"><img alt="../_images/1.1.6_LedMatrix_circuit_2.png" src="../_images/1.1.6_LedMatrix_circuit_2.png" style="width: 800px;" />
+</a>
+<p><strong>Passo 3:</strong> Il chip 74HC595 sul lato destro controlla le colonne della matrice
+LED. Consulta la tabella seguente per le corrispondenze. Pertanto, i pin Q0-Q7
+del 74HC595 corrispondono rispettivamente ai pin 13, 3, 4, 10, 6, 11, 15 e 16.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>74HC595</strong></p></td>
+<td><p><strong>Q0</strong></p></td>
+<td><p><strong>Q1</strong></p></td>
+<td><p><strong>Q2</strong></p></td>
+<td><p><strong>Q3</strong></p></td>
+<td><p><strong>Q4</strong></p></td>
+<td><p><strong>Q5</strong></p></td>
+<td><p><strong>Q6</strong></p></td>
+<td><p><strong>Q7</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LED Dot Matrix</strong></p></td>
+<td><p><strong>13</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>10</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>11</strong></p></td>
+<td><p><strong>15</strong></p></td>
+<td><p><strong>16</strong></p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/1.1.6_LedMatrix_circuit_3.png"><img alt="../_images/1.1.6_LedMatrix_circuit_3.png" src="../_images/1.1.6_LedMatrix_circuit_3.png" style="width: 800px;" />
+</a>
+<p><strong>Passo 4:</strong> Ora collega le righe della matrice di LED. Il chip 74HC595 sul lato
+sinistro controlla le righe della matrice LED. Consulta la tabella seguente per
+le corrispondenze. Si può notare che i pin Q0-Q7 del 74HC595 sul lato sinistro
+corrispondono rispettivamente ai pin 9, 14, 8, 12, 1, 7, 2 e 5.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>74HC595</strong></p></td>
+<td><p><strong>Q0</strong></p></td>
+<td><p><strong>Q1</strong></p></td>
+<td><p><strong>Q2</strong></p></td>
+<td><p><strong>Q3</strong></p></td>
+<td><p><strong>Q4</strong></p></td>
+<td><p><strong>Q5</strong></p></td>
+<td><p><strong>Q6</strong></p></td>
+<td><p><strong>Q7</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LED Dot Matrix</strong></p></td>
+<td><p><strong>9</strong></p></td>
+<td><p><strong>14</strong></p></td>
+<td><p><strong>8</strong></p></td>
+<td><p><strong>12</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>5</strong></p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/1.1.6_LedMatrix_circuit_4.png"><img alt="../_images/1.1.6_LedMatrix_circuit_4.png" src="../_images/1.1.6_LedMatrix_circuit_4.png" style="width: 800px;" />
+</a>
+<p><strong>Passo 5:</strong> Apri il file di codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Passo 6:</strong> Esegui il codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.1.6</span><span class="n">_led_dot_matrix</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Dopo aver eseguito il codice, la matrice di LED si illumina e si spegne riga per riga e colonna per colonna.</p>
+<div class="admonition warning">
+<p class="admonition-title">Avvertimento</p>
+<p>Se viene visualizzato l’errore <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code>, consulta <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">Se gpiozero non funziona.</span></a></p>
+</div>
+<p><strong>Codice</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puoi <strong>Modificare/Reimpostare/Copiare/Eseguire/Interrompere</strong> il codice qui sotto. Prima di farlo, però, è necessario accedere al percorso del codice sorgente come <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python-pi5</span></code>. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l’effetto.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="c1"># Definisce i pin GPIO collegati al registro a scorrimento 74HC595</span>
+<span class="n">SDI</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>   <span class="c1"># Ingresso Dati Seriale</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>  <span class="c1"># Clock del Registro</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span> <span class="c1"># Clock del Registro a Scorrimento</span>
+
+<span class="c1"># Definisce i pattern per il display della matrice; le righe (ROW) sono anodi (+), le colonne (COL) sono catodi (-)</span>
+<span class="c1"># Pattern per le righe (segnali anodici)</span>
+<span class="n">code_H</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span> <span class="mh">0x08</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x40</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">]</span>
+<span class="c1"># Pattern per le colonne (segnali catodici)</span>
+<span class="n">code_L</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xfe</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xfe</span><span class="p">,</span> <span class="mh">0xfd</span><span class="p">,</span> <span class="mh">0xfb</span><span class="p">,</span> <span class="mh">0xf7</span><span class="p">,</span> <span class="mh">0xef</span><span class="p">,</span> <span class="mh">0xdf</span><span class="p">,</span> <span class="mh">0xbf</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">]</span>
+
+<span class="c1"># Trasferisce i dati a 74HC595</span>
+<span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">dat</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot; Shift data to the 74HC595 shift register for displaying on the matrix. &quot;&quot;&quot;</span>
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+      <span class="c1"># Imposta il valore di SDI e attiva il clock del registro a scorrimento</span>
+      <span class="n">SDI</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dat</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span>
+      <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+      <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+   <span class="c1"># Attiva il clock del registro per aggiornare il display</span>
+   <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+   <span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+   <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot; Main loop for cycling through display patterns. &quot;&quot;&quot;</span>
+   <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+      <span class="c1"># Scorri i pattern in ordine crescente</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">code_H</span><span class="p">)):</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+      <span class="c1"># Scorri i pattern in ordine decrescente</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">code_H</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Esegui il ciclo principale e gestisci l&#39;interruzione con tastiera in modo ordinato</span>
+<span class="k">try</span><span class="p">:</span>
+   <span class="n">main</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+   <span class="k">pass</span>
+</pre></div>
+</div>
+<p><strong>Spiegazione del Codice</strong></p>
+<ol class="arabic">
+<li><p>Questo snippet importa le classi necessarie per il progetto. <code class="docutils literal notranslate"><span class="pre">OutputDevice</span></code> da <code class="docutils literal notranslate"><span class="pre">gpiozero</span></code> è utilizzato per controllare i componenti hardware collegati ai pin GPIO, mentre <code class="docutils literal notranslate"><span class="pre">sleep</span></code> da <code class="docutils literal notranslate"><span class="pre">time</span></code> è utilizzato per aggiungere ritardi.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+</pre></div>
+</div>
+</li>
+<li><p>In questa sezione, si inizializzano i pin GPIO collegati al registro a scorrimento 74HC595. <code class="docutils literal notranslate"><span class="pre">SDI</span></code> è l’Ingresso Dati Seriale, <code class="docutils literal notranslate"><span class="pre">RCLK</span></code> è il Clock del Registro e <code class="docutils literal notranslate"><span class="pre">SRCLK</span></code> è il Clock del Registro a Scorrimento. Questi pin sono usati per trasferire i dati nel registro e controllare la visualizzazione della matrice LED.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definisce i pin GPIO collegati al registro a scorrimento 74HC595</span>
+<span class="n">SDI</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>   <span class="c1"># Ingresso Dati Seriale</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>  <span class="c1"># Clock del Registro</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span> <span class="c1"># Clock del Registro a Scorrimento</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">code_H</span></code> e <code class="docutils literal notranslate"><span class="pre">code_L</span></code> definiscono i pattern binari per controllare rispettivamente le righe (anodi) e le colonne (catodi) della matrice LED. Ogni elemento in questi array rappresenta un pattern binario che controlla quali LED sono accesi o spenti nella matrice.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definisce i pattern per il display della matrice; le righe (ROW) sono anodi (+), le colonne (COL) sono catodi (-)</span>
+<span class="c1"># Pattern per le righe (segnali anodici)</span>
+<span class="n">code_H</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span> <span class="mh">0x08</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x40</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">]</span>
+<span class="c1"># Pattern per le colonne (segnali catodici)</span>
+<span class="n">code_L</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xfe</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0xfe</span><span class="p">,</span> <span class="mh">0xfd</span><span class="p">,</span> <span class="mh">0xfb</span><span class="p">,</span> <span class="mh">0xf7</span><span class="p">,</span> <span class="mh">0xef</span><span class="p">,</span> <span class="mh">0xdf</span><span class="p">,</span> <span class="mh">0xbf</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Questa funzione trasferisce un byte di dati (<code class="docutils literal notranslate"><span class="pre">dat</span></code>) nel registro a scorrimento 74HC595. Itera su ciascun bit nel byte, impostando il pin <code class="docutils literal notranslate"><span class="pre">SDI</span></code> in base al valore del bit, e attiva il pin <code class="docutils literal notranslate"><span class="pre">SRCLK</span></code> per trasferire il bit nel registro. Dopo aver trasferito tutti i bit, attiva il pin <code class="docutils literal notranslate"><span class="pre">RCLK</span></code> per aggiornare il display della matrice LED.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Trasferisce i dati a 74HC595</span>
+<span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">dat</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot; Shift data to the 74HC595 shift register for displaying on the matrix. &quot;&quot;&quot;</span>
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+      <span class="c1"># Imposta il valore di SDI e attiva il clock del registro a scorrimento</span>
+      <span class="n">SDI</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dat</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span>
+      <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+      <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+   <span class="c1"># Attiva il clock del registro per aggiornare il display</span>
+   <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+   <span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+   <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>La funzione principale contiene un ciclo infinito che scorre attraverso i pattern predefiniti per la matrice LED. Utilizza la funzione <code class="docutils literal notranslate"><span class="pre">hc595_shift</span></code> per inviare pattern di riga e colonna (<code class="docutils literal notranslate"><span class="pre">code_H</span></code> e <code class="docutils literal notranslate"><span class="pre">code_L</span></code>) al registro a scorrimento, prima in ordine crescente e poi in ordine decrescente, creando un display dinamico.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot; Main loop for cycling through display patterns. &quot;&quot;&quot;</span>
+   <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+      <span class="c1"># Scorri i pattern in ordine crescente</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">code_H</span><span class="p">)):</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+      <span class="c1"># Scorri i pattern in ordine decrescente</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">code_H</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Questo segmento assicura che il programma possa essere interrotto usando una tastiera (Ctrl+C). Uscirà dal ciclo principale senza fermate brusche o perdita di risorse.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Esegui il ciclo principale e gestisci l&#39;interruzione con tastiera in modo ordinato</span>
+<span class="k">try</span><span class="p">:</span>
+   <span class="n">main</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+   <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Piè di pagina">
+        <a href="pi5_1.1.5_4-Digit_7-segment_display_python.html" class="btn btn-neutral float-left" title="1.1.5 Display a 4 Cifre e 7 Segmenti" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Precedente</a>
+        <a href="pi5_1.1.7_i2c_lcd1602_python.html" class="btn btn-neutral float-right" title="1.1.7 LCD1602 I2C" accesskey="n" rel="next">Prossimo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, SunFounder.</p>
+  </div>
+
+  Realizzato con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornito da <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ビデオ 62: OpenCVを使用したHaarカスケードによる顔の検出と追跡 &mdash; SunFounder davinci-kit-for-raspberry-pi  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=c033477b"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=4dbe4bdc"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/ja/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="ビデオ 63: パン/チルトカメラを使用したOpenCVによる顔追跡" href="video_63_track_face_opencv.html" />
+    <link rel="prev" title="ビデオ 61: Haarカスケードを使用したOpenCVによる顔の検出と追跡" href="video_61_cascades.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-ja" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_video/video_62_face_opencv.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">部品一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO拡張ボード</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">コードをダウンロードする</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Raspberry Pi OSのインストールとセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">For Pi 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="python_video.html">Python ビデオコース</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="video_1_instroduction.html">ビデオ 1: 最初の起動</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_2_mastering_linux.html">ビデオ 2: Raspberry PiでLinuxの基本とコマンドラインの基礎をマスターする</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_3_python_essentials.html">ビデオ 3: 一回のセッションでPythonの基本をマスター</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_4_gpio_pin.html">ビデオ 4: GPIOピンの理解と使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_5_binary_number.html">ビデオ 5: 二進数の理解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_6_gpio_input.html">ビデオ 6: GPIO入力、プルアップ抵抗とプルダウン抵抗の理解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_7_button.html">ビデオ 7: ボタンスイッチからのGPIO入力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_8_button_toggle.html">ビデオ 8: ボタンをトグルスイッチとして使用しLEDの制御を行う</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_9_pwm.html">ビデオ 9: GPIOピンを使用したPWMによるアナログ出力のシミュレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_10_dimmable_led.html">ビデオ 10: 2つのプッシュボタンで調光可能なLEDを作る</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_11_rgb.html">ビデオ 11: RGB LEDの理解と使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_12_button_rgb.html">ビデオ 12: プッシュボタンによるRGB LEDの制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_13_set_color_rgb_button.html">ビデオ 13: プッシュボタンでRGB LEDの色を設定する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_14_vpython.html">ビデオ 14: Raspberry PiにVisual Pythonをインストールする</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_15_analog_input.html">ビデオ 15: ADC0834を使用したRaspberry Piでのアナログ入力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_16_pot_led.html">ビデオ 16: ポテンショメーターで制御する調光可能なLEDの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_17_mixing_color.html">ビデオ 17: RGB LEDで任意の色を混合する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_18_joystick.html">ビデオ 18: Raspberry Piでジョイスティックを使用する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_19_servo.html">ビデオ 19: Raspberry Piからサーボモーターを簡単に制御する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_20_servo_pot.html">ビデオ 20: ポテンショメーターでサーボの位置を制御する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_21_ultrasonic.html">ビデオ 21: HC-SR04超音波センサーを使ったエコーロケーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_22_distance.html">ビデオ 22: HC-SR04超音波センサーで距離を測定する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_23_sound_speed.html">ビデオ 23: 超音波センサーを使用して音速を測定する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_24_pir.html">ビデオ 24: Raspberry PiでPIR動作センサーを使用する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_25_dht11.html">ビデオ 25: DHT-11センサーで温度と湿度を測定する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_26_lcd.html">ビデオ 26: I2Cを使用したLCD1602 LCDディスプレイの使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_27_lcd_dht11.html">ビデオ 27: LCDディスプレイを使用した温度と湿度のシステムの構築</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_28_buzzer.html">ビデオ 28: アクティブ・パッシブブザーの理解と使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_29_temp_alarm.html">ビデオ 29: プログラム可能な温度感知アラームを構築する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_30_photoresistor.html">ビデオ 30: Raspberry Piで光を検出するフォトレジスターの使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_31_alarm_motion.html">ビデオ 31: 暗闇での動きを検出するアラーム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_32_keypad.html">ビデオ 32: Raspberry Piでキーパッドを理解し、使用する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_33_keypad_incorporate.html">ビデオ 33: Raspberry Piプロジェクトにキーパッドを取り入れる方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_34_keypad_class.html">ビデオ 34: Raspberry Pi用キーパッド読取りPythonクラス作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_35_keypad_lcd.html">ビデオ 35: キーパッドとLCDを使ったモバイルRaspberry Piプロジェクトの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_36_keypad_threading.html">ビデオ 36: Raspberry Piでキーパッド入力を監視する方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_37_keypad_lcd_motion.html">ビデオ 37: キーパッドとLCDを使ったRaspberry Piアラームシステム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_38_security.html">ビデオ 38: Raspberry Piセキュリティシステム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_39_security_multiple_alarms.html">ビデオ 39: Raspberry Piセキュリティシステム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_40_security_putty.html">ビデオ 40: Raspberry PiセキュリティプロジェクトをPuttyで遠隔操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_41_vnc.html">ビデオ 41: Raspberry PiでVNCを使用したリモートデスクトップの設定方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_42_send_data.html">ビデオ 42: Raspberry PiとPC間のUDPを使ったデータ送信方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_43_simple_client_server.html">ビデオ 43: Raspberry Piを使ったシンプルなクライアントサーバーシステムの構築</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_44_improved_client_server.html">ビデオ 44: Raspberry Piで高度なクライアント・サーバー接続を構築</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_45_camera.html">ビデオ 45: Raspberry Piカメラをマスターする準備</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_46_opencv.html">ビデオ 46: BullseyeとOpenCVを使用したRaspberry Piカメラの活用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_47_fps.html">ビデオ 47: OpenCVでFPS（フレームレート）を計算し、フレームにオーバーレイする方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_48_annotating_opencv.html">ビデオ 48: OpenCVを使って画像にボックス、四角、円を追加する方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_49_bouncing_box_opencv.html">ビデオ 49: OpenCVでバウンドするボックスオーバーレイを作成する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_50_image_array.html">ビデオ 50: 配列データセットとしての画像理解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_51_modify_opencv_image.html">ビデオ 51: OpenCV画像の修正と関心領域の作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_52_hsv.html">ビデオ 52: HSVカラースペースの理解と活用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_53_trackbars.html">ビデオ 53: OpenCVでトラックバーを理解し、使用する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_54_trackbars_color.html">ビデオ 54: OpenCVを使用したカラーオブジェクトのトラッキングにトラックバーを使用する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_55_track_object.html">ビデオ 55: OpenCVを使用して興味のあるオブジェクトを追跡する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_56_pan_tilt.html">ビデオ 56: クラスの次のレッスンに向けて準備をする</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_57_assemble_pan_tilt.html">ビデオ 57: Raspberry Piカメラ用のSunFounderパン/チルトハットの組み立て</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_58_track_pan_tilt.html">ビデオ 58: パン/チルトカメラマウントでの対象物の追跡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_59_contrtol_system_pan_tilt.html">ビデオ 59: Raspberry Piカメラ用パン/チルトカメラハットの制御システム</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_60_improved_pan_tilt.html">ビデオ 60: パン/チルトトラッキング制御アルゴリズムの改善</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_61_cascades.html">ビデオ 61: Haarカスケードを使用したOpenCVによる顔の検出と追跡</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="video_62_face_opencv.html#">ビデオ 62: OpenCVを使用したHaarカスケードによる顔の検出と追跡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_63_track_face_opencv.html">ビデオ 63: パン/チルトカメラを使用したOpenCVによる顔追跡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_64_tensorflow.html">ビデオ 64: Raspberry PiでのTensorFlow Liteを使用したオブジェクト検出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_65_tensorflow_data_structure.html">ビデオ 65: TensorFlowオブジェクト検出データ構造の理解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_66_tensorflow_speed.html">ビデオ 66: TensorFlow Liteの物体検出の速度向上</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_67_cap_touch.html">ビデオ 67: Pythonを使用して静電容量式タッチセンサーを使う方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_68_rgb_cap_touch.html">ビデオ 68: 静電容量式タッチセンサーでRGB LEDを制御する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_69_mfrc522.html">ビデオ 69: ラズベリーパイでMFRC522 RFIDモジュールとタグを使う方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_70_rgb_rfid.html">ビデオ 70: ラズベリーパイでMFRC522 RFIDモジュールとタグを使う方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_71_ir_proximity.html">ビデオ 71: 衝突回避のためのIR近接センサーの使用方法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">付録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">ありがとうございました</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="python_video.html">Python ビデオコース</a></li>
+      <li class="breadcrumb-item active">ビデオ 62: OpenCVを使用したHaarカスケードによる顔の検出と追跡</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_video/video_62_face_opencv.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>こんにちは、SunFounderのRaspberry Pi &amp; Arduino &amp; ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。</p>
+<p><strong>参加する理由は？</strong></p>
+<ul class="simple">
+<li><p><strong>エキスパートサポート</strong>：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。</p></li>
+<li><p><strong>学び＆共有</strong>：ヒントやチュートリアルを交換してスキルを向上させましょう。</p></li>
+<li><p><strong>独占的なプレビュー</strong>：新製品の発表や先行プレビューに早期アクセスしましょう。</p></li>
+<li><p><strong>特別割引</strong>：最新製品の独占割引をお楽しみください。</p></li>
+<li><p><strong>祭りのプロモーションとギフト</strong>：ギフトや祝日のプロモーションに参加しましょう。</p></li>
+</ul>
+<p>👉 私たちと一緒に探索し、創造する準備はできていますか？[<a href="https://bit.ly/raphaelkit " target="_blank">ここ</a>]をクリックして今すぐ参加しましょう！</p>
+</div>
+<section id="opencvhaar">
+<h1>ビデオ 62: OpenCVを使用したHaarカスケードによる顔の検出と追跡<a class="headerlink" href="video_62_face_opencv.html#opencvhaar" title="Link to this heading"></a></h1>
+<p>Raspberry PiでOpenCVを使用してカメラアプリケーションを作成する方法を学び、顔と目の検出、パフォーマンスの最適化、リアルタイムの顔追跡をカバーします。</p>
+<ol class="arabic simple">
+<li><p>SunFounder Raspberry Piキットを使用したRaspberry Pi環境のセットアップ。</p></li>
+<li><p>OpenCVを使用してビデオフレームをキャプチャし、顔と目の検出を実装するためのコードの記述。</p></li>
+<li><p>目の検出のための関心領域（ROI）を制限してパフォーマンスを最適化します。</p></li>
+<li><p>ROIの概念と処理速度への影響の理解。</p></li>
+<li><p>OpenCVとパン・チルトサーボを使用したリアルタイムの顔追跡。</p></li>
+</ol>
+<p><strong>ビデオ</strong></p>
+<iframe width="700" height="500" src="https://www.youtube.com/embed/cEgio_zgIQM?si=UUHtUKM9jqsp9tNK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="video_61_cascades.html" class="btn btn-neutral float-left" title="ビデオ 61: Haarカスケードを使用したOpenCVによる顔の検出と追跡" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="video_63_track_face_opencv.html" class="btn btn-neutral float-right" title="ビデオ 63: パン/チルトカメラを使用したOpenCVによる顔追跡" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

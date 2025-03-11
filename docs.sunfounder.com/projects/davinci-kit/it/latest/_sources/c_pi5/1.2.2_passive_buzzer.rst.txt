@@ -1,0 +1,227 @@
+.. note::
+
+    Ciao, benvenuto nella Community di SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con il supporto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima a nuovi annunci di prodotti e anticipazioni.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a giveaway e promozioni durante le festività.
+
+    👉 Pronto per esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
+
+1.2.2 Cicalino Passivo
+=========================
+
+Introduzione
+---------------
+
+In questa lezione, impareremo come far suonare un cicalino passivo per riprodurre musica.
+
+Componenti
+-----------
+
+.. image:: img/list_1.2.2.png
+
+
+Schema Elettrico
+------------------
+
+In questo esperimento, si utilizza un cicalino passivo, un transistor PNP e 
+una resistenza da 1k tra la base del transistor e GPIO per proteggere il transistor.
+
+Quando il GPIO17 viene impostato su frequenze diverse, il cicalino passivo 
+emetterà suoni differenti; in questo modo, il cicalino può riprodurre musica.
+
+.. image:: img/image333.png
+
+
+Procedure Sperimentali
+--------------------------
+
+**Step 1:** Costruisci il circuito.
+
+.. image:: img/image106.png
+    :width: 800
+
+**Step 2:** Cambia la directory.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/1.2.2/
+
+**Step 3:** Compila.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.2.2_PassiveBuzzer.c -lwiringPi
+
+**Step 4:** Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Quando il codice viene eseguito, il cicalino riproduce un pezzo musicale.
+
+.. note::
+
+    Se il programma non funziona o appare un errore come : \"wiringPi.h: No such file or directory", consulta :ref:`Il codice C non funziona?`.
+
+**Codice**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <softTone.h>
+    #include <stdio.h>
+
+    #define BuzPin    0
+
+    #define  CL1  131
+    #define  CL2  147
+    #define  CL3  165
+    #define  CL4  175
+    #define  CL5  196
+    #define  CL6  221
+    #define  CL7  248
+
+    #define  CM1  262
+    #define  CM2  294
+    #define  CM3  330
+    #define  CM4  350
+    #define  CM5  393
+    #define  CM6  441
+    #define  CM7  495
+
+    #define  CH1  525
+    #define  CH2  589
+    #define  CH3  661
+    #define  CH4  700
+    #define  CH5  786
+    #define  CH6  882
+    #define  CH7  990
+
+    int song_1[] = {CM3,CM5,CM6,CM3,CM2,CM3,CM5,CM6,CH1,CM6,CM5,CM1,CM3,CM2,
+                    CM2,CM3,CM5,CM2,CM3,CM3,CL6,CL6,CL6,CM1,CM2,CM3,CM2,CL7,
+                    CL6,CM1,CL5};
+
+    int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
+                    1,1,1,1,1,1,3};
+
+
+    int song_2[] = {CM1,CM1,CM1,CL5,CM3,CM3,CM3,CM1,CM1,CM3,CM5,CM5,CM4,CM3,CM2,
+                    CM2,CM3,CM4,CM4,CM3,CM2,CM3,CM1,CM1,CM3,CM2,CL5,CL7,CM2,CM1
+                    };
+
+    int beat_2[] = {1,1,1,3,1,1,1,3,1,1,1,1,1,1,3,1,1,1,2,1,1,1,3,1,1,1,3,3,2,3};
+
+    int main(void)
+    {
+        int i, j;
+        if(wiringPiSetup() == -1){ //se l'inizializzazione fallisce, stampa un messaggio
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        if(softToneCreate(BuzPin) == -1){
+            printf("setup softTone failed !");
+            return 1;
+        }
+
+        while(1){
+            printf("music is being played...\n");
+            delay(100);
+            for(i=0;i<sizeof(song_1)/4;i++){
+                softToneWrite(BuzPin, song_1[i]);   
+                delay(beat_1[i] * 500);
+            }
+
+            for(i=0;i<sizeof(song_2)/4;i++){
+                softToneWrite(BuzPin, song_2[i]);   
+                delay(beat_2[i] * 500);
+            }   
+        }
+
+        return 0;
+    }
+
+**Spiegazione del Codice**
+
+.. code-block:: c
+
+    #define  CL1  131
+    #define  CL2  147
+    #define  CL3  165
+    #define  CL4  175
+    #define  CL5  196
+    #define  CL6  221
+    #define  CL7  248
+
+    #define  CM1  262
+    #define  CM2  294
+
+Queste frequenze rappresentano le note: CL indica le note basse, CM le medie, 
+CH le alte, mentre 1-7 corrispondono alle note Do, Re, Mi, Fa, Sol, La, Si.
+
+.. code-block:: c
+
+    int song_1[] = {CM3,CM5,CM6,CM3,CM2,CM3,CM5,CM6,CH1,CM6,CM5,CM1,CM3,CM2,
+                    CM2,CM3,CM5,CM2,CM3,CM3,CL6,CL6,CL6,CM1,CM2,CM3,CM2,CL7,
+                    CL6,CM1,CL5};
+    int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
+                    1,1,1,1,1,1,3};
+
+L'array song_1[] contiene una sequenza musicale in cui beat_1[] rappresenta la 
+durata di ogni nota nella canzone (0,5s per ogni battito).
+
+.. code-block:: c
+
+    if(softToneCreate(BuzPin) == -1){
+            printf("setup softTone failed !");
+            return 1;
+
+Crea un pin con tono controllato via software. Si può usare qualsiasi GPIO e 
+il numero del pin seguirà la numerazione di wiringPiSetup(). Il valore di 
+ritorno è 0 in caso di successo.
+
+.. code-block:: c
+
+    for(i=0;i<sizeof(song_1)/4;i++){
+        softToneWrite(BuzPin, song_1[i]);   
+        delay(beat_1[i] * 500);
+    }
+
+Si utilizza un ciclo for per riprodurre song_1.
+
+Nella condizione, **i<sizeof(song_1)/4**, "diviso per 4" serve perché 
+ong_1[] è un array di interi, e ogni elemento occupa quattro byte.
+
+Il numero di elementi in song_1 (numero di note) si ottiene dividendo 
+sizeof(song_1) per 4.
+
+Per permettere che ogni nota suoni per beat * 500ms, si chiama la funzione 
+delay(beat_1[i] * 500).
+
+Il prototipo di softToneWrite(BuzPin, song_1[i]):
+
+.. code-block:: c
+
+    void softToneWrite (int pin, int freq);
+
+Aggiorna il valore di frequenza del tono sul pin dato. Il tono non si ferma 
+finché non si imposta la frequenza a 0.

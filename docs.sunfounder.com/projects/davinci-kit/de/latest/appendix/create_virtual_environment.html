@@ -1,0 +1,226 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erstellen einer virtuellen Umgebung &mdash; SunFounder davinci-kit-for-raspberry-pi  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=245627df"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=70a09b52"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/de/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="PuTTY" href="login_windows.html" />
+    <link rel="prev" title="IP-Adresse ermitteln" href="get_ip.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-de" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/appendix/create_virtual_environment.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Komponentenliste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO-Erweiterungskarte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Laden Sie die Kode herunter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/preparation.html">Installation und Einrichtung des Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Für Pi 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Videokurs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="appendix.html">Anhang</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="i2c_configuration.html">I2C configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi_configuration.html">SPI-Konfiguration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_desktop.html">Remotedesktop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_ip.html">IP-Adresse ermitteln</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="create_virtual_environment.html#">Erstellen einer virtuellen Umgebung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="login_windows.html">PuTTY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_openssh_powershell.html">OpenSSH über PowerShell installieren</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="appendix.html">Anhang</a></li>
+      <li class="breadcrumb-item active">Erstellen einer virtuellen Umgebung</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/appendix/create_virtual_environment.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Hallo und willkommen in der SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.</p>
+<p><strong>Warum beitreten?</strong></p>
+<ul class="simple">
+<li><p><strong>Expertenunterstützung</strong>: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.</p></li>
+<li><p><strong>Lernen &amp; Teilen</strong>: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.</p></li>
+<li><p><strong>Exklusive Vorschauen</strong>: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.</p></li>
+<li><p><strong>Spezialrabatte</strong>: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.</p></li>
+<li><p><strong>Festliche Aktionen und Gewinnspiele</strong>: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.</p></li>
+</ul>
+<p>👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [<a href="https://bit.ly/raphaelkit " target="_blank">hier</a>] und treten Sie heute bei!</p>
+</div>
+<section id="erstellen-einer-virtuellen-umgebung">
+<span id="create-virtual"></span><h1>Erstellen einer virtuellen Umgebung<a class="headerlink" href="create_virtual_environment.html#erstellen-einer-virtuellen-umgebung" title="Link to this heading"></a></h1>
+<p>Bei Verwendung von Raspberry Pi oder ähnlichen Geräten wird empfohlen, Pakete mit <code class="docutils literal notranslate"><span class="pre">pip</span></code> in einer virtuellen Umgebung zu installieren. Diese bietet eine Abhängigkeitsisolierung, erhöht die Systemsicherheit, gewährleistet die Sauberkeit des Systems und erleichtert Projektmigration und -freigabe, was die Abhängigkeitsverwaltung vereinfacht. Diese Vorteile machen virtuelle Umgebungen zu einem äußerst wichtigen und nützlichen Werkzeug in der Python-Entwicklung.</p>
+<p>Im Folgenden finden Sie die Schritte zur Erstellung einer virtuellen Umgebung:</p>
+<p><strong>1. Erstellen einer virtuellen Umgebung</strong></p>
+<p>Zunächst müssen Sie sicherstellen, dass Ihr System Python installiert hat. Python-Version 3.3 und später werden mit dem <code class="docutils literal notranslate"><span class="pre">venv</span></code>-Modul geliefert, um virtuelle Umgebungen zu erstellen, was die separate Installation überflüssig macht. Wenn Sie Python 2 oder eine Version vor Python 3.3 verwenden, müssen Sie <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> installieren.</p>
+<ul class="simple">
+<li><p>Für Python 3:</p></li>
+</ul>
+<p>Python-Versionen 3.3 und später können direkt das <code class="docutils literal notranslate"><span class="pre">venv</span></code>-Modul verwenden:</p>
+<run></run><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>myenv
+</pre></div>
+</div>
+<p>Dies erstellt eine virtuelle Umgebung namens <code class="docutils literal notranslate"><span class="pre">myenv</span></code> im aktuellen Verzeichnis.</p>
+<ul class="simple">
+<li><p>Für Python 2:</p></li>
+</ul>
+<p>Wenn Sie immer noch Python 2 verwenden, müssen Sie zuerst <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> installieren:</p>
+<run></run><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>virtualenv
+</pre></div>
+</div>
+<p>Erstellen Sie dann eine virtuelle Umgebung:</p>
+<run></run><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>virtualenv<span class="w"> </span>myenv
+</pre></div>
+</div>
+<p>Dies erstellt ebenfalls eine virtuelle Umgebung namens <code class="docutils literal notranslate"><span class="pre">myenv</span></code> im aktuellen Verzeichnis.</p>
+<p><strong>2. Aktivieren der virtuellen Umgebung</strong></p>
+<p>Nachdem Sie die virtuelle Umgebung erstellt haben, müssen Sie sie für die Verwendung aktivieren.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Jedes Mal, wenn Sie den Raspberry Pi neu starten oder ein neues Terminal öffnen, müssen Sie erneut den folgenden Befehl ausführen, um die virtuelle Umgebung zu aktivieren.</p>
+</div>
+<run></run><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>myenv/bin/activate
+</pre></div>
+</div>
+<p>Sobald die virtuelle Umgebung aktiviert ist, sehen Sie den Umgebungsnamen vor dem Befehlszeilen-Prompt, was darauf hinweist, dass Sie innerhalb der virtuellen Umgebung arbeiten.</p>
+<p><strong>3. Abhängigkeiten installieren</strong></p>
+<p>Mit der aktivierten virtuellen Umgebung können Sie pip verwenden, um die erforderlichen Abhängigkeiten zu installieren. Zum Beispiel:</p>
+<run></run><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>requests
+</pre></div>
+</div>
+<p>Dies installiert die Requests-Bibliothek in die aktuelle virtuelle Umgebung anstelle der globalen Umgebung. Dieser Schritt muss nur einmal ausgeführt werden.</p>
+<p><strong>4. Verlassen der virtuellen Umgebung</strong></p>
+<p>Wenn Sie Ihre Arbeit abgeschlossen haben und die virtuelle Umgebung verlassen möchten, führen Sie einfach folgenden Befehl aus:</p>
+<run></run><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>deactivate
+</pre></div>
+</div>
+<p>Dadurch kehren Sie zur globalen Python-Umgebung des Systems zurück.</p>
+<p><strong>5. Löschen der virtuellen Umgebung</strong></p>
+<p>Wenn Sie eine bestimmte virtuelle Umgebung nicht mehr benötigen, können Sie einfach das Verzeichnis löschen, das die virtuelle Umgebung enthält:</p>
+<run></run><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>myenv
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="get_ip.html" class="btn btn-neutral float-left" title="IP-Adresse ermitteln" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="login_windows.html" class="btn btn-neutral float-right" title="PuTTY" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

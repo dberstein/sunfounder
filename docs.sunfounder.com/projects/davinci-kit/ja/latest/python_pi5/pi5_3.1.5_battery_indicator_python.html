@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.5 バッテリーインジケータ &mdash; SunFounder davinci-kit-for-raspberry-pi  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=c033477b"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=4dbe4bdc"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/ja/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="3.1.6 モーションコントロール" href="pi5_3.1.6_motion_control_python.html" />
+    <link rel="prev" title="3.1.4 スマートファン" href="pi5_3.1.4_smart_fan_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-ja" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_3.1.5_battery_indicator_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">部品一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO拡張ボード</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">コードをダウンロードする</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Raspberry Pi OSのインストールとセットアップ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">For Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Pythonで遊ぼう</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">「GPIO Zero」の確認</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">1 出力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">2 入力</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_extension_python.html">3 拡張</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.1_counting_device_python.html">3.1.1 カウンティングデバイス</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.2_welcome_python.html">3.1.2 ようこそ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.3_reversing_alarm_python.html">3.1.3 リバースアラーム</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.4_smart_fan_python.html">3.1.4 スマートファン</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_3.1.5_battery_indicator_python.html#">3.1.5 バッテリーインジケータ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.6_motion_control_python.html">3.1.6 モーションコントロール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.7_traffic_light_python.html">3.1.7 交通信号灯</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.8_overheat_monitor_python.html">3.1.8 過熱モニター</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.9_password_lock_python.html">3.1.9 パスワードロック</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.10_alarm_bell_python.html">3.1.10 アラームベル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.11_morse_code_generator_python.html">3.1.11 モールス信号ジェネレータ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.12_game_guess_number_python.html">3.1.12 ゲーム – 数当て</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.13_game_10_second_python.html">3.1.13 GAME - 10秒間</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.14_game_not_not_python.html">3.1.14 GAME– 逆逆</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Cと遊ぶ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Scratch で遊ぶ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python ビデオコース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">付録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">ありがとうございました</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">For Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Pythonで遊ぼう</a></li>
+          <li class="breadcrumb-item"><a href="pi5_extension_python.html">3 拡張</a></li>
+      <li class="breadcrumb-item active">3.1.5 バッテリーインジケータ</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_3.1.5_battery_indicator_python.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>こんにちは、SunFounderのRaspberry Pi &amp; Arduino &amp; ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。</p>
+<p><strong>参加する理由は？</strong></p>
+<ul class="simple">
+<li><p><strong>エキスパートサポート</strong>：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。</p></li>
+<li><p><strong>学び＆共有</strong>：ヒントやチュートリアルを交換してスキルを向上させましょう。</p></li>
+<li><p><strong>独占的なプレビュー</strong>：新製品の発表や先行プレビューに早期アクセスしましょう。</p></li>
+<li><p><strong>特別割引</strong>：最新製品の独占割引をお楽しみください。</p></li>
+<li><p><strong>祭りのプロモーションとギフト</strong>：ギフトや祝日のプロモーションに参加しましょう。</p></li>
+</ul>
+<p>👉 私たちと一緒に探索し、創造する準備はできていますか？[<a href="https://bit.ly/raphaelkit " target="_blank">ここ</a>]をクリックして今すぐ参加しましょう！</p>
+</div>
+<section id="py-pi5-btr-indicator">
+<span id="id1"></span><h1>3.1.5 バッテリーインジケータ<a class="headerlink" href="pi5_3.1.5_battery_indicator_python.html#py-pi5-btr-indicator" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>はじめに<a class="headerlink" href="pi5_3.1.5_battery_indicator_python.html#id2" title="Link to this heading"></a></h2>
+<p>このプロジェクトでは、LED バーグラフ上にバッテリーの電力レベルを視覚的に表示できるバッテリーインジケータデバイスを作成します。</p>
+</section>
+<section id="id3">
+<h2>必要なコンポーネント<a class="headerlink" href="pi5_3.1.5_battery_indicator_python.html#id3" title="Link to this heading"></a></h2>
+<p>このプロジェクトには、以下のコンポーネントが必要です。</p>
+<img alt="../_images/4.1.11_battery_indicator_list.png" class="align-center" src="../_images/4.1.11_battery_indicator_list.png" />
+</section>
+<section id="id4">
+<h2>回路図<a class="headerlink" href="pi5_3.1.5_battery_indicator_python.html#id4" title="Link to this heading"></a></h2>
+<img alt="../_images/4.1.11_battery_indicator_schematic.png" class="align-center" src="../_images/4.1.11_battery_indicator_schematic.png" />
+</section>
+<section id="id5">
+<h2>実験手順<a class="headerlink" href="pi5_3.1.5_battery_indicator_python.html#id5" title="Link to this heading"></a></h2>
+<p><strong>ステップ 1:</strong> 回路を組み立てます。</p>
+<img alt="../_images/4.1.11_battery_indicator_circuit.png" src="../_images/4.1.11_battery_indicator_circuit.png" />
+<p><strong>ステップ 2:</strong> コードのフォルダに移動します。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>ステップ 3:</strong> 実行可能ファイルを実行します。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.5</span><span class="n">_BatteryIndicator</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>プログラムが実行されたら、ADC0834の3番ピンとGNDにそれぞれリードアウトワイヤーを接続し、それらを別々のバッテリーの2極にリードアウトしてください。対応するLEDバーグラフのLEDが点灯し、電力レベルが表示されます（測定範囲：0-5V）。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>エラー メッセージ <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code> が表示された場合は、 <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">「gpiozero」が動作しない場合。</span></a> を参照してください。</p>
+</div>
+<p><strong>コード</strong></p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>以下のコードは、 <strong>変更/リセット/コピー/実行/停止</strong> ができます。ただし、それに先立ち、 <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python-pi5</span></code> のようなソースコードのパスに移動する必要があります。コードを変更した後、効果を確認するために直接実行できます。</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">LED</span>
+<span class="kn">import</span> <span class="nn">ADC0834</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># LEDが接続されたGPIOピンのリスト</span>
+<span class="n">ledPins</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">26</span><span class="p">]</span>
+<span class="c1"># リスト内の各ピンに対してLEDオブジェクトを初期化</span>
+<span class="n">leds</span> <span class="o">=</span> <span class="p">[</span><span class="n">LED</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span> <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="n">ledPins</span><span class="p">]</span>
+
+<span class="c1"># ADC0834モジュールのセットアップ</span>
+<span class="n">ADC0834</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">LedBarGraph</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="c1"># すべてのLEDをオフにする</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="c1"># 指定された値までLEDを点灯させる</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># LEDバーグラフを連続的に更新するためのメインループ</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># ADC0834からアナログ値を読み取る</span>
+        <span class="n">analogVal</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">()</span>
+        <span class="c1"># アナログ値をLEDバーグラフのレベルに変換</span>
+        <span class="n">LedBarGraph</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">analogVal</span><span class="o">/</span><span class="mi">25</span><span class="p">))</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># プログラムが中断されたときにすべてのLEDをオフにする</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>コードの説明</strong></p>
+<ol class="arabic">
+<li><p>このセクションは必要なライブラリをインポートしています。 <code class="docutils literal notranslate"><span class="pre">gpiozero</span></code> はLEDを制御するため、 <code class="docutils literal notranslate"><span class="pre">ADC0834</span></code> はADCモジュールとのインターフェース、 <code class="docutils literal notranslate"><span class="pre">time</span></code> は時間に関連する操作に使用されます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">LED</span>
+<span class="kn">import</span> <span class="nn">ADC0834</span>
+<span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+</li>
+<li><p>LEDが接続されたGPIOピンを定義し、各ピンに対してLEDオブジェクトの配列を初期化します。これにより、配列内の各LEDを簡単に制御できます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># LEDが接続されたGPIOピンのリスト</span>
+<span class="n">ledPins</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">26</span><span class="p">]</span>
+<span class="c1"># リスト内の各ピンに対してLEDオブジェクトを初期化</span>
+<span class="n">leds</span> <span class="o">=</span> <span class="p">[</span><span class="n">LED</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span> <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="n">ledPins</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>アナログからデジタルへの変換のためにADC0834モジュールを初期化します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ADC0834モジュールのセットアップ</span>
+<span class="n">ADC0834</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>この関数はすべてのLEDをオフにし、指定された値に基づいてLEDをオンにして、バーグラフの表現を作成します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">LedBarGraph</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="c1"># すべてのLEDをオフにする</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="c1"># 指定された値までLEDを点灯させる</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>ADC0834からアナログ値を連続的に読み取り、この値に基づいてLEDバーグラフを更新します。アナログ値は0から10の範囲にスケールダウンされます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># LEDバーグラフを連続的に更新するためのメインループ</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># ADC0834からアナログ値を読み取る</span>
+        <span class="n">analogVal</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">()</span>
+        <span class="c1"># アナログ値をLEDバーグラフのレベルに変換</span>
+        <span class="n">LedBarGraph</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">analogVal</span><span class="o">/</span><span class="mi">25</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+<li><p>プログラムが中断された場合（たとえば、Ctrl+Cを押した場合）、すべてのLEDがオフになるようにします。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># プログラムが中断されたときにすべてのLEDをオフにする</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pi5_3.1.4_smart_fan_python.html" class="btn btn-neutral float-left" title="3.1.4 スマートファン" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pi5_3.1.6_motion_control_python.html" class="btn btn-neutral float-right" title="3.1.6 モーションコントロール" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.4 Intelligenter Ventilator &mdash; SunFounder davinci-kit-for-raspberry-pi  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=245627df"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=70a09b52"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/de/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="3.1.5 Batterieanzeige" href="pi5_3.1.5_battery_indicator_python.html" />
+    <link rel="prev" title="3.1.3 Rückfahrwarnung" href="pi5_3.1.3_reversing_alarm_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-de" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_3.1.4_smart_fan_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Komponentenliste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO-Erweiterungskarte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Laden Sie die Kode herunter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/preparation.html">Installation und Einrichtung des Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Für Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Spielen Sie mit Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Überprüfen Sie <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">1 Ausgabe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">2 Eingabe</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_extension_python.html">3 Erweiterung</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.1_counting_device_python.html">3.1.1 Zähleinrichtung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.2_welcome_python.html">3.1.2 Willkommen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.3_reversing_alarm_python.html">3.1.3 Rückfahrwarnung</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_3.1.4_smart_fan_python.html#">3.1.4 Intelligenter Ventilator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.5_battery_indicator_python.html">3.1.5 Batterieanzeige</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.6_motion_control_python.html">3.1.6 Bewegungssteuerung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.7_traffic_light_python.html">3.1.7 Verkehrsampel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.8_overheat_monitor_python.html">3.1.8 Überhitzungsüberwachung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.9_password_lock_python.html">3.1.9 Passwortsperre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.10_alarm_bell_python.html">3.1.10 Alarmglocke</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.11_morse_code_generator_python.html">3.1.11 Morsecode-Generator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.12_game_guess_number_python.html">3.1.12 SPIEL – Zahl raten</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.13_game_10_second_python.html">3.1.13 SPIEL - 10 Sekunden</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.14_game_not_not_python.html">3.1.14 SPIEL – Not Not</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Spielen Sie mit C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Spielen mit Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Videokurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Für Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Spielen Sie mit Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_extension_python.html">3 Erweiterung</a></li>
+      <li class="breadcrumb-item active">3.1.4 Intelligenter Ventilator</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_3.1.4_smart_fan_python.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Hallo und willkommen in der SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.</p>
+<p><strong>Warum beitreten?</strong></p>
+<ul class="simple">
+<li><p><strong>Expertenunterstützung</strong>: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.</p></li>
+<li><p><strong>Lernen &amp; Teilen</strong>: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.</p></li>
+<li><p><strong>Exklusive Vorschauen</strong>: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.</p></li>
+<li><p><strong>Spezialrabatte</strong>: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.</p></li>
+<li><p><strong>Festliche Aktionen und Gewinnspiele</strong>: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.</p></li>
+</ul>
+<p>👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [<a href="https://bit.ly/raphaelkit " target="_blank">hier</a>] und treten Sie heute bei!</p>
+</div>
+<section id="intelligenter-ventilator">
+<span id="py-pi5-fan"></span><h1>3.1.4 Intelligenter Ventilator<a class="headerlink" href="pi5_3.1.4_smart_fan_python.html#intelligenter-ventilator" title="Link to this heading"></a></h1>
+<section id="einfuhrung">
+<h2>Einführung<a class="headerlink" href="pi5_3.1.4_smart_fan_python.html#einfuhrung" title="Link to this heading"></a></h2>
+<p>In diesem Projekt werden wir Motoren, Tasten und Thermistoren verwenden, um einen manuellen + automatischen intelligenten Ventilator zu bauen, dessen Windgeschwindigkeit einstellbar ist.</p>
+</section>
+<section id="benotigte-komponenten">
+<h2>Benötigte Komponenten<a class="headerlink" href="pi5_3.1.4_smart_fan_python.html#benotigte-komponenten" title="Link to this heading"></a></h2>
+<p>Für dieses Projekt benötigen wir folgende Komponenten.</p>
+<a class="reference internal image-reference" href="../_images/4.1.10_smart_fan_list.png"><img alt="../_images/4.1.10_smart_fan_list.png" class="align-center" src="../_images/4.1.10_smart_fan_list.png" style="width: 800px;" />
+</a>
+</section>
+<section id="schaltplan">
+<h2>Schaltplan<a class="headerlink" href="pi5_3.1.4_smart_fan_python.html#schaltplan" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physisch</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO22</p></td>
+<td><p>Pin 15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO5</p></td>
+<td><p>Pin 29</p></td>
+<td><p>21</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO6</p></td>
+<td><p>Pin 31</p></td>
+<td><p>22</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO13</p></td>
+<td><p>Pin 33</p></td>
+<td><p>23</p></td>
+<td><p>13</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/4.1.10_smart_fan_schematic.png" class="align-center" src="../_images/4.1.10_smart_fan_schematic.png" />
+</section>
+<section id="experimentelle-verfahren">
+<h2>Experimentelle Verfahren<a class="headerlink" href="pi5_3.1.4_smart_fan_python.html#experimentelle-verfahren" title="Link to this heading"></a></h2>
+<p><strong>Schritt 1:</strong> Bauen Sie den Schaltkreis.</p>
+<img alt="../_images/4.1.10_smart_fan_circuit.png" src="../_images/4.1.10_smart_fan_circuit.png" />
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Das Powermodul kann mit dem 9V-Batterieclip im Kit eine 9V-Batterie verwenden. Stecken Sie den Jumper des Powermoduls in die 5V-Steckleisten des Steckbretts.</p>
+</div>
+<img alt="../_images/4.1.10_smart_fan_battery.jpeg" class="align-center" src="../_images/4.1.10_smart_fan_battery.jpeg" />
+<p><strong>Schritt 2</strong>: Wechseln Sie in den Ordner des Codes.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Schritt 3</strong>: Ausführen.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.4</span><span class="n">_SmartFan_zero</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Wenn der Code ausgeführt wird, starten Sie den Ventilator, indem Sie die Taste drücken. Jedes Mal, wenn Sie drücken, wird die Geschwindigkeitsstufe um 1 erhöht oder verringert. Es gibt <strong>5</strong> Geschwindigkeitsstufen: <strong>0~4</strong>. Wenn Sie auf die 4. Stufe eingestellt sind und die Taste drücken, stoppt der Ventilator und zeigt eine Windgeschwindigkeit von <strong>0</strong> an.</p>
+<p>Steigt oder fällt die Temperatur um mehr als 2℃, wird die Geschwindigkeit automatisch um 1 Stufe schneller oder langsamer eingestellt.</p>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="pi5_3.1.4_smart_fan_python.html#code" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Sie können den untenstehenden Code <strong>modifizieren/zurücksetzen/kopieren/ausführen/stoppen</strong>. Bevor Sie dies tun, sollten Sie jedoch zum Quellcodepfad wie <code class="docutils literal notranslate"><span class="pre">raphael-kit/python-pi5</span></code> wechseln. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um das Ergebnis zu sehen.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">Motor</span><span class="p">,</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">import</span> <span class="nn">ADC0834</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># Initialisierung der GPIO-Pins für die Taste und die Motorsteuerung</span>
+<span class="n">BtnPin</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">forward</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">backward</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">enable</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+
+<span class="c1"># Initialisierung des ADC0834-Moduls für die Temperaturmessung</span>
+<span class="n">ADC0834</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+
+<span class="c1"># Initialisierung von Variablen zur Überwachung der Motordrehzahl und Temperaturen</span>
+<span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">currentTemp</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">markTemp</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">temperature</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Liest und berechnet die aktuelle Temperatur vom Sensor.</span>
+<span class="sd">    Rückgabe:</span>
+<span class="sd">        float: Die aktuelle Temperatur in Celsius.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Analogwert vom ADC0834-Modul lesen</span>
+    <span class="n">analogVal</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">()</span>
+    <span class="c1"># Analogwert in Spannung und dann in Widerstand umwandeln</span>
+    <span class="n">Vr</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">analogVal</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+    <span class="n">Rt</span> <span class="o">=</span> <span class="mi">10000</span> <span class="o">*</span> <span class="n">Vr</span> <span class="o">/</span> <span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="n">Vr</span><span class="p">)</span>
+    <span class="c1"># Temperatur in Celsius berechnen</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(((</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Rt</span> <span class="o">/</span> <span class="mi">10000</span><span class="p">))</span> <span class="o">/</span> <span class="mi">3950</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mf">273.15</span> <span class="o">+</span> <span class="mi">25</span><span class="p">)))</span>
+    <span class="n">Cel</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">-</span> <span class="mf">273.15</span>
+    <span class="k">return</span> <span class="n">Cel</span>
+
+<span class="k">def</span> <span class="nf">motor_run</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Passt die Motorgeschwindigkeit an das angegebene Niveau an.</span>
+<span class="sd">    Argumente:</span>
+<span class="sd">        level (int): Gewünschtes Motorgeschwindigkeitsniveau.</span>
+<span class="sd">    Rückgabe:</span>
+<span class="sd">        int: Angepasstes Motorgeschwindigkeitsniveau.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Motor stoppen, wenn das Niveau 0 ist</span>
+    <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="c1"># Niveau auf 4 begrenzen für maximale Geschwindigkeit</span>
+    <span class="k">if</span> <span class="n">level</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="c1"># Motorgeschwindigkeit einstellen</span>
+    <span class="n">motor</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">level</span> <span class="o">/</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">level</span>
+
+<span class="k">def</span> <span class="nf">changeLevel</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Ändert das Motorgeschwindigkeitsniveau, wenn die Taste gedrückt wird, und aktualisiert die Referenztemperatur.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">level</span><span class="p">,</span> <span class="n">currentTemp</span><span class="p">,</span> <span class="n">markTemp</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Taste gedrückt&quot;</span><span class="p">)</span>
+    <span class="c1"># Durch die Niveaus 0-4 zyklisch wechseln</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="p">(</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">5</span>
+    <span class="c1"># Referenztemperatur aktualisieren</span>
+    <span class="n">markTemp</span> <span class="o">=</span> <span class="n">currentTemp</span>
+
+<span class="c1"># Die Taste mit der Funktion changeLevel verbinden</span>
+<span class="n">BtnPin</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">changeLevel</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Hauptfunktion zur kontinuierlichen Überwachung und Reaktion auf Temperaturänderungen.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">level</span><span class="p">,</span> <span class="n">currentTemp</span><span class="p">,</span> <span class="n">markTemp</span>
+    <span class="c1"># Anfängliche Referenztemperatur setzen</span>
+    <span class="n">markTemp</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Aktuelle Temperatur kontinuierlich lesen</span>
+        <span class="n">currentTemp</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">()</span>
+        <span class="c1"># Motorniveau anhand der Temperaturdifferenz anpassen</span>
+        <span class="k">if</span> <span class="n">level</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">currentTemp</span> <span class="o">-</span> <span class="n">markTemp</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span>
+                <span class="n">level</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="n">markTemp</span> <span class="o">=</span> <span class="n">currentTemp</span>
+            <span class="k">elif</span> <span class="n">currentTemp</span> <span class="o">-</span> <span class="n">markTemp</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">level</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+                    <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">markTemp</span> <span class="o">=</span> <span class="n">currentTemp</span>
+        <span class="c1"># Motor auf angepasstem Niveau betreiben</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">motor_run</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+
+<span class="c1"># Die Hauptfunktion ausführen und auf KeyboardInterrupt reagieren</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Motor stoppen, wenn das Skript unterbrochen wird</span>
+    <span class="n">motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="code-erklarung">
+<h2>Code-Erklärung<a class="headerlink" href="pi5_3.1.4_smart_fan_python.html#code-erklarung" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Importiert Klassen zur Steuerung eines Motors und einer Taste sowie die Sleep-Funktion für Pausen. Außerdem wird die ADC0834-Bibliothek für die Temperaturmessung und die Math-Bibliothek für mathematische Berechnungen importiert.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">Motor</span><span class="p">,</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">import</span> <span class="nn">ADC0834</span>
+<span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+</div>
+</li>
+<li><p>Richtet die Taste an GPIO-Pin 22 ein und konfiguriert den Motor mit spezifischen GPIO-Pins zur Steuerung. Initialisiert das ADC0834-Modul zur Temperaturmessung. Außerdem werden Variablen initialisiert, um die Motordrehzahl und Temperaturen zu überwachen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialisierung der GPIO-Pins für die Taste und die Motorsteuerung</span>
+<span class="n">BtnPin</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">forward</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">backward</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">enable</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+
+<span class="c1"># Initialisierung des ADC0834-Moduls für die Temperaturmessung</span>
+<span class="n">ADC0834</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+
+<span class="c1"># Initialisierung von Variablen zur Überwachung der Motordrehzahl und Temperaturen</span>
+<span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">currentTemp</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">markTemp</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</li>
+<li><p>Definiert eine Funktion zur Ablesung und Berechnung der Temperatur vom Sensor, die den Messwert in Celsius umwandelt.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">temperature</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Liest und berechnet die aktuelle Temperatur vom Sensor.</span>
+<span class="sd">    Rückgabe:</span>
+<span class="sd">        float: Die aktuelle Temperatur in Celsius.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Analogwert vom ADC0834-Modul lesen</span>
+    <span class="n">analogVal</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">()</span>
+    <span class="c1"># Analogwert in Spannung und dann in Widerstand umwandeln</span>
+    <span class="n">Vr</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">analogVal</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+    <span class="n">Rt</span> <span class="o">=</span> <span class="mi">10000</span> <span class="o">*</span> <span class="n">Vr</span> <span class="o">/</span> <span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="n">Vr</span><span class="p">)</span>
+    <span class="c1"># Temperatur in Celsius berechnen</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(((</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Rt</span> <span class="o">/</span> <span class="mi">10000</span><span class="p">))</span> <span class="o">/</span> <span class="mi">3950</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mf">273.15</span> <span class="o">+</span> <span class="mi">25</span><span class="p">)))</span>
+    <span class="n">Cel</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">-</span> <span class="mf">273.15</span>
+    <span class="k">return</span> <span class="n">Cel</span>
+</pre></div>
+</div>
+</li>
+<li><p>Führt eine Funktion ein, um die Motorgeschwindigkeit entsprechend dem angegebenen Niveau anzupassen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">motor_run</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Passt die Motorgeschwindigkeit an das angegebene Niveau an.</span>
+<span class="sd">    Argumente:</span>
+<span class="sd">        level (int): Gewünschtes Motorgeschwindigkeitsniveau.</span>
+<span class="sd">    Rückgabe:</span>
+<span class="sd">        int: Angepasstes Motorgeschwindigkeitsniveau.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Motor stoppen, wenn das Niveau 0 ist</span>
+    <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="c1"># Niveau auf 4 begrenzen für maximale Geschwindigkeit</span>
+    <span class="k">if</span> <span class="n">level</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="c1"># Motorgeschwindigkeit einstellen</span>
+    <span class="n">motor</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">speed</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">level</span> <span class="o">/</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">level</span>
+</pre></div>
+</div>
+</li>
+<li><p>Implementiert eine Funktion, um das Motorgeschwindigkeitsniveau manuell mithilfe einer Taste zu ändern und bindet diese Funktion an das Drücken der Taste.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">changeLevel</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Ändert das Motorgeschwindigkeitsniveau, wenn die Taste gedrückt wird, und aktualisiert die Referenztemperatur.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">level</span><span class="p">,</span> <span class="n">currentTemp</span><span class="p">,</span> <span class="n">markTemp</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Taste gedrückt&quot;</span><span class="p">)</span>
+    <span class="c1"># Durch die Niveaus 0-4 zyklisch wechseln</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="p">(</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">5</span>
+    <span class="c1"># Referenztemperatur aktualisieren</span>
+    <span class="n">markTemp</span> <span class="o">=</span> <span class="n">currentTemp</span>
+
+<span class="c1"># Die Taste mit der Funktion changeLevel verbinden</span>
+<span class="n">BtnPin</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">changeLevel</span>
+</pre></div>
+</div>
+</li>
+<li><p>Die Hauptfunktion, die entwickelt wurde, um die Motorgeschwindigkeit kontinuierlich in Reaktion auf Temperaturschwankungen anzupassen, muss noch implementiert werden.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Hauptfunktion zur kontinuierlichen Überwachung und Reaktion auf Temperaturänderungen.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">level</span><span class="p">,</span> <span class="n">currentTemp</span><span class="p">,</span> <span class="n">markTemp</span>
+    <span class="c1"># Anfängliche Referenztemperatur setzen</span>
+    <span class="n">markTemp</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Aktuelle Temperatur kontinuierlich lesen</span>
+        <span class="n">currentTemp</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">()</span>
+        <span class="c1"># Motorniveau anhand der Temperaturdifferenz anpassen</span>
+        <span class="k">if</span> <span class="n">level</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">currentTemp</span> <span class="o">-</span> <span class="n">markTemp</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span>
+                <span class="n">level</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="n">markTemp</span> <span class="o">=</span> <span class="n">currentTemp</span>
+            <span class="k">elif</span> <span class="n">currentTemp</span> <span class="o">-</span> <span class="n">markTemp</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">level</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+                    <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">markTemp</span> <span class="o">=</span> <span class="n">currentTemp</span>
+        <span class="c1"># Motor auf angepasstem Niveau betreiben</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">motor_run</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Führt die Hauptfunktion aus und stellt sicher, dass der Motor stoppt, wenn das Skript unterbrochen wird.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Die Hauptfunktion ausführen und auf KeyboardInterrupt reagieren</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Motor stoppen, wenn das Skript unterbrochen wird</span>
+    <span class="n">motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pi5_3.1.3_reversing_alarm_python.html" class="btn btn-neutral float-left" title="3.1.3 Rückfahrwarnung" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="pi5_3.1.5_battery_indicator_python.html" class="btn btn-neutral float-right" title="3.1.5 Batterieanzeige" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

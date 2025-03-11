@@ -1,0 +1,191 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _2.1.4_py_pi5:
+
+
+2.1.4 Potentiometer
+========================
+
+Einführung
+------------
+
+Die ADC-Funktion kann verwendet werden, um analoge Signale in digitale
+Signale umzuwandeln, und in diesem Experiment wird der ADC0834 verwendet, um die Funktion
+mit ADC zu bekommen. Hier implementieren wir diesen Prozess mit einem Potentiometer.
+Das Potentiometer ändert die physikalische Größe -- die Spannung, die durch die ADC-Funktion umgewandelt wird.
+
+Benötigte Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir die folgenden Komponenten.
+
+.. image:: ../python_pi5/img/2.1.7_potentiometer_list.png
+
+
+Schaltplan
+-----------------
+
+.. image:: ../python_pi5/img/2.1.7_potentiometer_second_1.png
+
+
+.. image:: ../python_pi5/img/2.1.7_potentiometer_second_2.png
+
+Experimentelle Verfahren
+----------------------------------
+
+**Schritt 1:** Bauen Sie den Schaltkreis auf.
+
+.. image:: ../python_pi5/img/2.1.7_Potentiometer_circuit.png
+
+
+.. note::
+    Bitte platzieren Sie den Chip, indem Sie sich auf die entsprechende Position
+    im Bild beziehen. Beachten Sie, dass die Kerben am Chip links sein sollten, wenn er platziert wird.
+
+**Schritt 2:** Öffnen Sie die Code-Datei
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.4_Potentiometer_zero.py
+
+Nachdem der Code ausgeführt wurde, drehen Sie den Knopf am Potentiometer, die Intensität
+der LED wird entsprechend ändern.
+
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
+**Code**
+
+.. note::
+
+    Sie können den unten stehenden Code **Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie ``raphael-kit/python-pi5`` gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Auswirkungen zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+   from gpiozero import PWMLED
+   import ADC0834
+   import time
+
+   # Initialisieren Sie eine PWM-LED am GPIO-Pin 22
+   led = PWMLED(22)
+
+   # Richten Sie das ADC0834-Modul ein
+   ADC0834.setup()
+
+   def MAP(x, in_min, in_max, out_min, out_max):
+       """
+       Ordnen Sie einen Wert von einem Bereich in einen anderen zu.
+       :param x: Der umzuordnende Wert.
+       :param in_min: Die untere Grenze des aktuellen Bereichs des Werts.
+       :param in_max: Die obere Grenze des aktuellen Bereichs des Werts.
+       :param out_min: Die untere Grenze des Zielbereichs des Werts.
+       :param out_max: Die obere Grenze des Zielbereichs des Werts.
+       :return: Der umgeordnete Wert.
+       """
+       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+   try:
+       while True:
+           # Holen Sie den aktuellen Messwert vom ADC0834-Modul
+           res = ADC0834.getResult()
+           print('res = %d' % res)
+
+           # Ordnen Sie den ADC-Wert einem Bereich zu, der für die Einstellung der LED-Helligkeit geeignet ist
+           R_val = MAP(res, 0, 255, 0, 100)
+
+           # Stellen Sie die Helligkeit der LED ein
+           led.value = float(R_val / 100)
+
+           # Warten Sie 0,2 Sekunden, bevor Sie erneut messen
+           time.sleep(0.2)
+
+   # Eleganter Ausstieg, wenn 'Ctrl+C' gedrückt wird
+   except KeyboardInterrupt: 
+       led.value = 0  # Schalten Sie die LED aus
+
+
+**Code-Erklärung**
+
+#. ``gpiozero`` für die PWM-LED-Steuerung, ``ADC0834`` für die Analog-Digital-Umwandlung und ``time`` für Verzögerungen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       from gpiozero import PWMLED
+       import ADC0834
+       import time
+
+#. Initialisieren Sie ein PWMLED-Objekt, das mit dem GPIO-Pin 22 verbunden ist, und richten Sie den ADC0834-Konverter ein.
+
+   .. code-block:: python
+
+       # Initialisieren Sie eine PWM-LED am GPIO-Pin 22
+       led = PWMLED(22)
+
+       # Richten Sie das ADC0834-Modul ein
+       ADC0834.setup()
+
+#. Definieren Sie eine Funktion mit dem Namen ``MAP``, um Werte von einem Bereich in einen anderen zu konvertieren, nützlich für die Zuordnung von ADC-Werten zu geeigneten LED-Helligkeitsstufen.
+
+   .. code-block:: python
+
+       def MAP(x, in_min, in_max, out_min, out_max):
+           return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+#. Lesen Sie kontinuierlich den ADC-Wert in einer Schleife, ordnen Sie den ADC-Wert (0-255) einer Helligkeitsstufe (0-100) für die LED zu. Passen Sie die Helligkeit der LED entsprechend diesem umgeordneten Wert an. Implementieren Sie eine Verzögerung von 0,2 Sekunden für eine bessere Lesbarkeit und Stabilität.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # Holen Sie den aktuellen Messwert vom ADC0834-Modul
+               res = ADC0834.getResult()
+               print('res = %d' % res)
+
+               # Ordnen Sie den ADC-Wert einem Bereich zu, der für die Einstellung der LED-Helligkeit geeignet ist
+               R_val = MAP(res, 0, 255, 0, 100)
+
+               # Stellen Sie die Helligkeit der LED ein
+               led.value = float(R_val / 100)
+
+               # Warten Sie 0,2 Sekunden, bevor Sie erneut messen
+               time.sleep(0.2)
+
+       # Eleganter Ausstieg, wenn 'Ctrl+C' gedrückt wird
+       except KeyboardInterrupt: 
+           led.value = 0  # Schalten Sie die LED aus

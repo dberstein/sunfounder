@@ -1,0 +1,348 @@
+.. note::
+
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros entusiastas y profundiza en el mundo de Raspberry Pi, Arduino y ESP32.
+
+    **¿Por qué unirse?**
+
+    - **Soporte de expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas previas exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _3.1.6_py_pi5:
+
+3.1.6 Control de Movimiento
+=============================
+
+Introducción
+---------------
+
+En esta lección, crearemos un dispositivo simple de detección y control 
+de movimiento. Utilizaremos el MPU6050 como sensor y un motor paso a paso 
+como dispositivo controlado. Al montar el MPU6050 en un guante, podrás 
+controlar el motor paso a paso rotando tu muñeca.
+
+Componentes Necesarios
+-------------------------
+
+En este proyecto, necesitaremos los siguientes componentes.
+
+.. image:: ../python_pi5/img/3.1.6_motion_list.png
+    :width: 800
+    :align: center
+
+Diagrama Esquemático
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SDA1         Pin 3             
+SCL1         Pin 5             
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/3.1.6_motion_schematic.png
+   :align: center
+
+
+Procedimientos Experimentales
+---------------------------------
+
+**Paso 1:** Construir el circuito.
+
+.. image:: ../python_pi5/img/3.1.6_motion_control_circuit.png
+
+**Paso 2:** Abre el archivo de código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Paso 3:** Ejecuta el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.6_MotionControl.py
+
+Al ejecutar el código, si el ángulo de inclinación de **mpu6050** en el eje 
+`Y <https://cn.bing.com/dict/search?q=Y&FORM=BDVSP6&mkt=zh-cn>`__\ **-**\ `axis <https://cn.bing.com/dict/search?q=axis&FORM=BDVSP6&mkt=zh-cn>`__
+es mayor a **45°**, el motor paso a paso girará en sentido antihorario; si es menor a **-45°**, el motor girará en sentido horario.
+
+.. warning::
+
+    Si aparece el error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc`
+
+**Código**
+
+.. note::
+
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Antes de eso, debes acceder a la ruta del código fuente como ``davinci-kit-for-raspberry-pi/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice
+   import smbus
+   import math
+   import time
+
+   # Inicializa los registros de gestión de energía para el MPU6050
+   power_mgmt_1 = 0x6b
+   power_mgmt_2 = 0x6c
+
+   # Configura la comunicación I2C con el MPU6050
+   bus = smbus.SMBus(1)  # Inicializa SMBus
+   address = 0x68        # Dirección I2C de MPU6050
+   bus.write_byte_data(address, power_mgmt_1, 0)  # Activa el MPU6050
+
+   # Inicializa los pines del motor a GPIO 18, 23, 24, 25
+   motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
+
+   # Define parámetros de velocidad de rotación del motor
+   rolePerMinute = 15
+   stepsPerRevolution = 2048
+   # Calcula el retraso entre pasos para la RPM deseada
+   stepSpeed = (60 / rolePerMinute) / stepsPerRevolution
+
+   # Lee un solo byte desde la dirección I2C especificada
+   def read_byte(adr):
+       return bus.read_byte_data(address, adr)
+
+   # Lee una palabra (2 bytes) desde la dirección I2C especificada
+   def read_word(adr):
+       high = bus.read_byte_data(address, adr)
+       low = bus.read_byte_data(address, adr + 1)
+       val = (high << 8) + low
+       return val
+
+   # Lee una palabra en formato de complemento a 2
+   def read_word_2c(adr):
+       val = read_word(adr)
+       if val >= 0x8000:
+           return -((65535 - val) + 1)
+       else:
+           return val
+
+   # Calcula la distancia euclidiana entre dos puntos
+   def dist(a, b):
+       return math.sqrt((a * a) + (b * b))
+
+   # Calcula la rotación en el eje Y
+   def get_y_rotation(x, y, z):
+       radians = math.atan2(x, dist(y, z))
+       return -math.degrees(radians)
+
+   # Calcula la rotación en el eje X
+   def get_x_rotation(x, y, z):
+       radians = math.atan2(y, dist(x, z))
+       return math.degrees(radians)
+
+   # Obtiene el ángulo de inclinación del MPU6050
+   def mpu6050():
+       accel_xout = read_word_2c(0x3b)
+       accel_yout = read_word_2c(0x3d)
+       accel_zout = read_word_2c(0x3f)
+       accel_xout_scaled = accel_xout / 16384.0
+       accel_yout_scaled = accel_yout / 16384.0
+       accel_zout_scaled = accel_zout / 16384.0
+       angle = get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
+       return angle
+
+   # Controla la rotación del motor paso a paso
+   def rotary(direction):
+       if direction == 'c':
+           # Secuencia de rotación en sentido horario
+           for j in range(4):
+               for i in range(4):
+                   if 0x99 >> j & (0x08 >> i):
+                       motorPin[i].on()
+                   else:
+                       motorPin[i].off()
+                   time.sleep(stepSpeed)
+       elif direction == 'a':
+           # Secuencia de rotación en sentido antihorario
+           for j in range(4):
+               for i in range(4):
+                   if 0x99 << j & (0x08 >> i):
+                       motorPin[i].on()
+                   else:
+                       motorPin[i].off()
+                   time.sleep(stepSpeed)
+
+   # Bucle principal para leer continuamente el ángulo de inclinación y controlar el motor
+   try:
+       while True:
+           angle = mpu6050()
+           if angle >= 45:
+               rotary('a')  # Gira en sentido antihorario para inclinación positiva
+           elif angle <= -45:
+               rotary('c')  # Gira en sentido horario para inclinación negativa
+   except KeyboardInterrupt:
+       # Apaga todos los pines del motor al interrumpir con teclado
+       for pin in motorPin:
+           pin.off()
+
+
+**Explicación del Código**
+
+#. El script comienza importando las bibliotecas necesarias. ``gpiozero`` para controlar los pines GPIO, ``smbus`` para la comunicación I2C, ``math`` para operaciones matemáticas y ``time`` para introducir retardos.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice
+       import smbus
+       import math
+       import time
+
+#. Configura la comunicación I2C con el sensor MPU6050. ``power_mgmt_1`` y ``power_mgmt_2`` son registros para gestionar la energía del sensor. El sensor se "despierta" escribiendo en ``power_mgmt_1``.
+
+   .. code-block:: python
+
+       # Inicializa los registros de gestión de energía para el MPU6050
+       power_mgmt_1 = 0x6b
+       power_mgmt_2 = 0x6c
+
+       # Configura la comunicación I2C con el MPU6050
+       bus = smbus.SMBus(1)  # Inicializa SMBus
+       address = 0x68        # Dirección I2C del MPU6050
+       bus.write_byte_data(address, power_mgmt_1, 0)  # Activa el MPU6050
+
+#. Inicializa los pines GPIO (18, 23, 24, 25) en la Raspberry Pi para controlar el motor paso a paso. Cada pin está asociado con una bobina en el motor.
+
+   .. code-block:: python
+
+       # Inicializa los pines del motor a GPIO 18, 23, 24, 25
+       motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
+
+#. Define las revoluciones por minuto (RPM) del motor y el número de pasos por revolución. ``stepSpeed`` calcula el retraso entre pasos para alcanzar las RPM deseadas, asegurando un funcionamiento suave del motor.
+
+   .. code-block:: python
+
+       # Define parámetros de velocidad de rotación del motor
+       rolePerMinute = 15
+       stepsPerRevolution = 2048
+       # Calcula el retraso entre pasos para la RPM deseada
+       stepSpeed = (60 / rolePerMinute) / stepsPerRevolution
+
+#. Estas funciones se utilizan para la comunicación I2C. ``read_byte`` lee un solo byte de una dirección dada, mientras que ``read_word`` lee dos bytes (una palabra) combinándolos en un solo valor mediante operaciones de bits (``<<`` y ``+``).
+
+   .. code-block:: python
+
+       # Lee un byte desde la dirección I2C especificada
+       def read_byte(adr):
+           return bus.read_byte_data(address, adr)
+
+       # Lee una palabra (2 bytes) desde la dirección I2C especificada
+       def read_word(adr):
+           high = bus.read_byte_data(address, adr)
+           low = bus.read_byte_data(address, adr + 1)
+           val = (high << 8) + low
+           return val
+
+#. Esta función convierte la palabra leída en formato de complemento a 2, lo cual es útil para interpretar valores con signo de los datos del sensor. Esta conversión es necesaria para manejar lecturas negativas.
+
+   .. code-block:: python
+
+       # Lee una palabra en formato de complemento a 2
+       def read_word_2c(adr):
+           val = read_word(adr)
+           if val >= 0x8000:
+               return -((65535 - val) + 1)
+           else:
+               return val
+
+#. ``dist`` calcula la distancia euclidiana entre dos puntos, utilizada en los cálculos de rotación. ``get_y_rotation`` y ``get_x_rotation`` calculan los ángulos de rotación a lo largo de los ejes Y y X, respectivamente, usando la función ``atan2`` de la biblioteca ``math`` y convirtiendo el resultado a grados.
+
+   .. code-block:: python
+
+       # Calcula la distancia euclidiana entre dos puntos
+       def dist(a, b):
+           return math.sqrt((a * a) + (b * b))
+
+       # Calcula la rotación en el eje Y
+       def get_y_rotation(x, y, z):
+           radians = math.atan2(x, dist(y, z))
+           return -math.degrees(radians)
+
+       # Calcula la rotación en el eje X
+       def get_x_rotation(x, y, z):
+           radians = math.atan2(y, dist(x, z))
+           return math.degrees(radians)
+
+#. Esta función lee los datos del acelerómetro del sensor MPU6050, escala las lecturas y calcula el ángulo de inclinación usando la función ``get_y_rotation``. La función ``read_word_2c`` lee datos del sensor en formato de complemento a 2 para manejar valores negativos.
+
+   .. code-block:: python
+
+       # Obtiene el ángulo de inclinación del MPU6050
+       def mpu6050():
+           accel_xout = read_word_2c(0x3b)
+           accel_yout = read_word_2c(0x3d)
+           accel_zout = read_word_2c(0x3f)
+           accel_xout_scaled = accel_xout / 16384.0
+           accel_yout_scaled = accel_yout / 16384.0
+           accel_zout_scaled = accel_zout / 16384.0
+           angle = get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)
+           return angle
+
+#. La función ``rotary`` controla la rotación del motor paso a paso. Ejecuta una secuencia de pasos para la rotación en sentido horario o antihorario, según el parámetro ``direction``. La secuencia involucra activar o desactivar pines específicos del motor en un patrón.
+
+   .. code-block:: python
+
+       # Controla la rotación del motor paso a paso
+       def rotary(direction):
+           if direction == 'c':
+               # Secuencia de rotación en sentido horario
+               for j in range(4):
+                   for i in range(4):
+                       if 0x99 >> j & (0x08 >> i):
+                           motorPin[i].on()
+                       else:
+                           motorPin[i].off()
+                       time.sleep(stepSpeed)
+           elif direction == 'a':
+               # Secuencia de rotación en sentido antihorario
+               for j in range(4):
+                   for i in range(4):
+                       if 0x99 << j & (0x08 >> i):
+                           motorPin[i].on()
+                       else:
+                           motorPin[i].off()
+                       time.sleep(stepSpeed)
+
+#. El bucle principal lee continuamente el ángulo de inclinación del sensor MPU6050 y controla la dirección de rotación del motor según el ángulo. Si el programa se interrumpe (por ejemplo, mediante una interrupción de teclado), apaga todos los pines del motor por seguridad.
+
+   .. code-block:: python
+
+       # Bucle principal para leer continuamente el ángulo de inclinación y controlar el motor
+       try:
+           while True:
+               angle = mpu6050()
+               if angle >= 45:
+                   rotary('a')  # Gira en sentido antihorario para inclinación positiva
+               elif angle <= -45:
+                   rotary('c')  # Gira en sentido horario para inclinación negativa
+       except KeyboardInterrupt:
+           # Apaga todos los pines del motor al interrumpir con el teclado
+           for pin in motorPin:
+               pin.off()
+
+

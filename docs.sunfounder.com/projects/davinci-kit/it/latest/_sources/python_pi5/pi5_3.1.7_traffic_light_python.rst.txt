@@ -1,0 +1,416 @@
+.. note::
+
+    Ciao, benvenuto nella Community di SunFounder per appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Unisciti agli altri appassionati per approfondire il mondo di Raspberry Pi, Arduino e ESP32.
+
+    **Perché unirsi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche grazie al supporto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anticipazioni.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni speciali durante le festività.
+
+    👉 Pronto a esplorare e creare insieme a noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _py_pi5_traffic:
+
+3.1.7 Semaforo
+========================
+
+Introduzione
+---------------
+
+In questo progetto, utilizzeremo LED di tre colori per simulare il cambio 
+dei semafori e un display a 7 segmenti a quattro cifre per mostrare il timer 
+di ogni stato del traffico.
+
+Componenti Necessari
+------------------------------
+
+Per questo progetto, sono necessari i seguenti componenti.
+
+.. image:: ../python_pi5/img/4.1.12_traffic_light_list.png
+    :width: 800
+    :align: center
+
+.. È decisamente conveniente acquistare un kit completo, ecco il link:
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Nome	
+..         - COMPONENTI IN QUESTO KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. Puoi anche acquistarli separatamente dai link qui sotto.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - DESCRIZIONE COMPONENTI
+..         - LINK PER L'ACQUISTO
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`led`
+..         - |link_led_buy|
+..     *   - :ref:`4_digit`
+..         - \-
+..     *   - :ref:`74hc595`
+..         - |link_74hc595_buy|
+
+Schema Elettrico
+--------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SPICE0       Pin 24   10       8
+SPICE1       Pin 26   11       7
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.12_traffic_light_schematic.png
+   :align: center
+
+Procedure Sperimentali
+------------------------
+
+**Step 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/4.1.12_traffic_light_circuit.png
+
+**Step 2:** Cambia la directory.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Step 3:** Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.7_TrafficLight.py
+
+Quando il codice è in esecuzione, i LED simuleranno il cambiamento dei colori 
+del semaforo. Prima, il LED rosso si accende per 60 secondi, poi il LED verde 
+per 30 secondi e successivamente il LED giallo per 5 secondi. Dopo di ciò, il 
+LED rosso si riaccende per altri 60 secondi. Questo ciclo di azioni si ripeterà 
+continuamente. Nel frattempo, il display a 7 segmenti a quattro cifre mostra il 
+conto alla rovescia in modo continuo.
+
+Codice
+----------
+
+.. note::
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Fermare** il codice sottostante. Ma prima di tutto, è necessario accedere al percorso del codice come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l'effetto.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+   from gpiozero import OutputDevice, LED
+   import threading
+
+   # Configurazione dei pin GPIO per il registro a scorrimento 74HC595
+   SDI = OutputDevice(24)   # Ingresso Dati Seriali
+   RCLK = OutputDevice(23)  # Clock del Registro
+   SRCLK = OutputDevice(18) # Clock del Registro a Scorrimento
+
+   # Configurazione dei pin GPIO per la selezione delle cifre sul display a 7 segmenti
+   placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+   # Codici dei segmenti per i numeri 0-9 sul display a 7 segmenti
+   number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+   # Configurazione dei pin GPIO per i LED del semaforo
+   ledPinR = LED(25) # LED Rosso
+   ledPinG = LED(8)  # LED Verde
+   ledPinY = LED(7)  # LED Giallo
+
+   # Durata delle luci del semaforo
+   greenLight = 30
+   yellowLight = 5
+   redLight = 60
+
+   # Nomi dei colori del semaforo
+   lightColor = ("Red", "Green", "Yellow")
+
+   # Inizializzazione delle variabili di stato
+   colorState = 0
+   counter = 60
+   timer1 = None
+
+   def setup():
+       """ Initialize the traffic light system and start the timer. """
+       global timer1
+       timer1 = threading.Timer(1.0, timer)
+       timer1.start()
+
+   def clearDisplay():
+       """ Clear the 7-segment display. """
+       for _ in range(8):
+           SDI.on()
+           SRCLK.on()
+           SRCLK.off()
+       RCLK.on()
+       RCLK.off()
+
+   def hc595_shift(data):
+       """ Shift data to the 74HC595 shift register for digit display. """
+       for i in range(8):
+           SDI.value = 0x80 & (data << i)
+           SRCLK.on()
+           SRCLK.off()
+       RCLK.on()
+       RCLK.off()
+
+   def pickDigit(digit):
+       """ Select a specific digit to display on the 7-segment display. """
+       for pin in placePin:
+           pin.off()
+       placePin[digit].on()
+
+   def timer():
+       """ Handle the timing for traffic light changes. """
+       global counter, colorState, timer1
+       timer1 = threading.Timer(1.0, timer)
+       timer1.start()
+       counter -= 1
+       if counter == 0:
+           counter = [greenLight, yellowLight, redLight][colorState]
+           colorState = (colorState + 1) % 3
+       print(f"counter : {counter}    color: {lightColor[colorState]}")
+
+   def lightup():
+       """ Update the traffic light LED based on the current state. """
+       global colorState
+       ledPinR.off()
+       ledPinG.off()
+       ledPinY.off()
+       [ledPinR, ledPinG, ledPinY][colorState].on()
+
+   def display():
+       """ Display the current counter value on the 7-segment display. """
+       global counter
+
+       for i in range(4):
+           digit = counter // (10 ** (3 - i)) % 10
+           if i == 0 and digit == 0:
+               continue
+           clearDisplay()
+           pickDigit(3 - i)
+           hc595_shift(number[digit])
+
+   def loop():
+       """ Main loop to continuously update display and lights. """
+       while True:
+           display()
+           lightup()
+
+   def destroy():
+       """ Clean up resources when the script is terminated. """
+       global timer1
+       timer1.cancel()
+       ledPinR.off()
+       ledPinG.off()
+       ledPinY.off()
+
+   try:
+       setup()
+       loop()
+   except KeyboardInterrupt:
+       destroy()
+
+
+
+Spiegazione del Codice
+---------------------------
+
+#. Importa le classi ``OutputDevice`` e ``LED`` dalla libreria gpiozero, che permettono di controllare dispositivi di uscita generali e specificamente i LED. Importa il modulo threading di Python, utilizzato per creare e gestire thread per l'esecuzione concorrente.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice, LED
+       import threading
+
+#. Inizializza i pin GPIO collegati all'Input Dati Seriale (SDI), all'Input di Clock del Registro (RCLK) e all'Input di Clock del Registro a Scorrimento (SRCLK) del registro a scorrimento.
+
+   .. code-block:: python
+
+       # Configurazione dei pin GPIO per il registro a scorrimento 74HC595
+       SDI = OutputDevice(24)   # Ingresso Dati Seriali
+       RCLK = OutputDevice(23)  # Clock del Registro
+       SRCLK = OutputDevice(18) # Clock del Registro a Scorrimento
+
+#. Inizializza i pin per ogni cifra del display a 7 segmenti e definisce i codici binari per visualizzare i numeri da 0 a 9.
+
+   .. code-block:: python
+
+       # Configurazione dei pin GPIO per la selezione delle cifre sul display a 7 segmenti
+       placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+       # Codici dei segmenti per i numeri 0-9 sul display a 7 segmenti
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+#. Inizializza i pin GPIO per i LED rosso, verde e giallo utilizzati nella simulazione del semaforo. Imposta la durata (in secondi) per ciascun stato di colore nel sistema semaforico. Definisce i nomi dei colori del semaforo per riferimento.
+
+   .. code-block:: python
+
+       # Configurazione dei pin GPIO per i LED del semaforo
+       ledPinR = LED(25) # LED Rosso
+       ledPinG = LED(8)  # LED Verde
+       ledPinY = LED(7)  # LED Giallo
+
+       # Impostazioni di durata delle luci del semaforo
+       greenLight = 30
+       yellowLight = 5
+       redLight = 60
+
+       # Nomi dei colori del semaforo
+       lightColor = ("Red", "Green", "Yellow")    
+
+#. Inizializza le variabili per tracciare lo stato del colore corrente, un contatore per il timing e un segnaposto per un oggetto timer.
+
+   .. code-block:: python
+
+       # Inizializzazione delle variabili di stato
+       colorState = 0
+       counter = 60
+       timer1 = None
+
+#. Inizializza il sistema semaforico e avvia il thread del timer.
+
+   .. code-block:: python
+
+       def setup():
+           """ Initialize the traffic light system and start the timer. """
+           global timer1
+           timer1 = threading.Timer(1.0, timer)
+           timer1.start()
+
+#. Funzioni per controllare il display a 7 segmenti. ``clearDisplay`` spegne tutti i segmenti, ``hc595_shift`` invia i dati al registro a scorrimento, e ``pickDigit`` attiva una cifra specifica sul display.
+
+   .. code-block:: python
+
+       def clearDisplay():
+           """ Clear the 7-segment display. """
+           for _ in range(8):
+               SDI.on()
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+       def hc595_shift(data):
+           """ Shift data to the 74HC595 shift register for digit display. """
+           for i in range(8):
+               SDI.value = 0x80 & (data << i)
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+       def pickDigit(digit):
+           """ Select a specific digit to display on the 7-segment display. """
+           for pin in placePin:
+               pin.off()
+           placePin[digit].on()
+
+#. Gestisce il timing per i cambi di luce del semaforo e aggiorna il contatore e lo stato del colore.
+
+   .. code-block:: python
+
+       def timer():
+           """ Handle the timing for traffic light changes. """
+           global counter, colorState, timer1
+           timer1 = threading.Timer(1.0, timer)
+           timer1.start()
+           counter -= 1
+           if counter == 0:
+               counter = [greenLight, yellowLight, redLight][colorState]
+               colorState = (colorState + 1) % 3
+           print(f"counter : {counter}    color: {lightColor[colorState]}")
+
+#. Aggiorna lo stato dei LED del semaforo in base allo stato del colore corrente.
+
+   .. code-block:: python
+
+       def lightup():
+           """ Update the traffic light LED based on the current state. """
+           global colorState
+           ledPinR.off()
+           ledPinG.off()
+           ledPinY.off()
+           [ledPinR, ledPinG, ledPinY][colorState].on()
+
+#. Calcola la cifra da visualizzare su ciascun segmento del display a 7 segmenti e lo aggiorna di conseguenza.
+
+   .. code-block:: python
+
+       def display():
+           """ Display the current counter value on the 7-segment display. """
+           global counter
+
+           for i in range(4):
+               digit = counter // (10 ** (3 - i)) % 10
+               if i == 0 and digit == 0:
+                   continue
+               clearDisplay()
+               pickDigit(3 - i)
+               hc595_shift(number[digit])
+
+#. Il ciclo principale che aggiorna continuamente il display e i LED del semaforo.
+
+   .. code-block:: python
+
+       def loop():
+           """ Main loop to continuously update display and lights. """
+           while True:
+               display()
+               lightup()
+
+#. Rilascia le risorse quando lo script viene terminato, spegnendo i LED e fermando il thread del timer.
+
+   .. code-block:: python
+
+       def destroy():
+           """ Clean up resources when the script is terminated. """
+           global timer1
+           timer1.cancel()
+           ledPinR.off()
+           ledPinG.off()
+           ledPinY.off()
+
+
+

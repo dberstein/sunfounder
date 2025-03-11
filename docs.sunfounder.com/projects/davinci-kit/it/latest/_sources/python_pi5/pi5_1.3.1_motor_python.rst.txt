@@ -1,0 +1,159 @@
+.. note::
+
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Esplora a fondo il mondo di Raspberry Pi, Arduino ed ESP32 insieme a tanti altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto da Esperti**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti inediti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _1.3.1_py_pi5:
+
+1.3.1 Motore
+=============
+
+Introduzione
+-----------------
+
+In questo progetto impareremo a utilizzare L293D per pilotare un motore DC e farlo ruotare in senso orario e antiorario. Poiché il motore DC richiede una corrente maggiore, per motivi di sicurezza utilizziamo il modulo di alimentazione per alimentare i motori.
+
+Componenti Necessari
+------------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti.
+
+.. image:: ../python_pi5/img/1.3.1_motor_list.png
+
+
+
+Schema Elettrico
+------------------
+
+.. image:: ../python_pi5/img/1.3.1_motor_schematic.png
+
+
+Procedure Sperimentali
+---------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/1.3.1_motor_circuit.png
+
+.. note::
+    Il modulo di alimentazione può essere collegato a una batteria da 9V utilizzando il connettore per batteria incluso nel kit. Inserisci il cappuccio del jumper del modulo di alimentazione nelle strisce bus da 5V della breadboard.
+
+.. image:: ../python_pi5/img/1.3.1_motor_battery.jpeg
+
+**Passo 2**: Entra nella cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Passo 3**: Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.1_Motor.py
+
+Quando il codice viene eseguito, il motore ruota prima in senso orario per 5 secondi, quindi si ferma per 5 secondi, dopodiché ruota in senso antiorario per 5 secondi e si ferma successivamente per altri 5 secondi. Questa serie di azioni verrà ripetuta continuamente.
+
+.. warning::
+
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, potrai eseguirlo direttamente per vedere il risultato.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Motor
+   from time import sleep
+
+   # Inizializza il motore con GPIO Zero, specificando i pin GPIO per avanzamento (17), retro (27) e abilitazione (22)
+   motor = Motor(forward=17, backward=27, enable=22)
+
+   try:
+       # Funzione principale per controllare la direzione e il movimento del motore.
+       # Alterna la rotazione del motore tra senso orario e antiorario con fermate intermedie.
+       actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # Definisce le azioni del motore per leggibilità
+       
+       while True:
+           # Ciclo per eseguire le azioni definite e controllare la direzione del motore
+           for action in ['CW', 'STOP', 'CCW', 'STOP']:
+               actions[action]()  # Esegue l'azione corrente (avanzamento, stop, retro, stop)
+               print(f"{action}")  # Mostra l'azione corrente nella console
+               sleep(5)  # Pausa di 5 secondi prima di passare alla prossima azione
+
+   except KeyboardInterrupt:
+       # Gestisce l'interruzione da tastiera (es. Ctrl+C) per fermare il programma in modo sicuro
+       pass
+
+
+**Spiegazione del Codice**
+
+#. Queste istruzioni di importazione richiamano la classe ``Motor`` dalla libreria ``gpiozero`` e la funzione ``sleep`` dal modulo ``time``.
+    
+   .. code-block:: python  
+
+       #!/usr/bin/env python3
+       from gpiozero import Motor
+       from time import sleep
+      
+
+#. Questa linea inizializza un oggetto ``Motor``, specificando i pin GPIO per avanzamento (17), retro (27) e abilitazione (22).
+    
+   .. code-block:: python
+       
+       # Inizializza il motore con GPIO Zero, specificando i pin GPIO per avanzamento (17), retro (27) e abilitazione (22)
+       motor = Motor(forward=17, backward=27, enable=22)
+      
+
+#. Le azioni per il controllo del motore sono definite in un dizionario per leggibilità. Un ciclo infinito (`while True`) esegue queste azioni, mantenendole per 5 secondi ciascuna.
+    
+   .. code-block:: python
+       
+       try:
+           # Funzione principale per controllare la direzione e il movimento del motore.
+           # Alterna la rotazione del motore tra senso orario e antiorario con fermate intermedie.
+           actions = {'CW': motor.forward, 'CCW': motor.backward, 'STOP': motor.stop}  # Definisce le azioni del motore per leggibilità
+           
+           while True:
+               # Ciclo per eseguire le azioni definite e controllare la direzione del motore
+               for action in ['CW', 'STOP', 'CCW', 'STOP']:
+                   actions[action]()  # Esegue l'azione corrente (avanzamento, stop, retro, stop)
+                   print(f"{action}")  # Mostra l'azione corrente nella console
+                   sleep(5)  # Pausa di 5 secondi prima di passare alla prossima azione
+      
+
+#. Questo segmento consente di terminare il programma in modo sicuro tramite un'interruzione da tastiera (Ctrl+C) senza generare errori.
+    
+   .. code-block:: python
+       
+       except KeyboardInterrupt:
+       # Gestisce l'interruzione da tastiera (es. Ctrl+C) per fermare il programma in modo sicuro
+       pass
+      
+

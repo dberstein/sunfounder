@@ -1,0 +1,345 @@
+.. note::
+
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Profundiza tus conocimientos sobre Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas Previas Exclusivas**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales en días festivos.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _py_pi5_bell:
+
+3.1.10 Alarma
+===================
+
+Introducción
+-----------------
+
+En este proyecto, crearemos un dispositivo de alarma manual. Puedes 
+reemplazar el interruptor basculante con un termistor o un sensor 
+fotosensible para crear una alarma de temperatura o una alarma de luz.
+
+Componentes Necesarios
+------------------------------
+
+En este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../python_pi5/img/4.1.15_alarm_bell_list.png
+    :width: 800
+    :align: center
+
+.. Es bastante conveniente comprar un kit completo, aquí está el enlace: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Nombre	
+..         - COMPONENTES EN ESTE KIT
+..         - ENLACE
+..     *   - Kit Raphael
+..         - 337
+..         - |link_Raphael_kit|
+
+.. También puedes comprarlos por separado en los enlaces a continuación.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - INTRODUCCIÓN AL COMPONENTE
+..         - ENLACE DE COMPRA
+
+..     *   - :ref:`placa_extensión_gpio`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`protoboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`cables`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`led`
+..         - |link_led_buy|
+..     *   - :ref:`Buzzer`
+..         - |link_passive_buzzer_buy|
+..     *   - :ref:`interruptor_deslizante`
+..         - |link_slide_switch_buy|
+..     *   - :ref:`transistor`
+..         - |link_transistor_buy|
+..     *   - :ref:`condensador`
+..         - |link_capacitor_buy|
+
+Diagrama de Circuito
+-------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.15_alarm_bell_schematic.png
+    :width: 600
+    :align: center
+
+Procedimientos Experimentales
+--------------------------------
+
+**Paso 1**: Construir el circuito.
+
+.. image:: ../python_pi5/img/4.1.15_alarm_bell_circuit.png
+
+**Paso 2:** Cambiar de directorio.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Paso 3:** Ejecutar.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.10_AlarmBell.py
+
+Después de que el programa se inicie, el interruptor se moverá 
+hacia la derecha y el buzzer emitirá un sonido de alarma. 
+Al mismo tiempo, los LEDs rojo y verde parpadearán a una frecuencia determinada.
+
+.. warning::
+
+    Si aparece el mensaje de error  ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc`
+
+**Código**
+
+.. note::
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, necesitas ir a la ruta del código fuente como ``raphael-kit/python-pi5``.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    from gpiozero import LED, Button, TonalBuzzer
+    import time
+    import threading
+
+    # Initialize TonalBuzzer on GPIO pin 22
+    BeepPin = TonalBuzzer(22)
+
+    # Initialize LEDs on GPIO pins 17 and 27
+    ALedPin = LED(17)
+    BLedPin = LED(27)
+
+    # Initialize Button on GPIO pin 18
+    switchPin = Button(18)
+
+    # Global flag to control the buzzer and LED states
+    flag = 0
+
+    def ledWork():
+        """
+        Control LED blinking pattern based on the flag state.
+        When flag is set, alternately blink ALedPin and BLedPin.
+        """
+        while True:
+            if flag:
+                # Alternate blinking of LEDs
+                ALedPin.on()
+                time.sleep(0.5)
+                ALedPin.off()
+                BLedPin.on()
+                time.sleep(0.5)
+                BLedPin.off()
+            else:
+                # Turn off both LEDs if flag is not set
+                ALedPin.off()
+                BLedPin.off()
+
+    # Define the musical tune as a list of notes and their durations
+    tune = [
+        ('C4', 0.1), ('E4', 0.1), ('G4', 0.1), 
+        (None, 0.1), 
+        ('E4', 0.1), ('G4', 0.1), ('C5', 0.1), 
+        (None, 0.1), 
+        ('C5', 0.1), ('G4', 0.1), ('E4', 0.1), 
+        (None, 0.1), 
+        ('G4', 0.1), ('E4', 0.1), ('C4', 0.1), 
+        (None, 0.1)
+    ]
+
+    def buzzerWork():
+        """
+        Play a tune using the buzzer based on the flag state.
+        The tune is played only when the flag is set.
+        """
+        while True:
+            for note, duration in tune:
+                if flag == 0:
+                    break
+                print(note)  # Output the current note to the console
+                BeepPin.play(note)  # Play the current note
+                time.sleep(duration)  # Pause for the duration of the note
+            BeepPin.stop()  # Stop the buzzer after playing the tune
+
+    def main():
+        """
+        Monitor button press to update the flag state.
+        Sets the flag when the button is pressed.
+        """
+        global flag
+        while True:
+            flag = 1 if switchPin.is_pressed else 0
+
+    try:
+        # Initialize and start threads for buzzer and LED control
+        tBuzz = threading.Thread(target=buzzerWork)
+        tBuzz.start()
+        tLed = threading.Thread(target=ledWork)
+        tLed.start()
+        main()
+
+    except KeyboardInterrupt:
+        # Stop the buzzer and turn off LEDs on program interruption
+        BeepPin.stop()
+        ALedPin.off()    
+        BLedPin.off()
+
+
+**Explicación del Código**
+
+#. Este segmento incluye la importación de bibliotecas esenciales para implementar retardos y manejo de hilos (threading). También importa las clases LED, Button y TonalBuzzer de la biblioteca gpiozero, que son cruciales para controlar dispositivos GPIO en una Raspberry Pi.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       from gpiozero import LED, Button, TonalBuzzer
+       import time
+       import threading
+
+#. Configura un buzzer en el pin GPIO 22, dos LEDs en los pines GPIO 17 y 27, e inicializa un botón en el pin GPIO 18. También se define una bandera global para gestionar el estado del buzzer y los LEDs.
+
+   .. code-block:: python
+
+       # Inicializar TonalBuzzer en el pin GPIO 22
+       BeepPin = TonalBuzzer(22)
+
+       # Inicializar LEDs en los pines GPIO 17 y 27
+       ALedPin = LED(17)
+       BLedPin = LED(27)
+
+       # Inicializar botón en el pin GPIO 18
+       switchPin = Button(18)
+
+       # Bandera global para controlar los estados del buzzer y LEDs
+       flag = 0
+
+#. Esta función controla el parpadeo de los LEDs basado en el estado de la bandera. Si la bandera está activada (1), alterna el encendido y apagado de cada LED. Si está desactivada (0), ambos LEDs se apagan.
+
+   .. code-block:: python
+
+       def ledWork():
+           """
+           Control LED blinking pattern based on the flag state.
+           When flag is set, alternately blink ALedPin and BLedPin.
+           """
+           while True:
+               if flag:
+                   # Parpadeo alterno de los LEDs
+                   ALedPin.on()
+                   time.sleep(0.5)
+                   ALedPin.off()
+                   BLedPin.on()
+                   time.sleep(0.5)
+                   BLedPin.off()
+               else:
+                   # Apagar ambos LEDs si la bandera está desactivada
+                   ALedPin.off()
+                   BLedPin.off()
+
+#. La melodía está definida como una secuencia de notas (frecuencia) y duraciones (segundos).
+
+   .. code-block:: python
+
+       # Definir la melodía como una lista de notas y sus duraciones
+       tune = [
+           ('C4', 0.1), ('E4', 0.1), ('G4', 0.1), 
+           (None, 0.1), 
+           ('E4', 0.1), ('G4', 0.1), ('C5', 0.1), 
+           (None, 0.1), 
+           ('C5', 0.1), ('G4', 0.1), ('E4', 0.1), 
+           (None, 0.1), 
+           ('G4', 0.1), ('E4', 0.1), ('C4', 0.1), 
+           (None, 0.1)
+       ]
+
+#. Reproduce una melodía predefinida cuando la bandera está activada. La melodía se detiene si la bandera se desactiva durante la reproducción.
+
+   .. code-block:: python
+
+       def buzzerWork():
+           """
+           Play a tune using the buzzer based on the flag state.
+           The tune is played only when the flag is set.
+           """
+           while True:
+               for note, duration in tune:
+                   if flag == 0:
+                       break
+                   print(note)  # Mostrar la nota actual en la consola
+                   BeepPin.play(note)  # Reproducir la nota actual
+                   time.sleep(duration)  # Pausar según la duración de la nota
+               BeepPin.stop()  # Detener el buzzer después de la melodía
+
+#. Verifica continuamente el estado del botón para activar o desactivar la bandera.
+
+   .. code-block:: python
+
+       def main():
+           """
+           Monitor button press to update the flag state.
+           Sets the flag when the button is pressed.
+           """
+           global flag
+           while True:
+               flag = 1 if switchPin.is_pressed else 0
+
+#. Los hilos para ``buzzerWork`` y ``ledWork`` se inician, permitiéndoles ejecutarse concurrentemente con la función principal.
+
+   .. code-block:: python
+
+       try:
+           # Inicializar e iniciar hilos para el control del buzzer y los LEDs
+           tBuzz = threading.Thread(target=buzzerWork)
+           tBuzz.start()
+           tLed = threading.Thread(target=ledWork)
+           tLed.start()
+           main()
+
+#. Detiene el buzzer y apaga los LEDs cuando el programa es interrumpido, asegurando una salida limpia.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Detener el buzzer y apagar los LEDs al interrumpir el programa
+           BeepPin.stop()
+           ALedPin.off()    
+           BLedPin.off()

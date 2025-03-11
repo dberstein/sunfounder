@@ -1,0 +1,169 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, d'Arduino et de l'ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez & Partagez** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et aux avant-goûts exclusifs.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos derniers produits.
+    - **Promotions et concours festifs** : Participez à des concours et à des promotions spéciales pour les fêtes.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd'hui !
+
+.. _2.1.2_py_pi5:
+
+2.1.2 Interrupteur à glissière
+=================================
+
+Introduction
+----------------
+
+Dans ce projet, nous allons apprendre à utiliser un interrupteur à glissière. 
+Habituellement, l'interrupteur à glissière est soudé sur un circuit imprimé (PCB) 
+en tant qu'interrupteur d'alimentation, mais ici nous allons l'insérer dans une 
+plaque de prototypage (breadboard), même si cela peut le rendre moins stable. 
+Nous l'utiliserons sur la breadboard pour illustrer son fonctionnement.
+
+Composants nécessaires
+--------------------------
+
+Pour ce projet, nous aurons besoin des composants suivants.
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schéma de circuit
+--------------------
+
+Connectez la broche centrale de l'interrupteur à glissière au GPIO17, 
+et deux LEDs respectivement aux broches GPIO22 et GPIO27. Ainsi, lorsque 
+vous basculez l'interrupteur, vous verrez les deux LEDs s'allumer en alternance.
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_schematic_1.png
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_schematic_2.png
+
+
+Procédure expérimentale
+---------------------------
+
+**Étape 1 :** Montez le circuit.
+
+.. image:: ../python_pi5/img/2.1.2_slide_switch_circuit.png
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Étape 3 :** Exécutez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.2_Slider.py
+
+Lorsque le code s'exécute, placez l'interrupteur à gauche : la LED jaune s'allumera ; 
+placez-le à droite : la LED rouge s'allumera.
+
+.. warning::
+
+    En cas d'erreur « RuntimeError: Cannot determine SOC peripheral base address », veuillez consulter :ref:`faq_soc`.
+
+**Code**
+
+.. note::
+
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le répertoire source, tel que ``davinci-kit-for-raspberry-pi/python-pi5``. Après modification, vous pouvez exécuter le code pour observer le résultat.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button  # Importer les classes LED et Button pour le contrôle GPIO
+   from time import sleep  # Importer la fonction sleep pour ajouter des délais
+
+   # Initialiser l'interrupteur micro sur la broche GPIO 17 sans résistance pull-up
+   micro_switch = Button(17, pull_up=False)
+   # Initialiser la LED1 sur la broche GPIO 22
+   led1 = LED(22)
+   # Initialiser la LED2 sur la broche GPIO 27
+   led2 = LED(27)
+
+   try:
+       # Boucle principale pour contrôler l'état des LEDs en fonction de l'état de l'interrupteur
+       while True:
+           if micro_switch.is_pressed:  # Vérifier si l'interrupteur est pressé
+               print('    LED1 ON    ')  # Afficher le message de statut
+               led1.on()   # Allumer la LED1
+               led2.off()  # Éteindre la LED2
+           else:  # Si l'interrupteur n'est pas pressé
+               print('    LED2 ON    ')  # Afficher le message de statut
+               led1.off()  # Éteindre la LED1
+               led2.on()   # Allumer la LED2
+
+           sleep(0.5)  # Attendre 0,5 seconde avant de vérifier à nouveau l'état de l'interrupteur
+
+   except KeyboardInterrupt:
+       # Gérer une interruption clavier (Ctrl+C) pour une sortie propre de la boucle
+       pass
+
+
+**Explication du code**
+
+#. Cette ligne définit le script pour être exécuté avec Python 3. Elle importe les classes ``LED`` et ``Button`` de ``gpiozero`` pour le contrôle des appareils GPIO, ainsi que ``sleep`` du module ``time`` pour ajouter des délais.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button  # Importer les classes LED et Button pour le contrôle GPIO
+       from time import sleep  # Importer la fonction sleep pour ajouter des délais
+
+#. Initialise un micro-interrupteur connecté à la broche GPIO 17 sans résistance pull-up, et deux LEDs connectées aux broches GPIO 22 et 27.
+
+   .. code-block:: python
+
+       # Initialiser l'interrupteur micro sur la broche GPIO 17 sans résistance pull-up
+       micro_switch = Button(17, pull_up=False)
+       # Initialiser la LED1 sur la broche GPIO 22
+       led1 = LED(22)
+       # Initialiser la LED2 sur la broche GPIO 27
+       led2 = LED(27)
+
+#. La boucle principale vérifie l'état du micro-interrupteur. Si pressé, la LED1 s'allume et la LED2 s'éteint ; si relâché, la LED1 s'éteint et la LED2 s'allume. La boucle se répète toutes les 0,5 seconde. Capture un ``KeyboardInterrupt`` (comme Ctrl+C) pour une terminaison propre du script.
+
+   .. code-block:: python
+
+       try:
+       # Boucle principale pour contrôler l'état des LEDs en fonction de l'état de l'interrupteur
+       while True:
+           if micro_switch.is_pressed:  # Vérifier si l'interrupteur est pressé
+               print('    LED1 ON    ')  # Afficher le message de statut
+               led1.on()   # Allumer la LED1
+               led2.off()  # Éteindre la LED2
+           else:  # Si l'interrupteur n'est pas pressé
+               print('    LED2 ON    ')  # Afficher le message de statut
+               led1.off()  # Éteindre la LED1
+               led2.on()   # Allumer la LED2
+
+           sleep(0.5)  # Attendre 0,5 seconde avant de vérifier à nouveau l'état de l'interrupteur
+
+       except KeyboardInterrupt:
+           # Gérer une interruption clavier (Ctrl+C) pour une sortie propre de la boucle
+           pass

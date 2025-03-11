@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.1.4 ポテンショメータ &mdash; SunFounder davinci-kit-for-raspberry-pi  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=c033477b"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=4dbe4bdc"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/ja/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="2.1.5 キーパッド" href="2.1.5_keypad_js.html" />
+    <link rel="prev" title="2.1.3 傾きスイッチ" href="2.1.3_tilt_switch_js.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-ja" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/nodejs/2.1.4_potentiometer_js.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">部品一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO拡張ボード</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">コードをダウンロードする</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Raspberry Pi OSのインストールとセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">For Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html">ライブラリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html#wiringpi">WiringPiをインストールして確認する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 出力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 入力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 拡張</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/play_with_processing.html">Processingで遊ぶ</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_nodejs.html">Play with Nodejs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="install_nodejs.html">What is Node.js？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="check_pigpio.html">Check the pigpio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_js.html">Output</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="input_js.html">Input</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="input_js.html#id1">2.1 コントローラー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="input_js.html#id2">2.2 センサー</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch/play_with_scratch.html">Scratch で遊ぶ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python ビデオコース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">付録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">ありがとうございました</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+          <li class="breadcrumb-item"><a href="play_with_nodejs.html">Play with Nodejs</a></li>
+          <li class="breadcrumb-item"><a href="input_js.html">Input</a></li>
+      <li class="breadcrumb-item active">2.1.4 ポテンショメータ</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nodejs/2.1.4_potentiometer_js.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>こんにちは、SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasts Community on Facebookへようこそ！Raspberry Pi、Arduino、ESP32を愛好する仲間たちと一緒に、これらの技術を深く探求しましょう。</p>
+<p><strong>参加する理由</strong></p>
+<ul class="simple">
+<li><p><strong>専門家のサポート</strong>: コミュニティやチームの助けを借りて、購入後の問題や技術的な課題を解決します。</p></li>
+<li><p><strong>学びと共有</strong>: スキルを向上させるためのヒントやチュートリアルを交換します。</p></li>
+<li><p><strong>独占プレビュー</strong>: 新製品の発表やプレビューに早期アクセスできます。</p></li>
+<li><p><strong>特別割引</strong>: 最新の製品に対する独占割引を楽しめます。</p></li>
+<li><p><strong>フェスティブプロモーションとギブアウェイ</strong>: ギブアウェイやフェスティブプロモーションに参加できます。</p></li>
+</ul>
+<p>👉 私たちと一緒に探索と創造を始める準備はできましたか？[<a href="https://bit.ly/raphaelkit " target="_blank">ここ</a>]をクリックして、今日参加しましょう！</p>
+</div>
+<section id="id1">
+<h1>2.1.4 ポテンショメータ<a class="headerlink" href="2.1.4_potentiometer_js.html#id1" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>イントロダクション<a class="headerlink" href="2.1.4_potentiometer_js.html#id2" title="Link to this heading"></a></h2>
+<p>ADC機能を使用してアナログ信号をデジタル信号に変換することができます。この実験では、ADC0834を使用してADC機能を実現します。ここでは、ポテンショメータを使用してこのプロセスを実装します。ポテンショメータは物理量である電圧を変化させ、ADC機能によってそれが変換されます。</p>
+</section>
+<section id="id3">
+<h2>コンポーネント<a class="headerlink" href="2.1.4_potentiometer_js.html#id3" title="Link to this heading"></a></h2>
+<img alt="../_images/list_2.1.4_potentiometer1.png" src="../_images/list_2.1.4_potentiometer1.png" />
+</section>
+<section id="id4">
+<h2>回路図<a class="headerlink" href="2.1.4_potentiometer_js.html#id4" title="Link to this heading"></a></h2>
+<img alt="../_images/image3111.png" src="../_images/image3111.png" />
+<img alt="../_images/image3121.png" src="../_images/image3121.png" />
+</section>
+<section id="id5">
+<h2>実験手順<a class="headerlink" href="2.1.4_potentiometer_js.html#id5" title="Link to this heading"></a></h2>
+<p><strong>ステップ1:</strong> 回路を構築します。</p>
+<img alt="../_images/image1801.png" src="../_images/image1801.png" />
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>チップを配置する際は、写真に描かれている対応する位置を参照してください。チップの溝が左側にあるように配置することに注意してください。</p>
+</div>
+<p><strong>ステップ2:</strong> コードのフォルダに移動します。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">nodejs</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>ステップ3:</strong> コードを実行します。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">node</span> <span class="n">potentiometer</span><span class="o">.</span><span class="n">js</span>
+</pre></div>
+</div>
+<p>コードが実行された後、ポテンショメータのノブを回すと、LEDの明るさがそれに応じて変化します。</p>
+<p><strong>コード</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">ADC0834</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./adc0834.js&#39;</span><span class="p">).</span><span class="nx">ADC0834</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">adc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ADC0834</span><span class="p">(</span><span class="mf">17</span><span class="p">,</span><span class="w"> </span><span class="mf">18</span><span class="p">,</span><span class="w"> </span><span class="mf">27</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">led</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">22</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">});</span>
+
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">adc</span><span class="p">.</span><span class="nx">read</span><span class="p">(</span><span class="mf">0</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`現在のアナログ値: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">\n`</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">led</span><span class="p">.</span><span class="nx">pwmWrite</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)=&gt;{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;エラー: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>コードの説明</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pigpio</span></code> モジュールをインポートします。</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">ADC0834</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./adc0834.js&#39;</span><span class="p">).</span><span class="nx">ADC0834</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">adc0834</span></code> モジュールを使用するために <code class="docutils literal notranslate"><span class="pre">ADC0834</span></code> コンストラクタをインポートします。</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">adc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ADC0834</span><span class="p">(</span><span class="mf">17</span><span class="p">,</span><span class="w"> </span><span class="mf">18</span><span class="p">,</span><span class="w"> </span><span class="mf">27</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>ADC0834オブジェクトをインスタンス化し、3つのパラメータはその3つのピンです。</p>
+<p>これはプロミスオブジェクトです。以下のリンクからコンセプトを理解する必要があります。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">adc</span><span class="p">.</span><span class="nx">read</span><span class="p">(</span><span class="mf">0</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`現在のアナログ値: </span><span class="si">${</span><span class="nx">value</span><span class="si">}</span><span class="sb">\n`</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">led</span><span class="p">.</span><span class="nx">pwmWrite</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)=&gt;{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;エラー: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>100msごとにADC0834チャネル0（チャネル0はポテンショメータに接続されています）の値を読み取り、その値を <code class="docutils literal notranslate"><span class="pre">value</span></code> に格納します。</p>
+<p><code class="docutils literal notranslate"><span class="pre">value</span></code> を印刷し、それを使用してLEDの明るさを制御します。これで、ポテンショメータの値に応じてLEDの明るさが変化する様子が確認できます。</p>
+</section>
+<section id="id6">
+<h2>現象の写真<a class="headerlink" href="2.1.4_potentiometer_js.html#id6" title="Link to this heading"></a></h2>
+<img alt="../_images/image1811.jpeg" src="../_images/image1811.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2.1.3_tilt_switch_js.html" class="btn btn-neutral float-left" title="2.1.3 傾きスイッチ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2.1.5_keypad_js.html" class="btn btn-neutral float-right" title="2.1.5 キーパッド" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

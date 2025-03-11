@@ -1,0 +1,239 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.2.6_py_pi5:
+
+2.2.6 MPU6050モジュール
+=================================================
+
+はじめに
+--------------
+
+MPU-6050は、スマートフォン、タブレット、およびウェアラブルセンサー向けに設計された、世界初かつ唯一の6軸モーショントラッキングデバイス（3軸ジャイロスコープと3軸アクセラ​​​​メーター）です。低消費電力、低コスト、高性能の要件を持つこれらの機能を備えています。
+
+この実験では、MPU6050の3軸加速度センサーと3軸ジャイロスコープの値をI2Cを使用して取得し、それらを画面に表示します。
+
+必要なコンポーネント
+------------------------------
+
+このプロジェクトでは、以下のコンポーネントが必要です。 
+
+.. image:: ../python_pi5/img/2.2.6_mpu6050_list.png
+
+
+回路図
+-----------------
+
+MPU6050はI2Cバスインターフェースを介してマイクロコントローラと通信します。SDA1とSCL1は対応するピンに接続する必要があります。
+
+.. image:: ../python_pi5/img/2.2.6_mpu6050_schematic.png
+
+
+実験手順
+-------------------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../python_pi5/img/2.2.6_mpu6050_circuit.png
+
+
+**ステップ 2:** I2Cのセットアップを行います（Appendix :ref:`i2c_config` を参照してください。I2Cを設定済みの場合は、このステップをスキップします。）
+
+**ステップ 3:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ 4:** 実行可能ファイルを実行します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.6_mpu6050.py
+
+コードを実行すると、MPU6050によって読み取られたx軸およびy軸の偏角、および加速度、各軸の角速度が計算された後、画面に表示されます。
+
+.. note::
+
+    * エラーが発生した場合、 ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'`` と表示される場合、I2Cを有効にするために :ref:`i2c_config` を参照してください。
+    * ``ModuleNotFoundError: No module named 'smbus2'`` エラーが表示された場合、 ``sudo pip3 install smbus2`` を実行してください。
+    * エラー ``OSError: [Errno 121] Remote I/O error`` が表示される場合、モジュールの接続が誤っているか、モジュールが壊れていることを示します。
+
+
+.. warning::
+
+    エラー メッセージ ``RuntimeError: Cannot determine SOC peripheral base address`` が表示された場合は、 :ref:`faq_soc` を参照してください。
+
+**コード**
+
+.. note::
+
+    以下のコードを **変更/リセット/コピー/実行/停止** することができます。ただし、その前に ``davinci-kit-for-raspberry-pi/python-pi5`` のソースコードパスに移動する必要があります。コードを変更した後、効果を確認するために直接実行できます。
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   import smbus
+   import math
+   import time
+
+   # 電源管理レジスタ
+   power_mgmt_1 = 0x6b
+   power_mgmt_2 = 0x6c
+
+   def read_byte(adr):
+       return bus.read_byte_data(address, adr)
+
+   def read_word(adr):
+       high = bus.read_byte_data(address, adr)
+       low = bus.read_byte_data(address, adr+1)
+       val = (high << 8) + low
+       return val
+
+   def read_word_2c(adr):
+       val = read_word(adr)
+       if (val >= 0x8000):
+           return -((65535 - val) + 1)
+       else:
+           return val
+
+   def dist(a,b):
+       return math.sqrt((a*a)+(b*b))
+
+   def get_y_rotation(x,y,z):
+       radians = math.atan2(x, dist(y,z))
+       return -math.degrees(radians)
+
+   def get_x_rotation(x,y,z):
+       radians = math.atan2(y, dist(x,z))
+       return math.degrees(radians)
+
+
+   bus = smbus.SMBus(1) # or bus = smbus.SMBus(1) for Revision 2 boards
+   address = 0x68       # これはi2cdetectコマンドで読み取られるアドレス値です
+
+   # 6050をスリープモードから起こします
+   bus.write_byte_data(address, power_mgmt_1, 0)
+
+   while True:
+       time.sleep(0.1)
+       gyro_xout = read_word_2c(0x43)
+       gyro_yout = read_word_2c(0x45)
+       gyro_zout = read_word_2c(0x47)
+
+       print ("gyro_xout : ", gyro_xout, " scaled: ", (gyro_xout / 131))
+       print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
+       print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
+
+       accel_xout = read_word_2c(0x3b)
+       accel_yout = read_word_2c(0x3d)
+       accel_zout = read_word_2c(0x3f)
+
+       accel_xout_scaled = accel_xout / 16384.0
+       accel_yout_scaled = accel_yout / 16384.0
+       accel_zout_scaled = accel_zout / 16384.0
+
+       print ("accel_xout: ", accel_xout, " scaled: ", accel_xout_scaled)
+       print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
+       print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
+
+       print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+       print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+
+       time.sleep(1)
+
+
+**コードの説明**
+
+1. MPU6050から送信されたセンサーデータを読み取ります。
+
+   .. code-block:: python
+
+       def read_word(adr):
+           high = bus.read_byte_data(address, adr)
+           low = bus.read_byte_data(address, adr+1)
+           val = (high << 8) + low
+           return val
+
+       def read_word_2c(adr):
+           val = read_word(adr)
+           if (val >= 0x8000):
+               return -((65535 - val) + 1)
+           else:
+               return val
+
+2. y軸の偏角を計算します。
+
+   .. code-block:: python
+
+       def get_y_rotation(x,y,z):
+           radians = math.atan2(x, dist(y,z))
+           return -math.degrees(radians)
+
+3. x軸の偏角を計算します。
+
+   .. code-block:: python
+
+       def get_x_rotation(x,y,z):
+           radians = math.atan2(y, dist(x,z))
+           return math.degrees(radians)
+
+4. ジャイロスコープセンサーのx軸、y軸、z軸の値を読み取り、メタデータを角速度の値に変換し、それらを表示します。
+
+   .. code-block:: python
+
+       gyro_xout = read_word_2c(0x43)
+       gyro_yout = read_word_2c(0x45)
+       gyro_zout = read_word_2c(0x47)
+
+       print ("gyro_xout : ", gyro_xout, " scaled: ", (gyro_xout / 131))
+       print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
+       print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
+
+5. 加速度センサーのx軸、y軸、z軸の値を読み取り、その値を加速度（重力単位）に変換し、それらを表示します。
+
+   .. code-block:: python
+
+       accel_xout = read_word_2c(0x3b)
+       accel_yout = read_word_2c(0x3d)
+       accel_zout = read_word_2c(0x3f)
+
+       accel_xout_scaled = accel_xout / 16384.0
+       accel_yout_scaled = accel_yout / 16384.0
+       accel_zout_scaled = accel_zout / 16384.0
+
+       print ("accel_xout: ", accel_xout, " scaled: ", accel_xout_scaled)
+       print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
+       print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
+
+6. x軸およびy軸の偏角を表示します。
+
+   .. code-block:: python
+
+       print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+       print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+
+

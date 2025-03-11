@@ -1,0 +1,196 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté Facebook des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 ! Explorez plus en profondeur les possibilités des Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des tirages au sort et à des promotions spéciales.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+2.2.1 Photoresistor
+===================
+
+Introduction
+---------------
+
+Un photo-résistance est un composant couramment utilisé pour mesurer l'intensité 
+lumineuse dans la vie quotidienne. Il aide le contrôleur à reconnaître le jour et 
+la nuit et à réaliser des fonctions de contrôle de la lumière, telles que les lampes 
+de nuit. Ce projet est très similaire à celui du potentiomètre, sauf qu'il change 
+la tension pour détecter la lumière.
+
+Composants
+-------------
+
+.. image:: img/list_2.2.1_photoresistor.png
+
+Principe
+----------
+
+Une photo-résistance ou cellule photoélectrique est une résistance variable contrôlée 
+par la lumière. La résistance d'une photo-résistance diminue avec l'augmentation de 
+l'intensité lumineuse incidente ; en d'autres termes, elle présente une photoconductivité. 
+Une photo-résistance peut être utilisée dans des circuits de détection de lumière, ainsi 
+que dans des circuits de commutation activés par la lumière ou l'obscurité.
+
+.. image:: img/image196.png
+    :width: 200
+    :align: center
+
+
+Schéma de câblage
+--------------------
+
+.. image:: img/image321.png
+
+.. image:: img/image322.png
+
+
+Procédures expérimentales
+-----------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: img/image198.png
+    :width: 800
+
+**Étape 2 :** Allez dans le dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.2.1/
+
+**Étape 3 :** Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.1_Photoresistor.c -lwiringPi
+
+**Étape 4 :** Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Une fois le code exécuté, la luminosité de la LED variera en fonction de 
+l'intensité lumineuse détectée par la photo-résistance.
+
+.. note::
+
+    Si le programme ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : "wiringPi.h: No such file or directory", veuillez vous référer à :ref:`C code is not working?`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <softPwm.h>
+
+    typedef unsigned char uchar;
+    typedef unsigned int uint;
+
+    #define     ADC_CS    0
+    #define     ADC_CLK   1
+    #define     ADC_DIO   2
+    #define     LedPin    3
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+        int odd = channel & 1;
+
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Start bit
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Single End mode
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // ODD
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        //Select
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);
+
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+
+        for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+        for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+        digitalWrite(ADC_CS,1);
+        pinMode(ADC_DIO, OUTPUT);
+        return(dat1==dat2) ? dat1 : 0;
+    }
+
+    int main(void)
+    {
+        uchar analogVal;
+        if(wiringPiSetup() == -1){ // En cas d'échec de l'initialisation de wiringPi, affichage du message d'erreur
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        softPwmCreate(LedPin,  0, 100);
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+
+        while(1){
+            analogVal = get_ADC_Result(0);
+            printf("Current analogVal : %d\n", analogVal);
+            delay(100);
+            softPwmWrite(LedPin, analogVal);
+            delay(100);
+        }
+        return 0;
+    }
+
+**Explication du Code**
+
+Les codes ici sont les mêmes que ceux de la section 2.1.4 Potentiomètre. 
+Si vous avez d'autres questions, veuillez vous référer aux explications 
+de code du **2.1.4 Potentiomètre.c** pour plus de détails.

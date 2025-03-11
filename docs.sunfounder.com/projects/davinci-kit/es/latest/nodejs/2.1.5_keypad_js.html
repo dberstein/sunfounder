@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.1.5 Teclado Matricial &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="2.1.6 Joystick" href="2.1.6_joystick_js.html" />
+    <link rel="prev" title="2.1.4 Potenciómetro" href="2.1.4_potentiometer_js.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/nodejs/2.1.5_keypad_js.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Para Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html">Bibliotecas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 Salida</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 Extensiones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/play_with_processing.html">Juega con Processing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_nodejs.html">Juega con Nodejs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="install_nodejs.html">¿Qué es Nodejs?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="check_pigpio.html">Comprobación de pigpio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_js.html">Salida</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="input_js.html">Entrada</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="input_js.html#controladores">2.1 Controladores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="input_js.html#sensores">2.2 Sensores</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch/play_with_scratch.html">Experimenta con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+          <li class="breadcrumb-item"><a href="play_with_nodejs.html">Juega con Nodejs</a></li>
+          <li class="breadcrumb-item"><a href="input_js.html">Entrada</a></li>
+      <li class="breadcrumb-item active">2.1.5 Teclado Matricial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nodejs/2.1.5_keypad_js.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.</p>
+<p><strong>¿Por qué unirte?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte Experto</strong>: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprende y Comparte</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Avances Exclusivos</strong>: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.</p></li>
+<li><p><strong>Descuentos Especiales</strong>: Disfruta de descuentos exclusivos en nuestros productos más recientes.</p></li>
+<li><p><strong>Promociones Festivas y Sorteos</strong>: Participa en sorteos y promociones especiales de temporada.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy mismo.</p>
+</div>
+<section id="teclado-matricial">
+<h1>2.1.5 Teclado Matricial<a class="headerlink" href="2.1.5_keypad_js.html#teclado-matricial" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="2.1.5_keypad_js.html#introduccion" title="Link to this heading"></a></h2>
+<p>Un teclado matricial es un arreglo rectangular de botones. En este proyecto,
+lo utilizaremos para ingresar caracteres.</p>
+</section>
+<section id="componentes">
+<h2>Componentes<a class="headerlink" href="2.1.5_keypad_js.html#componentes" title="Link to this heading"></a></h2>
+<img alt="../_images/list_2.1.5_keypad.png" src="../_images/list_2.1.5_keypad.png" />
+</section>
+<section id="diagrama-del-circuito">
+<h2>Diagrama del Circuito<a class="headerlink" href="2.1.5_keypad_js.html#diagrama-del-circuito" title="Link to this heading"></a></h2>
+<img alt="../_images/image315.png" src="../_images/image315.png" />
+<img alt="../_images/image316.png" src="../_images/image316.png" />
+</section>
+<section id="procedimientos-experimentales">
+<h2>Procedimientos Experimentales<a class="headerlink" href="2.1.5_keypad_js.html#procedimientos-experimentales" title="Link to this heading"></a></h2>
+<p><strong>Paso 1:</strong> Construye el circuito.</p>
+<img alt="../_images/image186.png" src="../_images/image186.png" />
+<p><strong>Paso 2:</strong> Abre el archivo de código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">nodejs</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Paso 3:</strong> Ejecuta el código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">node</span> <span class="n">keypad</span><span class="o">.</span><span class="n">js</span>
+</pre></div>
+</div>
+<p>Tras ejecutar el código, los valores de las teclas presionadas en el
+teclado matricial (Valor de la tecla) se mostrarán en pantalla.</p>
+<p><strong>Código</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">rowsPins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">18</span><span class="p">,</span><span class="mf">23</span><span class="p">,</span><span class="mf">24</span><span class="p">,</span><span class="mf">25</span><span class="p">];</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">colsPins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">10</span><span class="p">,</span><span class="mf">6</span><span class="p">,</span><span class="mf">27</span><span class="p">,</span><span class="mf">17</span><span class="p">];</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="s2">&quot;5&quot;</span><span class="p">,</span><span class="s2">&quot;6&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;7&quot;</span><span class="p">,</span><span class="s2">&quot;8&quot;</span><span class="p">,</span><span class="s2">&quot;9&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;*&quot;</span><span class="p">,</span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="s2">&quot;#&quot;</span><span class="p">,</span><span class="s2">&quot;D&quot;</span><span class="p">];</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">rowsPins</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">rowsPins</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="nx">rowsPins</span><span class="p">[</span><span class="nx">i</span><span class="p">],{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">})</span>
+<span class="p">}</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">colsPins</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">colsPins</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="nx">colsPins</span><span class="p">[</span><span class="nx">i</span><span class="p">],{</span>
+<span class="w">        </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">INPUT</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">pullUpDown</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">PUD_DOWN</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">edge</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">RISING_EDGE</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">last_key_pressed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">col</span><span class="o">=-</span><span class="mf">1</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">colsPins</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">colsPins</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;interrupt&#39;</span><span class="p">,()=&gt;{</span>
+<span class="w">        </span><span class="nx">col</span><span class="o">=</span><span class="nx">i</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">pressed_keys</span><span class="o">=</span><span class="nx">keys</span><span class="p">[</span><span class="nx">row</span><span class="o">*</span><span class="nx">colsPins</span><span class="p">.</span><span class="nx">length</span><span class="o">+</span><span class="nx">col</span><span class="p">];</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">last_key_pressed</span><span class="o">!=</span><span class="nx">pressed_keys</span><span class="p">){</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">pressed_keys</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">last_key_pressed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">pressed_keys</span><span class="p">;</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">row</span><span class="o">=-</span><span class="mf">1</span><span class="p">;</span>
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">row</span><span class="o">=</span><span class="p">(</span><span class="nx">row</span><span class="o">+</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="nx">rowsPins</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">rowsPins</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">rowsPins</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">rowsPins</span><span class="p">[</span><span class="nx">row</span><span class="p">].</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">rowsPins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">18</span><span class="p">,</span><span class="mf">23</span><span class="p">,</span><span class="mf">24</span><span class="p">,</span><span class="mf">25</span><span class="p">];</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">colsPins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">10</span><span class="p">,</span><span class="mf">6</span><span class="p">,</span><span class="mf">27</span><span class="p">,</span><span class="mf">17</span><span class="p">];</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="s2">&quot;5&quot;</span><span class="p">,</span><span class="s2">&quot;6&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;7&quot;</span><span class="p">,</span><span class="s2">&quot;8&quot;</span><span class="p">,</span><span class="s2">&quot;9&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;*&quot;</span><span class="p">,</span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="s2">&quot;#&quot;</span><span class="p">,</span><span class="s2">&quot;D&quot;</span><span class="p">];</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">rowsPins</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">rowsPins</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="nx">rowsPins</span><span class="p">[</span><span class="nx">i</span><span class="p">],{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">})</span>
+<span class="p">}</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">colsPins</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">colsPins</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="nx">colsPins</span><span class="p">[</span><span class="nx">i</span><span class="p">],{</span>
+<span class="w">        </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">INPUT</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">pullUpDown</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">PUD_DOWN</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">edge</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">RISING_EDGE</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En el teclado matricial, se declaran dos conjuntos de pines y una matriz.</p>
+<p>Cuatro de los pines representan las filas del teclado, y se configuran en modo OUTPUT.
+Los otros cuatro pines corresponden a las columnas del teclado, configurados en modo INPUT y con interrupción en el flanco de subida.</p>
+<p>El microcontrolador detecta el valor de la tecla presionada de la siguiente forma:
+Los pines de las filas suministran un nivel alto de manera secuencial; si se presiona un botón,
+el pin de la columna correspondiente recibirá este nivel alto, disparando la interrupción.</p>
+<p>Por ejemplo, si presionas la tecla <strong>3</strong>, al aplicar nivel alto en la primera fila y leer la tercera columna,
+se activará la interrupción en el pin correspondiente, indicando que la tecla <strong>3</strong> ha sido presionada.</p>
+<img alt="../_images/image187.png" src="../_images/image187.png" />
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">row</span><span class="o">=-</span><span class="mf">1</span><span class="p">;</span>
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">row</span><span class="o">=</span><span class="p">(</span><span class="nx">row</span><span class="o">+</span><span class="mf">1</span><span class="p">)</span><span class="o">%</span><span class="nx">rowsPins</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">rowsPins</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">rowsPins</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">rowsPins</span><span class="p">[</span><span class="nx">row</span><span class="p">].</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Los cuatro pines de las filas reciben periódicamente un nivel alto. La variable <code class="docutils literal notranslate"><span class="pre">row</span></code> indica la fila activa en ese momento.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">col</span><span class="o">=-</span><span class="mf">1</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">colsPins</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">colsPins</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;interrupt&#39;</span><span class="p">,()=&gt;{</span>
+<span class="w">        </span><span class="nx">col</span><span class="o">=</span><span class="nx">i</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// pressed_keys=keys[row*colsPins.length+col];</span>
+<span class="w">        </span><span class="c1">// if(last_key_pressed!=pressed_keys){</span>
+<span class="w">        </span><span class="c1">//     console.log(`${pressed_keys}`);</span>
+<span class="w">        </span><span class="c1">// }</span>
+<span class="w">        </span><span class="c1">// last_key_pressed = pressed_keys;</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Se establecen funciones de interrupción para las cuatro columnas. La variable <code class="docutils literal notranslate"><span class="pre">col</span></code> ubica las columnas que disparan el evento de interrupción.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">pressed_keys</span><span class="o">=</span><span class="nx">keys</span><span class="p">[</span><span class="nx">row</span><span class="o">*</span><span class="nx">colsPins</span><span class="p">.</span><span class="nx">length</span><span class="o">+</span><span class="nx">col</span><span class="p">];</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">last_key_pressed</span><span class="o">!=</span><span class="nx">pressed_keys</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">pressed_keys</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">last_key_pressed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">pressed_keys</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>En la función de interrupción, se obtiene el valor de la tecla desde la matriz <code class="docutils literal notranslate"><span class="pre">keys</span></code> usando <code class="docutils literal notranslate"><span class="pre">row</span></code> y <code class="docutils literal notranslate"><span class="pre">col</span></code>.
+Cada vez que se obtiene un nuevo valor de tecla, este se imprime en pantalla.</p>
+</section>
+<section id="imagen-del-fenomeno">
+<h2>Imagen del Fenómeno<a class="headerlink" href="2.1.5_keypad_js.html#imagen-del-fenomeno" title="Link to this heading"></a></h2>
+<img alt="../_images/image188.jpeg" src="../_images/image188.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="2.1.4_potentiometer_js.html" class="btn btn-neutral float-left" title="2.1.4 Potenciómetro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="2.1.6_joystick_js.html" class="btn btn-neutral float-right" title="2.1.6 Joystick" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

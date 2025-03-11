@@ -1,0 +1,152 @@
+.. note::
+
+    Hallo und willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.
+
+    **Warum beitreten?**
+
+    - **Expertenunterstützung**: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.
+    - **Lernen & Teilen**: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.
+    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.
+    - **Spezialrabatte**: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.
+    - **Festliche Aktionen und Gewinnspiele**: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.
+
+    👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie heute bei!
+
+.. _1.3.4_py_pi5:
+
+1.3.4 Relais
+========================================
+
+Einführung
+------------
+
+In diesem Projekt lernen wir, ein Relais zu verwenden. Es ist eine der häufig verwendeten Komponenten in automatischen Steuersystemen. Wenn die Spannung, der Strom, die Temperatur, der Druck usw. den vordefinierten Wert erreicht, überschreitet oder unterschreitet, wird das Relais den Stromkreis verbinden oder unterbrechen, um die Geräte zu steuern und zu schützen.
+
+Erforderliche Komponenten
+------------------------------
+
+Für dieses Projekt benötigen wir folgende Komponenten. 
+
+.. image:: ../python_pi5/img/1.3.4_relay_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schaltplan
+-----------------
+
+.. image:: ../python_pi5/img/1.3.4_relay_schematic.png
+
+
+Versuchsdurchführung
+-----------------------
+
+**Schritt 1:** Bauen Sie die Schaltung.
+
+.. image:: ../python_pi5/img/1.3.4_relay_circuit.png
+
+**Schritt 2:** Öffnen Sie die Code-Datei.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+
+**Schritt 3:** Ausführen.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.4_Relay_zero.py
+
+Während der Ausführung des Codes leuchtet die LED auf. Darüber hinaus können Sie ein Ticken hören, verursacht durch das Unterbrechen des normalerweise geschlossenen Kontakts und das Schließen des normalerweise offenen Kontakts.
+
+.. warning::
+
+    Wenn die Fehlermeldung ``RuntimeError: Cannot determine SOC peripheral base address`` angezeigt wird, lesen Sie bitte :ref:`faq_soc`
+
+**Code**
+
+.. note::
+
+    Sie können den folgenden Code **Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen**. Bevor Sie das tun, müssen Sie jedoch zum Quellcodepfad wie ``davinci-kit-for-raspberry-pi/python-pi5`` gehen. Nach der Änderung des Codes können Sie ihn direkt ausführen, um die Wirkung zu sehen.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice  # Importieren Sie die Klasse zur Steuerung der GPIO-Pins
+   from time import sleep  # Importieren Sie die Schlaffunktion für Verzögerungen
+
+   # Initialisieren Sie das Relais, das mit dem GPIO-Pin 17 verbunden ist
+   relais = OutputDevice(17)
+
+   try:
+       # Schleife zum kontinuierlichen Umschalten des Zustands des Relais alle Sekunde
+       while True:
+           print('Relais öffnet...')  # Informieren Sie, dass das Relais aktiviert wird
+           relais.on()  # Schalten Sie das Relais ein (unter der Annahme einer aktiven Niedrigkonfiguration)
+           sleep(1)   # Halten Sie das Relais für 1 Sekunde im eingeschalteten Zustand
+
+           print('...Relais schließt')  # Informieren Sie, dass das Relais deaktiviert wird
+           relais.off()  # Schalten Sie das Relais aus
+           sleep(1)   # Halten Sie das Relais für 1 Sekunde im ausgeschalteten Zustand
+
+   except KeyboardInterrupt:
+       # Behandeln Sie eine Tastaturunterbrechung (wie Ctrl+C), um aus der Schleife auszusteigen
+       relais.off()  # Stellen Sie sicher, dass das Relais ausgeschaltet ist, bevor Sie den Vorgang beenden
+       pass
+       
+
+**Code-Erklärung**
+
+#. Es importiert ``OutputDevice`` von ``gpiozero`` zur Steuerung der GPIO-Pins und ``sleep`` von ``time`` zur Hinzufügung von Verzögerungen.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice  # Importieren Sie die Klasse zur Steuerung der GPIO-Pins
+       from time import sleep  # Importieren Sie die Schlaffunktion für Verzögerungen
+
+#. Initialisiert ein ``OutputDevice``-Objekt für das Relais, das mit dem GPIO-Pin 17 verbunden ist.
+
+   .. code-block:: python
+
+       # Initialisieren Sie das Relais, das mit dem GPIO-Pin 17 verbunden ist
+       relais = OutputDevice(17)
+
+#. Innerhalb des ``try``-Blocks schaltet eine ``while True``-Schleife den Zustand des Relais kontinuierlich um. Das Relais wird ein- und ausgeschaltet, wobei zwischen jedem Zustand eine Verzögerung von 1 Sekunde besteht, begleitet von Konsolendruckanzeigen.
+
+   .. code-block:: python
+
+       try:
+           # Schleife zum kontinuierlichen Umschalten des Zustands des Relais alle Sekunde
+           while True:
+               print('Relais öffnet...')  # Informieren Sie, dass das Relais aktiviert wird
+               relais.on()  # Schalten Sie das Relais ein (unter der Annahme einer aktiven Niedrigkonfiguration)
+               sleep(1)   # Halten Sie das Relais für 1 Sekunde im eingeschalteten Zustand
+
+               print('...Relais schließt')  # Informieren Sie, dass das Relais deaktiviert wird
+               relais.off()  # Schalten Sie das Relais aus
+               sleep(1)   # Halten Sie das Relais für 1 Sekunde im ausgeschalteten Zustand
+
+#. Fängt eine KeyboardInterrupt (wie Ctrl+C) ab, um ein ordnungsgemäßes Beenden des Skripts zu ermöglichen. Das Relais wird ausgeschaltet, bevor das Skript beendet wird.
+
+   .. code-block:: python
+      
+      except KeyboardInterrupt:
+      # Behandeln Sie eine Tastaturunterbrechung (wie Ctrl+C), um aus der Schleife auszusteigen
+      relais.off()  # Stellen Sie sicher, dass das Relais ausgeschaltet ist, bevor Sie den Vorgang beenden
+      pass

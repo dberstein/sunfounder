@@ -1,0 +1,383 @@
+.. note::
+
+    Hola, bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
+
+    **¿Por qué unirse?**
+
+    - **Soporte de Expertos**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos lanzamientos y anuncios de productos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
+
+1.2.2 Zumbador Pasivo
+========================
+
+Introducción
+--------------
+
+En esta lección, aprenderemos cómo hacer que un zumbador pasivo reproduzca música.
+
+Componentes
+-------------
+
+.. image:: img/list_1.2.2.png
+
+Diagrama Esquemático
+------------------------
+
+En este experimento, se utiliza un zumbador pasivo, un transistor PNP y una 
+resistencia de 1k entre la base del transistor y GPIO para proteger el transistor.
+
+Cuando el GPIO17 recibe diferentes frecuencias, el zumbador pasivo emite 
+distintos sonidos, permitiendo así que reproduzca música.
+
+.. image:: img/image333.png
+
+
+Procedimiento Experimental
+----------------------------
+
+**Paso 1:** Construye el circuito.
+
+.. image:: img/image106.png
+    :width: 800
+
+Para Usuarios de Lenguaje C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Paso 2:** Cambia al directorio del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/1.2.2/
+
+**Paso 3:** Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.2.2_PassiveBuzzer.c -lwiringPi
+
+**Paso 4:** Ejecuta el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Cuando el código se ejecuta, el zumbador reproduce una melodía.
+
+.. note::
+
+    Si no funciona tras ejecutarlo, o aparece un mensaje de error: \"wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
+
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <softTone.h>
+    #include <stdio.h>
+
+    #define BuzPin    0
+
+    #define  CL1  131
+    #define  CL2  147
+    #define  CL3  165
+    #define  CL4  175
+    #define  CL5  196
+    #define  CL6  221
+    #define  CL7  248
+
+    #define  CM1  262
+    #define  CM2  294
+    #define  CM3  330
+    #define  CM4  350
+    #define  CM5  393
+    #define  CM6  441
+    #define  CM7  495
+
+    #define  CH1  525
+    #define  CH2  589
+    #define  CH3  661
+    #define  CH4  700
+    #define  CH5  786
+    #define  CH6  882
+    #define  CH7  990
+
+    int song_1[] = {CM3,CM5,CM6,CM3,CM2,CM3,CM5,CM6,CH1,CM6,CM5,CM1,CM3,CM2,
+                    CM2,CM3,CM5,CM2,CM3,CM3,CL6,CL6,CL6,CM1,CM2,CM3,CM2,CL7,
+                    CL6,CM1,CL5};
+
+    int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
+                    1,1,1,1,1,1,3};
+
+    int song_2[] = {CM1,CM1,CM1,CL5,CM3,CM3,CM3,CM1,CM1,CM3,CM5,CM5,CM4,CM3,CM2,
+                    CM2,CM3,CM4,CM4,CM3,CM2,CM3,CM1,CM1,CM3,CM2,CL5,CL7,CM2,CM1
+                    };
+
+    int beat_2[] = {1,1,1,3,1,1,1,3,1,1,1,1,1,1,3,1,1,1,2,1,1,1,3,1,1,1,3,3,2,3};
+
+    int main(void)
+    {
+        int i, j;
+        if(wiringPiSetup() == -1){ // si la inicialización de wiring falla, imprime mensaje en pantalla
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        if(softToneCreate(BuzPin) == -1){
+            printf("setup softTone failed !");
+            return 1;
+        }
+
+        while(1){
+            printf("music is being played...\n");
+            delay(100);
+            for(i=0;i<sizeof(song_1)/4;i++){
+                softToneWrite(BuzPin, song_1[i]);   
+                delay(beat_1[i] * 500);
+            }
+
+            for(i=0;i<sizeof(song_2)/4;i++){
+                softToneWrite(BuzPin, song_2[i]);   
+                delay(beat_2[i] * 500);
+            }   
+        }
+
+        return 0;
+    }
+**Explicación del Código**
+
+.. code-block:: c
+
+    #define  CL1  131
+    #define  CL2  147
+    #define  CL3  165
+    #define  CL4  175
+    #define  CL5  196
+    #define  CL6  221
+    #define  CL7  248
+
+    #define  CM1  262
+    #define  CM2  294
+
+Las frecuencias de cada nota son las mostradas. CL se refiere a notas graves, 
+CM a notas medias, y CH a notas agudas; 1-7 corresponden a las notas C, D, E, F, G, A y B.
+
+.. code-block:: c
+
+    int song_1[] = {CM3,CM5,CM6,CM3,CM2,CM3,CM5,CM6,CH1,CM6,CM5,CM1,CM3,CM2,
+                    CM2,CM3,CM5,CM2,CM3,CM3,CL6,CL6,CL6,CM1,CM2,CM3,CM2,CL7,
+                    CL6,CM1,CL5};
+    int beat_1[] = {1,1,3,1,1,3,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,1,1,2,1,1,
+                    1,1,1,1,1,1,3};
+
+El arreglo song_1[] almacena la partitura de una canción, y beat_1[] indica el ritmo de cada nota de la canción (0.5s por cada tiempo).
+
+.. code-block:: c
+
+    if(softToneCreate(BuzPin) == -1){
+            printf("setup softTone failed !");
+            return 1;
+        
+Este comando crea un pin de tono controlado por software. Se puede usar 
+cualquier pin GPIO, y la numeración de pines será la de la función 
+wiringPiSetup() utilizada. El valor de retorno es 0 en caso de éxito. 
+Cualquier otro valor significa que se debe verificar la variable errno 
+para ver qué salió mal.
+
+.. code-block:: c
+
+    for(i=0;i<sizeof(song_1)/4;i++){
+        softToneWrite(BuzPin, song_1[i]);   
+        delay(beat_1[i] * 500);
+    }
+
+Se emplea una declaración for para reproducir song_1.
+
+En la condición de juicio, **i<sizeof(song_1)/4**\ , "dividir por 4" 
+se usa porque el arreglo song_1[] es de tipo entero, y cada elemento 
+ocupa cuatro bytes.
+
+El número de elementos en song_1 (número de notas musicales) se obtiene 
+dividiendo sizeof(song_1) entre 4.
+
+Para que cada nota suene durante beat \* 500ms, se llama a la función 
+delay(beat_1[i] \* 500).
+
+El prototipo de softToneWrite(BuzPin, song_1[i]) es:
+
+.. code-block:: c
+
+    void softToneWrite (int pin, int freq);
+
+Esto actualiza el valor de la frecuencia de tono en el pin dado. El tono no 
+deja de reproducirse hasta que se establece la frecuencia en 0.
+
+Para Usuarios de Lenguaje Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Paso 2: Cambia al directorio del código.**
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python/
+
+**Paso 3: Ejecuta.**
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.2.2_PassiveBuzzer.py
+
+Al ejecutar el código, el zumbador reproduce una melodía.
+
+**Código**
+
+.. note::
+
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de eso, debes ir a la ruta del código fuente como ``davinci-kit-for-raspberry-pi/python``. 
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+
+    Buzzer = 11
+
+    CL = [0, 131, 147, 165, 175, 196, 211, 248]		# Frecuencia de tono bajo en Do mayor
+
+    CM = [0, 262, 294, 330, 350, 393, 441, 495]		# Frecuencia de tono medio en Do mayor
+
+    CH = [0, 525, 589, 661, 700, 786, 882, 990]		# Frecuencia de tono agudo en Do mayor
+
+    song_1 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], # Notas de song1
+                CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3], 
+                CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
+                CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	]
+
+    beat_1 = [	1, 1, 3, 1, 1, 3, 1, 1, 			# Duración de cada nota de song1, 1 significa 1/8 tiempo                
+                1, 1, 1, 1, 1, 1, 3, 1,                 
+                1, 3, 1, 1, 1, 1, 1, 1,                 
+                1, 2, 1, 1, 1, 1, 1, 1,                 
+                1, 1, 3	]
+
+    song_2 = [	CM[1], CM[1], CM[1], CL[5], CM[3], CM[3], CM[3], CM[1], # Notas de song2
+                CM[1], CM[3], CM[5], CM[5], CM[4], CM[3], CM[2], CM[2], 
+                CM[3], CM[4], CM[4], CM[3], CM[2], CM[3], CM[1], CM[1], 
+                CM[3], CM[2], CL[5], CL[7], CM[2], CM[1]	]
+
+    beat_2 = [	1, 1, 2, 2, 1, 1, 2, 2, 			# Duración de cada nota de song2, 1 significa 1/8 tiempo                
+                1, 1, 2, 2, 1, 1, 3, 1,                 
+                1, 2, 2, 1, 1, 2, 2, 1,                 
+                1, 2, 2, 1, 1, 3 ]
+
+    def setup():
+
+        GPIO.setmode(GPIO.BOARD)		# Numeración de GPIOs por posición física
+        GPIO.setup(Buzzer, GPIO.OUT)	# Configura el pin como salida
+        global Buzz						# Asigna una variable global para GPIO.PWM 
+        Buzz = GPIO.PWM(Buzzer, 440)	# 440 es la frecuencia inicial.
+        Buzz.start(50)					# Inicia el pin del Buzzer con un ciclo de trabajo del 50%
+
+    def loop():
+        while True:
+            print ('\n    Playing song 1...')
+            for i in range(1, len(song_1)):		# Reproduce song1
+                Buzz.ChangeFrequency(song_1[i])	# Cambia la frecuencia según la nota de la canción
+                time.sleep(beat_1[i] * 0.5)		# Mantiene la nota durante beat * 0.5s
+            time.sleep(1)						# Espera un segundo para la siguiente canción.
+
+            print ('\n\n    Playing song 2...')
+            for i in range(1, len(song_2)):     # Reproduce song2
+                Buzz.ChangeFrequency(song_2[i]) # Cambia la frecuencia según la nota de la canción
+                time.sleep(beat_2[i] * 0.5)     # Mantiene la nota durante beat * 0.5s
+
+    def destroy():
+        Buzz.stop()                 # Detiene el zumbador
+        GPIO.output(Buzzer, 1)      # Configura el pin del zumbador en alto
+        GPIO.cleanup()				# Libera recursos
+
+    if __name__ == '__main__':		# El programa empieza aquí
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt:  	# Cuando se presiona 'Ctrl+C', se ejecuta la función destroy()
+            destroy()
+
+**Explicación del Código**
+
+.. code-block:: python
+
+    CL = [0, 131, 147, 165, 175, 196, 211, 248]     # Frecuencia de tono bajo en Do mayor
+    CM = [0, 262, 294, 330, 350, 393, 441, 495]     # Frecuencia de tono medio en Do mayor
+    CH = [0, 525, 589, 661, 700, 786, 882, 990]     # Frecuencia de tono alto en Do mayor     
+
+Estas son las frecuencias de cada nota. El primer 0 es para omitir CL[0], 
+de modo que los números 1-7 correspondan a las notas CDEFGAB de la escala.
+
+.. code-block:: python
+
+    song_1 = [  CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], 
+                CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3],
+                CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
+                CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5] ]
+
+Estos arreglos representan las notas de una canción.
+
+.. code-block:: python
+
+    beat_1 = [  1, 1, 3, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1,                
+                1, 3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1,                
+                1, 1, 3 ]
+
+Cada número en beat_1 representa un octavo de tiempo, es decir, 0,5 segundos.
+
+.. code-block:: python
+
+    Buzz = GPIO.PWM(Buzzer, 440)
+    Buzz.start(50)  
+
+Define el pin Buzzer como un pin PWM, establece su frecuencia en 440 Hz 
+y ejecuta PWM con Buzz.start(50), además de configurar el ciclo de trabajo en un 50%.
+
+.. code-block:: python
+
+    for i in range(1, len(song_1)): 
+                Buzz.ChangeFrequency(song_1[i]) 
+                time.sleep(beat_1[i] * 0.5)  
+
+Ejecuta un bucle for, y el zumbador reproducirá las notas en el arreglo song_1[] 
+según los tiempos especificados en el arreglo beat_1[].
+
+Ahora puedes escuchar el zumbador pasivo reproduciendo música.
+
+Imagen del Fenómeno
+----------------------
+
+.. image:: img/image107.jpeg

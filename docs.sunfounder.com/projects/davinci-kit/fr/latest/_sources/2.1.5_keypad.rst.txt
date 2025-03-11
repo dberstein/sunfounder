@@ -1,0 +1,529 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Explorez en profondeur les Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez vos problèmes après-vente et défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez et partagez** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Avant-premières exclusives** : Accédez en avant-première aux annonces de nouveaux produits.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des promotions spéciales et des tirages au sort.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+
+2.1.5 Keypad
+================
+
+
+Introduction
+--------------
+
+Un clavier numérique est une matrice rectangulaire de boutons. Dans ce projet, nous l'utiliserons pour saisir des caractères.
+
+Composants
+-----------
+
+.. image:: img/list_2.1.5_keypad.png
+
+
+Principe
+---------
+
+**Clavier numérique**
+
+Un clavier numérique est une matrice rectangulaire de 12 ou 16 boutons OFF-(ON). 
+Leurs contacts sont accessibles via un connecteur adapté à une connexion avec un 
+câble ruban ou une insertion dans un circuit imprimé. Dans certains claviers, chaque 
+bouton se connecte à un contact séparé dans le connecteur, tandis que tous les boutons 
+partagent une masse commune.
+
+.. image:: img/image314.png
+
+
+Souvent, les boutons sont encodés en matrice, ce qui signifie que chacun d'eux relie une 
+paire unique de conducteurs dans une matrice. Cette configuration est adaptée pour un 
+microcontrôleur, qui peut être programmé pour envoyer une impulsion de sortie à chacun 
+des quatre fils horizontaux à tour de rôle. Pendant chaque impulsion, il vérifie les 
+quatre fils verticaux restants pour déterminer lequel, le cas échéant, transporte un 
+signal. Des résistances pullup ou pulldown doivent être ajoutées aux fils d'entrée pour 
+empêcher les entrées du microcontrôleur de se comporter de manière imprévisible lorsqu'aucun 
+signal n'est présent.
+
+Schéma de câblage
+----------------------
+
+.. image:: img/image315.png
+
+
+.. image:: img/image316.png
+
+
+Procédures expérimentales
+----------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: img/image186.png
+    :width: 800
+
+
+
+Pour les utilisateurs de C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 2 :** Ouvrez le fichier de code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.1.5/
+
+**Étape 3 :** Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.5_Keypad.cpp -lwiringPi
+
+**Étape 4 :** Exécutez le programme.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Après l'exécution du code, les valeurs des boutons pressés sur le clavier 
+(Valeur du bouton) seront affichées à l'écran.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution ou si un message d'erreur s'affiche : \"wiringPi.h : Aucun fichier ou répertoire de ce type\", veuillez consulter :ref:`C code is not working?`.
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define ROWS  4 
+    #define COLS  4
+    #define BUTTON_NUM (ROWS * COLS)
+
+    unsigned char KEYS[BUTTON_NUM] {  
+    '1','2','3','A',
+    '4','5','6','B',
+    '7','8','9','C',
+    '*','0','#','D'};
+
+    unsigned char rowPins[ROWS] = {1, 4, 5, 6}; 
+    unsigned char colPins[COLS] = {12, 3, 2, 0};
+
+    void keyRead(unsigned char* result);
+    bool keyCompare(unsigned char* a, unsigned char* b);
+    void keyCopy(unsigned char* a, unsigned char* b);
+    void keyPrint(unsigned char* a);
+    void keyClear(unsigned char* a);
+    int keyIndexOf(const char value);
+
+    void init(void) {
+        for(int i=0 ; i<4 ; i++) {
+            pinMode(rowPins[i], OUTPUT);
+            pinMode(colPins[i], INPUT);
+        }
+    }
+
+    int main(void){
+        unsigned char pressed_keys[BUTTON_NUM];
+        unsigned char last_key_pressed[BUTTON_NUM];
+
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print message to screen
+            printf("setup wiringPi failed !");
+            return 1; 
+        }
+        init();
+        while(1){
+            keyRead(pressed_keys);
+            bool comp = keyCompare(pressed_keys, last_key_pressed);
+            if (!comp){
+                keyPrint(pressed_keys);
+                keyCopy(last_key_pressed, pressed_keys);
+            }
+            delay(100);
+        }
+        return 0;  
+    }
+
+    void keyRead(unsigned char* result){
+        int index;
+        int count = 0;
+        keyClear(result);
+        for(int i=0 ; i<ROWS ; i++ ){
+            digitalWrite(rowPins[i], HIGH);
+            for(int j =0 ; j < COLS ; j++){
+                index = i * ROWS + j;
+                if(digitalRead(colPins[j]) == 1){
+                    result[count]=KEYS[index];
+                    count += 1;
+                }
+            }
+            delay(1);
+            digitalWrite(rowPins[i], LOW);
+        }
+    }
+
+    bool keyCompare(unsigned char* a, unsigned char* b){
+        for (int i=0; i<BUTTON_NUM; i++){
+            if (a[i] != b[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void keyCopy(unsigned char* a, unsigned char* b){
+        for (int i=0; i<BUTTON_NUM; i++){
+            a[i] = b[i];
+        }
+    }
+
+    void keyPrint(unsigned char* a){
+        if (a[0] != 0){
+            printf("%c",a[0]);
+        }
+        for (int i=1; i<BUTTON_NUM; i++){
+            if (a[i] != 0){
+                printf(", %c",a[i]);
+            }
+        }
+        printf("\n");
+    }
+
+    void keyClear(unsigned char* a){
+        for (int i=0; i<BUTTON_NUM; i++){
+            a[i] = 0;
+        }
+    }
+
+    int keyIndexOf(const char value){
+        for (int i=0; i<BUTTON_NUM; i++){
+            if ((const char)KEYS[i] == value){
+                return i;
+            }
+        }
+        return -1;
+    }
+**Explication du Code**
+
+.. code-block:: c
+
+    unsigned char KEYS[BUTTON_NUM] {  
+    '1','2','3','A',
+    '4','5','6','B',
+    '7','8','9','C',
+    '*','0','#','D'};
+
+    unsigned char rowPins[ROWS] = {1, 4, 5, 6}; 
+    unsigned char colPins[COLS] = {12, 3, 2, 0};
+
+Déclarez chaque touche du clavier matriciel dans le tableau keys[] et définissez 
+les broches de chaque ligne et colonne.
+
+.. code-block:: c
+
+    while(1){
+            keyRead(pressed_keys);
+            bool comp = keyCompare(pressed_keys, last_key_pressed);
+            if (!comp){
+                keyPrint(pressed_keys);
+                keyCopy(last_key_pressed, pressed_keys);
+            }
+            delay(100);
+        }
+
+Ceci est la partie de la fonction principale qui lit et affiche la valeur des touches.
+
+La fonction keyRead() lira l'état de chaque touche.
+
+keyCompare() et keyCopy() sont utilisées pour déterminer si l'état d'une touche a changé 
+(c'est-à-dire si une touche a été appuyée ou relâchée).
+
+keyPrint() affichera la valeur de la touche dont le niveau actuel est élevé (la touche est 
+enfoncée).
+
+.. code-block:: c
+
+    void keyRead(unsigned char* result){
+        int index;
+        int count = 0;
+        keyClear(result);
+        for(int i=0 ; i<ROWS ; i++ ){
+            digitalWrite(rowPins[i], HIGH);
+            for(int j =0 ; j < COLS ; j++){
+                index = i * ROWS + j;
+                if(digitalRead(colPins[j]) == 1){
+                    result[count]=KEYS[index];
+                    count += 1;
+                }
+            }
+            delay(1);
+            digitalWrite(rowPins[i], LOW);
+        }
+    }
+
+Cette fonction attribue un niveau élevé à chaque ligne à tour de rôle, et lorsque la 
+touche dans la colonne est enfoncée, la colonne obtient un niveau élevé. Après la 
+double boucle de vérification, l'état des touches compilé générera un tableau (result[]).
+
+Lorsque vous appuyez sur la touche 3 :
+
+.. image:: img/image187.png
+
+
+RowPin [0] écrit un niveau élevé, et colPin[2] reçoit le niveau élevé. Les autres 
+colPin obtiennent un niveau bas.
+
+Cela donne 0,0,1,0. Lorsque rowPin[1], rowPin[2] et rowPin[3] sont écrits en niveau 
+élevé, les colPin recevront tous un niveau bas.
+
+Après la boucle, un tableau est généré :
+
+.. code-block:: c
+
+    result[BUTTON_NUM] {  
+    0, 0, 1, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0};
+
+.. code-block:: c
+
+    bool keyCompare(unsigned char* a, unsigned char* b){
+        for (int i=0; i<BUTTON_NUM; i++){
+            if (a[i] != b[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void keyCopy(unsigned char* a, unsigned char* b){
+        for (int i=0; i<BUTTON_NUM; i++){
+            a[i] = b[i];
+        }
+    }
+
+Ces deux fonctions sont utilisées pour vérifier si l'état des touches a changé, par 
+exemple lorsque vous relâchez la touche '3' ou appuyez sur '2', keyCompare() renverra false.
+
+KeyCopy() réécrit la valeur actuelle de la touche dans le tableau a 
+(last_key_pressed[BUTTON_NUM]) après chaque comparaison pour permettre une 
+comparaison la prochaine fois.
+
+.. code-block:: c
+
+    void keyPrint(unsigned char* a){
+    //printf("{");
+        if (a[0] != 0){
+            printf("%c",a[0]);
+        }
+        for (int i=1; i<BUTTON_NUM; i++){
+            if (a[i] != 0){
+                printf(", %c",a[i]);
+            }
+        }
+        printf("\n");
+    }
+
+Cette fonction est utilisée pour afficher la valeur de la touche actuellement 
+enfoncée. Si la touche '1' est enfoncée, '1' sera affiché. Si vous appuyez sur 
+'1' et ensuite sur '3', '1, 3' sera affiché.
+
+
+Pour les utilisateurs de Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 2 :** Ouvrez le fichier de code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/python/
+
+**Étape 3 :** Exécutez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.1.5_Keypad.py
+
+Après l'exécution du code, les valeurs des touches pressées sur le clavier 
+(valeur des boutons) seront affichées à l'écran.
+
+
+
+**Code**
+
+.. note::
+
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin source du code, tel que ``davinci-kit-for-raspberry-pi/python``.
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+
+    class Keypad():
+
+        def __init__(self, rowsPins, colsPins, keys):
+            self.rowsPins = rowsPins
+            self.colsPins = colsPins
+            self.keys = keys
+            GPIO.setwarnings(False)
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setup(self.rowsPins, GPIO.OUT, initial=GPIO.LOW)
+            GPIO.setup(self.colsPins, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+        def read(self):
+            pressed_keys = []
+            for i, row in enumerate(self.rowsPins):
+                GPIO.output(row, GPIO.HIGH)
+                for j, col in enumerate(self.colsPins):
+                    index = i * len(self.colsPins) + j
+                    if (GPIO.input(col) == 1):
+                        pressed_keys.append(self.keys[index])
+                GPIO.output(row, GPIO.LOW)
+            return pressed_keys
+
+    def setup():
+        global keypad, last_key_pressed
+        rowsPins = [18,23,24,25]
+        colsPins = [10,22,27,17]
+        keys = ["1","2","3","A",
+                "4","5","6","B",
+                "7","8","9","C",
+                "*","0","#","D"]
+        keypad = Keypad(rowsPins, colsPins, keys)
+        last_key_pressed = []
+
+    def loop():
+        global keypad, last_key_pressed
+        pressed_keys = keypad.read()
+        if len(pressed_keys) != 0 and last_key_pressed != pressed_keys:
+            print(pressed_keys)
+        last_key_pressed = pressed_keys
+        time.sleep(0.1)
+
+    # Définir une fonction destroy pour nettoyer tout après la fin du script
+    def destroy():
+        # Libérer les ressources
+        GPIO.cleanup() 
+
+    if __name__ == '__main__':     # Le programme commence ici
+        try:
+            setup()
+            while True:
+                loop()
+        except KeyboardInterrupt:   # Lorsque 'Ctrl+C' est pressé, la fonction destroy() sera exécutée.
+            destroy()
+**Explication du Code**
+
+.. code-block:: python
+
+    def setup():
+        global keypad, last_key_pressed
+        rowsPins = [18,23,24,25]
+        colsPins = [10,22,27,17]
+        keys = ["1","2","3","A",
+                "4","5","6","B",
+                "7","8","9","C",
+                "*","0","#","D"]
+        keypad = Keypad(rowsPins, colsPins, keys)
+        last_key_pressed = []
+
+Déclarez chaque touche du clavier matriciel dans le tableau keys[] et définissez 
+les broches pour chaque ligne et colonne.
+
+.. code-block:: python
+
+    def loop():
+        global keypad, last_key_pressed
+        pressed_keys = keypad.read()
+        if len(pressed_keys) != 0 and last_key_pressed != pressed_keys:
+            print(pressed_keys)
+        last_key_pressed = pressed_keys
+        time.sleep(0.1)
+
+Voici la partie de la fonction principale qui lit et affiche la valeur des boutons pressés.
+
+La fonction keyRead() lira l'état de chaque bouton.
+
+La condition if len(pressed_keys) != 0 and last_key_pressed != pressed_keys est 
+utilisée pour vérifier
+
+si une touche est enfoncée et si l'état de la touche pressée a changé. 
+(Si vous appuyez sur "3" après avoir appuyé sur "1", cette condition est vraie.)
+
+Affiche la valeur de la touche actuellement pressée lorsque la condition est remplie.
+
+L'instruction last_key_pressed = pressed_keys attribue l'état de chaque jugement 
+à un tableau last_key_pressed pour faciliter le prochain tour de jugement conditionnel.
+
+.. code-block:: python
+
+    def read(self):
+            pressed_keys = []
+            for i, row in enumerate(self.rowsPins):
+                GPIO.output(row, GPIO.HIGH)
+                for j, col in enumerate(self.colsPins):
+                    index = i * len(self.colsPins) + j
+                    if (GPIO.input(col) == 1):
+                        pressed_keys.append(self.keys[index])
+                GPIO.output(row, GPIO.LOW)
+            return pressed_keys
+
+Cette fonction affecte un niveau haut à chaque ligne à tour de rôle, et lorsque le 
+bouton d'une colonne est enfoncé, la colonne dans laquelle la touche se trouve reçoit 
+un niveau haut. Après la vérification en boucle, la valeur du bouton dont l'état est 1 
+est stockée dans le tableau pressed_keys.
+
+Si vous appuyez sur la touche "3" :
+
+.. image:: img/image187.png
+
+rowPins[0] est écrit en niveau haut, et colPins[2] obtient un niveau haut.
+
+colPins[0], colPins[1], colPins[3] obtiennent un niveau bas.
+
+Il y a quatre états : 0, 0, 1, 0 ; et nous écrivons "3" dans pressed_keys.
+
+Lorsque rowPins[1], rowPins[2] et rowPins[3] sont écrits en niveau haut, colPins[0] ~ colPins[4] obtiennent un niveau bas.
+
+La boucle s'arrête et retourne pressed_keys = '3'.
+
+Si vous appuyez sur les touches '1' et '3', pressed_keys retournera = ['1', '3'].
+
+Image du Phénomène
+----------------------
+
+.. image:: img/image188.jpeg

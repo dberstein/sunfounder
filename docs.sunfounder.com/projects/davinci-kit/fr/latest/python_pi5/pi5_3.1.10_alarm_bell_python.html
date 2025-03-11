@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.10 Alarme Manuelle &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="3.1.11 Générateur de Code Morse" href="pi5_3.1.11_morse_code_generator_python.html" />
+    <link rel="prev" title="3.1.9 Serrure à Code" href="pi5_3.1.9_password_lock_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_3.1.10_alarm_bell_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Pour le Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Jouez avec Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Vérifiez l’installation de <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">Input</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_extension_python.html">Extension</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.1_counting_device_python.html">3.1.1 Dispositif de Comptage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.2_welcome_python.html">3.1.2 Bienvenue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.3_reversing_alarm_python.html">3.1.3 Alarme de Recul</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.4_smart_fan_python.html">3.1.4 Ventilateur intelligent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.5_battery_indicator_python.html">3.1.5 Indicateur de Batterie</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.6_motion_control_python.html">3.1.6 Contrôle de Mouvement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.7_traffic_light_python.html">3.1.7 Feu de Signalisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.8_overheat_monitor_python.html">3.1.8 Moniteur de surchauffe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.9_password_lock_python.html">3.1.9 Serrure à Code</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_3.1.10_alarm_bell_python.html#">3.1.10 Alarme Manuelle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.11_morse_code_generator_python.html">3.1.11 Générateur de Code Morse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.12_game_guess_number_python.html">3.1.12 JEU – Devine le Nombre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.13_game_10_second_python.html">3.1.13 JEU – 10 Secondes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.14_game_not_not_python.html">3.1.14 JEU – Not Not</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Play with C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Pour le Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Jouez avec Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_extension_python.html">Extension</a></li>
+      <li class="breadcrumb-item active">3.1.10 Alarme Manuelle</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_3.1.10_alarm_bell_python.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour, bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez au cœur de ces technologies avec d’autres amateurs partageant la même passion.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’Experts</strong> : Résolvez vos problèmes après-vente et relevez vos défis techniques avec l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprendre &amp; Partager</strong> : Échangez astuces et tutoriels pour perfectionner vos compétences.</p></li>
+<li><p><strong>Avant-premières exclusives</strong> : Accédez en avant-première aux annonces de nouveaux produits et à des aperçus exclusifs.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de remises exclusives sur nos produits les plus récents.</p></li>
+<li><p><strong>Promotions festives et concours</strong> : Participez à nos promotions spéciales et tirages au sort pendant les périodes festives.</p></li>
+</ul>
+<p>👉 Prêt à explorer et à créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="alarme-manuelle">
+<span id="py-pi5-bell"></span><h1>3.1.10 Alarme Manuelle<a class="headerlink" href="pi5_3.1.10_alarm_bell_python.html#alarme-manuelle" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="pi5_3.1.10_alarm_bell_python.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>Dans ce projet, nous allons créer un dispositif d’alarme manuel. Vous pouvez remplacer
+l’interrupteur à bascule par une thermistance ou un capteur photosensible pour réaliser
+une alarme de température ou de lumière.</p>
+</section>
+<section id="composants-necessaires">
+<h2>Composants nécessaires<a class="headerlink" href="pi5_3.1.10_alarm_bell_python.html#composants-necessaires" title="Lien vers cette rubrique"></a></h2>
+<p>Dans ce projet, nous avons besoin des composants suivants.</p>
+<a class="reference internal image-reference" href="../_images/4.1.15_alarm_bell_list.png"><img alt="../_images/4.1.15_alarm_bell_list.png" class="align-center" src="../_images/4.1.15_alarm_bell_list.png" style="width: 800px;" />
+</a>
+</section>
+<section id="schema-du-circuit">
+<h2>Schéma du Circuit<a class="headerlink" href="pi5_3.1.10_alarm_bell_python.html#schema-du-circuit" title="Lien vers cette rubrique"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO22</p></td>
+<td><p>Pin 15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/4.1.15_alarm_bell_schematic.png"><img alt="../_images/4.1.15_alarm_bell_schematic.png" class="align-center" src="../_images/4.1.15_alarm_bell_schematic.png" style="width: 600px;" />
+</a>
+</section>
+<section id="procedure-experimentale">
+<h2>Procédure expérimentale<a class="headerlink" href="pi5_3.1.10_alarm_bell_python.html#procedure-experimentale" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1</strong> : Construisez le circuit.</p>
+<img alt="../_images/4.1.15_alarm_bell_circuit.png" src="../_images/4.1.15_alarm_bell_circuit.png" />
+<p><strong>Étape 2</strong> : Changez de répertoire.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Étape 3</strong> : Exécutez le script.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.10</span><span class="n">_AlarmBell</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Une fois le programme démarré, l’interrupteur basculera à droite et le
+buzzer émettra des sons d’alarme. En même temps, les LED rouge et verte
+clignoteront à une certaine fréquence.</p>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>Si le message d’erreur <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code> s’affiche, veuillez vous référer à <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">Si gpiozero ne fonctionne pas.</span></a></p>
+</div>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vous pouvez <strong>Modifier/Réinitialiser/Copier/Exécuter/Arrêter</strong> le code ci-dessous. Mais avant cela, vous devez accéder au chemin source du code, tel que <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python-pi5</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">LED</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">TonalBuzzer</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="c1"># Initialisation du TonalBuzzer sur la broche GPIO 22</span>
+<span class="n">BeepPin</span> <span class="o">=</span> <span class="n">TonalBuzzer</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+
+<span class="c1"># Initialisation des LEDs sur les broches GPIO 17 et 27</span>
+<span class="n">ALedPin</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">BLedPin</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span>
+
+<span class="c1"># Initialisation du bouton sur la broche GPIO 18</span>
+<span class="n">switchPin</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="c1"># Variable globale pour contrôler l&#39;état du buzzer et des LEDs</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">ledWork</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Control LED blinking pattern based on the flag state.</span>
+<span class="sd">    When flag is set, alternately blink ALedPin and BLedPin.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">flag</span><span class="p">:</span>
+            <span class="c1"># Clignotement alternatif des LEDs</span>
+            <span class="n">ALedPin</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="n">ALedPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+            <span class="n">BLedPin</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="n">BLedPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Éteindre les deux LEDs si flag est désactivé</span>
+            <span class="n">ALedPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+            <span class="n">BLedPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="c1"># Définir la mélodie musicale comme une liste de notes et de leurs durées</span>
+<span class="n">tune</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;C4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;C5&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;C5&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;C4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">buzzerWork</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Play a tune using the buzzer based on the flag state.</span>
+<span class="sd">    The tune is played only when the flag is set.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">note</span><span class="p">,</span> <span class="n">duration</span> <span class="ow">in</span> <span class="n">tune</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">flag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>  <span class="c1"># Afficher la note actuelle dans la console</span>
+            <span class="n">BeepPin</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>  <span class="c1"># Jouer la note actuelle</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>  <span class="c1"># Pause pendant la durée de la note</span>
+        <span class="n">BeepPin</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>  <span class="c1"># Arrêter le buzzer après la mélodie</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Monitor button press to update the flag state.</span>
+<span class="sd">    Sets the flag when the button is pressed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">flag</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">switchPin</span><span class="o">.</span><span class="n">is_pressed</span> <span class="k">else</span> <span class="mi">0</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Initialisation et démarrage des threads pour le contrôle du buzzer et des LEDs</span>
+    <span class="n">tBuzz</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">buzzerWork</span><span class="p">)</span>
+    <span class="n">tBuzz</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">tLed</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">ledWork</span><span class="p">)</span>
+    <span class="n">tLed</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">main</span><span class="p">()</span>
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Arrêter le buzzer et éteindre les LEDs en cas d&#39;interruption du programme</span>
+    <span class="n">BeepPin</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">ALedPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">BLedPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Explication du Code</strong></p>
+<ol class="arabic">
+<li><p>Ce segment comprend l’importation des bibliothèques essentielles pour implémenter des délais et la gestion des threads. Il importe également les classes <cite>LED</cite>, <cite>Button</cite> et <cite>TonalBuzzer</cite> de la bibliothèque <cite>gpiozero</cite>, nécessaires pour contrôler les périphériques GPIO sur un Raspberry Pi.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">LED</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">TonalBuzzer</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+</pre></div>
+</div>
+</li>
+<li><p>Configure un buzzer sur la broche GPIO 22, deux LEDs sur les broches GPIO 17 et 27, et initialise un bouton sur la broche GPIO 18. Un drapeau global est également défini pour gérer l’état du buzzer et des LEDs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialisation du TonalBuzzer sur la broche GPIO 22</span>
+<span class="n">BeepPin</span> <span class="o">=</span> <span class="n">TonalBuzzer</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+
+<span class="c1"># Initialisation des LEDs sur les broches GPIO 17 et 27</span>
+<span class="n">ALedPin</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">BLedPin</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span>
+
+<span class="c1"># Initialisation du bouton sur la broche GPIO 18</span>
+<span class="n">switchPin</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="c1"># Drapeau global pour contrôler l&#39;état du buzzer et des LEDs</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</li>
+<li><p>Cette fonction contrôle le clignotement des LEDs en fonction de l’état du drapeau (<cite>flag</cite>). Si le drapeau est activé (1), les LEDs s’allument et s’éteignent alternativement. Si le drapeau est désactivé (0), les deux LEDs restent éteintes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ledWork</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Control LED blinking pattern based on the flag state.</span>
+<span class="sd">    When flag is set, alternately blink ALedPin and BLedPin.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">flag</span><span class="p">:</span>
+            <span class="c1"># Clignotement alternatif des LEDs</span>
+            <span class="n">ALedPin</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="n">ALedPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+            <span class="n">BLedPin</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="n">BLedPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Éteindre les deux LEDs si le drapeau est désactivé</span>
+            <span class="n">ALedPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+            <span class="n">BLedPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>La mélodie est définie comme une séquence de notes (fréquence) et de durées (secondes).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Définir la mélodie musicale comme une liste de notes et de leurs durées</span>
+<span class="n">tune</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;C4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;C5&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;C5&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;C4&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Joue une mélodie prédéfinie lorsque le drapeau est activé. La mélodie s’arrête si le drapeau est désactivé en cours de lecture.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">buzzerWork</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Play a tune using the buzzer based on the flag state.</span>
+<span class="sd">    The tune is played only when the flag is set.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">note</span><span class="p">,</span> <span class="n">duration</span> <span class="ow">in</span> <span class="n">tune</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">flag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>  <span class="c1"># Affiche la note actuelle dans la console</span>
+            <span class="n">BeepPin</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>  <span class="c1"># Joue la note actuelle</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>  <span class="c1"># Pause pendant la durée de la note</span>
+        <span class="n">BeepPin</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>  <span class="c1"># Arrête le buzzer après la mélodie</span>
+</pre></div>
+</div>
+</li>
+<li><p>Vérifie en continu l’état du bouton pour activer ou désactiver le drapeau.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Monitor button press to update the flag state.</span>
+<span class="sd">    Sets the flag when the button is pressed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">flag</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">switchPin</span><span class="o">.</span><span class="n">is_pressed</span> <span class="k">else</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</li>
+<li><p>Les threads pour les fonctions <cite>buzzerWork</cite> et <cite>ledWork</cite> sont démarrés, leur permettant de s’exécuter simultanément avec la fonction principale.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Initialiser et démarrer les threads pour le contrôle du buzzer et des LEDs</span>
+    <span class="n">tBuzz</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">buzzerWork</span><span class="p">)</span>
+    <span class="n">tBuzz</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">tLed</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">ledWork</span><span class="p">)</span>
+    <span class="n">tLed</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Arrête le buzzer et éteint les LEDs en cas d’interruption du programme, garantissant une sortie propre.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Arrêter le buzzer et éteindre les LEDs en cas d&#39;interruption du programme</span>
+    <span class="n">BeepPin</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">ALedPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">BLedPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="pi5_3.1.9_password_lock_python.html" class="btn btn-neutral float-left" title="3.1.9 Serrure à Code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="pi5_3.1.11_morse_code_generator_python.html" class="btn btn-neutral float-right" title="3.1.11 Générateur de Code Morse" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

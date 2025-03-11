@@ -1,0 +1,178 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres enthousiastes.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des conseils et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Profitez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions spéciales lors des fêtes.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd'hui !
+
+.. _2.1.3_py_pi5:
+
+2.1.3 Interrupteur à bascule
+================================
+
+Introduction
+---------------
+
+Il s'agit d'un interrupteur à bascule à bille avec une petite bille en 
+métal à l'intérieur. Il est utilisé pour détecter les inclinaisons de faible angle.
+
+Composants nécessaires
+---------------------------
+
+Pour ce projet, nous aurons besoin des composants suivants.
+
+.. image:: ../python_pi5/img/2.1.3_tilt_switch_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schéma de circuit
+--------------------
+
+.. image:: ../python_pi5/img/2.1.3_tilt_switch_schematic_1.png
+
+.. image:: ../python_pi5/img/2.1.3_tilt_switch_schematic_2.png
+
+
+Procédure expérimentale
+--------------------------
+
+**Étape 1 :** Montez le circuit.
+
+.. image:: ../python_pi5/img/2.1.3_tilt_switch_circuit.png
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Étape 3 :** Exécutez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.3_Tilt.py
+
+Placez l'interrupteur à la verticale, la LED verte s'allumera. Si vous 
+l'inclinez, "Tilt!" s'affichera sur l'écran et la LED rouge s'allumera. 
+Replacez-le à la verticale, et la LED verte se rallumera.
+
+.. warning::
+
+    En cas d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`. 
+
+**Code**
+
+.. note::
+
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le répertoire source, tel que ``davinci-kit-for-raspberry-pi/python-pi5``. Après modification, vous pouvez exécuter le code pour observer le résultat.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button  # Importation des classes LED et Button
+
+   # Initialisation du détecteur d'inclinaison et des LEDs avec GPIO Zero
+   TiltPin = Button(17, pull_up=False)  # Capteur d'inclinaison connecté à la broche GPIO 17, sans résistance pull-up
+   green_led = LED(27)  # LED verte connectée à la broche GPIO 27
+   red_led = LED(22)   # LED rouge connectée à la broche GPIO 22
+
+   def detect():
+       """
+       Detect the tilt sensor state and control the LEDs.
+       Turns on the red LED and turns off the green LED when tilted.
+       Turns off the red LED and turns on the green LED when not tilted.
+       """
+       if TiltPin.is_pressed:  # Vérifier si le capteur est incliné
+           print('    *************')
+           print('    *   Tilt!   *')
+           print('    *************')
+           red_led.on()   # Allumer la LED rouge
+           green_led.off()  # Éteindre la LED verte
+       else:  # Si le capteur n'est pas incliné
+           red_led.off()  # Éteindre la LED rouge
+           green_led.on()  # Allumer la LED verte
+
+   try:
+       while True:
+           # Vérifier continuellement l'état du capteur d'inclinaison et mettre à jour les LEDs
+           TiltPin.when_pressed = detect
+           TiltPin.when_released = detect
+
+   except KeyboardInterrupt:
+       # Gérer une interruption clavier (Ctrl+C) pour sortir proprement de la boucle
+       pass
+
+
+**Explication du code**
+
+#. Cette ligne définit le script pour être exécuté avec Python 3 et importe les classes ``LED`` et ``Button`` de ``gpiozero`` pour contrôler les périphériques GPIO.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button  # Importation des classes LED et Button
+
+#. Initialise le capteur d'inclinaison connecté à la broche GPIO 17 (avec résistance pull-up désactivée) et deux LEDs connectées aux broches GPIO 27 et 22.
+
+   .. code-block:: python
+
+       # Initialisation du détecteur d'inclinaison et des LEDs avec GPIO Zero
+       TiltPin = Button(17, pull_up=False)  # Capteur d'inclinaison connecté à la broche GPIO 17, sans résistance pull-up
+       green_led = LED(27)  # LED verte connectée à la broche GPIO 27
+       red_led = LED(22)   # LED rouge connectée à la broche GPIO 22
+
+#. Définit la fonction ``detect``, qui vérifie l'état du capteur d'inclinaison. Si incliné, elle allume la LED rouge et éteint la LED verte. Si non incliné, elle fait l'inverse.
+
+   .. code-block:: python
+
+       def detect():
+           """
+           Detect the tilt sensor state and control the LEDs.
+           Turns on the red LED and turns off the green LED when tilted.
+           Turns off the red LED and turns on the green LED when not tilted.
+           """
+           if TiltPin.is_pressed:  # Vérifier si le capteur est incliné
+               print('    *************')
+               print('    *   Tilt!   *')
+               print('    *************')
+               red_led.on()   # Allumer la LED rouge
+               green_led.off()  # Éteindre la LED verte
+           else:  # Si le capteur n'est pas incliné
+               red_led.off()  # Éteindre la LED rouge
+               green_led.on()  # Allumer la LED verte
+
+#. La boucle principale affecte la fonction ``detect`` aux événements ``when_pressed`` et ``when_released`` du capteur. Le bloc ``try-except`` gère une interruption clavier pour une terminaison propre du script.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # Vérifier continuellement l'état du capteur d'inclinaison et mettre à jour les LEDs
+               TiltPin.when_pressed = detect
+               TiltPin.when_released = detect
+
+       except KeyboardInterrupt:
+           # Gérer une interruption clavier (Ctrl+C) pour sortir proprement de la boucle
+           pass
+

@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.5 梟を起こす &mdash; SunFounder davinci-kit-for-raspberry-pi  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=c033477b"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=4dbe4bdc"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/ja/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="1.6 光が流れるLED" href="scratch_1.6_water_lamp.html" />
+    <link rel="prev" title="1.4 兎" href="scratch_1.4_hare.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-ja" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/scratch/scratch_1.5_wake_up_the_owl.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">部品一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO拡張ボード</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">コードをダウンロードする</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Raspberry Pi OSのインストールとセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">For Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html">ライブラリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html#wiringpi">WiringPiをインストールして確認する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 出力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 入力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 拡張</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/play_with_processing.html">Processingで遊ぶ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nodejs/play_with_nodejs.html">Play with Nodejs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_scratch.html">Scratch で遊ぶ</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_quide_on_scratch.html">Scratchに関するクイックガイド</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="scratch_project.html">プロジェクト</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.1_wand.html">1.1 魔法の杖</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.2_colorful_balls.html">1.2 五色の玉</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.3_tumbler.html">1.3 不倒翁</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.4_hare.html">1.4 兎</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="scratch_1.5_wake_up_the_owl.html#">1.5 梟を起こす</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.6_water_lamp.html">1.6 光が流れるLED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.7_doorbell.html">1.7 ドアベル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.8_123_wooden_man.html">1.8 だるまさんがころんだ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.9_inflating_the_balloon.html">1.9 風船を膨らませる</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.10_rotating_fan.html">1.10 回転扇</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python ビデオコース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">付録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">ありがとうございました</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+          <li class="breadcrumb-item"><a href="play_with_scratch.html">Scratch で遊ぶ</a></li>
+          <li class="breadcrumb-item"><a href="scratch_project.html">プロジェクト</a></li>
+      <li class="breadcrumb-item active">1.5 梟を起こす</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/scratch/scratch_1.5_wake_up_the_owl.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>こんにちは、SunFounderのRaspberry Pi &amp; Arduino &amp; ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。</p>
+<p><strong>参加する理由は？</strong></p>
+<ul class="simple">
+<li><p><strong>エキスパートサポート</strong>：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。</p></li>
+<li><p><strong>学び＆共有</strong>：ヒントやチュートリアルを交換してスキルを向上させましょう。</p></li>
+<li><p><strong>独占的なプレビュー</strong>：新製品の発表や先行プレビューに早期アクセスしましょう。</p></li>
+<li><p><strong>特別割引</strong>：最新製品の独占割引をお楽しみください。</p></li>
+<li><p><strong>祭りのプロモーションとギフト</strong>：ギフトや祝日のプロモーションに参加しましょう。</p></li>
+</ul>
+<p>👉 私たちと一緒に探索し、創造する準備はできていますか？[<a href="https://bit.ly/raphaelkit " target="_blank">ここ</a>]をクリックして今すぐ参加しましょう！</p>
+</div>
+<section id="id1">
+<h1>1.5 梟を起こす<a class="headerlink" href="scratch_1.5_wake_up_the_owl.html#id1" title="Link to this heading"></a></h1>
+<p>今日はフクロウを起こすゲームをします。</p>
+<p>誰かがPIRセンサーモジュールに近づくと、フクロウは眠りから目覚めます。</p>
+<p>PIR モジュールには 2 つのポテンショメータがあり、
+1 つは感度を調整するためのもので、もう 1 つは検出距離を調整するためのものです。
+PIR モジュールがうまく機能するためには、両方を完全に反時計回りに回す必要があります。</p>
+<img alt="../_images/1.5_header.png" src="../_images/1.5_header.png" />
+<section id="id2">
+<h2>必要な部品<a class="headerlink" href="scratch_1.5_wake_up_the_owl.html#id2" title="Link to this heading"></a></h2>
+<img alt="../_images/1.5_component.png" src="../_images/1.5_component.png" />
+</section>
+<section id="id3">
+<h2>回路を構築する<a class="headerlink" href="scratch_1.5_wake_up_the_owl.html#id3" title="Link to this heading"></a></h2>
+<img alt="../_images/1.5_fritzing.png" src="../_images/1.5_fritzing.png" />
+</section>
+<section id="id4">
+<h2>コードをロードして、何が起こるかを確認します<a class="headerlink" href="scratch_1.5_wake_up_the_owl.html#id4" title="Link to this heading"></a></h2>
+<p>コードファイル( <code class="docutils literal notranslate"><span class="pre">1.5_wake_up_the_owl.sb3</span></code> ) をScratch3にロードします。</p>
+<p>PIRセンサーモジュールに近づくと、stage areaのフクロウが羽を開いて目を覚ますのがわかります。離れると、フクロウは再び眠りに戻ります。</p>
+</section>
+<section id="sprite">
+<h2>Spriteに関するヒント<a class="headerlink" href="scratch_1.5_wake_up_the_owl.html#sprite" title="Link to this heading"></a></h2>
+<p>Sprite1を選択し、左上隅にある コスチューム をクリックします。
+owl1.png と owl2.png を、[コスチュームのアップロード]ボタンを介して <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/scratch/picture</span></code> パスからアップロードします。
+デフォルトの2つのコスチュームを削除し、スプライトの名前を owl に変更します。</p>
+<img alt="../_images/1.5_pir1.png" src="../_images/1.5_pir1.png" />
+</section>
+<section id="id5">
+<h2>コードに関するヒント<a class="headerlink" href="scratch_1.5_wake_up_the_owl.html#id5" title="Link to this heading"></a></h2>
+<img alt="../_images/1.3_title2.png" src="../_images/1.3_title2.png" />
+<p>緑の旗をクリックすると、GPIO17の初期状態がlowに設定されます。</p>
+<a class="reference internal image-reference" href="../_images/1.5_owl1.png"><img alt="../_images/1.5_owl1.png" src="../_images/1.5_owl1.png" style="width: 400px;" />
+</a>
+<p>pin17が低い（誰も近づいていない）場合は、フクロウのSpriteのcostumeをowl1（sleeping状態）に切り替えます。</p>
+<a class="reference internal image-reference" href="../_images/1.5_owl2.png"><img alt="../_images/1.5_owl2.png" src="../_images/1.5_owl2.png" style="width: 400px;" />
+</a>
+<p>pin17が高い（誰かが近づいている）とき、フクロウのSpriteのcostumeをowl2（wake up状態）に切り替えます。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scratch_1.4_hare.html" class="btn btn-neutral float-left" title="1.4 兎" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scratch_1.6_water_lamp.html" class="btn btn-neutral float-right" title="1.6 光が流れるLED" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez vos problèmes après-vente et surmontez vos défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Obtenez un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions pendant les fêtes.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+1.1.1 LED Clignotante
+========================
+
+Introduction
+--------------
+
+Dans ce projet, nous allons apprendre à créer un effet de LED clignotante par 
+programmation. En fonction de vos paramètres, la LED pourra produire une série 
+de phénomènes intéressants. Alors, lancez-vous !
+
+Composants
+--------------
+
+.. image:: img/blinking_led_list.png
+    :width: 800
+    :align: center
+
+Schéma de câblage
+--------------------
+
+Dans cette expérience, connectez une résistance de 220Ω à l’anode (la broche longue 
+de la LED), puis reliez la résistance au 3,3 V, et connectez la cathode (la broche courte) 
+de la LED au GPIO17 du Raspberry Pi. Par conséquent, pour allumer une LED, nous devons 
+régler le GPIO17 à un niveau bas (0 V). Nous pouvons obtenir cet effet en programmant.
+
+.. image:: img/image48.png
+    :width: 800
+    :align: center
+
+Procédures expérimentales
+-----------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: img/image49.png
+    :width: 800
+    :align: center
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+.. note::
+    Accédez au répertoire du code de cette expérience avec la commande ``cd``.
+
+**Étape 3 :** Exécuter le code
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   sudo node blink.js
+
+.. note::
+    Ici, sudo signifie "superuser do", et node indique que le fichier est exécuté avec Node.js.
+
+Après l'exécution du code, vous verrez la LED clignoter.
+
+**Étape 4 :** Si vous souhaitez modifier le fichier de code blink.js, 
+appuyez sur ``Ctrl + C`` pour arrêter l'exécution du code. Ensuite, 
+tapez la commande suivante pour ouvrir blink.js :
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+   nano blink.js
+
+.. note::
+    nano est un éditeur de texte. Cette commande est utilisée pour ouvrir le 
+    fichier de code blink.js avec cet éditeur.
+
+Appuyez sur ``Ctrl + X`` pour quitter. Si vous avez modifié le code, un message 
+vous demandera si vous souhaitez enregistrer les modifications. Tapez ``Y`` 
+(enregistrer) ou ``N`` (ne pas enregistrer).
+
+Appuyez ensuite sur ``Entrée`` pour quitter. Tapez à nouveau nano blink.js pour 
+observer les effets après modification.
+
+**Code**
+
+Voici le code du programme :
+
+.. code-block:: js
+
+   const Gpio = require('pigpio').Gpio;
+   const led = new Gpio(17,{mode: Gpio.OUTPUT});
+
+   var led_state = 0;
+
+   function blink_led(){
+      led.digitalWrite(led_state);
+      led_state = !led_state;
+   }
+
+   setInterval(blink_led,300);
+
+Vous pouvez également écrire le code sous forme de fonction fléchée, plus spécifique à JavaScript :
+
+.. code-block:: js
+
+   const Gpio = require('pigpio').Gpio;
+   const led = new Gpio(17,{mode: Gpio.OUTPUT});
+
+   var led_state = 0;
+
+   setInterval(() => {
+      led.digitalWrite(led_state);
+      led_state = !led_state;
+   }, 300);
+
+**Explication du code**
+
+.. code-block:: js
+
+   const Gpio = require('pigpio').Gpio;
+
+Importer le constructeur Gpio du package pigpio de cette manière, 
+puis définir une constante ``Gpio`` pour représenter ce constructeur.
+
+Avec ce constructeur, nous pouvons utiliser JavaScript pour contrôler 
+les appareils électroniques. ``pigpio`` peut être utilisé pour implémenter 
+un contrôle rapide des GPIO, PWM, servomoteurs, notifications de changement 
+d’état et gestion des interruptions.
+
+* `pigpio - github <https://github.com/fivdi/pigpio>`_
+
+.. A wrapper for the pigpio C library to enable fast GPIO, PWM, servo control, 
+.. state change notification and interrupt handling with JS on the Raspberry Pi Zero, 
+.. 1, 2, 3 or 4.
+
+.. code-block:: js
+
+   const led = new Gpio(17, {mode: Gpio.OUTPUT});
+
+Le mot-clé ``new`` est utilisé pour construire des objets instanciés de la classe.
+
+Connectez la LED au GPIO17 de la carte d'extension en T, définissez le mode de ``led`` 
+en sortie et assignez-le à la constante ``led`` ; c’est-à-dire que nous construisons un 
+objet GPIO17 ``led``, et son mode est défini comme étant en sortie.
+
+Il existe deux façons de numéroter les broches IO sur le Raspberry Pi : la numérotation 
+BOARD et la numérotation BCM. Dans notre projet, nous utilisons la numérotation BCM. 
+Vous devez définir chaque canal utilisé comme entrée ou sortie.
+
+.. code-block:: js
+
+   function blink_led(){
+      led.digitalWrite(led_state);
+      led_state = !led_state;
+   }
+
+   setInterval(blink_led, 300);
+
+La méthode ``setInterval()`` permet d’appeler des fonctions ou de calculer des expressions à une période spécifiée (en millisecondes).
+Ici, nous changeons l'état de la LED avec une période de 300 ms.
+
+*  `setInerval <https://developer.mozilla.org/en-US/docs/Web/API/setInterval>`_
+
+La méthode ``gpio.digitalWrite(level)`` définit le niveau GPIO à 1 ou 0.
+
+.. code-block:: js
+
+
+   var led_state = 0;
+
+   setInterval(() => {
+      led.digitalWrite(led_state);
+      led_state = !led_state;
+   }, 300);
+
+Réécrivez le code en tant que fonction fléchée pour le rendre plus concis.
+
+* `Arrow Functions <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions>`_
+
+Image du résultat
+--------------------
+
+.. image:: img/image54.jpeg
+    :width: 800
+    :align: center

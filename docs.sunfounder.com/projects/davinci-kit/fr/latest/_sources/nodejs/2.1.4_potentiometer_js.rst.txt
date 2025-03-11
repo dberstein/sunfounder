@@ -1,0 +1,147 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, d’Arduino et d’ESP32 avec d’autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Assistance d'experts** : Résolvez les problèmes après-vente et surmontez les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprenez et Partagez** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d’un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+.. _2.1.4_pot_js:
+
+2.1.4 Potentionmeter
+=======================
+
+Introduction
+---------------
+
+La fonction ADC (Convertisseur Analogique-Numérique) permet de convertir des signaux 
+analogiques en signaux numériques. Dans cette expérience, nous utilisons l’ADC0834 pour 
+implémenter cette fonctionnalité. Ici, nous effectuons ce processus à l’aide d’un 
+potentiomètre. Le potentiomètre modifie la quantité physique, c’est-à-dire la tension, 
+qui est convertie par la fonction ADC.
+
+Composants
+-------------
+
+.. image:: ../img/list_2.1.4_potentiometer.png
+
+
+
+Schéma de câblage
+--------------------
+
+.. image:: ../img/image311.png
+
+
+.. image:: ../img/image312.png
+
+
+Procédures expérimentales
+------------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image180.png
+
+
+.. note::
+    Veuillez positionner la puce en vous référant à la position correspondante indiquée dans l'image.
+    Notez que les encoches de la puce doivent être orientées vers la gauche lors de son placement.
+
+**Étape 2 :** Accéder au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Étape 3 :** Exécuter le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node potentionmeter.js
+
+Après l'exécution du code, tournez le bouton du potentiomètre : l'intensité de la 
+LED changera en conséquence.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+    const adc = new ADC0834(17, 18, 27);
+    const led = new Gpio(22, {mode: Gpio.OUTPUT});
+
+    setInterval(() => {
+        adc.read(0).then((value) => {
+            console.log(`Current analogVal: ${value}\n`);
+            led.pwmWrite(value);
+        }, (error)=>{
+            console.log("Error: " + error);
+        });
+    }, 100);
+
+**Explication du code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+Importer le module ``pigpio``.
+
+.. code-block:: js
+
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+Importer un constructeur ``ADC0834`` pour utiliser le module adc0834.
+
+.. code-block:: js
+
+   const adc = new ADC0834(17, 18, 27);
+
+
+Instancier un objet ADC0834, les trois paramètres correspondent à ses trois broches.
+
+Il s'agit d'un objet ``Promise``. Vous pouvez approfondir ce concept via le lien suivant :
+
+* `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+
+
+.. code-block:: js
+
+    setInterval(() => {
+        adc.read(0).then((value) => {
+            console.log(`Current analogVal: ${value}\n`);
+            led.pwmWrite(value);
+        }, (error)=>{
+            console.log("Error: " + error);
+        });
+    }, 100);
+
+La valeur du canal 0 de l’ADC0834 (le canal 0 est connecté au potentiomètre) est lue toutes les 100 ms, et la valeur sera stockée dans ``value``.
+
+Affichez ``value`` et utilisez-le pour contrôler la luminosité de la LED. Vous verrez alors la luminosité de la LED varier en fonction de la position du potentiomètre.
+
+
+
+
+
+Image du résultat
+--------------------
+
+.. image:: ../img/image181.jpeg

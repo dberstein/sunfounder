@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="it" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.2 LED RGB &mdash; SunFounder davinci-kit-for-raspberry-pi  documentazione</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=3fd72285"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=0173e136"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/it/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Indice" href="genindex.html" />
+    <link rel="search" title="Cerca" href="search.html" />
+    <link rel="next" title="1.1.3 Barra LED" href="1.1.3_led_bar_graph.html" />
+    <link rel="prev" title="1.1.1 LED Lampeggiante" href="1.1.1_blinking_led.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-it" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/1.1.2_rgb_led.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Cerca documenti" aria-label="Cerca documenti" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu di navigazione">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Elenco dei Componenti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">Scheda di Estensione GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Scarica il Codice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Installazione e configurazione di Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Per Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Librerie</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="1_output.html">1 Output</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 LED Lampeggiante</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="1.1.2_rgb_led.html#">1.1.2 LED RGB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="1.1.2_rgb_led.html#introduzione">Introduzione</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.2_rgb_led.html#componenti">Componenti</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.2_rgb_led.html#principio">Principio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.2_rgb_led.html#schema-del-circuito">Schema del circuito</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.2_rgb_led.html#procedura-sperimentale">Procedura Sperimentale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.2_rgb_led.html#immagine-del-fenomeno">Immagine del Fenomeno</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 Barra LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 Display a 7 segmenti</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 Display a 7 segmenti a 4 cifre</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 Matrice di LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 LCD1602 I2C</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 Buzzer Attivo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 Buzzer Passivo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.1_motor.html">1.3.1 Motore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.2_servo.html">1.3.2 Servo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 Motore Passo-passo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.4_relay.html">1.3.4 Relè</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2_input.html">2 Ingresso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_extension.html">3 Estensioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Gioca con Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Gioca con Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Gioca con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Corso Video Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Grazie</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu navigazione dispositivi mobili" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Naviga tra le pagine">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a></li>
+          <li class="breadcrumb-item"><a href="1_output.html">1 Output</a></li>
+      <li class="breadcrumb-item active">1.1.2 LED RGB</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/1.1.2_rgb_led.rst.txt" rel="nofollow"> Visualizza sorgente pagina</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Ciao, benvenuto nella SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.</p>
+<p><strong>Perché Unirti a Noi?</strong></p>
+<ul class="simple">
+<li><p><strong>Supporto Esperto</strong>: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.</p></li>
+<li><p><strong>Impara &amp; Condividi</strong>: Scambia suggerimenti e tutorial per migliorare le tue abilità.</p></li>
+<li><p><strong>Anteprime Esclusive</strong>: Accedi in anteprima agli annunci dei nuovi prodotti.</p></li>
+<li><p><strong>Sconti Speciali</strong>: Approfitta di sconti esclusivi sui nostri ultimi prodotti.</p></li>
+<li><p><strong>Promozioni e Giveaway Festivi</strong>: Partecipa ai giveaway e alle promozioni delle festività.</p></li>
+</ul>
+<p>👉 Pronto a esplorare e creare con noi? Clicca [<a href="https://bit.ly/raphaelkit " target="_blank">Qui</a>] e unisciti subito!</p>
+</div>
+<section id="led-rgb">
+<h1>1.1.2 LED RGB<a class="headerlink" href="1.1.2_rgb_led.html#led-rgb" title="Link to this heading"></a></h1>
+<section id="introduzione">
+<h2>Introduzione<a class="headerlink" href="1.1.2_rgb_led.html#introduzione" title="Link to this heading"></a></h2>
+<p>In questa lezione impareremo a utilizzare un LED RGB per creare una serie di
+colori lampeggianti.</p>
+</section>
+<section id="componenti">
+<h2>Componenti<a class="headerlink" href="1.1.2_rgb_led.html#componenti" title="Link to this heading"></a></h2>
+<img alt="_images/list_rgb_led.png" class="align-center" src="_images/list_rgb_led.png" />
+</section>
+<section id="principio">
+<h2>Principio<a class="headerlink" href="1.1.2_rgb_led.html#principio" title="Link to this heading"></a></h2>
+<p><strong>PWM</strong></p>
+<p>La modulazione della larghezza dell’impulso, o PWM, è una tecnica per
+ottenere risultati analogici con mezzi digitali. Il controllo digitale
+crea un’onda quadra, un segnale che passa da acceso a spento. Variando
+la percentuale di tempo in cui il segnale è attivo rispetto a quello in
+cui è inattivo, si simula una tensione tra 0 e 5 Volt. Questo permette,
+ad esempio, di controllare la luminosità di un LED.</p>
+<p><strong>Ciclo di lavoro</strong></p>
+<p>Il ciclo di lavoro indica la percentuale di tempo in cui un segnale è attivo
+in un dato periodo. La formula per calcolarlo è:</p>
+<a class="reference internal image-reference" href="_images/image56.png"><img alt="_images/image56.png" class="align-center" src="_images/image56.png" style="width: 1.16667in; height: 0.36458in;" />
+</a>
+<p>Dove <strong>D</strong> è il ciclo di lavoro, <strong>T</strong> è il tempo in cui il segnale è attivo,
+e <strong>P</strong> è il periodo totale del segnale. Un ciclo del 60% significa che il
+segnale è acceso il 60% del tempo e spento il 40%.</p>
+<a class="reference internal image-reference" href="_images/image57.jpeg"><img alt="_images/image57.jpeg" class="align-center" src="_images/image57.jpeg" style="width: 4.325in; height: 5.49167in;" />
+</a>
+<p><strong>LED RGB</strong></p>
+<a class="reference internal image-reference" href="_images/rgb_led_sch.png"><img alt="_images/rgb_led_sch.png" class="align-center" src="_images/rgb_led_sch.png" style="width: 500px;" />
+</a>
+<p>Le tre componenti di base dell’RGB LED (rosso, verde, blu) possono combinarsi
+per creare vari colori in base alla luminosità di ogni colore. La luminosità
+può essere controllata con il PWM. Raspberry Pi ha un solo canale per il PWM
+hardware, ma per controllare un LED RGB sono necessari tre canali. La libreria
+softPwm permette di simulare PWM per ottenere più uscite PWM in grado di
+controllare i LED RGB e creare vari colori.</p>
+</section>
+<section id="schema-del-circuito">
+<h2>Schema del circuito<a class="headerlink" href="1.1.2_rgb_led.html#schema-del-circuito" title="Link to this heading"></a></h2>
+<p>Collega i pin R, G e B tramite un resistore limitatore di corrente ai
+pin GPIO17, GPIO18 e GPIO27. Il pin più lungo del LED (GND) si collega
+al GND del Raspberry Pi. Variando i valori PWM sui tre pin, il LED RGB
+visualizzerà diversi colori.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/rgb_led_schematic.png" src="_images/rgb_led_schematic.png" />
+</section>
+<section id="procedura-sperimentale">
+<h2>Procedura Sperimentale<a class="headerlink" href="1.1.2_rgb_led.html#procedura-sperimentale" title="Link to this heading"></a></h2>
+<p><strong>Passo 1:</strong> Montare il circuito.</p>
+<a class="reference internal image-reference" href="_images/image61.png"><img alt="_images/image61.png" src="_images/image61.png" style="width: 6.59097in; height: 4.29722in;" />
+</a>
+<section id="per-utenti-del-linguaggio-c">
+<h3>Per Utenti del Linguaggio C<a class="headerlink" href="1.1.2_rgb_led.html#per-utenti-del-linguaggio-c" title="Link to this heading"></a></h3>
+<p><strong>Passo 2:</strong> Vai alla cartella del codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.1.2</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Passo 3:</strong> Compila il codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.1.2</span><span class="n">_rgbLed</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Quando esegui il comando «gcc», se non si specifica «-o», il file eseguibile generato avrà il nome predefinito «a.out».</p>
+</div>
+<p><strong>Passo 4:</strong> Esegui il file eseguibile.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Dopo l’esecuzione del codice, il LED RGB mostrerà una sequenza di colori:
+rosso, verde, blu, giallo, rosa e ciano.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Se il programma non funziona o compare l’errore «wiringPi.h: No such file or directory», consulta la sezione <a class="reference internal" href="faq.html#il-codice-c-non-funziona"><span class="std std-ref">Il codice C non funziona?</span></a>.</p>
+</div>
+<p><strong>Codice</strong>
+.. code-block:: c</p>
+<blockquote>
+<div><p>#include &lt;wiringPi.h&gt;
+#include &lt;softPwm.h&gt;
+#include &lt;stdio.h&gt;
+#define uchar unsigned char
+#define LedPinRed    0
+#define LedPinGreen  1
+#define LedPinBlue   2</p>
+<dl class="simple">
+<dt>void ledInit(void){</dt><dd><p>softPwmCreate(LedPinRed,  0, 100);
+softPwmCreate(LedPinGreen,0, 100);
+softPwmCreate(LedPinBlue, 0, 100);</p>
+</dd>
+</dl>
+<p>}</p>
+<dl class="simple">
+<dt>void ledColorSet(uchar r_val, uchar g_val, uchar b_val){</dt><dd><p>softPwmWrite(LedPinRed,   r_val);
+softPwmWrite(LedPinGreen, g_val);
+softPwmWrite(LedPinBlue,  b_val);</p>
+</dd>
+</dl>
+<p>}</p>
+<p>int main(void){</p>
+<blockquote>
+<div><dl class="simple">
+<dt>if(wiringPiSetup() == -1){ //when initialize wiring failed, printf messageto screen</dt><dd><p>printf(«setup wiringPi failed !»);
+return 1;</p>
+</dd>
+</dl>
+<p>}</p>
+<p>ledInit();
+while(1){</p>
+<blockquote>
+<div><p>printf(«Redn»);
+ledColorSet(0xff,0x00,0x00);   //red
+delay(500);
+printf(«Greenn»);
+ledColorSet(0x00,0xff,0x00);   //green
+delay(500);
+printf(«Bluen»);
+ledColorSet(0x00,0x00,0xff);   //blue
+delay(500);
+printf(«Yellown»);
+ledColorSet(0xff,0xff,0x00);   //yellow
+delay(500);
+printf(«Purplen»);
+ledColorSet(0xff,0x00,0xff);   //purple
+delay(500);
+printf(«Cyann»);
+ledColorSet(0xc0,0xff,0x3e);   //cyan
+delay(500);</p>
+</div></blockquote>
+<p>}
+return 0;</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p><strong>Spiegazione del Codice</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;softPwm.h&gt;</span>
+</pre></div>
+</div>
+<p>Libreria utilizzata per realizzare la funzione PWM tramite software.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">ledInit</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+<span class="w">    </span><span class="n">softPwmCreate</span><span class="p">(</span><span class="n">LedPinRed</span><span class="p">,</span><span class="w">  </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="n">softPwmCreate</span><span class="p">(</span><span class="n">LedPinGreen</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="n">softPwmCreate</span><span class="p">(</span><span class="n">LedPinBlue</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Questa funzione serve a creare un pin PWM con il software, impostando il
+periodo tra 0x100us e 100x100us.</p>
+<p>Il prototipo della funzione softPwmCreate(LedPinRed, 0, 100) è il seguente:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">softPwmCreate</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pin</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">initialValue</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">pwmRange</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Parametro pin:</strong> Qualsiasi pin GPIO del Raspberry Pi può essere impostato come pin PWM.</p></li>
+<li><p><strong>Parametro initialValue:</strong> La larghezza iniziale dell’impulso è initialValue moltiplicato per 100us.</p></li>
+<li><p><strong>Parametro pwmRange:</strong> Il periodo del PWM è pwmRange moltiplicato per 100us.</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">ledColorSet</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">r_val</span><span class="p">,</span><span class="w"> </span><span class="n">uchar</span><span class="w"> </span><span class="n">g_val</span><span class="p">,</span><span class="w"> </span><span class="n">uchar</span><span class="w"> </span><span class="n">b_val</span><span class="p">){</span>
+<span class="w">    </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">LedPinRed</span><span class="p">,</span><span class="w">   </span><span class="n">r_val</span><span class="p">);</span>
+<span class="w">    </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">LedPinGreen</span><span class="p">,</span><span class="w"> </span><span class="n">g_val</span><span class="p">);</span>
+<span class="w">    </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">LedPinBlue</span><span class="p">,</span><span class="w">  </span><span class="n">b_val</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Questa funzione imposta i colori del LED RGB. Il parametro <strong>r_val</strong>
+rappresenta la luminosità del LED rosso, <strong>g_val</strong> quella del verde e
+<strong>b_val</strong> quella del blu.</p>
+<p>Il prototipo della funzione softPwmWrite(LedPinBlue, b_val) è il seguente:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">softPwmWrite</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pin</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Parametro pin:</strong> Qualsiasi pin GPIO del Raspberry Pi può essere impostato come pin PWM.</p></li>
+<li><p><strong>Parametro value:</strong> La larghezza dell’impulso del PWM è pari a value moltiplicato per 100us. Nota che il valore deve essere inferiore a pwmRange definito in precedenza; se supera pwmRange, value sarà impostato su pwmRange.</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ledColorSet</span><span class="p">(</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Richiama la funzione definita sopra. Imposta LedPinRed su 0xff e LedPinGreen
+e LedPinBlue su 0x00. Solo il LED rosso si accende. Per accendere i LED di
+altri colori, basta modificare i parametri.</p>
+</section>
+<section id="per-gli-utenti-del-linguaggio-python">
+<h3>Per gli utenti del linguaggio Python<a class="headerlink" href="1.1.2_rgb_led.html#per-gli-utenti-del-linguaggio-python" title="Link to this heading"></a></h3>
+<p><strong>Passaggio 2:</strong> Apri il file di codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<p><strong>Passaggio 3:</strong> Esegui.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.1.2</span><span class="n">_rgbLed</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Dopo l’esecuzione del codice, vedrai che il LED RGB visualizza i colori
+rosso, verde, blu, giallo, rosa e ciano.</p>
+<p><strong>Codice</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puoi <strong>Modificare/Reimpostare/Copiare/Eseguire/Interrompere</strong> il codice qui sotto. Prima di farlo, assicurati di trovarti nel percorso del codice sorgente, ad esempio <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Imposta una tabella colori in esadecimale</span>
+<span class="n">COLOR</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0xFF0000</span><span class="p">,</span> <span class="mh">0x00FF00</span><span class="p">,</span> <span class="mh">0x0000FF</span><span class="p">,</span> <span class="mh">0xFFFF00</span><span class="p">,</span> <span class="mh">0xFF00FF</span><span class="p">,</span> <span class="mh">0x00FFFF</span><span class="p">]</span>
+<span class="c1"># Assegna i canali dei pin tramite un dizionario</span>
+<span class="n">pins</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Red&#39;</span><span class="p">:</span><span class="mi">17</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;Blue&#39;</span><span class="p">:</span><span class="mi">27</span><span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">p_R</span><span class="p">,</span> <span class="n">p_G</span><span class="p">,</span> <span class="n">p_B</span>
+    <span class="c1"># Configura i pin GPIO in modalità BCM</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+    <span class="c1"># Imposta tutti i LedPin in modalità output e livello iniziale alto (3.3V)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pins</span><span class="p">:</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">pins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+
+    <span class="c1"># Imposta tutti i LED come canali PWM con frequenza a 2KHz</span>
+    <span class="n">p_R</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">pins</span><span class="p">[</span><span class="s1">&#39;Red&#39;</span><span class="p">],</span> <span class="mi">2000</span><span class="p">)</span>
+    <span class="n">p_G</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">pins</span><span class="p">[</span><span class="s1">&#39;Green&#39;</span><span class="p">],</span> <span class="mi">2000</span><span class="p">)</span>
+    <span class="n">p_B</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">pins</span><span class="p">[</span><span class="s1">&#39;Blue&#39;</span><span class="p">],</span> <span class="mi">2000</span><span class="p">)</span>
+
+    <span class="c1"># Inizia con valore 0 su tutti i LED</span>
+    <span class="n">p_R</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">p_G</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">p_B</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Definisce una funzione MAP per mappare i valori, da 0~255 a 0~100</span>
+<span class="k">def</span> <span class="nf">MAP</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">in_min</span><span class="p">,</span> <span class="n">in_max</span><span class="p">,</span> <span class="n">out_min</span><span class="p">,</span> <span class="n">out_max</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">out_max</span> <span class="o">-</span> <span class="n">out_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">in_max</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">out_min</span>
+
+<span class="c1"># Definisce una funzione per impostare i colori</span>
+<span class="c1"># Il colore in ingresso deve essere esadecimale</span>
+<span class="c1"># con valore rosso, blu, verde.</span>
+<span class="k">def</span> <span class="nf">setColor</span><span class="p">(</span><span class="n">color</span><span class="p">):</span>
+    <span class="c1"># Configura la luminosità dei tre LED in base al colore fornito</span>
+    <span class="n">R_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">color</span> <span class="o">&amp;</span> <span class="mh">0xFF0000</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span>
+    <span class="n">G_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">color</span> <span class="o">&amp;</span> <span class="mh">0x00FF00</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span>
+    <span class="n">B_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">color</span> <span class="o">&amp;</span> <span class="mh">0x0000FF</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span>
+    <span class="c1"># Assegna le prime due cifre esadecimali a R, le centrali a G e le ultime due a B.</span>
+
+    <span class="c1"># Mappa il valore del colore da 0~255 a 0~100</span>
+    <span class="n">R_val</span> <span class="o">=</span> <span class="n">MAP</span><span class="p">(</span><span class="n">R_val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">G_val</span> <span class="o">=</span> <span class="n">MAP</span><span class="p">(</span><span class="n">G_val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">B_val</span> <span class="o">=</span> <span class="n">MAP</span><span class="p">(</span><span class="n">B_val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+    <span class="c1"># Cambia i colori</span>
+    <span class="n">p_R</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">R_val</span><span class="p">)</span>
+    <span class="n">p_G</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">G_val</span><span class="p">)</span>
+    <span class="n">p_B</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">B_val</span><span class="p">)</span>
+
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;color_msg: R_val = </span><span class="si">%s</span><span class="s2">,  G_val = </span><span class="si">%s</span><span class="s2">,     B_val = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">R_val</span><span class="p">,</span> <span class="n">G_val</span><span class="p">,</span> <span class="n">B_val</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">COLOR</span><span class="p">:</span>  <span class="c1"># Assegna ogni colore della lista COLOR e cambia il colore del LED RGB tramite setColor()</span>
+            <span class="n">setColor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>  <span class="c1"># Cambia il colore del LED RGB</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># Imposta un ritardo di 0.5s dopo ogni cambio colore. Modifica questo parametro per regolare la velocità di cambio colore.</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="c1"># Ferma tutti i canali PWM</span>
+    <span class="n">p_R</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">p_G</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">p_B</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="c1"># Libera le risorse</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="c1"># Se si esegue questo script direttamente:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">main</span><span class="p">()</span>
+    <span class="c1"># Quando si preme &#39;Ctrl+C&#39;, viene eseguita la funzione</span>
+    <span class="c1"># destroy().</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Spiegazione del Codice</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p_R</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">pins</span><span class="p">[</span><span class="s1">&#39;Red&#39;</span><span class="p">],</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">p_G</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">pins</span><span class="p">[</span><span class="s1">&#39;Green&#39;</span><span class="p">],</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">p_B</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">pins</span><span class="p">[</span><span class="s1">&#39;Blue&#39;</span><span class="p">],</span> <span class="mi">2000</span><span class="p">)</span>
+
+<span class="n">p_R</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p_G</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p_B</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Chiama la funzione GPIO.PWM() per definire i pin Red, Green e Blue come
+pin PWM e imposta la frequenza di ciascuno a 2000Hz, quindi utilizza la
+funzione start() per inizializzare il duty cycle a zero.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">MAP</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">in_min</span><span class="p">,</span> <span class="n">in_max</span><span class="p">,</span> <span class="n">out_min</span><span class="p">,</span> <span class="n">out_max</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">out_max</span> <span class="o">-</span> <span class="n">out_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">in_max</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">out_min</span>
+</pre></div>
+</div>
+<p>Definisci una funzione MAP per mappare i valori. Ad esempio, x=50, in_min=0,
+in_max=255, out_min=0, out_max=100. Dopo la mappatura della funzione, restituirà
+(50-0) * (100-0)/(255-0) + 0 = 19.6, che significa che 50 nel range 0-255
+equivale a 19.6 nel range 0-100.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setColor</span><span class="p">(</span><span class="n">color</span><span class="p">):</span>
+    <span class="n">R_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">color</span> <span class="o">&amp;</span> <span class="mh">0xFF0000</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span>
+    <span class="n">G_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">color</span> <span class="o">&amp;</span> <span class="mh">0x00FF00</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span>
+    <span class="n">B_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">color</span> <span class="o">&amp;</span> <span class="mh">0x0000FF</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Configura la luminosità dei tre LED con il valore colore in ingresso:
+assegna le prime due cifre dell’esadecimale a R_val, le due centrali
+a G_val e le ultime due a B_val. Ad esempio, se color=0xFF00FF,
+R_val=（0xFF00FF &amp; 0xFF0000）&gt;&gt; 16 = 0xFF, G_val = 0x00, B_val=0xFF.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">R_val</span> <span class="o">=</span> <span class="n">MAP</span><span class="p">(</span><span class="n">R_val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">G_val</span> <span class="o">=</span> <span class="n">MAP</span><span class="p">(</span><span class="n">G_val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">B_val</span> <span class="o">=</span> <span class="n">MAP</span><span class="p">(</span><span class="n">B_val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Usa la funzione MAP per mappare i valori R, G e B da 0-255 al range del
+duty cycle PWM 0-100.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p_R</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">R_val</span><span class="p">)</span>
+<span class="n">p_G</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">G_val</span><span class="p">)</span>
+<span class="n">p_B</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">B_val</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Assegna il valore di duty cycle mappato al rispettivo canale PWM per regolare
+la luminosità.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">COLOR</span><span class="p">:</span>
+    <span class="n">setColor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Assegna ogni elemento della lista COLOR al valore color e cambia il colore del LED RGB utilizzando la funzione setColor().</p>
+</section>
+</section>
+<section id="immagine-del-fenomeno">
+<h2>Immagine del Fenomeno<a class="headerlink" href="1.1.2_rgb_led.html#immagine-del-fenomeno" title="Link to this heading"></a></h2>
+<img alt="_images/image62.jpeg" src="_images/image62.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Piè di pagina">
+        <a href="1.1.1_blinking_led.html" class="btn btn-neutral float-left" title="1.1.1 LED Lampeggiante" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Precedente</a>
+        <a href="1.1.3_led_bar_graph.html" class="btn btn-neutral float-right" title="1.1.3 Barra LED" accesskey="n" rel="next">Prossimo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, SunFounder.</p>
+  </div>
+
+  Realizzato con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornito da <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,667 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.5 4-stellige 7-Segment-Anzeige &mdash; SunFounder davinci-kit-for-raspberry-pi  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=245627df"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=70a09b52"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/de/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="1.1.6 LED-Punktmatrix" href="1.1.6_led_dot_matrix.html" />
+    <link rel="prev" title="1.1.4 7-Segment-Anzeige" href="1.1.4_7-segment_display.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-de" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/1.1.5_4-Digit_7-segment_display.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Komponentenliste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">GPIO-Erweiterungskarte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Laden Sie die Kode herunter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/preparation.html">Installation und Einrichtung des Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Für Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Bibliotheken</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="1_output.html">1 Ausgabe</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 Blinkende LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 RGB LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 LED-Balkendiagramm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 7-Segment-Anzeige</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="1.1.5_4-Digit_7-segment_display.html#">1.1.5 4-stellige 7-Segment-Anzeige</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html#einfuhrung">Einführung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html#komponenten">Komponenten</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html#prinzip">Prinzip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html#schematische-darstellung">Schematische Darstellung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html#experimentelle-verfahren">Experimentelle Verfahren</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html#phanomen-bild">Phänomen Bild</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 LED-Punktmatrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 Aktiver Summer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 Passiver Summer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.1_motor.html">1.3.1 Motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.2_servo.html">1.3.2 Servo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 Schrittmotor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.4_relay.html">1.3.4 Relais</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2_input.html">2 Eingabe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_extension.html">3 Erweiterung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Spielen Sie mit der Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Spiel mit Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Spielen mit Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Python Videokurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Thank You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a></li>
+          <li class="breadcrumb-item"><a href="1_output.html">1 Ausgabe</a></li>
+      <li class="breadcrumb-item active">1.1.5 4-stellige 7-Segment-Anzeige</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/1.1.5_4-Digit_7-segment_display.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Hallo und willkommen in der SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.</p>
+<p><strong>Warum beitreten?</strong></p>
+<ul class="simple">
+<li><p><strong>Expertenunterstützung</strong>: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.</p></li>
+<li><p><strong>Lernen &amp; Teilen</strong>: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.</p></li>
+<li><p><strong>Exklusive Vorschauen</strong>: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.</p></li>
+<li><p><strong>Spezialrabatte</strong>: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.</p></li>
+<li><p><strong>Festliche Aktionen und Gewinnspiele</strong>: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.</p></li>
+</ul>
+<p>👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [<a href="https://bit.ly/raphaelkit " target="_blank">hier</a>] und treten Sie heute bei!</p>
+</div>
+<section id="stellige-7-segment-anzeige">
+<span id="py-4-sig"></span><h1>1.1.5 4-stellige 7-Segment-Anzeige<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#stellige-7-segment-anzeige" title="Link to this heading"></a></h1>
+<section id="einfuhrung">
+<h2>Einführung<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#einfuhrung" title="Link to this heading"></a></h2>
+<p>Folgen Sie mir als Nächstes, um zu versuchen, die 4-stellige 7-Segment-Anzeige zu steuern.</p>
+</section>
+<section id="komponenten">
+<h2>Komponenten<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#komponenten" title="Link to this heading"></a></h2>
+<img alt="_images/list_4_digit.png" src="_images/list_4_digit.png" />
+</section>
+<section id="prinzip">
+<h2>Prinzip<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#prinzip" title="Link to this heading"></a></h2>
+<p><strong>4-stellige 7-Segment-Anzeige</strong></p>
+<p>Die 4-stellige 7-Segment-Anzeige besteht aus vier 7-Segment-Anzeigen, die zusammenarbeiten.</p>
+<img alt="_images/4-digit-sche.png" src="_images/4-digit-sche.png" />
+<p>Das 4-Digtal-7-Segment-Display arbeitet unabhängig.
+Es verwendet das Prinzip der menschlichen visuellen Persistenz,
+um die Zeichen jedes 7-Segments schnell in einer Schleife anzuzeigen und fortlaufende Zeichenfolgen zu bilden.</p>
+<p>Wenn beispielsweise <em>1234</em> auf dem Display angezeigt wird,
+wird <em>1</em> auf dem ersten 7-Segment angezeigt und <em>234</em> wird nicht angezeigt.
+Nach einer gewissen Zeit zeigt das zweite 7-Segment <em>2</em> , das 1. 3. 4. des 7-Segments zeigt nicht usw.
+Die vier Digitalanzeigen werden nacheinander angezeigt. Dieser Vorgang ist sehr kurz (normalerweise 5 ms),
+und aufgrund des optischen Nachleuchteffekts und des Prinzips der visuellen Rückstände können wir vier Zeichen gleichzeitig sehen.</p>
+<img alt="_images/image78.png" src="_images/image78.png" />
+<p><strong>Koden anzeigen</strong></p>
+<p>Um Ihnen zu zeigen, wie 7-Segment-Anzeigen (Gemeisame Anode) Nummer anzeigen,
+haben wir die folgende Tabelle gezeichnet.
+Nummer sind die Nummer 0-F, die auf der 7-Segment-Anzeige angezeigt werden. (DP) GFEDCBA bezieht sich auf die entsprechende LED,
+die auf 0 oder 1 gesetzt ist. Beispielsweise bedeutet 11000000, dass DP und G auf 1 gesetzt sind, während andere auf 0 gesetzt sind.
+Daher wird die Nummer 0 auf dem 7-Segment-Display angezeigt, während der HEX-Kode der Hexadezimalzahl entspricht.</p>
+<img alt="_images/common_anode.png" src="_images/common_anode.png" />
+</section>
+<section id="schematische-darstellung">
+<h2>Schematische Darstellung<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#schematische-darstellung" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Karte Name</p></td>
+<td><p>physisch</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO22</p></td>
+<td><p>Pin 15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPIMOSI</p></td>
+<td><p>Pin 19</p></td>
+<td><p>12</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO23</p></td>
+<td><p>Pin 16</p></td>
+<td><p>4</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO24</p></td>
+<td><p>Pin 18</p></td>
+<td><p>5</p></td>
+<td><p>24</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/schmatic_4_digit.png" src="_images/schmatic_4_digit.png" />
+</section>
+<section id="experimentelle-verfahren">
+<h2>Experimentelle Verfahren<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#experimentelle-verfahren" title="Link to this heading"></a></h2>
+<p>Schritt 1: Bauen Sie die Schaltung auf.</p>
+<a class="reference internal image-reference" href="_images/image80.png"><img alt="_images/image80.png" src="_images/image80.png" style="width: 800px;" />
+</a>
+<section id="fur-benutzer-in-c-sprache">
+<h3>Für Benutzer in C-Sprache<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#fur-benutzer-in-c-sprache" title="Link to this heading"></a></h3>
+<p>Schritt 2: Gehen Sie zum Ordner des Codes.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.1.5</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Schritt 3: Kompilieren Sie den Code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.1.5_4</span><span class="o">-</span><span class="n">Digit</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p>Schritt 4: Führen Sie die ausführbare Datei aus.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Nachdem der Code ausgeführt wurde, nimmt das Programm eine Zählung vor, die um 1 pro Sekunde erhöht wird, und die 4-stellige 7-Segment-Anzeige zeigt die Zählung an.</p>
+<p><strong>Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringShift.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+
+<span class="cp">#define SDI 5</span>
+<span class="cp">#define RCLK 4</span>
+<span class="cp">#define SRCLK 1</span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">placePin</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">number</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0xc0</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf9</span><span class="p">,</span><span class="w"> </span><span class="mh">0xa4</span><span class="p">,</span><span class="w"> </span><span class="mh">0xb0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x99</span><span class="p">,</span><span class="w"> </span><span class="mh">0x92</span><span class="p">,</span><span class="w"> </span><span class="mh">0x82</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf8</span><span class="p">,</span><span class="w"> </span><span class="mh">0x80</span><span class="p">,</span><span class="w"> </span><span class="mh">0x90</span><span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">pickDigit</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">digit</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">digit</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">hc595_shift</span><span class="p">(</span><span class="kt">int8_t</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="mh">0x80</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="p">));</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">clearDisplay</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">100</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">timer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">timer1</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timer1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SIGALRM</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="n">alarm</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">pinMode</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGALRM</span><span class="p">,</span><span class="w"> </span><span class="n">timer</span><span class="p">);</span>
+<span class="w">    </span><span class="n">alarm</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">loop</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Code Erklärung</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">placePin</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>Diese vier Pins steuern die gemeinsamen Anodenpins der vierstelligen 7-Segment-Anzeigen.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">number</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0xc0</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf9</span><span class="p">,</span><span class="w"> </span><span class="mh">0xa4</span><span class="p">,</span><span class="w"> </span><span class="mh">0xb0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x99</span><span class="p">,</span><span class="w"> </span><span class="mh">0x92</span><span class="p">,</span><span class="w"> </span><span class="mh">0x82</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf8</span><span class="p">,</span><span class="w"> </span><span class="mh">0x80</span><span class="p">,</span><span class="w"> </span><span class="mh">0x90</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>Ein Segmentkode-Array von 0 bis 9 in hexadezimaler Darstellung (gemeinsame Anode).</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">pickDigit</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">digit</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">digit</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Wählen Sie den Ort des Wertes. Es gibt nur einen Ort, der jedes Mal aktiviert werden sollte. Der aktivierte Ort wird hoch geschrieben.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">100</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Mit dieser Funktion wird die auf der 4-stelligen 7-Segment-Anzeige angezeigte Nummer eingestellt.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">clearDisplay()</span></code> ：Schreiben Sie in 11111111, um diese acht LEDs auf der 7-Segment-Anzeige auszuschalten und den angezeigten Inhalt zu löschen.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pickDigit(0)</span></code> ：Wählen Sie die vierte 7-Segment-Anzeige.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hc595_shift(number[counter%10])</span></code> ：Die Nummer in der einzelnen Ziffer des Zählers wird im vierten Segment angezeigt.</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">signal</span><span class="p">(</span><span class="n">SIGALRM</span><span class="p">,</span><span class="w"> </span><span class="n">timer</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Dies ist eine vom System bereitgestellte Funktion. Der Prototyp der Kode lautet:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">sig_t</span><span class="w"> </span><span class="nf">signal</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">signum</span><span class="p">,</span><span class="kt">sig_t</span><span class="w"> </span><span class="n">handler</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Nach dem Ausführen des <code class="docutils literal notranslate"><span class="pre">signal()</span></code> hält der Prozess, sobald er das entsprechende Signal (in diesem Fall SIGALRM) erhalten hat,
+die vorhandene Aufgabe sofort an und verarbeitet die eingestellte Funktion (in diesem Fall <code class="docutils literal notranslate"><span class="pre">timer(sig)</span></code> ).</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">alarm</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Dies ist auch eine vom System bereitgestellte Funktion. Der Kode-Prototyp ist:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">alarm</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seconds</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Es erzeugt nach einer bestimmten Anzahl von Sekunden ein SIGALRM-Signal.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">timer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">timer1</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timer1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SIGALRM</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="n">alarm</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Wir verwenden die obigen Funktionen, um die Timer-Funktion zu implementieren. Nachdem der <code class="docutils literal notranslate"><span class="pre">alarm()</span></code> das SIGALRM-Signal erzeugt hat,
+wird die Timer-Funktion aufgerufen. Addiere 1 zum Zähler und die Funktion <code class="docutils literal notranslate"><span class="pre">alarm(1)</span></code> wird nach 1 Sekunde wiederholt aufgerufen.</p>
+</section>
+<section id="fur-python-sprachbenutzer">
+<h3>Für Python-Sprachbenutzer<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#fur-python-sprachbenutzer" title="Link to this heading"></a></h3>
+<p>Schritt 2: Gehen Sie zum Ordner des Codes.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Schritt 3: Führen Sie die ausführbare Datei aus.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.1.5_4</span><span class="o">-</span><span class="n">Digit</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Nachdem die Kode ausgeführt wurde, nimmt das Programm eine Zählung vor, die um 1 pro Sekunde erhöht wird, und die 4-stellige Anzeige zeigt die Zählung an.</p>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Sie können den folgenden Code <strong>Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen</strong> . Zuvor müssen Sie jedoch zu einem Quellcodepfad wie <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code> gehen.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="n">SDI</span> <span class="o">=</span> <span class="mi">24</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="mi">23</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="mi">18</span>
+
+<span class="n">placePin</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+<span class="n">number</span> <span class="o">=</span> <span class="p">(</span><span class="mh">0xc0</span><span class="p">,</span> <span class="mh">0xf9</span><span class="p">,</span> <span class="mh">0xa4</span><span class="p">,</span> <span class="mh">0xb0</span><span class="p">,</span> <span class="mh">0x99</span><span class="p">,</span> <span class="mh">0x92</span><span class="p">,</span> <span class="mh">0x82</span><span class="p">,</span> <span class="mh">0xf8</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0x90</span><span class="p">)</span>
+
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">timer1</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">clearDisplay</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">))</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">pickDigit</span><span class="p">(</span><span class="n">digit</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">placePin</span><span class="p">:</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">digit</span><span class="p">],</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">timer</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">counter</span>
+    <span class="k">global</span> <span class="n">timer1</span>
+    <span class="n">timer1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">counter</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">counter</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">clearDisplay</span><span class="p">()</span>
+        <span class="n">pickDigit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">10</span><span class="p">])</span>
+
+        <span class="n">clearDisplay</span><span class="p">()</span>
+        <span class="n">pickDigit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">100</span><span class="o">//</span><span class="mi">10</span><span class="p">])</span>
+
+        <span class="n">clearDisplay</span><span class="p">()</span>
+        <span class="n">pickDigit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">1000</span><span class="o">//</span><span class="mi">100</span><span class="p">])</span>
+
+        <span class="n">clearDisplay</span><span class="p">()</span>
+        <span class="n">pickDigit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">10000</span><span class="o">//</span><span class="mi">1000</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">placePin</span><span class="p">:</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">timer1</span>
+    <span class="n">timer1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>   <span class="c1"># When &quot;Ctrl+C&quot; is pressed, the function is executed.</span>
+    <span class="k">global</span> <span class="n">timer1</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>  <span class="c1"># cancel the timer</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>  <span class="c1"># Program starting from here</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">loop</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Code Erklärung</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">placePin</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Diese vier Pins steuern die gemeinsamen Anodenpins der vierstelligen 7-Segment-Anzeigen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">number</span> <span class="o">=</span> <span class="p">(</span><span class="mh">0xc0</span><span class="p">,</span> <span class="mh">0xf9</span><span class="p">,</span> <span class="mh">0xa4</span><span class="p">,</span> <span class="mh">0xb0</span><span class="p">,</span> <span class="mh">0x99</span><span class="p">,</span> <span class="mh">0x92</span><span class="p">,</span> <span class="mh">0x82</span><span class="p">,</span> <span class="mh">0xf8</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0x90</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ein Segmentkode-Array von 0 bis 9 in hexadezimaler Darstellung (gemeinsame Anode).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clearDisplay</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Schreiben Sie achtmal <code class="docutils literal notranslate"><span class="pre">1</span></code> in SDI., Damit die acht LEDs auf dem 7-Segment-Anzeige erlöschen, um den angezeigten Inhalt zu löschen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pickDigit</span><span class="p">(</span><span class="n">digit</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">placePin</span><span class="p">:</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">digit</span><span class="p">],</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Wählen Sie den Ort des Wertes. Es gibt nur einen Ort, der jedes Mal aktiviert werden sollte. Der aktivierte Ort wird hoch geschrieben.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">counter</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">clearDisplay</span><span class="p">()</span>
+        <span class="n">pickDigit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">10</span><span class="p">])</span>
+
+        <span class="n">clearDisplay</span><span class="p">()</span>
+        <span class="n">pickDigit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">100</span><span class="o">//</span><span class="mi">10</span><span class="p">])</span>
+
+        <span class="n">clearDisplay</span><span class="p">()</span>
+        <span class="n">pickDigit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">1000</span><span class="o">//</span><span class="mi">100</span><span class="p">])</span>
+
+        <span class="n">clearDisplay</span><span class="p">()</span>
+        <span class="n">pickDigit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">10000</span><span class="o">//</span><span class="mi">1000</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Mit dieser Funktion wird die auf der 4-stelligen 7-Segment-Anzeige angezeigte Nummer eingestellt.</p>
+<p>Starten Sie zuerst die vierte Segmentanzeige und schreiben Sie die einstellige Nummer.
+Dann starten Sie die Anzeige des dritten Segments und geben Sie die Zehnerstelle ein.
+Starten Sie danach die zweite bzw. die erste Segmentanzeige und schreiben Sie die Hunderter- bzw.
+Tausenderstellen. Da die Aktualisierungsgeschwindigkeit sehr hoch ist, sehen wir eine vollständige vierstellige Anzeige.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">timer1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+<span class="n">timer1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Das Modul Threading ist das übliche Threading-Modul in Python Tim und Timer ist die Unterklasse davon. Der Prototyp der Kode ist:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[],</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{})</span>
+</pre></div>
+</div>
+<p>Nach dem Intervall wird die Funktion ausgeführt.
+Hier beträgt das Intervall 1.0， und die Funktion ist <code class="docutils literal notranslate"><span class="pre">timer()</span></code> . <code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">()</span></code> bedeutet, dass der Timer an diesem Punkt startet.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">timer</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">counter</span>
+    <span class="k">global</span> <span class="n">timer1</span>
+    <span class="n">timer1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">counter</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Nachdem der Timer 1,0 Sekunden erreicht hat, wird die Timer-Funktion aufgerufen.
+Addiere 1 zum Zähler und der Timer wird erneut verwendet, um sich jede Sekunde wiederholt auszuführen.</p>
+</section>
+</section>
+<section id="phanomen-bild">
+<h2>Phänomen Bild<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#phanomen-bild" title="Link to this heading"></a></h2>
+<img alt="_images/image81.jpeg" src="_images/image81.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1.1.4_7-segment_display.html" class="btn btn-neutral float-left" title="1.1.4 7-Segment-Anzeige" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="1.1.6_led_dot_matrix.html" class="btn btn-neutral float-right" title="1.1.6 LED-Punktmatrix" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

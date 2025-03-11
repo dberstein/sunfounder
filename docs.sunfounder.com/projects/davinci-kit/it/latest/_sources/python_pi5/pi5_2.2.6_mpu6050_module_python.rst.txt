@@ -1,0 +1,250 @@
+.. note::
+
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti esclusivi.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri nuovi prodotti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
+
+.. _2.2.6_py_pi5:
+
+2.2.6 Modulo MPU6050
+======================
+
+Introduzione
+---------------
+
+L'MPU-6050 è il primo e unico dispositivo di tracciamento del movimento a 
+6 assi al mondo (giroscopio a 3 assi e accelerometro a 3 assi) progettato 
+per smartphone, tablet e sensori indossabili che richiedono basso consumo 
+energetico, basso costo e alte prestazioni.
+
+In questo esperimento, utilizzeremo l'interfaccia I2C per ottenere i valori 
+del sensore di accelerazione e del giroscopio a tre assi dell'MPU6050 e 
+visualizzarli sullo schermo.
+
+Componenti Necessari
+------------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti.
+
+.. image:: ../python_pi5/img/2.2.6_mpu6050_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schema Elettrico
+--------------------
+
+L’MPU6050 comunica con il microcontrollore tramite l’interfaccia bus I2C. 
+È necessario collegare i pin SDA1 e SCL1 ai pin corrispondenti.
+
+.. image:: ../python_pi5/img/2.2.6_mpu6050_schematic.png
+
+
+Procedure Sperimentali
+-------------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/2.2.6_mpu6050_circuit.png
+
+
+**Passo 2:** Configura I2C (vedi Appendice :ref:`i2c_config`. Se I2C è già 
+configurato, salta questo passo.)
+
+**Passo 3:** Vai nella cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Passo 4:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.6_mpu6050.py
+
+Dopo l'avvio del codice, verranno stampati sullo schermo l'angolo di deviazione 
+degli assi x e y e l'accelerazione, oltre alla velocità angolare su ciascun asse, 
+calcolati e letti dall’MPU6050.
+
+.. note::
+
+    * Se ricevi l'errore ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, consulta :ref:`i2c_config` per abilitare I2C.
+    * Se ricevi l'errore ``ModuleNotFoundError: No module named 'smbus2'``, esegui ``sudo pip3 install smbus2``.
+    * Se appare l'errore ``OSError: [Errno 121] Remote I/O error``, significa che il modulo è cablato in modo errato o è danneggiato.
+
+
+.. warning::
+
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc`
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere il risultato.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   import smbus
+   import math
+   import time
+
+   # Registri di gestione dell’alimentazione
+   power_mgmt_1 = 0x6b
+   power_mgmt_2 = 0x6c
+
+   def read_byte(adr):
+       return bus.read_byte_data(address, adr)
+
+   def read_word(adr):
+       high = bus.read_byte_data(address, adr)
+       low = bus.read_byte_data(address, adr+1)
+       val = (high << 8) + low
+       return val
+
+   def read_word_2c(adr):
+       val = read_word(adr)
+       if (val >= 0x8000):
+           return -((65535 - val) + 1)
+       else:
+           return val
+
+   def dist(a,b):
+       return math.sqrt((a*a)+(b*b))
+
+   def get_y_rotation(x,y,z):
+       radians = math.atan2(x, dist(y,z))
+       return -math.degrees(radians)
+
+   def get_x_rotation(x,y,z):
+       radians = math.atan2(y, dist(x,z))
+       return math.degrees(radians)
+
+
+   bus = smbus.SMBus(1) # oppure bus = smbus.SMBus(1) per le schede di revisione 2
+   address = 0x68       # Questo è l'indirizzo letto tramite il comando i2cdetect
+
+   # Ora risvegliamo il 6050 poiché si avvia in modalità sleep
+   bus.write_byte_data(address, power_mgmt_1, 0)
+
+   while True:
+       time.sleep(0.1)
+       gyro_xout = read_word_2c(0x43)
+       gyro_yout = read_word_2c(0x45)
+       gyro_zout = read_word_2c(0x47)
+
+       print ("gyro_xout : ", gyro_xout, " scaled: ", (gyro_xout / 131))
+       print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
+       print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
+
+       accel_xout = read_word_2c(0x3b)
+       accel_yout = read_word_2c(0x3d)
+       accel_zout = read_word_2c(0x3f)
+
+       accel_xout_scaled = accel_xout / 16384.0
+       accel_yout_scaled = accel_yout / 16384.0
+       accel_zout_scaled = accel_zout / 16384.0
+
+       print ("accel_xout: ", accel_xout, " scaled: ", accel_xout_scaled)
+       print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
+       print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
+
+       print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+       print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+
+       time.sleep(1)
+
+
+**Spiegazione del Codice**
+
+#. Legge i dati del sensore inviati dall'MPU6050.
+
+   .. code-block:: python
+
+       def read_word(adr):
+           high = bus.read_byte_data(address, adr)
+           low = bus.read_byte_data(address, adr+1)
+           val = (high << 8) + low
+           return val
+
+       def read_word_2c(adr):
+           val = read_word(adr)
+           if (val >= 0x8000):
+               return -((65535 - val) + 1)
+           else:
+               return val
+
+#. Calcola l'angolo di deviazione dell'asse y.
+
+   .. code-block:: python
+
+       def get_y_rotation(x,y,z):
+           radians = math.atan2(x, dist(y,z))
+           return -math.degrees(radians)
+
+#. Calcola l'angolo di deviazione dell'asse x.
+
+   .. code-block:: python
+
+       def get_x_rotation(x,y,z):
+           radians = math.atan2(y, dist(x,z))
+           return math.degrees(radians)
+
+#. Legge i valori degli assi x, y e z sul sensore giroscopico, converte i dati grezzi in valori di velocità angolare e li stampa.
+
+   .. code-block:: python
+
+       gyro_xout = read_word_2c(0x43)
+       gyro_yout = read_word_2c(0x45)
+       gyro_zout = read_word_2c(0x47)
+
+       print ("gyro_xout : ", gyro_xout, " scaled: ", (gyro_xout / 131))
+       print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
+       print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
+
+#. Legge i valori degli assi x, y e z sul sensore accelerometrico, converte i dati in valori di accelerazione (unità di gravità) e li stampa.
+
+   .. code-block:: python
+
+       accel_xout = read_word_2c(0x3b)
+       accel_yout = read_word_2c(0x3d)
+       accel_zout = read_word_2c(0x3f)
+
+       accel_xout_scaled = accel_xout / 16384.0
+       accel_yout_scaled = accel_yout / 16384.0
+       accel_zout_scaled = accel_zout / 16384.0
+
+       print ("accel_xout: ", accel_xout, " scaled: ", accel_xout_scaled)
+       print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
+       print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
+
+#. Stampa gli angoli di deviazione degli assi x e y.
+
+   .. code-block:: python
+
+       print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+       print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+

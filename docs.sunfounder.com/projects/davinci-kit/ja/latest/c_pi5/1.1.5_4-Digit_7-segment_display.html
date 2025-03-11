@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.5 4桁7セグメントディスプレイ &mdash; SunFounder davinci-kit-for-raspberry-pi  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=c033477b"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=4dbe4bdc"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/ja/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="1.1.6 LEDドットマトリックス" href="1.1.6_led_dot_matrix.html" />
+    <link rel="prev" title="1.1.4 7セグメントディスプレイ" href="1.1.4_7-segment_display.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-ja" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/c_pi5/1.1.5_4-Digit_7-segment_display.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">部品一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO拡張ボード</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">コードをダウンロードする</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Raspberry Pi OSのインストールとセットアップ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">For Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Pythonで遊ぼう</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_c.html">Cと遊ぶ</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_wiringpi_c.html">WiringPiのインストールと確認</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="1_output.html">1 出力</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 点滅LED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 RGB LED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 LED棒グラフ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 7セグメントディスプレイ</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="1.1.5_4-Digit_7-segment_display.html#">1.1.5 4桁7セグメントディスプレイ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 LEDドットマトリックス</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 アクティブブザー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 パッシブブザー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.1_motor.html">1.3.1 モーター</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.2_servo.html">1.3.2 サーボ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 ステッピングモーター</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.4_relay.html">1.3.4 リレー</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2_input.html">2 入力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_extension.html">3 拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Scratch で遊ぶ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python ビデオコース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">付録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">ありがとうございました</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">For Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_c.html">Cと遊ぶ</a></li>
+          <li class="breadcrumb-item"><a href="1_output.html">1 出力</a></li>
+      <li class="breadcrumb-item active">1.1.5 4桁7セグメントディスプレイ</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c_pi5/1.1.5_4-Digit_7-segment_display.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>こんにちは、SunFounderのRaspberry Pi &amp; Arduino &amp; ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。</p>
+<p><strong>参加する理由は？</strong></p>
+<ul class="simple">
+<li><p><strong>エキスパートサポート</strong>：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。</p></li>
+<li><p><strong>学び＆共有</strong>：ヒントやチュートリアルを交換してスキルを向上させましょう。</p></li>
+<li><p><strong>独占的なプレビュー</strong>：新製品の発表や先行プレビューに早期アクセスしましょう。</p></li>
+<li><p><strong>特別割引</strong>：最新製品の独占割引をお楽しみください。</p></li>
+<li><p><strong>祭りのプロモーションとギフト</strong>：ギフトや祝日のプロモーションに参加しましょう。</p></li>
+</ul>
+<p>👉 私たちと一緒に探索し、創造する準備はできていますか？[<a href="https://bit.ly/raphaelkit " target="_blank">ここ</a>]をクリックして今すぐ参加しましょう！</p>
+</div>
+<section id="py-4-dig">
+<span id="id1"></span><h1>1.1.5 4桁7セグメントディスプレイ<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#py-4-dig" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>前書き<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#id2" title="Link to this heading"></a></h2>
+<p>次に、4桁7セグメントディスプレイを制御してみてください。</p>
+</section>
+<section id="id3">
+<h2>部品<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#id3" title="Link to this heading"></a></h2>
+<img alt="../_images/list_4_digit1.png" src="../_images/list_4_digit1.png" />
+</section>
+<section id="id4">
+<h2>原理<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#id4" title="Link to this heading"></a></h2>
+<p><strong>4桁7セグメントディスプレイ</strong></p>
+<p>4桁の7セグメントディスプレイは、連携して動作する4つの7セグメントディスプレイで構成されている。</p>
+<img alt="../_images/4-digit-sche1.png" src="../_images/4-digit-sche1.png" />
+<p>4デジタル7セグメントディスプレイは独立して動作する。人間の視覚的持続性の原理を使用して、ループ内の各7セグメントの文字をすばやく表示し、連続した文字列を形成する。</p>
+<p>つまり、ディスプレイに「1234」が表示されている場合、最初の7セグメントに「1」が表示され、「234」は表示されないということである。しばらくすると、2番目の7セグメントに「2」が表示され、7セグメントの1番目、3番目、4番目に表示されなくなり、4つのデジタルディスプレイショーが順番に表示される。このプロセスは非常に短く（通常5ms）、光学的残光効果と視覚的残留の原理により、同時に4つの文字を見ることができる。</p>
+<img alt="../_images/image781.png" src="../_images/image781.png" />
+<p><strong>表示コード</strong></p>
+<p>7セグメントディスプレイ（アノードコモン）がどのように番号を表示するかを知るために、次の表をご参照ください。数字は7セグメントディスプレイに表示される0〜Fの数字である。（DP）GFEDCBAは、0または1に設定された対応のLEDを指す。たとえば、11000000はDPおよびGが1に設定され、他のLEDが0に設定されることを意味する。
+したがって、7セグメントディスプレイには0が表示され、HEXコードは16進数に対応する。</p>
+<img alt="../_images/common_anode1.png" src="../_images/common_anode1.png" />
+</section>
+<section id="id5">
+<h2>回路図<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#id5" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO22</p></td>
+<td><p>Pin 15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPIMOSI</p></td>
+<td><p>Pin 19</p></td>
+<td><p>12</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO23</p></td>
+<td><p>Pin 16</p></td>
+<td><p>4</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO24</p></td>
+<td><p>Pin 18</p></td>
+<td><p>5</p></td>
+<td><p>24</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/schmatic_4_digit1.png" src="../_images/schmatic_4_digit1.png" />
+</section>
+<section id="id6">
+<h2>実験手順<a class="headerlink" href="1.1.5_4-Digit_7-segment_display.html#id6" title="Link to this heading"></a></h2>
+<p>ステップ1: 回路を作る。</p>
+<a class="reference internal image-reference" href="../_images/image801.png"><img alt="../_images/image801.png" src="../_images/image801.png" style="width: 800px;" />
+</a>
+<p>ステップ2：コードのフォルダーに入る。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.1.5</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>ステップ3：コードをコンパイルする。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.1.5_4</span><span class="o">-</span><span class="n">Digit</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p>ステップ4：EXEファイルを実行する。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>コードの実行後、プログラムは1秒間に1つずつ増やすカウントを行い、4桁の7セグメントディスプレイにそのカウントが表示される。</p>
+<p><strong>コード</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringShift.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+
+<span class="cp">#define SDI 5</span>
+<span class="cp">#define RCLK 4</span>
+<span class="cp">#define SRCLK 1</span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">placePin</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">number</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0xc0</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf9</span><span class="p">,</span><span class="w"> </span><span class="mh">0xa4</span><span class="p">,</span><span class="w"> </span><span class="mh">0xb0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x99</span><span class="p">,</span><span class="w"> </span><span class="mh">0x92</span><span class="p">,</span><span class="w"> </span><span class="mh">0x82</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf8</span><span class="p">,</span><span class="w"> </span><span class="mh">0x80</span><span class="p">,</span><span class="w"> </span><span class="mh">0x90</span><span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">pickDigit</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">digit</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">digit</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">hc595_shift</span><span class="p">(</span><span class="kt">int8_t</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="mh">0x80</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="p">));</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">clearDisplay</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">100</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">timer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">timer1</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timer1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SIGALRM</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="n">alarm</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">pinMode</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGALRM</span><span class="p">,</span><span class="w"> </span><span class="n">timer</span><span class="p">);</span>
+<span class="w">    </span><span class="n">alarm</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">loop</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>コードの説明</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">placePin</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>これらの4つのピンは、4桁の7セグメントディスプレイのアノードコモンピンを制御する。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">number</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0xc0</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf9</span><span class="p">,</span><span class="w"> </span><span class="mh">0xa4</span><span class="p">,</span><span class="w"> </span><span class="mh">0xb0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x99</span><span class="p">,</span><span class="w"> </span><span class="mh">0x92</span><span class="p">,</span><span class="w"> </span><span class="mh">0x82</span><span class="p">,</span><span class="w"> </span><span class="mh">0xf8</span><span class="p">,</span><span class="w"> </span><span class="mh">0x80</span><span class="p">,</span><span class="w"> </span><span class="mh">0x90</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>16進数（アノードコモン）の0〜9のセグメントコード配列。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">pickDigit</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">digit</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">placePin</span><span class="p">[</span><span class="n">digit</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>値の場所を選択する。毎回有効な場所は1つだけである。有効な場所はhighに書き込まれる。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">100</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>この機能を使用して、4桁の7セグメントディスプレイに表示される番号を設定する。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">clearDisplay()</span></code>：11111111に書き込み、7セグメントディスプレイ上のこれら8つのLEDをオフにして、表示されたコンテンツを消去する。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pickDigit(0)</span></code>：4番目の7セグメントディスプレイを選択する。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hc595_shift(number[counter%10])</span></code>：カウンターの1桁の数字が4番目のセグメントに表示される。</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">signal</span><span class="p">(</span><span class="n">SIGALRM</span><span class="p">,</span><span class="w"> </span><span class="n">timer</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>これはシステム組み込みの関数であり、コードのプロトタイプは次のとおりである：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">sig_t</span><span class="w"> </span><span class="nf">signal</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">signum</span><span class="p">,</span><span class="kt">sig_t</span><span class="w"> </span><span class="n">handler</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">signal()</span></code> を実行した後、プロセスは対応する signum（ここでSIGALRM）を受信すると、すぐに既存のタスクを一時停止し、設定関数(ここでtimer(sig))を処理する。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">alarm</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>これもシステム組み込み関数である。コードのプロトタイプは：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">alarm</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seconds</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>指定した秒数後にSIGALRMシグナルを生成する。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">timer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">timer1</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timer1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SIGALRM</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="n">alarm</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>上記の関数を使用して、タイマー関数を実装する。 <code class="docutils literal notranslate"><span class="pre">alarm()</span></code> がSIGALRMシグナルを生成した後、タイマー関数が呼び出される。カウンターに1を追加すると、1秒後に関数 <code class="docutils literal notranslate"><span class="pre">alarm(1)</span></code> が繰り返し呼び出される。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1.1.4_7-segment_display.html" class="btn btn-neutral float-left" title="1.1.4 7セグメントディスプレイ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="1.1.6_led_dot_matrix.html" class="btn btn-neutral float-right" title="1.1.6 LEDドットマトリックス" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

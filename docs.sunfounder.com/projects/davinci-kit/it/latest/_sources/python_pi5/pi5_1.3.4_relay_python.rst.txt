@@ -1,0 +1,159 @@
+.. note::
+
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Esplora a fondo il mondo di Raspberry Pi, Arduino ed ESP32 insieme a tanti altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto da Esperti**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti inediti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _1.3.4_py_pi5:
+
+1.3.4 Relè
+============
+
+Introduzione
+-------------
+
+In questo progetto impareremo a utilizzare un relè. È uno dei componenti 
+più comuni nei sistemi di controllo automatico. Quando tensione, corrente, 
+temperatura, pressione, ecc., raggiungono, superano o scendono al di sotto 
+del valore predefinito, il relè connetterà o interromperà il circuito per 
+controllare e proteggere l'apparecchiatura.
+
+Componenti Necessari
+------------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti.
+
+.. image:: ../python_pi5/img/1.3.4_relay_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schema Elettrico
+-------------------
+
+.. image:: ../python_pi5/img/1.3.4_relay_schematic.png
+
+
+Procedure Sperimentali
+--------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/1.3.4_relay_circuit.png
+
+**Passo 2:** Apri il file del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+
+**Passo 3:** Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.4_Relay.py
+
+Quando il codice è in esecuzione, il LED si accende. Inoltre, puoi sentire 
+un ticchettio causato dall'apertura del contatto normalmente chiuso e dalla 
+chiusura del contatto normalmente aperto.
+
+.. warning::
+
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, potrai eseguirlo direttamente per vedere il risultato.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice  # Importa la classe per il controllo dei pin GPIO
+   from time import sleep  # Importa la funzione sleep per i ritardi
+
+   # Inizializza il relè collegato al pin GPIO 17
+   relay = OutputDevice(17)
+
+   try:
+       # Ciclo per commutare continuamente lo stato del relè ogni secondo
+       while True:
+           print('Relay open...')  # Indica che il relè è attivo
+           relay.on()  # Accende il relè (assumendo configurazione attiva a bassa)
+           sleep(1)   # Mantiene il relè nello stato acceso per 1 secondo
+
+           print('...Relay close')  # Indica che il relè è disattivo
+           relay.off()  # Spegne il relè
+           sleep(1)   # Mantiene il relè nello stato spento per 1 secondo
+
+   except KeyboardInterrupt:
+       # Gestisce l'interruzione da tastiera (Ctrl+C) per uscire dal ciclo
+       relay.off()  # Garantisce che il relè sia spento prima di uscire
+       pass
+
+
+**Spiegazione del Codice**
+
+#. Importa ``OutputDevice`` da ``gpiozero`` per il controllo dei pin GPIO e ``sleep`` da ``time`` per aggiungere ritardi.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice  # Importa la classe per il controllo dei pin GPIO
+       from time import sleep  # Importa la funzione sleep per i ritardi
+
+#. Inizializza un oggetto ``OutputDevice`` per il relè collegato al pin GPIO 17. 
+
+   .. code-block:: python
+
+       # Inizializza il relè collegato al pin GPIO 17
+       relay = OutputDevice(17)
+
+#. All'interno del blocco ``try``, un ciclo ``while True`` commuta continuamente lo stato del relè. Il relè viene acceso e spento con un ritardo di 1 secondo tra ogni stato, accompagnato da messaggi di stampa nella console.
+
+   .. code-block:: python
+
+       try:
+           # Ciclo per commutare continuamente lo stato del relè ogni secondo
+           while True:
+               print('Relay open...')  # Indica che il relè è attivo
+               relay.on()  # Accende il relè (assumendo configurazione attiva a bassa)
+               sleep(1)   # Mantiene il relè nello stato acceso per 1 secondo
+
+               print('...Relay close')  # Indica che il relè è disattivo
+               relay.off()  # Spegne il relè
+               sleep(1)   # Mantiene il relè nello stato spento per 1 secondo
+
+#. Rileva un'interruzione da tastiera (come Ctrl+C) per permettere una terminazione sicura dello script. Il relè viene spento prima di uscire dallo script.
+
+   .. code-block:: python
+      
+      except KeyboardInterrupt:
+      # Gestisce l'interruzione da tastiera (Ctrl+C) per uscire dal ciclo
+      relay.off()  # Garantisce che il relè sia spento prima di uscire
+      pass
+

@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.3.2 Servo &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="1.3.3 Stepper Motor" href="1.3.3_stepper_motor.html" />
+    <link rel="prev" title="1.3.1 Motor" href="1.3.1_motor.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/1.3.2_servo.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Para Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Bibliotecas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="1_output.html">1 Salida</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 LED Parpadeante</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 RGB LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 Barra de LEDs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 Pantalla de 7 segmentos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 4-Digit 7-Segment Display</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 LED Dot Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 Zumbador Activo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 Zumbador Pasivo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.1_motor.html">1.3.1 Motor</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="1.3.2_servo.html#">1.3.2 Servo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="1.3.2_servo.html#introduccion">Introducción</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.2_servo.html#componentes">Componentes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.2_servo.html#principio">Principio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.2_servo.html#diagrama-esquematico">Diagrama Esquemático</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.2_servo.html#procedimiento-experimental">Procedimiento Experimental</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.2_servo.html#imagen-de-fenomeno">Imagen de Fenómeno</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 Stepper Motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.4_relay.html">1.3.4 Relé</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2_input.html">2 Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_extension.html">3 Extensiones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Juega con Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Juega con Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Experimenta con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+          <li class="breadcrumb-item"><a href="1_output.html">1 Salida</a></li>
+      <li class="breadcrumb-item active">1.3.2 Servo</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/1.3.2_servo.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros apasionados para profundizar en el mundo de Raspberry Pi, Arduino y ESP32.</p>
+<p><strong>¿Por qué unirse?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte de expertos</strong>: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprender y compartir</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Acceso exclusivo</strong>: Obtén primicias sobre nuevos lanzamientos de productos y adelantos.</p></li>
+<li><p><strong>Descuentos especiales</strong>: Disfruta de descuentos exclusivos en nuestros productos más recientes.</p></li>
+<li><p><strong>Promociones festivas y sorteos</strong>: Participa en sorteos y promociones de temporada.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy mismo.</p>
+</div>
+<section id="servo">
+<h1>1.3.2 Servo<a class="headerlink" href="1.3.2_servo.html#servo" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="1.3.2_servo.html#introduccion" title="Link to this heading"></a></h2>
+<p>En esta lección, aprenderemos a hacer que el servo gire.</p>
+</section>
+<section id="componentes">
+<h2>Componentes<a class="headerlink" href="1.3.2_servo.html#componentes" title="Link to this heading"></a></h2>
+<img alt="_images/list_1.3.2.png" src="_images/list_1.3.2.png" />
+</section>
+<section id="principio">
+<h2>Principio<a class="headerlink" href="1.3.2_servo.html#principio" title="Link to this heading"></a></h2>
+<p><strong>Servo</strong></p>
+<p>Un servo generalmente está compuesto por las siguientes partes: carcasa,
+eje, sistema de engranajes, potenciómetro, motor de corriente continua y una placa integrada.</p>
+<img alt="_images/image121.png" src="_images/image121.png" />
+<p>Funciona de la siguiente manera: el microcontrolador envía señales PWM
+al servo, y la placa integrada dentro del servo recibe estas señales a
+través del pin de señal, controlando el motor interno para que gire.
+Como resultado, el motor acciona el sistema de engranajes y luego mueve
+el eje después de la desaceleración. El eje y el potenciómetro del servo
+están conectados entre sí. Cuando el eje gira, acciona el potenciómetro,
+el cual envía una señal de voltaje a la placa integrada. Entonces, la placa
+determina la dirección y velocidad de rotación en función de la posición
+actual, permitiéndole detenerse exactamente en la posición definida y mantenerse ahí.</p>
+<img alt="_images/image122.png" src="_images/image122.png" />
+<p>El ángulo está determinado por la duración de un pulso que se aplica al cable de
+control. A esto se le llama Modulación de Ancho de Pulso (PWM). El servo espera
+recibir un pulso cada 20 ms. La longitud del pulso determinará cuánto gira el
+motor. Por ejemplo, un pulso de 1.5 ms hará que el motor gire a la posición de
+90 grados (posición neutra).</p>
+<p>Cuando se envía un pulso de menos de 1.5 ms al servo, éste rota y mantiene su
+eje de salida un cierto número de grados en sentido antihorario desde el punto
+neutro. Cuando el pulso es mayor a 1.5 ms, ocurre lo contrario. El ancho mínimo
+y máximo del pulso que permitirá al servo girar a una posición válida depende de
+cada servo. Generalmente, el pulso mínimo será de aproximadamente 0.5 ms y el
+máximo será de 2.5 ms.</p>
+<img alt="_images/image123.jpeg" src="_images/image123.jpeg" />
+</section>
+<section id="diagrama-esquematico">
+<h2>Diagrama Esquemático<a class="headerlink" href="1.3.2_servo.html#diagrama-esquematico" title="Link to this heading"></a></h2>
+<img alt="_images/image337.png" src="_images/image337.png" />
+</section>
+<section id="procedimiento-experimental">
+<h2>Procedimiento Experimental<a class="headerlink" href="1.3.2_servo.html#procedimiento-experimental" title="Link to this heading"></a></h2>
+<p><strong>Paso 1:</strong> Construye el circuito.</p>
+<a class="reference internal image-reference" href="_images/image125.png"><img alt="_images/image125.png" src="_images/image125.png" style="width: 800px;" />
+</a>
+<section id="para-usuarios-de-lenguaje-c">
+<h3>Para Usuarios de Lenguaje C<a class="headerlink" href="1.3.2_servo.html#para-usuarios-de-lenguaje-c" title="Link to this heading"></a></h3>
+<p><strong>Paso 2</strong>: Ve a la carpeta del código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.3.2</span>
+</pre></div>
+</div>
+<p><strong>Paso 3</strong>: Compila el código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.3.2</span><span class="n">_Servo</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Paso 4</strong>: Ejecuta el archivo compilado.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Después de ejecutar el programa, el servo girará de 0 grados a 180 grados,
+y luego de 180 grados a 0 grados, en un ciclo continuo.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si no funciona después de ejecutarlo, o aparece un mensaje de error: &quot;wiringPi.h: No such file or directory», consulta <a class="reference internal" href="faq.html#c-code-is-not-working"><span class="std std-ref">c code is not working?</span></a>.</p>
+</div>
+<p><strong>Código</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;softPwm.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="cp">#define ServoPin    1       </span><span class="c1">//define el servo en GPIO1</span>
+<span class="kt">long</span><span class="w"> </span><span class="nf">Map</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="kt">long</span><span class="w"> </span><span class="n">fromLow</span><span class="p">,</span><span class="kt">long</span><span class="w"> </span><span class="n">fromHigh</span><span class="p">,</span><span class="kt">long</span><span class="w"> </span><span class="n">toLow</span><span class="p">,</span><span class="kt">long</span><span class="w"> </span><span class="n">toHigh</span><span class="p">){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">toHigh</span><span class="o">-</span><span class="n">toLow</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">value</span><span class="o">-</span><span class="n">fromLow</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">fromHigh</span><span class="o">-</span><span class="n">fromLow</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">toLow</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">setAngle</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pin</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">angle</span><span class="p">){</span><span class="w">    </span><span class="c1">//Crear una función para controlar el ángulo del servo.</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">180</span><span class="p">)</span>
+<span class="w">        </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">180</span><span class="p">;</span>
+<span class="w">    </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">pin</span><span class="p">,</span><span class="n">Map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span><span class="w"> </span><span class="c1">//si la inicialización de wiring falla, muestra un mensaje en pantalla</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">softPwmCreate</span><span class="p">(</span><span class="n">ServoPin</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">);</span><span class="w">       </span><span class="c1">//inicializar el pin PWM del servo</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">181</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w">     </span><span class="c1">// Let servo rotate from 0 to 180.                  setAngle(ServoPin,i);</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">181</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">-1</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">){</span><span class="w">        </span><span class="c1">// Let servo rotate from 180 to 0.              setAngle(ServoPin,i);</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span><span class="w"> </span><span class="nf">Map</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="kt">long</span><span class="w"> </span><span class="n">fromLow</span><span class="p">,</span><span class="kt">long</span><span class="w"> </span><span class="n">fromHigh</span><span class="p">,</span><span class="kt">long</span><span class="w"> </span><span class="n">toLow</span><span class="p">,</span><span class="kt">long</span><span class="w"> </span><span class="n">toHigh</span><span class="p">){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">toHigh</span><span class="o">-</span><span class="n">toLow</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">value</span><span class="o">-</span><span class="n">fromLow</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">fromHigh</span><span class="o">-</span><span class="n">fromLow</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">toLow</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Crea una función Map() para mapear el valor en el siguiente código.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setAngle</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pin</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">angle</span><span class="p">){</span><span class="w">    </span><span class="c1">//Crea una función para controlar el ángulo del servo.</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">180</span><span class="p">)</span>
+<span class="w">        </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">180</span><span class="p">;</span>
+<span class="w">    </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">pin</span><span class="p">,</span><span class="n">Map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Crea una función, setAngle(), para escribir el ángulo en el servo.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">pin</span><span class="p">,</span><span class="n">Map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">25</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Esta función puede cambiar el ciclo de trabajo del PWM.</p>
+<p>Para hacer que el servo gire de 0 a 180°, el ancho de pulso debe variar
+dentro del rango de 0.5ms a 2.5ms cuando el período es de 20ms; en la
+función, softPwmCreate(), hemos establecido que el período es
+200x100us=20ms, por lo que necesitamos mapear 0 a 180 a 5x100us a 25x100us.</p>
+<p>El prototipo de esta función se muestra a continuación.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>int softPwmCreate（int pin，int initialValue，int pwmRange）;
+</pre></div>
+</div>
+<p><strong>Parámetro pin:</strong> Cualquier pin GPIO de Raspberry Pi se puede configurar como pin PWM.</p>
+<p><strong>Parámetro initialValue:</strong> El ancho de pulso inicial es el valor de initialValue
+multiplicado por 100us.</p>
+<p><strong>Parámetro pwmRange:</strong> El período de PWM es el valor de pwmRange multiplicado por 100us.</p>
+</section>
+<section id="para-usuarios-de-lenguaje-python">
+<h3>Para Usuarios de Lenguaje Python<a class="headerlink" href="1.3.2_servo.html#para-usuarios-de-lenguaje-python" title="Link to this heading"></a></h3>
+<p><strong>Paso 2</strong>: Ve a la carpeta del código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Paso 3</strong>: Ejecuta el archivo.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.3.2</span><span class="n">_Servo</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Después de ejecutar el programa, el servo girará de 0 grados
+a 180 grados, y luego de 180 grados a 0 grados, en un ciclo continuo.</p>
+<p><strong>Código</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puedes <strong>Modificar/Restablecer/Copiar/Ejecutar/Detener</strong> el código a continuación. Antes de eso, necesitas dirigirte a la ruta del código fuente como <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">SERVO_MIN_PULSE</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">SERVO_MAX_PULSE</span> <span class="o">=</span> <span class="mi">2500</span>
+
+<span class="n">ServoPin</span> <span class="o">=</span> <span class="mi">18</span>
+
+<span class="k">def</span> <span class="nf">map</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">inMin</span><span class="p">,</span> <span class="n">inMax</span><span class="p">,</span> <span class="n">outMin</span><span class="p">,</span> <span class="n">outMax</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">outMax</span> <span class="o">-</span> <span class="n">outMin</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">inMin</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">inMax</span> <span class="o">-</span> <span class="n">inMin</span><span class="p">)</span> <span class="o">+</span> <span class="n">outMin</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">p</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>       <span class="c1"># Numerar los GPIOs según BCM</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">ServoPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>   <span class="c1"># Configurar el modo de salida de ServoPin</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ServoPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>  <span class="c1"># Poner ServoPin en bajo</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">ServoPin</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>     <span class="c1"># Configurar frecuencia en 50Hz</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                     <span class="c1"># Ciclo de trabajo = 0</span>
+
+<span class="k">def</span> <span class="nf">setAngle</span><span class="p">(</span><span class="n">angle</span><span class="p">):</span>      <span class="c1"># hacer que el servo gire a un ángulo específico (0-180 grados)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="n">angle</span><span class="p">))</span>
+    <span class="n">pulse_width</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="n">SERVO_MIN_PULSE</span><span class="p">,</span> <span class="n">SERVO_MAX_PULSE</span><span class="p">)</span>
+    <span class="n">pwm</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">pulse_width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">pwm</span><span class="p">)</span><span class="c1">#mapear el ángulo al ciclo de trabajo y enviarlo</span>
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>   <span class="c1">#hacer que el servo gire de 0 a 180 grados</span>
+            <span class="n">setAngle</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>     <span class="c1"># Escribir en el servo</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.002</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">):</span> <span class="c1">#hacer que el servo gire de 180 a 0 grados</span>
+            <span class="n">setAngle</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>     <span class="c1">#El programa comienza aquí</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">loop</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>  <span class="c1"># Cuando se presiona &#39;Ctrl+C&#39;, se ejecutará destroy().</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">ServoPin</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>     <span class="c1"># configurar la frecuencia en 50Hz</span>
+<span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                     <span class="c1"># Ciclo de trabajo = 0</span>
+</pre></div>
+</div>
+<p>Configura el pin ServoPin como pin PWM, luego la frecuencia a 50Hz, y el período a 20ms.</p>
+<p>p.start(0): Ejecuta la función PWM y establece el valor inicial en 0.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setAngle</span><span class="p">(</span><span class="n">angle</span><span class="p">):</span>      <span class="c1"># hacer que el servo gire a un ángulo específico (0-180 grados)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="n">angle</span><span class="p">))</span>
+    <span class="n">pulse_width</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="n">SERVO_MIN_PULSE</span><span class="p">,</span> <span class="n">SERVO_MAX_PULSE</span><span class="p">)</span>
+    <span class="n">pwm</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">pulse_width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">pwm</span><span class="p">)</span><span class="c1">#mapear el ángulo al ciclo de trabajo y enviarlo</span>
+</pre></div>
+</div>
+<p>Crea una función, setAngle(), para escribir el ángulo que varía de 0 a 180 en el servo.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">angle</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="n">angle</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Este código se usa para limitar el ángulo dentro del rango de 0 a 180°.</p>
+<p>La función min() devuelve el mínimo de los valores de entrada.
+Si 180 &lt; ángulo, devuelve 180; si no, devuelve ángulo.</p>
+<p>El método max() devuelve el elemento máximo en un iterable o el mayor de
+dos o más parámetros. Si 0 &gt; ángulo, devuelve 0; si no, devuelve ángulo.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pulse_width</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="n">SERVO_MIN_PULSE</span><span class="p">,</span> <span class="n">SERVO_MAX_PULSE</span><span class="p">)</span>
+<span class="n">pwm</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">pulse_width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">pwm</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Para ajustar un rango de 0 a 180° en el servo, el ancho de pulso del servo
+se configura entre 0.5ms (500us) y 2.5ms (2500us).</p>
+<p>El período de PWM es 20ms (20000us), por lo que el ciclo de trabajo de PWM es
+(500/20000)% - (2500/20000)%, y el rango de 0 a 180 se asigna a 2.5 a
+12.5.</p>
+</section>
+</section>
+<section id="imagen-de-fenomeno">
+<h2>Imagen de Fenómeno<a class="headerlink" href="1.3.2_servo.html#imagen-de-fenomeno" title="Link to this heading"></a></h2>
+<img alt="_images/image126.jpeg" src="_images/image126.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="1.3.1_motor.html" class="btn btn-neutral float-left" title="1.3.1 Motor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="1.3.3_stepper_motor.html" class="btn btn-neutral float-right" title="1.3.3 Stepper Motor" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

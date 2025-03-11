@@ -1,0 +1,144 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté Facebook des passionnés de SunFounder Raspberry Pi & Arduino & ESP32 ! Plongez au cœur des projets avec Raspberry Pi, Arduino et ESP32 aux côtés d’autres amateurs enthousiastes.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d’experts** : Résolvez les problèmes techniques post-vente avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des conseils et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits.
+    - **Réductions spéciales** : Bénéficiez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des promotions et concours pendant les fêtes.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd'hui !
+
+3.1.13 JEU – 10 Secondes
+============================
+
+Introduction
+-------------------
+
+Dans ce projet, suivez-moi pour fabriquer un appareil de jeu qui mettra à l
+’épreuve votre concentration. Attachez le capteur d’inclinaison à une baguette 
+pour créer une baguette magique. Agitez la baguette pour démarrer le chronométrage 
+sur l’afficheur à 4 segments ; agitez à nouveau pour l’arrêter. Si vous parvenez à 
+stabiliser l’affichage sur **10.00**, vous gagnez. Jouez avec vos amis pour déterminer 
+qui est le maître du temps.
+
+Composants
+----------------
+
+.. image:: img/list_GAME_10_Second.png
+    :align: center
+
+Schéma de montage
+------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one13.png
+   :align: center
+
+Procédures expérimentales
+---------------------------------
+
+**Étape 1** : Assemblez le circuit.
+
+.. image:: img/image277.png
+   :width: 800
+
+**Étape 2** : Accédez au dossier contenant le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.13/
+
+**Étape 3** : Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 3.1.13_GAME_10Second.c -lwiringPi
+
+**Étape 4** : Exécutez le fichier compilé.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Agitez la baguette, l’afficheur à 4 segments démarrera le chronométrage ; 
+secouez-la à nouveau pour arrêter le chronométrage. Si vous réussissez à 
+arrêter le compteur à **10.00**, vous gagnez. Secouez encore une fois pour 
+commencer une nouvelle manche.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou si un message d'erreur 
+    s'affiche : "wiringPi.h: Aucun fichier ou répertoire de ce type", veuillez 
+    consulter :ref:`C code is not working?`.
+
+**Explication du code**
+
+.. code-block:: c
+
+    void stateChange(){
+        if (gameState == 0){
+            counter = 0;
+            delay(1000);
+            ualarm(10000,10000); 
+        }else{
+            alarm(0);
+            delay(1000);
+        }
+        gameState = (gameState + 1)%2;
+    }
+
+Le jeu est divisé en deux modes :
+
+gameState=0 est le mode « start », où le temps est mesuré et affiché sur 
+l'afficheur à segments. Lorsque le capteur d'inclinaison est secoué, le 
+jeu passe au mode « show ».
+
+gameState=1 est le mode « show », qui arrête le chronométrage et affiche 
+le temps sur l'afficheur. En secouant à nouveau le capteur d'inclinaison, 
+le minuteur se réinitialise et le jeu redémarre.
+
+.. code-block:: c
+
+    void loop(){
+        int currentState =0;
+        int lastState=0;
+        while(1){
+            display();
+            currentState=digitalRead(sensorPin);
+            if((currentState==0)&&(lastState==1)){
+                stateChange();
+            }
+            lastState=currentState;
+        }
+    }
+
+Loop() est la fonction principale. Tout d'abord, le temps est affiché sur 
+l'afficheur à 4 segments et la valeur du capteur d'inclinaison est lue. 
+Si l'état du capteur change, stateChange() est appelée.

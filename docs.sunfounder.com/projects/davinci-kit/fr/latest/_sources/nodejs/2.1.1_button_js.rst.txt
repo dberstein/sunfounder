@@ -1,0 +1,141 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, de l’Arduino et de l’ESP32 avec d’autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d’experts** : Résolvez vos problèmes après-vente et surmontez vos défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprenez et Partagez** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d’un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et des promotions spéciales.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
+
+2.1.1 Button
+===============
+
+Introduction
+--------------
+
+Dans ce projet, nous allons apprendre à allumer ou éteindre une LED en utilisant un bouton.
+
+Composants
+------------
+
+.. image:: ../img/list_2.1.1_Button.png
+
+
+Schéma de câblage
+-------------------
+
+Utilisez un bouton normalement ouvert comme entrée pour le Raspberry Pi. Le 
+schéma de connexion est illustré ci-dessous. Lorsque le bouton est enfoncé, 
+le GPIO18 passe au niveau bas (0V). Nous pouvons détecter l'état du GPIO18 
+par programmation. Ainsi, si le GPIO18 est au niveau bas, cela signifie que 
+le bouton est pressé. Vous pouvez alors exécuter le code correspondant lorsque 
+le bouton est pressé, et la LED s’allumera.
+
+.. note::
+    La broche la plus longue de la LED est l'anode (positive) et la plus courte 
+    est la cathode (négative).
+
+.. image:: ../img/image302.png
+
+
+.. image:: ../img/image303.png
+
+
+Procédures expérimentales
+-----------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image152.png
+
+**Étape 2 :** Accéder au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Étape 3 :** Exécuter le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node button.js
+
+Maintenant, appuyez sur le bouton et la LED s'allumera ; relâchez le bouton 
+et la LED s'éteindra.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    
+    const led = new Gpio(17, {mode: Gpio.OUTPUT});
+
+    const button = new Gpio(18, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_DOWN,
+      edge: Gpio.EITHER_EDGE
+    });
+
+
+    button.on('interrupt', (level) => {
+      led.digitalWrite(level);
+    });
+
+**Explication du code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    const led = new Gpio(17, {mode: Gpio.OUTPUT});
+
+Importer le module ``pigpio`` et créer un objet led pour contrôler le port IO Gpio17, en le définissant en mode sortie.
+
+.. code-block:: js
+
+    const button = new Gpio(18, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_DOWN,
+      edge: Gpio.EITHER_EDGE
+    });
+
+Créer un objet button pour contrôler le port IO Gpio18, le définir en mode entrée, 
+avec une résistance de tirage vers le bas (niveau bas lorsque le bouton n'est pas pressé, 
+niveau haut lorsqu'il est pressé). Le mode d'interruption est défini sur ``EITHER_EDGE``, 
+c'est-à-dire que les flancs montants et descendants déclenchent la fonction d'interruption.
+
+.. code-block:: js
+
+    button.on('interrupt', (level) => {
+      led.digitalWrite(level);
+    });
+
+Écrire une fonction d'interruption. Lorsque le bouton est pressé, cela correspond à un flanc descendant, 
+ce qui déclenche la fonction d’interruption. À ce moment-là, le niveau bas du port IO du bouton est transmis 
+au port IO de la LED, et la LED s’allume.
+
+Quand le bouton est relâché, il s'agit d'un flanc montant, déclenchant à nouveau la fonction 
+d’interruption. À ce moment-là, le niveau haut du port IO du bouton est transmis au port IO 
+de la LED, et la LED s’éteint.
+
+Image du résultat
+---------------------
+
+.. image:: ../img/image153.jpeg
+
+  

@@ -1,0 +1,424 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez vos problèmes après-vente et défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et aux aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et des promotions spéciales durant les fêtes.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+2.2.2 Thermistor
+====================
+
+Introduction
+----------------
+
+Tout comme la photo-résistance permet de détecter la lumière, une thermistance 
+est un dispositif électronique sensible à la température pouvant être utilisé 
+pour des fonctions de contrôle de température, comme la réalisation d'une alarme thermique.
+
+Composants
+-------------
+
+.. image:: img/list_2.2.2_thermistor.png
+
+
+Principe
+-----------
+
+Une thermistance est une résistance thermosensible qui présente un changement 
+précis et prévisible de résistance en fonction des variations de température. 
+L'ampleur de ce changement dépend de sa composition spécifique. Les thermistances 
+appartiennent au groupe des composants passifs, qui, contrairement aux composants 
+actifs, ne peuvent pas amplifier un signal ou fournir un gain de puissance à un circuit.
+
+La thermistance est un élément sensible, et elle existe en deux types : à coefficient 
+de température négatif (CTN) et à coefficient de température positif (CTP). Dans ce 
+projet, nous utilisons une thermistance CTN, dont la résistance diminue avec 
+l'augmentation de la température.
+
+.. image:: img/image325.png
+
+Le principe est que la résistance de la thermistance CTN change en fonction de la 
+température ambiante. Elle détecte ainsi la température en temps réel. Lorsque la 
+température augmente, la résistance de la thermistance diminue. Ensuite, les données 
+de tension sont converties en valeurs numériques par l'adaptateur A/D, permettant 
+d'afficher la température en degrés Celsius ou Fahrenheit via la programmation.
+
+Dans cette expérience, une thermistance et une résistance de pull-up de 10k ohms 
+sont utilisées. Chaque thermistance a une résistance nominale. Ici, elle est de 
+10k ohms, mesurée à 25 degrés Celsius.
+
+Voici la relation entre la résistance et la température :
+
+R\ :sub:`T` =R\ :sub:`N` exp\ :sup:`B(1/TK – 1/TN)`
+
+**R\ T** est la résistance de la thermistance CTN à la température **T\ K**.
+
+**R\ N** est la résistance de la thermistance CTN à la température nominale **T\ N**. Ici, la valeur de **R\ N** est de 10k.
+
+**T\ K** est la température en kelvins (K). Ici, la valeur de **T\ K**\ est 273,15 + degrés Celsius.
+
+**T\ N** est la température nominale en kelvins (K), ici la valeur de **T\ N** est 273,15 + 25.
+
+Le **B**\ (bêta), constant de matériau de la thermistance CTN, est aussi appelé indice 
+de sensibilité thermique, avec une valeur de 3950.
+
+**exp** désigne l'exponentielle, et la base de l'exponentielle, **e**, est un nombre 
+naturel d'environ 2,7.
+
+La formule convertie devient :
+T\ :sub:`K`\ =1/(ln(R\ :sub:`T`/R\ :sub:`N`)/B+1/T\ :sub:`N`), ce qui permet d'obtenir 
+la température en kelvins. En soustrayant 273,15, on obtient la température en degrés Celsius.
+
+Cette relation est une formule empirique et n'est précise que lorsque la température 
+et la résistance se situent dans une plage effective.
+
+Schéma de connexion
+-----------------------
+
+.. image:: img/image323.png
+
+.. image:: img/image324.png
+
+
+Procédures expérimentales
+---------------------------
+
+**Étape 1 :** Montez le circuit.
+
+.. image:: img/image202.png
+    :width: 800
+
+Pour les utilisateurs du langage C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.2.2/
+
+**Étape 3 :** Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.2_Thermistor.c -lwiringPi -lm
+
+.. note::
+    L'option `-lm` permet de charger la bibliothèque mathématique. Ne l'oubliez pas, sinon une erreur pourrait survenir.
+
+**Étape 4 :** Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Lorsque le code s'exécute, la thermistance détecte la température ambiante, 
+qui sera affichée à l'écran une fois le calcul terminé.
+
+.. note::
+
+    Si le programme ne fonctionne pas ou s'il y a un message d'erreur tel que 
+    "wiringPi.h: Aucun fichier ou répertoire de ce type", veuillez consulter 
+    :ref:`C code is not working?`.
+
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <math.h>
+
+    typedef unsigned char uchar;
+    typedef unsigned int uint;
+
+    #define     ADC_CS    0
+    #define     ADC_CLK   1
+    #define     ADC_DIO   2
+
+    uchar get_ADC_Result(uint channel)
+    {
+        uchar i;
+        uchar dat1=0, dat2=0;
+        int sel = channel > 1 & 1;
+        int odd = channel & 1;
+
+        digitalWrite(ADC_CLK, 1);
+        delayMicroseconds(2);
+        digitalWrite(ADC_CLK, 0);
+        delayMicroseconds(2);
+
+        pinMode(ADC_DIO, OUTPUT);
+        digitalWrite(ADC_CS, 0);
+        // Bit de démarrage
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // Mode à une seule extrémité
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // ODD
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,odd);  delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+        // Sélection
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,sel);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,1);
+
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+        digitalWrite(ADC_CLK,0);
+        digitalWrite(ADC_DIO,1);    delayMicroseconds(2);
+
+        for(i=0;i<8;i++)
+        {
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+
+            pinMode(ADC_DIO, INPUT);
+            dat1=dat1<<1 | digitalRead(ADC_DIO);
+        }
+
+        for(i=0;i<8;i++)
+        {
+            dat2 = dat2 | ((uchar)(digitalRead(ADC_DIO))<<i);
+            digitalWrite(ADC_CLK,1);    delayMicroseconds(2);
+            digitalWrite(ADC_CLK,0);    delayMicroseconds(2);
+        }
+
+        digitalWrite(ADC_CS,1);
+        pinMode(ADC_DIO, OUTPUT);
+        return(dat1==dat2) ? dat1 : 0;
+    }
+
+    int main(void)
+    {
+        unsigned char analogVal;
+        double Vr, Rt, temp, cel, Fah;
+        if(wiringPiSetup() == -1){ // en cas d'échec de l'initialisation de wiringPi, affiche un message à l'écran
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+
+        while(1){
+            analogVal = get_ADC_Result(0);
+            Vr = 5 * (double)(analogVal) / 255;
+            Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+            temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+            cel = temp - 273.15;
+            Fah = cel * 1.8 +32;
+            printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+            delay(100);
+        }
+        return 0;
+    }
+**Explication du code**
+
+.. code-block:: c
+
+    #include <math.h>
+
+Il s'agit d'une bibliothèque numérique en C qui déclare un ensemble de fonctions 
+pour calculer des opérations et transformations mathématiques courantes.
+
+.. code-block:: c
+
+    analogVal = get_ADC_Result(0);
+
+Cette fonction est utilisée pour lire la valeur du thermistor.
+
+.. code-block:: c
+
+    Vr = 5 * (double)(analogVal) / 255;
+    Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+    temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+    cel = temp - 273.15;
+    Fah = cel * 1.8 +32;
+    printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+
+Ces calculs permettent de convertir les valeurs du thermistor en degrés Celsius.
+
+.. code-block:: c
+
+    Vr = 5 * (double)(analogVal) / 255;
+    Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+
+Ces deux lignes de code calculent la répartition de la tension avec la valeur 
+analogique lue afin d'obtenir Rt (la résistance du thermistor).
+
+.. code-block:: c
+
+    temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+
+Ce code fait référence à l'insertion de Rt dans la formule 
+**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** pour obtenir la température en Kelvin.
+
+.. code-block:: c
+
+    temp = temp - 273.15;
+
+Conversion de la température en Kelvin en degrés Celsius.
+
+.. code-block:: c
+
+    Fah = cel * 1.8 +32;
+
+Conversion des degrés Celsius en degrés Fahrenheit.
+
+.. code-block:: c
+
+    printf("Celsius: %.2f C  Fahrenheit: %.2f F\n", cel, Fah);
+
+Affiche la température en degrés Celsius et Fahrenheit ainsi que leurs unités à l'écran.
+
+Pour les utilisateurs de Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python/
+
+**Étape 3 :** Exécutez le fichier exécutable
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.2_Thermistor.py
+
+Une fois le code exécuté, la thermistance détecte la température ambiante, 
+qui sera affichée à l'écran après le calcul du programme.
+
+**Code**
+
+.. note::
+
+    Vous pouvez **modifier/réinitialiser/copier/exécuter/arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre au chemin source du code, comme ``davinci-kit-for-raspberry-pi/python``.
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import ADC0834
+    import time
+    import math
+
+    def init():
+        ADC0834.setup()
+
+    def loop():
+        while True:
+            analogVal = ADC0834.getResult()
+            Vr = 5 * float(analogVal) / 255
+            Rt = 10000 * Vr / (5 - Vr)
+            temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
+            Cel = temp - 273.15
+            Fah = Cel * 1.8 + 32
+            print ('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
+            time.sleep(0.2)
+
+    if __name__ == '__main__':
+        init()
+        try:
+            loop()
+        except KeyboardInterrupt:
+            ADC0834.destroy()
+
+**Explication du code**
+
+.. code-block:: python
+
+    import math
+
+Il s'agit d'une bibliothèque numérique qui déclare un ensemble de fonctions pour 
+effectuer des calculs mathématiques courants.
+
+.. code-block:: python
+
+    analogVal = ADC0834.getResult()
+
+Cette fonction est utilisée pour lire la valeur du thermistor.
+
+.. code-block:: python
+
+    Vr = 5 * float(analogVal) / 255
+    Rt = 10000 * Vr / (5 - Vr)
+    temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
+    Cel = temp - 273.15
+    Fah = Cel * 1.8 + 32
+    print ('Celsius: %.2f °C  Fahrenheit: %.2f ℉' % (Cel, Fah))
+
+Ces calculs permettent de convertir les valeurs du thermistor en degrés Celsius 
+et Fahrenheit.
+
+.. code-block:: python
+
+    Vr = 5 * float(analogVal) / 255
+    Rt = 10000 * Vr / (5 - Vr)
+
+Ces deux lignes de code calculent la répartition de la tension avec la valeur 
+analogique lue afin d'obtenir Rt (la résistance du thermistor).
+
+.. code-block:: python
+
+    temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
+
+Ce code fait référence à l'insertion de Rt dans la formule 
+**T\ K\ =1/(ln(R\ T/R\ N)/B+1/T\ N)** pour obtenir la température en Kelvin.
+
+.. code-block:: python
+
+    temp = temp - 273.15
+
+Conversion de la température en Kelvin en degrés Celsius.
+
+.. code-block:: python
+
+    Fah = Cel * 1.8 + 32
+
+Conversion des degrés Celsius en degrés Fahrenheit.
+
+.. code-block:: python
+
+    print ('Celsius: %.2f °C  Fahrenheit: %.2f ℉' % (Cel, Fah))
+
+Affiche les degrés Celsius, les degrés Fahrenheit et leurs unités à l'écran.
+
+Image du phénomène
+-----------------------
+
+.. image:: img/image203.jpeg

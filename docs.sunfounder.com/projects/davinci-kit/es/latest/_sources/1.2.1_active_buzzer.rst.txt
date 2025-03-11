@@ -1,0 +1,277 @@
+.. note::
+
+    Hola, ¡bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
+
+    **¿Por qué unirse?**
+
+    - **Soporte de expertos**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos lanzamientos y anuncios de productos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
+
+1.2.1 Zumbador Activo
+========================
+
+Introducción
+---------------
+
+En esta lección, aprenderemos cómo activar un zumbador activo para que emita sonido utilizando un transistor PNP.
+
+Componentes
+-------------
+
+.. image:: img/list_1.2.1.png
+
+Principio
+-----------
+
+**Zumbador**
+
+Como un tipo de zumbador electrónico con estructura integrada, 
+los zumbadores, que funcionan con corriente continua, se utilizan 
+ampliamente en computadoras, impresoras, fotocopiadoras, alarmas, 
+juguetes electrónicos, dispositivos electrónicos automotrices, 
+teléfonos, temporizadores y otros productos electrónicos o dispositivos 
+de sonido. Los zumbadores pueden clasificarse en activos y pasivos (ver 
+la imagen a continuación). Gira el zumbador para que sus pines queden 
+hacia arriba; el que tiene una placa de circuito verde es un zumbador 
+pasivo, mientras que el que está cubierto con una cinta negra es un zumbador activo.
+
+La diferencia entre un zumbador activo y uno pasivo:
+
+.. image:: img/image101.png
+    :width: 400
+    :align: center
+
+La diferencia entre un zumbador activo y uno pasivo es que un zumbador activo 
+tiene una fuente de oscilación interna, por lo que emite sonido cuando se energiza. 
+Un zumbador pasivo no tiene esta fuente, por lo que no emitirá sonido si se le aplica 
+corriente continua; en su lugar, necesita una señal de onda cuadrada con una frecuencia 
+entre 2K y 5K para funcionar. Generalmente, el zumbador activo es más costoso que el 
+pasivo debido a los circuitos de oscilación integrados.
+
+A continuación se muestra el símbolo eléctrico de un zumbador, el cual tiene 
+dos pines con polos positivo y negativo. El lado con el símbolo + en la 
+superficie representa el ánodo y el otro es el cátodo.
+
+.. image:: img/image102.png
+    :width: 150
+    :align: center
+
+Puedes revisar los pines del zumbador; el pin más largo es el ánodo y el más 
+corto es el cátodo. No los conectes al revés, de lo contrario el zumbador no 
+emitirá sonido.
+
+Diagrama Esquemático
+--------------------
+
+En este experimento se utiliza un zumbador activo, un transistor PNP y una 
+resistencia de 1k entre la base del transistor y el GPIO para proteger el 
+transistor. Cuando el GPIO17 de la Raspberry Pi recibe una señal de bajo 
+nivel (0V) mediante programación, el transistor conducirá debido a la saturación 
+de corriente y el zumbador emitirá sonido. Pero cuando el GPIO de la Raspberry Pi 
+recibe una señal de alto nivel, el transistor se apagará y el zumbador no 
+emitirá sonido.
+
+.. image:: img/image332.png
+
+Procedimiento Experimental
+-------------------------------
+
+**Paso 1:** Monta el circuito. (Presta atención a los polos del zumbador: 
+el que tiene la etiqueta + es el polo positivo y el otro es el negativo).
+
+.. image:: img/image104.png
+    :width: 800
+
+Para Usuarios de Lenguaje C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Paso 2:** Abre el archivo de código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/1.2.1/
+
+**Paso 3:** Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.2.1_ActiveBuzzer.c -lwiringPi
+
+**Paso 4:** Ejecuta el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Cuando el código se ejecuta, el zumbador emite sonido.
+
+.. note::
+
+    Si no funciona después de ejecutarlo, o aparece un mensaje de error: "wiringPi.h: No such file or directory", consulta :ref:`c code is not working?`.
+
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define BeepPin 0
+    int main(void){
+        if(wiringPiSetup() == -1){ // si falla la inicialización de wiringPi, imprime el mensaje en pantalla
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(BeepPin, OUTPUT);   // configurar GPIO0 como salida
+        while(1){
+            // zumbador encendido
+            printf("Buzzer on\n");
+            digitalWrite(BeepPin, LOW);
+            delay(100);
+            printf("Buzzer off\n");
+            // zumbador apagado
+            digitalWrite(BeepPin, HIGH);
+            delay(100);
+        }
+        return 0;
+    }
+
+**Explicación del Código**
+
+.. code-block:: c
+
+    digitalWrite(BeepPin, LOW);
+
+Usamos un zumbador activo en este experimento, por lo que emitirá sonido 
+automáticamente cuando se le aplique corriente continua. Este código 
+establece el puerto I/O en bajo nivel (0V) para manejar el transistor y 
+hacer que el zumbador suene.
+
+.. code-block:: c
+
+    digitalWrite(BeepPin, HIGH);
+
+Establece el puerto I/O en alto nivel (3.3V), así el transistor no recibe 
+corriente y el zumbador no emite sonido.
+
+Para Usuarios de Python
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Paso 2:** Abre el archivo de código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python
+
+**Paso 3:** Ejecutar.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo python3 1.2.1_ActiveBuzzer.py
+
+Cuando el código se ejecuta, el zumbador emite sonido.
+
+**Código**
+
+.. note::
+
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Antes de eso, debes ir a la ruta del código fuente como ``davinci-kit-for-raspberry-pi/python``. 
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+
+    # Configurar el pin 17 como pin del zumbador
+    BeepPin = 17
+
+    def setup():
+        # Configurar el modo GPIO en numeración BCM
+        GPIO.setmode(GPIO.BCM)
+        # Configurar el modo del pin del zumbador como salida,
+        # y el nivel inicial en alto (3.3V)
+        GPIO.setup(BeepPin, GPIO.OUT, initial=GPIO.HIGH)
+
+    def main():
+        while True:
+            # Zumbador encendido
+            print ('Buzzer On')
+            GPIO.output(BeepPin, GPIO.LOW)
+            time.sleep(0.1)
+            # Zumbador apagado
+            print ('Buzzer Off')
+            GPIO.output(BeepPin, GPIO.HIGH)
+            time.sleep(0.1)
+
+    def destroy():
+        # Apagar el zumbador
+        GPIO.output(BeepPin, GPIO.HIGH)
+        # Liberar recursos
+        GPIO.cleanup()    
+
+    # Si ejecutas este script directamente, haz:
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        # Cuando se presione 'Ctrl+C', se ejecutará destroy().
+        except KeyboardInterrupt:
+            destroy()
+
+**Explicación del Código**
+
+.. code-block:: python
+
+    GPIO.output(BeepPin, GPIO.LOW)
+
+Establece el pin del zumbador en bajo nivel para hacer que el zumbador emita sonido.
+
+.. code-block:: python
+
+    time.sleep(0.1)
+
+Espera 0.1 segundos. Cambia la frecuencia de conmutación ajustando este parámetro.
+
+.. note::
+    No es la frecuencia del sonido. El zumbador activo no puede cambiar la frecuencia del sonido.
+
+.. code-block:: python
+
+    GPIO.output(BeepPin, GPIO.HIGH)
+
+Apaga el zumbador.
+
+Imagen del Fenómeno
+-----------------------
+
+.. image:: img/image105.jpeg

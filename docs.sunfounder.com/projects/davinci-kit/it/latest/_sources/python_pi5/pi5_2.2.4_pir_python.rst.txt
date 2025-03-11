@@ -1,0 +1,154 @@
+.. note::
+
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti esclusivi.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri nuovi prodotti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
+
+.. _py_pi5_pir:
+
+2.2.4 PIR
+============
+
+Introduzione
+--------------
+
+In questo progetto, costruiremo un dispositivo utilizzando sensori 
+piroelettrici a infrarossi per il rilevamento del corpo umano. Quando 
+una persona si avvicina al LED, questo si accenderà automaticamente; 
+altrimenti, la luce si spegnerà. Questo sensore di movimento a infrarossi 
+è in grado di rilevare la radiazione infrarossa emessa da persone e animali.
+
+Componenti Necessari
+------------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti.
+
+.. image:: ../python_pi5/img/2.2.4_pir_list.png
+
+.. raw:: html
+
+   <br/>
+
+
+Schema Elettrico
+-------------------
+
+.. image:: ../python_pi5/img/2.2.4_pir_schematic.png
+
+
+Procedure Sperimentali
+-------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/2.2.4_pir_circuit.png
+
+**Passo 2:** Vai nella cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Passo 3:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.4_PIR.py
+
+Dopo l'avvio del codice, il PIR rileva i movimenti circostanti e fa illuminare di giallo il LED RGB se rileva qualcuno che passa.
+
+Sul modulo PIR ci sono due potenziometri: uno per regolare la sensibilità e l'altro per la distanza di rilevamento. Per far funzionare al meglio il modulo PIR, ruotali entrambi in senso antiorario fino alla fine.
+
+.. image:: ../python_pi5/img/2.2.4_PIR_TTE.png
+    :width: 400
+    :align: center
+
+.. warning::
+
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc`
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere il risultato.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import RGBLED, MotionSensor
+   from time import sleep
+
+   # Inizializza LED RGB e sensore di movimento PIR con GPIO Zero
+   led = RGBLED(red=18, green=27, blue=22)  # LED RGB collegato ai pin GPIO 18 (Rosso), 27 (Verde), 22 (Blu)
+   pir = MotionSensor(17)  # Sensore PIR collegato al pin GPIO 17
+
+   try:
+       # Monitoraggio continuo per rilevare movimenti e aggiornare il colore del LED
+       while True:
+           if pir.motion_detected:  # Controlla se il sensore PIR rileva movimento
+               led.color = (1, 1, 0)  # Imposta il colore del LED su giallo (Rosso + Verde)
+           else:
+               led.color = (0, 0, 1)  # Imposta il colore del LED su blu (solo Blu)
+           sleep(0.1)  # Breve ritardo per ridurre il carico della CPU
+
+   except KeyboardInterrupt:
+       # Gestisce KeyboardInterrupt (Ctrl+C) per uscire dal ciclo in modo sicuro
+       pass
+
+
+**Spiegazione del Codice**
+
+#. Importa la classe ``RGBLED`` per controllare un LED RGB e la classe ``MotionSensor`` per il rilevamento del movimento dalla libreria GPIO Zero. Importa anche la funzione ``sleep`` per creare ritardi.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import RGBLED, MotionSensor
+       from time import sleep
+
+#. Inizializza un LED RGB con componenti rosso, verde e blu collegati rispettivamente ai pin GPIO 18, 27 e 22. Inizializza anche un sensore PIR sul pin GPIO 17.
+
+   .. code-block:: python
+
+       # Inizializza LED RGB e sensore di movimento PIR con GPIO Zero
+       led = RGBLED(red=18, green=27, blue=22)  # LED RGB collegato ai pin GPIO 18 (Rosso), 27 (Verde), 22 (Blu)
+       pir = MotionSensor(17)  # Sensore PIR collegato al pin GPIO 17
+
+#. Il programma entra in un ciclo infinito, controllando continuamente la presenza di movimento tramite il sensore PIR. Se viene rilevato un movimento, il LED diventa giallo (miscela di rosso e verde); in assenza di movimento, il LED si colora di blu. Un breve ritardo di 0,1 secondi riduce il carico della CPU.
+
+   .. code-block:: python
+
+       try:
+           # Monitoraggio continuo per rilevare movimenti e aggiornare il colore del LED
+           while True:
+               if pir.motion_detected:  # Controlla se il sensore PIR rileva movimento
+                   led.color = (1, 1, 0)  # Imposta il colore del LED su giallo (Rosso + Verde)
+               else:
+                   led.color = (0, 0, 1)  # Imposta il colore del LED su blu (solo Blu)
+               sleep(0.1)  # Breve ritardo per ridurre il carico della CPU
+
+       except KeyboardInterrupt:
+           # Gestisce KeyboardInterrupt (Ctrl+C) per uscire dal ciclo in modo sicuro
+           pass

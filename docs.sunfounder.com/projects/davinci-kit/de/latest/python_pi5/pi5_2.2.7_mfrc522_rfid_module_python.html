@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2.10 MFRC522 RFID Modul &mdash; SunFounder davinci-kit-for-raspberry-pi  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=245627df"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=70a09b52"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/de/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="3 Erweiterung" href="pi5_extension_python.html" />
+    <link rel="prev" title="2.2.6 MPU6050-Modul" href="pi5_2.2.6_mpu6050_module_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-de" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_2.2.7_mfrc522_rfid_module_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Komponentenliste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO-Erweiterungskarte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Laden Sie die Kode herunter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/preparation.html">Installation und Einrichtung des Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Für Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Spielen Sie mit Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Überprüfen Sie <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">1 Ausgabe</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_input_python.html">2 Eingabe</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.1.1_button_python.html">2.1.1 Taste</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.1.2_slide_switch_python.html">2.1.2 Schiebeschalter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.1.3_tilt_switch_python.html">2.1.3 Neigungsschalter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.1.4_potentiometer_python.html">2.1.4 Potentiometer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.1.5_keypad_python.html">2.1.5 Tastenfeld</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.1.6_joystick_python.html">2.1.6 Joystick</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.2.1_photoresistor_python.html">2.2.1 Fotowiderstand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.2.2_thermistor_python.html">2.2.2 Thermistor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.2.3_dht_python.html">2.2.3 DHT-11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.2.4_pir_python.html">2.2.4 PIR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.2.5_ultrasonic_sensor_module_python.html">2.2.5 Ultraschall-Sensormodul</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.2.6_mpu6050_module_python.html">2.2.6 MPU6050-Modul</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_2.2.7_mfrc522_rfid_module_python.html#">2.2.10 MFRC522 RFID Modul</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_extension_python.html">3 Erweiterung</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Spielen Sie mit C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Spielen mit Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Videokurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Für Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Spielen Sie mit Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_input_python.html">2 Eingabe</a></li>
+      <li class="breadcrumb-item active">2.2.10 MFRC522 RFID Modul</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_2.2.7_mfrc522_rfid_module_python.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Hallo und willkommen in der SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.</p>
+<p><strong>Warum beitreten?</strong></p>
+<ul class="simple">
+<li><p><strong>Expertenunterstützung</strong>: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.</p></li>
+<li><p><strong>Lernen &amp; Teilen</strong>: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.</p></li>
+<li><p><strong>Exklusive Vorschauen</strong>: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.</p></li>
+<li><p><strong>Spezialrabatte</strong>: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.</p></li>
+<li><p><strong>Festliche Aktionen und Gewinnspiele</strong>: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.</p></li>
+</ul>
+<p>👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [<a href="https://bit.ly/raphaelkit " target="_blank">hier</a>] und treten Sie heute bei!</p>
+</div>
+<section id="mfrc522-rfid-modul">
+<span id="py"></span><h1>2.2.10 MFRC522 RFID Modul<a class="headerlink" href="pi5_2.2.7_mfrc522_rfid_module_python.html#mfrc522-rfid-modul" title="Link to this heading"></a></h1>
+<section id="einfuhrung">
+<h2>Einführung<a class="headerlink" href="pi5_2.2.7_mfrc522_rfid_module_python.html#einfuhrung" title="Link to this heading"></a></h2>
+<p>Die Radiofrequenzidentifikation (RFID) bezieht sich auf Technologien, die
+kabellose Kommunikation zwischen einem Objekt (oder Tag) und einem abfragenden
+Gerät (oder Lesegerät) verwenden, um solche Objekte automatisch zu verfolgen und zu identifizieren.</p>
+<p>Einige der häufigsten Anwendungen dieser Technologie sind Einzelhandels-Lieferketten,
+militärische Lieferketten, automatisierte Zahlungsmethoden,
+Gepäckverfolgung und -management, Dokumentenverfolgung und Pharmamanagement, um nur einige zu nennen.</p>
+<p>In diesem Projekt verwenden wir RFID zum Lesen und Schreiben.</p>
+</section>
+<section id="benotigte-komponenten">
+<h2>Benötigte Komponenten<a class="headerlink" href="pi5_2.2.7_mfrc522_rfid_module_python.html#benotigte-komponenten" title="Link to this heading"></a></h2>
+<p>Für dieses Projekt benötigen wir die folgenden Komponenten.</p>
+<img alt="../_images/list_2.2.71.png" src="../_images/list_2.2.71.png" />
+</section>
+<section id="schaltplan">
+<h2>Schaltplan<a class="headerlink" href="pi5_2.2.7_mfrc522_rfid_module_python.html#schaltplan" title="Link to this heading"></a></h2>
+<img alt="../_images/image3311.png" src="../_images/image3311.png" />
+</section>
+<section id="experimentelle-verfahren">
+<h2>Experimentelle Verfahren<a class="headerlink" href="pi5_2.2.7_mfrc522_rfid_module_python.html#experimentelle-verfahren" title="Link to this heading"></a></h2>
+<p><strong>Schritt 1:</strong> Bauen Sie den Schaltkreis.</p>
+<img alt="../_images/image2321.png" src="../_images/image2321.png" />
+<p><strong>Schritt 2:</strong> Aktivieren Sie das SPI, bevor Sie mit dem Experiment beginnen, siehe <a class="reference internal" href="../appendix/spi_configuration.html#spi-configuration"><span class="std std-ref">SPI-Konfiguration</span></a> für Details.</p>
+<p><strong>Schritt 3:</strong> Gehen Sie in den Ordner mit dem Code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Schritt 4:</strong> Führen Sie <code class="docutils literal notranslate"><span class="pre">2.2.10_write.py</span></code> aus.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">2.2.10</span><span class="n">_write</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p><strong>Schritt 5:</strong> Nach dem Start des Programms geben Sie den Text ein, den Sie schreiben möchten (bis zu 16 Zeichen), zum Beispiel „welcome“, und drücken Sie Enter zur Bestätigung. Danach wird die Meldung „Daten wurden auf die Karte geschrieben“ angezeigt. Drücken Sie schließlich <code class="docutils literal notranslate"><span class="pre">Strg+C</span></code>, um die Ausführung des Codes zu stoppen.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Please place your RFID card on the reader...
+Press Ctrl-C to stop.
+RFID card detected!
+Card UID: 9BF6210B
+Please enter data to write to the card (up to 16 characters): welcome
+Block 8 authentication successful
+4 backdata &amp;0x0F == 0x0A 10
+Data written
+Data has been written to the card
+Reading data from block 8:
+Sector 8 [119, 101, 108, 99, 111, 109, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+</pre></div>
+</div>
+<p><strong>Schritt 6:</strong> Führen Sie nun <code class="docutils literal notranslate"><span class="pre">2.2.10_read.py</span></code> aus, um die Informationen des Tags oder der Karte zu lesen, die Sie geschrieben haben.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">2.2.10</span><span class="n">_read</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p><strong>Schritt 7:</strong> Nach dem Start erhalten Sie die folgenden Informationen.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Please place your RFID card on the reader...
+Press Ctrl-C to stop.
+RFID card detected!
+Card UID: 9BF6210B
+Block 8 authentication successful
+Sector 8 [119, 101, 108, 99, 111, 109, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+MFRC522_Read return type: &lt;class &#39;int&#39;&gt;, Data: [119, 101, 108, 99, 111, 109, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Sector 8 [119, 101, 108, 99, 111, 109, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Read data: welcome
+</pre></div>
+</div>
+</section>
+<section id="code-analyse-fur-2-2-10-write-py">
+<h2>Code-Analyse für <code class="docutils literal notranslate"><span class="pre">2.2.10_write.py</span></code><a class="headerlink" href="pi5_2.2.7_mfrc522_rfid_module_python.html#code-analyse-fur-2-2-10-write-py" title="Link to this heading"></a></h2>
+<p>Dieses Python-Skript schreibt vom Benutzer bereitgestellte Daten auf eine RFID-Karte unter Verwendung des MFRC522-RFID-Lesegeräts. Das Skript überprüft kontinuierlich die Anwesenheit einer Karte, fordert den Benutzer zur Eingabe der zu schreibenden Daten auf und bestätigt den erfolgreichen Schreib- und Lesevorgang.</p>
+<ol class="arabic">
+<li><p>Importanweisungen</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MFRC522</span></code>: Importiert Funktionen und Klassen, die für die Steuerung des RFID-Lesegeräts benötigt werden.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">signal</span></code> und <code class="docutils literal notranslate"><span class="pre">time</span></code>: <code class="docutils literal notranslate"><span class="pre">signal</span></code> wird verwendet, um eine sichere Beendigung über SIGINT (Strg+C) zu ermöglichen, und <code class="docutils literal notranslate"><span class="pre">time</span></code> fügt Verzögerungen in der Hauptschleife hinzu.</p></li>
+</ul>
+</li>
+<li><p>Globale Variable</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">continue_reading</span></code>: Steuert die Hauptschleife und ermöglicht es dem Skript, sich sicher zu beenden, wenn es auf <code class="docutils literal notranslate"><span class="pre">False</span></code> gesetzt wird.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">continue_reading</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</li>
+<li><p>Signalbehandlung:</p>
+<ul class="simple">
+<li><p>Funktion <code class="docutils literal notranslate"><span class="pre">end_read</span></code>: Diese Funktion wird ausgelöst, wenn <code class="docutils literal notranslate"><span class="pre">Strg+C</span></code> (SIGINT) erkannt wird. Sie setzt <code class="docutils literal notranslate"><span class="pre">continue_reading</span></code> auf <code class="docutils literal notranslate"><span class="pre">False</span></code>, sodass das Skript sicher beendet werden kann.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">signal.signal(signal.SIGINT,</span> <span class="pre">end_read)</span></code>: Bindet das SIGINT-Signal (Strg+C) an <code class="docutils literal notranslate"><span class="pre">end_read</span></code>, sodass bei einer Unterbrechung eine Meldung angezeigt und das Skript sicher beendet wird.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">end_read</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>RFID-Lesegerät Setup:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rfid_reader</span></code>: Eine Instanz der <code class="docutils literal notranslate"><span class="pre">MFRC522</span></code>-Klasse, die für die Steuerung des RFID-Lesegeräts verwendet wird.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_key</span></code>: Ein 6-Byte-Schlüssel, normalerweise <code class="docutils literal notranslate"><span class="pre">0xFF</span></code> für jedes Byte. Dies ist der Standard-Authentifizierungsschlüssel für die meisten RFID-Karten.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erstellen einer Instanz der MFRC522-Klasse</span>
+<span class="n">rfid_reader</span> <span class="o">=</span> <span class="n">MFRC522</span><span class="o">.</span><span class="n">MFRC522</span><span class="p">()</span>
+
+<span class="c1"># Definieren des Standardschlüssels (6 Bytes, Standard ist alles 0xFF)</span>
+<span class="n">default_key</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Benutzeranweisungen</p>
+<p>Das Skript gibt Anweisungen in der Konsole aus und informiert den Benutzer, die RFID-Karte auf den Leser zu legen und <code class="docutils literal notranslate"><span class="pre">Strg+C</span></code> zu verwenden, um das Programm zu beenden.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bitte legen Sie Ihre RFID-Karte auf den Leser...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Drücken Sie Strg-C zum Stoppen.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Hauptschleife: Erkennung, Schreiben und Lesen von Daten</p>
+<ul class="simple">
+<li><p><strong>Kartenerkennung</strong>: Das Skript ruft kontinuierlich <code class="docutils literal notranslate"><span class="pre">MFRC522_Request</span></code> auf, um RFID-Karten zu erkennen. Wenn eine Karte erkannt wird (<code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">==</span> <span class="pre">rfid_reader.MI_OK</span></code>), fährt das Skript mit dem nächsten Schritt fort.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">TagType</span><span class="p">)</span> <span class="o">=</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_Request</span><span class="p">(</span><span class="n">rfid_reader</span><span class="o">.</span><span class="n">PICC_REQIDL</span><span class="p">)</span>
+
+<span class="c1"># Wenn eine Karte erkannt wird</span>
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MI_OK</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RFID-Karte erkannt!&quot;</span><span class="p">)</span>
+    <span class="o">...</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Kurze Wartezeit vor erneutem Versuch</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Abrufen der Karten-UID</strong>: Ruft <code class="docutils literal notranslate"><span class="pre">MFRC522_SelectTagSN</span></code> auf, um die eindeutige Kennung (UID) der Karte abzurufen. Wenn erfolgreich, wird die UID in eine hexadezimale Zeichenfolge umgewandelt und ausgegeben. Die UID ist für die Authentifizierung erforderlich.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">uid</span><span class="p">)</span> <span class="o">=</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_SelectTagSN</span><span class="p">()</span>
+
+<span class="c1"># Wenn die UID vorhanden ist, fortfahren</span>
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MI_OK</span><span class="p">:</span>
+    <span class="c1"># UID ausgeben</span>
+    <span class="n">uid_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;</span><span class="si">%02X</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">uid</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Karten-UID: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">uid_str</span><span class="p">)</span>
+    <span class="o">...</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Karten-UID konnte nicht abgerufen werden&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Datenvorbereitung</strong>:</p>
+<ul>
+<li><p><strong>Benutzereingabe</strong>: Der Benutzer wird aufgefordert, Daten einzugeben, die auf die Karte geschrieben werden sollen (bis zu 16 Zeichen).</p></li>
+<li><p><strong>Datenkürzung</strong>: Die Daten werden auf 16 Zeichen gekürzt, falls der Benutzer mehr eingibt.</p></li>
+<li><p><strong>String-zu-Byte-Konvertierung</strong>: Die Benutzereingabe wird in eine Byte-Liste konvertiert und auf 16 Bytes aufgefüllt, wie es das Speicherformat der RFID-Karte erfordert.</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">write_data</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Bitte geben Sie die Daten ein, die auf die Karte geschrieben werden sollen (bis zu 16 Zeichen): &quot;</span><span class="p">)</span>
+<span class="c1"># Sicherstellen, dass die Daten 16 Zeichen nicht überschreiten</span>
+<span class="n">write_data</span> <span class="o">=</span> <span class="n">write_data</span><span class="p">[:</span><span class="mi">16</span><span class="p">]</span>
+<span class="c1"># String in Byte-Liste konvertieren, auf 16 Bytes auffüllen</span>
+<span class="n">data_to_write</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x00</span><span class="p">]</span><span class="o">*</span><span class="mi">16</span>
+<span class="n">string_bytes</span> <span class="o">=</span> <span class="n">write_data</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string_bytes</span><span class="p">)):</span>
+    <span class="n">data_to_write</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">string_bytes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Blocknummer angeben</strong>: Das Skript legt Block 8 als Ziel zum Schreiben der Daten fest. Hinweis: Blocknummern sollten die „Sektortrailer“-Blöcke, normalerweise der letzte Block in jedem Sektor, vermeiden, da diese für Steuerinformationen verwendet werden.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">block_num</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># Zum Beispiel Block 8</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Karten-Authentifizierung</strong>: <code class="docutils literal notranslate"><span class="pre">MFRC522_Auth</span></code> authentifiziert den angegebenen Block mit dem Standard-Schlüssel und der UID. Bei erfolgreicher Authentifizierung wird der Schreibvorgang fortgesetzt. Andernfalls wird eine Fehlermeldung ausgegeben und die Verschlüsselung beendet.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_Auth</span><span class="p">(</span><span class="n">rfid_reader</span><span class="o">.</span><span class="n">PICC_AUTHENT1A</span><span class="p">,</span> <span class="n">block_num</span><span class="p">,</span> <span class="n">default_key</span><span class="p">,</span> <span class="n">uid</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MI_OK</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authentifizierung von Block </span><span class="si">%d</span><span class="s2"> erfolgreich&quot;</span> <span class="o">%</span> <span class="n">block_num</span><span class="p">)</span>
+    <span class="o">...</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authentifizierung fehlgeschlagen&quot;</span><span class="p">)</span>
+    <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_StopCrypto1</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Daten auf die Karte schreiben</strong>: <code class="docutils literal notranslate"><span class="pre">MFRC522_Write</span></code> schreibt die vorbereiteten Daten auf den angegebenen Block der RFID-Karte. Nach dem Schreiben bestätigt eine Nachricht den erfolgreichen Schreibvorgang.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_Write</span><span class="p">(</span><span class="n">block_num</span><span class="p">,</span> <span class="n">data_to_write</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Daten wurden auf die Karte geschrieben&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Daten zurücklesen</strong>: Um den Schreibvorgang zu überprüfen, liest das Skript die Daten aus demselben Block mit <code class="docutils literal notranslate"><span class="pre">MFRC522_Read</span></code>. Die zurückgelesenen Daten werden ausgegeben, damit der Benutzer die Daten überprüfen kann.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Daten aus Block </span><span class="si">%d</span><span class="s2"> lesen:&quot;</span> <span class="o">%</span> <span class="n">block_num</span><span class="p">)</span>
+<span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_Read</span><span class="p">(</span><span class="n">block_num</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Verschlüsselung beenden</strong>: <code class="docutils literal notranslate"><span class="pre">MFRC522_StopCrypto1</span></code> beendet den Verschlüsselungsprozess nach Abschluss der Vorgänge. Dieser Schritt ist notwendig, um den Kommunikationsstatus der Karte zurückzusetzen.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verschlüsselung beenden</span>
+<span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_StopCrypto1</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul>
+<li><p><strong>Schleife beenden</strong>: Nach dem Schreiben und Überprüfen der Daten wird <code class="docutils literal notranslate"><span class="pre">continue_reading</span></code> auf <code class="docutils literal notranslate"><span class="pre">False</span></code> gesetzt, um die Schleife zu beenden und das Skript zu stoppen.</p>
+<blockquote>
+<div><p>continue_reading = False</p>
+</div></blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Wichtige Punkte</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Sichere Beendigung</strong>: Das Skript erfasst SIGINT (Strg+C), um sicher zu beenden und eine Nachricht anzuzeigen. Dies ermöglicht es, dass alle laufenden Vorgänge abgeschlossen werden, bevor das Skript beendet wird.</p></li>
+<li><p><strong>Benutzerinteraktion</strong>: Fordert den Benutzer zur Eingabe auf, sodass die Daten bei jedem Schreibvorgang individuell angepasst werden können.</p></li>
+<li><p><strong>Authentifizierung</strong>: Sichert den Zugriff auf den angegebenen Block und behandelt Authentifizierungsfehler auf sichere Weise.</p></li>
+<li><p><strong>Datenformatierung</strong>: Konvertiert Zeichenfolgendaten in ein Byte-Listenformat, das mit der Speicherstruktur der Karte kompatibel ist, und fügt bei Bedarf Auffüllbytes hinzu.</p></li>
+<li><p><strong>Überprüfung</strong>: Liest Daten von der Karte zurück, um einen erfolgreichen Schreibvorgang zu bestätigen, was die Zuverlässigkeit erhöht.</p></li>
+<li><p><strong>Modularität</strong>: Das Skript ist gut strukturiert mit klaren Funktionen zur Erkennung, zum Schreiben und zum Lesen, was das Verständnis und die Wartung erleichtert.</p></li>
+</ul>
+</div></blockquote>
+<p>Dieses Skript eignet sich für Anwendungen, die Lese- und Schreibfunktionen mit RFID-Karten erfordern, wie z. B. Zugangskontrolle oder Benutzeridentifikation.</p>
+</section>
+<section id="code-erklarung-fur-2-2-10-read-py">
+<h2>Code-Erklärung für <code class="docutils literal notranslate"><span class="pre">2.2.10_read.py</span></code><a class="headerlink" href="pi5_2.2.7_mfrc522_rfid_module_python.html#code-erklarung-fur-2-2-10-read-py" title="Link to this heading"></a></h2>
+<p>Dieses Python-Skript verwendet einen <strong>RFID-Leser (MFRC522)</strong>, um Daten von RFID-Karten auszulesen. Das Skript ist so strukturiert, dass es kontinuierlich nach Karten sucht, deren Daten abruft und durch Signalerfassung eine reibungslose Beendigung bei Beenden-Anfragen (z.B. durch <code class="docutils literal notranslate"><span class="pre">Strg+C</span></code>) ermöglicht.</p>
+<ol class="arabic">
+<li><p>Importanweisungen:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MFRC522</span></code>: Dieses Modul stellt Methoden bereit, um mit dem MFRC522-RFID-Leser zu interagieren.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">signal</span></code> und <code class="docutils literal notranslate"><span class="pre">time</span></code>: Dienen zur Handhabung der Skriptbeendigung (z.B. durch <code class="docutils literal notranslate"><span class="pre">Strg+C</span></code>) und zur Steuerung der Zeit zwischen bestimmten Operationen.</p></li>
+</ul>
+</li>
+<li><p>Globale Variablen:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">continue_reading</span></code>: Ein boolesches Flag, das die Hauptleseschleife steuert und es dem Skript ermöglicht, bei Betätigung von <code class="docutils literal notranslate"><span class="pre">Strg+C</span></code> reibungslos zu stoppen.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">continue_reading</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</li>
+<li><p>Signalerfassung:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">end_read</span></code>-Funktion: Diese Funktion wird aktiviert, wenn <code class="docutils literal notranslate"><span class="pre">Strg+C</span></code> (SIGINT) erkannt wird. Sie setzt <code class="docutils literal notranslate"><span class="pre">continue_reading</span></code> auf <code class="docutils literal notranslate"><span class="pre">False</span></code>, wodurch das Skript reibungslos beendet werden kann.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">signal.signal(signal.SIGINT,</span> <span class="pre">end_read)</span></code>: Verbindet das SIGINT-Signal (Strg+C) mit <code class="docutils literal notranslate"><span class="pre">end_read</span></code>, sodass das Skript eine Nachricht anzeigt und geordnet beendet wird.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">end_read</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Einrichtung des RFID-Lesers:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rfid_reader</span></code>: Eine Instanz der Klasse <code class="docutils literal notranslate"><span class="pre">MFRC522</span></code>, die zur Steuerung der RFID-Leservorgänge dient.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_key</span></code>: Ein 6-Byte-Schlüssel, normalerweise für jedes Byte <code class="docutils literal notranslate"><span class="pre">0xFF</span></code>. Dies ist der Standardschlüssel zur Authentifizierung bei den meisten RFID-Karten.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">block_num</span></code>: Gibt die Blocknummer an, die von der RFID-Karte gelesen werden soll; hier ist Block <code class="docutils literal notranslate"><span class="pre">8</span></code> angegeben. Die Blocknummer muss mit der beim Schreiben der Daten auf die Karte verwendeten übereinstimmen.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erstelle eine Instanz der MFRC522-Klasse</span>
+<span class="n">rfid_reader</span> <span class="o">=</span> <span class="n">MFRC522</span><span class="o">.</span><span class="n">MFRC522</span><span class="p">()</span>
+
+<span class="c1"># Definiere den Standardschlüssel (6 Bytes, Standard ist 0xFF)</span>
+<span class="n">default_key</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">]</span>
+
+<span class="c1"># Definiere die Blocknummer zum Lesen (muss mit dem Schreibblock übereinstimmen)</span>
+<span class="n">block_num</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># Zum Beispiel Block 8</span>
+</pre></div>
+</div>
+</li>
+<li><p>Benutzeranweisungen</p>
+<p>Das Skript gibt Anweisungen auf der Konsole aus, die den Benutzer auffordern, seine RFID-Karte auf den Leser zu legen und mit <code class="docutils literal notranslate"><span class="pre">Strg+C</span></code> das Skript zu beenden.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bitte legen Sie Ihre RFID-Karte auf den Leser...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Drücken Sie Strg+C zum Beenden.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Hauptschleife: Erkennung und Datenauslesung der RFID-Karte.</p>
+<ul>
+<li><p><strong>Scannen nach Karten</strong>: Die Hauptschleife ruft kontinuierlich <code class="docutils literal notranslate"><span class="pre">MFRC522_Request</span></code> auf, um nach RFID-Karten zu scannen. Wenn eine Karte erkannt wird, fährt sie mit den nächsten Schritten fort.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">TagType</span><span class="p">)</span> <span class="o">=</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_Request</span><span class="p">(</span><span class="n">rfid_reader</span><span class="o">.</span><span class="n">PICC_REQIDL</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MI_OK</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RFID-Karte erkannt!&quot;</span><span class="p">)</span>
+    <span class="o">...</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Wenn keine Karte erkannt wird, kurz warten und dann erneut versuchen</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Abrufen der Karten-UID</strong>: Verwendet <code class="docutils literal notranslate"><span class="pre">MFRC522_SelectTagSN</span></code> zur Abfrage der eindeutigen Kennung (UID) der Karte. Bei erfolgreicher Abfrage wird die UID in einen hexadezimalen String umgewandelt und ausgegeben. Diese UID ist für die Authentifizierung der Karte notwendig.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">uid</span><span class="p">)</span> <span class="o">=</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_SelectTagSN</span><span class="p">()</span>
+
+<span class="c1"># Wenn UID erfolgreich abgerufen wurde, fortfahren</span>
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MI_OK</span><span class="p">:</span>
+    <span class="c1"># UID-Liste in einen hexadezimalen String umwandeln</span>
+    <span class="n">uid_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;</span><span class="si">%02X</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">uid</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Karten-UID: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">uid_str</span><span class="p">)</span>
+    <span class="o">...</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Karten-UID konnte nicht abgerufen werden&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Authentifizierung der Karte</strong>: <code class="docutils literal notranslate"><span class="pre">MFRC522_Auth</span></code> authentifiziert den Zugriff auf den angegebenen Block unter Verwendung des Standardschlüssels und der UID der Karte. Bei erfolgreicher Authentifizierung geht das Skript zum Lesen der Daten über.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_Auth</span><span class="p">(</span><span class="n">rfid_reader</span><span class="o">.</span><span class="n">PICC_AUTHENT1A</span><span class="p">,</span> <span class="n">block_num</span><span class="p">,</span> <span class="n">default_key</span><span class="p">,</span> <span class="n">uid</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MI_OK</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authentifizierung für Block </span><span class="si">%d</span><span class="s2"> erfolgreich&quot;</span> <span class="o">%</span> <span class="n">block_num</span><span class="p">)</span>
+    <span class="o">...</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authentifizierung fehlgeschlagen, Statuscode: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">status</span><span class="p">)</span>
+    <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_StopCrypto1</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Daten auslesen</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MFRC522_Read</span></code> liest die Daten vom angegebenen Block.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: Diese Variable enthält die Rohdaten des Blocks, wenn die Leseoperation erfolgreich ist.</p></li>
+<li><p>Das Skript wandelt jedes Byte in <code class="docutils literal notranslate"><span class="pre">data</span></code> in Zeichen um und entfernt eventuell vorhandene Nullbytes (<code class="docutils literal notranslate"><span class="pre">\x00</span></code>) als Füllzeichen. Die verarbeiteten Daten werden dann ausgegeben.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">read_status</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_Read</span><span class="p">(</span><span class="n">block_num</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MFRC522_Read Rückgabetyp: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">read_status</span><span class="p">)</span><span class="si">}</span><span class="s2">, Daten: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">read_status</span> <span class="o">==</span> <span class="n">rfid_reader</span><span class="o">.</span><span class="n">MI_OK</span> <span class="ow">and</span> <span class="n">data</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sektor </span><span class="si">{</span><span class="n">block_num</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Byte-Daten in String umwandeln und Füllbytes entfernen</span>
+    <span class="n">read_data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="n">byte</span><span class="p">)</span> <span class="k">for</span> <span class="n">byte</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gelesene Daten: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">read_data</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datenlesen fehlgeschlagen, Statuscode: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">read_status</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MFRC522_StopCrypto1</span></code> wird aufgerufen, um die Verschlüsselung zu stoppen und die Kartenkommunikation zurückzusetzen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verschlüsselung auf der Karte stoppen</span>
+<span class="n">rfid_reader</span><span class="o">.</span><span class="n">MFRC522_StopCrypto1</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Warten zwischen Lesedurchläufen</strong>: Wenn keine Karte erkannt wird, pausiert die Schleife 0,5 Sekunden, bevor erneut versucht wird.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Wenn keine Karte erkannt wird, kurz warten und dann erneut versuchen</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Wichtige Punkte</strong></p>
+<ul class="simple">
+<li><p><strong>Geordnete Beendigung</strong>: Das Skript fängt das <code class="docutils literal notranslate"><span class="pre">SIGINT</span></code>-Signal auf, um eine geordnete Beendigung zu ermöglichen, wodurch der RFID-Leser laufende Vorgänge beenden kann.</p></li>
+<li><p><strong>Block- und UID-Verwaltung</strong>: Verwendet Block und UID als Schlüsselfaktoren beim Lesen der Daten von einer RFID-Karte und handhabt Authentifizierungs- sowie Lese-Fehler ordnungsgemäß.</p></li>
+<li><p><strong>Modulares Design</strong>: Die Verwendung dedizierter Funktionen aus dem <code class="docutils literal notranslate"><span class="pre">MFRC522</span></code>-Modul macht das Skript übersichtlich und modular, was RFID-Operationen wie Authentifizierung und Datenauslesung vereinfacht.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pi5_2.2.6_mpu6050_module_python.html" class="btn btn-neutral float-left" title="2.2.6 MPU6050-Modul" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="pi5_extension_python.html" class="btn btn-neutral float-right" title="3 Erweiterung" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

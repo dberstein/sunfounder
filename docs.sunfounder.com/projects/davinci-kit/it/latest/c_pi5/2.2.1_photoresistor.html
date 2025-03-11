@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="it" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2.1 Fotoresistore &mdash; SunFounder davinci-kit-for-raspberry-pi  documentazione</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=3fd72285"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=0173e136"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/it/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Indice" href="../genindex.html" />
+    <link rel="search" title="Cerca" href="../search.html" />
+    <link rel="next" title="2.2.2 Termistore" href="2.2.2_thermistor.html" />
+    <link rel="prev" title="2.1.6 Joystick" href="2.1.6_joystick.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-it" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/c_pi5/2.2.1_photoresistor.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Cerca documenti" aria-label="Cerca documenti" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu di navigazione">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Elenco dei Componenti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Scheda di Estensione GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Scarica il Codice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installazione e configurazione di Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Per Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Divertiti con Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_c.html">Gioca con C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_wiringpi_c.html">Installazione e verifica di WiringPi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1_output.html">1 Uscita</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="2_input.html">2 Ingresso</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="2.1.1_button.html">2.1.1 Pulsante</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.2_slide&#32;Switch.html">2.1.2 Interruttore a Scorrimento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.3_tilt_switch.html">2.1.3 Interruttore a Inclinazione</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.4_potentiometer.html">2.1.4 Potenziometro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.5_keypad.html">2.1.5 Tastiera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.6_joystick.html">2.1.6 Joystick</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="2.2.1_photoresistor.html#">2.2.1 Fotoresistore</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.2_thermistor.html">2.2.2 Termistore</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.3_dht-11.html">2.2.3 DHT-11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.4_pir.html">2.2.4 PIR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html">2.2.5 Sensore a Ultrasuoni</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.6_mpu6050_module.html">2.2.6 Modulo MPU6050</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.7_mfrc522_rfid_module.html">2.2.7 Modulo RFID MFRC522</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="3_extension.html">3 Estensioni</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Giocare con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Corso Video Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Grazie</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu navigazione dispositivi mobili" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Naviga tra le pagine">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Per Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_c.html">Gioca con C</a></li>
+          <li class="breadcrumb-item"><a href="2_input.html">2 Ingresso</a></li>
+      <li class="breadcrumb-item active">2.2.1 Fotoresistore</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c_pi5/2.2.1_photoresistor.rst.txt" rel="nofollow"> Visualizza sorgente pagina</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Ciao, benvenuto nella community SunFounder per appassionati di Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci la tua conoscenza di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.</p>
+<p><strong>Perché unirti a noi?</strong></p>
+<ul class="simple">
+<li><p><strong>Supporto esperto</strong>: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.</p></li>
+<li><p><strong>Impara e condividi</strong>: Scambia consigli e tutorial per migliorare le tue competenze.</p></li>
+<li><p><strong>Anteprime esclusive</strong>: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.</p></li>
+<li><p><strong>Sconti speciali</strong>: Approfitta di sconti esclusivi sui nostri nuovi prodotti.</p></li>
+<li><p><strong>Promozioni e omaggi</strong>: Partecipa a promozioni speciali e omaggi durante le festività.</p></li>
+</ul>
+<p>👉 Pronto a esplorare e creare con noi? Clicca su [<a href="https://bit.ly/raphaelkit " target="_blank">Qui</a>] e unisciti oggi!</p>
+</div>
+<section id="fotoresistore">
+<h1>2.2.1 Fotoresistore<a class="headerlink" href="2.2.1_photoresistor.html#fotoresistore" title="Link to this heading"></a></h1>
+<section id="introduzione">
+<h2>Introduzione<a class="headerlink" href="2.2.1_photoresistor.html#introduzione" title="Link to this heading"></a></h2>
+<p>Il fotoresistore è un componente comunemente utilizzato per rilevare
+l’intensità della luce ambientale. Consente al controller di distinguere
+tra giorno e notte e implementare funzioni di controllo della luce, come
+l’accensione delle lampade notturne. Questo progetto è molto simile a quello
+con il potenziometro, con la differenza che qui si misura la variazione di
+tensione in funzione della luce percepita.</p>
+</section>
+<section id="componenti">
+<h2>Componenti<a class="headerlink" href="2.2.1_photoresistor.html#componenti" title="Link to this heading"></a></h2>
+<img alt="../_images/list_2.2.1_photoresistor1.png" src="../_images/list_2.2.1_photoresistor1.png" />
+</section>
+<section id="principio">
+<h2>Principio<a class="headerlink" href="2.2.1_photoresistor.html#principio" title="Link to this heading"></a></h2>
+<p>Un fotoresistore o fotocellula è una resistenza variabile controllata dalla
+luce. La sua resistenza diminuisce all’aumentare dell’intensità della luce
+incidente; in altre parole, presenta fotoconduttività. Un fotoresistore può
+essere applicato in circuiti per rilevatori sensibili alla luce, così come in
+circuiti di accensione e spegnimento in base alla presenza di luce o oscurità.</p>
+<a class="reference internal image-reference" href="../_images/image1961.png"><img alt="../_images/image1961.png" class="align-center" src="../_images/image1961.png" style="width: 200px;" />
+</a>
+</section>
+<section id="schema-del-circuito">
+<h2>Schema del Circuito<a class="headerlink" href="2.2.1_photoresistor.html#schema-del-circuito" title="Link to this heading"></a></h2>
+<img alt="../_images/image3211.png" src="../_images/image3211.png" />
+<img alt="../_images/image3221.png" src="../_images/image3221.png" />
+</section>
+<section id="procedura-sperimentale">
+<h2>Procedura Sperimentale<a class="headerlink" href="2.2.1_photoresistor.html#procedura-sperimentale" title="Link to this heading"></a></h2>
+<p><strong>Passo 1:</strong> Costruisci il circuito.</p>
+<a class="reference internal image-reference" href="../_images/image1981.png"><img alt="../_images/image1981.png" src="../_images/image1981.png" style="width: 800px;" />
+</a>
+<p><strong>Passo 2:</strong> Vai alla cartella del codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">2.2.1</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Passo 3:</strong> Compila il codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">2.2.1</span><span class="n">_Photoresistor</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Passo 4:</strong> Esegui il file eseguibile.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Quando il codice è in esecuzione, la luminosità del LED varierà in base
+all’intensità della luce rilevata dal fotoresistore.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Se non funziona dopo l’esecuzione o appare un messaggio di errore: &quot;wiringPi.h: File o directory non esistente&quot;, fai riferimento a <a class="reference internal" href="../faq.html#il-codice-c-non-funziona"><span class="std std-ref">Il codice C non funziona?</span></a>.</p>
+</div>
+<p><strong>Codice</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;softPwm.h&gt;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">uchar</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">uint</span><span class="p">;</span>
+
+<span class="cp">#define     ADC_CS    0</span>
+<span class="cp">#define     ADC_CLK   1</span>
+<span class="cp">#define     ADC_DIO   2</span>
+<span class="cp">#define     LedPin    3</span>
+
+<span class="n">uchar</span><span class="w"> </span><span class="nf">get_ADC_Result</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">channel</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w"> </span><span class="n">dat1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">dat2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">odd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Bit di avvio</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Modalità single-end</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ODD</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="n">odd</span><span class="p">);</span><span class="w">  </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Selezione</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="n">sel</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">        </span><span class="n">dat1</span><span class="o">=</span><span class="n">dat1</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">dat2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">((</span><span class="n">uchar</span><span class="p">)(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">))</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">(</span><span class="n">dat1</span><span class="o">==</span><span class="n">dat2</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">dat1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w"> </span><span class="n">analogVal</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span><span class="w"> </span><span class="c1">//quando l&#39;inizializzazione wiring fallisce, stampa un messaggio a schermo</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">softPwmCreate</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w">  </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="w">  </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">analogVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_ADC_Result</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Current analogVal : %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">analogVal</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w"> </span><span class="n">analogVal</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Spiegazione del Codice</strong></p>
+<p>Il codice qui è lo stesso della sezione 2.1.4 Potenziometro. Se hai
+altre domande, consulta la spiegazione del codice in <strong>2.1.4 Potentiometro.c</strong>
+per i dettagli.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Piè di pagina">
+        <a href="2.1.6_joystick.html" class="btn btn-neutral float-left" title="2.1.6 Joystick" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Precedente</a>
+        <a href="2.2.2_thermistor.html" class="btn btn-neutral float-right" title="2.2.2 Termistore" accesskey="n" rel="next">Prossimo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, SunFounder.</p>
+  </div>
+
+  Realizzato con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornito da <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,692 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.14 JUEGO – Not Not &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Juega con Processing" href="processing/play_with_processing.html" />
+    <link rel="prev" title="3.1.13 JUEGO– 10 Segundos" href="3.1.13_game_10_second.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/3.1.14_game_not_not.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Para Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Bibliotecas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_output.html">1 Salida</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_input.html">2 Entrada</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="3_extension.html">3 Extensiones</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="3.1.1_counting_device.html">3.1.1 Dispositivo de Conteo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.2_welcome.html">3.1.2 Bienvenida</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.3_reversing_alarm.html">3.1.3 Alarma de Reversa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.4_smart_fan.html">3.1.4 Ventilador Inteligente</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.5_battery_indicator.html">3.1.5 Indicador de Batería</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.6_motion_control.html">3.1.6 Control de Movimiento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.7_traffic_light.html">3.1.7 Semáforo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.8_overheat_monitor.html">3.1.8 Monitor de Sobrecalentamiento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.9_password_lock.html">3.1.9 Bloqueo por Contraseña</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.10_alarm_bell.html">3.1.10 Alarma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.11_morse_code_generator.html">3.1.11 Generador de Código Morse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.12_game_guess_number.html">3.1.12 JUEGO– Adivina el Número</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.13_game_10_second.html">3.1.13 JUEGO– 10 Segundos</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="3.1.14_game_not_not.html#">3.1.14 JUEGO – Not Not</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="3.1.14_game_not_not.html#introduccion">Introducción</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.14_game_not_not.html#componentes">Componentes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.14_game_not_not.html#diagrama-esquematico">Diagrama Esquemático</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.14_game_not_not.html#procedimientos-experimentales">Procedimientos Experimentales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.14_game_not_not.html#imagen-del-fenomeno">Imagen del Fenómeno</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Juega con Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Juega con Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Experimenta con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+          <li class="breadcrumb-item"><a href="3_extension.html">3 Extensiones</a></li>
+      <li class="breadcrumb-item active">3.1.14 JUEGO – Not Not</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/3.1.14_game_not_not.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete para profundizar en Raspberry Pi, Arduino y ESP32 junto a otros apasionados.</p>
+<p><strong>¿Por qué unirte?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte de Expertos</strong>: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprende y Comparte</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Avances Exclusivos</strong>: Obtén acceso anticipado a anuncios de nuevos productos y vistas previas.</p></li>
+<li><p><strong>Descuentos Especiales</strong>: Disfruta de descuentos exclusivos en nuestros productos más recientes.</p></li>
+<li><p><strong>Promociones Festivas y Sorteos</strong>: Participa en sorteos y promociones de temporada.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy.</p>
+</div>
+<section id="juego-not-not">
+<h1>3.1.14 JUEGO – Not Not<a class="headerlink" href="3.1.14_game_not_not.html#juego-not-not" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="3.1.14_game_not_not.html#introduccion" title="Link to this heading"></a></h2>
+<p>En esta lección, haremos un dispositivo de juego interesante al que llamamos «Not Not».</p>
+<p>Durante el juego, la matriz de puntos mostrará una flecha en una dirección aleatoria. Lo que debes hacer es presionar el botón en la dirección opuesta a la flecha dentro de un tiempo limitado. Si el tiempo se acaba o si presionas el botón en la misma dirección que la flecha, pierdes.</p>
+<p>Este juego realmente pone a prueba tu pensamiento inverso, ¿te animas a probarlo?</p>
+</section>
+<section id="componentes">
+<h2>Componentes<a class="headerlink" href="3.1.14_game_not_not.html#componentes" title="Link to this heading"></a></h2>
+<img alt="_images/list_GAME_Not_Not.png" class="align-center" src="_images/list_GAME_Not_Not.png" />
+</section>
+<section id="diagrama-esquematico">
+<h2>Diagrama Esquemático<a class="headerlink" href="3.1.14_game_not_not.html#diagrama-esquematico" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO20</p></td>
+<td><p>Pin 38</p></td>
+<td><p>28</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO26</p></td>
+<td><p>Pin 37</p></td>
+<td><p>25</p></td>
+<td><p>26</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/Schematic_three_one14.png" class="align-center" src="_images/Schematic_three_one14.png" />
+</section>
+<section id="procedimientos-experimentales">
+<h2>Procedimientos Experimentales<a class="headerlink" href="3.1.14_game_not_not.html#procedimientos-experimentales" title="Link to this heading"></a></h2>
+<p><strong>Paso 1:</strong> Construye el circuito.</p>
+<a class="reference internal image-reference" href="_images/image280.png"><img alt="_images/image280.png" src="_images/image280.png" style="width: 800px;" />
+</a>
+<section id="para-usuarios-de-lenguaje-c">
+<h3><strong>Para Usuarios de Lenguaje C</strong><a class="headerlink" href="3.1.14_game_not_not.html#para-usuarios-de-lenguaje-c" title="Link to this heading"></a></h3>
+<p><strong>Paso 2:</strong> Ve a la carpeta del código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">3.1.14</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Paso 3</strong>: Compila el código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">3.1.14</span><span class="n">_GAME_NotNot</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Paso 4</strong>: Ejecuta el archivo compilado.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Después de que el programa inicie, una flecha aleatoria hacia la izquierda
+o derecha se mostrará en la matriz de puntos. Lo que necesitas hacer es
+presionar el botón en la dirección opuesta a la flecha dentro de un tiempo
+limitado. Luego aparecerá un &quot;<strong>√</strong>&quot; en la matriz de puntos. Si el tiempo
+se agota o si presionas el botón en la misma dirección que la flecha, pierdes,
+y la matriz de puntos muestra una &quot;x&quot;. Puedes agregar 2 botones nuevos o
+reemplazarlos con un joystick para incluir las direcciones arriba, abajo,
+izquierda y derecha, y así aumentar la dificultad del juego.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si no funciona después de ejecutarlo, o aparece un mensaje de error: &quot;wiringPi.h: No such file or directory», consulta <a class="reference internal" href="faq.html#c-code-is-not-working"><span class="std std-ref">c code is not working?</span></a>.</p>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<p>Basado en <strong>1.1.6 Matriz de LED</strong>, esta lección añade <strong>2</strong> botones para hacer
+un divertido dispositivo de juego. Si no estás familiarizado con la matriz de
+puntos, consulta <a class="reference internal" href="1.1.6_led_dot_matrix.html#led-dot-matrix"><span class="std std-ref">1.1.6 LED Dot Matrix</span></a>.</p>
+<p>El proceso del programa es el siguiente:</p>
+<ol class="arabic simple">
+<li><p>Selecciona aleatoriamente una dirección de flecha y genera <strong>timer 1</strong>.</p></li>
+<li><p>Muestra la imagen de la flecha en la matriz de puntos.</p></li>
+</ol>
+<p>3. Evalúa la entrada del botón. Si se presiona el botón o <strong>timer 1</strong>
+indica que el tiempo se agotó, comienza la evaluación.</p>
+<p>4. Muestra la imagen en la matriz según el resultado de la evaluación;
+mientras tanto, genera <strong>timer 2</strong>.</p>
+<ol class="arabic simple" start="5">
+<li><p>Vuelve a ejecutar el <strong>paso 1</strong> cuando <strong>timer 2</strong> indique que el tiempo ha terminado.</p></li>
+</ol>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">GLYPH</span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">word</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">code</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">GLYPH</span><span class="w"> </span><span class="n">arrow</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="p">{</span><span class="s">&quot;right&quot;</span><span class="p">,{</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xEF</span><span class="p">,</span><span class="mh">0xDF</span><span class="p">,</span><span class="mh">0x81</span><span class="p">,</span><span class="mh">0xDF</span><span class="p">,</span><span class="mh">0xEF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">}},</span>
+<span class="w">    </span><span class="c1">// {&quot;down&quot;,{0xFF,0xEF,0xC7,0xAB,0xEF,0xEF,0xEF,0xFF}},</span>
+<span class="w">    </span><span class="c1">// {&quot;up&quot;,{0xFF,0xEF,0xEF,0xEF,0xAB,0xC7,0xEF,0xFF}},</span>
+<span class="w">    </span><span class="p">{</span><span class="s">&quot;left&quot;</span><span class="p">,{</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xF7</span><span class="p">,</span><span class="mh">0xFB</span><span class="p">,</span><span class="mh">0x81</span><span class="p">,</span><span class="mh">0xFB</span><span class="p">,</span><span class="mh">0xF7</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">}}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">GLYPH</span><span class="w"> </span><span class="n">check</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="p">{</span><span class="s">&quot;wrong&quot;</span><span class="p">,{</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xBB</span><span class="p">,</span><span class="mh">0xD7</span><span class="p">,</span><span class="mh">0xEF</span><span class="p">,</span><span class="mh">0xD7</span><span class="p">,</span><span class="mh">0xBB</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">}},</span>
+<span class="w">    </span><span class="p">{</span><span class="s">&quot;right&quot;</span><span class="p">,{</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xF7</span><span class="p">,</span><span class="mh">0xEB</span><span class="p">,</span><span class="mh">0xDF</span><span class="p">,</span><span class="mh">0xBF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">}}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>La estructura GLYPH funciona como un diccionario: el atributo <strong>word</strong>
+corresponde a la <strong>clave</strong> en el diccionario; el atributo <strong>code</strong>
+corresponde al <strong>valor</strong>.</p>
+<p>Aquí, el código se utiliza para almacenar un array que permite a la matriz
+de puntos mostrar imágenes (una matriz de 8x8 bits).</p>
+<p>El array <strong>arrow</strong> puede usarse para mostrar el patrón de flechas en las
+direcciones izquierda y derecha en la matriz de LED.</p>
+<p>Ahora <strong>down</strong> y <strong>up</strong> están comentadas, y puedes descomentarlas si las
+necesitas.</p>
+<p>El array <strong>check</strong> se usa para mostrar estas dos imágenes: &quot;<strong>×</strong>&quot; y &quot;<strong>√</strong>&quot;.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">lookup</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">key</span><span class="p">,</span><span class="k">struct</span><span class="w"> </span><span class="nc">GLYPH</span><span class="w"> </span><span class="o">*</span><span class="n">glyph</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">length</span><span class="p">){</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">length</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">glyph</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">word</span><span class="p">,</span><span class="n">key</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">glyph</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">code</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La función <strong>lookup()</strong> trabaja &quot;consultando el diccionario&quot;.
+Define una <strong>clave</strong>, busca palabras idénticas en la estructura
+<strong>GLYPH *glyph</strong> y devuelve la información correspondiente— el
+&quot;<strong>código</strong>&quot; de esa palabra.</p>
+<p>La función <strong>Strcmp()</strong> se usa para comparar la identidad de dos
+cadenas de caracteres, <strong>glyph[i].word</strong> y <strong>key</strong>; si coincide,
+devuelve <strong>glyph[i].code</strong> (como se muestra).</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">glyphCode</span><span class="p">){</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">glyphCode</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">hc595_in</span><span class="p">(</span><span class="mh">0x80</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="n">hc595_out</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Muestra el patrón especificado en la matriz de puntos.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">createGlyph</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">srand</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="n">rand</span><span class="p">()</span><span class="o">%</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">arrow</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="n">arrow</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+<span class="w">    </span><span class="n">waypoint</span><span class="o">=</span><span class="n">arrow</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">word</span><span class="p">;</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">=</span><span class="s">&quot;PLAY&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">alarm</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La función <strong>createGlyph()</strong> se usa para seleccionar aleatoriamente
+una dirección (el atributo word de un elemento en el array <strong>arrow[]:</strong>
+«left», «right»…). Establece el estado como «PLAY» y comienza una función
+de alarma de 2 segundos.</p>
+<p><strong>srand(time(NULL)):</strong> Inicializa semillas aleatorias obtenidas del reloj
+del sistema.</p>
+<p><strong>(sizeof(arrow)/sizeof(arrow[0]))：</strong> Obtiene la longitud del array,
+siendo el resultado 2.</p>
+<p><strong>rand() % 2:</strong> El resto es <strong>0</strong> o <strong>1</strong>, obtenido al dividir un número
+aleatorio generado entre 2.</p>
+<p><strong>waypoint = arrow[i].word:</strong> El resultado es &quot;right&quot; o &quot;left&quot;.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">checkPoint</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">inputKey</span><span class="p">){</span>
+<span class="w">    </span><span class="n">alarm</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">inputKey</span><span class="o">==</span><span class="n">waypoint</span><span class="o">||</span><span class="n">inputKey</span><span class="o">==</span><span class="s">&quot;empty&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">waypoint</span><span class="o">=</span><span class="s">&quot;wrong&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="p">{</span>
+<span class="w">        </span><span class="n">waypoint</span><span class="o">=</span><span class="s">&quot;right&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">=</span><span class="s">&quot;CHECK&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">alarm</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>checkPoint() se usa para verificar la entrada del botón; si el botón
+no se presiona o se presiona el botón en la misma dirección que la flecha,
+el resultado es «wrong» y aparece una &quot;<strong>x</strong>en la matriz de puntos.
+De lo contrario, el resultado es «right» y la matriz de puntos muestra &quot;<strong>√</strong>&quot;.
+Aquí el <strong>stage</strong> es <strong>CHECK,</strong> y se puede establecer una función de alarma
+de 1 segundo.</p>
+<p>alarm() también se conoce como «reloj despertador», en el cual se puede
+configurar un temporizador que envía señales <strong>SIGALRM</strong> al proceso cuando
+se alcanza el tiempo definido.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">getKey</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">AButtonPin</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="o">&amp;&amp;</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">BButtonPin</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span><span class="n">checkPoint</span><span class="p">(</span><span class="s">&quot;right&quot;</span><span class="p">);}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">AButtonPin</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">BButtonPin</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span><span class="n">checkPoint</span><span class="p">(</span><span class="s">&quot;left&quot;</span><span class="p">);}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>getKey() lee los estados de estos dos botones; si se presiona el botón
+derecho, el parámetro de checkPoint() es <strong>right</strong> y si se presiona el
+botón izquierdo, el parámetro es <strong>left</strong>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">timer</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stage</span><span class="o">==</span><span class="s">&quot;PLAY&quot;</span><span class="p">){</span>
+<span class="w">        </span><span class="n">checkPoint</span><span class="p">(</span><span class="s">&quot;empty&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">stage</span><span class="o">==</span><span class="s">&quot;CHECK&quot;</span><span class="p">){</span>
+<span class="w">        </span><span class="n">createGlyph</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Anteriormente, timer() se llamaba cuando se establecía la función alarm().
+En el modo &quot;PLAY&quot;, se llama a checkPoint() para evaluar el resultado.
+Si el programa está en modo &quot;CHECK&quot;, se llama a createGlyph() para
+seleccionar nuevos patrones.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">setup</span><span class="p">();</span>
+<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGALRM</span><span class="p">,</span><span class="n">timer</span><span class="p">);</span>
+<span class="w">    </span><span class="n">createGlyph</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stage</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;PLAY&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">code</span><span class="o">=</span><span class="n">lookup</span><span class="p">(</span><span class="n">waypoint</span><span class="p">,</span><span class="n">arrow</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">arrow</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="n">arrow</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+<span class="w">            </span><span class="n">display</span><span class="p">(</span><span class="n">code</span><span class="p">);</span>
+<span class="w">            </span><span class="n">getKey</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">stage</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;CHECK&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lookup</span><span class="p">(</span><span class="n">waypoint</span><span class="p">,</span><span class="n">check</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">check</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+<span class="w">            </span><span class="n">display</span><span class="p">(</span><span class="n">code</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>El funcionamiento de signal(SIGALRM, timer): llama a la función timer() cuando
+se recibe una señal SIGALRM (generada por la función de alarma).</p>
+<p>Cuando el programa inicia, llama a createGlyph() una vez y luego inicia el bucle.</p>
+<p>En el bucle: en el modo PLAY, la matriz de puntos muestra patrones de flechas y
+verifica el estado del botón; si está en el modo CHECK, se muestra &quot;x&quot; o &quot;√&quot;.</p>
+</section>
+<section id="para-usuarios-de-lenguaje-python">
+<h3><strong>Para Usuarios de Lenguaje Python</strong><a class="headerlink" href="3.1.14_game_not_not.html#para-usuarios-de-lenguaje-python" title="Link to this heading"></a></h3>
+<p><strong>Paso 2</strong>: Accede a la carpeta del código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<p><strong>Paso 3</strong>: Ejecuta el código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.14</span><span class="n">_GAME_NotNot</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Al iniciar el programa, aparecerá en la matriz de puntos una flecha
+apuntando a la derecha o a la izquierda. Lo que debes hacer es presionar
+el botón en la dirección opuesta a la flecha dentro de un tiempo limitado.
+Luego, aparecerá un &quot;<strong>√</strong>&quot; en la matriz de puntos. Si el tiempo se agota
+o si presionas el botón en la misma dirección que la flecha, pierdes y la
+matriz muestra una &quot;x&quot;. También puedes agregar 2 botones nuevos o reemplazarlos
+con un joystick para incluir las direcciones arriba, abajo, izquierda y derecha,
+aumentando así la dificultad del juego.</p>
+<p><strong>Código</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puedes <strong>Modificar/Restablecer/Copiar/Ejecutar/Detener</strong> el código a continuación. Pero antes de eso, debes acceder a la ruta del código fuente como <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">SDI</span>   <span class="o">=</span> <span class="mi">17</span>
+<span class="n">RCLK</span>  <span class="o">=</span> <span class="mi">18</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="mi">27</span>
+
+<span class="n">timerPlay</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">timerCheck</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">AButtonPin</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">BButtonPin</span> <span class="o">=</span> <span class="mi">26</span>
+
+<span class="n">waypoint</span> <span class="o">=</span> <span class="s2">&quot;NULL&quot;</span>
+<span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;NULL&quot;</span>
+
+<span class="n">arrow</span><span class="o">=</span><span class="p">{</span>
+    <span class="c1">#&quot;down&quot; :[0xFF,0xEF,0xC7,0xAB,0xEF,0xEF,0xEF,0xFF],</span>
+    <span class="c1">#&quot;up&quot;:[0xFF,0xEF,0xEF,0xEF,0xAB,0xC7,0xEF,0xFF],</span>
+    <span class="s2">&quot;right&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xEF</span><span class="p">,</span><span class="mh">0xDF</span><span class="p">,</span><span class="mh">0x81</span><span class="p">,</span><span class="mh">0xDF</span><span class="p">,</span><span class="mh">0xEF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">],</span>
+    <span class="s2">&quot;left&quot;</span><span class="p">:[</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xF7</span><span class="p">,</span><span class="mh">0xFB</span><span class="p">,</span><span class="mh">0x81</span><span class="p">,</span><span class="mh">0xFB</span><span class="p">,</span><span class="mh">0xF7</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">check</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;wrong&quot;</span><span class="p">:[</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xBB</span><span class="p">,</span><span class="mh">0xD7</span><span class="p">,</span><span class="mh">0xEF</span><span class="p">,</span><span class="mh">0xD7</span><span class="p">,</span><span class="mh">0xBB</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">],</span>
+    <span class="s2">&quot;right&quot;</span><span class="p">:[</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xF7</span><span class="p">,</span><span class="mh">0xEB</span><span class="p">,</span><span class="mh">0xDF</span><span class="p">,</span><span class="mh">0xBF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>    <span class="c1"># Numera GPIOs según su ubicación BCM</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">AButtonPin</span><span class="p">,</span><span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">BButtonPin</span><span class="p">,</span><span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+
+<span class="c1"># Desplaza los datos hacia 74HC595</span>
+<span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">dat</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dat</span> <span class="o">&lt;&lt;</span> <span class="n">bit</span><span class="p">))</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="n">glyphCode</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">glyphCode</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="mh">0x80</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">creatGlyph</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">waypoint</span>
+    <span class="k">global</span> <span class="n">stage</span>
+    <span class="k">global</span> <span class="n">timerPlay</span>
+    <span class="n">waypoint</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">arrow</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;PLAY&quot;</span>
+    <span class="n">timerPlay</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">timeOut</span><span class="p">)</span>
+    <span class="n">timerPlay</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">checkPoint</span><span class="p">(</span><span class="n">inputKey</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">waypoint</span>
+    <span class="k">global</span> <span class="n">stage</span>
+    <span class="k">global</span> <span class="n">timerCheck</span>
+    <span class="k">if</span> <span class="n">inputKey</span> <span class="o">==</span> <span class="s2">&quot;empty&quot;</span> <span class="ow">or</span> <span class="n">inputKey</span> <span class="o">==</span> <span class="n">waypoint</span><span class="p">:</span>
+        <span class="n">waypoint</span> <span class="o">=</span> <span class="s2">&quot;wrong&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">waypoint</span> <span class="o">=</span> <span class="s2">&quot;right&quot;</span>
+    <span class="n">timerPlay</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+    <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;CHECK&quot;</span>
+    <span class="n">timerCheck</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">creatGlyph</span><span class="p">)</span>
+    <span class="n">timerCheck</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">timeOut</span><span class="p">():</span>
+    <span class="n">checkPoint</span><span class="p">(</span><span class="s2">&quot;empty&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">getKey</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">AButtonPin</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">BButtonPin</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">checkPoint</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">AButtonPin</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">BButtonPin</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">checkPoint</span><span class="p">(</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">creatGlyph</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;PLAY&quot;</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">arrow</span><span class="p">[</span><span class="n">waypoint</span><span class="p">])</span>
+            <span class="n">getKey</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;CHECK&quot;</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">waypoint</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">timer1</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+    <span class="n">timerPlay</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>  <span class="c1"># cancela el temporizador</span>
+    <span class="n">timerCheck</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">main</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<p>Basado en <strong>1.1.6 Matriz de LED</strong>, esta lección añade <strong>2</strong> botones
+para crear un dispositivo de juego divertido. Si no estás familiarizado
+con la matriz de puntos, consulta <a class="reference internal" href="1.1.6_led_dot_matrix.html#led-dot-matrix"><span class="std std-ref">1.1.6 LED Dot Matrix</span></a>.</p>
+<p>El proceso completo del programa es el siguiente:</p>
+<a class="reference internal image-reference" href="_images/notnot3.png"><img alt="_images/notnot3.png" src="_images/notnot3.png" style="width: 800px;" />
+</a>
+<ol class="arabic simple">
+<li><p>Selecciona aleatoriamente una dirección de flecha y genera <strong>timer 1</strong>.</p></li>
+<li><p>Muestra la imagen correspondiente en la matriz de puntos.</p></li>
+<li><p>Evalúa la entrada del botón. Si se presiona el botón o <strong>timer 1</strong> indica que el tiempo se ha agotado, comienza la evaluación.</p></li>
+<li><p>Muestra la imagen en función del resultado de la evaluación; al mismo tiempo, genera <strong>timer 2</strong>.</p></li>
+<li><p>Vuelve a ejecutar <strong>paso 1</strong> cuando <strong>timer 2</strong> indique que el tiempo ha terminado.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">creatGlyph</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;PLAY&quot;</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">arrow</span><span class="p">[</span><span class="n">waypoint</span><span class="p">])</span>
+            <span class="n">getKey</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;CHECK&quot;</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">waypoint</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Main() contiene el proceso completo de ejecución.</p>
+<p>Cuando el programa comienza, llama a createGlyph() una vez y luego inicia el bucle.</p>
+<p>En el bucle: en el modo PLAY, la matriz de puntos muestra patrones de flechas y
+verifica el estado del botón; en el modo CHECK, se muestra &quot;<strong>x</strong>&quot; o &quot;<strong>√</strong>&quot;.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">arrow</span><span class="o">=</span><span class="p">{</span>
+    <span class="c1">#&quot;down&quot; :[0xFF,0xEF,0xC7,0xAB,0xEF,0xEF,0xEF,0xFF],</span>
+    <span class="c1">#&quot;up&quot;:[0xFF,0xEF,0xEF,0xEF,0xAB,0xC7,0xEF,0xFF],</span>
+    <span class="s2">&quot;right&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xEF</span><span class="p">,</span><span class="mh">0xDF</span><span class="p">,</span><span class="mh">0x81</span><span class="p">,</span><span class="mh">0xDF</span><span class="p">,</span><span class="mh">0xEF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">],</span>
+    <span class="s2">&quot;left&quot;</span><span class="p">:[</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xF7</span><span class="p">,</span><span class="mh">0xFB</span><span class="p">,</span><span class="mh">0x81</span><span class="p">,</span><span class="mh">0xFB</span><span class="p">,</span><span class="mh">0xF7</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">check</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;wrong&quot;</span><span class="p">:[</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xBB</span><span class="p">,</span><span class="mh">0xD7</span><span class="p">,</span><span class="mh">0xEF</span><span class="p">,</span><span class="mh">0xD7</span><span class="p">,</span><span class="mh">0xBB</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">],</span>
+    <span class="s2">&quot;right&quot;</span><span class="p">:[</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xF7</span><span class="p">,</span><span class="mh">0xEB</span><span class="p">,</span><span class="mh">0xDF</span><span class="p">,</span><span class="mh">0xBF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Aquí, el <strong>diccionario</strong> arrow se usa para mostrar el patrón de flecha en las
+direcciones arriba, abajo, izquierda y derecha en la matriz de LED.</p>
+<p>Actualmente, las direcciones abajo y arriba están comentadas; descoméntalas si
+es necesario.</p>
+<p>El <strong>diccionario</strong> check se utiliza para mostrar las imágenes: &quot;<strong>×</strong>&quot; y &quot;<strong>√</strong>&quot;.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="n">glyphCode</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">glyphCode</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="mh">0x80</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Muestra el patrón especificado en la matriz de puntos.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">creatGlyph</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">waypoint</span>
+    <span class="k">global</span> <span class="n">stage</span>
+    <span class="k">global</span> <span class="n">timerPlay</span>
+    <span class="n">waypoint</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">arrow</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;PLAY&quot;</span>
+    <span class="n">timerPlay</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">timeOut</span><span class="p">)</span>
+    <span class="n">timerPlay</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>La función <strong>createGlyph()</strong> se usa para seleccionar aleatoriamente una
+dirección (el atributo palabra de un elemento en el array <strong>arrow[]:</strong>
+&quot;<strong>left</strong>&quot;, &quot;<strong>right</strong>&quot;…). Configura el estado como &quot;PLAY&quot; e inicia
+una función de temporizador de 2 segundos.</p>
+<p><strong>arrow.keys():</strong> Selecciona las claves &quot;right&quot; y &quot;left&quot; en el array arrow.</p>
+<p><strong>list(arrow.keys()):</strong> Combina estas claves en un array.</p>
+<p><strong>random.choice(list(arrow.keys())):</strong> Selecciona aleatoriamente un elemento en el array.</p>
+<p>Por lo tanto, el resultado de <strong>waypoint=random.choice(list(arrow.keys()))</strong>
+debería ser &quot;right&quot; o &quot;left&quot;.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">checkPoint</span><span class="p">(</span><span class="n">inputKey</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">waypoint</span>
+    <span class="k">global</span> <span class="n">stage</span>
+    <span class="k">global</span> <span class="n">timerCheck</span>
+    <span class="k">if</span> <span class="n">inputKey</span> <span class="o">==</span> <span class="s2">&quot;empty&quot;</span> <span class="ow">or</span> <span class="n">inputKey</span> <span class="o">==</span> <span class="n">waypoint</span><span class="p">:</span>
+        <span class="n">waypoint</span> <span class="o">=</span> <span class="s2">&quot;wrong&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">waypoint</span> <span class="o">=</span> <span class="s2">&quot;right&quot;</span>
+    <span class="n">timerPlay</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+    <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;CHECK&quot;</span>
+    <span class="n">timerCheck</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">creatGlyph</span><span class="p">)</span>
+    <span class="n">timerCheck</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>checkPoint() detecta el estado actual de la entrada del botón:</p>
+<p>Si no se presiona ningún botón o se presiona el botón en la misma dirección
+que la flecha, el valor asignado de <strong>``waypoint``</strong> es <strong>``wrong``</strong> y se
+muestra una <code class="docutils literal notranslate"><span class="pre">x</span></code> en la matriz de puntos.</p>
+<p>De lo contrario, el waypoint es correcto y aparece &quot;<strong>√</strong>&quot;.</p>
+<p>Ahora el estado es <strong>CHECK</strong> e inicia un temporizador de 1 segundo
+<strong>timerCheck</strong> para llamar a la función creatGlyph() en un segundo.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">timeOut</span><span class="p">():</span>
+    <span class="n">checkPoint</span><span class="p">(</span><span class="s2">&quot;empty&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>En la función timeOut(), establece el parámetro de checkPoint() como &quot;<strong>empty</strong>&quot;.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getKey</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">AButtonPin</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">BButtonPin</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">checkPoint</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">AButtonPin</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">BButtonPin</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">checkPoint</span><span class="p">(</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>getKey() lee el estado de estos dos botones, y si se presiona el botón derecho,
+el parámetro de checkPoint() es <strong>right</strong>; si se presiona el botón izquierdo,
+el parámetro es <strong>left</strong>.</p>
+</section>
+</section>
+<section id="imagen-del-fenomeno">
+<h2>Imagen del Fenómeno<a class="headerlink" href="3.1.14_game_not_not.html#imagen-del-fenomeno" title="Link to this heading"></a></h2>
+<img alt="_images/image281.jpeg" class="align-center" src="_images/image281.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="3.1.13_game_10_second.html" class="btn btn-neutral float-left" title="3.1.13 JUEGO– 10 Segundos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="processing/play_with_processing.html" class="btn btn-neutral float-right" title="Juega con Processing" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play with C &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=bf059b8c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Installer et vérifier WiringPi" href="check_the_wiringpi_c.html" />
+    <link rel="prev" title="3.1.14 JEU – Not Not" href="../python_pi5/pi5_3.1.14_game_not_not_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/c_pi5/play_with_c.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Pour le Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Jouez avec Python</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="play_with_c.html#">Play with C</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="check_the_wiringpi_c.html">Installer et vérifier WiringPi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1_output.html">1 Sortie</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_input.html">2 Entrée</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_extension.html">3 Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Pour le Pi 5</a></li>
+      <li class="breadcrumb-item active">Play with C</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c_pi5/play_with_c.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Rejoignez d’autres amateurs pour explorer plus en profondeur le monde du Raspberry Pi, de l’Arduino et de l’ESP32.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Assistance d’experts</strong> : Résolvez les problèmes après-vente et relevez les défis techniques grâce à l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprendre et partager</strong> : Échangez des conseils et des tutoriels pour améliorer vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Profitez d’un accès anticipé aux nouvelles annonces de produits et avant-premières.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Bénéficiez de réductions exclusives sur nos nouveaux produits.</p></li>
+<li><p><strong>Promotions festives et cadeaux</strong> : Participez à nos concours et promotions saisonnières.</p></li>
+</ul>
+<p>👉 Prêt à explorer et créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="play-with-c">
+<h1>Play with C<a class="headerlink" href="play_with_c.html#play-with-c" title="Lien vers cette rubrique"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="check_the_wiringpi_c.html">Installer et vérifier WiringPi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_output.html">1 Sortie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 LED Clignotante</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 LED RGB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 Barre de LED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 Afficheur 7 segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 Afficheur 7 segments à 4 chiffres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 Matrice de LED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 LCD1602 I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 Buzzer Actif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 Buzzer Passif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.1_motor.html">1.3.1 Moteur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.2_servo.html">1.3.2 Servo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 Moteur Pas à Pas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.4_relay.html">1.3.4 Relais</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2_input.html">2 Entrée</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2.1.1_button.html">2.1.1 Bouton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.1.2_slide&#32;Switch.html">2.1.2 Interrupteur à glissière</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.1.3_tilt_switch.html">2.1.3 Interrupteur à bascule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.1.4_potentiometer.html">2.1.4 Potentiomètre</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.1.5_keypad.html">2.1.5 Clavier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.1.6_joystick.html">2.1.6 Joystick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2.1_photoresistor.html">2.2.1 Photoresistor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2.2_thermistor.html">2.2.2 Thermistor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2.3_dht-11.html">2.2.3 DHT-11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2.4_pir.html">2.2.4 Détecteur PIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html">2.2.5 Module de Capteur Ultrasonique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2.6_mpu6050_module.html">2.2.6 Module MPU6050</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.2.7_mfrc522_rfid_module.html">2.2.7 Module RFID MFRC522</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_extension.html">3 Extension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3.1.1_counting_device.html">3.1.1 Dispositif de comptage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.2_welcome.html">3.1.2 Bienvenue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.3_reversing_alarm.html">3.1.3 Alarme de Recul</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.4_smart_fan.html">3.1.4 Ventilateur Intelligent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.5_battery_indicator.html">3.1.5 Indicateur de Batterie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.6_motion_control.html">3.1.6 Contrôle de Mouvement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.7_traffic_light.html">3.1.7 Feu Tricolore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.8_overheat_monitor.html">3.1.8 Moniteur de Surchauffe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.9_password_lock.html">3.1.9 Serrure à Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.10_alarm_bell.html">3.1.10 Alarme Manuelle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.11_morse_code_generator.html">3.1.11 Générateur de Code Morse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.12_game_guess_number.html">3.1.12 JEU - Devinez le nombre</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.13_game_10_second.html">3.1.13 JEU – 10 Secondes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.1.14_game_not_not.html">3.1.14 JEU – Not Not</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="../python_pi5/pi5_3.1.14_game_not_not_python.html" class="btn btn-neutral float-left" title="3.1.14 JEU – Not Not" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="check_the_wiringpi_c.html" class="btn btn-neutral float-right" title="Installer et vérifier WiringPi" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

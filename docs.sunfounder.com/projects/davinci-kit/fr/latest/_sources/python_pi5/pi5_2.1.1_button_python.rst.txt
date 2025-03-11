@@ -1,0 +1,147 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi, Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Assistance d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre et partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux présentations exclusives.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales pour les fêtes.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+.. _2.1.1_py_pi5:
+
+2.1.1 Bouton
+==============
+
+Introduction
+---------------
+
+Dans ce projet, nous allons apprendre à allumer ou éteindre une LED à l'aide d'un bouton.
+
+Composants nécessaires
+--------------------------
+
+Pour ce projet, nous aurons besoin des composants suivants.
+
+.. image:: ../python_pi5/img/2.1.1_Button_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schéma de circuit
+---------------------
+
+Utilisez un bouton normalement ouvert comme entrée pour le Raspberry Pi, selon le schéma de connexion ci-dessous. Lorsque le bouton est pressé, le GPIO18 passe à un niveau haut (3,3V). Nous pouvons détecter l'état du GPIO18 grâce à un programme. Ainsi, si le GPIO18 passe à un niveau haut, cela signifie que le bouton est pressé. Vous pouvez alors exécuter le code correspondant pour allumer la LED.
+
+.. note::
+    La broche la plus longue de la LED est l'anode (+) et la plus courte est la cathode (-).
+
+.. image:: ../python_pi5/img/2.1.1_Button_schematic_1.png
+
+.. image:: ../python_pi5/img/2.1.1_Button_schematic_2.png
+
+
+Procédure expérimentale
+-----------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: ../python_pi5/img/2.1.1_Button_circuit.png
+
+**Étape 2 :** Ouvrez le fichier de code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Étape 3 :** Exécutez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.1_Button.py
+
+Maintenant, appuyez sur le bouton et la LED s'allumera ; relâchez le bouton et la LED s'éteindra.
+
+.. warning::
+
+    En cas d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`.
+
+**Code**
+
+.. note::
+
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le répertoire source comme ``davinci-kit-for-raspberry-pi/python-pi5``. Après modification, vous pouvez exécuter le code pour observer le résultat.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import LED, Button  # Importer les classes LED et Button depuis gpiozero
+   from signal import pause  # Importer la fonction pause du module signal
+
+   # Initialiser un objet LED sur la broche GPIO 17
+   led = LED(17)
+   # Initialiser un objet Button sur la broche GPIO 18
+   button = Button(18)
+
+   # Associer l'événement "when_pressed" du bouton à la méthode on() de la LED
+   button.when_pressed = led.on
+   # Associer l'événement "when_released" du bouton à la méthode off() de la LED
+   button.when_released = led.off
+
+   # Lancer une boucle d'événements pour maintenir le script en attente des interactions avec le bouton
+   pause()
+
+
+**Explication du code**
+
+#. Le script est écrit en Python3 et importe les classes ``LED`` et ``Button`` de la bibliothèque ``gpiozero``, ainsi que la fonction ``pause`` du module ``signal``.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import LED, Button  # Importer les classes LED et Button depuis gpiozero
+       from signal import pause  # Importer la fonction pause du module signal
+
+#. Initialise un objet ``LED`` sur la broche GPIO 17 et un objet ``Button`` sur la broche GPIO 18.
+
+   .. code-block:: python
+
+       # Initialiser un objet LED sur la broche GPIO 17
+       led = LED(17)
+       # Initialiser un objet Button sur la broche GPIO 18
+       button = Button(18)
+
+#. Configure les gestionnaires d'événements pour que la LED s'allume lorsque le bouton est pressé et s'éteigne lorsque le bouton est relâché.
+
+   .. code-block:: python
+
+       # Associer l'événement "when_pressed" du bouton à la méthode on() de la LED
+       button.when_pressed = led.on
+       # Associer l'événement "when_released" du bouton à la méthode off() de la LED
+       button.when_released = led.off
+
+#. Cette fonction maintient le script en attente dans une boucle d'événements, prêt à réagir aux interactions du bouton.
+
+   .. code-block:: python
+
+       # Lancer une boucle d'événements pour maintenir le script en attente des interactions avec le bouton
+       pause()
+

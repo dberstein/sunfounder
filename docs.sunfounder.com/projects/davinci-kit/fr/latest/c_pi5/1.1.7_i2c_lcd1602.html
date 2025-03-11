@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.7 LCD1602 I2C &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="1.2.1 Buzzer Actif" href="1.2.1_active_buzzer.html" />
+    <link rel="prev" title="1.1.6 Matrice de LED" href="1.1.6_led_dot_matrix.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/c_pi5/1.1.7_i2c_lcd1602.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Pour le Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Jouez avec Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_c.html">Play with C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_wiringpi_c.html">Installer et vérifier WiringPi</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="1_output.html">1 Sortie</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 LED Clignotante</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 LED RGB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 Barre de LED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 Afficheur 7 segments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 Afficheur 7 segments à 4 chiffres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 Matrice de LED</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="1.1.7_i2c_lcd1602.html#">1.1.7 LCD1602 I2C</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 Buzzer Actif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 Buzzer Passif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.1_motor.html">1.3.1 Moteur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.2_servo.html">1.3.2 Servo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 Moteur Pas à Pas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.4_relay.html">1.3.4 Relais</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2_input.html">2 Entrée</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_extension.html">3 Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Pour le Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_c.html">Play with C</a></li>
+          <li class="breadcrumb-item"><a href="1_output.html">1 Sortie</a></li>
+      <li class="breadcrumb-item active">1.1.7 LCD1602 I2C</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c_pi5/1.1.7_i2c_lcd1602.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour, bienvenue dans la communauté SunFounder des passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez-vous plus profondément dans l’univers du Raspberry Pi, de l’Arduino et de l’ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez les problèmes après-vente et les défis techniques grâce à l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprendre et partager</strong> : Échangez des astuces et des tutoriels pour perfectionner vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Profitez d’un accès anticipé aux nouvelles annonces de produits et aux aperçus.</p></li>
+<li><p><strong>Remises spéciales</strong> : Bénéficiez de réductions exclusives sur nos derniers produits.</p></li>
+<li><p><strong>Promotions festives et cadeaux</strong> : Participez à des tirages au sort et à des promotions pendant les fêtes.</p></li>
+</ul>
+<p>👉 Prêt à explorer et à créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="lcd1602-i2c">
+<h1>1.1.7 LCD1602 I2C<a class="headerlink" href="1.1.7_i2c_lcd1602.html#lcd1602-i2c" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="1.1.7_i2c_lcd1602.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>Le LCD1602 est un écran à cristaux liquides de type caractère, capable d’afficher
+32 caractères (16*2) simultanément.</p>
+</section>
+<section id="composants">
+<h2>Composants<a class="headerlink" href="1.1.7_i2c_lcd1602.html#composants" title="Lien vers cette rubrique"></a></h2>
+<img alt="../_images/list_i2c_lcd1.png" src="../_images/list_i2c_lcd1.png" />
+</section>
+<section id="principe">
+<h2>Principe<a class="headerlink" href="1.1.7_i2c_lcd1602.html#principe" title="Lien vers cette rubrique"></a></h2>
+<p><strong>LCD1602 I2C</strong></p>
+<a class="reference internal image-reference" href="../_images/i2c_lcd16021.png"><img alt="../_images/i2c_lcd16021.png" src="../_images/i2c_lcd16021.png" style="width: 800px;" />
+</a>
+<ul class="simple">
+<li><p><strong>GND</strong> : Masse</p></li>
+<li><p><strong>VCC</strong> : Alimentation électrique, 5V.</p></li>
+<li><p><strong>SDA</strong> : Ligne de données série. Connecter au VCC via une résistance de tirage.</p></li>
+<li><p><strong>SCL</strong> : Ligne d’horloge série. Connecter au VCC via une résistance de tirage.</p></li>
+</ul>
+<p>Comme vous le savez, bien que les écrans LCD et d’autres types d’affichages enrichissent considérablement l’interaction homme-machine, ils présentent un inconvénient commun : lorsqu’ils sont connectés à un contrôleur, ils occupent de nombreux ports d’E/S, limitant ainsi d’autres fonctionnalités.</p>
+<p>C’est pourquoi le LCD1602 avec un module I2C a été développé pour résoudre ce problème. Le module I2C intègre une puce PCF8574 qui convertit les données série I2C en données parallèles pour l’affichage sur le LCD.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/lit/ds/symlink/pcf8574.pdf?ts=1627006546204&amp;ref_url=https%253A%252F%252Fwww.google.com%252F">PCF8574 Datasheet</a></p></li>
+</ul>
+<p><strong>Adresse I2C</strong></p>
+<p>L’adresse par défaut est généralement 0x27, dans quelques cas, elle peut être 0x3F.</p>
+<p>Prenons l’exemple de l’adresse par défaut 0x27, l’adresse de l’appareil peut être modifiée en court-circuitant les broches A0/A1/A2 ; à l’état par défaut, A0/A1/A2 sont à 1, et si le pont est réalisé, A0/A1/A2 sont à 0.</p>
+<a class="reference internal image-reference" href="../_images/i2c_address1.jpg"><img alt="../_images/i2c_address1.jpg" src="../_images/i2c_address1.jpg" style="width: 600px;" />
+</a>
+<p><strong>Rétroéclairage/Contraste</strong></p>
+<p>Le rétroéclairage peut être activé par un cavalier. Retirez le cavalier pour désactiver le rétroéclairage. Le potentiomètre bleu à l’arrière est utilisé pour ajuster le contraste (le rapport de luminosité entre le blanc le plus brillant et le noir le plus sombre).</p>
+<img alt="../_images/back_lcd16021.jpg" src="../_images/back_lcd16021.jpg" />
+<ul class="simple">
+<li><p><strong>Cavalier de court-circuit</strong> : Le rétroéclairage peut être activé grâce à ce cavalier. Retirez-le pour désactiver le rétroéclairage.</p></li>
+<li><p><strong>Potentiomètre</strong> : Utilisé pour ajuster le contraste (la clarté du texte affiché), qui augmente dans le sens horaire et diminue dans le sens antihoraire.</p></li>
+</ul>
+</section>
+<section id="schema-de-cablage">
+<h2>Schéma de câblage<a class="headerlink" href="1.1.7_i2c_lcd1602.html#schema-de-cablage" title="Lien vers cette rubrique"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+</tr>
+<tr class="row-even"><td><p>SDA1</p></td>
+<td><p>Pin 3</p></td>
+</tr>
+<tr class="row-odd"><td><p>SCL1</p></td>
+<td><p>Pin 5</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/schematic_i2c_lcd1.png" src="../_images/schematic_i2c_lcd1.png" />
+</section>
+<section id="procedures-experimentales">
+<h2>Procédures expérimentales<a class="headerlink" href="1.1.7_i2c_lcd1602.html#procedures-experimentales" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1 :</strong> Construisez le circuit.</p>
+<a class="reference internal image-reference" href="../_images/image961.png"><img alt="../_images/image961.png" src="../_images/image961.png" style="width: 800px;" />
+</a>
+<p><strong>Étape 2 :</strong> Configurez I2C (voir <a class="reference internal" href="../appendix/i2c_configuration.html#i2c-configuration"><span class="std std-ref">I2C Configuration</span></a>. Si vous avez déjà configuré I2C, passez cette étape).</p>
+<p><strong>Étape 3 :</strong> Changez de répertoire.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.1.7</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Étape 4 :</strong> Compilez.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.1.7</span><span class="n">_Lcd1602</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Étape 5 :</strong> Exécutez.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Après l’exécution du code, vous verrez « Greetings », « From SunFounder » s’afficher sur le LCD.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Si une erreur indique <code class="docutils literal notranslate"><span class="pre">wiringPi.h:</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code>, veuillez vous référer à <a class="reference internal" href="../libraries.html#install-wiringpi"><span class="std std-ref">Installer et vérifier WiringPi</span></a>.</p></li>
+<li><p>Si vous obtenez l’erreur <code class="docutils literal notranslate"><span class="pre">Unable</span> <span class="pre">to</span> <span class="pre">open</span> <span class="pre">I2C</span> <span class="pre">device:</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code>, vous devez vous référer à <a class="reference internal" href="../appendix/i2c_configuration.html#i2c-config"><span class="std std-ref">I2C Configuration</span></a> pour activer I2C et vérifier si le câblage est correct.</p></li>
+<li><p>Si le code et le câblage sont corrects mais que le LCD n’affiche toujours pas de contenu, ajustez le potentiomètre à l’arrière pour augmenter le contraste.</p></li>
+</ul>
+</div>
+<p><strong>Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPiI2C.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">LCDAddr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x27</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">BLEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">write_word</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">BLEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="n">temp</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="mh">0x08</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="n">temp</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="mh">0xF7</span><span class="p">;</span>
+<span class="w">    </span><span class="n">wiringPiI2CWrite</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">send_command</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">comm</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">buf</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Envoie des bits 7 à 4 en premier</span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comm</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xF0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="mh">0x04</span><span class="p">;</span><span class="w">                    </span><span class="c1">// RS = 0, RW = 0, EN = 1</span>
+<span class="w">    </span><span class="n">write_word</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="mh">0xFB</span><span class="p">;</span><span class="w">                    </span><span class="c1">// Désactive EN (EN = 0)</span>
+<span class="w">    </span><span class="n">write_word</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Envoie des bits 3 à 0 en second</span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">comm</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x0F</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="mh">0x04</span><span class="p">;</span><span class="w">                    </span><span class="c1">// RS = 0, RW = 0, EN = 1</span>
+<span class="w">    </span><span class="n">write_word</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="mh">0xFB</span><span class="p">;</span><span class="w">                    </span><span class="c1">// Désactive EN (EN = 0)</span>
+<span class="w">    </span><span class="n">write_word</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">send_data</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">buf</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Envoie des bits 7 à 4 en premier</span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xF0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="mh">0x05</span><span class="p">;</span><span class="w">                    </span><span class="c1">// RS = 1, RW = 0, EN = 1</span>
+<span class="w">    </span><span class="n">write_word</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="mh">0xFB</span><span class="p">;</span><span class="w">                    </span><span class="c1">// Désactive EN (EN = 0)</span>
+<span class="w">    </span><span class="n">write_word</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Envoie des bits 3 à 0 en second</span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x0F</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="mh">0x05</span><span class="p">;</span><span class="w">                    </span><span class="c1">// RS = 1, RW = 0, EN = 1</span>
+<span class="w">    </span><span class="n">write_word</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">buf</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="mh">0xFB</span><span class="p">;</span><span class="w">                    </span><span class="c1">// Désactive EN (EN = 0)</span>
+<span class="w">    </span><span class="n">write_word</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">send_command</span><span class="p">(</span><span class="mh">0x33</span><span class="p">);</span><span class="w">     </span><span class="c1">// Initialisation en mode 8 lignes</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="w">    </span><span class="n">send_command</span><span class="p">(</span><span class="mh">0x32</span><span class="p">);</span><span class="w">     </span><span class="c1">// Passage en mode 4 lignes</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="w">    </span><span class="n">send_command</span><span class="p">(</span><span class="mh">0x28</span><span class="p">);</span><span class="w">     </span><span class="c1">// 2 lignes et caractères 5*7</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="w">    </span><span class="n">send_command</span><span class="p">(</span><span class="mh">0x0C</span><span class="p">);</span><span class="w">     </span><span class="c1">// Activation de l&#39;affichage sans curseur</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="w">    </span><span class="n">send_command</span><span class="p">(</span><span class="mh">0x01</span><span class="p">);</span><span class="w">     </span><span class="c1">// Effacement de l&#39;écran</span>
+<span class="w">    </span><span class="n">wiringPiI2CWrite</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="mh">0x08</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">clear</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">send_command</span><span class="p">(</span><span class="mh">0x01</span><span class="p">);</span><span class="w">     </span><span class="c1">// Effacement de l&#39;écran</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">data</span><span class="p">[]){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Déplace le curseur</span>
+<span class="w">    </span><span class="n">addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x80</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x40</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="n">send_command</span><span class="p">(</span><span class="n">addr</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="n">send_data</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wiringPiI2CSetup</span><span class="p">(</span><span class="n">LCDAddr</span><span class="p">);</span>
+<span class="w">    </span><span class="n">init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Greetings!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;From SunFounder&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explication du Code</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>void write_word(int data){……}
+void send_command(int comm){……}
+void send_data(int data){……}
+void init(){……}
+void clear(){……}
+void write(int x, int y, char data[]){……}
+</pre></div>
+</div>
+<p>Ces fonctions sont utilisées pour contrôler le code source ouvert du LCD1602 I2C, ce qui nous permet de l’utiliser facilement.
+Parmi ces fonctions, <cite>init()</cite> est utilisée pour l’initialisation, <cite>clear()</cite> pour effacer l’écran, <cite>write()</cite> pour écrire les informations à afficher, et les autres fonctions servent de support à ces principales.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wiringPiI2CSetup</span><span class="p">(</span><span class="n">LCDAddr</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Cette fonction initialise le système I2C avec le symbole de l’appareil spécifié. Le prototype de la fonction :</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">wiringPiI2CSetup</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">devId</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Le paramètre <cite>devId</cite> est l’adresse du périphérique I2C, il peut être trouvé via la commande <cite>i2cdetect</cite> (voir annexe) et l’adresse de l’I2C LCD1602 est généralement 0x27.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">data</span><span class="p">[]){}</span>
+</pre></div>
+</div>
+<p>Dans cette fonction, <cite>data[]</cite> est le texte à imprimer sur le LCD, et les paramètres <cite>x</cite> et <cite>y</cite> déterminent la position d’impression (la ligne y+1, la colonne x+1 correspond au point de départ du texte à afficher).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="1.1.6_led_dot_matrix.html" class="btn btn-neutral float-left" title="1.1.6 Matrice de LED" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="1.2.1_active_buzzer.html" class="btn btn-neutral float-right" title="1.2.1 Buzzer Actif" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

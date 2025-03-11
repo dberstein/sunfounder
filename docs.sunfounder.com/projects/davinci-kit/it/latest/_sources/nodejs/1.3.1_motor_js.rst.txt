@@ -1,0 +1,209 @@
+.. note::
+
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima agli annunci dei nuovi prodotti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri nuovi prodotti.
+    - **Promozioni Festive e Omaggi**: Partecipa a omaggi e promozioni speciali per le festività.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
+
+Motore
+=================
+
+Introduzione
+-----------------
+
+In questo progetto, impareremo come utilizzare il L293D per pilotare un 
+motore DC e farlo ruotare in senso orario e antiorario. Poiché il motore 
+DC richiede una corrente più elevata, per motivi di sicurezza, utilizziamo 
+il modulo di alimentazione per fornire corrente ai motori.
+
+Componenti
+--------------
+
+.. image:: ../img/list_1.3.1.png
+
+
+
+Schema Elettrico
+--------------------
+
+Inserisci il modulo di alimentazione nella breadboard e collega il ponticello 
+al pin da 5V, in modo che eroghi una tensione di 5V. Collega il pin 1 del L293D 
+a GPIO22 e impostalo ad alto livello. Collega il pin 2 a GPIO27 e il pin 7 a 
+GPIO17, quindi imposta un pin ad alto e l'altro a basso. In questo modo puoi 
+cambiare la direzione di rotazione del motore.
+
+.. image:: ../img/image336.png
+
+
+**Procedure Sperimentali**
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../img/image117.png
+
+
+.. note::
+    Il modulo di alimentazione può essere alimentato con una batteria da 9V 
+    utilizzando il connettore per batteria da 9V incluso nel kit. Inserisci 
+    il ponticello del modulo di alimentazione nella striscia da 5V della breadboard.
+
+.. image:: ../img/image118.jpeg
+
+**Passo 2**: Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Passo 4**: Esegui il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node motor.js
+
+Una volta avviato il codice, il motore ruoterà in senso orario per 1 secondo, 
+quindi si fermerà per 1 secondo, dopodiché ruoterà in senso antiorario per 1 
+secondo; successivamente il motore si fermerà per 1 secondo. Questa serie di 
+azioni verrà eseguita ripetutamente.
+
+
+**Codice**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    MotorPin1 = new Gpio(17, { mode: Gpio.OUTPUT });
+    MotorPin2 = new Gpio(27, { mode: Gpio.OUTPUT });
+    MotorEnable = new Gpio(22, { mode: Gpio.OUTPUT });
+
+
+    // Define a motor function to spin the motor
+    // direction should be
+    // 2(clockwise), 1(counterclockwise), 0(stop)
+    function motor(direction) {
+        switch (direction) {
+            case 2: // Clockwise
+                // Set direction
+                MotorPin1.digitalWrite(1)
+                MotorPin2.digitalWrite(0)
+                // Enable the motor
+                MotorEnable.digitalWrite(1)
+                console.log('Clockwise')
+                break;
+            case 1:  // Counterclockwise
+                // Set direction
+                MotorPin1.digitalWrite(0)
+                MotorPin2.digitalWrite(1)
+                // Enable the motor
+                MotorEnable.digitalWrite(1)
+                console.log('Counterclockwise')
+                break;
+            case 0: // Stop
+                // Disable the motor
+                MotorEnable.digitalWrite(0)
+                console.log('Stop')
+
+        }
+    }
+
+    process.on('SIGINT', function () {
+        MotorEnable.digitalWrite(0)
+        process.exit();
+    })
+
+    let index=-1
+    setInterval(() => {
+        index=(index+1)%3
+        motor(index)
+    }, 1000)    
+ 
+
+**Spiegazione del Codice**
+
+.. code-block:: js
+
+    MotorPin1 = new Gpio(17, { mode: Gpio.OUTPUT });
+    MotorPin2 = new Gpio(27, { mode: Gpio.OUTPUT });
+    MotorEnable = new Gpio(22, { mode: Gpio.OUTPUT });
+
+
+Importa il modulo pigpio e crea tre oggetti della classe Gpio per controllare le tre porte IO Gpio17, Gpio27 e Gpio22.
+
+
+.. code-block:: js
+
+    function motor(direction) {
+        switch (direction) {
+            case 2: // Clockwise
+                // Set direction
+                MotorPin1.digitalWrite(1)
+                MotorPin2.digitalWrite(0)
+                // Enable the motor
+                MotorEnable.digitalWrite(1)
+                console.log('Clockwise')
+                break;
+            case 1:  // Counterclockwise
+                // Set direction
+                MotorPin1.digitalWrite(0)
+                MotorPin2.digitalWrite(1)
+                // Enable the motor
+                MotorEnable.digitalWrite(1)
+                console.log('Counterclockwise')
+                break;
+            case 0: // Stop
+                // Disable the motor
+                MotorEnable.digitalWrite(0)
+                console.log('Stop')
+
+        }
+    }
+
+
+Definisci una funzione motor() per controllare il motore:
+
+#. Quando direction è uguale a 2, il pin MotorPin1 scrive un livello alto, il pin MotorPin2 scrive un livello basso e il pin di abilitazione MotorEnable scrive un livello alto; il motore ruota in senso orario.
+#. Quando direction è uguale a 1, il pin MotorPin1 scrive un livello basso, il pin MotorPin2 scrive un livello alto e il pin di abilitazione MotorEnable scrive un livello alto; il motore ruota in senso antiorario.
+#. Quando direction è uguale a 0, il pin di abilitazione MotorEnable è impostato su livello basso e il motore si ferma.  
+
+.. code-block:: js
+
+    let index=-1
+    setInterval(() => {
+        index=(index+1)%3
+        motor(index)
+    }, 1000)    
+
+Il motore ruota alternativamente in senso orario e antiorario con un intervallo di 1 secondo.
+
+
+.. code-block:: js
+
+    process.on('SIGINT', function () {
+        MotorEnable.digitalWrite(0)
+        process.exit();
+    })
+
+
+Quando viene rilevata la pressione di **Ctrl+C**, MotorEnable è impostato 
+su basso per fermare il motore.
+
+Immagine del Fenomeno
+------------------------
+
+.. image:: ../img/image119.jpeg

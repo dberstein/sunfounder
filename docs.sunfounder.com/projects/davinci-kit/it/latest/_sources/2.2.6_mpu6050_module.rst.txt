@@ -1,0 +1,541 @@
+.. note::
+
+    Ciao! Benvenuto nella Community Facebook di SunFounder dedicata agli appassionati di Raspberry Pi, Arduino e ESP32! Scopri di più su Raspberry Pi, Arduino ed ESP32 insieme a tanti altri appassionati.
+
+    **Perché unirsi?**
+
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato a nuovi prodotti e anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Giveaway Festivi**: Partecipa a promozioni festive e giveaway.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+2.2.6 Modulo MPU6050
+======================
+
+Introduzione
+---------------
+
+L'MPU-6050 è il primo e unico dispositivo al mondo a 6 assi per il 
+rilevamento del movimento (3 assi per il giroscopio e 3 assi per 
+l'accelerometro) progettato per smartphone, tablet e sensori indossabili. 
+Include caratteristiche di bassa potenza, basso costo e alte prestazioni.
+
+In questo esperimento, useremo I2C per ottenere i valori del sensore di 
+accelerazione a tre assi e del giroscopio a tre assi di MPU6050 e visualizzarli 
+sullo schermo.
+
+Componenti
+--------------
+
+.. image:: img/list_2.2.6.png
+
+
+Principio
+------------
+
+**MPU6050**
+
+L'MPU-6050 è un dispositivo di rilevamento del movimento a 6 assi (combinazione 
+di giroscopio a 3 assi e accelerometro a 3 assi).
+
+I suoi tre sistemi di coordinate sono definiti come segue:
+
+Posiziona l'MPU6050 su una superficie piana, assicurandoti che la faccia con 
+l'etichetta sia rivolta verso l'alto e che un punto su questa superficie sia 
+in alto a sinistra. La direzione verso l'alto è l'asse z del chip. La direzione 
+da sinistra a destra è l'asse X, mentre la direzione da dietro a davanti è l'asse Y.
+
+.. image:: img/image223.png
+
+
+**Accelerometro a 3 assi**
+
+L'accelerometro si basa sull'effetto piezoelettrico, ossia la capacità di 
+alcuni materiali di generare una carica elettrica in risposta a uno stress 
+meccanico.
+
+Immagina una scatola cuboidale con una piccola sfera al suo interno, come 
+nell'immagine sopra. Le pareti della scatola sono costituite da cristalli 
+piezoelettrici. Quando la scatola viene inclinata, la sfera si sposta nella 
+direzione dell'inclinazione a causa della gravità, e la parete con cui la 
+sfera collassa genera piccole correnti piezoelettriche. Esistono tre coppie 
+di pareti opposte in un cuboide, ognuna corrispondente a un asse nello spazio 
+3D: assi X, Y e Z. In base alla corrente prodotta dalle pareti piezoelettriche, 
+possiamo determinare la direzione e l'ampiezza dell'inclinazione.
+
+.. image:: img/image224.png
+
+
+Possiamo usare l'MPU6050 per rilevare l'accelerazione su ciascun asse (quando 
+è fermo, l'accelerazione dell'asse Z è pari a 1 unità di gravità, mentre X e Y 
+sono a 0). Se è inclinato o in condizioni di peso nullo/sovrappeso, le letture 
+cambieranno.
+
+È possibile selezionare quattro gamme di misurazione programmabili: ±2g, ±4g, 
+±8g e ±16g (impostazione predefinita: 2g) corrispondenti a ogni livello di 
+precisione. I valori vanno da -32768 a 32767.
+
+La lettura dell'accelerometro viene convertita in valore di accelerazione 
+mappando la lettura dal range di lettura alla gamma di misurazione.
+
+Accelerazione = (Dati grezzi asse accelerometro / 65536 * Gamma accelerazione 
+a piena scala) g
+
+Ad esempio, per l'asse X, quando i dati grezzi dell'accelerometro dell'asse 
+X sono 16384 e la gamma selezionata è ±2g:
+
+**Accelerazione lungo l'asse X = (16384 / 65536 * 4) g** **= 1g**
+
+**Giroscopio a 3 assi**
+
+I giroscopi si basano sul principio dell'accelerazione di Coriolis. Immagina 
+una struttura simile a una forcella che si muove costantemente avanti e indietro, 
+mantenuta in posizione da cristalli piezoelettrici. Quando si tenta di inclinare 
+questa struttura, i cristalli sperimentano una forza nella direzione 
+dell'inclinazione, causata dall'inerzia della forcella in movimento. I cristalli 
+generano una corrente in base all'effetto piezoelettrico, e questa corrente viene 
+amplificata.
+
+.. image:: img/image225.png
+    :width: 800
+    :align: center
+
+Anche il giroscopio dispone di quattro gamme di misurazione: ±250, ±500, ±1000, 
+±2000. Il metodo di calcolo è sostanzialmente lo stesso dell'accelerazione.
+
+La formula per convertire la lettura in velocità angolare è:
+
+Velocità angolare = (Dati grezzi asse giroscopio / 65536 * Gamma giroscopio a 
+piena scala) °/s
+
+Ad esempio, per l'asse X, i dati grezzi dell'asse X dell'accelerometro sono 
+16384 e la gamma è ±250°/s:
+
+**Velocità angolare lungo l'asse X = (16384 / 65536 * 500)°/s** **= 125°/s**
+Diagramma schematico
+------------------------
+
+L'MPU6050 comunica con il microcontrollore tramite l'interfaccia bus I2C. 
+È necessario collegare SDA1 e SCL1 al pin corrispondente.
+
+.. image:: img/image330.png
+    :width: 600
+    :align: center
+
+
+Procedure sperimentali
+--------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: img/image227.png
+    :width: 800
+
+
+
+**Passo 2:** Configura I2C (vedi Appendice. Se hai già configurato I2C, 
+salta questo passo.)
+
+Per utenti del linguaggio C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Passo 3:** Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.2.6/
+
+**Passo 4:** Compila il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.6_mpu6050.c -lwiringPi -lm
+
+**Passo 5:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Una volta eseguito il codice, l'angolo di inclinazione sugli assi X e Y, 
+l'accelerazione e la velocità angolare su ciascun asse letti dal modulo 
+MPU6050 verranno calcolati e visualizzati sullo schermo.
+
+.. note::
+
+    Se il programma non funziona o compare un messaggio di errore: \"wiringPi.h: No such file or directory", consulta la sezione :ref:`Il codice C non funziona?`.
+
+**Codice**
+
+.. code-block:: c
+
+    #include  <wiringPiI2C.h>
+    #include <wiringPi.h>
+    #include  <stdio.h>
+    #include  <math.h>
+    int fd;
+    int acclX, acclY, acclZ;
+    int gyroX, gyroY, gyroZ;
+    double acclX_scaled, acclY_scaled, acclZ_scaled;
+    double gyroX_scaled, gyroY_scaled, gyroZ_scaled;
+
+    int read_word_2c(int addr)
+    {
+        int val;
+        val = wiringPiI2CReadReg8(fd, addr);
+        val = val << 8;
+        val += wiringPiI2CReadReg8(fd, addr+1);
+        if (val >= 0x8000)
+            val = -(65536 - val);
+        return val;
+    }
+
+    double dist(double a, double b)
+    {
+        return sqrt((a*a) + (b*b));
+    }
+
+    double get_y_rotation(double x, double y, double z)
+    {
+        double radians;
+        radians = atan2(x, dist(y, z));
+        return -(radians * (180.0 / M_PI));
+    }
+
+    double get_x_rotation(double x, double y, double z)
+    {
+        double radians;
+        radians = atan2(y, dist(x, z));
+        return (radians * (180.0 / M_PI));
+    }
+
+    int main()
+    {
+        fd = wiringPiI2CSetup(0x68);
+        wiringPiI2CWriteReg8(fd, 0x6B, 0x00); //disattiva la modalità sleep 
+        printf("set 0x6B=%X\n",wiringPiI2CReadReg8(fd, 0x6B));
+        
+        while(1) {
+            gyroX = read_word_2c(0x43);
+            gyroY = read_word_2c(0x45);
+            gyroZ = read_word_2c(0x47);
+
+            gyroX_scaled = gyroX / 131.0;
+            gyroY_scaled = gyroY / 131.0;
+            gyroZ_scaled = gyroZ / 131.0;
+
+            // Stampa i valori degli assi X, Y e Z del sensore giroscopio.
+        printf("My gyroX_scaled: %f\n", gyroY X_scaled);
+        delay(100);
+        printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
+        delay(100);
+        printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
+            delay(100);
+
+            acclX = read_word_2c(0x3B);
+            acclY = read_word_2c(0x3D);
+            acclZ = read_word_2c(0x3F);
+
+            acclX_scaled = acclX / 16384.0;
+            acclY_scaled = acclY / 16384.0;
+            acclZ_scaled = acclZ / 16384.0;
+            
+            // Stampa i valori degli assi X, Y e Z del sensore di accelerazione.
+            printf("My acclX_scaled: %f\n", acclX_scaled);
+            delay(100);
+            printf("My acclY_scaled: %f\n", acclY_scaled);
+            delay(100);
+            printf("My acclZ_scaled: %f\n", acclZ_scaled);
+            delay(100);
+
+            printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+            delay(100);
+            printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+            delay(100);
+            
+            delay(100);
+        }
+        return 0;
+    }
+
+**Spiegazione del Codice**
+
+.. code-block:: c
+
+    int read_word_2c(int addr)
+    {
+    int val;
+    val = wiringPiI2CReadReg8(fd, addr);
+    val = val << 8;
+    val += wiringPiI2CReadReg8(fd, addr+1);
+    if (val >= 0x8000)
+        val = -(65536 - val);
+    return val;
+    }
+
+Legge i dati inviati dal sensore MPU6050.
+
+.. code-block:: c
+
+    double get_y_rotation(double x, double y, double z)
+    {
+    double radians;
+    radians = atan2(x, dist(y, z));
+    return -(radians * (180.0 / M_PI));
+    }
+
+Calcola l'angolo di inclinazione sull'asse Y.
+
+.. code-block:: c
+
+    double get_x_rotation(double x, double y, double z)
+    {
+    double radians;
+    radians = atan2(y, dist(x, z));
+    return (radians * (180.0 / M_PI));
+    }
+
+Calcola l'angolo di inclinazione sull'asse X.
+
+.. code-block:: c
+
+    gyroX = read_word_2c(0x43);
+    gyroY = read_word_2c(0x45);
+    gyroZ = read_word_2c(0x47);
+
+    gyroX_scaled = gyroX / 131.0;
+    gyroY_scaled = gyroY / 131.0;
+    gyroZ_scaled = gyroZ / 131.0;
+
+    // Stampa i valori per gli assi X, Y e Z del giroscopio.
+    printf("My gyroX_scaled: %f\n", gyroY X_scaled);
+    printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
+    printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
+
+Legge i valori sugli assi X, Y e Z del giroscopio, converte i dati grezzi 
+in valori di velocità angolare e li stampa.
+
+.. code-block:: c
+
+    acclX = read_word_2c(0x3B);
+    acclY = read_word_2c(0x3D);
+    acclZ = read_word_2c(0x3F);
+
+    acclX_scaled = acclX / 16384.0;
+    acclY_scaled = acclY / 16384.0;
+    acclZ_scaled = acclZ / 16384.0;
+        
+    // Stampa i valori sugli assi X, Y e Z dell'accelerometro.
+    printf("My acclX_scaled: %f\n", acclX_scaled);
+    printf("My acclY_scaled: %f\n", acclY_scaled);
+    printf("My acclZ_scaled: %f\n", acclZ_scaled);
+
+Legge i valori sugli assi X, Y e Z dell'accelerometro, converte i dati grezzi 
+in valori di accelerazione (unità di gravità) e li stampa.
+
+.. code-block:: c
+
+    printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+    printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+
+Stampa gli angoli di inclinazione degli assi X e Y.
+
+Per Utenti Python
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Passo 3:** Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python
+
+**Passo 4:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.6_mpu6050.py
+
+Una volta eseguito il codice, l'angolo di inclinazione degli assi X e Y,
+l'accelerazione e la velocità angolare su ciascun asse letti dal modulo 
+MPU6050 verranno calcolati e visualizzati sullo schermo.
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Arrestare** il codice qui sotto. 
+    Ma prima, assicurati di essere nel percorso della cartella sorgente come ``davinci-kit-for-raspberry-pi/python``.
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import smbus
+    import math
+    import time
+
+    # Registri di gestione dell'alimentazione
+    power_mgmt_1 = 0x6b
+    power_mgmt_2 = 0x6c
+
+    def read_byte(adr):
+        return bus.read_byte_data(address, adr)
+
+    def read_word(adr):
+        high = bus.read_byte_data(address, adr)
+        low = bus.read_byte_data(address, adr+1)
+        val = (high << 8) + low
+        return val
+
+    def read_word_2c(adr):
+        val = read_word(adr)
+        if (val >= 0x8000):
+            return -((65535 - val) + 1)
+        else:
+            return val
+
+    def dist(a,b):
+        return math.sqrt((a*a)+(b*b))
+
+    def get_y_rotation(x,y,z):
+        radians = math.atan2(x, dist(y,z))
+        return -math.degrees(radians)
+
+    def get_x_rotation(x,y,z):
+        radians = math.atan2(y, dist(x,z))
+        return math.degrees(radians)
+
+
+    bus = smbus.SMBus(1) # o bus = smbus.SMBus(1) per le schede di revisione 2
+    address = 0x68       # Questo è l'indirizzo letto tramite il comando i2cdetect
+
+    # Attiva il 6050, poiché inizia in modalità sleep
+    bus.write_byte_data(address, power_mgmt_1, 0)
+
+    while True:
+        time.sleep(0.1)
+        gyro_xout = read_word_2c(0x43)
+        gyro_yout = read_word_2c(0x45)
+        gyro_zout = read_word_2c(0x47)
+
+        print ("gyro_xout : ", gyro_xout, " scaled: ", (gyro_xout / 131))
+        print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
+        print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
+
+        accel_xout = read_word_2c(0x3b)
+        accel_yout = read_word_2c(0x3d)
+        accel_zout = read_word_2c(0x3f)
+
+        accel_xout_scaled = accel_xout / 16384.0
+        accel_yout_scaled = accel_yout / 16384.0
+        accel_zout_scaled = accel_zout / 16384.0
+
+        print ("accel_xout: ", accel_xout, " scaled: ", accel_xout_scaled)
+        print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
+        print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
+
+        print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+        print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+
+        time.sleep(0.5)
+**Spiegazione del Codice**
+
+.. code-block:: python
+
+    def read_word(adr):
+        high = bus.read_byte_data(address, adr)
+        low = bus.read_byte_data(address, adr+1)
+        val = (high << 8) + low
+        return val
+
+    def read_word_2c(adr):
+        val = read_word(adr)
+        if (val >= 0x8000):
+            return -((65535 - val) + 1)
+        else:
+            return val
+
+Legge i dati del sensore inviati dall’MPU6050.
+
+.. code-block:: python
+
+    def get_y_rotation(x,y,z):
+        radians = math.atan2(x, dist(y,z))
+        return -math.degrees(radians)
+
+Calcola l’angolo di inclinazione sull’asse y.
+
+.. code-block:: python
+
+    def get_x_rotation(x,y,z):
+        radians = math.atan2(y, dist(x,z))
+        return math.degrees(radians)
+
+Calcola l’angolo di inclinazione sull’asse x.
+
+.. code-block:: python
+
+    gyro_xout = read_word_2c(0x43)
+    gyro_yout = read_word_2c(0x45)
+    gyro_zout = read_word_2c(0x47)
+
+    print ("gyro_xout : ", gyro_xout, " scaled: ", (gyro_xout / 131))
+    print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
+    print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
+
+Legge i valori degli assi x, y e z dal sensore giroscopico, converte i dati 
+in valori di velocità angolare e li stampa.
+
+.. code-block:: python
+
+    accel_xout = read_word_2c(0x3b)
+    accel_yout = read_word_2c(0x3d)
+    accel_zout = read_word_2c(0x3f)
+
+    accel_xout_scaled = accel_xout / 16384.0
+    accel_yout_scaled = accel_yout / 16384.0
+    accel_zout_scaled = accel_zout / 16384.0
+
+    print ("accel_xout: ", accel_xout, " scaled: ", accel_xout_scaled)
+    print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
+    print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
+
+Legge i valori degli assi x, y e z dal sensore di accelerazione, converte i 
+dati in valori di velocità accelerata (unità di gravità) e li stampa.
+
+.. code-block:: python
+
+    print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+    print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+
+Stampa gli angoli di inclinazione degli assi x e y.
+
+Immagine del Fenomeno
+-------------------------
+
+.. image:: img/image228.jpeg

@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.3.1 Motor &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="1.3.2 Servo" href="pi5_1.3.2_servo_python.html" />
+    <link rel="prev" title="1.2.2 Zumbador Pasivo" href="pi5_1.2.2_passive_buzzer_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_1.3.1_motor_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Para Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Juega con Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Verificar <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_output_python.html">Salida</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_output_python.html#pantallas">1.1 Pantallas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_output_python.html#sonido">1.2 Sonido</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pi5_output_python.html#controladores">1.3 Controladores</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">Entrada</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_extension_python.html">Extensión</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Play with C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Juega con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Para Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Juega con Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_output_python.html">Salida</a></li>
+      <li class="breadcrumb-item active">1.3.1 Motor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_1.3.1_motor_python.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.</p>
+<p><strong>¿Por qué unirse?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte Experto</strong>: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprende y Comparte</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Avances Exclusivos</strong>: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.</p></li>
+<li><p><strong>Descuentos Especiales</strong>: Aprovecha descuentos exclusivos en nuestros productos más recientes.</p></li>
+<li><p><strong>Promociones Festivas y Sorteos</strong>: Participa en sorteos y promociones especiales.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy mismo.</p>
+</div>
+<section id="motor">
+<span id="py-pi5"></span><h1>1.3.1 Motor<a class="headerlink" href="pi5_1.3.1_motor_python.html#motor" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="pi5_1.3.1_motor_python.html#introduccion" title="Link to this heading"></a></h2>
+<p>En este proyecto, aprenderemos a usar el L293D para controlar un motor de
+corriente continua (DC) y hacerlo girar en sentido horario y antihorario.
+Dado que el motor de corriente continua requiere una corriente más alta,
+usaremos el Módulo de Alimentación para proporcionar energía de manera segura al motor.</p>
+</section>
+<section id="componentes-necesarios">
+<h2>Componentes Necesarios<a class="headerlink" href="pi5_1.3.1_motor_python.html#componentes-necesarios" title="Link to this heading"></a></h2>
+<p>Para este proyecto, necesitamos los siguientes componentes.</p>
+<img alt="../_images/1.3.1_motor_list.png" src="../_images/1.3.1_motor_list.png" />
+</section>
+<section id="diagrama-de-conexiones">
+<h2>Diagrama de Conexiones<a class="headerlink" href="pi5_1.3.1_motor_python.html#diagrama-de-conexiones" title="Link to this heading"></a></h2>
+<img alt="../_images/1.3.1_motor_schematic.png" src="../_images/1.3.1_motor_schematic.png" />
+</section>
+<section id="procedimientos-del-experimento">
+<h2>Procedimientos del Experimento<a class="headerlink" href="pi5_1.3.1_motor_python.html#procedimientos-del-experimento" title="Link to this heading"></a></h2>
+<p><strong>Paso 1:</strong> Construye el circuito.</p>
+<img alt="../_images/1.3.1_motor_circuit.png" src="../_images/1.3.1_motor_circuit.png" />
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El módulo de alimentación puede usar una batería de 9V con el conector para
+batería de 9V incluido en el kit. Inserta el capuchón del módulo de
+alimentación en las tiras de bus de 5V de la protoboard.</p>
+</div>
+<img alt="../_images/1.3.1_motor_battery.jpeg" src="../_images/1.3.1_motor_battery.jpeg" />
+<p><strong>Paso 2:</strong> Ve al directorio del código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Paso 3:</strong> Ejecuta el código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.3.1</span><span class="n">_Motor</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Al ejecutar el código, el motor primero gira en sentido horario durante 5
+segundos, luego se detiene durante 5 segundos, después gira en sentido
+antihorario durante 5 segundos y posteriormente se detiene nuevamente por
+5 segundos. Esta serie de acciones se repetirá continuamente.</p>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Si aparece el mensaje de error <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code>, consulta <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">Si gpiozero no funciona.</span></a></p>
+</div>
+<p><strong>Código</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puedes <strong>Modificar/Restablecer/Copiar/Ejecutar/Detener</strong> el código a continuación. Antes de eso, asegúrate de estar en la ruta del código fuente, como <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python-pi5</span></code>. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="c1"># Inicializa el Motor con GPIO Zero, especificando los pines GPIO para control de avance (17), retroceso (27) y habilitación (22)</span>
+<span class="n">motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">forward</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">backward</span><span class="o">=</span><span class="mi">27</span><span class="p">,</span> <span class="n">enable</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Función principal para controlar la dirección y movimiento del motor.</span>
+    <span class="c1"># Alterna la rotación del motor entre horario y antihorario con pausas intermedias.</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;CW&#39;</span><span class="p">:</span> <span class="n">motor</span><span class="o">.</span><span class="n">forward</span><span class="p">,</span> <span class="s1">&#39;CCW&#39;</span><span class="p">:</span> <span class="n">motor</span><span class="o">.</span><span class="n">backward</span><span class="p">,</span> <span class="s1">&#39;STOP&#39;</span><span class="p">:</span> <span class="n">motor</span><span class="o">.</span><span class="n">stop</span><span class="p">}</span>  <span class="c1"># Define las acciones del motor para facilitar la lectura</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Recorre las acciones definidas para controlar la dirección del motor</span>
+        <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;CW&#39;</span><span class="p">,</span> <span class="s1">&#39;STOP&#39;</span><span class="p">,</span> <span class="s1">&#39;CCW&#39;</span><span class="p">,</span> <span class="s1">&#39;STOP&#39;</span><span class="p">]:</span>
+            <span class="n">actions</span><span class="p">[</span><span class="n">action</span><span class="p">]()</span>  <span class="c1"># Ejecuta la acción actual (avanzar, parar, retroceder, parar)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Muestra la acción actual en la consola</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># Pausa de 5 segundos antes de proceder a la siguiente acción</span>
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Maneja de forma segura una interrupción de teclado (Ctrl+C) para detener el programa</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<ol class="arabic">
+<li><p>Estas declaraciones de importación incorporan la clase <code class="docutils literal notranslate"><span class="pre">Motor</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">gpiozero</span></code> y la función <code class="docutils literal notranslate"><span class="pre">sleep</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">time</span></code> para manejar pausas.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+</pre></div>
+</div>
+</li>
+<li><p>Esta línea inicializa un objeto <code class="docutils literal notranslate"><span class="pre">Motor</span></code>, especificando los pines GPIO para el control de avance (17), retroceso (27) y habilitación (22).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inicializa el Motor con GPIO Zero, especificando los pines GPIO para control de avance (17), retroceso (27) y habilitación (22)</span>
+<span class="n">motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">forward</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">backward</span><span class="o">=</span><span class="mi">27</span><span class="p">,</span> <span class="n">enable</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Las acciones de control del motor se definen en un diccionario para facilitar la lectura. Un bucle infinito (<cite>while True</cite>) recorre estas acciones, ejecutando cada una durante 5 segundos.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Función principal para controlar la dirección y movimiento del motor.</span>
+    <span class="c1"># Alterna la rotación del motor entre horario y antihorario con pausas intermedias.</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;CW&#39;</span><span class="p">:</span> <span class="n">motor</span><span class="o">.</span><span class="n">forward</span><span class="p">,</span> <span class="s1">&#39;CCW&#39;</span><span class="p">:</span> <span class="n">motor</span><span class="o">.</span><span class="n">backward</span><span class="p">,</span> <span class="s1">&#39;STOP&#39;</span><span class="p">:</span> <span class="n">motor</span><span class="o">.</span><span class="n">stop</span><span class="p">}</span>  <span class="c1"># Define las acciones del motor para facilitar la lectura</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Recorre las acciones definidas para controlar la dirección del motor</span>
+        <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;CW&#39;</span><span class="p">,</span> <span class="s1">&#39;STOP&#39;</span><span class="p">,</span> <span class="s1">&#39;CCW&#39;</span><span class="p">,</span> <span class="s1">&#39;STOP&#39;</span><span class="p">]:</span>
+            <span class="n">actions</span><span class="p">[</span><span class="n">action</span><span class="p">]()</span>  <span class="c1"># Ejecuta la acción actual (avanzar, parar, retroceder, parar)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Muestra la acción actual en la consola</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># Pausa de 5 segundos antes de proceder a la siguiente acción</span>
+</pre></div>
+</div>
+</li>
+<li><p>Este segmento permite que el programa se termine de manera segura utilizando una interrupción de teclado (Ctrl+C) sin causar errores.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+<span class="c1"># Maneja de forma segura una interrupción de teclado (Ctrl+C) para detener el programa</span>
+<span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="pi5_1.2.2_passive_buzzer_python.html" class="btn btn-neutral float-left" title="1.2.2 Zumbador Pasivo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="pi5_1.3.2_servo_python.html" class="btn btn-neutral float-right" title="1.3.2 Servo" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

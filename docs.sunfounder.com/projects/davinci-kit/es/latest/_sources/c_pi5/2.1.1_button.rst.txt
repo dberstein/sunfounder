@@ -1,0 +1,209 @@
+.. note::
+
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
+
+    **¿Por qué unirte?**
+
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Accede anticipadamente a anuncios de nuevos productos y vistas previas.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones navideñas.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
+
+2.1.1 Botón
+============
+
+Introducción
+-----------------
+
+En esta lección, aprenderemos a encender o apagar el LED utilizando un botón.
+
+Componentes
+---------------
+
+.. image:: img/list_2.1.1_Button.png
+
+
+Principio
+-------------
+
+**Botón**
+
+El botón es un componente común utilizado para controlar dispositivos 
+electrónicos. Se utiliza generalmente como un interruptor para conectar 
+o desconectar circuitos. Aunque los botones vienen en una variedad de 
+tamaños y formas, el que se utiliza aquí es un mini botón de 6 mm, como 
+se muestra en las siguientes imágenes.
+
+Los dos pines a la izquierda están conectados, y el de la derecha es 
+similar al de la izquierda, como se muestra a continuación:
+
+.. image:: img/image148.png
+    :width: 400
+    :align: center
+
+El símbolo que se muestra a continuación se utiliza comúnmente para representar 
+un botón en circuitos.
+
+.. image:: img/image301.png
+    :width: 400
+    :align: center
+
+
+Cuando se presiona el botón, los 4 pines se conectan, cerrando así el circuito.
+
+Diagrama Esquemático
+------------------------
+
+Utiliza un botón normalmente abierto como entrada para Raspberry Pi; la 
+conexión se muestra en el diagrama esquemático a continuación. Cuando se 
+presiona el botón, el GPIO18 se convierte en nivel bajo (0V). Podemos 
+detectar el estado del GPIO18 a través de programación. Es decir, si el 
+GPIO18 se convierte en nivel bajo, significa que el botón está presionado. 
+Puedes ejecutar el código correspondiente cuando se presiona el botón, y 
+luego el LED se encenderá.
+
+.. note::
+    El pin más largo del LED es el ánodo y el más corto es el cátodo.
+
+.. image:: img/image302.png
+    :width: 600
+    :align: center
+
+
+.. image:: img/image303.png
+    :width: 400
+    :align: center
+
+
+Procedimientos Experimentales
+-------------------------------
+
+**Paso 1**: Construir el circuito.
+
+.. image:: img/image152.png
+    :width: 800
+
+**Paso 2**: Abre el archivo de código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.1.1/
+
+.. note::
+    Cambia el directorio a la ruta del código en este experimento mediante **cd**.
+
+**Paso 3**: Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.1_Button.c -lwiringPi
+
+**Paso 4**: Ejecuta el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Después de ejecutar el código, presiona el botón; el LED se encenderá; 
+de lo contrario, se apagará.
+
+.. note::
+
+    Si no funciona después de ejecutarlo, o si aparece un mensaje de error: "wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
+
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define LedPin      0
+    #define ButtonPin   1
+
+    int main(void){
+        // Cuando la inicialización falla, imprime un mensaje en pantalla
+        if(wiringPiSetup() == -1){
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(LedPin, OUTPUT);
+        pinMode(ButtonPin, INPUT);
+        digitalWrite(LedPin, HIGH);
+        
+        while(1){
+            // Indica que el botón ha sido presionado
+            if(digitalRead(ButtonPin) == 0){
+                // LED encendido
+                digitalWrite(LedPin, LOW);
+            //  printf("...LED encendido\n");
+            }
+            else{
+                // LED apagado
+                digitalWrite(LedPin, HIGH);
+            //  printf("LED apagado...\n");
+            }
+        }
+        return 0;
+    }
+
+**Explicación del Código**
+
+.. code-block:: 
+
+    #define LedPin      0
+
+El pin GPIO17 en la placa de expansión T es igual al GPIO0 en wiringPi.
+
+.. code-block:: 
+
+    #define ButtonPin   1
+
+ButtonPin está conectado al GPIO1.
+
+.. code-block:: 
+
+    pinMode(LedPin, OUTPUT);
+
+Establece LedPin como salida para asignarle un valor.
+
+.. code-block:: 
+
+    pinMode(ButtonPin, INPUT);
+
+Establece ButtonPin como entrada para leer el valor de ButtonPin.
+
+.. code-block:: C
+
+    while(1){
+            // Indica que el botón ha sido presionado
+            if(digitalRead(ButtonPin) == 0){
+                // LED encendido
+                digitalWrite(LedPin, LOW);
+            //  printf("...LED encendido\n");
+            }
+            else{
+                // LED apagado
+                digitalWrite(LedPin, HIGH);
+            //  printf("LED apagado...\n");
+            }
+        }
+
+if (digitalRead(ButtonPin) == 0): verifica si el botón ha sido presionado. 
+Ejecuta digitalWrite(LedPin, LOW) cuando se presiona el botón para encender el LED.

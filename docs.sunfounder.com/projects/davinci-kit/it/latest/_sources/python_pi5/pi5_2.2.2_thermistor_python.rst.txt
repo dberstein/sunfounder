@@ -1,0 +1,227 @@
+.. note::
+
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti esclusivi.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri nuovi prodotti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
+
+.. _2.2.2_py_pi5:
+
+2.2.2 Termistore
+===================
+
+Introduzione
+---------------
+
+Così come la fotoresistenza può rilevare la luce, il termistore è un 
+dispositivo elettronico sensibile alla temperatura, che può essere 
+utilizzato per realizzare funzioni di controllo della temperatura, 
+
+Componenti Necessari
+------------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_list.png
+
+.. È sicuramente conveniente acquistare un kit completo, ecco il link:
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Nome	
+..         - ELEMENTI IN QUESTO KIT
+..         - LINK
+..     *   - Kit Raphael
+..         - 337
+..         - |link_Raphael_kit|
+
+.. Puoi anche acquistare i componenti separatamente dai link qui sotto.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - INTRODUZIONE AI COMPONENTI
+..         - LINK DI ACQUISTO
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`thermistor`
+..         - |link_thermistor_buy|
+..     *   - :ref:`adc0834`
+..         - \-
+
+Schema Elettrico
+---------------------
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_schematic_1.png
+
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_schematic_2.png
+
+
+Procedure Sperimentali
+-------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/2.2.2_thermistor_circuit.png
+
+**Passo 2:** Vai nella cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Passo 3:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.2.2_Thermistor.py
+
+Quando il codice è in esecuzione, il termistore rileverà la temperatura 
+ambiente, che verrà stampata sullo schermo al termine dei calcoli del programma.
+
+.. warning::
+
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, potrai eseguirlo direttamente per vedere il risultato.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   # -*- coding: utf-8 -*-
+
+   import ADC0834
+   import time
+   import math
+
+   # Inizializza il modulo ADC0834
+   ADC0834.setup()
+
+   # Esegui il processo in un blocco try-except
+   try:
+       while True:
+           # Leggi il valore analogico dal sensore
+           analogVal = ADC0834.getResult()
+
+           # Converte il valore analogico in una tensione
+           Vr = 5 * float(analogVal) / 255
+
+           # Calcola la resistenza del termistore
+           Rt = 10000 * Vr / (5 - Vr)
+
+           # Calcola la temperatura in Kelvin
+           temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
+
+           # Converte Kelvin in Celsius
+           Cel = temp - 273.15
+
+           # Converte Celsius in Fahrenheit
+           Fah = Cel * 1.8 + 32
+
+           # Stampa la temperatura in Celsius e Fahrenheit
+           print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
+
+           # Pausa di 0,2 secondi prima della lettura successiva
+           time.sleep(0.2)
+
+   # Gestisce KeyboardInterrupt per una chiusura ordinata
+   except KeyboardInterrupt:
+       # Libera le risorse di ADC0834
+       ADC0834.destroy()
+
+
+**Spiegazione del Codice**
+
+#. Questo segmento importa la libreria ADC0834 per la conversione analogico-digitale, la libreria time per implementare ritardi e la libreria math per eseguire operazioni matematiche.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       # -*- coding: utf-8 -*-
+
+       import ADC0834
+       import time
+       import math
+
+#. Inizializza il modulo ADC0834 per abilitare la lettura di valori analogici.
+
+   .. code-block:: python
+
+       # Inizializza il modulo ADC0834
+       ADC0834.setup()
+
+#. Implementa un ciclo infinito per la lettura continua dei dati. Il ciclo legge il valore analogico da un termistore, lo converte in tensione, calcola la resistenza del termistore, e poi traduce questa resistenza in misure di temperatura in Kelvin, Celsius e Fahrenheit. Visualizza le letture della temperatura in Celsius e Fahrenheit, con una pausa di 0,2 secondi tra ogni lettura.
+
+   .. code-block:: python
+
+       # Esegui il processo in un blocco try-except
+       try:
+           while True:
+               # Leggi il valore analogico dal sensore
+               analogVal = ADC0834.getResult()
+
+               # Converte il valore analogico in una tensione
+               Vr = 5 * float(analogVal) / 255
+
+               # Calcola la resistenza del termistore
+               Rt = 10000 * Vr / (5 - Vr)
+
+               # Calcola la temperatura in Kelvin
+               temp = 1 / (((math.log(Rt / 10000)) / 3950) + (1 / (273.15 + 25)))
+
+               # Converte Kelvin in Celsius
+               Cel = temp - 273.15
+
+               # Converte Celsius in Fahrenheit
+               Fah = Cel * 1.8 + 32
+
+               # Stampa la temperatura in Celsius e Fahrenheit
+               print('Celsius: %.2f C  Fahrenheit: %.2f F' % (Cel, Fah))
+
+               # Pausa di 0,2 secondi prima della lettura successiva
+               time.sleep(0.2)
+
+#. Cattura l'eccezione KeyboardInterrupt per terminare il programma in modo ordinato e include istruzioni per liberare le risorse ADC0834 alla chiusura.
+
+   .. code-block:: python
+
+       # Gestisce KeyboardInterrupt per una chiusura ordinata
+       except KeyboardInterrupt:
+           # Libera le risorse di ADC0834
+           ADC0834.destroy()
+

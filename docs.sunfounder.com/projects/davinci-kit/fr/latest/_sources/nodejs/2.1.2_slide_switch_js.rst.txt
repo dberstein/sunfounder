@@ -1,0 +1,130 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, de l’Arduino et de l’ESP32 avec d’autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d’experts** : Résolvez vos problèmes après-vente et surmontez vos défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprenez et Partagez** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d’un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et des promotions spéciales.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
+
+2.1.2 Interrupteur à Glissière
+==================================
+
+Introduction
+--------------
+
+Dans ce projet, nous allons apprendre à utiliser un interrupteur à glissière. 
+Habituellement, ce type d'interrupteur est soudé sur un PCB pour servir d'interrupteur 
+d'alimentation, mais ici, nous devons l'insérer dans la breadboard, ce qui peut ne pas 
+le fixer fermement. Nous l’utilisons sur la breadboard pour illustrer son fonctionnement.
+
+Composants
+-------------
+
+.. image:: ../img/list_2.1.2_slide_switch.png
+
+
+
+Schéma de câblage
+--------------------
+
+Connectez la broche centrale de l’interrupteur à glissière au GPIO17, et les deux LEDs aux 
+broches GPIO22 et GPIO27 respectivement. Ainsi, lorsque vous basculez l’interrupteur, vous 
+pouvez voir les deux LEDs s’allumer alternativement.
+
+.. image:: ../img/image305.png
+
+
+.. image:: ../img/image306.png
+
+
+Procédures expérimentales
+----------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image161.png
+
+
+**Étape 2 :** Accéder au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Étape 3 :** Exécuter le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node slide_switch.js
+
+Lorsque le code s'exécute, placez l’interrupteur sur la gauche pour allumer la 
+LED jaune ; sur la droite, la LED rouge s'allumera.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+    const led1 = new Gpio(22, {mode: Gpio.OUTPUT});
+    const led2 = new Gpio(27, {mode: Gpio.OUTPUT});
+
+    const slideSwitch = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    });
+
+    slideSwitch.on('interrupt', (level) => {  
+        led1.digitalWrite(level);   
+        led2.digitalWrite(!level);       
+    });
+
+**Explication du code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+    const led1 = new Gpio(22, {mode: Gpio.OUTPUT});
+    const led2 = new Gpio(27, {mode: Gpio.OUTPUT});
+
+    const slideSwitch = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    });
+
+Importer le module ``pigpio`` et créer trois objets : ``led1``, ``led2`` 
+et ``slideSwitch``. Ceux-ci permettent de contrôler l’allumage et l’extinction 
+des LEDs ``led1`` et ``led2`` en lisant le niveau de l'IO du ``slideSwitch``.
+
+.. code-block:: js
+
+    slideSwitch.on('interrupt', (level) => {  
+        led1.digitalWrite(level);   
+        led2.digitalWrite(!level);       
+    });
+
+Lorsque le niveau lu sur le port IO du ``slideSwitch`` change, la LED1 reçoit le 
+même niveau, tandis que la LED2 reçoit le niveau opposé.
+
+Image du résultat
+--------------------
+
+.. image:: ../img/image162.jpeg
+

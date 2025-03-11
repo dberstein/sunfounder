@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.1.1 Schalter &mdash; SunFounder davinci-kit-for-raspberry-pi  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=245627df"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=70a09b52"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/de/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="2.1.2 Schiebeschalter" href="2.1.2_slide_switch_js.html" />
+    <link rel="prev" title="Input" href="input_js.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-de" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/nodejs/2.1.1_button_js.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Komponentenliste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO-Erweiterungskarte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Laden Sie die Kode herunter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/preparation.html">Installation und Einrichtung des Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Für Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html">Bibliotheken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 Ausgabe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 Eingabe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 Erweiterung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/play_with_processing.html">Spielen Sie mit der Processing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_nodejs.html">Spiel mit Nodejs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="install_nodejs.html">Was ist Node.js?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="check_pigpio.html">Überprüfung der pigpio-Bibliothek</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output_js.html">Ausgabe</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="input_js.html">Input</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="input_js.html#steuerungen">2.1 Steuerungen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="input_js.html#sensoren">2.2 Sensoren</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch/play_with_scratch.html">Spielen mit Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Videokurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a></li>
+          <li class="breadcrumb-item"><a href="play_with_nodejs.html">Spiel mit Nodejs</a></li>
+          <li class="breadcrumb-item"><a href="input_js.html">Input</a></li>
+      <li class="breadcrumb-item active">2.1.1 Schalter</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nodejs/2.1.1_button_js.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Hallo, willkommen in der SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie tiefer in Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten ein.</p>
+<p><strong>Warum beitreten?</strong></p>
+<ul class="simple">
+<li><p><strong>Expertenunterstützung</strong>: Lösen Sie nach dem Kauf auftretende Probleme und technische Herausforderungen mit Hilfe unserer Community und unseres Teams.</p></li>
+<li><p><strong>Lernen &amp; Teilen</strong>: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.</p></li>
+<li><p><strong>Exklusive Vorschauen</strong>: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und Vorschauen.</p></li>
+<li><p><strong>Spezielle Rabatte</strong>: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.</p></li>
+<li><p><strong>Festliche Aktionen und Gewinnspiele</strong>: Nehmen Sie an Gewinnspielen und festlichen Aktionen teil.</p></li>
+</ul>
+<p>👉 Bereit, mit uns zu entdecken und zu kreieren? Klicken Sie auf [<a href="https://bit.ly/raphaelkit " target="_blank">hier</a>] und treten Sie noch heute bei!</p>
+</div>
+<section id="schalter">
+<h1>2.1.1 Schalter<a class="headerlink" href="2.1.1_button_js.html#schalter" title="Link to this heading"></a></h1>
+<section id="einfuhrung">
+<h2>Einführung<a class="headerlink" href="2.1.1_button_js.html#einfuhrung" title="Link to this heading"></a></h2>
+<p>In diesem Projekt lernen wir, wie man eine LED mit einem Schalter ein- und ausschaltet.</p>
+</section>
+<section id="komponenten">
+<h2>Komponenten<a class="headerlink" href="2.1.1_button_js.html#komponenten" title="Link to this heading"></a></h2>
+<img alt="../_images/list_2.1.1_Button1.png" src="../_images/list_2.1.1_Button1.png" />
+</section>
+<section id="schaltplan">
+<h2>Schaltplan<a class="headerlink" href="2.1.1_button_js.html#schaltplan" title="Link to this heading"></a></h2>
+<p>Verwenden Sie einen normalerweise offenen Schalter als Eingang für den Raspberry Pi, die Verbindung ist im folgenden Schaltplan dargestellt. Wenn der Schalter gedrückt wird, wird GPIO18 auf ein niedriges Niveau (0V) gesetzt. Wir können den Zustand von GPIO18 durch Programmierung erkennen. Das heißt, wenn GPIO18 auf ein niedriges Niveau gesetzt wird, bedeutet dies, dass der Schalter gedrückt wurde. Sie können den entsprechenden Code ausführen, wenn der Schalter gedrückt wird, und dann wird die LED leuchten.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Der längere Pin der LED ist die Anode und der kürzere ist die Kathode.</p>
+</div>
+<img alt="../_images/image3021.png" src="../_images/image3021.png" />
+<img alt="../_images/image3031.png" src="../_images/image3031.png" />
+</section>
+<section id="experimentelle-vorgehensweise">
+<h2>Experimentelle Vorgehensweise<a class="headerlink" href="2.1.1_button_js.html#experimentelle-vorgehensweise" title="Link to this heading"></a></h2>
+<p><strong>Schritt 1</strong>: Bauen Sie die Schaltung auf.</p>
+<img alt="../_images/image1521.png" src="../_images/image1521.png" />
+<p><strong>Schritt 2</strong>: Gehen Sie zum Ordner des Codes.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">nodejs</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Schritt 3</strong>: Führen Sie den Code aus.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">node</span> <span class="n">button</span><span class="o">.</span><span class="n">js</span>
+</pre></div>
+</div>
+<p>Drücken Sie nun den Schalter und die LED leuchtet auf;
+lassen Sie den Schalter los und die LED erlischt.</p>
+<p><strong>Code</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">led</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">17</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">18</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">INPUT</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">pullUpDown</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">PUD_DOWN</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">edge</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">EITHER_EDGE</span>
+<span class="p">});</span>
+
+
+<span class="nx">button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;interrupt&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">level</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">led</span><span class="p">.</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="nx">level</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Code Erklärung</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">led</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">17</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Importieren Sie das <code class="docutils literal notranslate"><span class="pre">pigpio</span></code>-Modul, erstellen Sie ein led-Objekt zur Steuerung des IO-Ports Gpio17 und setzen Sie es auf den Ausgabemodus.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">18</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">INPUT</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">pullUpDown</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">PUD_DOWN</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">edge</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">EITHER_EDGE</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Erstellen Sie ein button-Objekt zur Steuerung des IO-Ports Gpio18, setzen Sie es auf den Eingabemodus,
+ziehen Sie nach unten (niedrig, wenn der Schalter nicht gedrückt ist, hoch, wenn der Schalter gedrückt ist).
+Und setzen Sie die Interrupt-Funktion, der Modus ist EITHER_EDGE, das heißt, sowohl steigende als auch fallende Flanken lösen die Interrupt-Funktion aus.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;interrupt&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">level</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">led</span><span class="p">.</span><span class="nx">digitalWrite</span><span class="p">(</span><span class="nx">level</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Schreiben Sie eine Interrupt-Funktion, wenn der Schalter gedrückt wird, ist es eine fallende Flanke, die die Interrupt-Funktion auslöst,
+zu diesem Zeitpunkt schreiben Sie den niedrigen Pegel des Schalter-IO-Ports an den IO-Port der LED und die LED leuchtet auf.</p>
+<p>Wenn der Schalter losgelassen wird, ist es eine steigende Flanke, die die Interrupt-Funktion auslöst,
+zu diesem Zeitpunkt wird der hohe Pegel des Schalter-IO-Ports an den IO-Port der LED geschrieben und die LED erlischt.</p>
+<section id="phanomenbild">
+<h3>Phänomenbild<a class="headerlink" href="2.1.1_button_js.html#phanomenbild" title="Link to this heading"></a></h3>
+<img alt="../_images/image1531.jpeg" src="../_images/image1531.jpeg" />
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="input_js.html" class="btn btn-neutral float-left" title="Input" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="2.1.2_slide_switch_js.html" class="btn btn-neutral float-right" title="2.1.2 Schiebeschalter" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

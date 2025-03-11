@@ -1,0 +1,219 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre et Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et aux avant-goûts.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des concours et des promotions à l'occasion des fêtes.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+2.2.4 Détecteur PIR
+======================
+
+Introduction
+---------------
+
+Dans ce projet, nous allons créer un dispositif en utilisant des capteurs 
+pyroélectriques infrarouges pour détecter le corps humain. Lorsque quelqu'un 
+s'approche de la LED, celle-ci s'allume automatiquement. Si personne n'est détecté, 
+la lumière s'éteint. Ce capteur de mouvement infrarouge est capable de détecter 
+le rayonnement infrarouge émis par les humains et les animaux.
+
+Composants
+-----------
+
+.. image:: img/list_2.2.4_pir.png
+
+
+Principe
+---------
+
+Le capteur PIR détecte le rayonnement infrarouge thermique, ce qui permet de repérer 
+la présence d'organismes émettant ce type de rayonnement.
+
+Le capteur PIR est divisé en deux compartiments connectés à un amplificateur différentiel. 
+Lorsqu'un objet immobile se trouve devant le capteur, les deux compartiments reçoivent la 
+même quantité de rayonnement, et la sortie est nulle. Lorsqu'un objet en mouvement passe 
+devant le capteur, un des compartiments reçoit plus de rayonnement que l'autre, ce qui fait 
+fluctuer la sortie, en passant de haut à bas ou inversement. Ce changement de tension est 
+le résultat de la détection de mouvement.
+
+.. image:: img/image211.png
+    :width: 200
+
+
+Une fois le module de détection câblé, il y a une phase d'initialisation d'une minute. 
+Pendant cette période, le module peut émettre un signal de sortie de 0 à 3 fois par 
+intermittence. Ensuite, le module passe en mode veille. Veuillez éviter toute interférence 
+de sources lumineuses ou d'autres perturbations près de la surface du module afin d'éviter 
+tout déclenchement erroné. Il est préférable d'utiliser le module dans un environnement sans 
+vent excessif, car le vent peut également influencer le capteur.
+
+.. image:: img/image212.png
+    :width: 400
+
+
+**Réglage de la distance**
+
+En tournant le potentiomètre de réglage de la distance dans le sens horaire, 
+a portée de détection augmente, avec une portée maximale d'environ 0 à 7 mètres. 
+Si vous le tournez dans le sens antihoraire, la portée de détection diminue, avec 
+une portée minimale d'environ 0 à 3 mètres.
+
+**Réglage du délai**
+
+En tournant le potentiomètre de réglage du délai dans le sens horaire, vous augmentez 
+le temps de détection, pouvant atteindre un maximum de 300 secondes. À l'inverse, en 
+le tournant dans le sens antihoraire, vous réduisez le délai jusqu'à un minimum de 5 secondes.
+
+Deux modes de déclenchement : (choisir différents modes en utilisant le cavalier).
+
+-  **H :** **Mode de déclenchement répétable**, après avoir détecté la présence d'un 
+humain, le module maintient une sortie de niveau haut. Pendant la période de délai, 
+si une autre personne entre dans la zone de détection, la sortie reste au niveau haut.
+
+-  **L :** **Mode de déclenchement non répétable**, la sortie passe au niveau haut 
+lorsqu'il détecte un humain. Après le délai, la sortie redevient automatiquement à 
+un niveau bas.
+
+
+
+Schéma de câblage
+---------------------
+
+.. image:: img/image327.png
+
+
+Procédures expérimentales
+----------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: img/image214.png
+    :width: 800
+
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.2.4/
+
+**Étape 3 :** Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.4_PIR.c -lwiringPi
+
+**Étape 4 :** Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Après l'exécution du code, le capteur PIR détecte les mouvements aux alentours 
+et fait briller la LED RVB en jaune s'il détecte quelqu'un passant à proximité. 
+Il y a deux potentiomètres sur le module PIR : l'un pour ajuster la sensibilité 
+et l'autre pour ajuster la distance de détection. Pour un fonctionnement optimal 
+du module PIR, tournez les deux potentiomètres complètement dans le sens antihoraire.
+
+.. image:: img/PIR_TTE.png
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution ou s'il y a un message d'erreur indiquant : « wiringPi.h : Aucun fichier ou répertoire de ce type », veuillez vous référer à :ref:`C code is not working?`.
+
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <softPwm.h>
+    #include <stdio.h>
+    #define uchar unsigned char
+
+    #define pirPin    0     // le PIR est connecté à GPIO0
+    #define redPin    1
+    #define greenPin  2
+    #define bluePin   3
+
+    void ledInit(void){
+        softPwmCreate(redPin,  0, 100);
+        softPwmCreate(greenPin,0, 100);
+        softPwmCreate(bluePin, 0, 100);
+    }
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val){
+        softPwmWrite(redPin,   r_val);
+        softPwmWrite(greenPin, g_val);
+        softPwmWrite(bluePin,  b_val);
+    }
+    int main(void)
+    {
+        int pir_val;
+        if(wiringPiSetup() == -1){ // En cas d'échec d'initialisation de wiringPi, afficher un message à l'écran
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        ledInit();
+        pinMode(pirPin, INPUT);
+        while(1){
+        pir_val = digitalRead(pirPin);
+            if(pir_val== 1){ // si la lecture de pir est au niveau HAUT
+                ledColorSet(0xff,0xff,0x00); 
+            }
+            else {
+            ledColorSet(0x00,0x00,0xff); 
+            }
+        }
+        return 0;
+    }
+
+**Explication du Code**
+
+.. code-block:: c
+
+    void ledInit(void);
+    void ledColorSet(uchar r_val, uchar g_val, uchar b_val);
+
+Ces lignes de code sont utilisées pour définir la couleur de la LED RVB. Veuillez vous référer à
+ :ref:`1.1.2 RGB LED` pour plus de détails.
+
+.. code-block:: c
+
+    int main(void)
+    {
+        int pir_val;
+        //…… 
+        pinMode(pirPin, INPUT);
+        while(1){
+        pir_val = digitalRead(pirPin);
+            if(pir_val== 1){ // si la lecture de pir est au niveau HAUT
+                ledColorSet(0xff,0xff,0x00); 
+            }
+            else {
+            ledColorSet(0x00,0x00,0xff); 
+            }
+        }
+        return 0;
+    }
+
+Lorsque le capteur PIR détecte le spectre infrarouge humain, la LED RVB émet une 
+lumière jaune ; sinon, elle émet une lumière bleue.

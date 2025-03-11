@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dibuja un Matchmaker &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Hola Ratón" href="hello_mouse.html" />
+    <link rel="prev" title="Juega con Processing" href="play_with_processing.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/processing/draw_a_matchmaker.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Para Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html">Bibliotecas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 Salida</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 Extensiones</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_processing.html">Juega con Processing</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="play_with_processing.html#que-es-processing">¿Qué es Processing?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="play_with_processing.html#instalar-processing">Instalar Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="play_with_processing.html#instalar-hardware-i-o">Instalar Hardware I/O</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="play_with_processing.html#proyectos">Proyectos</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="draw_a_matchmaker.html#">Dibuja un Matchmaker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hello_mouse.html">Hola Ratón</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blinking_dot.html">Blinking Dot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clickable_dot.html">Clickable Dot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clickable_color_blocks.html">Bloques de Color Clicables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inflating_the_dot.html">Inflando el Punto</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dot_on_the_swing.html">Punto en el Oscilador</a></li>
+<li class="toctree-l4"><a class="reference internal" href="metronome.html">Metronome</a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_number.html">Show Number</a></li>
+<li class="toctree-l4"><a class="reference internal" href="drag_number.html">Control Deslizante de Números</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../nodejs/play_with_nodejs.html">Juega con Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch/play_with_scratch.html">Experimenta con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+          <li class="breadcrumb-item"><a href="play_with_processing.html">Juega con Processing</a></li>
+      <li class="breadcrumb-item active">Dibuja un Matchmaker</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/processing/draw_a_matchmaker.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.</p>
+<p><strong>¿Por qué unirse?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte Experto</strong>: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprende y Comparte</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Avances Exclusivos</strong>: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.</p></li>
+<li><p><strong>Descuentos Especiales</strong>: Aprovecha descuentos exclusivos en nuestros productos más recientes.</p></li>
+<li><p><strong>Promociones Festivas y Sorteos</strong>: Participa en sorteos y promociones especiales.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy mismo.</p>
+</div>
+<section id="dibuja-un-matchmaker">
+<h1>Dibuja un Matchmaker<a class="headerlink" href="draw_a_matchmaker.html#dibuja-un-matchmaker" title="Link to this heading"></a></h1>
+<p>Ahora estás utilizando el Entorno de Desarrollo de Processing (o PDE).
+No hay mucho en él; el área grande es el Editor de Texto, y hay una fila
+de botones en la parte superior, que es la barra de herramientas.
+Debajo del editor está el Área de Mensajes, y más abajo, la Consola.
+El Área de Mensajes se usa para mensajes de una línea, y la Consola se
+usa para detalles más técnicos.</p>
+<p>Vamos a familiarizarnos con el uso de Processing y dibujar un matchmaker.</p>
+<p><strong>Sketch</strong></p>
+<p>Copia el siguiente código en Processing y ejecútalo. Aparecerá una nueva ventana de visualización y se dibujará un matchmaker animado.</p>
+<div class="highlight-arduino notranslate"><div class="highlight"><pre><span></span><span class="nf">size</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+<span class="nf">background</span><span class="p">(</span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">rectMode</span><span class="p">(</span><span class="n">CENTER</span><span class="p">);</span>
+<span class="nf">rect</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">60</span><span class="p">);</span>
+<span class="n">ellipse</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">45</span><span class="p">);</span>
+<span class="nf">line</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">170</span><span class="p">);</span>
+<span class="nf">line</span><span class="p">(</span><span class="mi">110</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">170</span><span class="p">);</span>
+<span class="nf">line</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+<span class="nf">line</span><span class="p">(</span><span class="mi">110</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="mi">130</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../_images/draw_one1.png" src="../_images/draw_one1.png" />
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si al ejecutarlo el área de mensajes se pone roja y reporta algunos errores, entonces hay algo incorrecto en el código. Asegúrate de copiar el código de muestra exactamente: los números deben estar entre paréntesis, con comas entre cada número, y las líneas deben terminar con punto y coma.</p>
+</div>
+<p><strong>¿Cómo funciona?</strong></p>
+<p>La clave aquí es comprender que la ventana de visualización se puede tratar como un cuadrado de papel.</p>
+<p>Cada píxel de la ventana de visualización es una coordenada (x, y) que determina la posición de un punto en el espacio. El origen (0,0) de las coordenadas está en la esquina superior izquierda, la dirección positiva del eje X es hacia la derecha y la dirección positiva del eje Y es hacia abajo.</p>
+<p>Lo que debemos hacer es especificar qué forma y color deben aparecer en estas coordenadas de píxeles.</p>
+<p>Por ejemplo, dibuja un rectángulo de ancho 20 y alto 60 con las coordenadas (100,120) como punto medio.</p>
+<div class="highlight-arduino notranslate"><div class="highlight"><pre><span></span><span class="n">rectMode</span><span class="p">(</span><span class="n">CENTER</span><span class="p">);</span>
+<span class="nf">rect</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">60</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../_images/draw_one_coodinate.png" src="../_images/draw_one_coodinate.png" />
+<p>Una vez que entendemos la relación entre la ventana de visualización y los ejes, este sketch no es difícil para nosotros, solo necesitamos comprender algunas sentencias simples de dibujo gráfico.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">size(width,</span> <span class="pre">height)</span></code>: Define las dimensiones de la ventana de visualización en ancho y alto en unidades de píxeles.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">background(red,</span> <span class="pre">green,</span> <span class="pre">blue)</span></code>: Establece el color de fondo de la ventana de visualización.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rectMode(mode)</span></code>: Modifica la ubicación desde la cual se dibujan los rectángulos cambiando la forma en que se interpretan los parámetros dados a <code class="docutils literal notranslate"><span class="pre">rect()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rect(x,</span> <span class="pre">y,</span> <span class="pre">width,</span> <span class="pre">height)</span></code>: Dibuja un rectángulo en la pantalla.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ellipse(x,</span> <span class="pre">y,</span> <span class="pre">width,</span> <span class="pre">height)</span></code>: Dibuja una elipse (óvalo) en la pantalla.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">line(x1,</span> <span class="pre">y1,</span> <span class="pre">x2,</span> <span class="pre">y2)</span></code>: Dibuja una línea (un camino directo entre dos puntos) en la pantalla.</p></li>
+</ul>
+</div></blockquote>
+<p>Para más información, consulta <a class="reference external" href="https://processing.org/reference/">Processing Reference</a>.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="play_with_processing.html" class="btn btn-neutral float-left" title="Juega con Processing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="hello_mouse.html" class="btn btn-neutral float-right" title="Hola Ratón" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

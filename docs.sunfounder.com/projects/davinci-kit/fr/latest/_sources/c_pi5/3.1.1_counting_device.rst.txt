@@ -1,0 +1,150 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprenez et Partagez** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions lors des fêtes.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+3.1.1 Dispositif de comptage
+===============================
+
+Introduction
+------------
+
+Nous allons créer un système de comptage avec affichage numérique, composé d'un 
+capteur PIR et d'un afficheur à 4 chiffres. Lorsque le capteur PIR détecte une 
+personne passant à proximité, le nombre affiché sur l'écran à 4 chiffres s'incrémente 
+de 1. Ce dispositif peut être utilisé pour compter le nombre de personnes traversant 
+un passage.
+
+Composants
+------------
+
+.. image:: img/list_Counting_Device1.png
+    :align: center
+
+.. image:: img/list_Counting_Device2.png
+    :align: center
+
+
+Schéma de câblage
+--------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one1.png
+   :align: center
+
+
+Procédures expérimentales
+----------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: img/image235.png
+   :width: 800
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.1/
+
+**Étape 3 :** Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.1_CountingDevice.c -lwiringPi
+
+**Étape 4 :** Exécutez le fichier exécutable.
+
+.. raw:: html
+
+    <run></run>
+ 
+.. code-block:: 
+   
+    sudo ./a.out
+
+Après l'exécution du code, lorsque le capteur PIR détecte une personne passant 
+à proximité, le nombre affiché sur l'écran à 4 chiffres s'incrémente de 1.
+
+Il y a deux potentiomètres sur le module PIR : l'un pour ajuster la sensibilité 
+et l'autre pour ajuster la distance de détection. Pour que le module PIR fonctionne 
+de manière optimale, tournez les deux potentiomètres complètement dans le sens antihoraire.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur indiquant : \"wiringPi.h: Aucun fichier ou répertoire de ce type », veuillez vous référer à :ref:`C code is not working?`.
+    
+**Explication du Code**
+
+.. code-block:: c
+
+    void display()
+    {
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[counter % 10]);
+
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[counter % 100 / 10]);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[counter % 1000 / 100]);
+     
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[counter % 10000 / 1000]);
+    }
+
+Cette fonction active le quatrième afficheur à segments et écrit le chiffre des unités. 
+Ensuite, elle active le troisième afficheur et écrit le chiffre des dizaines ; après cela, 
+elle active respectivement le deuxième et le premier afficheur pour écrire les chiffres des 
+centaines et des milliers. Grâce à la vitesse de rafraîchissement élevée, nous voyons un 
+affichage complet à quatre chiffres.
+
+.. code-block:: c
+
+    void loop(){
+        int currentState =0;
+        int lastState=0;
+        while(1){
+            display();
+            currentState=digitalRead(sensorPin);
+            if((currentState==0)&&(lastState==1)){
+                counter +=1;
+            }
+            lastState=currentState;
+        }
+    }
+
+Cette fonction principale affiche le nombre sur l'écran à 4 chiffres et lit la valeur 
+du capteur PIR. Lorsque le PIR détecte une personne, le nombre affiché s'incrémente de 1.

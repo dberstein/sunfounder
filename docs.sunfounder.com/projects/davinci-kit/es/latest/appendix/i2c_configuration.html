@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuración de I2C &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="SPI Configurtion" href="spi_configuration.html" />
+    <link rel="prev" title="Appendix" href="appendix.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/appendix/i2c_configuration.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Para Pi 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="appendix.html">Appendix</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="i2c_configuration.html#">Configuración de I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi_configuration.html">SPI Configurtion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_desktop.html">Escritorio Remoto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_ip.html">Obtener la dirección IP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_openssh_powershell.html">Instalar OpenSSH a través de PowerShell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="login_windows.html">PuTTY</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_virtual_environment.html">Creación de un Entorno Virtual</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="appendix.html">Appendix</a></li>
+      <li class="breadcrumb-item active">Configuración de I2C</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/appendix/i2c_configuration.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuracion-de-i2c">
+<span id="i2c-config"></span><h1>Configuración de I2C<a class="headerlink" href="i2c_configuration.html#configuracion-de-i2c" title="Link to this heading"></a></h1>
+<p><strong>Paso 1</strong>: Habilita el puerto I2C de tu Raspberry Pi (Si ya lo has
+habilitado, omite este paso; si no sabes si lo has hecho o no,
+por favor continúa).</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">raspi</span><span class="o">-</span><span class="n">config</span>
+</pre></div>
+</div>
+<p><strong>3 Opciones de Interfaz</strong></p>
+<img alt="../_images/image282.png" class="align-center" src="../_images/image282.png" />
+<p><strong>I4 I2C</strong></p>
+<img alt="../_images/I4i2c.jpeg" class="align-center" src="../_images/I4i2c.jpeg" />
+<p><strong>&lt;Sí&gt;, luego &lt;Ok&gt; -&gt; &lt;Finalizar&gt;</strong></p>
+<img alt="../_images/image284.png" class="align-center" src="../_images/image284.png" />
+<p><strong>Paso 2:</strong> Verifica si los módulos i2c están cargados y activos.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lsmod</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">i2c</span>
+</pre></div>
+</div>
+<p>A continuación, aparecerán los siguientes códigos (el número puede ser diferente), si no aparece, reinicia la Raspberry Pi con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">reboot</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i2c_dev</span>                     <span class="mi">6276</span>    <span class="mi">0</span>
+<span class="n">i2c_bcm2708</span>                 <span class="mi">4121</span>    <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>Paso 3:</strong> Instala i2c-tools.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">i2c</span><span class="o">-</span><span class="n">tools</span>
+</pre></div>
+</div>
+<p><strong>Paso 4:</strong> Verifica la dirección del dispositivo I2C.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i2cdetect</span> <span class="o">-</span><span class="n">y</span> <span class="mi">1</span>      <span class="c1"># Para Raspberry Pi 2 y versiones superiores</span>
+</pre></div>
+</div>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i2cdetect</span> <span class="o">-</span><span class="n">y</span> <span class="mi">0</span>      <span class="c1"># Para Raspberry Pi 1</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pi@raspberrypi ~ $ i2cdetect -y 1
+    0  1  2  3   4  5  6  7  8  9   a  b  c  d  e  f
+00:           -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+40: -- -- -- -- -- -- -- -- 48 -- -- -- -- -- -- --
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- --
+</pre></div>
+</div>
+<p>Si hay un dispositivo I2C conectado, se mostrará la dirección del dispositivo.</p>
+<p><strong>Paso 5:</strong></p>
+<p><strong>Para usuarios de lenguaje C:</strong> Instala libi2c-dev.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libi2c</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<p><strong>Para usuarios de Python:</strong></p>
+<ol class="arabic simple">
+<li><p>Activar el entorno virtual.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<ul class="simple">
+<li><p>Antes de la activación, necesitas asegurarte de que has creado un entorno virtual, por favor consulta: <a class="reference internal" href="create_virtual_environment.html#create-virtual"><span class="std std-ref">Creación de un Entorno Virtual</span></a>.</p></li>
+<li><p>Cada vez que reinicies la Raspberry Pi, o abras un nuevo terminal, deberás ejecutar el siguiente comando nuevamente para activar el entorno virtual.</p></li>
+</ul>
+</div>
+<run></run><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>myenv/bin/activate
+</pre></div>
+</div>
+<p>Una vez activado el entorno virtual, verás el nombre del entorno antes del símbolo del sistema, lo que indica que estás trabajando dentro del entorno virtual.</p>
+<ol class="arabic simple" start="2">
+<li><p>Instala smbus para I2C.</p></li>
+</ol>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">smbus2</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Salir del entorno virtual.</p></li>
+</ol>
+<p>Cuando hayas terminado tu trabajo y desees salir del entorno virtual, simplemente ejecuta:</p>
+<run></run><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>deactivate
+</pre></div>
+</div>
+<p>Esto te devolverá al entorno global de Python del sistema.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="appendix.html" class="btn btn-neutral float-left" title="Appendix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="spi_configuration.html" class="btn btn-neutral float-right" title="SPI Configurtion" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

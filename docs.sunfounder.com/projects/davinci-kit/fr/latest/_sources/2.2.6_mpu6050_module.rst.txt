@@ -1,0 +1,532 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez dans le monde de Raspberry Pi, Arduino et ESP32 avec des passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support expert** : Résolvez vos problèmes après-vente et défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et aux avant-goûts.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales pendant les fêtes.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+2.2.6 Module MPU6050
+=======================
+
+Introduction
+--------------
+
+Le MPU-6050 est le premier et unique dispositif de suivi de mouvement 6 axes 
+(3 axes de gyroscope et 3 axes d'accéléromètre) conçu pour les smartphones, 
+tablettes et capteurs portables, offrant une faible consommation, un faible 
+coût et des performances élevées.
+
+Dans cette expérience, nous utiliserons l'I2C pour obtenir les valeurs de l'accéléromètre 
+à trois axes et du gyroscope à trois axes du MPU6050 et les afficher à l'écran.
+
+Composants
+-------------
+
+.. image:: img/list_2.2.6.png
+
+Principe
+------------
+
+**MPU6050**
+
+Le MPU-6050 est un dispositif de suivi de mouvement à 6 axes (3 axes de gyroscope, 
+3 axes d'accéléromètre).
+
+Ses trois systèmes de coordonnées sont définis comme suit :
+
+Placez le MPU6050 à plat sur la table, assurez-vous que la face avec l'étiquette 
+est orientée vers le haut et qu'un point sur cette surface se trouve dans le coin 
+supérieur gauche. Ensuite, la direction verticale vers le haut correspond à l'axe 
+Z de la puce. La direction de gauche à droite est l'axe X, et la direction de l'arrière 
+vers l'avant est l'axe Y.
+
+.. image:: img/image223.png
+
+**Accéléromètre 3 axes**
+
+L'accéléromètre fonctionne selon le principe de l'effet piézoélectrique, la capacité de 
+certains matériaux à générer une charge électrique en réponse à une contrainte mécanique 
+appliquée.
+
+Imaginez ici une boîte cuboïde avec une petite balle à l'intérieur, comme sur l'image 
+ci-dessus. Les parois de cette boîte sont faites de cristaux piézoélectriques. Chaque 
+fois que vous inclinez la boîte, la balle se déplace dans la direction de l'inclinaison 
+en raison de la gravité. La paroi avec laquelle la balle entre en collision crée de petits 
+courants piézoélectriques. Il y a au total trois paires de parois opposées dans le cuboïde. 
+Chaque paire correspond à un axe dans l'espace 3D : les axes X, Y et Z. En fonction du 
+courant produit par les parois piézoélectriques, nous pouvons déterminer la direction 
+et l'amplitude de l'inclinaison.
+
+.. image:: img/image224.png
+
+Nous pouvons utiliser le MPU6050 pour détecter son accélération sur chaque axe de 
+coordonnées (dans un état stationnaire, l'accélération de l'axe Z est de 1 unité de 
+gravité, et les axes X et Y sont à 0). S'il est incliné ou dans une condition de 
+sur/sous-poids, la lecture correspondante changera.
+
+Quatre plages de mesure peuvent être sélectionnées par programmation :
+ +/-2g, +/-4g, +/-8g et +/-16g (2g par défaut), correspondant à chaque précision. 
+ Les valeurs vont de -32768 à 32767.
+
+La lecture de l'accéléromètre est convertie en valeur d'accélération en mappant la 
+lecture sur la plage de mesure.
+
+Accélération = (Données brutes de l'accéléromètre / 65536 \* plage d'accélération totale) g
+
+Prenons l'exemple de l'axe X, lorsque les données brutes de l'accéléromètre de l'axe X 
+sont de 16384 et que la plage sélectionnée est +/-2g :
+
+**Accélération le long de l'axe X = (16384 / 65536 \* 4) g**  **=1g**
+
+**Gyroscope 3 axes**
+
+Les gyroscopes fonctionnent sur le principe de l'accélération de Coriolis. Imaginez 
+une structure en forme de fourche qui effectue un mouvement constant d'avant en arrière, 
+maintenue en place par des cristaux piézoélectriques. Lorsque vous inclinez cet agencement, 
+les cristaux subissent une force dans la direction de l'inclinaison, générée par l'inertie 
+de la fourche en mouvement. Les cristaux produisent ainsi un courant conforme à l'effet 
+piézoélectrique, qui est ensuite amplifié.
+
+.. image:: img/image225.png
+    :width: 800
+    :align: center
+
+Le gyroscope dispose également de quatre plages de mesure :
+ +/-250, +/-500, +/-1000 et +/-2000. La méthode de calcul est essentiellement la même 
+ que celle de l'accélération.
+
+La formule pour convertir la lecture en vitesse angulaire est la suivante :
+
+Vitesse angulaire = (Données brutes de l'axe du gyroscope / 65536 \* plage du gyroscope) °/s
+
+Prenons l'exemple de l'axe X : si les données brutes du gyroscope pour l'axe X sont de 
+16384 et que la plage est de +/- 250°/s :
+
+**Vitesse angulaire le long de l'axe X = (16384 / 65536 \* 500)°/s** **=125°/s**
+
+Schéma
+---------
+
+Le MPU6050 communique avec le microcontrôleur via l'interface de bus I2C. Les broches 
+SDA1 et SCL1 doivent être connectées à la broche correspondante.
+
+.. image:: img/image330.png
+    :width: 600
+    :align: center
+
+
+Procédures expérimentales
+----------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: img/image227.png
+    :width: 800
+
+**Étape 2** : Configurez l'I2C (voir l'annexe. Si vous avez déjà configuré l'I2C, passez cette étape.)
+Pour les utilisateurs du langage C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 3 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.2.6/
+
+**Étape 4 :** Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.6_mpu6050.c -lwiringPi -lm
+
+**Étape 5 :** Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Une fois le code exécuté, les angles de déviation des axes X et Y, ainsi que 
+l'accélération et la vitesse angulaire sur chaque axe, seront calculés et affichés 
+sur l'écran à partir des données lues par le MPU6050.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou si un message d'erreur tel que « wiringPi.h: No such file or directory » apparaît, veuillez vous référer à :ref:`C code is not working?`.
+
+**Code**
+
+.. code-block:: c
+
+    #include  <wiringPiI2C.h>
+    #include <wiringPi.h>
+    #include  <stdio.h>
+    #include  <math.h>
+    int fd;
+    int acclX, acclY, acclZ;
+    int gyroX, gyroY, gyroZ;
+    double acclX_scaled, acclY_scaled, acclZ_scaled;
+    double gyroX_scaled, gyroY_scaled, gyroZ_scaled;
+
+    int read_word_2c(int addr)
+    {
+        int val;
+        val = wiringPiI2CReadReg8(fd, addr);
+        val = val << 8;
+        val += wiringPiI2CReadReg8(fd, addr+1);
+        if (val >= 0x8000)
+            val = -(65536 - val);
+        return val;
+    }
+
+    double dist(double a, double b)
+    {
+        return sqrt((a*a) + (b*b));
+    }
+
+    double get_y_rotation(double x, double y, double z)
+    {
+        double radians;
+        radians = atan2(x, dist(y, z));
+        return -(radians * (180.0 / M_PI));
+    }
+
+    double get_x_rotation(double x, double y, double z)
+    {
+        double radians;
+        radians = atan2(y, dist(x, z));
+        return (radians * (180.0 / M_PI));
+    }
+
+    int main()
+    {
+        fd = wiringPiI2CSetup (0x68);
+        wiringPiI2CWriteReg8 (fd,0x6B,0x00); // désactivation du mode veille
+        printf("set 0x6B=%X\n",wiringPiI2CReadReg8 (fd,0x6B));
+        
+        while(1) {
+
+            gyroX = read_word_2c(0x43);
+            gyroY = read_word_2c(0x45);
+            gyroZ = read_word_2c(0x47);
+
+            gyroX_scaled = gyroX / 131.0;
+            gyroY_scaled = gyroY / 131.0;
+            gyroZ_scaled = gyroZ / 131.0;
+
+        //Print values for the X, Y, and Z axes of the gyroscope sensor.
+        printf("My gyroX_scaled: %f\n", gyroY X_scaled);
+            delay(100);
+        printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
+            delay(100);
+        printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
+            delay(100);
+
+            acclX = read_word_2c(0x3B);
+            acclY = read_word_2c(0x3D);
+            acclZ = read_word_2c(0x3F);
+
+            acclX_scaled = acclX / 16384.0;
+            acclY_scaled = acclY / 16384.0;
+            acclZ_scaled = acclZ / 16384.0;
+            
+        //Print the X, Y, and Z values of the acceleration sensor.
+        printf("My acclX_scaled: %f\n", acclX_scaled);
+            delay(100);
+        printf("My acclY_scaled: %f\n", acclY_scaled);
+            delay(100);
+        printf("My acclZ_scaled: %f\n", acclZ_scaled);
+            delay(100);
+
+        printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+            delay(100);
+        printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+            delay(100);
+            
+            delay(100);
+        }
+        return 0;
+    }
+
+**Explication du code**
+
+.. code-block:: c
+
+    int read_word_2c(int addr)
+    {
+    int val;
+    val = wiringPiI2CReadReg8(fd, addr);
+    val = val << 8;
+    val += wiringPiI2CReadReg8(fd, addr+1);
+    if (val >= 0x8000)
+        val = -(65536 - val);
+    return val;
+    }
+
+Lecture des données du capteur envoyées par le MPU6050.
+
+.. code-block:: c
+
+    double get_y_rotation(double x, double y, double z)
+    {
+    double radians;
+    radians = atan2(x, dist(y, z));
+    return -(radians * (180.0 / M_PI));
+    }
+
+Obtention de l'angle de déviation sur l'axe Y.
+
+.. code-block:: c
+
+    double get_x_rotation(double x, double y, double z)
+    {
+    double radians;
+    radians = atan2(y, dist(x, z));
+    return (radians * (180.0 / M_PI));
+    }
+
+Calcul de l'angle de déviation sur l'axe X.
+
+.. code-block:: c
+
+    gyroX = read_word_2c(0x43);
+    gyroY = read_word_2c(0x45);
+    gyroZ = read_word_2c(0x47);
+
+    gyroX_scaled = gyroX / 131.0;
+    gyroY_scaled = gyroY / 131.0;
+    gyroZ_scaled = gyroZ / 131.0;
+
+    //Print values for the X, Y, and Z axes of the gyroscope sensor.
+    printf("My gyroX_scaled: %f\n", gyroY X_scaled);
+    printf("My gyroY_scaled: %f\n", gyroY Y_scaled);
+    printf("My gyroZ_scaled: %f\n", gyroY Z_scaled);
+
+Lecture des valeurs des axes X, Y et Z sur le capteur gyroscope, conversion des métadonnées en valeurs de vitesse angulaire, puis affichage des résultats.
+
+.. code-block:: c
+
+    acclX = read_word_2c(0x3B);
+    acclY = read_word_2c(0x3D);
+    acclZ = read_word_2c(0x3F);
+
+    acclX_scaled = acclX / 16384.0;
+    acclY_scaled = acclY / 16384.0;
+    acclZ_scaled = acclZ / 16384.0;
+        
+    //Print the X, Y, and Z values of the acceleration sensor.
+    printf("My acclX_scaled: %f\n", acclX_scaled);
+    printf("My acclY_scaled: %f\n", acclY_scaled);
+    printf("My acclZ_scaled: %f\n", acclZ_scaled);
+
+Lecture des valeurs des axes X, Y et Z sur le capteur d'accélération, conversion des métadonnées en valeurs d'accélération (unités gravitationnelles), puis affichage des résultats.
+
+.. code-block:: c
+
+    printf("My X rotation: %f\n", get_x_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+    printf("My Y rotation: %f\n", get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled));
+
+Affichage des angles de déviation sur les axes X et Y.
+
+Pour les utilisateurs du langage Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 3 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python
+
+**Étape 4 :** Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.6_mpu6050.py
+
+Lorsque le code s'exécute, l'angle de déviation des axes X et Y, ainsi que l'accélération 
+et la vitesse angulaire sur chaque axe lues par le MPU6050, seront calculés et affichés à 
+l'écran.
+
+**Code**
+
+.. note::
+
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez aller dans le chemin du code source comme ``davinci-kit-for-raspberry-pi/python``.
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import smbus
+    import math
+    import time
+
+    # Registres de gestion de l'alimentation
+    power_mgmt_1 = 0x6b
+    power_mgmt_2 = 0x6c
+
+    def read_byte(adr):
+        return bus.read_byte_data(address, adr)
+
+    def read_word(adr):
+        high = bus.read_byte_data(address, adr)
+        low = bus.read_byte_data(address, adr+1)
+        val = (high << 8) + low
+        return val
+
+    def read_word_2c(adr):
+        val = read_word(adr)
+        if (val >= 0x8000):
+            return -((65535 - val) + 1)
+        else:
+            return val
+
+    def dist(a,b):
+        return math.sqrt((a*a)+(b*b))
+
+    def get_y_rotation(x,y,z):
+        radians = math.atan2(x, dist(y,z))
+        return -math.degrees(radians)
+
+    def get_x_rotation(x,y,z):
+        radians = math.atan2(y, dist(x,z))
+        return math.degrees(radians)
+
+
+    bus = smbus.SMBus(1) # ou bus = smbus.SMBus(1) pour les cartes Révision 2
+    address = 0x68       # Ceci est l'adresse lue via la commande i2cdetect
+
+    # Réveillez maintenant le MPU6050 car il commence en mode veille
+    bus.write_byte_data(address, power_mgmt_1, 0)
+
+    while True:
+        time.sleep(0.1)
+        gyro_xout = read_word_2c(0x43)
+        gyro_yout = read_word_2c(0x45)
+        gyro_zout = read_word_2c(0x47)
+
+        print ("gyro_xout : ", gyro_xout, " scaled: ", (gyro_xout / 131))
+        print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
+        print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
+
+        accel_xout = read_word_2c(0x3b)
+        accel_yout = read_word_2c(0x3d)
+        accel_zout = read_word_2c(0x3f)
+
+        accel_xout_scaled = accel_xout / 16384.0
+        accel_yout_scaled = accel_yout / 16384.0
+        accel_zout_scaled = accel_zout / 16384.0
+
+        print ("accel_xout: ", accel_xout, " scaled: ", accel_xout_scaled)
+        print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
+        print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
+
+        print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+        print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+
+        time.sleep(0.5)
+
+**Explication du code**
+
+.. code-block:: python
+
+    def read_word(adr):
+        high = bus.read_byte_data(address, adr)
+        low = bus.read_byte_data(address, adr+1)
+        val = (high << 8) + low
+        return val
+
+    def read_word_2c(adr):
+        val = read_word(adr)
+        if (val >= 0x8000):
+            return -((65535 - val) + 1)
+        else:
+            return val
+
+Lecture des données du capteur envoyées par le MPU6050.
+
+.. code-block:: python
+
+    def get_y_rotation(x,y,z):
+        radians = math.atan2(x, dist(y,z))
+        return -math.degrees(radians)
+
+Calcul de l'angle de déviation de l'axe Y.
+
+.. code-block:: python
+
+    def get_x_rotation(x,y,z):
+        radians = math.atan2(y, dist(x,z))
+        return math.degrees(radians)
+
+Calcul de l'angle de déviation de l'axe X.
+
+.. code-block:: python
+
+    gyro_xout = read_word_2c(0x43)
+    gyro_yout = read_word_2c(0x45)
+    gyro_zout = read_word_2c(0x47)
+
+    print ("gyro_xout : ", gyro_xout, " scaled: ", (gyro_xout / 131))
+    print ("gyro_yout : ", gyro_yout, " scaled: ", (gyro_yout / 131))
+    print ("gyro_zout : ", gyro_zout, " scaled: ", (gyro_zout / 131))
+
+Lecture des valeurs des axes X, Y et Z du capteur gyroscope, conversion des données en valeurs de vitesse angulaire, et affichage des résultats.
+
+.. code-block:: python
+
+    accel_xout = read_word_2c(0x3b)
+    accel_yout = read_word_2c(0x3d)
+    accel_zout = read_word_2c(0x3f)
+
+    accel_xout_scaled = accel_xout / 16384.0
+    accel_yout_scaled = accel_yout / 16384.0
+    accel_zout_scaled = accel_zout / 16384.0
+
+    print ("accel_xout: ", accel_xout, " scaled: ", accel_xout_scaled)
+    print ("accel_yout: ", accel_yout, " scaled: ", accel_yout_scaled)
+    print ("accel_zout: ", accel_zout, " scaled: ", accel_zout_scaled)
+
+Lecture des valeurs des axes X, Y et Z du capteur d'accélération, conversion des 
+données en valeurs d'accélération (en unités gravitationnelles), puis affichage 
+des résultats.
+
+.. code-block:: python
+
+    print ("x rotation: " , get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+    print ("y rotation: " , get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))
+
+Affichage des angles de déviation des axes X et Y.
+
+Image du phénomène
+----------------------
+
+.. image:: img/image228.jpeg

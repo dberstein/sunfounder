@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.1 Dispositivo Contador &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="3.1.2 Bienvenido" href="pi5_3.1.2_welcome_python.html" />
+    <link rel="prev" title="Extensión" href="pi5_extension_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_3.1.1_counting_device_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Para Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Juega con Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Verificar <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">Salida</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">Entrada</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_extension_python.html">Extensión</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_3.1.1_counting_device_python.html#">3.1.1 Dispositivo Contador</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.2_welcome_python.html">3.1.2 Bienvenido</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.3_reversing_alarm_python.html">3.1.3 Alarma de Reversa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.4_smart_fan_python.html">3.1.4 Ventilador Inteligente</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.5_battery_indicator_python.html">3.1.5 Indicador de Batería</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.6_motion_control_python.html">3.1.6 Control de Movimiento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.7_traffic_light_python.html">3.1.7 Semáforo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.8_overheat_monitor_python.html">3.1.8 Monitor de Sobrecalentamiento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.9_password_lock_python.html">3.1.9 Cerradura con Contraseña</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.10_alarm_bell_python.html">3.1.10 Alarma</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.11_morse_code_generator_python.html">3.1.11 Generador de Código Morse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.12_game_guess_number_python.html">3.1.12 JUEGO - Adivina el Número</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.13_game_10_second_python.html">3.1.13 JUEGO - 10 Segundos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.14_game_not_not_python.html">3.1.14 JUEGO – Not Not</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Play with C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Juega con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Para Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Juega con Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_extension_python.html">Extensión</a></li>
+      <li class="breadcrumb-item active">3.1.1 Dispositivo Contador</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_3.1.1_counting_device_python.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros apasionados y profundiza en el uso de Raspberry Pi, Arduino y ESP32.</p>
+<p><strong>¿Por qué unirte?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte de expertos</strong>: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprende y comparte</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Avances exclusivos</strong>: Obtén acceso anticipado a anuncios de nuevos productos y adelantos exclusivos.</p></li>
+<li><p><strong>Descuentos especiales</strong>: Disfruta de descuentos exclusivos en nuestros productos más recientes.</p></li>
+<li><p><strong>Promociones festivas y sorteos</strong>: Participa en sorteos y promociones de temporada.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy mismo.</p>
+</div>
+<section id="dispositivo-contador">
+<span id="py-pi5-counting-device"></span><h1>3.1.1 Dispositivo Contador<a class="headerlink" href="pi5_3.1.1_counting_device_python.html#dispositivo-contador" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="pi5_3.1.1_counting_device_python.html#introduccion" title="Link to this heading"></a></h2>
+<p>Aquí crearemos un sistema contador que muestra números, compuesto por un
+sensor PIR y una pantalla de 4 dígitos de segmento. Cuando el sensor PIR
+detecta que alguien pasa, el número en la pantalla de 4 dígitos aumentará
+en 1. Puedes utilizar este contador para contar el número de personas que
+atraviesan un pasillo.</p>
+</section>
+<section id="componentes-necesarios">
+<h2>Componentes necesarios<a class="headerlink" href="pi5_3.1.1_counting_device_python.html#componentes-necesarios" title="Link to this heading"></a></h2>
+<p>En este proyecto, necesitamos los siguientes componentes.</p>
+<img alt="../_images/4.1.7_counting_device_list_1.png" class="align-center" src="../_images/4.1.7_counting_device_list_1.png" />
+<img alt="../_images/4.1.7_counting_device_list_2.png" class="align-center" src="../_images/4.1.7_counting_device_list_2.png" />
+</section>
+<section id="diagrama-esquematico">
+<h2>Diagrama esquemático<a class="headerlink" href="pi5_3.1.1_counting_device_python.html#diagrama-esquematico" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO22</p></td>
+<td><p>Pin 15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPIMOSI</p></td>
+<td><p>Pin 19</p></td>
+<td><p>12</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO23</p></td>
+<td><p>Pin 16</p></td>
+<td><p>4</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO24</p></td>
+<td><p>Pin 18</p></td>
+<td><p>5</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO26</p></td>
+<td><p>Pin 37</p></td>
+<td><p>25</p></td>
+<td><p>26</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/4.1.7_counting_device_schematic.png" class="align-center" src="../_images/4.1.7_counting_device_schematic.png" />
+</section>
+<section id="procedimientos-experimentales">
+<h2>Procedimientos experimentales<a class="headerlink" href="pi5_3.1.1_counting_device_python.html#procedimientos-experimentales" title="Link to this heading"></a></h2>
+<p><strong>Paso 1</strong>: Construye el circuito.</p>
+<img alt="../_images/4.1.7_counting_device_circuit.png" src="../_images/4.1.7_counting_device_circuit.png" />
+<p><strong>Paso 2</strong>: Ve a la carpeta del código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Paso 3</strong>: Ejecuta el archivo ejecutable.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.1</span><span class="n">_CountingDevice</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Después de ejecutar el código, cuando el sensor PIR detecte que alguien pasa,
+el número en la pantalla de 4 dígitos aumentará en 1.</p>
+<p>El módulo PIR tiene dos potenciómetros: uno para ajustar la sensibilidad y otro
+para ajustar la distancia de detección. Para mejorar el funcionamiento del módulo
+PIR, gíralos ambos en sentido contrario a las agujas del reloj hasta el final.</p>
+<a class="reference internal image-reference" href="../_images/4.1.7_PIR_TTE.png"><img alt="../_images/4.1.7_PIR_TTE.png" class="align-center" src="../_images/4.1.7_PIR_TTE.png" style="width: 400px;" />
+</a>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Si aparece el mensaje de error <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code>, consulta <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">Si gpiozero no funciona.</span></a></p>
+</div>
+<p><strong>Código</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puedes <strong>Modificar/Restablecer/Copiar/Ejecutar/Detener</strong> el código a continuación. Pero antes, debes ir a la ruta del código fuente como <code class="docutils literal notranslate"><span class="pre">raphael-kit/python-pi5</span></code>. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span><span class="p">,</span> <span class="n">MotionSensor</span>
+
+<span class="c1"># Inicializar el sensor de movimiento PIR en GPIO 26</span>
+<span class="n">pir</span> <span class="o">=</span> <span class="n">MotionSensor</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span>
+
+<span class="c1"># Inicializar pines del registro de desplazamiento</span>
+<span class="n">SDI</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>    <span class="c1"># Entrada de Datos Seriales</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>   <span class="c1"># Entrada del Reloj de Registro</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>  <span class="c1"># Entrada del Reloj de Registro de Desplazamiento</span>
+
+<span class="c1"># Inicializar pines de la pantalla de 7 segmentos</span>
+<span class="n">placePin</span> <span class="o">=</span> <span class="p">[</span><span class="n">OutputDevice</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span> <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">17</span><span class="p">)]</span>
+
+<span class="c1"># Definir códigos de dígitos para la pantalla de 7 segmentos</span>
+<span class="n">number</span> <span class="o">=</span> <span class="p">(</span><span class="mh">0xc0</span><span class="p">,</span> <span class="mh">0xf9</span><span class="p">,</span> <span class="mh">0xa4</span><span class="p">,</span> <span class="mh">0xb0</span><span class="p">,</span> <span class="mh">0x99</span><span class="p">,</span> <span class="mh">0x92</span><span class="p">,</span> <span class="mh">0x82</span><span class="p">,</span> <span class="mh">0xf8</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0x90</span><span class="p">)</span>
+
+<span class="c1"># Contador para el número mostrado</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">clearDisplay</span><span class="p">():</span>
+    <span class="c1"># Limpia la pantalla apagando todos los segmentos</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">SDI</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Desplaza datos en el registro de desplazamiento 74HC595</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">SDI</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">pickDigit</span><span class="p">(</span><span class="n">digit</span><span class="p">):</span>
+    <span class="c1"># Activa un dígito específico de la pantalla de 7 segmentos</span>
+    <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="n">placePin</span><span class="p">:</span>
+        <span class="n">pin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">placePin</span><span class="p">[</span><span class="n">digit</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">display</span><span class="p">():</span>
+    <span class="c1"># Actualiza la pantalla con el valor actual del contador</span>
+    <span class="k">global</span> <span class="n">counter</span>
+    <span class="n">clearDisplay</span><span class="p">()</span>
+    <span class="n">pickDigit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">10</span><span class="p">])</span>
+
+    <span class="n">clearDisplay</span><span class="p">()</span>
+    <span class="n">pickDigit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">//</span> <span class="mi">10</span><span class="p">])</span>
+
+    <span class="n">clearDisplay</span><span class="p">()</span>
+    <span class="n">pickDigit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">//</span> <span class="mi">100</span><span class="p">])</span>
+
+    <span class="n">clearDisplay</span><span class="p">()</span>
+    <span class="n">pickDigit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">//</span> <span class="mi">1000</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="c1"># Bucle principal para actualizar la pantalla y comprobar movimiento</span>
+    <span class="k">global</span> <span class="n">counter</span>
+    <span class="n">currentState</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">lastState</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">()</span>
+        <span class="n">currentState</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">pir</span><span class="o">.</span><span class="n">motion_detected</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">currentState</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">lastState</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">lastState</span> <span class="o">=</span> <span class="n">currentState</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">loop</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Apagar todos los pines cuando se interrumpe el script</span>
+    <span class="n">SDI</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<ol class="arabic">
+<li><p>Esta línea importa las clases <code class="docutils literal notranslate"><span class="pre">OutputDevice</span></code> y <code class="docutils literal notranslate"><span class="pre">MotionSensor</span></code> de la biblioteca <code class="docutils literal notranslate"><span class="pre">gpiozero</span></code>. <code class="docutils literal notranslate"><span class="pre">OutputDevice</span></code> puede ser un LED, motor, o cualquier dispositivo que se desee controlar como salida. <code class="docutils literal notranslate"><span class="pre">MotionSensor</span></code> es típicamente un sensor PIR (Infrarrojo Pasivo) usado para detectar movimiento.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span><span class="p">,</span> <span class="n">MotionSensor</span>
+</pre></div>
+</div>
+</li>
+<li><p>Inicializa el sensor de movimiento PIR conectado al pin GPIO 26.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inicializar el sensor de movimiento PIR en GPIO 26</span>
+<span class="n">pir</span> <span class="o">=</span> <span class="n">MotionSensor</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Inicializa los pines GPIO conectados a la Entrada de Datos Seriales (SDI), la Entrada del Reloj de Registro (RCLK) y la Entrada del Reloj del Registro de Desplazamiento (SRCLK) del registro de desplazamiento.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inicializar pines del registro de desplazamiento</span>
+<span class="n">SDI</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>    <span class="c1"># Entrada de Datos Seriales</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>   <span class="c1"># Entrada del Reloj de Registro</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>  <span class="c1"># Entrada del Reloj del Registro de Desplazamiento</span>
+</pre></div>
+</div>
+</li>
+<li><p>Inicializa los pines para cada dígito de la pantalla de 7 segmentos y define los códigos binarios para mostrar los números del 0 al 9.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inicializar pines de la pantalla de 7 segmentos</span>
+<span class="n">placePin</span> <span class="o">=</span> <span class="p">[</span><span class="n">OutputDevice</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span> <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">17</span><span class="p">)]</span>
+
+<span class="c1"># Definir códigos de dígitos para la pantalla de 7 segmentos</span>
+<span class="n">number</span> <span class="o">=</span> <span class="p">(</span><span class="mh">0xc0</span><span class="p">,</span> <span class="mh">0xf9</span><span class="p">,</span> <span class="mh">0xa4</span><span class="p">,</span> <span class="mh">0xb0</span><span class="p">,</span> <span class="mh">0x99</span><span class="p">,</span> <span class="mh">0x92</span><span class="p">,</span> <span class="mh">0x82</span><span class="p">,</span> <span class="mh">0xf8</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0x90</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Limpia la pantalla de 7 segmentos apagando todos los segmentos antes de mostrar el siguiente dígito.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clearDisplay</span><span class="p">():</span>
+    <span class="c1"># Limpia la pantalla apagando todos los segmentos</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">SDI</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Desplaza un byte de datos al registro de desplazamiento 74HC595, controlando los segmentos de la pantalla.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Desplaza datos en el registro de desplazamiento 74HC595</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">SDI</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Selecciona qué dígito de la pantalla de 7 segmentos activar. Cada dígito es controlado por un pin GPIO separado.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pickDigit</span><span class="p">(</span><span class="n">digit</span><span class="p">):</span>
+    <span class="c1"># Activa un dígito específico de la pantalla de 7 segmentos</span>
+    <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="n">placePin</span><span class="p">:</span>
+        <span class="n">pin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">placePin</span><span class="p">[</span><span class="n">digit</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Inicia la visualización para el dígito de unidades primero, seguido de la activación para el dígito de las decenas. Posteriormente, activa las pantallas para los dígitos de centenas y millares en orden. Esta rápida sucesión de activaciones crea la ilusión de una pantalla continua de cuatro dígitos.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display</span><span class="p">():</span>
+    <span class="c1"># Actualiza la pantalla con el valor actual del contador</span>
+    <span class="k">global</span> <span class="n">counter</span>
+    <span class="n">clearDisplay</span><span class="p">()</span>
+    <span class="n">pickDigit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">10</span><span class="p">])</span>
+
+    <span class="n">clearDisplay</span><span class="p">()</span>
+    <span class="n">pickDigit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">//</span> <span class="mi">10</span><span class="p">])</span>
+
+    <span class="n">clearDisplay</span><span class="p">()</span>
+    <span class="n">pickDigit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">//</span> <span class="mi">100</span><span class="p">])</span>
+
+    <span class="n">clearDisplay</span><span class="p">()</span>
+    <span class="n">pickDigit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">10000</span> <span class="o">//</span> <span class="mi">1000</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><p>Define el bucle principal donde la pantalla se actualiza continuamente y se verifica el estado del sensor PIR. Si se detecta movimiento, el contador se incrementa.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="c1"># Bucle principal para actualizar la pantalla y comprobar movimiento</span>
+    <span class="k">global</span> <span class="n">counter</span>
+    <span class="n">currentState</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">lastState</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">()</span>
+        <span class="n">currentState</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">pir</span><span class="o">.</span><span class="n">motion_detected</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">currentState</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">lastState</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">lastState</span> <span class="o">=</span> <span class="n">currentState</span>
+</pre></div>
+</div>
+</li>
+<li><p>Ejecuta el bucle principal y asegura que el script pueda ser interrumpido con un comando de teclado (Ctrl+C), apagando todos los pines para una salida limpia.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">loop</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Apaga todos los pines cuando el script es interrumpido</span>
+    <span class="n">SDI</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="pi5_extension_python.html" class="btn btn-neutral float-left" title="Extensión" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="pi5_3.1.2_welcome_python.html" class="btn btn-neutral float-right" title="3.1.2 Bienvenido" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

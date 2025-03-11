@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.10 Alarma de Emergencia &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="3.1.11 Generador de Código Morse" href="3.1.11_morse_code_generator.html" />
+    <link rel="prev" title="3.1.9 Cerradura con Contraseña" href="3.1.9_password_lock.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/c_pi5/3.1.10_alarm_bell.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Para Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Juega con Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_c.html">Play with C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_wiringpi_c.html">Instalar y Verificar WiringPi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1_output.html">1 Salida</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_input.html">2 Entrada</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="3_extension.html">3 Extensiones</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="3.1.1_counting_device.html">3.1.1 Dispositivo Contador</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.2_welcome.html">3.1.2 Bienvenida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.3_reversing_alarm.html">3.1.3 Alarma de Reversa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.4_smart_fan.html">3.1.4 Ventilador Inteligente</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.5_battery_indicator.html">3.1.5 Indicador de Batería</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.6_motion_control.html">3.1.6 Control de Movimiento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.7_traffic_light.html">3.1.7 Semáforo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.8_overheat_monitor.html">3.1.8 Monitor de Sobrecalentamiento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.9_password_lock.html">3.1.9 Cerradura con Contraseña</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="3.1.10_alarm_bell.html#">3.1.10 Alarma de Emergencia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.11_morse_code_generator.html">3.1.11 Generador de Código Morse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.12_game_guess_number.html">3.1.12 JUEGO - Adivina el Número</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.13_game_10_second.html">3.1.13 JUEGO– 10 Segundos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.14_game_not_not.html">3.1.14 JUEGO – Not Not</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Juega con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Para Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_c.html">Play with C</a></li>
+          <li class="breadcrumb-item"><a href="3_extension.html">3 Extensiones</a></li>
+      <li class="breadcrumb-item active">3.1.10 Alarma de Emergencia</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c_pi5/3.1.10_alarm_bell.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Hola, ¡bienvenidos a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook! Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.</p>
+<p><strong>¿Por qué unirte?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte Experto</strong>: Resuelve problemas postventa y desafíos técnicos con ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprende y Comparte</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Avances Exclusivos</strong>: Obtén acceso anticipado a anuncios y adelantos de nuevos productos.</p></li>
+<li><p><strong>Descuentos Especiales</strong>: Disfruta de descuentos exclusivos en nuestros productos más recientes.</p></li>
+<li><p><strong>Promociones y Sorteos Festivos</strong>: Participa en sorteos y promociones en días especiales.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy.</p>
+</div>
+<section id="alarma-de-emergencia">
+<h1>3.1.10 Alarma de Emergencia<a class="headerlink" href="3.1.10_alarm_bell.html#alarma-de-emergencia" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="3.1.10_alarm_bell.html#introduccion" title="Link to this heading"></a></h2>
+<p>En este proyecto, crearemos un dispositivo de alarma manual. Puedes reemplazar
+el interruptor de palanca con un termistor o un sensor fotosensible para crear
+una alarma de temperatura o de luz.</p>
+</section>
+<section id="componentes">
+<h2>Componentes<a class="headerlink" href="3.1.10_alarm_bell.html#componentes" title="Link to this heading"></a></h2>
+<img alt="../_images/list_Alarm_Bell1.png" class="align-center" src="../_images/list_Alarm_Bell1.png" />
+</section>
+<section id="diagrama-de-circuito">
+<h2>Diagrama de Circuito<a class="headerlink" href="3.1.10_alarm_bell.html#diagrama-de-circuito" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO22</p></td>
+<td><p>Pin 15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/Schematic_three_one101.png" class="align-center" src="../_images/Schematic_three_one101.png" />
+</section>
+<section id="procedimientos-experimentales">
+<h2>Procedimientos Experimentales<a class="headerlink" href="3.1.10_alarm_bell.html#procedimientos-experimentales" title="Link to this heading"></a></h2>
+<p><strong>Paso 1</strong>: Construye el circuito.</p>
+<a class="reference internal image-reference" href="../_images/image2661.png"><img alt="Alarm Bell_bb" src="../_images/image2661.png" style="width: 800px;" />
+</a>
+<p><strong>Paso 2</strong>: Cambia de directorio.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">3.1.10</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Paso 3</strong>: Compila el código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">3.1.10</span><span class="n">_AlarmBell</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span> <span class="o">-</span><span class="n">lpthread</span>
+</pre></div>
+</div>
+<p><strong>Paso 4</strong>: Ejecuta el archivo.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Al iniciar el programa, el interruptor de palanca se moverá a la derecha,
+y el zumbador emitirá sonidos de alarma. Al mismo tiempo, los LEDs rojo y
+verde parpadearán a una frecuencia determinada.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si no funciona después de ejecutar el código o aparece el mensaje de error: &quot;wiringPi.h: No such file or directory&quot;, consulta <a class="reference internal" href="../faq.html#c-code-is-not-working"><span class="std std-ref">c code is not working?</span></a>.</p>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pthread.h&gt;</span>
+</pre></div>
+</div>
+<p>En este código, se usa una nueva biblioteca, pthread.h, que es un
+conjunto de librerías para manejo de hilos y permite implementar
+multithreading. Se agrega el parámetro <strong>-lpthread</strong> en la compilación
+para el trabajo independiente de los LEDs y el zumbador.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">ledWork</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">){</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+<span class="w">            </span><span class="n">pthread_exit</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ALedPin</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ALedPin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">BLedPin</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">BLedPin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La función ledWork() establece el estado de trabajo de los 2 LEDs:
+mantiene encendido el LED verde durante 0,5s y luego lo apaga; de
+manera similar, enciende el LED rojo durante 0,5s y luego lo apaga.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">buzzWork</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">){</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+<span class="w">            </span><span class="n">pthread_exit</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="p">((</span><span class="n">note</span><span class="o">&gt;=</span><span class="mi">800</span><span class="p">)</span><span class="o">||</span><span class="p">(</span><span class="n">note</span><span class="o">&lt;=</span><span class="mi">130</span><span class="p">)){</span>
+<span class="w">            </span><span class="n">pitch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">pitch</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">note</span><span class="o">=</span><span class="n">note</span><span class="o">+</span><span class="n">pitch</span><span class="p">;</span>
+<span class="w">        </span><span class="n">softToneWrite</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span><span class="n">note</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La función buzzWork() establece el estado de trabajo del zumbador.
+Aquí, la frecuencia se ajusta entre 130 y 800, aumentando o disminuyendo
+en intervalos de 20.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">on</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">softToneCreate</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup softTone failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">pthread_t</span><span class="w"> </span><span class="n">tLed</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tLed</span><span class="p">,</span><span class="nb">NULL</span><span class="p">,</span><span class="n">ledWork</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pthread_t</span><span class="w"> </span><span class="n">tBuzz</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tBuzz</span><span class="p">,</span><span class="nb">NULL</span><span class="p">,</span><span class="n">buzzWork</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En la función on():</p>
+<ol class="arabic simple">
+<li><p>Define la marca &quot;flag=1&quot;, que indica el inicio del hilo de control.</p></li>
+<li><p>Crea un pin de tono controlado por software <strong>BeepPin</strong>.</p></li>
+<li><p>Crea dos hilos separados para que los LEDs y el zumbador funcionen al mismo tiempo.</p></li>
+</ol>
+<p><strong>pthread_t tLed:</strong> Declara un hilo <strong>tLed</strong>.</p>
+<p><strong>pthread_create(&amp;tLed,NULL,ledWork,NULL)：</strong> Crea el hilo con el siguiente prototipo:</p>
+<p>int pthread_create(pthread_t *restrict tidp,const pthread_attr_t
+*restrict_attr,void*（<em>start_rtn)(void</em>),void *restrict arg);</p>
+<p><strong>Valor de Retorno</strong></p>
+<p>Si tiene éxito, retorna &quot;<strong>0</strong>&quot;; de lo contrario, retorna el <strong>número de error</strong> &quot;<strong>-1</strong>&quot;.</p>
+<p><strong>Parámetros</strong></p>
+<div class="line-block">
+<div class="line">El primer parámetro es un puntero al identificador del hilo.</div>
+<div class="line">El segundo se usa para establecer el atributo del hilo.</div>
+<div class="line">El tercero es la dirección de inicio de la función que ejecutará el hilo.</div>
+<div class="line">El último es el parámetro que se pasa a la función.</div>
+</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">off</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">softToneStop</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ALedPin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">BLedPin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La función off() define &quot;flag=0&quot; para salir de los hilos
+<strong>ledWork</strong> y <strong>buzzWork</strong>, y luego apaga el zumbador y los LEDs.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">setup</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">lastState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">currentState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">switchPin</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">currentState</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">lastState</span><span class="o">==</span><span class="mi">0</span><span class="p">)){</span>
+<span class="w">            </span><span class="n">on</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">((</span><span class="n">currentState</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">lastState</span><span class="o">==</span><span class="mi">1</span><span class="p">)){</span>
+<span class="w">            </span><span class="n">off</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">lastState</span><span class="o">=</span><span class="n">currentState</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>main() contiene todo el proceso del programa: primero lee el valor del
+interruptor de palanca; si el interruptor se mueve hacia la derecha (la
+lectura es 1), se llama a la función on(), el zumbador emite sonidos de
+alarma y los LEDs rojo y verde parpadean. De lo contrario, el zumbador y
+los LEDs permanecen apagados.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="3.1.9_password_lock.html" class="btn btn-neutral float-left" title="3.1.9 Cerradura con Contraseña" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="3.1.11_morse_code_generator.html" class="btn btn-neutral float-right" title="3.1.11 Generador de Código Morse" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

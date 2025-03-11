@@ -1,0 +1,201 @@
+.. note::
+
+    Ciao, benvenuto nella Community SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 con altri appassionati.
+
+    **Perché unirti a noi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato ai nuovi annunci di prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Omaggi**: Partecipa a giveaway e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+2.1.3 Interruttore a Inclinazione
+====================================
+
+Introduzione
+---------------
+
+Questo è un interruttore a inclinazione a sfera con una piccola sfera di 
+metallo all'interno. Viene utilizzato per rilevare inclinazioni di piccoli angoli.
+
+Componenti
+-------------
+
+.. image:: img/list_2.1.3_tilt_switch.png
+
+Principio
+-------------
+
+**Inclinazione**
+
+Il principio di funzionamento è molto semplice. Quando l'interruttore è 
+inclinato a un certo angolo, la sfera all'interno rotola e tocca i due 
+contatti collegati ai pin esterni, chiudendo così il circuito. In caso 
+contrario, la sfera resta lontana dai contatti, interrompendo il circuito.
+
+.. image:: img/image167.png
+
+Schema Elettrico
+-------------------
+
+.. image:: img/image307.png
+
+.. image:: img/image308.png
+
+
+Procedure Sperimentali
+-------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: img/image169.png
+    :width: 800
+
+**Passo 2:** Cambia directory.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.1.3/
+
+**Passo 3:** Compila.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.3_Tilt.c -lwiringPi
+
+**Passo 4:** Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Posiziona l'interruttore di inclinazione orizzontalmente, e il LED verde 
+si accenderà. Se inclini l'interruttore, verrà stampato "Tilt!" sullo 
+schermo e si accenderà il LED rosso. Riposizionalo orizzontalmente e il 
+LED verde si riaccenderà.
+
+.. note::
+
+    Se non funziona dopo l’esecuzione, o appare un messaggio di errore: \"wiringPi.h: No such file or directory\", fai riferimento a :ref:`Il codice C non funziona?`.
+
+**Codice**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define TiltPin     0
+    #define Gpin        2
+    #define Rpin        3
+
+    void LED(char* color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == "RED")
+        {
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == "GREEN")
+        {
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+        else
+            printf("LED Error");
+    }
+
+    int main(void)
+    {
+        if(wiringPiSetup() == -1){ //se l'inizializzazione di wiring fallisce, stampa messaggio a schermo
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        pinMode(TiltPin, INPUT);
+        LED("GREEN");
+        
+        while(1){
+            if(0 == digitalRead(TiltPin)){
+                delay(10);
+                if(0 == digitalRead(TiltPin)){
+                    LED("RED");
+                    printf("Tilt!\n");
+                    delay(100);
+                }
+            }
+            else if(1 == digitalRead(TiltPin)){
+                delay(10);
+                if(1 == digitalRead(TiltPin)){
+                    LED("GREEN");
+                }
+            }
+        }
+        return 0;
+    }
+
+**Spiegazione del Codice**
+
+.. code-block:: c
+
+    void LED(char* color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == "RED")
+        {
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == "GREEN")
+        {
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+        else
+            printf("LED Error");
+    }
+
+Definisci una funzione LED() per accendere o spegnere i due LED. 
+Se il parametro color è "RED", si accende il LED rosso; allo stesso 
+modo, se il parametro color è "GREEN", si accende il LED verde.
+
+.. code-block:: c
+
+    while(1){
+            if(0 == digitalRead(TiltPin)){
+                delay(10);
+                if(0 == digitalRead(TiltPin)){
+                    LED("RED");
+                    printf("Tilt!\n");
+                }
+            }
+            else if(1 == digitalRead(TiltPin)){
+                delay(10);
+                if(1 == digitalRead(TiltPin)){
+                    LED("GREEN");
+                }
+            }
+        }
+
+Se il valore letto dall'interruttore di inclinazione è 0, significa che 
+l'interruttore è inclinato. Passa quindi il parametro "RED" alla funzione 
+LED per accendere il LED rosso; altrimenti, si accenderà il LED verde.
+

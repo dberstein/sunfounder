@@ -1,0 +1,206 @@
+.. note::
+
+    こんにちは、SunFounderのRaspberry Pi & Arduino & ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。
+
+    **参加する理由は？**
+
+    - **エキスパートサポート**：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。
+    - **学び＆共有**：ヒントやチュートリアルを交換してスキルを向上させましょう。
+    - **独占的なプレビュー**：新製品の発表や先行プレビューに早期アクセスしましょう。
+    - **特別割引**：最新製品の独占割引をお楽しみください。
+    - **祭りのプロモーションとギフト**：ギフトや祝日のプロモーションに参加しましょう。
+
+    👉 私たちと一緒に探索し、創造する準備はできていますか？[|link_sf_facebook|]をクリックして今すぐ参加しましょう！
+
+.. _2.2.3_py_pi5:
+
+2.2.3 DHT-11
+================
+
+はじめに
+--------------
+
+このレッスンでは、ラズベリーパイを使用してDHT11温湿度センサからデータを読み取る方法を学びます。センサーの設定、摂氏及び華氏での温度読み取り、湿度の取得方法について説明します。このプロジェクトでは、外部センサーの使用、リアルタイムデータの取り扱い、Pythonにおける基本的な例外処理について学ぶことができます。
+
+必要な部品
+------------------------------
+
+このプロジェクトには以下の部品が必要です。
+
+.. image:: ../img/list_2.2.3_dht-11.png
+
+回路図
+-----------------
+
+.. image:: ../img/image326.png
+
+実験手順
+-----------------------
+
+**ステップ 1:** 回路を組み立てます。
+
+.. image:: ../img/image207.png
+
+**ステップ 2:** コードのフォルダに移動します。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**ステップ 3:** EXEファイルを実行する。
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.3_DHT.py
+
+プログラムを実行すると、DHT11によって検出された温度と湿度がコンピュータ画面に表示されます。
+
+.. warning::
+
+    エラー メッセージ ``RuntimeError: Cannot determine SOC peripheral base address`` が表示された場合は、 :ref:`faq_soc` を参照してください。
+
+**コード**
+
+.. note::
+
+    下記のコードを **変更/リセット/コピー/実行/停止** することができます。ただし、その前に ``davinci-kit-for-raspberry-pi/python-pi5`` のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を確認できます。
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   from gpiozero import OutputDevice, InputDevice
+   import time
+
+   class DHT11():
+      MAX_DELAY_COUINT = 100
+      BIT_1_DELAY_COUNT = 10
+      BITS_LEN = 40
+
+      def __init__(self, pin, pull_up=False):
+         self._pin = pin
+         self._pull_up = pull_up
+
+
+      def read_data(self):
+         bit_count = 0
+         delay_count = 0
+         bits = ""
+
+         # -------------- send start --------------
+         gpio = OutputDevice(self._pin)
+         gpio.off()
+         time.sleep(0.02)
+
+         gpio.close()
+         gpio = InputDevice(self._pin, pull_up=self._pull_up)
+
+         # -------------- wait response --------------
+         while gpio.value == 1:
+               pass
+         
+         # -------------- read data --------------
+         while bit_count < self.BITS_LEN:
+               while gpio.value == 0:
+                  pass
+
+               # st = time.time()
+               while gpio.value == 1:
+                  delay_count += 1
+                  # break
+                  if delay_count > self.MAX_DELAY_COUINT:
+                     break
+               if delay_count > self.BIT_1_DELAY_COUNT:
+                  bits += "1"
+               else:
+                  bits += "0"
+
+               delay_count = 0
+               bit_count += 1
+
+         # -------------- verify --------------
+         humidity_integer = int(bits[0:8], 2)
+         humidity_decimal = int(bits[8:16], 2)
+         temperature_integer = int(bits[16:24], 2)
+         temperature_decimal = int(bits[24:32], 2)
+         check_sum = int(bits[32:40], 2)
+
+         _sum = humidity_integer + humidity_decimal + temperature_integer + temperature_decimal
+
+         if check_sum != _sum:
+               humidity = 0.0
+               temperature = 0.0
+         else:
+               humidity = float(f'{humidity_integer}.{humidity_decimal}')
+               temperature = float(f'{temperature_integer}.{temperature_decimal}')
+
+         # -------------- return --------------
+         return humidity, temperature
+
+
+   if __name__ == '__main__':
+      dht11 = DHT11(17)
+      while True:
+         humidity, temperature = dht11.read_data()
+         print(f"{time.time():.3f}  temperature:{temperature}°C  humidity: {humidity}%")
+         time.sleep(2)
+
+
+**コードの説明**
+
+.. code-block:: python
+
+      def read_data(self):
+         bit_count = 0
+         delay_count = 0
+         bits = ""
+
+         # -------------- send start --------------
+         gpio = OutputDevice(self._pin)
+         gpio.off()
+         time.sleep(0.02)
+
+         gpio.close()
+         gpio = InputDevice(self._pin, pull_up=self._pull_up)
+         #...
+
+この関数はDHT11の関数を実装するために使用される。それは検出されたデータを ``bits[]`` 配列に保存する。
+DHT11は一度に40ビットのデータを点灯する。
+最初の16ビットは湿度に関連し、中央の16ビットは温度に関連し、最後の8ビットは検証に使用される。
+データ形式は次のとおりである：
+
+8ビット湿度整数データ +8ビット湿度10進データ +8ビット温度整数データ + 8ビット温度10進データ + 8ビットチェックビット。
+
+チェックビットを介して有効性が検出されると、関数は2つの結果を返す：1. エラー; 2.湿度と温度。
+
+.. code-block:: python
+
+      _sum = humidity_integer + humidity_decimal + temperature_integer + temperature_decimal
+
+      if check_sum != _sum:
+            humidity = 0.0
+            temperature = 0.0
+      else:
+            humidity = float(f'{humidity_integer}.{humidity_decimal}')
+            temperature = float(f'{temperature_integer}.{temperature_decimal}')
+
+たとえば、受信した日付が00101011（湿度整数の8ビット値）00000000（湿度10進数の8ビット値）00111100（温度整数の8ビット値）00000000（温度10進数の8ビット値）01100111（チェックビット）の場合
+
+**計算:**
+
+00101011+00000000+00111100+00000000=01100111.
+
+最終結果がチェックビットデータと等しい場合、データ送信は異常である：Falseを返す。
+
+最終結果がチェックビットデータと等しく、受信データは正しい場合、
+``humidity`` と ``temperature`` が返され、「Humidity = 43％、Temperature= 60C」が出力される。

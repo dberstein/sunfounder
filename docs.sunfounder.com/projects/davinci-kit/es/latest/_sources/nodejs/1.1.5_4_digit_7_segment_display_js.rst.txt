@@ -1,0 +1,218 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el apasionante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
+
+    **¿Por qué unirte?**
+
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+Pantalla de 7 Segmentos de 4 Dígitos
+========================================
+
+Introducción
+----------------
+
+Ahora, intentaremos controlar una pantalla de 7 segmentos de 4 dígitos.
+
+Componentes
+--------------
+
+.. image:: img/list_4_digit.png
+
+
+
+.. note::
+    En este proyecto, para la pantalla de 7 segmentos de 4 dígitos, utilizaremos el modelo BS; si usas el modelo AS, es posible que no se ilumine.
+
+Diagrama del Circuito
+------------------------
+
+.. image:: img/schmatic_4_digit.png
+
+
+Procedimiento Experimental
+-----------------------------
+
+**Paso 1**: Construye el circuito.
+
+.. image:: img/image80.png
+
+**Paso 2**: Dirígete a la carpeta del código.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Paso 3**: Ejecuta el código.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo node 4_digit_7_segment_display.js
+
+Después de ejecutar el código, el programa realiza un conteo, incrementando en 1 cada segundo, y la pantalla de 7 segmentos de 4 dígitos muestra el conteo.
+ 
+**Código**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    var counter = 0;
+
+    const number = [0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90]; //for BS
+    
+    const SDI = new Gpio(24, { mode: Gpio.OUTPUT });
+    const RCLK = new Gpio(23, { mode: Gpio.OUTPUT });
+    const SRCLK = new Gpio(18, { mode: Gpio.OUTPUT });
+
+    const pin1 = new Gpio(10, { mode: Gpio.OUTPUT });
+    const pin2 = new Gpio(22, { mode: Gpio.OUTPUT });
+    const pin3 = new Gpio(27, { mode: Gpio.OUTPUT });
+    const pin4 = new Gpio(17, { mode: Gpio.OUTPUT });
+    const placePin = [pin1, pin2, pin3, pin4];
+
+    function clearDisplay() {
+        hc595_shift(0xff); //for BS
+    }
+
+    function hc595_shift(dat) {
+        for (let j = 0; j < 8; j++) {
+            let code = 0x80 & (dat << j);
+            if (code != 0) {
+                code = 1;
+            }
+            SDI.digitalWrite(code);
+            SRCLK.trigger(1,1);
+        }
+        RCLK.trigger(1,1);
+    }
+
+    function pickDigit(digit) {
+        for(let i=0;i<4;i++){
+            placePin[i].digitalWrite(0);
+        }
+        placePin[digit].digitalWrite(1);
+    }
+
+
+    let digit = -1
+    setInterval(() => {
+        digit = (digit +1)% 4
+        clearDisplay();
+        pickDigit(digit);
+        switch(digit){
+            case 0:
+                hc595_shift(number[Math.floor(counter % 10)]);  
+                break;
+            case 1:
+                hc595_shift(number[Math.floor(counter % 100 / 10)]);
+                break;        
+            case 2:
+                hc595_shift(number[Math.floor(counter % 1000 / 100)]);
+                break;        
+            case 3:
+                hc595_shift(number[Math.floor(counter % 10000 / 1000)]);
+                break;
+        }
+    }, 5);
+
+    setInterval(() => {
+        counter++;
+    }, 1000);
+
+**Explicación del Código**
+
+.. code-block:: js
+
+    const pin1 = new Gpio(10, {mode: Gpio.OUTPUT});
+    const pin2 = new Gpio(25, {mode: Gpio.OUTPUT});
+    const pin3 = new Gpio(27, {mode: Gpio.OUTPUT});
+    const pin4 = new Gpio(17, {mode: Gpio.OUTPUT});
+    const placePin = [pin1,pin2,pin3,pin4];    
+
+Inicializa los pines 10, 25, 27 y 17 en modo de salida y los coloca en el arreglo ``placePin`` para facilitar el control del ánodo común de la pantalla de 7 segmentos de cuatro dígitos.
+
+.. code-block:: js
+
+    const number = [0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90];
+
+Define un arreglo constante ``number`` para representar el código de segmentos en hexadecimal de 0 a 9 (ánodo común).
+
+.. code-block:: js
+
+    function clearDisplay() {
+        hc595_shift(0xff); 
+    }
+
+Escribe 0xff para apagar el display.
+
+.. code-block:: js
+
+    function pickDigit(digit) {
+        for(let i=0;i<4;i++){
+            placePin[i].digitalWrite(0);
+        }
+        placePin[digit].digitalWrite(1);
+    }
+
+Selecciona el dígito a mostrar. Solo debe estar habilitado un dígito cada vez. 
+El dígito habilitado se escribe en alto.
+
+.. code-block:: js
+
+    let digit = -1
+    setInterval(() => {
+        digit = (digit +1)% 4
+        clearDisplay();
+        pickDigit(digit);
+        switch(digit){
+            case 0:
+                hc595_shift(number[Math.floor(counter % 10)]);  
+                break;
+            case 1:
+                hc595_shift(number[Math.floor(counter % 100 / 10)]);
+                break;        
+            case 2:
+                hc595_shift(number[Math.floor(counter % 1000 / 100)]);
+                break;        
+            case 3:
+                hc595_shift(number[Math.floor(counter % 10000 / 1000)]);
+                break;
+        }
+    }, 5);
+
+Este código se utiliza para establecer el número que se muestra en la pantalla de 7 segmentos de 4 dígitos.
+
+Primero, activa el cuarto dígito y muestra el valor de las unidades. 
+Luego activa el tercer dígito para mostrar las decenas, 
+después el segundo y el primer dígito para mostrar las centenas y millares respectivamente. 
+Dado que la velocidad de refresco es muy rápida, se percibe como un display de cuatro dígitos completo.
+
+.. code-block:: js
+
+    setInterval(() => {
+        counter++;
+    }, 1000);
+
+Incrementa el ``counter`` 
+(el display de cuatro dígitos muestra el número incrementado en uno) 
+cada segundo.
+
+Imagen del Fenómeno
+-----------------------
+
+.. image:: img/image81.jpeg

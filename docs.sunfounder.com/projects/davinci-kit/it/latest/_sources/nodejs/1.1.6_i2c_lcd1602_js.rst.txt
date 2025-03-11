@@ -1,0 +1,123 @@
+.. note::
+
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima agli annunci dei nuovi prodotti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri nuovi prodotti.
+    - **Promozioni Festive e Omaggi**: Partecipa a omaggi e promozioni speciali per le festività.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
+
+I2C LCD1602
+=======================
+
+Introduzione
+------------------
+
+L'LCD1602 è un display a cristalli liquidi di tipo carattere, in grado di 
+visualizzare 32 caratteri (16*2) contemporaneamente.
+
+Componenti
+-------------------
+
+.. image:: ../img/list_i2c_lcd.png
+
+
+Schema Elettrico
+---------------------
+
+============ ========
+T-Board Name physical
+SDA1         Pin 3
+SCL1         Pin 5
+============ ========
+
+.. image:: ../img/schematic_i2c_lcd.png
+
+
+Procedura Sperimentale
+-----------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../img/image96.png
+
+**Passo 2**: Configura I2C (vedi :ref:`i2c_config`. Se hai già configurato I2C, salta questo passo.)
+
+**Passo 3:** Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Passo 4:** Installa le dipendenze.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo npm install @oawu/lcd1602
+
+**Passo 5:** Esegui il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node i2c_lcd1602.js
+
+Dopo l'esecuzione del codice, vedrai il messaggio ``Greetings!!, From SunFounder`` sul display LCD.
+
+**Codice**
+
+.. code-block:: js
+
+    const LCD = require('@oawu/lcd1602');
+    const lcd = new LCD();
+
+    lcd.text(0, 0, 'Greetings!!');
+    lcd.text(1, 1, 'from SunFounder');
+
+**Spiegazione del Codice**
+
+.. code-block:: js
+
+    const LCD = require('@oawu/lcd1602');
+    const lcd = new LCD();
+
+Importa il modulo ``lcd1602`` e rappresentalo con ``lcd``.
+
+.. note::
+    Per maggiori dettagli sul modulo lcd1602, fare riferimento a: https://www.npmjs.com/package/@oawu/lcd1602
+
+   
+.. code-block:: js
+
+    lcd.text(0, 0, 'Greetings!!');
+    lcd.text(1, 1, 'from SunFounder');
+
+Chiamando la funzione ``text()`` incapsulata nella classe ``LCD`` possiamo fare in modo che lcd1602 visualizzi il testo desiderato.
+
+La funzione ``text()`` riceve tre parametri: 
+il primo rappresenta la riga dell’lcd1602, 
+il secondo rappresenta la posizione del testo, 
+e il terzo è il testo da visualizzare.
+
+Il numero **1602** nel modello LCD indica che ha 2 righe da 16 celle ciascuna.
+
+Immagine del Fenomeno
+--------------------------
+
+.. image:: ../img/image97.jpeg

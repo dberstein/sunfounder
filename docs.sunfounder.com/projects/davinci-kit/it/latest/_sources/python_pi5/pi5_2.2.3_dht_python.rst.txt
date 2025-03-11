@@ -1,0 +1,222 @@
+.. note::
+
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti esclusivi.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri nuovi prodotti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
+
+.. _2.2.3_py_pi5:
+
+2.2.3 DHT-11
+==============
+
+Introduzione
+----------------
+
+In questa lezione imparerai a connettere e leggere i dati da un sensore di temperatura e umidità DHT11 utilizzando un Raspberry Pi. Vedrai come configurare il sensore, leggere la temperatura in Celsius e Fahrenheit e ottenere letture di umidità. Questo progetto introduce all’uso di sensori esterni, alla gestione dei dati in tempo reale e alla gestione delle eccezioni di base in Python.
+
+
+Componenti Necessari
+-------------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
+
+.. image:: ../img/list_2.2.3_dht-11.png
+
+
+Schema Elettrico
+------------------
+
+.. image:: ../img/image326.png
+
+
+Procedure Sperimentali
+------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../img/image207.png
+
+**Passo 2:** Vai nella cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python_pi5/
+
+**Passo 3:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.3_DHT.py
+
+Quando il codice è in esecuzione, il programma stamperà a schermo la 
+temperatura e l'umidità rilevate dal DHT11.
+
+.. warning::
+
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python_pi5``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   from gpiozero import OutputDevice, InputDevice
+   import time
+
+
+   class DHT11():
+      MAX_DELAY_COUINT = 100
+      BIT_1_DELAY_COUNT = 10
+      BITS_LEN = 40
+
+      def __init__(self, pin, pull_up=False):
+         self._pin = pin
+         self._pull_up = pull_up
+
+
+      def read_data(self):
+         bit_count = 0
+         delay_count = 0
+         bits = ""
+
+         # -------------- invia avvio --------------
+         gpio = OutputDevice(self._pin)
+         gpio.off()
+         time.sleep(0.02)
+
+         gpio.close()
+         gpio = InputDevice(self._pin, pull_up=self._pull_up)
+
+         # -------------- attendi risposta --------------
+         while gpio.value == 1:
+               pass
+         
+         # -------------- leggi dati --------------
+         while bit_count < self.BITS_LEN:
+               while gpio.value == 0:
+                  pass
+
+               # st = time.time()
+               while gpio.value == 1:
+                  delay_count += 1
+                  # break
+                  if delay_count > self.MAX_DELAY_COUINT:
+                     break
+               if delay_count > self.BIT_1_DELAY_COUNT:
+                  bits += "1"
+               else:
+                  bits += "0"
+
+               delay_count = 0
+               bit_count += 1
+
+         # -------------- verifica --------------
+         humidity_integer = int(bits[0:8], 2)
+         humidity_decimal = int(bits[8:16], 2)
+         temperature_integer = int(bits[16:24], 2)
+         temperature_decimal = int(bits[24:32], 2)
+         check_sum = int(bits[32:40], 2)
+
+         _sum = humidity_integer + humidity_decimal + temperature_integer + temperature_decimal
+
+         # print(bits)
+         # print(humidity_integer, humidity_decimal, temperature_integer, temperature_decimal)
+         # print(f'sum:{_sum}, check_sum:{check_sum}')
+         # print()
+
+         if check_sum != _sum:
+               humidity = 0.0
+               temperature = 0.0
+         else:
+               humidity = float(f'{humidity_integer}.{humidity_decimal}')
+               temperature = float(f'{temperature_integer}.{temperature_decimal}')
+
+         # -------------- ritorno --------------
+         return humidity, temperature
+
+
+   if __name__ == '__main__':
+      dht11 = DHT11(17)
+      while True:
+         humidity, temperature = dht11.read_data()
+         print(f"{time.time():.3f}  temperature:{temperature}°C  humidity: {humidity}%")
+         time.sleep(2)
+
+**Spiegazione del Codice**
+
+.. code-block:: python
+
+   def read_data(self):
+      bit_count = 0
+      delay_count = 0
+      bits = ""
+
+      # -------------- invia avvio --------------
+      gpio = OutputDevice(self._pin)
+      gpio.off()
+      time.sleep(0.02)
+
+      gpio.close()
+      gpio = InputDevice(self._pin, pull_up=self._pull_up)
+      #...
+
+Questa funzione implementa le funzioni del DHT11, memorizzando i dati 
+rilevati nell'array bits[]. Il DHT11 trasmette dati a 40 bit alla volta: 
+i primi 16 bit riguardano l'umidità, i successivi 16 bit la temperatura 
+e gli ultimi otto bit vengono usati per la verifica. Il formato dei dati è:
+
+**8bit di dati interi per l'umidità** +\ **8bit di dati decimali per l'umidità**
++\ **8bit di dati interi per la temperatura** + **8bit di dati decimali per la temperatura**
++ **8bit di bit di controllo**.
+
+Quando la validità è confermata tramite il bit di controllo, la funzione 
+restituisce due risultati: 1. errore; 2. umidità e temperatura.
+
+.. code-block:: python
+
+   _sum = humidity_integer + humidity_decimal + temperature_integer + temperature_decimal
+
+   if check_sum != _sum:
+         humidity = 0.0
+         temperature = 0.0
+   else:
+         humidity = float(f'{humidity_integer}.{humidity_decimal}')
+         temperature = float(f'{temperature_integer}.{temperature_decimal}')
+
+Ad esempio, se i dati ricevuti sono 00101011 (8 bit di umidità intera) 
+00000000 (8 bit di umidità decimale) 00111100 (8 bit di temperatura intera) 
+00000000 (8 bit di temperatura decimale) 01100111 (bit di controllo)
+
+**Calcolo:**
+
+00101011+00000000+00111100+00000000=01100111.
+
+Se il risultato finale è uguale ai dati del bit di controllo, la trasmissione dei dati è anomala: ritorna False.
+
+Se il risultato finale è uguale ai dati del bit di controllo, 
+i dati ricevuti sono corretti e verranno restituiti ``humidity`` e ``temperature`` e verrà visualizzato
+\"Umidità = 43%, Temperatura = 60°C\".
+

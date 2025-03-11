@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="it" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servo &mdash; SunFounder davinci-kit-for-raspberry-pi  documentazione</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=3fd72285"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=0173e136"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/it/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Indice" href="../genindex.html" />
+    <link rel="search" title="Cerca" href="../search.html" />
+    <link rel="next" title="Relè" href="1.3.3_relay_js.html" />
+    <link rel="prev" title="Motore" href="1.3.1_motor_js.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-it" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/nodejs/1.3.2_servo_js.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Cerca documenti" aria-label="Cerca documenti" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu di navigazione">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Elenco dei Componenti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Scheda di Estensione GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Scarica il Codice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installazione e configurazione di Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Per Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html">Librerie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 Ingresso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 Estensioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/play_with_processing.html">Gioca con Processing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_nodejs.html">Gioca con Nodejs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="install_nodejs.html">Cos’è Nodejs?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="check_pigpio.html">Verifica di pigpio</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="output_js.html">Output</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="output_js.html#display">1.1 Display</a></li>
+<li class="toctree-l4"><a class="reference internal" href="output_js.html#suono">1.2 Suono</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="output_js.html#driver">1.3 Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="input_js.html">Input</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch/play_with_scratch.html">Gioca con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Corso Video Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Grazie</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu navigazione dispositivi mobili" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Naviga tra le pagine">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a></li>
+          <li class="breadcrumb-item"><a href="play_with_nodejs.html">Gioca con Nodejs</a></li>
+          <li class="breadcrumb-item"><a href="output_js.html">Output</a></li>
+      <li class="breadcrumb-item active">Servo</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/nodejs/1.3.2_servo_js.rst.txt" rel="nofollow"> Visualizza sorgente pagina</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Ciao, benvenuto nella SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.</p>
+<p><strong>Perché Unirsi?</strong></p>
+<ul class="simple">
+<li><p><strong>Supporto Esperto</strong>: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.</p></li>
+<li><p><strong>Impara e Condividi</strong>: Scambia suggerimenti e tutorial per migliorare le tue competenze.</p></li>
+<li><p><strong>Anteprime Esclusive</strong>: Accedi in anteprima agli annunci dei nuovi prodotti.</p></li>
+<li><p><strong>Sconti Speciali</strong>: Approfitta di sconti esclusivi sui nostri nuovi prodotti.</p></li>
+<li><p><strong>Promozioni Festive e Omaggi</strong>: Partecipa a omaggi e promozioni speciali per le festività.</p></li>
+</ul>
+<p>👉 Pronto a esplorare e creare con noi? Clicca su [<a href="https://bit.ly/raphaelkit " target="_blank">Qui</a>] e unisciti subito!</p>
+</div>
+<section id="servo">
+<h1>Servo<a class="headerlink" href="1.3.2_servo_js.html#servo" title="Link to this heading"></a></h1>
+<section id="introduzione">
+<h2>Introduzione<a class="headerlink" href="1.3.2_servo_js.html#introduzione" title="Link to this heading"></a></h2>
+<p>In questo progetto, impareremo come far ruotare il servomotore.</p>
+</section>
+<section id="componenti">
+<h2>Componenti<a class="headerlink" href="1.3.2_servo_js.html#componenti" title="Link to this heading"></a></h2>
+<img alt="../_images/list_1.3.2.png" src="../_images/list_1.3.2.png" />
+</section>
+<section id="schema-elettrico">
+<h2>Schema Elettrico<a class="headerlink" href="1.3.2_servo_js.html#schema-elettrico" title="Link to this heading"></a></h2>
+<img alt="../_images/image337.png" src="../_images/image337.png" />
+</section>
+<section id="procedure-sperimentali">
+<h2>Procedure Sperimentali<a class="headerlink" href="1.3.2_servo_js.html#procedure-sperimentali" title="Link to this heading"></a></h2>
+<p><strong>Passo 1:</strong> Costruisci il circuito.</p>
+<img alt="../_images/image125.png" src="../_images/image125.png" />
+<p><strong>Passo 2</strong>: Vai alla cartella del codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">nodejs</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Passo 3</strong>: Esegui il codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">node</span> <span class="n">servo</span><span class="o">.</span><span class="n">js</span>
+</pre></div>
+</div>
+<p>Dopo l’esecuzione del programma, il servomotore ruoterà da 0 gradi a 180
+gradi, e poi da 180 gradi a 0 gradi, ciclicamente.</p>
+<p><strong>Codice</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+
+<span class="nx">SERVO_MIN_ANGLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="nx">SERVO_MAX_ANGLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">180</span>
+<span class="nx">SERVO_MIN_PULSE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">500</span>
+<span class="nx">SERVO_MAX_PULSE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2500</span>
+
+<span class="nx">ServoPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">18</span><span class="p">,{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">})</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">map</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">inMin</span><span class="p">,</span><span class="w"> </span><span class="nx">inMax</span><span class="p">,</span><span class="w"> </span><span class="nx">outMin</span><span class="p">,</span><span class="w"> </span><span class="nx">outMax</span><span class="p">){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="nx">outMax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">outMin</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">inMin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nx">inMax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">inMin</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">outMin</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">angle2pulse</span><span class="p">(</span><span class="nx">angle</span><span class="p">){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">map</span><span class="p">(</span><span class="nx">angle</span><span class="p">,</span><span class="nx">SERVO_MIN_ANGLE</span><span class="p">,</span><span class="nx">SERVO_MAX_ANGLE</span><span class="p">,</span><span class="nx">SERVO_MIN_PULSE</span><span class="w"> </span><span class="p">,</span><span class="nx">SERVO_MAX_PULSE</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">angle</span><span class="o">=</span><span class="mf">90</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">step</span><span class="o">=</span><span class="mf">5</span><span class="p">;</span>
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">angle</span><span class="o">&gt;=</span><span class="mf">180</span><span class="o">||</span><span class="nx">angle</span><span class="o">&lt;=</span><span class="mf">0</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">step</span><span class="o">=-</span><span class="nx">step</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">angle</span><span class="o">+=</span><span class="nx">step</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">ServoPin</span><span class="p">.</span><span class="nx">servoWrite</span><span class="p">(</span><span class="nx">angle2pulse</span><span class="p">(</span><span class="nx">angle</span><span class="p">));</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Spiegazione del Codice</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Gpio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pigpio&#39;</span><span class="p">).</span><span class="nx">Gpio</span><span class="p">;</span>
+
+<span class="nx">ServoPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">(</span><span class="mf">18</span><span class="p">,{</span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="nx">Gpio</span><span class="p">.</span><span class="nx">OUTPUT</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Importa il modulo pigpio e crea un oggetto della classe Gpio, ServoPin, per controllare l’uscita del pin Gpio18.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">SERVO_MIN_ANGLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span>
+<span class="nx">SERVO_MAX_ANGLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">180</span>
+<span class="nx">SERVO_MIN_PULSE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">500</span>
+<span class="nx">SERVO_MAX_PULSE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2500</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">map</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">inMin</span><span class="p">,</span><span class="w"> </span><span class="nx">inMax</span><span class="p">,</span><span class="w"> </span><span class="nx">outMin</span><span class="p">,</span><span class="w"> </span><span class="nx">outMax</span><span class="p">){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="nx">outMax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">outMin</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">inMin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nx">inMax</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">inMin</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">outMin</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">angle2pulse</span><span class="p">(</span><span class="nx">angle</span><span class="p">){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">map</span><span class="p">(</span><span class="nx">angle</span><span class="p">,</span><span class="nx">SERVO_MIN_ANGLE</span><span class="p">,</span><span class="nx">SERVO_MAX_ANGLE</span><span class="p">,</span><span class="nx">SERVO_MIN_PULSE</span><span class="w"> </span><span class="p">,</span><span class="nx">SERVO_MAX_PULSE</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Qui è definita la funzione che mappa l’angolo alla larghezza dell’impulso.
+Questo perché la funzione <code class="docutils literal notranslate"><span class="pre">servoWrite(pulseWidth)</span></code> della classe Gpio
+richiede di scrivere la larghezza dell’impulso anziché l’angolo. La gamma
+di angoli del servo che utilizziamo è 0~180, che deve essere mappata alla
+gamma di larghezza degli impulsi, 500~2500.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">angle</span><span class="o">=</span><span class="mf">90</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">step</span><span class="o">=</span><span class="mf">5</span><span class="p">;</span>
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">angle</span><span class="o">&gt;=</span><span class="mf">180</span><span class="o">||</span><span class="nx">angle</span><span class="o">&lt;=</span><span class="mf">0</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">step</span><span class="o">=-</span><span class="nx">step</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">angle</span><span class="o">+=</span><span class="nx">step</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">ServoPin</span><span class="p">.</span><span class="nx">servoWrite</span><span class="p">(</span><span class="nx">angle2pulse</span><span class="p">(</span><span class="nx">angle</span><span class="p">));</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Imposta l’angolo del servo per oscillare avanti e indietro da 0 a 180 gradi.</p>
+</section>
+<section id="immagine-del-fenomeno">
+<h2>Immagine del Fenomeno<a class="headerlink" href="1.3.2_servo_js.html#immagine-del-fenomeno" title="Link to this heading"></a></h2>
+<img alt="../_images/image126.jpeg" src="../_images/image126.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Piè di pagina">
+        <a href="1.3.1_motor_js.html" class="btn btn-neutral float-left" title="Motore" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Precedente</a>
+        <a href="1.3.3_relay_js.html" class="btn btn-neutral float-right" title="Relè" accesskey="n" rel="next">Prossimo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, SunFounder.</p>
+  </div>
+
+  Realizzato con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornito da <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _py_pi5_joystick:
+
+2.1.6 Joystick
+==============
+
+Introducción
+---------------
+
+En este proyecto, aprenderemos cómo funciona el joystick. Manipularemos 
+el joystick y mostraremos los resultados en pantalla.
+
+Componentes Necesarios
+------------------------
+
+En este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../python_pi5/img/2.1.9_joystick_list.png
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`joystick`
+..         - \-
+..     *   - :ref:`adc0834`
+..         - \-
+
+Diagrama Esquemático
+------------------------
+
+Al leer los datos del joystick, existen algunas diferencias entre los ejes: 
+los datos de los ejes X e Y son analógicos y necesitan utilizar el ADC0834 
+para convertir el valor analógico en digital. Los datos del eje Z son digitales, 
+por lo que puedes leerlos directamente con el GPIO o también mediante el ADC.
+
+
+.. image:: ../python_pi5/img/2.1.9_joystick_schematic_1.png
+
+.. image:: ../python_pi5/img/2.1.9_joystick_schematic_2.png
+
+
+Procedimientos del Experimento
+----------------------------------
+
+**Paso 1:** Monta el circuito.
+
+.. image:: ../python_pi5/img/2.1.9_Joystick_circuit.png
+
+**Paso 2:** Abre la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Paso 3:** Ejecuta el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.6_Joystick.py
+
+Después de ejecutar el código, mueve el joystick y se mostrarán en pantalla los valores correspondientes de x, y y Btn.
+
+.. warning::
+
+    Si aparece el mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Código**
+
+.. note::
+
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Antes de eso, asegúrate de estar en la ruta del código fuente, como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Button
+   import ADC0834
+   import time
+
+   # Inicializa el botón conectado al pin GPIO 22
+   BtnPin = Button(22)
+
+   # Configura el ADC0834 ADC
+   ADC0834.setup()
+
+   try:
+       # Bucle principal para leer e imprimir los valores del ADC y el estado del botón
+       while True:
+           # Lee los valores de X y Y de los canales ADC 0 y 1
+           x_val = ADC0834.getResult(0)
+           y_val = ADC0834.getResult(1)
+
+           # Lee el estado del botón (presionado o no)
+           Btn_val = BtnPin.value
+
+           # Imprime los valores de X, Y y del botón
+           print('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+
+           # Retraso de 0.2 segundos antes de la próxima lectura
+           time.sleep(0.2)
+
+   # Manejo adecuado de la finalización del script (ej., mediante KeyboardInterrupt)
+   except KeyboardInterrupt: 
+       pass
+
+
+**Explicación del Código**
+
+#. En esta sección se importa la clase Button de la biblioteca ``gpiozero`` para gestionar un botón conectado a un pin GPIO. También se importa la biblioteca ``ADC0834`` para la interfaz con el módulo ADC0834 (Convertidor Analógico a Digital).
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import Button
+       import ADC0834
+       import time
+
+#. Inicializa un botón conectado al pin GPIO 22 y configura el módulo ADC0834 para su uso.
+
+   .. code-block:: python
+
+       # Inicializa el botón conectado al pin GPIO 22
+       BtnPin = Button(22)
+
+       # Configura el ADC0834 ADC
+       ADC0834.setup()
+
+#. Las conexiones VRX y VRY del joystick están vinculadas a CH0 y CH1 del ADC0834, respectivamente. Esta configuración facilita la lectura de los valores de CH0 y CH1, que luego se guardan en las variables ``x_val`` y ``y_val``. Además, se lee el valor de SW del joystick y se asigna a la variable ``Btn_val``. Los valores obtenidos de ``x_val``, ``y_val`` y ``Btn_val`` se muestran en pantalla mediante la función ``print()``.
+
+   .. code-block:: python
+
+       try:
+           # Bucle principal para leer e imprimir los valores del ADC y el estado del botón
+           while True:
+               # Lee los valores de X y Y de los canales ADC 0 y 1
+               x_val = ADC0834.getResult(0)
+               y_val = ADC0834.getResult(1)
+
+               # Lee el estado del botón (presionado o no)
+               Btn_val = BtnPin.value
+
+               # Imprime los valores de X, Y y del botón
+               print('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+
+               # Retraso de 0.2 segundos antes de la próxima lectura
+               time.sleep(0.2)
+
+       # Manejo adecuado de la finalización del script (ej., mediante KeyboardInterrupt)
+       except KeyboardInterrupt: 
+           pass
+
+
+
+
+
+
+

@@ -1,0 +1,135 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
+
+    **¿Por qué unirte?**
+
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+2.1.1 Button
+===============
+
+Introducción
+-----------------
+
+En este proyecto, aprenderemos a encender y apagar un LED usando un botón.
+
+Componentes
+---------------
+
+.. image:: ../img/list_2.1.1_Button.png
+
+
+Diagrama del Circuito
+-------------------------
+
+Usaremos un botón normalmente abierto como entrada para la Raspberry Pi, 
+y la conexión se muestra en el siguiente diagrama. Cuando se presiona el 
+botón, el GPIO18 cambiará a nivel bajo (0V). Podemos detectar el estado 
+del GPIO18 mediante programación: si el GPIO18 está en nivel bajo, significa 
+que el botón está presionado. Así, el código correspondiente puede ejecutarse 
+al presionar el botón, y el LED se encenderá.
+
+.. note::
+    El pin más largo del LED es el ánodo, y el más corto es el cátodo.
+
+.. image:: ../img/image302.png
+
+
+.. image:: ../img/image303.png
+
+
+Procedimientos Experimentales
+-----------------------------------
+
+**Paso 1**: Construye el circuito.
+
+.. image:: ../img/image152.png
+
+**Paso 2**: Dirígete a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Paso 3**: Ejecuta el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node button.js
+
+Ahora, presiona el botón, y el LED se encenderá; suelta el botón, y el LED se apagará.
+
+**Código**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+    
+    const led = new Gpio(17, {mode: Gpio.OUTPUT});
+   
+    const button = new Gpio(18, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_DOWN,     
+      edge: Gpio.EITHER_EDGE        
+    });
+
+    
+    button.on('interrupt', (level) => {  
+      led.digitalWrite(level);          
+    });
+
+**Explicación del Código**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;    
+
+    const led = new Gpio(17, {mode: Gpio.OUTPUT});
+
+Importa el módulo ``pigpio``, crea un objeto led para controlar el puerto 
+IO Gpio17, y configúralo en modo de salida.
+
+.. code-block:: js
+
+    const button = new Gpio(18, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_DOWN,     
+      edge: Gpio.EITHER_EDGE       
+    });
+
+Crea un objeto button para controlar el puerto IO Gpio18, configúralo en modo de entrada,
+con una resistencia pull-down (bajo cuando el botón no está presionado, alto cuando el botón está presionado).
+Configura la función de interrupción en modo EITHER_EDGE, es decir, tanto los flancos ascendentes como descendentes activarán la función de interrupción.
+
+.. code-block:: js
+
+    button.on('interrupt', (level) => {  
+      led.digitalWrite(level);          
+    });
+
+Escribe una función de interrupción: cuando el botón se presiona, es un flanco descendente que activa la función de interrupción;
+en este momento, el nivel bajo del puerto IO del botón se escribe en el puerto IO del LED, y el LED se enciende.
+
+Cuando se suelta el botón, es un flanco ascendente que activa la función de interrupción;
+en este momento, el nivel alto del puerto IO del botón se escribe en el puerto IO del LED, y el LED se apaga.
+
+Imagen del Fenómeno
+-----------------------
+
+.. image:: ../img/image153.jpeg

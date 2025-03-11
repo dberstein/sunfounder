@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.2.2 Buzzer Passif &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="1.3.1 Moteur" href="1.3.1_motor.html" />
+    <link rel="prev" title="1.2.1 Buzzer Actif" href="1.2.1_active_buzzer.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/1.2.2_passive_buzzer.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Pour le Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Bibliothèques</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="1_output.html">1 Sorties</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 LED clignotante</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 RGB LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 Graphique à barres LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 Affichage 7 segments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 4-Digit 7-Segment Display</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 LED Dot Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 Buzzer Actif</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="1.2.2_passive_buzzer.html#">1.2.2 Buzzer Passif</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="1.2.2_passive_buzzer.html#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.2.2_passive_buzzer.html#composants">Composants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.2.2_passive_buzzer.html#schema-de-circuit">Schéma de circuit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.2.2_passive_buzzer.html#procedures-experimentales">Procédures Expérimentales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.2.2_passive_buzzer.html#image-du-phenomene">Image du phénomène</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.1_motor.html">1.3.1 Moteur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.2_servo.html">1.3.2 Servo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 Stepper Motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.4_relay.html">1.3.4 Relais</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2_input.html">2 Entrée</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_extension.html">3 Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Jouer avec Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Jouer avec Node.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+          <li class="breadcrumb-item"><a href="1_output.html">1 Sorties</a></li>
+      <li class="breadcrumb-item active">1.2.2 Buzzer Passif</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/1.2.2_passive_buzzer.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez au cœur de Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez les problèmes après-vente et les défis techniques avec l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprenez &amp; Partagez</strong> : Échangez des astuces et des tutoriels pour perfectionner vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Accédez en avant-première aux nouvelles annonces de produits.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de réductions exclusives sur nos nouveaux produits.</p></li>
+<li><p><strong>Promotions festives et cadeaux</strong> : Participez à des promotions spéciales et des concours pour gagner des cadeaux.</p></li>
+</ul>
+<p>👉 Prêt à explorer et créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="buzzer-passif">
+<h1>1.2.2 Buzzer Passif<a class="headerlink" href="1.2.2_passive_buzzer.html#buzzer-passif" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="1.2.2_passive_buzzer.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>Dans cette leçon, nous allons apprendre à faire jouer de la musique à un buzzer passif.</p>
+</section>
+<section id="composants">
+<h2>Composants<a class="headerlink" href="1.2.2_passive_buzzer.html#composants" title="Lien vers cette rubrique"></a></h2>
+<img alt="_images/list_1.2.2.png" src="_images/list_1.2.2.png" />
+</section>
+<section id="schema-de-circuit">
+<h2>Schéma de circuit<a class="headerlink" href="1.2.2_passive_buzzer.html#schema-de-circuit" title="Lien vers cette rubrique"></a></h2>
+<p>Dans cette expérience, nous utilisons un buzzer passif, un transistor PNP et une
+résistance de 1kΩ placée entre la base du transistor et le GPIO pour protéger le transistor.</p>
+<p>Lorsque le GPIO17 reçoit différentes fréquences, le buzzer passif émet des sons variés ;
+ainsi, le buzzer peut jouer de la musique.</p>
+<img alt="_images/image333.png" src="_images/image333.png" />
+</section>
+<section id="procedures-experimentales">
+<h2>Procédures Expérimentales<a class="headerlink" href="1.2.2_passive_buzzer.html#procedures-experimentales" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1 :</strong> Construisez le circuit.</p>
+<a class="reference internal image-reference" href="_images/image106.png"><img alt="_images/image106.png" src="_images/image106.png" style="width: 800px;" />
+</a>
+<section id="pour-les-utilisateurs-de-langage-c">
+<h3>Pour les utilisateurs de langage C<a class="headerlink" href="1.2.2_passive_buzzer.html#pour-les-utilisateurs-de-langage-c" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Étape 2 :</strong> Changez de répertoire.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.2.2</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Étape 3 :</strong> Compilez.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.2.2</span><span class="n">_PassiveBuzzer</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Étape 4 :</strong> Exécutez.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Une fois le code exécuté, le buzzer joue un morceau de musique.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Si cela ne fonctionne pas après exécution, ou si un message d’erreur comme « wiringPi.h : Aucun fichier ou répertoire de ce type » s’affiche, veuillez consulter <a class="reference internal" href="faq.html#c-code-is-not-working"><span class="std std-ref">C code is not working?</span></a>.</p>
+</div>
+<p><strong>Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;softTone.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="cp">#define BuzPin    0</span>
+
+<span class="cp">#define  CL1  131</span>
+<span class="cp">#define  CL2  147</span>
+<span class="cp">#define  CL3  165</span>
+<span class="cp">#define  CL4  175</span>
+<span class="cp">#define  CL5  196</span>
+<span class="cp">#define  CL6  221</span>
+<span class="cp">#define  CL7  248</span>
+
+<span class="cp">#define  CM1  262</span>
+<span class="cp">#define  CM2  294</span>
+<span class="cp">#define  CM3  330</span>
+<span class="cp">#define  CM4  350</span>
+<span class="cp">#define  CM5  393</span>
+<span class="cp">#define  CM6  441</span>
+<span class="cp">#define  CM7  495</span>
+
+<span class="cp">#define  CH1  525</span>
+<span class="cp">#define  CH2  589</span>
+<span class="cp">#define  CH3  661</span>
+<span class="cp">#define  CH4  700</span>
+<span class="cp">#define  CH5  786</span>
+<span class="cp">#define  CH6  882</span>
+<span class="cp">#define  CH7  990</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">song_1</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM5</span><span class="p">,</span><span class="n">CM6</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM5</span><span class="p">,</span><span class="n">CM6</span><span class="p">,</span><span class="n">CH1</span><span class="p">,</span><span class="n">CM6</span><span class="p">,</span><span class="n">CM5</span><span class="p">,</span><span class="n">CM1</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span>
+<span class="w">                </span><span class="n">CM2</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM5</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CL6</span><span class="p">,</span><span class="n">CL6</span><span class="p">,</span><span class="n">CL6</span><span class="p">,</span><span class="n">CM1</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span><span class="n">CL7</span><span class="p">,</span>
+<span class="w">                </span><span class="n">CL6</span><span class="p">,</span><span class="n">CM1</span><span class="p">,</span><span class="n">CL5</span><span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">beat_1</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                </span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="n">song_2</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">CM1</span><span class="p">,</span><span class="n">CM1</span><span class="p">,</span><span class="n">CM1</span><span class="p">,</span><span class="n">CL5</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM1</span><span class="p">,</span><span class="n">CM1</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM5</span><span class="p">,</span><span class="n">CM5</span><span class="p">,</span><span class="n">CM4</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span>
+<span class="w">                </span><span class="n">CM2</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM4</span><span class="p">,</span><span class="n">CM4</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM1</span><span class="p">,</span><span class="n">CM1</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span><span class="n">CL5</span><span class="p">,</span><span class="n">CL7</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span><span class="n">CM1</span>
+<span class="w">                </span><span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">beat_2</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span><span class="w"> </span><span class="c1">//when initialize wiring failed,print message to screen</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">softToneCreate</span><span class="p">(</span><span class="n">BuzPin</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup softTone failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;music is being played...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">song_1</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">softToneWrite</span><span class="p">(</span><span class="n">BuzPin</span><span class="p">,</span><span class="w"> </span><span class="n">song_1</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="n">beat_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">500</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">song_2</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">softToneWrite</span><span class="p">(</span><span class="n">BuzPin</span><span class="p">,</span><span class="w"> </span><span class="n">song_2</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="n">beat_2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">500</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explication du code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define  CL1  131</span>
+<span class="cp">#define  CL2  147</span>
+<span class="cp">#define  CL3  165</span>
+<span class="cp">#define  CL4  175</span>
+<span class="cp">#define  CL5  196</span>
+<span class="cp">#define  CL6  221</span>
+<span class="cp">#define  CL7  248</span>
+
+<span class="cp">#define  CM1  262</span>
+<span class="cp">#define  CM2  294</span>
+</pre></div>
+</div>
+<p>Ces définitions correspondent aux fréquences de chaque note. CL fait référence aux
+notes basses, CM aux notes moyennes, CH aux notes aiguës, et 1 à 7 correspondent aux
+notes Do, Ré, Mi, Fa, Sol, La, Si.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">song_1</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM5</span><span class="p">,</span><span class="n">CM6</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM5</span><span class="p">,</span><span class="n">CM6</span><span class="p">,</span><span class="n">CH1</span><span class="p">,</span><span class="n">CM6</span><span class="p">,</span><span class="n">CM5</span><span class="p">,</span><span class="n">CM1</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span>
+<span class="w">                </span><span class="n">CM2</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM5</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CL6</span><span class="p">,</span><span class="n">CL6</span><span class="p">,</span><span class="n">CL6</span><span class="p">,</span><span class="n">CM1</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span><span class="n">CM3</span><span class="p">,</span><span class="n">CM2</span><span class="p">,</span><span class="n">CL7</span><span class="p">,</span>
+<span class="w">                </span><span class="n">CL6</span><span class="p">,</span><span class="n">CM1</span><span class="p">,</span><span class="n">CL5</span><span class="p">};</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">beat_1</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                </span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>Le tableau <cite>song_1[]</cite> contient les fréquences musicales d’une chanson, tandis que
+<cite>beat_1[]</cite> correspond au rythme de chaque note de la chanson (chaque battement
+représente 0,5 seconde).</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">softToneCreate</span><span class="p">(</span><span class="n">BuzPin</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup softTone failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Cette fonction crée une tonalité contrôlée par logiciel sur la broche spécifiée.
+Vous pouvez utiliser n’importe quelle broche GPIO, et le numéro de broche sera
+celui utilisé dans la fonction <cite>wiringPiSetup()</cite>. La valeur de retour est 0 en
+cas de succès. Sinon, vous devez vérifier la variable globale <cite>errno</cite> pour voir
+ce qui a échoué.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">song_1</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="n">softToneWrite</span><span class="p">(</span><span class="n">BuzPin</span><span class="p">,</span><span class="w"> </span><span class="n">song_1</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="n">beat_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">500</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Utilisez une boucle <cite>for</cite> pour jouer la mélodie <cite>song_1</cite>.</p>
+<p>Dans la condition de jugement <strong>i &lt; sizeof(song_1)/4</strong>, la division par 4 est utilisée
+car le tableau <cite>song_1[]</cite> est un tableau de type <cite>int</cite> et chaque élément occupe quatre octets.</p>
+<p>Le nombre d’éléments dans <cite>song_1</cite> (le nombre de notes) est obtenu en divisant <cite>sizeof(song_1)</cite> par 4.</p>
+<p>Pour permettre à chaque note de jouer pendant <cite>beat * 500</cite> ms, la fonction <cite>delay(beat_1[i] * 500)</cite> est appelée.</p>
+<p>Le prototype de la fonction <cite>softToneWrite(BuzPin, song_1[i])</cite> est :</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">softToneWrite</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pin</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">freq</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Cette fonction met à jour la fréquence de la tonalité sur la broche spécifiée.
+La tonalité continue à jouer jusqu’à ce que vous définissiez la fréquence à 0.</p>
+</section>
+<section id="pour-les-utilisateurs-de-python">
+<h3>Pour les utilisateurs de Python<a class="headerlink" href="1.2.2_passive_buzzer.html#pour-les-utilisateurs-de-python" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Étape 2 : Changez de répertoire.</strong></p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Étape 3 : Exécutez.</strong></p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.2.2</span><span class="n">_PassiveBuzzer</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Le code s’exécute et le buzzer joue un morceau de musique.</p>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vous pouvez <strong>Modifier/Réinitialiser/Copier/Exécuter/Arrêter</strong> le code ci-dessous. Mais avant cela, vous devez accéder au chemin du code source tel que <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">Buzzer</span> <span class="o">=</span> <span class="mi">11</span>
+
+<span class="n">CL</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">196</span><span class="p">,</span> <span class="mi">211</span><span class="p">,</span> <span class="mi">248</span><span class="p">]</span>         <span class="c1"># Fréquences des notes basses en C majeur</span>
+
+<span class="n">CM</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">262</span><span class="p">,</span> <span class="mi">294</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">393</span><span class="p">,</span> <span class="mi">441</span><span class="p">,</span> <span class="mi">495</span><span class="p">]</span>         <span class="c1"># Fréquences des notes moyennes en C majeur</span>
+
+<span class="n">CH</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">525</span><span class="p">,</span> <span class="mi">589</span><span class="p">,</span> <span class="mi">661</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">786</span><span class="p">,</span> <span class="mi">882</span><span class="p">,</span> <span class="mi">990</span><span class="p">]</span>         <span class="c1"># Fréquences des notes aiguës en C majeur</span>
+
+<span class="n">song_1</span> <span class="o">=</span> <span class="p">[</span>  <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="c1"># Notes de la chanson 1</span>
+            <span class="n">CH</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+            <span class="n">CM</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="p">]</span>
+
+<span class="n">beat_1</span> <span class="o">=</span> <span class="p">[</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>                         <span class="c1"># Durées des notes de la chanson 1, 1 représente 1/8 de temps</span>
+            <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span>
+
+<span class="n">song_2</span> <span class="o">=</span> <span class="p">[</span>  <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="c1"># Notes de la chanson 2</span>
+            <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>        <span class="p">]</span>
+
+<span class="n">beat_2</span> <span class="o">=</span> <span class="p">[</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>                         <span class="c1"># Durées des notes de la chanson 2, 1 représente 1/8 de temps</span>
+<span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+<span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+<span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BOARD</span><span class="p">)</span>                <span class="c1"># Numérotation des GPIO par leur emplacement physique</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">Buzzer</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>    <span class="c1"># Configurer le mode des broches en sortie</span>
+    <span class="k">global</span> <span class="n">Buzz</span>                                             <span class="c1"># Assigner une variable globale pour remplacer GPIO.PWM</span>
+    <span class="n">Buzz</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">Buzzer</span><span class="p">,</span> <span class="mi">440</span><span class="p">)</span>    <span class="c1"># 440 est la fréquence initiale.</span>
+    <span class="n">Buzz</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>                                  <span class="c1"># Démarrer la broche du buzzer avec un cycle de travail de 50%</span>
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    Playing song 1...&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">song_1</span><span class="p">)):</span>             <span class="c1"># Jouer la chanson 1</span>
+            <span class="n">Buzz</span><span class="o">.</span><span class="n">ChangeFrequency</span><span class="p">(</span><span class="n">song_1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1"># Changer la fréquence en fonction de la note de la chanson</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">beat_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>             <span class="c1"># Temporiser la note pour beat * 0.5s</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                                               <span class="c1"># Attendre une seconde avant la prochaine chanson.</span>
+
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">    Playing song 2...&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">song_2</span><span class="p">)):</span>     <span class="c1"># Jouer la chanson 2</span>
+            <span class="n">Buzz</span><span class="o">.</span><span class="n">ChangeFrequency</span><span class="p">(</span><span class="n">song_2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1"># Changer la fréquence en fonction de la note de la chanson</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">beat_2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>     <span class="c1"># Temporiser la note pour beat * 0.5s</span>
+
+<span class="k">def</span> <span class="nf">destory</span><span class="p">():</span>
+    <span class="n">Buzz</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>                 <span class="c1"># Arrêter le buzzer</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">Buzzer</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>      <span class="c1"># Mettre la broche du buzzer à High</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>                          <span class="c1"># Libérer les ressources</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>          <span class="c1"># Le programme commence ici</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">loop</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>       <span class="c1"># Lorsque &#39;Ctrl+C&#39; est pressé, le programme destory() sera exécuté.</span>
+        <span class="n">destory</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Explication du code</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CL</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">196</span><span class="p">,</span> <span class="mi">211</span><span class="p">,</span> <span class="mi">248</span><span class="p">]</span>     <span class="c1"># Fréquence des notes basses en C majeur</span>
+<span class="n">CM</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">262</span><span class="p">,</span> <span class="mi">294</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">393</span><span class="p">,</span> <span class="mi">441</span><span class="p">,</span> <span class="mi">495</span><span class="p">]</span>     <span class="c1"># Fréquence des notes moyennes en C majeur</span>
+<span class="n">CH</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">525</span><span class="p">,</span> <span class="mi">589</span><span class="p">,</span> <span class="mi">661</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">786</span><span class="p">,</span> <span class="mi">882</span><span class="p">,</span> <span class="mi">990</span><span class="p">]</span>     <span class="c1"># Fréquence des notes aiguës en C majeur</span>
+</pre></div>
+</div>
+<p>Ce sont les fréquences de chaque note. Le premier 0 permet de
+sauter CL[0] de sorte que les numéros 1 à 7 correspondent aux notes CDEFGAB.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">song_1</span> <span class="o">=</span> <span class="p">[</span>  <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+            <span class="n">CH</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+            <span class="n">CM</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">CL</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>Ces tableaux contiennent les notes d’une chanson.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">beat_1</span> <span class="o">=</span> <span class="p">[</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>Chaque battement représente une durée de ⅛ de temps, soit 0,5 seconde.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Buzz</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">Buzzer</span><span class="p">,</span> <span class="mi">440</span><span class="p">)</span>
+<span class="n">Buzz</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Définir la broche Buzzer comme broche PWM, puis fixer sa fréquence à 440.
+Buzz.start(50) est utilisé pour démarrer le PWM avec un cycle de travail de 50%.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">song_1</span><span class="p">)):</span>
+            <span class="n">Buzz</span><span class="o">.</span><span class="n">ChangeFrequency</span><span class="p">(</span><span class="n">song_1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">beat_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Exécuter une boucle for, puis le buzzer jouera les notes dans le tableau song_1[]
+avec les durées dans le tableau beat_1[].</p>
+<p>Maintenant, vous pouvez entendre le buzzer passif jouer de la musique.</p>
+</section>
+</section>
+<section id="image-du-phenomene">
+<h2>Image du phénomène<a class="headerlink" href="1.2.2_passive_buzzer.html#image-du-phenomene" title="Lien vers cette rubrique"></a></h2>
+<img alt="_images/image107.jpeg" src="_images/image107.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="1.2.1_active_buzzer.html" class="btn btn-neutral float-left" title="1.2.1 Buzzer Actif" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="1.3.1_motor.html" class="btn btn-neutral float-right" title="1.3.1 Moteur" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

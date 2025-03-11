@@ -1,0 +1,588 @@
+.. note::
+
+    Ciao, benvenuto nella Community di Appassionati di SunFounder Raspberry Pi, Arduino & ESP32 su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché unirsi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara & Condividi**: Scambia suggerimenti e tutorial per migliorare le tue abilità.
+    - **Anteprime Esclusive**: Ottieni l'accesso anticipato agli annunci di nuovi prodotti e anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a giveaway e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
+
+3.1.14 GIOCO– Not Not
+=======================
+
+Introduzione
+--------------------
+
+In questa lezione, realizzeremo un dispositivo per un gioco interessante, che chiamiamo "Not Not".
+
+Durante il gioco, la matrice di punti genererà casualmente una freccia. Il tuo compito sarà premere il pulsante nella direzione opposta alla freccia entro un tempo limitato. Se il tempo scade, o se premi il pulsante nella stessa direzione della freccia, perdi.
+
+Questo gioco può davvero allenare il tuo pensiero inverso, quindi, pronto a fare una prova?
+
+Componenti
+---------------
+
+.. image:: img/list_GAME_Not_Not.png
+    :align: center
+
+Schema a Blocchi
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO20       Pin 38   28       20
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one14.png
+   :align: center
+
+Procedura Sperimentale
+-----------------------------
+
+**Passo 1:** Assembla il circuito.
+
+.. image:: img/image280.png
+    :width: 800
+
+**Per Utenti C Language**
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Passo 2:** Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.14/
+
+**Passo 3**: Compila il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 3.1.14_GAME_NotNot.c -lwiringPi
+
+**Passo 4**: Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+     sudo ./a.out
+
+Dopo l’avvio del programma, sul display a matrice di punti apparirà 
+casualmente una freccia verso destra o sinistra. Devi premere il 
+pulsante nella direzione opposta alla freccia entro un tempo limitato. 
+Successivamente apparirà \"**√**\" sulla matrice di punti. Se il tempo 
+scade o premi il pulsante nella stessa direzione della freccia, perdi e 
+la matrice di punti visualizzerà una \"x\". Puoi anche aggiungere 2 nuovi 
+pulsanti o sostituirli con i tasti del joystick per le direzioni su, giù, 
+sinistra e destra, aumentando così la difficoltà del gioco.
+
+.. note::
+
+    Se il programma non funziona dopo l’avvio o compare un messaggio di errore: \"wiringPi.h: No such file or directory\", fai riferimento a :ref:`Il codice C non funziona?`.
+**Spiegazione del Codice**
+
+Basato su **1.1.6 Matrice di LED**, questa lezione aggiunge **2** pulsanti 
+per creare un dispositivo di gioco divertente. Se non hai familiarità con la 
+matrice di punti, fai riferimento a :ref:`1.1.6 Matrice di LED`.
+
+Il processo dell'intero programma è il seguente:
+
+1. Seleziona casualmente una direzione per la freccia e genera **timer 1**.
+
+2. Mostra l'immagine della freccia sulla matrice di punti.
+
+3. Verifica l'input del pulsante. Se il pulsante viene premuto o **timer 1** segnala la scadenza del tempo, inizia il giudizio.
+
+4. Visualizza l'immagine in base al risultato del giudizio; contemporaneamente, genera **timer 2**.
+
+5. Ripeti il **passo 1** quando **timer 2** segnala la scadenza del tempo.
+
+.. code-block:: c
+
+    struct GLYPH{
+        char *word;
+        unsigned char code[8];
+    };
+
+    struct GLYPH arrow[2]=
+    {
+        {"right",{0xFF,0xEF,0xDF,0x81,0xDF,0xEF,0xFF,0xFF}},
+        // {"down",{0xFF,0xEF,0xC7,0xAB,0xEF,0xEF,0xEF,0xFF}},
+        // {"up",{0xFF,0xEF,0xEF,0xEF,0xAB,0xC7,0xEF,0xFF}},    
+        {"left",{0xFF,0xF7,0xFB,0x81,0xFB,0xF7,0xFF,0xFF}}
+    };
+
+    struct GLYPH check[2]=
+    {
+        {"wrong",{0xFF,0xBB,0xD7,0xEF,0xD7,0xBB,0xFF,0xFF}},
+        {"right",{0xFF,0xFF,0xF7,0xEB,0xDF,0xBF,0xFF,0xFF}}
+    };
+
+La struttura GLYPH funziona come un dizionario: l’attributo **word** 
+corrisponde alla **chiave** del dizionario, mentre **code** corrisponde 
+al **valore**.
+
+Il **code** serve a memorizzare un array per visualizzare immagini sulla 
+matrice (un array di 8x8 bit).
+
+L’array **arrow** può visualizzare le frecce nelle direzioni sinistra e 
+destra sulla matrice LED.
+
+Ora **down** e **up** sono commentati: puoi attivarli se necessario.
+
+L’array **check** serve a visualizzare due immagini: \"**×**\" e \"**√**\".
+
+.. code-block:: c
+
+    char *lookup(char *key,struct GLYPH *glyph,int length){
+        for (int i=0;i<length;i++)
+        {
+            if(strcmp(glyph[i].word,key)==0){
+                return glyph[i].code;
+            }
+        }     
+    }
+
+La funzione **lookup()** funziona come una ricerca nel dizionario. Definisci 
+una **key** e cerca la parola corrispondente in **GLYPH *glyph**, restituendo 
+il **code** corrispondente.
+
+La funzione **Strcmp()** confronta l’identità delle stringhe **glyph[i].word** 
+e **key**; se sono identiche, restituisce **glyph[i].code**.
+
+.. code-block:: c
+
+    void display(char *glyphCode){
+        for(int i;i<8;i++){
+            hc595_in(glyphCode[i]);
+            hc595_in(0x80>>i);
+            hc595_out();
+        }
+    }
+
+Visualizza il pattern specificato sulla matrice di punti.
+
+.. code-block:: c
+
+    void createGlyph(){
+        srand(time(NULL));
+        int i=rand()%(sizeof(arrow)/sizeof(arrow[0]));
+        waypoint=arrow[i].word;
+        stage="PLAY";
+        alarm(2);
+    }
+
+La funzione **createGlyph()** seleziona casualmente una direzione (l'attributo 
+word di un elemento nell'array **arrow[]:** \"**left**\", \"**right**\"...). 
+Imposta lo **stage** su "PLAY" e avvia una sveglia di 2 secondi.
+
+**srand(time(NULL)):** Inizializza semi casuali dall'orologio di sistema.
+
+**(sizeof(arrow)/sizeof(arrow[0])):** Ottieni la lunghezza dell’array, il 
+risultato è 2.
+
+**rand()%2:** Ritorna **0** o **1** dividendo il numero casuale generato per 2.
+
+**waypoint=arrow[i].word:** Il risultato è \"right\" o \"left\".
+
+.. code-block:: c
+
+    void checkPoint(char *inputKey){
+        alarm(0)==0;
+        if(inputKey==waypoint||inputKey=="empty")
+        {
+            waypoint="wrong";
+        }
+        else{
+            waypoint="right";
+        }
+        stage="CHECK";
+        alarm(1);
+    }
+
+checkPoint() verifica l'input del pulsante; se non viene premuto o se si 
+preme il pulsante nella stessa direzione della freccia, il risultato del 
+waypoint è errato e compare \"x\" sulla matrice. Altrimenti, il waypoint 
+è corretto e la matrice visualizza \"√\". Qui lo **stage** è **CHECK**, 
+e si può impostare una sveglia di 1 secondo.
+
+alarm() è una sveglia, in cui si può impostare un timer che invia segnali 
+**SIGALRM** al processo al termine del tempo definito.
+
+.. code-block:: c
+
+    void getKey(){
+        if (digitalRead(AButtonPin)==1&&digitalRead(BButtonPin)==0)
+        {checkPoint("right");}
+        else if (digitalRead(AButtonPin)==0&&digitalRead(BButtonPin)==1)
+        {checkPoint("left");}
+    }
+
+getKey() legge gli stati dei due pulsanti; se viene premuto quello destro, 
+il parametro di checkPoint() è **right**, se si preme quello sinistro, il 
+parametro è **left**.
+
+.. code-block:: c
+
+    void timer(){
+        if (stage=="PLAY"){
+            checkPoint("empty");
+        }
+        else if(stage=="CHECK"){
+            createGlyph();
+        }
+    }
+
+Precedentemente, timer() veniva richiamato allo scadere di alarm(). Sotto 
+la modalità \"PLAY\", checkPoint() viene chiamato per giudicare l’esito. 
+Se è in modalità \"CHECK\", si richiama createGlyph() per selezionare nuovi 
+pattern.
+
+.. code-block:: c
+
+    void main(){
+        setup();
+        signal(SIGALRM,timer);
+        createGlyph();
+        char *code = NULL;
+        while(1){
+            if (stage == "PLAY")
+            {
+                code=lookup(waypoint,arrow,sizeof(arrow)/sizeof(arrow[0]));
+                display(code);
+                getKey();
+            }
+            else if(stage == "CHECK")
+            {
+                code = lookup(waypoint,check,sizeof(check)/sizeof(check[0]));
+                display(code);
+            }
+        }
+    }
+
+Il funzionamento di signal(SIGALRM,timer): chiama la funzione timer() alla 
+ricezione di un segnale SIGALRM generato dalla funzione sveglia alarm().
+
+All’avvio, crea una freccia con createGlyph() e inizia il loop.
+
+Nel ciclo: in modalità PLAY, la matrice visualizza la freccia e verifica lo 
+stato del pulsante; in modalità CHECK, visualizza \"x\" o \"√\".
+
+**Per Utenti Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Step 2**: Entra nella cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python
+
+**Step 3**: Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.14_GAME_NotNot.py
+
+Dopo l’avvio del programma, sulla matrice compare una freccia verso 
+destra o sinistra. Devi premere il pulsante nella direzione opposta 
+entro un tempo limitato. A quel punto, \"√\" appare sulla matrice. 
+Se il tempo scade o se il pulsante è nella stessa direzione della 
+freccia, perdi e la matrice mostra \"x\". Puoi anche aggiungere 2 
+pulsanti o sostituirli con i tasti del Joystick per le direzioni su, 
+giù, sinistra e destra, aumentando la difficoltà del gioco.
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reset/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, devi andare nel percorso sorgente del codice, come ``davinci-kit-for-raspberry-pi/python``.
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+    import threading
+    import random
+
+    SDI   = 17
+    RCLK  = 18
+    SRCLK = 27
+
+    timerPlay = 0
+    timerCheck = 0
+
+    AButtonPin = 20
+    BButtonPin = 26
+
+    waypoint = "NULL"
+    stage = "NULL"
+
+    arrow={
+        #"down" :[0xFF,0xEF,0xC7,0xAB,0xEF,0xEF,0xEF,0xFF],
+        #"up":[0xFF,0xEF,0xEF,0xEF,0xAB,0xC7,0xEF,0xFF],
+        "right" : [0xFF,0xEF,0xDF,0x81,0xDF,0xEF,0xFF,0xFF],    
+        "left":[0xFF,0xF7,0xFB,0x81,0xFB,0xF7,0xFF,0xFF]
+    }
+    check={
+        "wrong":[0xFF,0xBB,0xD7,0xEF,0xD7,0xBB,0xFF,0xFF],
+        "right":[0xFF,0xFF,0xF7,0xEB,0xDF,0xBF,0xFF,0xFF]
+    }
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)    # Numero GPIOs in base alla loro posizione BCM
+        GPIO.setup(SDI, GPIO.OUT)
+        GPIO.setup(RCLK, GPIO.OUT)
+        GPIO.setup(SRCLK, GPIO.OUT)
+        GPIO.output(SDI, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.LOW)
+        GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.setup(AButtonPin,GPIO.IN)
+        GPIO.setup(BButtonPin,GPIO.IN)    
+    
+    # Trasferisce i dati al 74HC595
+    def hc595_shift(dat):
+        for bit in range(0, 8): 
+            GPIO.output(SDI, 0x80 & (dat << bit))
+            GPIO.output(SRCLK, GPIO.HIGH)
+            GPIO.output(SRCLK, GPIO.LOW)
+
+    def display(glyphCode):
+        for i in range(0, 8):
+            hc595_shift(glyphCode[i])
+            hc595_shift(0x80>>i)
+            GPIO.output(RCLK, GPIO.HIGH)
+            GPIO.output(RCLK, GPIO.LOW)
+
+    def creatGlyph():
+        global waypoint
+        global stage
+        global timerPlay    
+        waypoint=random.choice(list(arrow.keys()))
+        stage = "PLAY"
+        timerPlay = threading.Timer(2.0, timeOut)  
+        timerPlay.start()  
+
+    def checkPoint(inputKey):
+        global waypoint
+        global stage
+        global timerCheck    
+        if inputKey == "empty" or inputKey == waypoint:
+            waypoint = "wrong"
+        else:
+            waypoint = "right"
+        timerPlay.cancel()
+        stage = "CHECK"
+        timerCheck = threading.Timer(1.0, creatGlyph)
+        timerCheck.start()  
+
+    def timeOut():  
+        checkPoint("empty")
+
+    def getKey():
+        if GPIO.input(AButtonPin)==1 and GPIO.input(BButtonPin)==0:
+            checkPoint("right")
+        elif GPIO.input(AButtonPin)==0 and GPIO.input(BButtonPin)==1:
+            checkPoint("left")
+        
+    def main():
+        creatGlyph()
+        while True:
+            if stage == "PLAY":
+                display(arrow[waypoint])
+                getKey()
+            elif stage == "CHECK":
+                display(check[waypoint])
+
+    def destroy():
+        global timer1
+        GPIO.cleanup()
+        timerPlay.cancel()  # cancella il timer
+        timerCheck.cancel()
+
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy()
+
+**Spiegazione del Codice**
+
+Basato su **1.1.6 Matrice a LED**, questa lezione aggiunge **2** pulsanti 
+per creare un dispositivo di gioco divertente. Se non hai molta familiarità 
+con la matrice di punti, fai riferimento a :ref:`1.1.6 Matrice di LED`.
+
+Il processo completo del programma è il seguente:
+
+.. image:: img/notnot3.png
+    :width: 800
+
+1. Seleziona casualmente una direzione della freccia e genera **timer 1**.
+
+2. Visualizza l'immagine della freccia corrispondente sulla matrice a punti.
+
+3. Rileva l'input del pulsante. Se viene premuto il pulsante o **timer 1** 
+   segnala lo scadere del tempo, inizia il giudizio.
+
+4. Visualizza l'immagine in base al risultato del giudizio; contemporaneamente, 
+   genera **timer 2**.
+
+5. Ripeti **passo 1** quando **timer 2** segnala lo scadere del tempo.
+
+.. code-block:: python
+
+    def main():
+        creatGlyph()
+        while True:
+            if stage == "PLAY":
+                display(arrow[waypoint])
+                getKey()
+            elif stage == "CHECK":
+                display(check[waypoint])
+
+Main() contiene l'intero processo di esecuzione.
+
+Quando il programma inizia, chiama creatGlyph() una volta e poi avvia il ciclo.
+
+Nel ciclo: in modalità PLAY, la matrice a punti mostra i modelli di freccia e 
+verifica lo stato del pulsante; se in modalità CHECK, viene visualizzato "**x**" 
+o "**√**".
+
+.. code-block:: python
+
+    arrow={
+        #"down" :[0xFF,0xEF,0xC7,0xAB,0xEF,0xEF,0xEF,0xFF],
+        #"up":[0xFF,0xEF,0xEF,0xEF,0xAB,0xC7,0xEF,0xFF],
+        "right" : [0xFF,0xEF,0xDF,0x81,0xDF,0xEF,0xFF,0xFF],    
+        "left":[0xFF,0xF7,0xFB,0x81,0xFB,0xF7,0xFF,0xFF]
+    }
+    check={
+        "wrong":[0xFF,0xBB,0xD7,0xEF,0xD7,0xBB,0xFF,0xFF],
+        "right":[0xFF,0xFF,0xF7,0xEB,0xDF,0xBF,0xFF,0xFF]
+    }
+
+Qui, il **dizionario** arrow può essere utilizzato per mostrare il modello di 
+freccia in su, giù, sinistra e destra sulla matrice LED.
+
+Attualmente, giù e su sono commentati e puoi rimuovere i commenti se necessario.
+
+Il **dizionario** check è utilizzato per visualizzare queste due immagini: "**×**" e "**√**".
+
+.. code-block:: python
+
+    def display(glyphCode):
+        for i in range(0, 8):
+            hc595_shift(glyphCode[i])
+            hc595_shift(0x80>>i)
+            GPIO.output(RCLK, GPIO.HIGH)
+            GPIO.output(RCLK, GPIO.LOW)
+
+Mostra il modello specificato sulla matrice a punti.
+
+.. code-block:: python
+
+    def creatGlyph():
+        global waypoint
+        global stage
+        global timerPlay    
+        waypoint=random.choice(list(arrow.keys()))
+        stage = "PLAY"
+        timerPlay = threading.Timer(2.0, timeOut)  
+        timerPlay.start()
+
+La funzione **createGlyph()** viene utilizzata per selezionare casualmente 
+una direzione (l'attributo word di un elemento nell'array **arrow[]:** 
+"left", "right" ... ). Imposta lo stage su "PLAY" e avvia una funzione 
+timer di 2 secondi.
+
+**arrow.keys():** Seleziona le chiavi "right" e "left" nell'array arrow.
+
+**list(arrow.keys()):** Combina queste chiavi in un array.
+
+**random.choice(list(arrow.keys())):** Seleziona casualmente un elemento 
+nell'array.
+
+Quindi, il risultato di **waypoint=random.choice(list(arrow.keys()))** sarà 
+"right" o "left".
+
+.. code-block:: python
+
+    def checkPoint(inputKey):
+        global waypoint
+        global stage
+        global timerCheck    
+        if inputKey == "empty" or inputKey == waypoint:
+            waypoint = "wrong"
+        else:
+            waypoint = "right"
+        timerPlay.cancel()
+        stage = "CHECK"
+        timerCheck = threading.Timer(1.0, creatGlyph)
+        timerCheck.start()  
+
+checkPoint() serve per rilevare lo stato attuale dell'input del pulsante:
+
+Se non viene premuto nessun pulsante o viene premuto il pulsante nella stessa 
+direzione della freccia, il valore assegnato a **``waypoint``** è **``wrong``** 
+e appare "x" sulla matrice a punti.
+
+Altrimenti, waypoint è "right" e appare "**√**".
+
+Ora lo stage è **CHECK** e avvia un timer di 1 secondo **timerCheck** per 
+chiamare la funzione creatGlyph() dopo un secondo.
+
+.. code-block:: python
+
+    def timeOut():  
+        checkPoint("empty")
+
+Nella funzione timeout(), imposta il parametro di checkPoint() come "**empty**".
+
+.. code-block:: python
+
+    def getKey():
+        if GPIO.input(AButtonPin)==1 and GPIO.input(BButtonPin)==0:
+            checkPoint("right")
+        elif GPIO.input(AButtonPin)==0 and GPIO.input(BButtonPin)==1:
+            checkPoint("left")
+
+getKey() legge lo stato di questi due pulsanti e, se viene premuto il pulsante 
+destro, il parametro di checkPoint() è **right**; se viene premuto il pulsante 
+sinistro, il parametro è **left**.
+
+Immagine del Fenomeno
+-------------------------
+
+.. image:: img/image281.jpeg
+   :align: center

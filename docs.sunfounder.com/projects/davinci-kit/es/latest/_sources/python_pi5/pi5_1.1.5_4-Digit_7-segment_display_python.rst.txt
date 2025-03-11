@@ -1,0 +1,277 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Aprovecha descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _1.1.5_py_pi5:
+
+1.1.5 Pantalla de 7 Segmentos de 4 Dígitos
+=============================================
+
+Introducción
+---------------
+
+A continuación, aprendamos cómo controlar una pantalla de 7 segmentos de 4 dígitos.
+
+Componentes Necesarios
+-------------------------
+
+En este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../python_pi5/img/1.1.5_4_digit_list.png
+
+.. raw:: html
+
+   <br/>
+
+Diagrama de Conexiones
+-------------------------
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+GPIO27       Pin 13   27
+GPIO22       Pin 15   22
+SPIMOSI      Pin 19   10
+GPIO18       Pin 12   18
+GPIO23       Pin 16   23
+GPIO24       Pin 18   24
+============ ======== ===
+
+.. image:: ../python_pi5/img/1.1.5_4_digit_schmatic.png
+
+
+Procedimientos del Experimento
+----------------------------------
+
+**Paso 1**: Construir el circuito.
+
+.. image:: ../python_pi5/img/1.1.5_4-Digit_circuit.png
+
+**Paso 2:** Accede a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Paso 3:** Ejecuta el archivo.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.5_4-Digit.py
+
+Al ejecutar el código, el programa iniciará un contador, aumentando en 1 cada segundo, y la pantalla de 4 dígitos mostrará la cuenta.
+
+.. warning::
+
+    Si aparece un mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Código**
+
+.. note::
+
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Primero, asegúrate de estar en la ruta del código fuente como ``davinci-kit-for-raspberry-pi/python-pi5``. Tras modificar el código, puedes ejecutarlo directamente para ver el efecto.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice
+   import time
+   import threading
+
+   # Define pines GPIO para el registro de desplazamiento 74HC595
+   SDI = OutputDevice(24)   # Entrada de datos en serie
+   RCLK = OutputDevice(23)  # Reloj de registro
+   SRCLK = OutputDevice(18) # Reloj de desplazamiento
+
+   # Definir pines GPIO para la selección de dígitos en la pantalla de 7 segmentos
+   placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+   # Códigos de segmentos para los números 0-9 en la pantalla de 7 segmentos
+   number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+   counter = 0  # Inicializar contador para mostrar
+   timer1 = 0   # Inicializar temporizador para incrementar el contador
+
+   def clearDisplay():
+       """ Clear the 7-segment display. """
+       for _ in range(8):
+           SDI.on()
+           SRCLK.on()
+           SRCLK.off()
+       RCLK.on()
+       RCLK.off()
+
+   def hc595_shift(data):
+       """ Shift a byte of data to the 74HC595 shift register. """
+       for i in range(8):
+           SDI.value = 0x80 & (data << i)
+           SRCLK.on()
+           SRCLK.off()
+       RCLK.on()
+       RCLK.off()
+
+   def pickDigit(digit):
+       """ Select a digit for display on the 7-segment display. """
+       for pin in placePin:
+           pin.off()
+       placePin[digit].on()
+
+   def timer():
+       """ Timer function to increment the counter every second. """
+       global counter, timer1
+       timer1 = threading.Timer(1.0, timer)
+       timer1.start()
+       counter += 1
+       print("%d" % counter)
+
+   def setup():
+       """ Setup initial state and start the timer. """
+       global timer1
+       timer1 = threading.Timer(1.0, timer)
+       timer1.start()
+
+   def loop():
+       """ Main loop to update the 7-segment display with counter value. """
+       global counter
+       while True:
+           for i in range(4):
+               clearDisplay()
+               pickDigit(i)
+               digit = (counter // (10 ** i)) % 10
+               hc595_shift(number[digit])
+               time.sleep(0.001)
+
+   def destroy():
+       """ Cleanup GPIO resources and stop timer on exit. """
+       global timer1
+       timer1.cancel()
+       for device in [SDI, RCLK, SRCLK] + placePin:
+           device.close()
+
+   try:
+       setup()
+       while True:
+           loop()
+           
+   except KeyboardInterrupt:
+       destroy()
+
+
+**Explicación del Código**
+
+#. Estos cuatro pines controlan los pines de ánodo común de las pantallas de 7 segmentos de cuatro dígitos.
+
+   .. code-block:: python
+
+       # Definir pines GPIO para la selección de dígitos en la pantalla de 7 segmentos
+       placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+#. Una matriz de códigos de segmentos de 0 a 9 en hexadecimal (ánodo común).
+
+   .. code-block:: python
+
+       # Códigos de segmentos para los números 0-9 en la pantalla de 7 segmentos
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+#. Inicializa un temporizador que activa la función `timer` cada segundo. Esto establece el incremento recurrente del contador.
+
+   .. code-block:: python
+
+       def setup():
+           """ Setup initial state and start the timer. """
+           global timer1
+           timer1 = threading.Timer(1.0, timer)
+           timer1.start()
+
+#. Una vez que el temporizador alcanza 1.0s, se llama a la función Timer; se incrementa el contador en 1, y el Timer se usa nuevamente para ejecutarse cada segundo.
+
+   .. code-block:: python
+
+       def timer():
+           """ Timer function to increment the counter every second. """
+           global counter, timer1
+           timer1 = threading.Timer(1.0, timer)
+           timer1.start()
+           counter += 1
+           print("%d" % counter)
+
+#. Desplaza un byte de datos al registro 74HC595, controlando los segmentos de la pantalla.
+
+   .. code-block:: python
+
+       def hc595_shift(data):
+           """ Shift a byte of data to the 74HC595 shift register. """
+           for i in range(8):
+               SDI.value = 0x80 & (data << i)
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+#. Actualiza continuamente la pantalla con el valor actual del contador, mostrando cada dígito secuencialmente.
+
+   .. code-block:: python
+
+       def loop():
+           """ Main loop to update the 7-segment display with counter value. """
+           global counter
+           while True:
+               for i in range(4):
+                   clearDisplay()
+                   pickDigit(i)
+                   digit = (counter // (10 ** i)) % 10
+                   hc595_shift(number[digit])
+                   time.sleep(0.001)
+
+#. Limpia la pantalla de 7 segmentos al apagar todos los segmentos antes de mostrar el siguiente dígito.
+
+   .. code-block:: python
+
+       def clearDisplay():
+           """ Clear the 7-segment display. """
+           for _ in range(8):
+               SDI.on()
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+#. Selecciona cuál dígito de la pantalla de 7 segmentos activar. Cada dígito es controlado por un pin GPIO separado.
+
+   .. code-block:: python
+
+       def pickDigit(digit):
+           """ Select a digit for display on the 7-segment display. """
+           for pin in placePin:
+               pin.off()
+           placePin[digit].on()
+
+#. Libera los recursos GPIO y detiene el temporizador cuando se interrumpe el programa.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Manejar la interrupción del script (por ejemplo, Ctrl+C)
+           destroy()

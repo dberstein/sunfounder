@@ -1,0 +1,148 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, de l’Arduino et de l’ESP32 avec d’autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d’experts** : Résolvez vos problèmes après-vente et surmontez vos défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprenez et Partagez** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d’un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et des promotions spéciales.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
+
+1.3.2 Servo
+==============
+
+Introduction
+--------------
+
+Dans ce projet, nous allons apprendre à faire tourner un servo-moteur.
+
+Composants
+------------
+
+.. image:: ../img/list_1.3.2.png
+
+
+
+Schéma de câblage
+-------------------
+
+.. image:: ../img/image337.png
+
+
+Procédures expérimentales
+----------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image125.png
+
+**Étape 2 :** Accéder au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Étape 3 :** Exécuter le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node servo.js
+
+Une fois le programme exécuté, le servo-moteur tournera de 0 degrés à 180 degrés, 
+puis de 180 degrés à 0 degrés, en boucle.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    SERVO_MIN_ANGLE = 0
+    SERVO_MAX_ANGLE = 180
+    SERVO_MIN_PULSE = 500
+    SERVO_MAX_PULSE = 2500
+
+    ServoPin = new Gpio(18, { mode: Gpio.OUTPUT })
+
+    function map(value, inMin, inMax, outMin, outMax){
+        return (outMax - outMin) * (value - inMin) / (inMax - inMin) + outMin
+    }
+
+    function angle2pulse(angle){
+        return Math.floor(map(angle,SERVO_MIN_ANGLE,SERVO_MAX_ANGLE,SERVO_MIN_PULSE ,SERVO_MAX_PULSE))
+    }
+
+    let angle=90;
+    let step=5;
+    setInterval(() => {
+        if(angle>=180||angle<=0){
+            step=-step
+        }
+        angle+=step;
+        ServoPin.servoWrite(angle2pulse(angle));
+    }, 20);
+
+**Explication du code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    ServoPin = new Gpio(18,{mode: Gpio.OUTPUT})
+
+Importer le module pigpio et créer un objet de la classe Gpio, ``ServoPin``, pour contrôler la sortie du Gpio18.
+
+.. code-block:: js
+
+    SERVO_MIN_ANGLE = 0
+    SERVO_MAX_ANGLE = 180
+    SERVO_MIN_PULSE = 500
+    SERVO_MAX_PULSE = 2500
+
+    function map(value, inMin, inMax, outMin, outMax){
+        return (outMax - outMin) * (value - inMin) / (inMax - inMin) + outMin
+    }
+
+    function angle2pulse(angle){
+        return Math.floor(map(angle,SERVO_MIN_ANGLE,SERVO_MAX_ANGLE,SERVO_MIN_PULSE ,SERVO_MAX_PULSE))
+    }
+
+Définir une fonction qui mappe l’angle sur la largeur d’impulsion.
+
+Cela est nécessaire car la fonction de contrôle du servo-moteur, ``servoWrite(pulseWidth)``, 
+encapsulée dans la classe Gpio, a besoin d’une largeur d’impulsion et non d’un angle. 
+L’angle de rotation du servo que nous utilisons varie de 0 à 180 degrés, ce qui doit être 
+mappé sur une gamme de largeur d’impulsions de 500 à 2500.
+
+.. code-block:: js
+
+    let angle=90;
+    let step=5;
+    setInterval(() => {
+        if(angle>=180||angle<=0){
+            step=-step
+        }
+        angle+=step;
+        ServoPin.servoWrite(angle2pulse(angle));
+    }, 20);
+
+Faire osciller le servo de 0 à 180 degrés et vice-versa.
+
+
+Image du résultat
+--------------------
+
+.. image:: ../img/image126.jpeg
+

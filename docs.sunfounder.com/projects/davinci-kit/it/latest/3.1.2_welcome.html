@@ -1,0 +1,515 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="it" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.2 Benvenuto &mdash; SunFounder davinci-kit-for-raspberry-pi  documentazione</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=3fd72285"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=0173e136"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/it/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Indice" href="genindex.html" />
+    <link rel="search" title="Cerca" href="search.html" />
+    <link rel="next" title="3.1.3 Allarme Retromarcia" href="3.1.3_reversing_alarm.html" />
+    <link rel="prev" title="3.1.1 Dispositivo Contatore" href="3.1.1_counting_device.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-it" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/3.1.2_welcome.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Cerca documenti" aria-label="Cerca documenti" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu di navigazione">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Elenco dei Componenti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">Scheda di Estensione GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Scarica il Codice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Installazione e configurazione di Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Per Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Librerie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_output.html">1 Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_input.html">2 Ingresso</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="3_extension.html">3 Estensioni</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="3.1.1_counting_device.html">3.1.1 Dispositivo Contatore</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="3.1.2_welcome.html#">3.1.2 Benvenuto</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="3.1.2_welcome.html#introduzione">Introduzione</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.2_welcome.html#componenti">Componenti</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.2_welcome.html#schema-a-blocchi">Schema a Blocchi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.2_welcome.html#procedure-sperimentali">Procedure Sperimentali</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.2_welcome.html#immagine-del-fenomeno">Immagine del Fenomeno</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.3_reversing_alarm.html">3.1.3 Allarme Retromarcia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.4_smart_fan.html">3.1.4 Ventilatore Intelligente</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.5_battery_indicator.html">3.1.5 Indicatore di Batteria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.6_motion_control.html">3.1.6 Controllo del Movimento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.7_traffic_light.html">3.1.7 Semaforo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.8_overheat_monitor.html">3.1.8 Monitor di Surriscaldamento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.9_password_lock.html">3.1.9 Serratura con Password</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.10_alarm_bell.html">3.1.10 Campanello di Allarme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.11_morse_code_generator.html">3.1.11 Generatore di Codice Morse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.12_game_guess_number.html">3.1.12 GIOCO - Indovina il Numero</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.13_game_10_second.html">3.1.13 GIOCO– 10 Secondi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.14_game_not_not.html">3.1.14 GIOCO– Not Not</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Gioca con Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Gioca con Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Gioca con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Corso Video Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Grazie</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu navigazione dispositivi mobili" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Naviga tra le pagine">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a></li>
+          <li class="breadcrumb-item"><a href="3_extension.html">3 Estensioni</a></li>
+      <li class="breadcrumb-item active">3.1.2 Benvenuto</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/3.1.2_welcome.rst.txt" rel="nofollow"> Visualizza sorgente pagina</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Ciao, benvenuto nella Community di appassionati SunFounder di Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.</p>
+<p><strong>Perché Unirsi a Noi?</strong></p>
+<ul class="simple">
+<li><p><strong>Supporto Esperto</strong>: Risolvi problemi post-vendita e sfide tecniche con il supporto della nostra community e del nostro team.</p></li>
+<li><p><strong>Impara e Condividi</strong>: Scambia consigli e tutorial per migliorare le tue competenze.</p></li>
+<li><p><strong>Anteprime Esclusive</strong>: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.</p></li>
+<li><p><strong>Sconti Speciali</strong>: Godi di sconti esclusivi sui nostri prodotti più recenti.</p></li>
+<li><p><strong>Promozioni e Giveaway Festivi</strong>: Partecipa a giveaway e promozioni festive.</p></li>
+</ul>
+<p>👉 Sei pronto a esplorare e creare con noi? Clicca su [<a href="https://bit.ly/raphaelkit " target="_blank">Qui</a>] e unisciti oggi!</p>
+</div>
+<section id="benvenuto">
+<h1>3.1.2 Benvenuto<a class="headerlink" href="3.1.2_welcome.html#benvenuto" title="Link to this heading"></a></h1>
+<section id="introduzione">
+<h2>Introduzione<a class="headerlink" href="3.1.2_welcome.html#introduzione" title="Link to this heading"></a></h2>
+<p>In questo progetto utilizzeremo il sensore PIR per rilevare il movimento
+dei pedoni e impiegheremo servo, LED e cicalino per simulare il funzionamento
+della porta sensore di un negozio. Quando un pedone entra nell’area di rilevamento
+del PIR, la luce indicatrice si accenderà, la porta si aprirà e il cicalino
+suonerà una campanella di benvenuto.</p>
+</section>
+<section id="componenti">
+<h2>Componenti<a class="headerlink" href="3.1.2_welcome.html#componenti" title="Link to this heading"></a></h2>
+<img alt="_images/list_Welcome.png" class="align-center" src="_images/list_Welcome.png" />
+</section>
+<section id="schema-a-blocchi">
+<h2>Schema a Blocchi<a class="headerlink" href="3.1.2_welcome.html#schema-a-blocchi" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO22</p></td>
+<td><p>Pin 15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/Schematic_three_one2.png" class="align-center" src="_images/Schematic_three_one2.png" />
+</section>
+<section id="procedure-sperimentali">
+<h2>Procedure Sperimentali<a class="headerlink" href="3.1.2_welcome.html#procedure-sperimentali" title="Link to this heading"></a></h2>
+<p><strong>Passo 1:</strong> Costruisci il circuito.</p>
+<a class="reference internal image-reference" href="_images/image239.png"><img alt="_images/image239.png" class="align-center" src="_images/image239.png" style="width: 800px;" />
+</a>
+<section id="per-utenti-di-linguaggio-c">
+<h3><strong>Per Utenti di Linguaggio C</strong><a class="headerlink" href="3.1.2_welcome.html#per-utenti-di-linguaggio-c" title="Link to this heading"></a></h3>
+<p><strong>Passo 2:</strong> Cambia la directory.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">3.1.2</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Passo 3:</strong> Compila.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">3.1.2</span><span class="n">_Welcome</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Passo 4:</strong> Esegui.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Dopo l’esecuzione del codice, se il sensore PIR rileva una persona,
+la porta si aprirà automaticamente (simulata dal servo), si accenderà
+l’indicatore e suonerà la campanella. Dopo aver suonato, il sistema
+chiuderà automaticamente la porta e spegnerà la luce, in attesa del
+passaggio successivo.</p>
+<p>Sul modulo PIR sono presenti due potenziometri: uno per regolare la
+sensibilità e l’altro per la distanza di rilevamento. Per un funzionamento
+ottimale, ruotali entrambi in senso antiorario fino alla fine.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Se il codice non funziona o compare un messaggio di errore: &quot;wiringPi.h: No such file or directory&quot;, consulta <a class="reference internal" href="faq.html#il-codice-c-non-funziona"><span class="std std-ref">Il codice C non funziona?</span></a>.</p>
+</div>
+<p><strong>Spiegazione del Codice</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">setAngle</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pin</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">angle</span><span class="p">){</span><span class="w">    </span><span class="c1">//Crea una funzione per controllare l&#39;angolo del servo.</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">180</span><span class="p">)</span>
+<span class="w">        </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">180</span><span class="p">;</span>
+<span class="w">    </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">pin</span><span class="p">,</span><span class="n">Map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Crea una funzione, <cite>setAngle</cite>, per impostare l’angolo del servo tra 0 e
+180 gradi.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">doorbell</span><span class="p">(){</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">song</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="n">softToneWrite</span><span class="p">(</span><span class="n">BuzPin</span><span class="p">,</span><span class="w"> </span><span class="n">song</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="n">beat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">250</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Crea una funzione <cite>doorbell</cite> per far suonare il cicalino.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">closedoor</span><span class="p">(){</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w">   </span><span class="c1">//spegni il LED</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">180</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">-1</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">){</span><span class="w">  </span><span class="c1">//fai ruotare il servo dall&#39;angolo massimo all&#39;angolo minimo</span>
+<span class="w">    </span><span class="n">setAngle</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span><span class="n">i</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Crea una funzione <cite>closedoor</cite> per simulare la chiusura della porta, spegnere
+il LED e far ruotare il servo da 180 a 0 gradi.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">opendoor</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w">   </span><span class="c1">//accendi il LED</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">181</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w">  </span><span class="c1">//fai ruotare il servo dall&#39;angolo minimo all&#39;angolo massimo</span>
+<span class="w">        </span><span class="n">setAngle</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">doorbell</span><span class="p">();</span>
+<span class="w">    </span><span class="n">closedoor</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La funzione <cite>opendoor()</cite> comprende diverse parti: accende la luce indicatrice,
+ruota il servo (simulando l’apertura della porta), suona la campanella e richiama
+la funzione <cite>closedoor()</cite> dopo il suono.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span><span class="w"> </span><span class="c1">//in caso di fallimento nella configurazione di wiringPi, stampa un messaggio a schermo</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">softToneCreate</span><span class="p">(</span><span class="n">BuzPin</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup softTone failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">......</span>
+</pre></div>
+</div>
+<p>Nella funzione <cite>main()</cite>, inizializza la libreria wiringPi e configura softTone;
+poi imposta <cite>ledPin</cite> come uscita e <cite>pirPin</cite> come ingresso. Se il sensore PIR
+rileva il passaggio di una persona, viene chiamata la funzione <cite>opendoor</cite> per
+simulare l’apertura della porta.</p>
+</section>
+<section id="per-utenti-di-linguaggio-python">
+<h3><strong>Per Utenti di Linguaggio Python</strong><a class="headerlink" href="3.1.2_welcome.html#per-utenti-di-linguaggio-python" title="Link to this heading"></a></h3>
+<p><strong>Passo 2:</strong> Cambia la directory.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Passo 3:</strong> Esegui.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.2</span><span class="n">_Welcome</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Dopo l’esecuzione del codice, se il sensore PIR rileva il passaggio di una
+persona, la porta si aprirà automaticamente (simulata dal servo), accenderà
+l’indicatore e suonerà una melodia di benvenuto. Dopo la melodia, il sistema
+chiuderà automaticamente la porta e spegnerà la luce indicatrice, in attesa
+del passaggio successivo.</p>
+<p>Sul modulo PIR sono presenti due potenziometri: uno per regolare la sensibilità
+e l’altro per la distanza di rilevamento. Per un funzionamento ottimale, ruotali
+entrambi in senso antiorario fino alla fine.</p>
+<p><strong>codice</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puoi <strong>Modificare/Reimpostare/Copiare/Eseguire/Interrompere</strong> il codice qui
+sotto. Prima di farlo, però, è necessario spostarsi nel percorso del codice
+sorgente come <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">SERVO_MIN_PULSE</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">SERVO_MAX_PULSE</span> <span class="o">=</span> <span class="mi">2500</span>
+
+<span class="n">ledPin</span> <span class="o">=</span> <span class="mi">18</span>    <span class="c1"># definisci il pin del LED</span>
+<span class="n">pirPin</span> <span class="o">=</span> <span class="mi">17</span>    <span class="c1"># definisci il pin del sensore</span>
+<span class="n">servoPin</span> <span class="o">=</span> <span class="mi">22</span>  <span class="c1"># definisci il pin del servo</span>
+<span class="n">buzPin</span> <span class="o">=</span> <span class="mi">27</span>    <span class="c1"># definisci il pin del cicalino</span>
+
+<span class="n">CL</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">196</span><span class="p">,</span> <span class="mi">211</span><span class="p">,</span> <span class="mi">248</span><span class="p">]</span>        <span class="c1"># Frequenze delle note di Do Basso</span>
+
+<span class="n">CM</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">262</span><span class="p">,</span> <span class="mi">294</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">393</span><span class="p">,</span> <span class="mi">441</span><span class="p">,</span> <span class="mi">495</span><span class="p">]</span>        <span class="c1"># Frequenze delle note di Do Medio</span>
+
+<span class="n">CH</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">525</span><span class="p">,</span> <span class="mi">589</span><span class="p">,</span> <span class="mi">661</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">786</span><span class="p">,</span> <span class="mi">882</span><span class="p">,</span> <span class="mi">990</span><span class="p">]</span>        <span class="c1"># Frequenze delle note di Do Alto</span>
+
+<span class="n">song</span> <span class="o">=</span> <span class="p">[</span><span class="n">CH</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CH</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CH</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">CH</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CH</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CH</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CH</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">CH</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">CM</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">CH</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+
+<span class="n">beat</span> <span class="o">=</span> <span class="p">[</span>    <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,]</span>
+
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">p</span>
+    <span class="k">global</span> <span class="n">Buzz</span>                        <span class="c1"># Assegna una variabile globale per il controllo del PWM</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>             <span class="c1"># Configura i GPIO in modalità BCM</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>       <span class="c1"># Imposta il ledPin come uscita</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">pirPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>        <span class="c1"># Imposta il sensorPin come ingresso</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>     <span class="c1"># Imposta il servoPin come uscita</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>    <span class="c1"># Imposta servoPin su LOW</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">buzPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>       <span class="c1"># Imposta il pin del cicalino come uscita</span>
+
+    <span class="n">Buzz</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">buzPin</span><span class="p">,</span> <span class="mi">440</span><span class="p">)</span>       <span class="c1"># 440 è la frequenza iniziale</span>
+    <span class="n">Buzz</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>                     <span class="c1"># Avvia il cicalino con un duty cycle del 50%</span>
+
+    <span class="n">p</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>         <span class="c1"># Imposta la frequenza del servo a 50Hz</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                         <span class="c1"># Duty Cycle iniziale a 0</span>
+
+<span class="k">def</span> <span class="nf">map</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">inMin</span><span class="p">,</span> <span class="n">inMax</span><span class="p">,</span> <span class="n">outMin</span><span class="p">,</span> <span class="n">outMax</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">outMax</span> <span class="o">-</span> <span class="n">outMin</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">inMin</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">inMax</span> <span class="o">-</span> <span class="n">inMin</span><span class="p">)</span> <span class="o">+</span> <span class="n">outMin</span>
+
+<span class="k">def</span> <span class="nf">setAngle</span><span class="p">(</span><span class="n">angle</span><span class="p">):</span>                   <span class="c1"># Ruota il servo a uno specifico angolo (0-180 gradi)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="n">angle</span><span class="p">))</span>
+    <span class="n">pulse_width</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="n">SERVO_MIN_PULSE</span><span class="p">,</span> <span class="n">SERVO_MAX_PULSE</span><span class="p">)</span>
+    <span class="n">pwm</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">pulse_width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">pwm</span><span class="p">)</span>             <span class="c1"># Mappa l&#39;angolo al duty cycle e invialo in uscita</span>
+
+<span class="k">def</span> <span class="nf">doorbell</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">song</span><span class="p">)):</span>      <span class="c1"># Esegui la melodia</span>
+        <span class="n">Buzz</span><span class="o">.</span><span class="n">ChangeFrequency</span><span class="p">(</span><span class="n">song</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>  <span class="c1"># Cambia la frequenza in base alla nota</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">beat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.25</span><span class="p">)</span>     <span class="c1"># Mantieni la nota per (beat * 0.25)s</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                      <span class="c1"># Pausa di un secondo prima della prossima melodia</span>
+
+<span class="k">def</span> <span class="nf">closedoor</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>       <span class="c1"># Ruota il servo da 180 a 0 gradi</span>
+        <span class="n">setAngle</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">opendoor</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>         <span class="c1"># Ruota il servo da 0 a 180 gradi</span>
+        <span class="n">setAngle</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>                    <span class="c1"># Imposta l&#39;angolo del servo</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">doorbell</span><span class="p">()</span>
+    <span class="n">closedoor</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">pirPin</span><span class="p">)</span><span class="o">==</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">:</span>
+            <span class="n">opendoor</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>                     <span class="c1"># Rilascia le risorse</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">Buzz</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>             <span class="c1"># Inizia il programma qui</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">loop</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>          <span class="c1"># Alla pressione di &#39;Ctrl+C&#39;, viene eseguita la funzione destroy()</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Spiegazione del Codice</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">p</span>
+    <span class="k">global</span> <span class="n">Buzz</span>                        <span class="c1"># Assegna una variabile globale per sostituire GPIO.PWM</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>             <span class="c1"># Numerazione dei GPIO per posizione fisica</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>       <span class="c1"># Imposta il ledPin come uscita</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">pirPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>        <span class="c1"># Imposta il sensorPin come ingresso</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">buzPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>       <span class="c1"># Imposta i pin come uscite</span>
+    <span class="n">Buzz</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">buzPin</span><span class="p">,</span> <span class="mi">440</span><span class="p">)</span>       <span class="c1"># 440 è la frequenza iniziale.</span>
+    <span class="n">Buzz</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>                     <span class="c1"># Avvia il pin del cicalino con un duty cycle del 50%</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>     <span class="c1"># Imposta il servoPin come uscita</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>    <span class="c1"># Imposta il servoPin su LOW</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">servoPin</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>         <span class="c1"># Imposta la frequenza a 50Hz</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                         <span class="c1"># Duty Cycle iniziale = 0</span>
+</pre></div>
+</div>
+<p>Queste istruzioni inizializzano i pin di ciascun componente.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setAngle</span><span class="p">(</span><span class="n">angle</span><span class="p">):</span>      <span class="c1"># fa ruotare il servo a un angolo specifico (0-180 gradi)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="n">angle</span><span class="p">))</span>
+    <span class="n">pulse_width</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="n">SERVO_MIN_PULSE</span><span class="p">,</span> <span class="n">SERVO_MAX_PULSE</span><span class="p">)</span>
+    <span class="n">pwm</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">pulse_width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">pwm</span><span class="p">)</span> <span class="c1"># mappa l&#39;angolo al duty cycle e lo invia in uscita</span>
+</pre></div>
+</div>
+<p>Crea una funzione, servowrite, per scrivere l’angolo nel servo compreso tra 0-180 gradi.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">doorbell</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">song</span><span class="p">)):</span> <span class="c1"># Esegui song1</span>
+        <span class="n">Buzz</span><span class="o">.</span><span class="n">ChangeFrequency</span><span class="p">(</span><span class="n">song</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1"># Cambia la frequenza in base alla nota</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">beat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.25</span><span class="p">)</span>    <span class="c1"># ritarda una nota per beat * 0.25s</span>
+</pre></div>
+</div>
+<p>Crea una funzione, doorbell, per abilitare il cicalino a riprodurre la melodia.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">closedoor</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">Buzz</span><span class="o">.</span><span class="n">ChangeFrequency</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># fa ruotare il servo da 180 a 0 gradi</span>
+        <span class="n">setAngle</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Chiude la porta e spegne la luce indicatrice.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">opendoor</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ledPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>   <span class="c1"># fa ruotare il servo da 0 a 180 gradi</span>
+        <span class="n">setAngle</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>              <span class="c1"># Scrive l&#39;angolo nel servo</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+    <span class="n">doorbell</span><span class="p">()</span>
+    <span class="n">closedoor</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>La funzione opendoor() include diverse operazioni: accende la luce
+indicatrice, fa ruotare il servo (per simulare l’apertura della porta),
+riproduce la melodia del campanello del negozio e, al termine, chiama la
+funzione closedoor().</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">pirPin</span><span class="p">)</span><span class="o">==</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">:</span>
+        <span class="n">opendoor</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Quando il PIR rileva il passaggio di qualcuno, richiama la funzione opendoor().</p>
+</section>
+</section>
+<section id="immagine-del-fenomeno">
+<h2>Immagine del Fenomeno<a class="headerlink" href="3.1.2_welcome.html#immagine-del-fenomeno" title="Link to this heading"></a></h2>
+<img alt="_images/image240.jpeg" class="align-center" src="_images/image240.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Piè di pagina">
+        <a href="3.1.1_counting_device.html" class="btn btn-neutral float-left" title="3.1.1 Dispositivo Contatore" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Precedente</a>
+        <a href="3.1.3_reversing_alarm.html" class="btn btn-neutral float-right" title="3.1.3 Allarme Retromarcia" accesskey="n" rel="next">Prossimo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, SunFounder.</p>
+  </div>
+
+  Realizzato con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornito da <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

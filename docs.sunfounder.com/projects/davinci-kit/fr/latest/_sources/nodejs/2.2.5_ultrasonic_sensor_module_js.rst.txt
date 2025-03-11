@@ -1,0 +1,145 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d’experts** : Résolvez les problèmes post-achat et les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour enrichir vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d’un accès anticipé aux annonces de nouveaux produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et promotions spéciales.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
+
+2.2.5 Module Capteur à Ultrasons
+==================================
+
+Introduction
+--------------
+
+Le capteur ultrasonique utilise des ultrasons pour détecter avec précision des 
+objets et mesurer des distances. Il émet des ondes ultrasonores et les convertit 
+en signaux électroniques.
+
+Composants
+-------------
+
+.. image:: ../img/list_2.2.5.png
+
+
+
+Schéma de câblage
+---------------------
+
+.. image:: ../img/image329.png
+
+
+Procédures expérimentales
+-----------------------------
+
+**Étape 1 :** Montez le circuit.
+
+.. image:: ../img/image220.png
+
+**Étape 2 :** Accédez au répertoire du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Étape 3 :** Exécutez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node ultrasonic_sensor.js
+
+Une fois le code exécuté, le module capteur ultrasonique détecte la 
+distance entre l’obstacle devant lui et le module lui-même, puis la 
+valeur de cette distance est affichée sur l’écran.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+
+    // Le nombre de microsecondes nécessaires pour que le son parcoure 1 cm à 20 degrés Celsius
+    const MICROSECDONDS_PER_CM = 1e6/34321;
+
+    const trigger = new Gpio(23, {mode: Gpio.OUTPUT});
+    const echo = new Gpio(24, {mode: Gpio.INPUT, alert: true});
+
+    trigger.digitalWrite(0); // S'assurer que le déclencheur est bas
+
+    const watchHCSR04 = () => {
+      let startTick;
+
+      echo.on('alert', (level, tick) => {
+        if (level === 1) {
+          startTick = tick;
+        } else {
+          const endTick = tick;
+          const diff = (endTick >> 0) - (startTick >> 0); // Calcul arithmétique non signé sur 32 bits
+          console.log(diff / 2 / MICROSECDONDS_PER_CM);
+        }
+      });
+    };
+
+    watchHCSR04();
+
+    // Déclenche une mesure de distance une fois par seconde
+    setInterval(() => {
+      trigger.trigger(10, 1); // Déclencher pendant 10 microsecondes
+    }, 1000);
+
+**Explication du code**
+
+La fonction ``trigger`` peut être utilisée pour générer une impulsion sur un 
+GPIO et ``alerts`` peut être employé pour déterminer le temps d’un changement 
+d’état du GPIO avec une précision de quelques microsecondes.
+
+Ces deux caractéristiques peuvent être combinées pour mesurer la distance avec 
+un capteur ultrasonique HC-SR04.
+
+.. code-block:: js
+
+    setInterval(() => {
+      trigger.trigger(10, 1); // Déclencher pendant 10 microsecondes
+    }, 1000);
+
+Cette commande permet d’envoyer périodiquement une impulsion ultrasonique de 10 
+microsecondes.
+
+.. code-block:: js
+
+  const watchHCSR04 = () => {
+
+    echo.on('alert', (level, tick) => {
+        if (level === 1) {
+          startTick = tick;
+        } else {
+          const endTick = tick;
+          const diff = (endTick >> 0) - (startTick >> 0); // Calcul arithmétique non signé sur 32 bits
+          console.log(diff / 2 / MICROSECDONDS_PER_CM);
+        }    
+    });
+  };
+
+Cette fonction configure une alerte qui enregistre le temps entre l’émission de l’impulsion (niveau 1) et la réception de l’écho (niveau 0).
+En multipliant la différence de temps par la vitesse du son (et en divisant par 2), vous pouvez calculer la distance jusqu’à l’obstacle.
+
+.. https://github.com/fivdi/pigpio
+
+Image du phénomène
+--------------------
+
+.. image:: ../img/image221.jpeg

@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.7 Verkehrsampel &mdash; SunFounder davinci-kit-for-raspberry-pi  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=245627df"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=70a09b52"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/de/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="3.1.8 Überhitzungsüberwachung" href="pi5_3.1.8_overheat_monitor_python.html" />
+    <link rel="prev" title="3.1.6 Bewegungssteuerung" href="pi5_3.1.6_motion_control_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-de" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_3.1.7_traffic_light_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Komponentenliste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO-Erweiterungskarte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Laden Sie die Kode herunter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/preparation.html">Installation und Einrichtung des Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Für Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Spielen Sie mit Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Überprüfen Sie <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">1 Ausgabe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">2 Eingabe</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_extension_python.html">3 Erweiterung</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.1_counting_device_python.html">3.1.1 Zähleinrichtung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.2_welcome_python.html">3.1.2 Willkommen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.3_reversing_alarm_python.html">3.1.3 Rückfahrwarnung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.4_smart_fan_python.html">3.1.4 Intelligenter Ventilator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.5_battery_indicator_python.html">3.1.5 Batterieanzeige</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.6_motion_control_python.html">3.1.6 Bewegungssteuerung</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_3.1.7_traffic_light_python.html#">3.1.7 Verkehrsampel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.8_overheat_monitor_python.html">3.1.8 Überhitzungsüberwachung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.9_password_lock_python.html">3.1.9 Passwortsperre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.10_alarm_bell_python.html">3.1.10 Alarmglocke</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.11_morse_code_generator_python.html">3.1.11 Morsecode-Generator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.12_game_guess_number_python.html">3.1.12 SPIEL – Zahl raten</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.13_game_10_second_python.html">3.1.13 SPIEL - 10 Sekunden</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.14_game_not_not_python.html">3.1.14 SPIEL – Not Not</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Spielen Sie mit C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Spielen mit Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Videokurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Für Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Spielen Sie mit Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_extension_python.html">3 Erweiterung</a></li>
+      <li class="breadcrumb-item active">3.1.7 Verkehrsampel</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_3.1.7_traffic_light_python.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Hallo und willkommen in der SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.</p>
+<p><strong>Warum beitreten?</strong></p>
+<ul class="simple">
+<li><p><strong>Expertenunterstützung</strong>: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.</p></li>
+<li><p><strong>Lernen &amp; Teilen</strong>: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.</p></li>
+<li><p><strong>Exklusive Vorschauen</strong>: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.</p></li>
+<li><p><strong>Spezialrabatte</strong>: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.</p></li>
+<li><p><strong>Festliche Aktionen und Gewinnspiele</strong>: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.</p></li>
+</ul>
+<p>👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [<a href="https://bit.ly/raphaelkit " target="_blank">hier</a>] und treten Sie heute bei!</p>
+</div>
+<section id="verkehrsampel">
+<span id="py-pi5-traffic"></span><h1>3.1.7 Verkehrsampel<a class="headerlink" href="pi5_3.1.7_traffic_light_python.html#verkehrsampel" title="Link to this heading"></a></h1>
+<section id="einfuhrung">
+<h2>Einführung<a class="headerlink" href="pi5_3.1.7_traffic_light_python.html#einfuhrung" title="Link to this heading"></a></h2>
+<p>In diesem Projekt werden wir LED-Lichter in drei Farben verwenden, um die
+Änderung der Verkehrsampel zu realisieren, und eine vierstellige 7-Segment-Anzeige wird
+verwendet, um die Zeitdauer jedes Verkehrszustands anzuzeigen.</p>
+</section>
+<section id="benotigte-komponenten">
+<h2>Benötigte Komponenten<a class="headerlink" href="pi5_3.1.7_traffic_light_python.html#benotigte-komponenten" title="Link to this heading"></a></h2>
+<p>Für dieses Projekt benötigen wir die folgenden Komponenten.</p>
+<a class="reference internal image-reference" href="../_images/4.1.12_traffic_light_list.png"><img alt="../_images/4.1.12_traffic_light_list.png" class="align-center" src="../_images/4.1.12_traffic_light_list.png" style="width: 800px;" />
+</a>
+</section>
+<section id="schaltplan">
+<h2>Schaltplan<a class="headerlink" href="pi5_3.1.7_traffic_light_python.html#schaltplan" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board-Name</p></td>
+<td><p>physisch</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO22</p></td>
+<td><p>Pin 15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPIMOSI</p></td>
+<td><p>Pin 19</p></td>
+<td><p>12</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO23</p></td>
+<td><p>Pin 16</p></td>
+<td><p>4</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO24</p></td>
+<td><p>Pin 18</p></td>
+<td><p>5</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO25</p></td>
+<td><p>Pin 22</p></td>
+<td><p>6</p></td>
+<td><p>25</p></td>
+</tr>
+<tr class="row-even"><td><p>SPICE0</p></td>
+<td><p>Pin 24</p></td>
+<td><p>10</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPICE1</p></td>
+<td><p>Pin 26</p></td>
+<td><p>11</p></td>
+<td><p>7</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/4.1.12_traffic_light_schematic.png" class="align-center" src="../_images/4.1.12_traffic_light_schematic.png" />
+</section>
+<section id="versuchsdurchfuhrung">
+<h2>Versuchsdurchführung<a class="headerlink" href="pi5_3.1.7_traffic_light_python.html#versuchsdurchfuhrung" title="Link to this heading"></a></h2>
+<p><strong>Schritt 1:</strong> Bauen Sie die Schaltung auf.</p>
+<img alt="../_images/4.1.12_traffic_light_circuit.png" src="../_images/4.1.12_traffic_light_circuit.png" />
+<p><strong>Schritt 2:</strong> Wechseln Sie das Verzeichnis.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Schritt 3:</strong> Ausführen.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.7</span><span class="n">_TrafficLight_zero</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Während der Code läuft, simulieren LEDs die Farbänderung von Verkehrsampeln.
+Zuerst leuchtet die rote LED für 60 Sekunden, dann leuchtet die grüne LED für
+30 Sekunden; anschließend leuchtet die gelbe LED für 5 Sekunden. Danach
+leuchtet die rote LED wieder 60 Sekunden lang. Auf diese Weise wird diese
+Serie von Aktionen wiederholt ausgeführt. Gleichzeitig zeigt die 4-stellige 7-Segment-Anzeige
+kontinuierlich die Countdown-Zeit an.</p>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="pi5_3.1.7_traffic_light_python.html#code" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Sie können den unten stehenden Code <strong>Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen</strong>. Bevor Sie das tun, müssen Sie zum Quellcodepfad wie <code class="docutils literal notranslate"><span class="pre">raphael-kit/python-pi5</span></code> gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Wirkung zu sehen.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span><span class="p">,</span> <span class="n">LED</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="c1"># GPIO-Pins für 74HC595-Schieberegister einrichten</span>
+<span class="n">SDI</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>   <span class="c1"># Serielle Dateneingabe</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>  <span class="c1"># Register Clock</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span> <span class="c1"># Shift Register Clock</span>
+
+<span class="c1"># GPIO-Pins für die Auswahl der Ziffern auf der 7-Segment-Anzeige einrichten</span>
+<span class="n">placePin</span> <span class="o">=</span> <span class="p">[</span><span class="n">OutputDevice</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span> <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">17</span><span class="p">)]</span>
+
+<span class="c1"># Segmentcodes für die Zahlen 0-9 auf der 7-Segment-Anzeige</span>
+<span class="n">number</span> <span class="o">=</span> <span class="p">(</span><span class="mh">0xc0</span><span class="p">,</span> <span class="mh">0xf9</span><span class="p">,</span> <span class="mh">0xa4</span><span class="p">,</span> <span class="mh">0xb0</span><span class="p">,</span> <span class="mh">0x99</span><span class="p">,</span> <span class="mh">0x92</span><span class="p">,</span> <span class="mh">0x82</span><span class="p">,</span> <span class="mh">0xf8</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0x90</span><span class="p">)</span>
+
+<span class="c1"># GPIO-Pins für die LEDs der Verkehrsampel einrichten</span>
+<span class="n">ledPinR</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="c1"># Rote LED</span>
+<span class="n">ledPinG</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>  <span class="c1"># Grüne LED</span>
+<span class="n">ledPinY</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>  <span class="c1"># Gelbe LED</span>
+
+<span class="c1"># Dauer-Einstellungen für die Verkehrsampel</span>
+<span class="n">greenLight</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">yellowLight</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">redLight</span> <span class="o">=</span> <span class="mi">60</span>
+
+<span class="c1"># Namen der Verkehrsampelfarben</span>
+<span class="n">lightColor</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Rot&quot;</span><span class="p">,</span> <span class="s2">&quot;Grün&quot;</span><span class="p">,</span> <span class="s2">&quot;Gelb&quot;</span><span class="p">)</span>
+
+<span class="c1"># Initialisierung der Statusvariablen</span>
+<span class="n">colorState</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">timer1</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Initialisieren Sie das Verkehrsampelsystem und starten Sie den Timer. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">timer1</span>
+    <span class="n">timer1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">clearDisplay</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Löschen Sie die 7-Segment-Anzeige. &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">SDI</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Verschieben Sie Daten in das 74HC595-Schieberegister zur Anzeige der Ziffer. &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">SDI</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">pickDigit</span><span class="p">(</span><span class="n">digit</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Wählen Sie eine bestimmte Ziffer zur Anzeige auf der 7-Segment-Anzeige aus. &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="n">placePin</span><span class="p">:</span>
+        <span class="n">pin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">placePin</span><span class="p">[</span><span class="n">digit</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">timer</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Behandeln Sie die Zeitgestaltung für die Änderung der Verkehrsampel. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">counter</span><span class="p">,</span> <span class="n">colorState</span><span class="p">,</span> <span class="n">timer1</span>
+    <span class="n">timer1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">counter</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">counter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="p">[</span><span class="n">greenLight</span><span class="p">,</span> <span class="n">yellowLight</span><span class="p">,</span> <span class="n">redLight</span><span class="p">][</span><span class="n">colorState</span><span class="p">]</span>
+        <span class="n">colorState</span> <span class="o">=</span> <span class="p">(</span><span class="n">colorState</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Zähler : </span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s2">    Farbe: </span><span class="si">{</span><span class="n">lightColor</span><span class="p">[</span><span class="n">colorState</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">lightup</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Aktualisieren Sie die LED der Verkehrsampel basierend auf dem aktuellen Zustand. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">colorState</span>
+    <span class="n">ledPinR</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">ledPinG</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">ledPinY</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="p">[</span><span class="n">ledPinR</span><span class="p">,</span> <span class="n">ledPinG</span><span class="p">,</span> <span class="n">ledPinY</span><span class="p">][</span><span class="n">colorState</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">display</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Zeigen Sie den aktuellen Zählerwert auf der 7-Segment-Anzeige an. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">counter</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">//</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">i</span><span class="p">))</span> <span class="o">%</span> <span class="mi">10</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">digit</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">clearDisplay</span><span class="p">()</span>
+        <span class="n">pickDigit</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">digit</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Hauptloop zur kontinuierlichen Aktualisierung der Anzeige und der LEDs der Verkehrsampel. &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">()</span>
+        <span class="n">lightup</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Räumen Sie die Ressourcen auf, wenn das Skript beendet wird, wie das Ausschalten der LEDs und das Stoppen des Timer-Threads. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">timer1</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+    <span class="n">ledPinR</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">ledPinG</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">ledPinY</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="n">loop</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="code-explanation">
+<h2>Code Explanation<a class="headerlink" href="pi5_3.1.7_traffic_light_python.html#code-explanation" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Importiert die Klassen <code class="docutils literal notranslate"><span class="pre">OutputDevice</span></code> und <code class="docutils literal notranslate"><span class="pre">LED</span></code> aus der gpiozero-Bibliothek, um die Steuerung von allgemeinen Ausgabegeräten und insbesondere LEDs zu ermöglichen. Importiert das Python-Modul threading, das für das Erstellen und Verwalten von Threads zur gleichzeitigen Ausführung verwendet wird.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span><span class="p">,</span> <span class="n">LED</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+</pre></div>
+</div>
+</li>
+<li><p>Initialisiert die GPIO-Pins, die mit dem Schieberegister für die serielle Dateneingabe (SDI), die Registeruhr (RCLK) und die Schieberegisteruhr (SRCLK) verbunden sind.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Einrichtung der GPIO-Pins für das 74HC595 Schieberegister</span>
+<span class="n">SDI</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>   <span class="c1"># Serielle Dateneingabe</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>  <span class="c1"># Registeruhr</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span> <span class="c1"># Schieberegisteruhr</span>
+</pre></div>
+</div>
+</li>
+<li><p>Initialisiert die Pins für jede Ziffer der 7-Segment-Anzeige und definiert die binären Codes für die Anzeige der Zahlen 0-9.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Einrichtung der GPIO-Pins für die Auswahl der Ziffern auf der 7-Segment-Anzeige</span>
+<span class="n">placePin</span> <span class="o">=</span> <span class="p">[</span><span class="n">OutputDevice</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span> <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">17</span><span class="p">)]</span>
+
+<span class="c1"># Segmentcodes für die Zahlen 0-9 auf der 7-Segment-Anzeige</span>
+<span class="n">number</span> <span class="o">=</span> <span class="p">(</span><span class="mh">0xc0</span><span class="p">,</span> <span class="mh">0xf9</span><span class="p">,</span> <span class="mh">0xa4</span><span class="p">,</span> <span class="mh">0xb0</span><span class="p">,</span> <span class="mh">0x99</span><span class="p">,</span> <span class="mh">0x92</span><span class="p">,</span> <span class="mh">0x82</span><span class="p">,</span> <span class="mh">0xf8</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0x90</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Initialisiert GPIO-Pins für die roten, grünen und gelben LEDs, die in der Verkehrsampelsimulation verwendet werden. Setzt die Dauer (in Sekunden) für jeden Farbzustand in der Verkehrsampel fest. Definiert die Namen der Verkehrsampelfarben zur Referenz.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Einrichtung der GPIO-Pins für die LEDs der Verkehrsampel</span>
+<span class="n">ledPinR</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="c1"># Rote LED</span>
+<span class="n">ledPinG</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>  <span class="c1"># Grüne LED</span>
+<span class="n">ledPinY</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>  <span class="c1"># Gelbe LED</span>
+
+<span class="c1"># Dauereinstellungen für die Verkehrsampel</span>
+<span class="n">greenLight</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">yellowLight</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">redLight</span> <span class="o">=</span> <span class="mi">60</span>
+
+<span class="c1"># Namen der Verkehrsampelfarben</span>
+<span class="n">lightColor</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Rot&quot;</span><span class="p">,</span> <span class="s2">&quot;Grün&quot;</span><span class="p">,</span> <span class="s2">&quot;Gelb&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Initialisiert Variablen zur Verfolgung des aktuellen Farbzustands, eines Zählers für die Zeitmessung und einen Platzhalter für ein Timer-Objekt.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialisierung der Statusvariablen</span>
+<span class="n">colorState</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">timer1</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</li>
+<li><p>Initialisiert das Verkehrsampelsystem und startet den Timer-Thread.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Initialisieren Sie das Verkehrsampelsystem und starten Sie den Timer. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">timer1</span>
+    <span class="n">timer1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Funktionen zur Steuerung der 7-Segment-Anzeige. <code class="docutils literal notranslate"><span class="pre">clearDisplay</span></code> schaltet alle Segmente aus, <code class="docutils literal notranslate"><span class="pre">hc595_shift</span></code> verschiebt Daten in das Schieberegister und <code class="docutils literal notranslate"><span class="pre">pickDigit</span></code> aktiviert eine bestimmte Ziffer auf der Anzeige.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clearDisplay</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Löschen Sie die 7-Segment-Anzeige. &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">SDI</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Verschieben Sie Daten in das 74HC595 Schieberegister zur Anzeige der Ziffer. &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">SDI</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">pickDigit</span><span class="p">(</span><span class="n">digit</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Wählen Sie eine bestimmte Ziffer zur Anzeige auf der 7-Segment-Anzeige aus. &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="n">placePin</span><span class="p">:</span>
+        <span class="n">pin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">placePin</span><span class="p">[</span><span class="n">digit</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Verwaltet die Zeitsteuerung für die Änderungen der Verkehrsampel und aktualisiert den Zähler und den Farbzustand.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">timer</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Behandeln Sie die Zeitsteuerung für die Änderungen der Verkehrsampel. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">counter</span><span class="p">,</span> <span class="n">colorState</span><span class="p">,</span> <span class="n">timer1</span>
+    <span class="n">timer1</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">counter</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">counter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="p">[</span><span class="n">greenLight</span><span class="p">,</span> <span class="n">yellowLight</span><span class="p">,</span> <span class="n">redLight</span><span class="p">][</span><span class="n">colorState</span><span class="p">]</span>
+        <span class="n">colorState</span> <span class="o">=</span> <span class="p">(</span><span class="n">colorState</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;counter : </span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s2">    color: </span><span class="si">{</span><span class="n">lightColor</span><span class="p">[</span><span class="n">colorState</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Aktualisiert den Zustand der Verkehrsampel-LEDs basierend auf dem aktuellen Farbzustand.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lightup</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Aktualisieren Sie die LED der Verkehrsampel basierend auf dem aktuellen Zustand. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">colorState</span>
+    <span class="n">ledPinR</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">ledPinG</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">ledPinY</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="p">[</span><span class="n">ledPinR</span><span class="p">,</span> <span class="n">ledPinG</span><span class="p">,</span> <span class="n">ledPinY</span><span class="p">][</span><span class="n">colorState</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Berechnet die Ziffer, die auf jedem Segment der 7-Segment-Anzeige angezeigt werden soll, und aktualisiert sie entsprechend.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Zeigen Sie den aktuellen Zählerwert auf der 7-Segment-Anzeige an. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">counter</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">//</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">i</span><span class="p">))</span> <span class="o">%</span> <span class="mi">10</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">digit</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">clearDisplay</span><span class="p">()</span>
+        <span class="n">pickDigit</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">digit</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><p>Die Hauptschleife, die die Anzeige und die LEDs der Verkehrsampel kontinuierlich aktualisiert.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Hauptloop zur kontinuierlichen Aktualisierung der Anzeige und der LEDs der Verkehrsampel. &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">()</span>
+        <span class="n">lightup</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Räumt Ressourcen auf, wenn das Skript beendet wird, wie das Ausschalten der LEDs und das Stoppen des Timer-Threads.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Räumen Sie die Ressourcen auf, wenn das Skript beendet wird, wie das Ausschalten der LEDs und das Stoppen des Timer-Threads. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">timer1</span>
+    <span class="n">timer1</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+    <span class="n">ledPinR</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">ledPinG</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">ledPinY</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pi5_3.1.6_motion_control_python.html" class="btn btn-neutral float-left" title="3.1.6 Bewegungssteuerung" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="pi5_3.1.8_overheat_monitor_python.html" class="btn btn-neutral float-right" title="3.1.8 Überhitzungsüberwachung" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

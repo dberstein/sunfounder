@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2.6 MPU6050モジュール &mdash; SunFounder davinci-kit-for-raspberry-pi  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=c033477b"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=4dbe4bdc"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/ja/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="2.2.10 MFRC522 RFIDモジュール" href="pi5_2.2.7_mfrc522_rfid_module_python.html" />
+    <link rel="prev" title="2.2.5 超音波センサーモジュール" href="pi5_2.2.5_ultrasonic_sensor_module_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-ja" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_2.2.6_mpu6050_module_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">部品一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO拡張ボード</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">コードをダウンロードする</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Raspberry Pi OSのインストールとセットアップ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">For Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Pythonで遊ぼう</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">「GPIO Zero」の確認</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">1 出力</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_input_python.html">2 入力</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.1.1_button_python.html">2.1.1 ボタン</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.1.2_slide_switch_python.html">2.1.2 スライドスイッチ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.1.3_tilt_switch_python.html">2.1.3 傾斜スイッチ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.1.4_potentiometer_python.html">2.1.4 ポテンショメータ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.1.5_keypad_python.html">2.1.5 キーパッド</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.1.6_joystick_python.html">2.1.6 ジョイスティック</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.2.1_photoresistor_python.html">2.2.1 フォトレジスタ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.2.2_thermistor_python.html">2.2.2 サーミスタ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.2.3_dht_python.html">2.2.3 DHT-11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.2.4_pir_python.html">2.2.4 PIR（人体赤外線センサー）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.2.5_ultrasonic_sensor_module_python.html">2.2.5 超音波センサーモジュール</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_2.2.6_mpu6050_module_python.html#">2.2.6 MPU6050モジュール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_2.2.7_mfrc522_rfid_module_python.html">2.2.10 MFRC522 RFIDモジュール</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_extension_python.html">3 拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Cと遊ぶ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Scratch で遊ぶ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python ビデオコース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">付録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">ありがとうございました</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">For Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Pythonで遊ぼう</a></li>
+          <li class="breadcrumb-item"><a href="pi5_input_python.html">2 入力</a></li>
+      <li class="breadcrumb-item active">2.2.6 MPU6050モジュール</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_2.2.6_mpu6050_module_python.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>こんにちは、SunFounderのRaspberry Pi &amp; Arduino &amp; ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。</p>
+<p><strong>参加する理由は？</strong></p>
+<ul class="simple">
+<li><p><strong>エキスパートサポート</strong>：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。</p></li>
+<li><p><strong>学び＆共有</strong>：ヒントやチュートリアルを交換してスキルを向上させましょう。</p></li>
+<li><p><strong>独占的なプレビュー</strong>：新製品の発表や先行プレビューに早期アクセスしましょう。</p></li>
+<li><p><strong>特別割引</strong>：最新製品の独占割引をお楽しみください。</p></li>
+<li><p><strong>祭りのプロモーションとギフト</strong>：ギフトや祝日のプロモーションに参加しましょう。</p></li>
+</ul>
+<p>👉 私たちと一緒に探索し、創造する準備はできていますか？[<a href="https://bit.ly/raphaelkit " target="_blank">ここ</a>]をクリックして今すぐ参加しましょう！</p>
+</div>
+<section id="mpu6050">
+<span id="py-pi5"></span><h1>2.2.6 MPU6050モジュール<a class="headerlink" href="pi5_2.2.6_mpu6050_module_python.html#mpu6050" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>はじめに<a class="headerlink" href="pi5_2.2.6_mpu6050_module_python.html#id1" title="Link to this heading"></a></h2>
+<p>MPU-6050は、スマートフォン、タブレット、およびウェアラブルセンサー向けに設計された、世界初かつ唯一の6軸モーショントラッキングデバイス（3軸ジャイロスコープと3軸アクセラ​​​​メーター）です。低消費電力、低コスト、高性能の要件を持つこれらの機能を備えています。</p>
+<p>この実験では、MPU6050の3軸加速度センサーと3軸ジャイロスコープの値をI2Cを使用して取得し、それらを画面に表示します。</p>
+</section>
+<section id="id2">
+<h2>必要なコンポーネント<a class="headerlink" href="pi5_2.2.6_mpu6050_module_python.html#id2" title="Link to this heading"></a></h2>
+<p>このプロジェクトでは、以下のコンポーネントが必要です。</p>
+<img alt="../_images/2.2.6_mpu6050_list.png" src="../_images/2.2.6_mpu6050_list.png" />
+</section>
+<section id="id3">
+<h2>回路図<a class="headerlink" href="pi5_2.2.6_mpu6050_module_python.html#id3" title="Link to this heading"></a></h2>
+<p>MPU6050はI2Cバスインターフェースを介してマイクロコントローラと通信します。SDA1とSCL1は対応するピンに接続する必要があります。</p>
+<img alt="../_images/2.2.6_mpu6050_schematic.png" src="../_images/2.2.6_mpu6050_schematic.png" />
+</section>
+<section id="id4">
+<h2>実験手順<a class="headerlink" href="pi5_2.2.6_mpu6050_module_python.html#id4" title="Link to this heading"></a></h2>
+<p><strong>ステップ 1:</strong> 回路を組み立てます。</p>
+<img alt="../_images/2.2.6_mpu6050_circuit.png" src="../_images/2.2.6_mpu6050_circuit.png" />
+<p><strong>ステップ 2:</strong> I2Cのセットアップを行います（Appendix <a class="reference internal" href="../appendix/i2c_configuration.html#i2c-config"><span class="std std-ref">I2C設定</span></a> を参照してください。I2Cを設定済みの場合は、このステップをスキップします。）</p>
+<p><strong>ステップ 3:</strong> コードのフォルダに移動します。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>ステップ 4:</strong> 実行可能ファイルを実行します。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">2.2.6</span><span class="n">_mpu6050</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>コードを実行すると、MPU6050によって読み取られたx軸およびy軸の偏角、および加速度、各軸の角速度が計算された後、画面に表示されます。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<ul class="simple">
+<li><p>エラーが発生した場合、 <code class="docutils literal notranslate"><span class="pre">FileNotFoundError:</span> <span class="pre">[Errno</span> <span class="pre">2]</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory:</span> <span class="pre">'/dev/i2c-1'</span></code> と表示される場合、I2Cを有効にするために <a class="reference internal" href="../appendix/i2c_configuration.html#i2c-config"><span class="std std-ref">I2C設定</span></a> を参照してください。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'smbus2'</span></code> エラーが表示された場合、 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">smbus2</span></code> を実行してください。</p></li>
+<li><p>エラー <code class="docutils literal notranslate"><span class="pre">OSError:</span> <span class="pre">[Errno</span> <span class="pre">121]</span> <span class="pre">Remote</span> <span class="pre">I/O</span> <span class="pre">error</span></code> が表示される場合、モジュールの接続が誤っているか、モジュールが壊れていることを示します。</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>エラー メッセージ <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code> が表示された場合は、 <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">「gpiozero」が動作しない場合。</span></a> を参照してください。</p>
+</div>
+<p><strong>コード</strong></p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>以下のコードを <strong>変更/リセット/コピー/実行/停止</strong> することができます。ただし、その前に <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python-pi5</span></code> のソースコードパスに移動する必要があります。コードを変更した後、効果を確認するために直接実行できます。</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">smbus</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># 電源管理レジスタ</span>
+<span class="n">power_mgmt_1</span> <span class="o">=</span> <span class="mh">0x6b</span>
+<span class="n">power_mgmt_2</span> <span class="o">=</span> <span class="mh">0x6c</span>
+
+<span class="k">def</span> <span class="nf">read_byte</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">low</span>
+    <span class="k">return</span> <span class="n">val</span>
+
+<span class="k">def</span> <span class="nf">read_word_2c</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">&gt;=</span> <span class="mh">0x8000</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="p">((</span><span class="mi">65535</span> <span class="o">-</span> <span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">val</span>
+
+<span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">get_y_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_x_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+
+
+<span class="n">bus</span> <span class="o">=</span> <span class="n">smbus</span><span class="o">.</span><span class="n">SMBus</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># or bus = smbus.SMBus(1) for Revision 2 boards</span>
+<span class="n">address</span> <span class="o">=</span> <span class="mh">0x68</span>       <span class="c1"># これはi2cdetectコマンドで読み取られるアドレス値です</span>
+
+<span class="c1"># 6050をスリープモードから起こします</span>
+<span class="n">bus</span><span class="o">.</span><span class="n">write_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">power_mgmt_1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">gyro_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x43</span><span class="p">)</span>
+    <span class="n">gyro_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x45</span><span class="p">)</span>
+    <span class="n">gyro_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x47</span><span class="p">)</span>
+
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;gyro_xout : &quot;</span><span class="p">,</span> <span class="n">gyro_xout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gyro_xout</span> <span class="o">/</span> <span class="mi">131</span><span class="p">))</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;gyro_yout : &quot;</span><span class="p">,</span> <span class="n">gyro_yout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gyro_yout</span> <span class="o">/</span> <span class="mi">131</span><span class="p">))</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;gyro_zout : &quot;</span><span class="p">,</span> <span class="n">gyro_zout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gyro_zout</span> <span class="o">/</span> <span class="mi">131</span><span class="p">))</span>
+
+    <span class="n">accel_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3b</span><span class="p">)</span>
+    <span class="n">accel_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3d</span><span class="p">)</span>
+    <span class="n">accel_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3f</span><span class="p">)</span>
+
+    <span class="n">accel_xout_scaled</span> <span class="o">=</span> <span class="n">accel_xout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_yout_scaled</span> <span class="o">=</span> <span class="n">accel_yout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_zout_scaled</span> <span class="o">=</span> <span class="n">accel_zout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;accel_xout: &quot;</span><span class="p">,</span> <span class="n">accel_xout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="n">accel_xout_scaled</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;accel_yout: &quot;</span><span class="p">,</span> <span class="n">accel_yout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;accel_zout: &quot;</span><span class="p">,</span> <span class="n">accel_zout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">)</span>
+
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;x rotation: &quot;</span> <span class="p">,</span> <span class="n">get_x_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">))</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;y rotation: &quot;</span> <span class="p">,</span> <span class="n">get_y_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">))</span>
+
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>コードの説明</strong></p>
+<ol class="arabic">
+<li><p>MPU6050から送信されたセンサーデータを読み取ります。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">low</span>
+    <span class="k">return</span> <span class="n">val</span>
+
+<span class="k">def</span> <span class="nf">read_word_2c</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">&gt;=</span> <span class="mh">0x8000</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="p">((</span><span class="mi">65535</span> <span class="o">-</span> <span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">val</span>
+</pre></div>
+</div>
+</li>
+<li><p>y軸の偏角を計算します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_y_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>x軸の偏角を計算します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_x_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>ジャイロスコープセンサーのx軸、y軸、z軸の値を読み取り、メタデータを角速度の値に変換し、それらを表示します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gyro_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x43</span><span class="p">)</span>
+<span class="n">gyro_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x45</span><span class="p">)</span>
+<span class="n">gyro_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x47</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;gyro_xout : &quot;</span><span class="p">,</span> <span class="n">gyro_xout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gyro_xout</span> <span class="o">/</span> <span class="mi">131</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;gyro_yout : &quot;</span><span class="p">,</span> <span class="n">gyro_yout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gyro_yout</span> <span class="o">/</span> <span class="mi">131</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;gyro_zout : &quot;</span><span class="p">,</span> <span class="n">gyro_zout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gyro_zout</span> <span class="o">/</span> <span class="mi">131</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+<li><p>加速度センサーのx軸、y軸、z軸の値を読み取り、その値を加速度（重力単位）に変換し、それらを表示します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">accel_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3b</span><span class="p">)</span>
+<span class="n">accel_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3d</span><span class="p">)</span>
+<span class="n">accel_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3f</span><span class="p">)</span>
+
+<span class="n">accel_xout_scaled</span> <span class="o">=</span> <span class="n">accel_xout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+<span class="n">accel_yout_scaled</span> <span class="o">=</span> <span class="n">accel_yout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+<span class="n">accel_zout_scaled</span> <span class="o">=</span> <span class="n">accel_zout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;accel_xout: &quot;</span><span class="p">,</span> <span class="n">accel_xout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="n">accel_xout_scaled</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;accel_yout: &quot;</span><span class="p">,</span> <span class="n">accel_yout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;accel_zout: &quot;</span><span class="p">,</span> <span class="n">accel_zout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>x軸およびy軸の偏角を表示します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;x rotation: &quot;</span> <span class="p">,</span> <span class="n">get_x_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;y rotation: &quot;</span> <span class="p">,</span> <span class="n">get_y_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pi5_2.2.5_ultrasonic_sensor_module_python.html" class="btn btn-neutral float-left" title="2.2.5 超音波センサーモジュール" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pi5_2.2.7_mfrc522_rfid_module_python.html" class="btn btn-neutral float-right" title="2.2.10 MFRC522 RFIDモジュール" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

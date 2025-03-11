@@ -1,0 +1,231 @@
+.. note::
+
+    Ciao, benvenuto nella Community di Facebook dedicata agli appassionati di SunFounder Raspberry Pi, Arduino ed ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
+
+    **Perché unirsi a noi?**
+
+    - **Supporto Esperto**: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto della nostra comunità e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e alle anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni speciali.
+
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
+
+.. _1.1.4_py_pi5:
+
+1.1.4 Display a 7 Segmenti
+=============================
+
+Introduzione
+-----------------
+
+Proviamo a gestire un display a 7 segmenti per visualizzare le cifre da 
+0 a 9 e le lettere da A a F.
+
+Componenti Necessari
+------------------------------
+
+Per questo progetto, avremo bisogno dei seguenti componenti.
+
+.. image:: ../python_pi5/img/1.1.4_7_segment_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schema a Blocchi
+-----------------------
+
+Collega il pin ST_CP del 74HC595 al GPIO18 del Raspberry Pi, SH_CP al GPIO27, 
+DS al GPIO17 e le porte di uscita parallela agli 8 segmenti del display a 7 segmenti LED.
+
+Invia i dati al pin DS per il registro a scorrimento quando SH_CP (l’ingresso di 
+clock del registro a scorrimento) è al fronte di salita, e al registro di memoria 
+quando ST_CP (l’ingresso di clock della memoria) è al fronte di salita.
+
+In questo modo, puoi controllare gli stati di SH_CP e ST_CP tramite i GPIO del 
+Raspberry Pi per convertire i dati di ingresso seriale in uscita parallela, 
+risparmiando GPIO e guidando il display.
+
+============ ======== ===
+T-Board Name physical BCM
+GPIO17       Pin 11   17
+GPIO18       Pin 12   18
+GPIO27       Pin 13   27
+============ ======== ===
+
+.. image:: ../python_pi5/img/1.1.4_7_segment_schematic.png
+
+Procedure Sperimentali
+------------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/1.1.4_7-Segment_circuit.png
+
+**Passo 2:** Accedi alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Passo 3:** Esegui il programma.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.1.4_7-Segment.py
+
+Dopo l'esecuzione del codice, vedrai il display a 7 segmenti mostrare le cifre da 0 a 9 e da A a F.
+
+.. warning::
+
+    Se appare l’errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Codice**
+
+.. note::
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Arrestare** il codice qui sotto. Ma prima, è necessario andare al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, puoi eseguirlo direttamente per vedere l’effetto. Dopo aver verificato che non ci siano problemi, puoi usare il pulsante Copy per copiare il codice modificato, poi aprire il codice sorgente nel Terminale tramite il comando ``nano`` e incollarlo.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice
+   from time import sleep
+
+   # Pin GPIO collegati al registro a scorrimento 74HC595
+   SDI = OutputDevice(17)   # Ingresso dati seriali
+   RCLK = OutputDevice(18)  # Ingresso clock della memoria (Clock del registro)
+   SRCLK = OutputDevice(27) # Clock del registro a scorrimento
+
+   # Codici esadecimali per visualizzare le cifre su un display a 7 segmenti a catodo comune
+   segCode = [
+       0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d,
+       0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
+   ]
+
+   def hc595_shift(data):
+       # Scorrimento di 8 bit di dati nel 74HC595
+       for bit in range(8):
+           # Imposta SDI su alto o basso in base al bit di dati
+           SDI.value = 0x80 & (data << bit)
+           # Attiva il clock del registro a scorrimento
+           SRCLK.on()
+           sleep(0.001)
+           SRCLK.off()
+       # Blocca i dati sull’uscita attivando il clock della memoria
+       RCLK.on()
+       sleep(0.001)
+       RCLK.off()
+
+   def display_all_on():
+       # Funzione per accendere tutti i segmenti (per display a 7 segmenti a catodo comune)
+       all_on_code = 0x3f
+       hc595_shift(all_on_code)
+       print("Displaying all segments on")
+
+   try:
+       while True:
+           # Visualizza ciascuna cifra esadecimale sul display a 7 segmenti
+           for code in segCode:
+               hc595_shift(code)  # Trasferisci il codice nel 74HC595
+               # Stampa il codice del segmento visualizzato
+                   print(f"Displaying segCode[{segCode.index(code)}]: 0x{code:02X}")
+               sleep(0.5)  # Pausa tra ogni cifra visualizzata
+
+   except KeyboardInterrupt:
+       # Gestisce l'interruzione dello script (ad es. Ctrl+C)
+       pass
+
+
+**Spiegazione del Codice**
+
+#. Questo snippet importa le classi necessarie per il progetto. ``OutputDevice`` da ``gpiozero`` è usato per controllare i componenti hardware collegati ai pin GPIO, e ``sleep`` da ``time`` per aggiungere ritardi.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice
+       from time import sleep
+
+#. SDI, RCLK e SRCLK corrispondono rispettivamente all'Ingresso Dati Seriali, all'Ingresso Clock della Memoria (Clock del Registro) e al Clock del Registro a Scorrimento del 74HC595.
+
+   .. code-block:: python
+
+       # Pin GPIO collegati al registro a scorrimento 74HC595
+       SDI = OutputDevice(17)   # Ingresso dati seriali
+       RCLK = OutputDevice(18)  # Ingresso clock della memoria (Clock del registro)
+       SRCLK = OutputDevice(27) # Clock del registro a scorrimento
+
+
+#. ``segCode`` è un array che contiene i codici esadecimali per ogni cifra da visualizzare sul display a 7 segmenti.
+
+   .. code-block:: python
+
+       # Codici esadecimali per visualizzare le cifre su un display a 7 segmenti a catodo comune
+       segCode = [
+           0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d,
+           0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71
+       ]
+
+#. Questa funzione scorre 8 bit di dati nel 74HC595. Immette ciascun bit in ``SDI``, attiva ``SRCLK`` per scorrere il bit e utilizza ``RCLK`` per bloccare i dati sull'uscita.
+
+   .. code-block:: python
+
+       def hc595_shift(data):
+           # Scorrimento di 8 bit di dati nel 74HC595
+           for bit in range(8):
+               # Imposta SDI su alto o basso in base al bit di dati
+               SDI.value = 0x80 & (data << bit)
+               # Attiva il clock del registro a scorrimento
+               SRCLK.on()
+               sleep(0.001)
+               SRCLK.off()
+           # Blocca i dati sull’uscita attivando il clock della memoria
+           RCLK.on()
+           sleep(0.001)
+           RCLK.off()
+
+#. Questa funzione accende tutti i segmenti del display inviando un codice specifico a ``hc595_shift``.
+
+   .. code-block:: python
+
+       def display_all_on():
+           # Funzione per accendere tutti i segmenti (per display a 7 segmenti a catodo comune)
+           all_on_code = 0x3f
+           hc595_shift(all_on_code)
+           print("Displaying all segments on")
+
+#. Nel ciclo principale, ogni codice in ``segCode`` viene inviato al display in sequenza, con una pausa tra ciascuno.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # Visualizza ciascuna cifra esadecimale sul display a 7 segmenti
+               for code in segCode:
+                   hc595_shift(code)  # Trasferisci il codice nel 74HC595
+                   # Stampa il codice del segmento visualizzato
+                          print(f"Displaying segCode[{segCode.index(code)}]: 0x{code:02X}")
+                   sleep(0.5)  # Pausa tra ogni cifra visualizzata
+
+#. Questa parte del codice gestisce l'interruzione dello script (come Ctrl+C) in modo sicuro.
+
+   .. code-block:: python
+
+       except KeyboardInterrupt:
+           # Gestisce l'interruzione dello script (ad es. Ctrl+C)
+           pass
+

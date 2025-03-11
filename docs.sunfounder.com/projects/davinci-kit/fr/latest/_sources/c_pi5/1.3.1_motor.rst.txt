@@ -1,0 +1,253 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d’experts** : Résolvez les problèmes après-vente et les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux nouvelles annonces de produits et aux avant-goûts exclusifs.
+    - **Réductions spéciales** : Bénéficiez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des tirages au sort et à des promotions spéciales lors des fêtes.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] pour nous rejoindre dès aujourd'hui !
+
+1.3.1 Moteur
+===============
+
+Introduction
+---------------
+
+Dans cette leçon, nous allons apprendre à utiliser le L293D pour piloter un moteur 
+à courant continu (DC) et le faire tourner dans le sens horaire et antihoraire. Étant 
+donné que le moteur DC nécessite un courant plus élevé, nous utilisons le module 
+d'alimentation pour alimenter les moteurs en toute sécurité.
+
+Composants
+--------------
+
+.. image:: img/list_1.3.1.png
+
+
+Principe
+------------
+
+**L293D**
+
+Le L293D est un circuit intégré de commande de moteur à 4 canaux capable de 
+supporter des tensions et des courants élevés. Il est conçu pour se connecter 
+aux niveaux logiques standard DTL et TTL, et pour piloter des charges inductives 
+(telles que des relais, des moteurs DC, des moteurs pas à pas) ainsi que des 
+transistors de commutation de puissance. Les moteurs DC sont des dispositifs qui 
+transforment l'énergie électrique en énergie mécanique. Ils sont largement utilisés 
+dans les systèmes de commande électrique en raison de leurs excellentes performances 
+de régulation de vitesse.
+
+Consultez le schéma des broches ci-dessous. Le L293D dispose de deux broches (Vcc1 et Vcc2) 
+pour l'alimentation. Vcc2 est utilisée pour alimenter le moteur, tandis que Vcc1 alimente 
+la puce. Étant donné que nous utilisons ici un moteur DC de petite taille, connectez les 
+deux broches au +5V.
+
+.. image:: img/image111.png
+
+
+Le schéma ci-dessous montre la structure interne du L293D. La broche EN est une broche 
+d'activation et ne fonctionne qu'avec un niveau haut ; A représente l'entrée et Y la 
+sortie. Vous pouvez voir la relation entre elles en bas à droite. Lorsque la broche EN 
+est à un niveau haut, si A est à un niveau haut, Y délivre un niveau haut ; si A est à 
+un niveau bas, Y délivre un niveau bas. Lorsque la broche EN est à un niveau bas, le L293D 
+ne fonctionne pas.
+
+.. image:: img/image334.png
+
+
+**Moteur DC**
+
+.. image:: img/image114.jpeg
+
+
+Il s'agit d'un moteur DC 5V. Il tourne lorsque l’on applique des niveaux haut et 
+bas sur les deux bornes. Pour plus de commodité, vous pouvez souder des broches 
+sur ses connecteurs.
+
+.. image:: img/image335.png
+
+
+**Module d'Alimentation**
+
+Dans cette expérience, il est nécessaire d'avoir un courant important pour piloter 
+le moteur, en particulier lors des phases de démarrage et d'arrêt, ce qui peut 
+interférer avec le bon fonctionnement du Raspberry Pi. Par conséquent, nous alimentons 
+le moteur séparément avec ce module afin qu'il fonctionne de manière stable et sécurisée.
+
+Vous pouvez simplement le brancher sur la plaque d'essai pour fournir l'alimentation. 
+Il fournit des tensions de 3,3V et 5V, et vous pouvez sélectionner la tension via un 
+cavalier inclus.
+
+.. image:: img/image115.png
+
+
+Schéma de montage
+---------------------
+
+Branchez le module d'alimentation sur la plaque d'essai, insérez le cavalier sur la broche 
+5V, et il fournira une tension de 5V. Connectez la broche 1 du L293D au GPIO22, et réglez-la 
+sur un niveau haut. Connectez la broche 2 au GPIO27, et la broche 7 au GPIO17, puis réglez 
+une broche sur haut, et l'autre sur bas. Ainsi, vous pouvez changer la direction de rotation 
+du moteur.
+
+.. image:: img/image336.png
+
+
+Procédures expérimentales
+----------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: img/1.3.1.png
+    :width: 800
+
+.. note::
+    Le module d'alimentation peut être alimenté par une pile de 9V avec le support de 
+    pile inclus dans le kit. Insérez le cavalier du module d'alimentation dans la bande 
+    5V de la plaque d'essai.
+
+.. image:: img/image118.jpeg
+
+
+**Étape 2 :** Accédez au dossier contenant le code.
+
+.. raw:: html
+
+    <run></run>
+    
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/1.3.1/
+
+**Étape 3 :** Compilez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.3.1_Motor.c -lwiringPi
+
+**Étape 4 :** Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Lorsque le code est exécuté, le moteur tourne d'abord dans le sens horaire pendant 
+5 secondes, puis s'arrête pendant 5 secondes ; ensuite, il tourne dans le sens antihoraire 
+pendant 5 secondes, puis s'arrête à nouveau pendant 5 secondes. Cette série d'actions se 
+répète continuellement.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou s'il y a un message d'erreur : \"wiringPi.h: Aucun fichier ou répertoire de ce type\", veuillez vous référer à :ref:`C code is not working?`.
+
+**Code**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define MotorPin1       0
+    #define MotorPin2       2
+    #define MotorEnable     3
+
+    int main(void){
+        int i;
+        if(wiringPiSetup() == -1){ //en cas d'échec de l'initialisation de wiringPi, affiche un message d'erreur à l'écran
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(MotorPin1, OUTPUT);
+        pinMode(MotorPin2, OUTPUT);
+        pinMode(MotorEnable, OUTPUT);
+        while(1){
+            printf("Clockwise\n");
+            delay(100);
+            digitalWrite(MotorEnable, HIGH);
+            digitalWrite(MotorPin1, HIGH);
+            digitalWrite(MotorPin2, LOW);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+
+            printf("Stop\n");
+            delay(100);
+            digitalWrite(MotorEnable, LOW);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+
+            printf("Anti-clockwise\n");
+            delay(100);
+            digitalWrite(MotorEnable, HIGH);
+            digitalWrite(MotorPin1, LOW);
+            digitalWrite(MotorPin2, HIGH);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+
+            printf("Stop\n");
+            delay(100);
+            digitalWrite(MotorEnable, LOW);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+        }
+        return 0;
+    }
+
+**Explication du code**
+
+.. code-block:: c
+
+    digitalWrite(MotorEnable, HIGH);
+
+Active le L293D.
+
+.. code-block:: c
+
+    digitalWrite(MotorPin1, HIGH);
+    digitalWrite(MotorPin2, LOW);
+
+Met un niveau haut pour 2A (broche 7) ; comme 1,2EN (broche 1) est à 
+un niveau haut, 2Y émettra un niveau haut.
+
+Met un niveau bas pour 1A, alors 1Y émettra un niveau bas, et le moteur 
+commencera à tourner.
+
+.. code-block:: c
+
+    for(i=0;i<3;i++){
+    delay(1000);
+    }
+
+Cette boucle permet de créer un délai de 3*1000ms.
+
+.. code-block:: c
+
+    digitalWrite(MotorEnable, LOW)
+
+Si 1,2EN (broche 1) est à un niveau bas, le L293D ne fonctionne pas. Le moteur s'arrête.
+
+.. code-block:: c
+
+    digitalWrite(MotorPin1, LOW)
+    digitalWrite(MotorPin2, HIGH)
+
+Inverse le sens du courant dans le moteur, ce qui entraîne une rotation dans le sens inverse.
+

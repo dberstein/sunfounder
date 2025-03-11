@@ -1,0 +1,126 @@
+.. note::
+
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara & Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti.
+    - **Sconti Speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Omaggi**: Partecipa a omaggi e promozioni speciali per le festività.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+2.1.6 Joystick
+================
+
+Introduzione
+--------------
+
+In questo progetto, impareremo il funzionamento del joystick. Muoveremo il 
+joystick e visualizzeremo i risultati sullo schermo.
+
+Componenti
+-----------
+
+.. image:: ../img/image317.png
+
+Schema a Blocchi
+------------------
+
+Quando vengono letti i dati del joystick, ci sono alcune differenze tra gli 
+assi: i dati degli assi X e Y sono analogici e richiedono l'uso di ADC0834 
+per convertire i valori analogici in digitali. I dati dell'asse Z sono digitali, 
+quindi è possibile leggerli direttamente tramite GPIO oppure utilizzare ADC.
+
+.. image:: ../img/image319.png
+
+.. image:: ../img/image320.png
+
+
+Procedure Sperimentali
+-------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../img/image193.png
+
+**Passo 2:** Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Passo 3:** Esegui il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node joystick.js
+
+Dopo l'esecuzione del codice, ruota il joystick e vedrai i valori 
+corrispondenti di x, y e Btn visualizzati sullo schermo.
+
+**Codice**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+    const adc = new ADC0834(17, 18, 22);
+    const btn = new Gpio(25, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_UP,
+    });
+
+    setInterval(async() => {
+
+        x_val = await adc.read(0);
+        y_val = await adc.read(1);
+
+        btn_val = btn.digitalRead();
+        console.log(`x = ${x_val}, y = ${y_val}, btn = ${btn_val}\n`);
+    }, 100);
+
+**Spiegazione del Codice**
+
+.. code-block:: js
+
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+Importiamo un costruttore ``ADC0834`` per utilizzare il modulo adc0834.
+
+.. code-block:: js
+
+    setInterval(async() => {
+
+        x_val = await adc.read(0);
+        y_val = await adc.read(1);
+
+        btn_val = btn.digitalRead();
+        console.log(`x = ${x_val}, y = ${y_val}, btn = ${btn_val}\n`);
+    }, 100);
+
+Quando si leggono i valori di più canali di ADC0834 contemporaneamente, 
+è necessaria la programmazione asincrona. Creiamo qui una funzione di 
+tipo promise e utilizziamo l'istruzione await della funzione async per 
+gestire elegantemente questo compito asincrono complesso.
+
+* `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+* `Async Function <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function>`_
+
+Immagine del Fenomeno
+-------------------------
+
+.. image:: ../img/image194.jpeg
+
+

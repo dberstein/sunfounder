@@ -1,0 +1,357 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez au cœur de l'univers Raspberry Pi, Arduino et ESP32 avec d'autres amateurs.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des conseils et tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Profitez d'un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Bénéficiez de remises exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des concours et promotions pendant les fêtes.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+.. _py_pi5_counting_device:
+
+3.1.1 Dispositif de Comptage
+===============================
+
+Introduction
+-----------------
+
+Dans ce projet, nous allons créer un système de comptage avec affichage numérique, 
+composé d'un capteur PIR et d'un afficheur à 4 segments. Lorsque le capteur PIR détecte 
+qu'une personne passe à proximité, le numéro sur l'afficheur augmentera de 1. Ce 
+dispositif peut être utilisé pour compter le nombre de personnes traversant un passage.
+
+
+Composants nécessaires
+--------------------------
+
+Dans ce projet, nous aurons besoin des composants suivants :
+
+.. image:: ../python_pi5/img/4.1.7_counting_device_list_1.png
+   :align: center
+
+.. image:: ../python_pi5/img/4.1.7_counting_device_list_2.png
+   :align: center
+
+.. Il est bien plus pratique d'acheter un kit complet, voici le lien : 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Nom	
+..         - ÉLÉMENTS DANS CE KIT
+..         - LIEN
+..     *   - Kit Raphael
+..         - 337
+..         - |link_Raphael_kit|
+
+.. Vous pouvez également les acheter séparément avec les liens ci-dessous.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - INTRODUCTION AUX COMPOSANTS
+..         - LIEN D'ACHAT
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`4_digit`
+..         - \-
+..     *   - :ref:`74hc595`
+..         - |link_74hc595_buy|
+..     *   - :ref:`pir`
+..         - \-
+
+
+Schéma de câblage
+---------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.7_counting_device_schematic.png
+   :align: center
+
+Procédure expérimentale
+---------------------------
+
+**Étape 1** : Construisez le circuit.
+
+.. image:: ../python_pi5/img/4.1.7_counting_device_circuit.png
+
+**Étape 2** : Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Étape 3** : Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.1_CountingDevice.py
+
+Une fois le code exécuté, lorsque le capteur PIR détecte le passage de quelqu'un, 
+le numéro sur l'afficheur à 4 segments s'incrémente de 1.
+
+Il y a deux potentiomètres sur le module PIR : l'un pour ajuster la sensibilité et l'autre pour régler la distance de détection. Pour un fonctionnement optimal, tournez-les tous deux complètement dans le sens antihoraire.
+
+.. image:: ../python_pi5/img/4.1.7_PIR_TTE.png
+   :width: 400
+   :align: center
+
+.. warning::
+
+    En cas de message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`.
+.. note::
+
+    **Code**
+
+.. note::
+    Vous pouvez **modifier/réinitialiser/copier/exécuter/arrêter** le code ci-dessous. Mais avant cela, vous devez accéder au chemin source du code, tel que ``davinci-kit-for-raspberry-pi/python-pi5``. Après avoir modifié le code, vous pouvez l'exécuter directement pour voir le résultat.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice, MotionSensor
+
+   # Initialiser le capteur de mouvement PIR sur GPIO 26
+   pir = MotionSensor(26)
+
+   # Initialiser les broches du registre à décalage
+   SDI = OutputDevice(24)    # Entrée de Données Séries
+   RCLK = OutputDevice(23)   # Entrée de l'Horloge du Registre
+   SRCLK = OutputDevice(18)  # Entrée de l'Horloge du Registre à Décalage
+
+   # Initialiser les broches de l'afficheur à 7 segments
+   placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+   # Définir les codes binaires pour chaque chiffre (0-9) sur l'afficheur 7 segments
+   number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+   # Compteur pour le nombre affiché
+   compteur = 0
+
+   def clearDisplay():
+       # Efface l'affichage en désactivant tous les segments
+       for _ in range(8):
+           SDI.on()
+           SRCLK.on()
+           SRCLK.off()
+       RCLK.on()
+       RCLK.off()
+
+   def hc595_shift(data):
+       # Envoie les données vers le registre à décalage 74HC595
+       for i in range(8):
+           SDI.value = 0x80 & (data << i)
+           SRCLK.on()
+           SRCLK.off()
+       RCLK.on()
+       RCLK.off()
+
+   def pickDigit(digit):
+       # Active un chiffre spécifique de l'afficheur à 7 segments
+       for pin in placePin:
+           pin.off()
+       placePin[digit].on()
+
+   def display():
+       # Met à jour l'affichage avec la valeur actuelle du compteur
+       global compteur
+       clearDisplay()
+       pickDigit(0)
+       hc595_shift(number[counter % 10])
+
+       clearDisplay()
+       pickDigit(1)
+       hc595_shift(number[counter % 100//10])
+
+       clearDisplay()
+       pickDigit(2)
+       hc595_shift(number[counter % 1000//100])
+
+       clearDisplay()
+       pickDigit(3)
+       hc595_shift(number[counter % 10000//1000])
+
+   def loop():
+       # Boucle principale pour mettre à jour l'affichage et vérifier la détection de mouvement
+       global counter
+       currentState = 0
+       lastState = 0
+       while True:
+           display()
+           currentState = 1 if pir.motion_detected else 0
+           if currentState == 1 and lastState == 0:
+               counter += 1
+           lastState = currentState
+
+   try:
+       loop()
+   except KeyboardInterrupt:
+       # Éteint toutes les broches lorsque le script est interrompu
+       SDI.off()
+       SRCLK.off()
+       RCLK.off()
+       pass
+
+
+**Explication du Code**
+
+#. Cette ligne importe les classes ``OutputDevice`` et ``MotionSensor`` de la bibliothèque ``gpiozero``. ``OutputDevice`` peut représenter une LED, un moteur, ou tout appareil que vous souhaitez contrôler en tant que sortie. Le ``MotionSensor`` est généralement un capteur PIR (infrarouge passif) utilisé pour détecter les mouvements.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice, MotionSensor
+
+#. Initialise le capteur de mouvement PIR connecté à la broche GPIO 26.
+
+   .. code-block:: python
+
+       # Initialiser le capteur de mouvement PIR sur GPIO 26
+       pir = MotionSensor(26)
+
+#. Initialise les broches GPIO connectées à l'Entrée de Données Séries (SDI), à l'Entrée de l'Horloge du Registre (RCLK), et à l'Entrée de l'Horloge du Registre à Décalage (SRCLK).
+
+   .. code-block:: python
+
+       # Initialiser les broches du registre à décalage
+       SDI = OutputDevice(24)    # Entrée de Données Séries
+       RCLK = OutputDevice(23)   # Entrée de l'Horloge du Registre
+       SRCLK = OutputDevice(18)  # Entrée de l'Horloge du Registre à Décalage
+
+#. Initialise les broches de chaque chiffre de l'afficheur 7 segments et définit les codes binaires correspondants aux chiffres 0 à 9.
+
+   .. code-block:: python
+
+       # Initialiser les broches de l'afficheur à 7 segments
+       placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+       # Définir les codes binaires pour chaque chiffre (0-9)
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+#. Efface l'affichage 7 segments en désactivant tous les segments avant d'afficher le prochain chiffre.
+
+   .. code-block:: python
+
+       def clearDisplay():
+           # Efface l'affichage en désactivant tous les segments
+           for _ in range(8):
+               SDI.on()
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+#. Envoie un octet de données au registre à décalage 74HC595 pour contrôler les segments de l'afficheur.
+
+   .. code-block:: python
+
+       def hc595_shift(data):
+           # Envoie les données vers le registre à décalage 74HC595
+           for i in range(8):
+               SDI.value = 0x80 & (data << i)
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+#. Sélectionne le chiffre à activer sur l'afficheur 7 segments. Chaque chiffre est contrôlé par une broche GPIO distincte.
+
+   .. code-block:: python
+
+       def pickDigit(digit):
+           # Active un chiffre spécifique de l'afficheur 7 segments
+           for pin in placePin:
+               pin.off()
+           placePin[digit].on()
+
+#. Initialise l'affichage en commençant par le chiffre des unités, puis active successivement les chiffres des dizaines, des centaines et des milliers. Cette activation rapide des différents chiffres donne l'illusion d'un affichage continu sur quatre digits.
+
+   .. code-block:: python
+
+       def display():
+           # Met à jour l'afficheur avec la valeur actuelle du compteur
+           global counter
+           clearDisplay()
+           pickDigit(0)
+           hc595_shift(number[counter % 10])
+
+           clearDisplay()
+           pickDigit(1)
+           hc595_shift(number[counter % 100//10])
+
+           clearDisplay()
+           pickDigit(2)
+           hc595_shift(number[counter % 1000//100])
+
+           clearDisplay()
+           pickDigit(3)
+           hc595_shift(number[counter % 10000//1000])
+
+#. Définit la boucle principale où l'affichage est continuellement mis à jour et l'état du capteur PIR est vérifié. Si un mouvement est détecté, le compteur est incrémenté.
+
+   .. code-block:: python
+
+       def loop():
+           # Boucle principale pour mettre à jour l'affichage et vérifier la détection de mouvement
+           global counter
+           currentState = 0
+           lastState = 0
+           while True:
+               display()
+               currentState = 1 if pir.motion_detected else 0
+               if currentState == 1 and lastState == 0:
+                   counter += 1
+               lastState = currentState
+
+#. Exécute la boucle principale et assure une interruption du script proprement avec la commande clavier (Ctrl+C), en éteignant toutes les broches avant de quitter.
+
+   .. code-block:: python
+
+       try:
+           loop()
+       except KeyboardInterrupt:
+           # Éteint toutes les broches lorsque le script est interrompu
+           SDI.off()
+           SRCLK.off()
+           RCLK.off()
+           pass
+
+
+

@@ -1,0 +1,618 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo 2.2.6 MPU6050 &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="2.2.7 Módulo RFID MFRC522" href="2.2.7_mfrc522_rfid_module.html" />
+    <link rel="prev" title="2.2.5 Módulo Sensor Ultrasónico" href="2.2.5_ultrasonic_sensor_module.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/2.2.6_mpu6050_module.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Para Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Bibliotecas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_output.html">1 Salida</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="2_input.html">2 Entrada</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="2.1.1_button.html">2.1.1 Botón</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.2_slide&#32;Switch.html">2.1.2 Interruptor Deslizante</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.3_tilt_switch.html">2.1.3 Interruptor de Inclinación</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.4_potentiometer.html">2.1.4 Potenciómetro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.5_keypad.html">2.1.5 Keypad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.6_joystick.html">2.1.6 Joystick</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.1_photoresistor.html">2.2.1 Fotorresistor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.2_thermistor.html">2.2.2 Thermistor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.3_dht-11.html">2.2.3 DHT-11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.4_pir.html">2.2.4 PIR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html">2.2.5 Módulo Sensor Ultrasónico</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="2.2.6_mpu6050_module.html#">Módulo 2.2.6 MPU6050</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="2.2.6_mpu6050_module.html#introduccion">Introducción</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.6_mpu6050_module.html#componentes">Componentes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.6_mpu6050_module.html#principio">Principio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.6_mpu6050_module.html#diagrama-de-circuito">Diagrama de Circuito</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.6_mpu6050_module.html#procedimiento-experimental">Procedimiento Experimental</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.6_mpu6050_module.html#imagen-del-fenomeno">Imagen del Fenómeno</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.7_mfrc522_rfid_module.html">2.2.7 Módulo RFID MFRC522</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3_extension.html">3 Extensiones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Juega con Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Juega con Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Experimenta con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+          <li class="breadcrumb-item"><a href="2_input.html">2 Entrada</a></li>
+      <li class="breadcrumb-item active">Módulo 2.2.6 MPU6050</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/2.2.6_mpu6050_module.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en el uso de Raspberry Pi, Arduino y ESP32 con otros entusiastas.</p>
+<p><strong>¿Por qué unirte?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte de expertos</strong>: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprende y comparte</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Vistas exclusivas</strong>: Obtén acceso anticipado a anuncios de nuevos productos y adelantos exclusivos.</p></li>
+<li><p><strong>Descuentos especiales</strong>: Disfruta de descuentos exclusivos en nuestros productos más recientes.</p></li>
+<li><p><strong>Promociones y sorteos festivos</strong>: Participa en sorteos y promociones de temporada.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy.</p>
+</div>
+<section id="modulo-2-2-6-mpu6050">
+<h1>Módulo 2.2.6 MPU6050<a class="headerlink" href="2.2.6_mpu6050_module.html#modulo-2-2-6-mpu6050" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="2.2.6_mpu6050_module.html#introduccion" title="Link to this heading"></a></h2>
+<p>El MPU-6050 es el primer y único dispositivo de seguimiento de
+movimiento de 6 ejes (giroscopio de 3 ejes y acelerómetro de 3 ejes)
+diseñado para smartphones, tablets y sensores portátiles que requieren
+bajo consumo, bajo costo y alto rendimiento.</p>
+<p>En este experimento, utilizaremos I2C para obtener los valores del sensor
+de aceleración de tres ejes y del giroscopio de tres ejes del MPU6050, y
+los mostraremos en pantalla.</p>
+</section>
+<section id="componentes">
+<h2>Componentes<a class="headerlink" href="2.2.6_mpu6050_module.html#componentes" title="Link to this heading"></a></h2>
+<img alt="_images/list_2.2.6.png" src="_images/list_2.2.6.png" />
+</section>
+<section id="principio">
+<h2>Principio<a class="headerlink" href="2.2.6_mpu6050_module.html#principio" title="Link to this heading"></a></h2>
+<p><strong>MPU6050</strong></p>
+<p>El MPU-6050 es un dispositivo de seguimiento de movimiento de 6 ejes
+(combina giroscopio de 3 ejes y acelerómetro de 3 ejes).</p>
+<p>Sus tres sistemas de coordenadas están definidos de la siguiente manera:</p>
+<p>Coloca el MPU6050 plano sobre una mesa, asegurando que la cara con la
+etiqueta esté hacia arriba y el punto en la esquina superior izquierda.
+La dirección vertical hacia arriba es el eje Z del chip. La dirección de
+izquierda a derecha se considera el eje X, y de atrás hacia adelante es
+el eje Y.</p>
+<img alt="_images/image223.png" src="_images/image223.png" />
+<p><strong>Acelerómetro de 3 ejes</strong></p>
+<p>El acelerómetro funciona mediante el efecto piezoeléctrico, la capacidad de
+ciertos materiales para generar una carga eléctrica en respuesta a una tensión
+mecánica aplicada.</p>
+<p>Imagina una caja rectangular con una pequeña bola dentro, como en la imagen.
+Las paredes de esta caja están hechas de cristales piezoeléctricos. Cuando
+inclinas la caja, la bola se mueve en la dirección de la inclinación debido
+a la gravedad. La pared con la que colisiona la bola genera pequeñas corrientes
+piezoeléctricas. Cada par de paredes opuestas representa un eje en el espacio
+3D: ejes X, Y y Z. Según la corriente generada, se determina la dirección y
+magnitud de la inclinación.</p>
+<img alt="_images/image224.png" src="_images/image224.png" />
+<p>Podemos utilizar el MPU6050 para detectar la aceleración en cada eje (en estado
+estacionario, la aceleración en el eje Z es 1 unidad de gravedad, y en los ejes
+X e Y es 0). Si se inclina o está en condiciones de peso cero o sobrepeso, la
+lectura correspondiente cambiará.</p>
+<p>Hay cuatro rangos de medición seleccionables programáticamente: +/-2g, +/-4g,
++/-8g y +/-16g (por defecto es 2g), con valores de -32768 a 32767.</p>
+<p>La lectura del acelerómetro se convierte en valor de aceleración mapeando el
+rango de lecturas al rango de medición.</p>
+<p>Aceleración = (Lectura cruda del eje del acelerómetro / 65536 * Rango de aceleración total) g</p>
+<p>Ejemplo en el eje X: cuando la lectura del acelerómetro en el eje X es 16384 y el rango es +/-2g:</p>
+<p><strong>Aceleración en el eje X = (16384 / 65536 * 4) g</strong>  <strong>= 1g</strong></p>
+<p><strong>Giroscopio de 3 ejes</strong></p>
+<p>Los giroscopios operan bajo el principio de la aceleración de Coriolis.
+Imagina una estructura similar a un tenedor en constante movimiento de
+vaivén, sostenida por cristales piezoeléctricos. Cuando intentas inclinar
+esta disposición, los cristales experimentan una fuerza en la dirección de
+la inclinación, generando una corriente según el efecto piezoeléctrico, y
+esta corriente se amplifica.</p>
+<a class="reference internal image-reference" href="_images/image225.png"><img alt="_images/image225.png" class="align-center" src="_images/image225.png" style="width: 800px;" />
+</a>
+<p>El giroscopio también tiene cuatro rangos de medición: +/- 250, +/- 500, +/-
+1000, +/- 2000. El método de cálculo es similar al del acelerómetro.</p>
+<p>La fórmula para convertir la lectura en velocidad angular es:</p>
+<p>Velocidad angular = (Lectura cruda del eje del giroscopio / 65536 * Rango total
+del giroscopio) °/s</p>
+<p>Ejemplo en el eje X: cuando la lectura cruda en el eje X es 16384 y el rango
+es +/- 250°/s:</p>
+<p><strong>Velocidad angular en el eje X = (16384 / 65536 * 500)°/s</strong> <strong>= 125°/s</strong></p>
+</section>
+<section id="diagrama-de-circuito">
+<h2>Diagrama de Circuito<a class="headerlink" href="2.2.6_mpu6050_module.html#diagrama-de-circuito" title="Link to this heading"></a></h2>
+<p>El MPU6050 se comunica con el microcontrolador mediante la interfaz de bus I2C.
+Los pines SDA1 y SCL1 deben conectarse al pin correspondiente.</p>
+<a class="reference internal image-reference" href="_images/image330.png"><img alt="_images/image330.png" class="align-center" src="_images/image330.png" style="width: 600px;" />
+</a>
+</section>
+<section id="procedimiento-experimental">
+<h2>Procedimiento Experimental<a class="headerlink" href="2.2.6_mpu6050_module.html#procedimiento-experimental" title="Link to this heading"></a></h2>
+<p><strong>Paso 1:</strong> Construye el circuito.</p>
+<a class="reference internal image-reference" href="_images/image227.png"><img alt="_images/image227.png" src="_images/image227.png" style="width: 800px;" />
+</a>
+<p><strong>Paso 2</strong>: Configura I2C (ver Apéndice. Si ya configuraste I2C, omite este paso).</p>
+<section id="para-usuarios-de-c">
+<h3>Para Usuarios de C<a class="headerlink" href="2.2.6_mpu6050_module.html#para-usuarios-de-c" title="Link to this heading"></a></h3>
+<p><strong>Paso 3:</strong> Ve a la carpeta del código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">2.2.6</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Paso 4:</strong> Compila el código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">2.2.6</span><span class="n">_mpu6050</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span> <span class="o">-</span><span class="n">lm</span>
+</pre></div>
+</div>
+<p><strong>Paso 5:</strong> Ejecuta el archivo.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Al ejecutar el código, el ángulo de desviación en los ejes X e Y, junto
+con la aceleración y velocidad angular en cada eje medida por el MPU6050,
+se mostrará en pantalla después de ser calculada.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si no funciona después de ejecutar el código, o si aparece un mensaje de error como: &quot;wiringPi.h: No such file or directory&quot;, consulta la sección <a class="reference internal" href="faq.html#c-code-is-not-working"><span class="std std-ref">c code is not working?</span></a>.</p>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w">  </span><span class="cpf">&lt;wiringPiI2C.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w">  </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w">  </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">acclX</span><span class="p">,</span><span class="w"> </span><span class="n">acclY</span><span class="p">,</span><span class="w"> </span><span class="n">acclZ</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">gyroX</span><span class="p">,</span><span class="w"> </span><span class="n">gyroY</span><span class="p">,</span><span class="w"> </span><span class="n">gyroZ</span><span class="p">;</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">acclX_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">acclY_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">acclZ_scaled</span><span class="p">;</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">gyroX_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">gyroY_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">gyroZ_scaled</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">read_word_2c</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">addr</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wiringPiI2CReadReg8</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">);</span>
+<span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="n">val</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">wiringPiI2CReadReg8</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mh">0x8000</span><span class="p">)</span>
+<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="mi">65536</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">dist</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">get_y_rotation</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">radians</span><span class="p">;</span>
+<span class="n">radians</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atan2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">dist</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">));</span>
+<span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="n">radians</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">180.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">M_PI</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">get_x_rotation</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">radians</span><span class="p">;</span>
+<span class="n">radians</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">));</span>
+<span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">radians</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">180.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">M_PI</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wiringPiI2CSetup</span><span class="w"> </span><span class="p">(</span><span class="mh">0x68</span><span class="p">);</span>
+<span class="n">wiringPiI2CWriteReg8</span><span class="w"> </span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="mh">0x6B</span><span class="p">,</span><span class="mh">0x00</span><span class="p">);</span><span class="w"> </span><span class="c1">// desactivar el modo de suspensión</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;set 0x6B=%X</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">wiringPiI2CReadReg8</span><span class="w"> </span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="mh">0x6B</span><span class="p">));</span>
+
+<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">gyroX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x43</span><span class="p">);</span>
+<span class="w">    </span><span class="n">gyroY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x45</span><span class="p">);</span>
+<span class="w">    </span><span class="n">gyroZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x47</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">gyroX_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gyroX</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">131.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">gyroY_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gyroY</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">131.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">gyroZ_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gyroZ</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">131.0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Imprimir los valores de los ejes X, Y y Z del sensor de giroscopio.</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;My gyroX_scaled: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">gyroY</span><span class="w"> </span><span class="n">X_scaled</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;My gyroY_scaled: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">gyroY</span><span class="w"> </span><span class="n">Y_scaled</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;My gyroZ_scaled: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">gyroY</span><span class="w"> </span><span class="n">Z_scaled</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">acclX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3B</span><span class="p">);</span>
+<span class="w">    </span><span class="n">acclY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3D</span><span class="p">);</span>
+<span class="w">    </span><span class="n">acclZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3F</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">acclX_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acclX</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">16384.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">acclY_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acclY</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">16384.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">acclZ_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acclZ</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">16384.0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Imprimir los valores X, Y y Z del sensor de aceleración.</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;My acclX_scaled: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">acclX_scaled</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;My acclY_scaled: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">acclY_scaled</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;My acclZ_scaled: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">acclZ_scaled</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;My X rotation: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">get_x_rotation</span><span class="p">(</span><span class="n">acclX_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">acclY_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">acclZ_scaled</span><span class="p">));</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;My Y rotation: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">get_y_rotation</span><span class="p">(</span><span class="n">acclX_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">acclY_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">acclZ_scaled</span><span class="p">));</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">read_word_2c</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">addr</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wiringPiI2CReadReg8</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">);</span>
+<span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="n">val</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">wiringPiI2CReadReg8</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mh">0x8000</span><span class="p">)</span>
+<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="mi">65536</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Lee los datos del sensor enviados desde el MPU6050.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">get_y_rotation</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">radians</span><span class="p">;</span>
+<span class="n">radians</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atan2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">dist</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">));</span>
+<span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="n">radians</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">180.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">M_PI</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Obtiene el ángulo de deflexión en el eje Y.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">get_x_rotation</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">radians</span><span class="p">;</span>
+<span class="n">radians</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">));</span>
+<span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">radians</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">180.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">M_PI</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Calcula el ángulo de deflexión en el eje X.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">gyroX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x43</span><span class="p">);</span>
+<span class="n">gyroY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x45</span><span class="p">);</span>
+<span class="n">gyroZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x47</span><span class="p">);</span>
+
+<span class="n">gyroX_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gyroX</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">131.0</span><span class="p">;</span>
+<span class="n">gyroY_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gyroY</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">131.0</span><span class="p">;</span>
+<span class="n">gyroZ_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gyroZ</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">131.0</span><span class="p">;</span>
+
+<span class="c1">// Imprime los valores de los ejes X, Y y Z del sensor de giroscopio.</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;My gyroX_scaled: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">gyroY</span><span class="w"> </span><span class="n">X_scaled</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;My gyroY_scaled: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">gyroY</span><span class="w"> </span><span class="n">Y_scaled</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;My gyroZ_scaled: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">gyroY</span><span class="w"> </span><span class="n">Z_scaled</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Lee los valores de los ejes x, y y z en el sensor de giroscopio, convierte los datos en valores de velocidad angular y luego los imprime.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">acclX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3B</span><span class="p">);</span>
+<span class="n">acclY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3D</span><span class="p">);</span>
+<span class="n">acclZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3F</span><span class="p">);</span>
+
+<span class="n">acclX_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acclX</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">16384.0</span><span class="p">;</span>
+<span class="n">acclY_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acclY</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">16384.0</span><span class="p">;</span>
+<span class="n">acclZ_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acclZ</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">16384.0</span><span class="p">;</span>
+
+<span class="c1">// Imprime los valores de los ejes X, Y y Z del sensor de aceleración.</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;My acclX_scaled: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">acclX_scaled</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;My acclY_scaled: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">acclY_scaled</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;My acclZ_scaled: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">acclZ_scaled</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Lee los valores de los ejes x, y y z en el sensor de aceleración,
+convierte los datos en valores de velocidad de aceleración (unidad
+de gravedad), y luego los imprime.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;My X rotation: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">get_x_rotation</span><span class="p">(</span><span class="n">acclX_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">acclY_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">acclZ_scaled</span><span class="p">));</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;My Y rotation: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">get_y_rotation</span><span class="p">(</span><span class="n">acclX_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">acclY_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">acclZ_scaled</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Imprime los ángulos de deflexión de los ejes x e y.</p>
+</section>
+<section id="para-usuarios-de-python">
+<h3>Para Usuarios de Python<a class="headerlink" href="2.2.6_mpu6050_module.html#para-usuarios-de-python" title="Link to this heading"></a></h3>
+<p><strong>Paso 3:</strong> Ve a la carpeta del código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<p><strong>Paso 4:</strong> Ejecuta el archivo ejecutable.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">2.2.6</span><span class="n">_mpu6050</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Con el código en ejecución, el ángulo de deflexión de los ejes x e y,
+así como la aceleración y la velocidad angular en cada eje obtenidos
+por el MPU6050, se mostrarán en la pantalla después de calcularse.</p>
+<p><strong>Código</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puedes <strong>Modificar/Restablecer/Copiar/Ejecutar/Detener</strong> el código a
+continuación. Pero antes de hacerlo, debes dirigirte a la ruta del
+código fuente, como <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">smbus</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Registros de administración de energía</span>
+<span class="n">power_mgmt_1</span> <span class="o">=</span> <span class="mh">0x6b</span>
+<span class="n">power_mgmt_2</span> <span class="o">=</span> <span class="mh">0x6c</span>
+
+<span class="k">def</span> <span class="nf">read_byte</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">low</span>
+    <span class="k">return</span> <span class="n">val</span>
+
+<span class="k">def</span> <span class="nf">read_word_2c</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">&gt;=</span> <span class="mh">0x8000</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="p">((</span><span class="mi">65535</span> <span class="o">-</span> <span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">val</span>
+
+<span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">get_y_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_x_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+
+
+<span class="n">bus</span> <span class="o">=</span> <span class="n">smbus</span><span class="o">.</span><span class="n">SMBus</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># o bus = smbus.SMBus(1) para placas de la Revisión 2</span>
+<span class="n">address</span> <span class="o">=</span> <span class="mh">0x68</span>       <span class="c1"># Este es el valor de la dirección leído mediante el comando i2cdetect</span>
+
+<span class="c1"># Ahora activa el 6050 ya que comienza en modo de suspensión</span>
+<span class="n">bus</span><span class="o">.</span><span class="n">write_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">power_mgmt_1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">gyro_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x43</span><span class="p">)</span>
+    <span class="n">gyro_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x45</span><span class="p">)</span>
+    <span class="n">gyro_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x47</span><span class="p">)</span>
+
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;gyro_xout : &quot;</span><span class="p">,</span> <span class="n">gyro_xout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gyro_xout</span> <span class="o">/</span> <span class="mi">131</span><span class="p">))</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;gyro_yout : &quot;</span><span class="p">,</span> <span class="n">gyro_yout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gyro_yout</span> <span class="o">/</span> <span class="mi">131</span><span class="p">))</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;gyro_zout : &quot;</span><span class="p">,</span> <span class="n">gyro_zout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gyro_zout</span> <span class="o">/</span> <span class="mi">131</span><span class="p">))</span>
+
+    <span class="n">accel_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3b</span><span class="p">)</span>
+    <span class="n">accel_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3d</span><span class="p">)</span>
+    <span class="n">accel_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3f</span><span class="p">)</span>
+
+    <span class="n">accel_xout_scaled</span> <span class="o">=</span> <span class="n">accel_xout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_yout_scaled</span> <span class="o">=</span> <span class="n">accel_yout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_zout_scaled</span> <span class="o">=</span> <span class="n">accel_zout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;accel_xout: &quot;</span><span class="p">,</span> <span class="n">accel_xout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="n">accel_xout_scaled</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;accel_yout: &quot;</span><span class="p">,</span> <span class="n">accel_yout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;accel_zout: &quot;</span><span class="p">,</span> <span class="n">accel_zout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">)</span>
+
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;x rotation: &quot;</span> <span class="p">,</span> <span class="n">get_x_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">))</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;y rotation: &quot;</span> <span class="p">,</span> <span class="n">get_y_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">))</span>
+
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">low</span>
+    <span class="k">return</span> <span class="n">val</span>
+
+<span class="k">def</span> <span class="nf">read_word_2c</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">&gt;=</span> <span class="mh">0x8000</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="p">((</span><span class="mi">65535</span> <span class="o">-</span> <span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">val</span>
+</pre></div>
+</div>
+<p>Lee los datos del sensor enviados desde el MPU6050.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_y_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Calcula el ángulo de deflexión en el eje y.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_x_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Calcula el ángulo de deflexión en el eje x.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gyro_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x43</span><span class="p">)</span>
+<span class="n">gyro_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x45</span><span class="p">)</span>
+<span class="n">gyro_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x47</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;gyro_xout : &quot;</span><span class="p">,</span> <span class="n">gyro_xout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gyro_xout</span> <span class="o">/</span> <span class="mi">131</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;gyro_yout : &quot;</span><span class="p">,</span> <span class="n">gyro_yout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gyro_yout</span> <span class="o">/</span> <span class="mi">131</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;gyro_zout : &quot;</span><span class="p">,</span> <span class="n">gyro_zout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">gyro_zout</span> <span class="o">/</span> <span class="mi">131</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Lee los valores de los ejes x, y y z en el sensor de giroscopio, convierte
+los datos en valores de velocidad angular y luego los imprime.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">accel_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3b</span><span class="p">)</span>
+<span class="n">accel_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3d</span><span class="p">)</span>
+<span class="n">accel_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3f</span><span class="p">)</span>
+
+<span class="n">accel_xout_scaled</span> <span class="o">=</span> <span class="n">accel_xout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+<span class="n">accel_yout_scaled</span> <span class="o">=</span> <span class="n">accel_yout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+<span class="n">accel_zout_scaled</span> <span class="o">=</span> <span class="n">accel_zout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;accel_xout: &quot;</span><span class="p">,</span> <span class="n">accel_xout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="n">accel_xout_scaled</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;accel_yout: &quot;</span><span class="p">,</span> <span class="n">accel_yout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;accel_zout: &quot;</span><span class="p">,</span> <span class="n">accel_zout</span><span class="p">,</span> <span class="s2">&quot; scaled: &quot;</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Lee los valores de los ejes x, y y z en el sensor de aceleración,
+convierte los datos en valores de velocidad de aceleración (unidad
+de gravedad) y luego los imprime.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;x rotation: &quot;</span> <span class="p">,</span> <span class="n">get_x_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;y rotation: &quot;</span> <span class="p">,</span> <span class="n">get_y_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Imprime los ángulos de deflexión de los ejes x e y.</p>
+</section>
+</section>
+<section id="imagen-del-fenomeno">
+<h2>Imagen del Fenómeno<a class="headerlink" href="2.2.6_mpu6050_module.html#imagen-del-fenomeno" title="Link to this heading"></a></h2>
+<img alt="_images/image228.jpeg" src="_images/image228.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="2.2.5_ultrasonic_sensor_module.html" class="btn btn-neutral float-left" title="2.2.5 Módulo Sensor Ultrasónico" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="2.2.7_mfrc522_rfid_module.html" class="btn btn-neutral float-right" title="2.2.7 Módulo RFID MFRC522" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

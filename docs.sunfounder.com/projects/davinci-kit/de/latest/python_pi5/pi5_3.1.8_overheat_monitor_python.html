@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.8 Überhitzungsüberwachung &mdash; SunFounder davinci-kit-for-raspberry-pi  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=245627df"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=70a09b52"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/de/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="3.1.9 Passwortsperre" href="pi5_3.1.9_password_lock_python.html" />
+    <link rel="prev" title="3.1.7 Verkehrsampel" href="pi5_3.1.7_traffic_light_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-de" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_3.1.8_overheat_monitor_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Komponentenliste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO-Erweiterungskarte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Laden Sie die Kode herunter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/preparation.html">Installation und Einrichtung des Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Für Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Spielen Sie mit Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Überprüfen Sie <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">1 Ausgabe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">2 Eingabe</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_extension_python.html">3 Erweiterung</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.1_counting_device_python.html">3.1.1 Zähleinrichtung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.2_welcome_python.html">3.1.2 Willkommen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.3_reversing_alarm_python.html">3.1.3 Rückfahrwarnung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.4_smart_fan_python.html">3.1.4 Intelligenter Ventilator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.5_battery_indicator_python.html">3.1.5 Batterieanzeige</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.6_motion_control_python.html">3.1.6 Bewegungssteuerung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.7_traffic_light_python.html">3.1.7 Verkehrsampel</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_3.1.8_overheat_monitor_python.html#">3.1.8 Überhitzungsüberwachung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.9_password_lock_python.html">3.1.9 Passwortsperre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.10_alarm_bell_python.html">3.1.10 Alarmglocke</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.11_morse_code_generator_python.html">3.1.11 Morsecode-Generator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.12_game_guess_number_python.html">3.1.12 SPIEL – Zahl raten</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.13_game_10_second_python.html">3.1.13 SPIEL - 10 Sekunden</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.14_game_not_not_python.html">3.1.14 SPIEL – Not Not</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Spielen Sie mit C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Spielen mit Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Videokurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Für Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Spielen Sie mit Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_extension_python.html">3 Erweiterung</a></li>
+      <li class="breadcrumb-item active">3.1.8 Überhitzungsüberwachung</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_3.1.8_overheat_monitor_python.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Hallo und willkommen in der SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.</p>
+<p><strong>Warum beitreten?</strong></p>
+<ul class="simple">
+<li><p><strong>Expertenunterstützung</strong>: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.</p></li>
+<li><p><strong>Lernen &amp; Teilen</strong>: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.</p></li>
+<li><p><strong>Exklusive Vorschauen</strong>: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.</p></li>
+<li><p><strong>Spezialrabatte</strong>: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.</p></li>
+<li><p><strong>Festliche Aktionen und Gewinnspiele</strong>: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.</p></li>
+</ul>
+<p>👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [<a href="https://bit.ly/raphaelkit " target="_blank">hier</a>] und treten Sie heute bei!</p>
+</div>
+<section id="uberhitzungsuberwachung">
+<span id="py-pi5-monitor"></span><h1>3.1.8 Überhitzungsüberwachung<a class="headerlink" href="pi5_3.1.8_overheat_monitor_python.html#uberhitzungsuberwachung" title="Link to this heading"></a></h1>
+<section id="einleitung">
+<h2>Einleitung<a class="headerlink" href="pi5_3.1.8_overheat_monitor_python.html#einleitung" title="Link to this heading"></a></h2>
+<p>Sie möchten ein Überhwärmeüberwachungsgerät entwickeln, das in verschiedenen Situationen angewendet werden kann, z. B. in einer Fabrik, wenn ein Alarmsignal ausgelöst und die Maschine rechtzeitig ausgeschaltet werden soll, wenn es zu einer Überhitzung des Stromkreises kommt. In diesem Projekt verwenden wir einen Thermistor, einen Joystick, einen Summer, eine LED und ein LCD, um ein intelligentes Temperaturüberwachungsgerät zu erstellen, dessen Schwellenwert einstellbar ist.</p>
+</section>
+<section id="benotigte-komponenten">
+<h2>Benötigte Komponenten<a class="headerlink" href="pi5_3.1.8_overheat_monitor_python.html#benotigte-komponenten" title="Link to this heading"></a></h2>
+<p>Für dieses Projekt benötigen wir die folgenden Komponenten.</p>
+<a class="reference internal image-reference" href="../_images/4.1.13_overheat_monitor_list.png"><img alt="../_images/4.1.13_overheat_monitor_list.png" class="align-center" src="../_images/4.1.13_overheat_monitor_list.png" style="width: 800px;" />
+</a>
+</section>
+<section id="schaltplan">
+<h2>Schaltplan<a class="headerlink" href="pi5_3.1.8_overheat_monitor_python.html#schaltplan" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Karte Name</p></td>
+<td><p>physisch</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO22</p></td>
+<td><p>Pin15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO23</p></td>
+<td><p>Pin16</p></td>
+<td><p>4</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO24</p></td>
+<td><p>Pin18</p></td>
+<td><p>5</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-even"><td><p>SDA1</p></td>
+<td><p>Pin 3</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>SCL1</p></td>
+<td><p>Pin 5</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/4.1.13_overheat_monitor_schematic.png" class="align-center" src="../_images/4.1.13_overheat_monitor_schematic.png" />
+</section>
+<section id="versuchsdurchfuhrung">
+<h2>Versuchsdurchführung<a class="headerlink" href="pi5_3.1.8_overheat_monitor_python.html#versuchsdurchfuhrung" title="Link to this heading"></a></h2>
+<p><strong>Schritt 1:</strong> Bauen Sie die Schaltung.</p>
+<img alt="../_images/4.1.13_overheat_monitor_circuit.png" src="../_images/4.1.13_overheat_monitor_circuit.png" />
+<p><strong>Schritt 2:</strong> Gehen Sie zum Ordner mit dem Code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Schritt 3:</strong> Führen Sie die ausführbare Datei aus.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.8</span><span class="n">_OverheatMonitor_zero</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Während der Code ausgeführt wird, werden die aktuelle Temperatur und die Hochtemperaturschwelle von <strong>40</strong> auf einem <strong>I2C LCD1602</strong> angezeigt. Wenn die aktuelle Temperatur höher ist als die Schwelle, wird der Summer und die LED aktiviert, um Sie zu alarmieren.</p>
+<p>Der <strong>Joystick</strong> dient dazu, die Hochtemperaturschwelle anzupassen. Das Drehen des <strong>Joystick</strong> in Richtung der X- und Y-Achse kann die aktuelle Hochtemperaturschwelle erhöhen oder verringern. Drücken Sie den <strong>Joystick</strong> erneut, um die Schwelle auf den Ausgangswert zurückzusetzen.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<ul class="simple">
+<li><p>Wenn der Fehler <code class="docutils literal notranslate"><span class="pre">FileNotFoundError:</span> <span class="pre">[Errno</span> <span class="pre">2]</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory:</span> <span class="pre">'/dev/i2c-1'</span></code> auftritt, müssen Sie <a class="reference internal" href="../appendix/i2c_configuration.html#i2c-config"><span class="std std-ref">I2C configuration</span></a> aufrufen, um I2C zu aktivieren.</p></li>
+<li><p>Wenn der Fehler <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'smbus2'</span></code> auftritt, führen Sie <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">smbus2</span></code> aus.</p></li>
+<li><p>Wenn der Fehler <code class="docutils literal notranslate"><span class="pre">OSError:</span> <span class="pre">[Errno</span> <span class="pre">121]</span> <span class="pre">Remote</span> <span class="pre">I/O</span> <span class="pre">error</span></code> auftritt, bedeutet dies, dass das Modul falsch angeschlossen ist oder defekt ist.</p></li>
+<li><p>Wenn der Code und die Verkabelung in Ordnung sind, das LCD jedoch keinen Inhalt anzeigt, können Sie den Potenziometer auf der Rückseite drehen, um den Kontrast zu erhöhen.</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>Wenn die Fehlermeldung <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code> angezeigt wird, lesen Sie bitte <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">Wenn gpiozero nicht funktioniert.</span></a></p>
+</div>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Sie können den folgenden Code <strong>ändern/zurücksetzen/kopieren/ausführen/anhalten</strong>. Davor müssen Sie jedoch zum Quellcodepfad wie <code class="docutils literal notranslate"><span class="pre">raphael-kit/python</span></code> gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Wirkung zu sehen.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span> <span class="nn">LCD1602</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">LED</span><span class="p">,</span> <span class="n">Buzzer</span><span class="p">,</span> <span class="n">Button</span>
+<span class="kn">import</span> <span class="nn">ADC0834</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># Initialisieren Sie Joystick-Taste, Summer und LED</span>
+<span class="n">Joy_BtnPin</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">buzzPin</span> <span class="o">=</span> <span class="n">Buzzer</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
+<span class="n">ledPin</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+
+<span class="c1"># Setzen Sie die anfängliche obere Temperaturschwelle</span>
+<span class="n">upperTem</span> <span class="o">=</span> <span class="mi">40</span>
+
+<span class="c1"># Setup ADC- und LCD-Module</span>
+<span class="n">ADC0834</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+<span class="n">LCD1602</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="mh">0x27</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_joystick_value</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Liest die Joystick-Werte und gibt einen Änderungswert basierend auf der Position des Joysticks zurück.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x_val</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y_val</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x_val</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">x_val</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">y_val</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">10</span>
+    <span class="k">elif</span> <span class="n">y_val</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">10</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">upper_tem_setting</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Passt die obere Temperaturschwelle an und zeigt sie auf dem LCD an.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">upperTem</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Oben anpassen: &#39;</span><span class="p">)</span>
+    <span class="n">change</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">get_joystick_value</span><span class="p">())</span>
+    <span class="n">upperTem</span> <span class="o">+=</span> <span class="n">change</span>
+    <span class="n">strUpperTem</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">upperTem</span><span class="p">)</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strUpperTem</span><span class="p">)</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">strUpperTem</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;              &#39;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">temperature</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Liest die aktuelle Temperatur vom Sensor und gibt sie in Grad Celsius zurück.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">analogVal</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">()</span>
+    <span class="n">Vr</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">analogVal</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+    <span class="n">Rt</span> <span class="o">=</span> <span class="mi">10000</span> <span class="o">*</span> <span class="n">Vr</span> <span class="o">/</span> <span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="n">Vr</span><span class="p">)</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(((</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Rt</span> <span class="o">/</span> <span class="mi">10000</span><span class="p">))</span> <span class="o">/</span> <span class="mi">3950</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mf">273.15</span> <span class="o">+</span> <span class="mi">25</span><span class="p">)))</span>
+    <span class="n">Cel</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">-</span> <span class="mf">273.15</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">Cel</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">monitoring_temp</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Überwacht und zeigt die aktuelle Temperatur und die obere Temperaturschwelle an. Aktiviert den Summer und die LED, wenn die Temperatur den oberen Grenzwert überschreitet.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">upperTem</span>
+    <span class="n">Cel</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">()</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Temp: &#39;</span><span class="p">)</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Oben: &#39;</span><span class="p">)</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Cel</span><span class="p">))</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">upperTem</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">Cel</span> <span class="o">&gt;=</span> <span class="n">upperTem</span><span class="p">:</span>
+        <span class="n">buzzPin</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">ledPin</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">buzzPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+        <span class="n">ledPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="c1"># Hauptausführungsschleife</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">lastState</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">stage</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">currentState</span> <span class="o">=</span> <span class="n">Joy_BtnPin</span><span class="o">.</span><span class="n">value</span>
+        <span class="c1"># Wechseln Sie zwischen Einstell- und Überwachungsmodus</span>
+        <span class="k">if</span> <span class="n">currentState</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">lastState</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">stage</span> <span class="o">=</span> <span class="p">(</span><span class="n">stage</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">lastState</span> <span class="o">=</span> <span class="n">currentState</span>
+        <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">upper_tem_setting</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">monitoring_temp</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Bereinigen und beenden</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">ADC0834</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Code-Erklärung</strong></p>
+<ol class="arabic">
+<li><p>In diesem Abschnitt werden die erforderlichen Bibliotheken für das Projekt importiert. <code class="docutils literal notranslate"><span class="pre">LCD1602</span></code> ist für das LCD-Display, <code class="docutils literal notranslate"><span class="pre">gpiozero</span></code> bietet Klassen für LED, Summer und Taste, <code class="docutils literal notranslate"><span class="pre">ADC0834</span></code> ist für die Analog-Digital-Umwandlung und <code class="docutils literal notranslate"><span class="pre">time</span></code> und <code class="docutils literal notranslate"><span class="pre">math</span></code> sind Python-Standardbibliotheken für zeitbezogene Funktionen bzw. mathematische Operationen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span> <span class="nn">LCD1602</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">LED</span><span class="p">,</span> <span class="n">Buzzer</span><span class="p">,</span> <span class="n">Button</span>
+<span class="kn">import</span> <span class="nn">ADC0834</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+</div>
+</li>
+<li><p>Hier werden die Joystick-Taste, der Summer und die LED initialisiert. <code class="docutils literal notranslate"><span class="pre">Button(22)</span></code> erstellt ein Tastenobjekt, das mit dem GPIO-Pin 22 verbunden ist. <code class="docutils literal notranslate"><span class="pre">Buzzer(23)</span></code> und <code class="docutils literal notranslate"><span class="pre">LED(24)</span></code> initialisieren den Summer bzw. die LED an den GPIO-Pins 23 bzw. 24.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialisieren Sie Joystick-Taste, Summer und LED</span>
+<span class="n">Joy_BtnPin</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">buzzPin</span> <span class="o">=</span> <span class="n">Buzzer</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
+<span class="n">ledPin</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Legt die anfängliche obere Temperaturschwelle fest und initialisiert die ADC- und LCD-Module. Das LCD wird mit einer Adresse (<code class="docutils literal notranslate"><span class="pre">0x27</span></code>) und einem Modus (<code class="docutils literal notranslate"><span class="pre">1</span></code>) initialisiert.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setzen Sie die anfängliche obere Temperaturschwelle</span>
+<span class="n">upperTem</span> <span class="o">=</span> <span class="mi">40</span>
+
+<span class="c1"># Setup ADC- und LCD-Module</span>
+<span class="n">ADC0834</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+<span class="n">LCD1602</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="mh">0x27</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Diese Funktion liest die X- und Y-Werte des Joysticks mithilfe von ADC0834 aus. Sie gibt einen Änderungswert basierend auf der Position des Joysticks zurück, der zur Anpassung der Temperaturschwelle verwendet wird.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_joystick_value</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Liest die Joystick-Werte und gibt einen Änderungswert basierend auf der Position des Joysticks zurück.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x_val</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y_val</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x_val</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">x_val</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">y_val</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">10</span>
+    <span class="k">elif</span> <span class="n">y_val</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">10</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</li>
+<li><p>Passt die obere Temperaturschwelle mithilfe der Joystick-Eingabe an. Die neue Schwelle wird auf dem LCD angezeigt.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">upper_tem_setting</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Passt die obere Temperaturschwelle an und zeigt sie auf dem LCD an.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">upperTem</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Oben anpassen: &#39;</span><span class="p">)</span>
+    <span class="n">change</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">get_joystick_value</span><span class="p">())</span>
+    <span class="n">upperTem</span> <span class="o">+=</span> <span class="n">change</span>
+    <span class="n">strUpperTem</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">upperTem</span><span class="p">)</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strUpperTem</span><span class="p">)</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">strUpperTem</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;              &#39;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Liest die aktuelle Temperatur mithilfe des Sensors mit ADC0834 und gibt sie in Grad Celsius zurück.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">temperature</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Liest die aktuelle Temperatur vom Sensor und gibt sie in Grad Celsius zurück.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">analogVal</span> <span class="o">=</span> <span class="n">ADC0834</span><span class="o">.</span><span class="n">getResult</span><span class="p">()</span>
+    <span class="n">Vr</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">analogVal</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+    <span class="n">Rt</span> <span class="o">=</span> <span class="mi">10000</span> <span class="o">*</span> <span class="n">Vr</span> <span class="o">/</span> <span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="n">Vr</span><span class="p">)</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(((</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Rt</span> <span class="o">/</span> <span class="mi">10000</span><span class="p">))</span> <span class="o">/</span> <span class="mi">3950</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mf">273.15</span> <span class="o">+</span> <span class="mi">25</span><span class="p">)))</span>
+    <span class="n">Cel</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">-</span> <span class="mf">273.15</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">Cel</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Überwacht und zeigt die aktuelle Temperatur und die obere Schwelle an. Wenn die Temperatur die obere Schwelle überschreitet, werden der Summer und die LED aktiviert.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">monitoring_temp</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Überwacht und zeigt die aktuelle Temperatur und die obere Temperaturschwelle an.</span>
+<span class="sd">    Aktiviert den Summer und die LED, wenn die Temperatur den oberen Grenzwert überschreitet.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">upperTem</span>
+    <span class="n">Cel</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">()</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Temp: &#39;</span><span class="p">)</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Oben: &#39;</span><span class="p">)</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Cel</span><span class="p">))</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">upperTem</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">Cel</span> <span class="o">&gt;=</span> <span class="n">upperTem</span><span class="p">:</span>
+        <span class="n">buzzPin</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">ledPin</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">buzzPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+        <span class="n">ledPin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Die Hauptausführungsschleife wechselt basierend auf den Tastendrücken der Joystick-Taste zwischen Einstell- und Überwachungsmodus. Sie aktualisiert kontinuierlich entweder die Temperatureinstellung oder überwacht die aktuelle Temperatur.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hauptausführungsschleife</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">lastState</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">stage</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">currentState</span> <span class="o">=</span> <span class="n">Joy_BtnPin</span><span class="o">.</span><span class="n">value</span>
+        <span class="c1"># Wechseln Sie zwischen Einstell- und Überwachungsmodus</span>
+        <span class="k">if</span> <span class="n">currentState</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">lastState</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">stage</span> <span class="o">=</span> <span class="p">(</span><span class="n">stage</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">lastState</span> <span class="o">=</span> <span class="n">currentState</span>
+        <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">upper_tem_setting</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">monitoring_temp</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Bereinigen und beenden</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">ADC0834</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pi5_3.1.7_traffic_light_python.html" class="btn btn-neutral float-left" title="3.1.7 Verkehrsampel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="pi5_3.1.9_password_lock_python.html" class="btn btn-neutral float-right" title="3.1.9 Passwortsperre" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

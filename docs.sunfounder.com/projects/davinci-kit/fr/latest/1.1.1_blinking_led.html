@@ -1,0 +1,606 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.1 LED clignotante &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="1.1.2 RGB LED" href="1.1.2_rgb_led.html" />
+    <link rel="prev" title="1 Sorties" href="1_output.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/1.1.1_blinking_led.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Pour le Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Bibliothèques</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="1_output.html">1 Sorties</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="1.1.1_blinking_led.html#">1.1.1 LED clignotante</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="1.1.1_blinking_led.html#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.1_blinking_led.html#composants">Composants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.1_blinking_led.html#principe">Principe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.1_blinking_led.html#schema-de-montage">Schéma de montage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.1_blinking_led.html#procedures-experimentales">Procédures expérimentales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.1_blinking_led.html#image-du-phenomene">Image du phénomène</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 RGB LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 Graphique à barres LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 Affichage 7 segments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 4-Digit 7-Segment Display</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 LED Dot Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 Buzzer Actif</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 Buzzer Passif</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.1_motor.html">1.3.1 Moteur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.2_servo.html">1.3.2 Servo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 Stepper Motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.4_relay.html">1.3.4 Relais</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2_input.html">2 Entrée</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_extension.html">3 Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Jouer avec Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Jouer avec Node.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+          <li class="breadcrumb-item"><a href="1_output.html">1 Sorties</a></li>
+      <li class="breadcrumb-item active">1.1.1 LED clignotante</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/1.1.1_blinking_led.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans l’univers de Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez vos problèmes après-vente et vos défis techniques avec l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprenez et partagez</strong> : Échangez des astuces et des tutoriels pour améliorer vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Profitez d’un accès anticipé aux annonces de nouveaux produits et à des avant-premières.</p></li>
+<li><p><strong>Réductions exclusives</strong> : Bénéficiez de réductions sur nos derniers produits.</p></li>
+<li><p><strong>Promotions festives et cadeaux</strong> : Participez à des promotions et à des cadeaux lors des fêtes.</p></li>
+</ul>
+<p>👉 Prêt à explorer et à créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="led-clignotante">
+<h1>1.1.1 LED clignotante<a class="headerlink" href="1.1.1_blinking_led.html#led-clignotante" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="1.1.1_blinking_led.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>Dans cette leçon, nous allons apprendre à programmer une LED clignotante.
+Grâce à vos paramètres, votre LED peut produire une série de phénomènes intéressants. Allons-y !</p>
+</section>
+<section id="composants">
+<h2>Composants<a class="headerlink" href="1.1.1_blinking_led.html#composants" title="Lien vers cette rubrique"></a></h2>
+<a class="reference internal image-reference" href="_images/blinking_led_list.png"><img alt="_images/blinking_led_list.png" class="align-center" src="_images/blinking_led_list.png" style="width: 800px;" />
+</a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pour que tout se passe bien, vous devez disposer de votre propre Raspberry Pi,
+carte TF et alimentation Raspberry Pi.</p>
+</div>
+</section>
+<section id="principe">
+<h2>Principe<a class="headerlink" href="1.1.1_blinking_led.html#principe" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Plaque d’essai</strong></p>
+<p>Une plaque d’essai est une base de construction pour le prototypage électronique.
+Elle est utilisée pour construire et tester des circuits rapidement avant de finaliser
+un design. Elle comporte de nombreux trous dans lesquels peuvent être insérés des
+composants tels que des circuits intégrés (CI), des résistances et des fils de connexion.
+La plaque d’essai permet de brancher et de retirer facilement les composants.</p>
+<p>L’image montre la structure interne d’une plaque d’essai complète. Bien que les trous
+semblent indépendants, ils sont en réalité connectés entre eux par des bandes métalliques
+à l’intérieur.</p>
+<img alt="_images/image41.png" src="_images/image41.png" />
+<p><strong>LED</strong></p>
+<p>Une LED est un type de diode. Elle ne brillera que si sa patte longue est connectée
+au pôle positif et sa patte courte au pôle négatif.</p>
+<p><img alt="image42" src="_images/image42.png" /><img alt="image43" src="_images/image43.png" /></p>
+<p>La LED ne doit pas être connectée directement à l’alimentation, car cela pourrait
+endommager le composant. Une résistance de 160Ω ou plus (pour un fonctionnement en 5V)
+doit être placée en série dans le circuit.</p>
+<p><strong>Résistance</strong></p>
+<p>Une résistance est un élément électronique qui limite le courant dans une branche de
+circuit. Une résistance fixe est un type de résistance dont la valeur ne peut pas être
+modifiée, tandis que celle d’un potentiomètre ou d’une résistance variable peut être ajustée.</p>
+<p>Dans ce kit, nous utilisons des résistances fixes. Elles sont essentielles pour protéger
+les composants connectés dans le circuit. Les images ci-dessous montrent une résistance
+de 220Ω et deux symboles de circuit couramment utilisés pour représenter une résistance.
+L’unité de la résistance est l’ohm (Ω), et les unités supérieures incluent KΩ et MΩ.
+Voici leurs équivalences : 1 MΩ = 1000 KΩ, 1 KΩ = 1000 Ω. En général, la valeur de la
+résistance est marquée dessus. Si vous voyez ces symboles dans un circuit, cela signifie
+qu’une résistance est présente.</p>
+<img alt="_images/image44.png" src="_images/image44.png" />
+<p><img alt="image45" src="_images/image45.png" /><img alt="image46" src="_images/image46.png" /></p>
+<p>Pour utiliser une résistance, il est important de connaître sa valeur. Voici deux
+méthodes : observer les bandes colorées sur la résistance ou utiliser un multimètre
+pour mesurer la valeur. Nous recommandons la première méthode, plus rapide et pratique.
+Utilisez un multimètre pour mesurer la résistance si nécessaire.</p>
+<p>Comme montré sur la carte, chaque couleur représente un chiffre.</p>
+<img alt="_images/image47.jpeg" src="_images/image47.jpeg" />
+</section>
+<section id="schema-de-montage">
+<h2>Schéma de montage<a class="headerlink" href="1.1.1_blinking_led.html#schema-de-montage" title="Lien vers cette rubrique"></a></h2>
+<p>Dans cette expérience, connectez une résistance de 220Ω à l’anode (la patte longue de la
+LED), puis reliez la résistance à 3,3V, et connectez la cathode (la patte courte) de la
+LED au GPIO17 du Raspberry Pi. Pour allumer la LED, nous devons régler GPIO17 sur bas (0V).
+Nous pouvons obtenir ce comportement par programmation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Pin11</strong> désigne la 11e broche du Raspberry Pi de gauche à droite, et ses numéros de
+broches correspondants <strong>wiringPi</strong> et <strong>BCM</strong> sont indiqués dans le tableau ci-dessous.</p>
+</div>
+<p>Dans le contenu lié au langage C, nous considérons que GPIO0 est équivalent à 0 dans
+wiringPi. Dans le contenu Python, BCM 17 correspond à 17 dans la colonne BCM du tableau
+suivant. Ils correspondent également à la 11e broche du Raspberry Pi, Pin 11.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="_images/image48.png"><img alt="_images/image48.png" class="align-center" src="_images/image48.png" style="width: 800px;" />
+</a>
+</section>
+<section id="procedures-experimentales">
+<h2>Procédures expérimentales<a class="headerlink" href="1.1.1_blinking_led.html#procedures-experimentales" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1 :</strong> Construisez le circuit.</p>
+<a class="reference internal image-reference" href="_images/image49.png"><img alt="_images/image49.png" class="align-center" src="_images/image49.png" style="width: 800px;" />
+</a>
+<section id="pour-les-utilisateurs-du-langage-c">
+<h3>Pour les utilisateurs du langage C<a class="headerlink" href="1.1.1_blinking_led.html#pour-les-utilisateurs-du-langage-c" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Étape 2 :</strong> Accédez au dossier du code.</p>
+<ol class="arabic simple">
+<li><p>Si vous utilisez un écran, nous vous recommandons de suivre les étapes suivantes.</p></li>
+</ol>
+<p>Accédez à <strong>~/</strong> et trouvez le dossier <strong>davinci-kit-for-raspberry-pi</strong>.</p>
+<p>Trouvez le dossier <strong>C</strong>, faites un clic droit dessus et sélectionnez <strong>Ouvrir dans le Terminal</strong>.</p>
+<a class="reference internal image-reference" href="_images/image50.png"><img alt="_images/image50.png" class="align-center" src="_images/image50.png" style="width: 800px;" />
+</a>
+<p>Une fenêtre apparaîtra comme ci-dessous. Vous êtes maintenant dans le chemin du code <strong>1.1.1_BlinkingLed.c</strong>.</p>
+<a class="reference internal image-reference" href="_images/image51.png"><img alt="_images/image51.png" class="align-center" src="_images/image51.png" style="width: 800px;" />
+</a>
+<p>Dans les prochaines leçons, nous utiliserons une commande pour accéder au fichier de
+code au lieu d’un clic droit. Cependant, vous pouvez choisir la méthode que vous préférez.</p>
+<ol class="arabic simple" start="2">
+<li><p>Si vous vous connectez au Raspberry Pi à distance, utilisez la commande <code class="docutils literal notranslate"><span class="pre">cd</span></code> pour changer de répertoire :</p></li>
+</ol>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.1.1</span><span class="o">/</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Changez le répertoire pour accéder au chemin du code de cette expérience via cd.</p>
+</div>
+<p>Dans tous les cas, vous êtes maintenant dans le dossier C. Les étapes suivantes, basées
+sur ces deux méthodes, sont les mêmes. Continuons.</p>
+<p><strong>Étape 3 :</strong> Compilez le code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.1.1</span><span class="n">_BlinkingLed</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">BlinkingLed</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>gcc est le GNU Compiler Collection. Ici, il sert à compiler le fichier
+C <em>1_BlinkingLed.c</em> et à générer un fichier exécutable.</p>
+</div>
+<p>Dans la commande, <code class="docutils literal notranslate"><span class="pre">-o</span></code> signifie output (le caractère immédiatement après -o est
+le nom du fichier exécutable généré après compilation, ici nommé <code class="docutils literal notranslate"><span class="pre">BlinkingLed</span></code> ),
+et <code class="docutils literal notranslate"><span class="pre">-lwiringPi</span></code> permet de charger la bibliothèque wiringPi ( <code class="docutils literal notranslate"><span class="pre">l</span></code> est l’abréviation
+de library).</p>
+<p><strong>Étape 4 :</strong> Exécutez le fichier exécutable généré à l’étape précédente.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">BlinkingLed</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pour contrôler les GPIO, vous devez exécuter le programme avec la commande sudo
+(superuser do). Le <code class="docutils literal notranslate"><span class="pre">./</span></code> indique le répertoire actuel. La commande complète
+exécute donc <code class="docutils literal notranslate"><span class="pre">BlinkingLed</span></code> dans le répertoire actuel.</p>
+</div>
+<a class="reference internal image-reference" href="_images/image52.png"><img alt="_images/image52.png" class="align-center" src="_images/image52.png" style="width: 800px;" />
+</a>
+<p>Après exécution du code, vous verrez la LED clignoter.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Si cela ne fonctionne pas après exécution ou si un message d’erreur du type : « wiringPi.h: No such file or directory » apparaît, veuillez consulter <a class="reference internal" href="faq.html#c-code-is-not-working"><span class="std std-ref">C code is not working?</span></a>.</p>
+</div>
+<p>Si vous souhaitez modifier le fichier de code <code class="docutils literal notranslate"><span class="pre">1.1.1_BlinkingLed.c</span></code>, appuyez sur
+<code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">C</span></code> pour arrêter l’exécution du code. Tapez ensuite la commande suivante
+pour l’ouvrir :</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="mf">1.1.1</span><span class="n">_BlinkingLed</span><span class="o">.</span><span class="n">c</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>nano est un outil d’édition de texte. Cette commande ouvre le fichier de code
+<code class="docutils literal notranslate"><span class="pre">1.1.1_BlinkingLed.c</span></code> avec cet outil.</p>
+</div>
+<p>Appuyez sur <code class="docutils literal notranslate"><span class="pre">Ctrl+X</span></code> pour quitter. Si vous avez modifié le code, une invite vous
+demandera si vous souhaitez enregistrer les modifications. Tapez <code class="docutils literal notranslate"><span class="pre">Y</span></code> (enregistrer)
+ou <code class="docutils literal notranslate"><span class="pre">N</span></code> (ne pas enregistrer), puis appuyez sur <code class="docutils literal notranslate"><span class="pre">Entrée</span></code> pour quitter. Répétez les
+étapes « Étape 3 » et « Étape 4 » pour voir l’effet après modification.</p>
+<a class="reference internal image-reference" href="_images/image53.png"><img alt="_images/image53.png" class="align-center" src="_images/image53.png" style="width: 800px;" />
+</a>
+<p><strong>Code</strong></p>
+<p>Le code du programme est le suivant :</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#define LedPin      0</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="c1">// Si l&#39;initialisation de wiringPi échoue, afficher un message à l&#39;écran</span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"> </span><span class="c1">// Définir LedPin comme sortie pour y écrire une valeur</span>
+<span class="w">   </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">      </span><span class="c1">// LED allumée</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;...LED on</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">      </span><span class="c1">// LED éteinte</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;LED off...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explication du code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">include</span><span class="w"> </span><span class="o">&lt;</span><span class="n">wiringPi</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>La bibliothèque de gestion matérielle conçue pour le langage C du Raspberry Pi
+permet l’initialisation du matériel, la gestion des E/S, du PWM, etc.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</pre></div>
+</div>
+<p>Bibliothèque d’entrées/sorties standard. La fonction printf utilisée pour afficher
+des données à l’écran est implémentée via cette bibliothèque. Il existe de nombreuses
+autres fonctions à explorer.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define LedPin 0</span>
+</pre></div>
+</div>
+<p>La broche GPIO17 du T_Extension Board correspond à GPIO0 dans wiringPi. Nous assignons
+GPIO0 à LedPin, qui représentera GPIO0 dans le code.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Cette fonction initialise wiringPi en supposant que le programme utilise la numérotation
+des broches de wiringPi.</p>
+<p>Cette fonction doit être appelée avec des privilèges root.
+Si l’initialisation échoue, un message est affiché à l’écran. La fonction « return » permet
+de sortir de la fonction courante. Utiliser return dans la fonction main() termine le
+programme.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">pinMode</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Définir LedPin comme sortie pour y écrire une valeur.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Définir GPIO0 à 0V (niveau bas). Comme la cathode de la LED est connectée à GPIO0,
+la LED s’allumera si GPIO0 est en niveau bas. Inversement, en le mettant en niveau
+haut (digitalWrite (LedPin, HIGH)), la LED s’éteindra.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;...LED off</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>La fonction printf est une fonction standard et son prototype est défini dans le fichier
+d’en-tête « stdio.h ». La chaîne de contrôle de format est utilisée pour spécifier le format
+de sortie, et se compose de chaînes formatées et non formatées. Ce qui est utilisé ici est
+une chaîne non formatée, suivie de « n » pour indiquer un retour à la ligne.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Le délai (500) maintient l’état actuel (HAUT ou BAS) pendant 500ms.</p>
+<p>C’est une fonction qui suspend le programme pendant une certaine durée. La vitesse du
+programme est déterminée par le matériel. Ici, nous allumons ou éteignons la LED.
+Sans cette fonction, le programme s’exécuterait très rapidement et en boucle continue.
+Nous utilisons donc la fonction de délai pour faciliter l’écriture et le débogage du
+programme.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Ce code se trouve à la fin de la fonction main(), indiquant que le programme se termine avec succès.</p>
+</section>
+<section id="pour-les-utilisateurs-de-python">
+<h3>Pour les utilisateurs de Python<a class="headerlink" href="1.1.1_blinking_led.html#pour-les-utilisateurs-de-python" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Étape 2 :</strong> Accédez au dossier du code et exécutez-le.</p>
+<ol class="arabic simple">
+<li><p>Si vous utilisez un écran, suivez les étapes suivantes.</p></li>
+</ol>
+<p>Trouvez le fichier 1.1.1_BlinkingLed.py et double-cliquez dessus pour l’ouvrir. Vous êtes maintenant dans le fichier.</p>
+<p>Cliquez sur <strong>Exécuter</strong> -&gt;<strong>Exécuter le module</strong> dans la fenêtre et le contenu suivant
+apparaîtra.</p>
+<p>Pour arrêter l’exécution, cliquez simplement sur le bouton X en haut à droite pour fermer
+la fenêtre, puis vous reviendrez au code. Si vous modifiez le code, avant de cliquer sur</p>
+<blockquote>
+<div><p><strong>Exécuter le module (F5)</strong>, vous devez l’enregistrer d’abord. Ensuite, vous pourrez voir
+les résultats.</p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Si vous vous connectez à distance au Raspberry Pi, tapez la commande suivante :</p></li>
+</ol>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Changez le répertoire vers le chemin du code de cette expérience via <code class="docutils literal notranslate"><span class="pre">cd</span></code>.</p>
+</div>
+<p><strong>Étape 3 :</strong> Exécutez le code</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.1.1</span><span class="n">_BlinkingLed</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ici, sudo signifie superuser do, et python signifie exécuter le fichier avec Python.</p>
+</div>
+<p>Après l’exécution du code, vous verrez la LED clignoter.</p>
+<p><strong>Étape 4 :</strong> Si vous souhaitez modifier le fichier de code 1.1.1_BlinkingLed.py,
+appuyez sur <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">C</span></code> pour arrêter l’exécution du code. Tapez ensuite la commande
+suivante pour ouvrir 1.1.1_BlinkingLed.py :</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="mf">1.1.1</span><span class="n">_BlinkingLed</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>nano est un outil d’édition de texte. Cette commande ouvre le fichier de
+code 1.1.1_BlinkingLed.py avec cet outil.</p>
+</div>
+<p>Appuyez sur <code class="docutils literal notranslate"><span class="pre">Ctrl+X</span></code> pour quitter. Si vous avez modifié le code, une invite
+vous demandera si vous souhaitez enregistrer les modifications. Tapez <code class="docutils literal notranslate"><span class="pre">Y</span></code> (enregistrer)
+ou <code class="docutils literal notranslate"><span class="pre">N</span></code> (ne pas enregistrer).</p>
+<p>Ensuite, appuyez sur <code class="docutils literal notranslate"><span class="pre">Entrée</span></code> pour quitter. Tapez à nouveau <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">1.1.1_BlinkingLed.py</span></code>
+pour voir l’effet après modification.</p>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vous pouvez <strong>Modifier/Réinitialiser/Copier/Exécuter/Arrêter</strong> le code ci-dessous. Mais avant cela, vous devez vous rendre dans le chemin du code source, comme <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">LedPin</span> <span class="o">=</span> <span class="mi">17</span>
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+   <span class="c1"># Définir les modes GPIO sur la numérotation BCM</span>
+   <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+   <span class="c1"># Définir le mode de LedPin en sortie et initialiser le niveau à High (3.3V)</span>
+   <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+<span class="c1"># Définir une fonction principale pour le processus principal</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+   <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+      <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;...LED ON&#39;</span><span class="p">)</span>
+      <span class="c1"># Allumer la LED</span>
+      <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+      <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+      <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;LED OFF...&#39;</span><span class="p">)</span>
+      <span class="c1"># Éteindre la LED</span>
+      <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+      <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># Définir une fonction destroy pour nettoyer tout après l&#39;exécution du script</span>
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+   <span class="c1"># Éteindre la LED</span>
+   <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+   <span class="c1"># Libérer les ressources</span>
+   <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+<span class="c1"># Si ce script est exécuté directement, faire :</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">setup</span><span class="p">()</span>
+   <span class="k">try</span><span class="p">:</span>
+      <span class="n">main</span><span class="p">()</span>
+   <span class="c1"># Lorsque &#39;Ctrl+C&#39; est pressé, la fonction destroy() sera exécutée.</span>
+   <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+      <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Explication du code</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+</pre></div>
+</div>
+<p>Lorsque le système détecte cette ligne, il cherchera le chemin
+d’installation de Python dans les paramètres env, puis appellera
+l’interpréteur correspondant pour exécuter le script. Cela permet
+d’éviter que l’utilisateur n’installe Python dans le chemin par défaut /usr/bin.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+</pre></div>
+</div>
+<p>De cette manière, on importe la bibliothèque RPi.GPIO, puis on définit une
+variable GPIO pour remplacer RPI.GPIO dans le code suivant.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+<p>On importe la bibliothèque time, qui est utilisée pour les fonctions de
+temporisation dans le programme.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LedPin</span> <span class="o">=</span> <span class="mi">17</span>
+</pre></div>
+</div>
+<p>La LED est connectée au GPIO17 de la carte d’extension en forme de T, soit BCM 17.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+   <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+   <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Définit le mode de LedPin en sortie et initialise le niveau à High (3.3V).</p>
+<p>Il existe deux manières de numéroter les broches d’E/S sur un Raspberry Pi
+avec RPi.GPIO : les numéros BOARD et les numéros BCM. Dans nos leçons, nous
+utilisons les numéros BCM. Vous devez définir chaque canal que vous utilisez
+en entrée ou en sortie.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Définir GPIO17 (BCM17) sur 0V (niveau bas). Comme la cathode de la LED est
+connectée à GPIO17, la LED s’allume.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Temporisation de 0,5 seconde. Ici, l’instruction est similaire à la fonction
+delay en langage C, et l’unité est la seconde.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+   <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Définir une fonction destroy pour nettoyer tout après l’exécution du script.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">setup</span><span class="p">()</span>
+   <span class="k">try</span><span class="p">:</span>
+      <span class="n">main</span><span class="p">()</span>
+   <span class="c1"># Lorsque &#39;Ctrl+C&#39; est pressé, la fonction destroy() sera exécutée.</span>
+   <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+      <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Ceci est la structure générale d’exécution du code. Lorsque le programme commence
+à s’exécuter, il initialise la broche via setup(), puis exécute le code dans la
+fonction main() pour régler la broche sur des niveaux haut et bas. Lorsque “Ctrl+C”
+est pressé, la fonction destroy() est exécutée.</p>
+</section>
+</section>
+<section id="image-du-phenomene">
+<h2>Image du phénomène<a class="headerlink" href="1.1.1_blinking_led.html#image-du-phenomene" title="Lien vers cette rubrique"></a></h2>
+<a class="reference internal image-reference" href="_images/image54.jpeg"><img alt="_images/image54.jpeg" class="align-center" src="_images/image54.jpeg" style="width: 800px;" />
+</a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="1_output.html" class="btn btn-neutral float-left" title="1 Sorties" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="1.1.2_rgb_led.html" class="btn btn-neutral float-right" title="1.1.2 RGB LED" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

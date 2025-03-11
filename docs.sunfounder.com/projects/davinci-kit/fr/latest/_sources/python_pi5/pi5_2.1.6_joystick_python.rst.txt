@@ -1,0 +1,210 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et relevez les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des concours et des promotions spéciales lors des fêtes.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+.. _py_pi5_joystick:
+
+2.1.6 Joystick
+==============
+
+Introduction
+------------
+
+Dans ce projet, nous allons apprendre le fonctionnement du joystick. 
+Nous allons le manipuler et afficher les résultats à l'écran.
+
+Composants nécessaires
+----------------------------
+
+Pour ce projet, nous aurons besoin des composants suivants :
+
+.. image:: ../python_pi5/img/2.1.9_joystick_list.png
+
+.. It's definitely convenient to buy a whole kit, here's the link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Name	
+..         - ITEMS IN THIS KIT
+..         - LINK
+..     *   - Raphael Kit
+..         - 337
+..         - |link_Raphael_kit|
+
+.. You can also buy them separately from the links below.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - COMPONENT INTRODUCTION
+..         - PURCHASE LINK
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`joystick`
+..         - \-
+..     *   - :ref:`adc0834`
+..         - \-
+
+Schematic Diagram
+---------------------
+
+Lorsque les données du joystick sont lues, il existe des différences selon 
+les axes : les données des axes X et Y sont analogiques et nécessitent 
+l'utilisation de l'ADC0834 pour convertir les valeurs analogiques en valeurs 
+numériques. Les données de l'axe Z sont numériques, vous pouvez donc utiliser 
+directement le GPIO pour les lire, ou passer par l'ADC.
+
+.. image:: ../python_pi5/img/2.1.9_joystick_schematic_1.png
+
+.. image:: ../python_pi5/img/2.1.9_joystick_schematic_2.png
+
+
+Procédure expérimentale
+--------------------------
+
+**Étape 1 :** Construisez le circuit.
+
+.. image:: ../python_pi5/img/2.1.9_Joystick_circuit.png
+
+**Étape 2 :** Allez dans le répertoire du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Étape 3 :** Exécutez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.1.6_Joystick.py
+
+Après avoir lancé le code, tournez le joystick, puis les valeurs correspondantes 
+de x, y et Btn s'afficheront à l'écran.
+
+.. warning::
+
+    En cas d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`.
+
+**Code**
+
+.. note::
+
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le répertoire source tel que ``davinci-kit-for-raspberry-pi/python-pi5``. Après modification, vous pouvez exécuter le code pour voir le résultat.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Button
+   import ADC0834
+   import time
+
+   # Initialiser le bouton connecté à la broche GPIO 22
+   BtnPin = Button(22)
+
+   # Configurer le module ADC0834
+   ADC0834.setup()
+
+   try:
+       # Boucle principale pour lire et afficher les valeurs de l'ADC et l'état du bouton
+       while True:
+           # Lire les valeurs X et Y des canaux ADC 0 et 1
+           x_val = ADC0834.getResult(0)
+           y_val = ADC0834.getResult(1)
+
+           # Lire l'état du bouton (appuyé ou non)
+           Btn_val = BtnPin.value
+
+           # Afficher les valeurs de X, Y et du bouton
+           print('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+
+           # Pause de 0,2 seconde avant la prochaine lecture
+           time.sleep(0.2)
+
+   # Gérer proprement la fin du script (par exemple, via KeyboardInterrupt)
+   except KeyboardInterrupt: 
+       pass
+
+
+**Explication du code**
+
+#. Cette section importe la classe ``Button`` de la bibliothèque ``gpiozero`` pour gérer un bouton connecté à une broche GPIO. Elle importe également la bibliothèque ``ADC0834`` pour interfacer le module ADC0834 (convertisseur analogique-numérique) et la fonction ``time`` pour introduire des temporisations.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import Button
+       import ADC0834
+       import time
+
+#. Initialise un bouton connecté à la broche GPIO 22 et configure le module ADC0834 pour son utilisation.
+
+   .. code-block:: python
+
+       # Initialiser le bouton connecté à la broche GPIO 22
+       BtnPin = Button(22)
+
+       # Configurer le module ADC0834
+       ADC0834.setup()
+
+#. Les connexions VRX et VRY du joystick sont reliées aux canaux CH0 et CH1 de l'ADC0834, respectivement. Cette configuration permet de lire les valeurs de CH0 et CH1, qui sont ensuite stockées dans les variables ``x_val`` et ``y_val``. En outre, la valeur SW du joystick est lue et assignée à la variable ``Btn_val``. Les valeurs récupérées de ``x_val``, ``y_val`` et ``Btn_val`` sont ensuite affichées à l'aide de la fonction ``print()``.
+
+   .. code-block:: python
+
+       try:
+           # Boucle principale pour lire et afficher les valeurs de l'ADC et l'état du bouton
+           while True:
+               # Lire les valeurs X et Y des canaux ADC 0 et 1
+               x_val = ADC0834.getResult(0)
+               y_val = ADC0834.getResult(1)
+
+               # Lire l'état du bouton (appuyé ou non)
+               Btn_val = BtnPin.value
+
+               # Afficher les valeurs de X, Y et du bouton
+               print('X: %d  Y: %d  Btn: %d' % (x_val, y_val, Btn_val))
+
+               # Pause de 0,2 seconde avant la prochaine lecture
+               time.sleep(0.2)
+
+       # Gérer proprement la fin du script (par exemple, via KeyboardInterrupt)
+       except KeyboardInterrupt: 
+           pass
+
+
+
+
+
+
+

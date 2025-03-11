@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.2.2 パッシブブザー &mdash; SunFounder davinci-kit-for-raspberry-pi  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=c033477b"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=4dbe4bdc"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/ja/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="1.3.1 モーター" href="pi5_1.3.1_motor_python.html" />
+    <link rel="prev" title="1.2.1 アクティブブザー" href="pi5_1.2.1_active_buzzer_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-ja" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_1.2.2_passive_buzzer_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">部品一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO拡張ボード</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">コードをダウンロードする</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Raspberry Pi OSのインストールとセットアップ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">For Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Pythonで遊ぼう</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">「GPIO Zero」の確認</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_output_python.html">1 出力</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.1_blinking_led_python.html">1.1.1 点滅するLED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.2_rgb_led_python.html">1.1.2 RGB LED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.3_led_bar_graph_python.html">1.1.3 LED バーグラフ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.4_7-segment_display_python.html">1.1.4 7セグメントディスプレイ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.5_4-Digit_7-segment_display_python.html">1.1.5 4桁 7セグメントディスプレイ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.6_led_dot_matrix_python.html">1.1.6 LEDドットマトリックス</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.7_i2c_lcd1602_python.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.2.1_active_buzzer_python.html">1.2.1 アクティブブザー</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_1.2.2_passive_buzzer_python.html#">1.2.2 パッシブブザー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.3.1_motor_python.html">1.3.1 モーター</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.3.2_servo_python.html">1.3.2 サーボ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.3.3_stepper_motor_python.html">1.3.3 ステッパーモーター</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.3.4_relay_python.html">1.3.4 リレー</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">2 入力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_extension_python.html">3 拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Cと遊ぶ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Scratch で遊ぶ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python ビデオコース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">付録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">ありがとうございました</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">For Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Pythonで遊ぼう</a></li>
+          <li class="breadcrumb-item"><a href="pi5_output_python.html">1 出力</a></li>
+      <li class="breadcrumb-item active">1.2.2 パッシブブザー</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_1.2.2_passive_buzzer_python.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>こんにちは、SunFounderのRaspberry Pi &amp; Arduino &amp; ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。</p>
+<p><strong>参加する理由は？</strong></p>
+<ul class="simple">
+<li><p><strong>エキスパートサポート</strong>：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。</p></li>
+<li><p><strong>学び＆共有</strong>：ヒントやチュートリアルを交換してスキルを向上させましょう。</p></li>
+<li><p><strong>独占的なプレビュー</strong>：新製品の発表や先行プレビューに早期アクセスしましょう。</p></li>
+<li><p><strong>特別割引</strong>：最新製品の独占割引をお楽しみください。</p></li>
+<li><p><strong>祭りのプロモーションとギフト</strong>：ギフトや祝日のプロモーションに参加しましょう。</p></li>
+</ul>
+<p>👉 私たちと一緒に探索し、創造する準備はできていますか？[<a href="https://bit.ly/raphaelkit " target="_blank">ここ</a>]をクリックして今すぐ参加しましょう！</p>
+</div>
+<section id="py-pi5">
+<span id="id1"></span><h1>1.2.2 パッシブブザー<a class="headerlink" href="pi5_1.2.2_passive_buzzer_python.html#py-pi5" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>はじめに<a class="headerlink" href="pi5_1.2.2_passive_buzzer_python.html#id2" title="Link to this heading"></a></h2>
+<p>このプロジェクトでは、パッシブブザーを使用して音楽を演奏する方法を学びます。</p>
+</section>
+<section id="id3">
+<h2>必要なコンポーネント<a class="headerlink" href="pi5_1.2.2_passive_buzzer_python.html#id3" title="Link to this heading"></a></h2>
+<p>このプロジェクトでは、以下のコンポーネントが必要です。</p>
+<img alt="../_images/1.2.2_passive_buzzer_list.png" src="../_images/1.2.2_passive_buzzer_list.png" />
+<br/></section>
+<section id="id4">
+<h2>回路図<a class="headerlink" href="pi5_1.2.2_passive_buzzer_python.html#id4" title="Link to this heading"></a></h2>
+<p>この実験では、パッシブブザー、PNPトランジスタ、および1kΩの抵抗器が、トランジスタのベースとGPIOの間に使用されてトランジスタを保護します。</p>
+<p>GPIO17に異なる周波数が供給されると、パッシブブザーは異なる音を鳴らします。これにより、ブザーは音楽を演奏します。</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>17</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/1.2.2_passive_buzzer_schematic.png" src="../_images/1.2.2_passive_buzzer_schematic.png" />
+</section>
+<section id="id5">
+<h2>実験手順<a class="headerlink" href="pi5_1.2.2_passive_buzzer_python.html#id5" title="Link to this heading"></a></h2>
+<p><strong>ステップ1</strong>: 回路を組み立てます（パッシブブザーは裏面に緑の回路基板があります）。</p>
+<img alt="../_images/1.2.2_PassiveBuzzer_circuit.png" src="../_images/1.2.2_PassiveBuzzer_circuit.png" />
+<p><strong>ステップ2: ディレクトリを変更します。</strong></p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>ステップ3: 実行します。</strong></p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.2.2</span><span class="n">_PassiveBuzzer</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>コードを実行すると、ブザーが音楽を演奏します。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>エラー メッセージ <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code> が表示された場合は、 <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">「gpiozero」が動作しない場合。</span></a> を参照してください。</p>
+</div>
+<p><strong>コード</strong></p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>以下のコードは変更/リセット/コピー/実行/停止ができます。ただし、コードを変更する前に <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python-pi5</span></code> のようなソースコードのパスに移動する必要があります。コードを変更した後、直接実行して効果を確認できます。</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">TonalBuzzer</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="c1"># GPIOピン17に接続されたTonalBuzzerオブジェクトを初期化します</span>
+<span class="n">tb</span> <span class="o">=</span> <span class="n">TonalBuzzer</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>  <span class="c1"># ご使用のセットアップに基づいてこのピン番号を更新します</span>
+
+<span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="n">tune</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ブザーを使用して音楽を演奏します。</span>
+<span class="sd">    :param tune: ノートとその持続時間を表すタプル（ノート、持続時間）のリスト</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">note</span><span class="p">,</span> <span class="n">duration</span> <span class="ow">in</span> <span class="n">tune</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>  <span class="c1"># 現在再生中の音符を出力</span>
+        <span class="n">tb</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>  <span class="c1"># ブザーで音符を演奏</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">duration</span><span class="p">))</span>  <span class="c1"># 音符の持続時間待ち</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>  <span class="c1"># 曲が終わった後に演奏を停止します</span>
+
+<span class="c1"># 音楽チューンをノートと持続時間のシーケンスとして定義します</span>
+<span class="n">tune</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;C#4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;D4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Eb4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;F#4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Eb4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;F#4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;C4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;F#4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Bb4&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;A4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;D4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)]</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">play</span><span class="p">(</span><span class="n">tune</span><span class="p">)</span>  <span class="c1"># 演奏を開始するためにplay関数を実行します</span>
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># キーボード割り込みをスムーズに処理</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p><strong>コードの説明</strong></p>
+<ol class="arabic">
+<li><p>これらの行はブザーの制御のために <code class="docutils literal notranslate"><span class="pre">gpiozero</span></code> ライブラリから <code class="docutils literal notranslate"><span class="pre">TonalBuzzer</span></code> クラス、待機を作成するために <code class="docutils literal notranslate"><span class="pre">time</span></code> モジュールから <code class="docutils literal notranslate"><span class="pre">sleep</span></code> 関数をインポートします。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">TonalBuzzer</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+</pre></div>
+</div>
+</li>
+<li><p>この行はGPIOピン17に接続された <code class="docutils literal notranslate"><span class="pre">TonalBuzzer</span></code> オブジェクトを初期化します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># GPIOピン17に接続されたTonalBuzzerオブジェクトを初期化します</span>
+<span class="n">tb</span> <span class="o">=</span> <span class="n">TonalBuzzer</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>  <span class="c1"># お使いのセットアップに基づいてこのピン番号を更新してください</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">play</span></code> 関数は、音楽のノートとその持続時間を表すタプルのリストを繰り返し処理します。各ノートは指定された持続時間だけ演奏され、曲が終了するとブザーが停止します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="n">tune</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ブザーを使って音楽を演奏します。</span>
+<span class="sd">    :param tune: ノートとその持続時間を表すタプル（ノート、持続時間）のリスト。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">note</span><span class="p">,</span> <span class="n">duration</span> <span class="ow">in</span> <span class="n">tune</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>  <span class="c1"># 現在演奏されているノートを出力</span>
+        <span class="n">tb</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>  <span class="c1"># ブザーでノートを演奏</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">duration</span><span class="p">))</span>  <span class="c1"># ノートの持続時間分遅延</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>  <span class="c1"># 曲が完了した後に演奏を停止</span>
+</pre></div>
+</div>
+</li>
+<li><p>メロディは音符（周波数）と持続時間（秒）のシーケンスとして定義されています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ノートと持続時間（秒）のシーケンスとして音楽のメロディを定義します</span>
+<span class="n">tune</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;C#4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;D4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Eb4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;F#4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Eb4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;F#4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;C4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;F#4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Bb4&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;A4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;G4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;D4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E4&#39;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)]</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">play(tune)</span></code> 関数は <code class="docutils literal notranslate"><span class="pre">try</span></code> ブロック内で呼び出されます。 <code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> （Ctrl+Cのような）はプログラムを正常に停止します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">play</span><span class="p">(</span><span class="n">tune</span><span class="p">)</span>  <span class="c1"># 曲を演奏を開始するためにplay関数を実行します</span>
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Ctrl+Cのようなキーボード割り込みを処理してプログラムをきれいに終了します</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pi5_1.2.1_active_buzzer_python.html" class="btn btn-neutral float-left" title="1.2.1 アクティブブザー" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pi5_1.3.1_motor_python.html" class="btn btn-neutral float-right" title="1.3.1 モーター" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

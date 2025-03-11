@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.4 Affichage 7 segments &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="1.1.5 Afficheur 7 segments à 4 chiffres" href="pi5_1.1.5_4-Digit_7-segment_display_python.html" />
+    <link rel="prev" title="1.1.3 Graphique à LED" href="pi5_1.1.3_led_bar_graph_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_1.1.4_7-segment_display_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Pour le Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Jouez avec Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Vérifiez l’installation de <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_output_python.html">Output</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="pi5_output_python.html#affichages">1.1 Affichages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_output_python.html#son">1.2 Son</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_output_python.html#controleurs">1.3 Contrôleurs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_extension_python.html">Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Play with C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Pour le Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Jouez avec Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_output_python.html">Output</a></li>
+      <li class="breadcrumb-item active">1.1.4 Affichage 7 segments</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_1.1.4_7-segment_display_python.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans le monde du Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez les problèmes après-vente et relevez les défis techniques grâce à notre communauté et notre équipe.</p></li>
+<li><p><strong>Apprendre &amp; Partager</strong> : Échangez des astuces et des tutoriels pour développer vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Accédez en avant-première aux nouvelles annonces de produits.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Bénéficiez de réductions exclusives sur nos produits les plus récents.</p></li>
+<li><p><strong>Promotions festives et cadeaux</strong> : Participez à des promotions spéciales et à des tirages au sort.</p></li>
+</ul>
+<p>👉 Prêt à explorer et créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="affichage-7-segments">
+<span id="py-pi5"></span><h1>1.1.4 Affichage 7 segments<a class="headerlink" href="pi5_1.1.4_7-segment_display_python.html#affichage-7-segments" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="pi5_1.1.4_7-segment_display_python.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>Nous allons essayer de contrôler un afficheur 7 segments pour afficher des chiffres
+de 0 à 9 et des lettres de A à F.</p>
+</section>
+<section id="composants-necessaires">
+<h2>Composants nécessaires<a class="headerlink" href="pi5_1.1.4_7-segment_display_python.html#composants-necessaires" title="Lien vers cette rubrique"></a></h2>
+<p>Pour ce projet, nous aurons besoin des composants suivants.</p>
+<img alt="../_images/1.1.4_7_segment_list.png" src="../_images/1.1.4_7_segment_list.png" />
+<br/></section>
+<section id="schema-de-cablage">
+<h2>Schéma de câblage<a class="headerlink" href="pi5_1.1.4_7-segment_display_python.html#schema-de-cablage" title="Lien vers cette rubrique"></a></h2>
+<p>Connectez la broche ST_CP du 74HC595 au GPIO18 du Raspberry Pi, SH_CP au GPIO27,
+DS au GPIO17, et les sorties parallèles aux 8 segments de l’afficheur 7 segments.</p>
+<p>Les données sont entrées sur la broche DS du registre à décalage lorsque SH_CP
+(l’entrée d’horloge du registre) est en montée, et sont envoyées au registre de
+mémoire lorsque ST_CP (l’entrée d’horloge de la mémoire) est en montée.</p>
+<p>Vous pouvez ensuite contrôler les états de SH_CP et ST_CP via les GPIO du Raspberry Pi
+pour transformer l’entrée de données série en sortie de données parallèles, afin
+d’économiser les GPIO du Raspberry Pi et piloter l’afficheur.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>27</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/1.1.4_7_segment_schematic.png" src="../_images/1.1.4_7_segment_schematic.png" />
+</section>
+<section id="procedure-experimentale">
+<h2>Procédure expérimentale<a class="headerlink" href="pi5_1.1.4_7-segment_display_python.html#procedure-experimentale" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1 :</strong> Construisez le circuit.</p>
+<img alt="../_images/1.1.4_7-Segment_circuit.png" src="../_images/1.1.4_7-Segment_circuit.png" />
+<p><strong>Étape 2 :</strong> Accédez au dossier contenant le code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Étape 3 :</strong> Exécutez le programme.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.1.4_7</span><span class="o">-</span><span class="n">Segment</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Après l’exécution du code, vous verrez l’afficheur 7 segments afficher les chiffres de 0 à 9, puis les lettres de A à F.</p>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>Si un message d’erreur apparaît tel que <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code>, veuillez consulter <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">Si gpiozero ne fonctionne pas.</span></a>.</p>
+</div>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vous pouvez <strong>Modifier/Réinitialiser/Copier/Exécuter/Arrêter</strong> le code ci-dessous. Mais avant cela, vous devez accéder au chemin source du code comme <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python-pi5</span></code>. Après modification, vous pouvez l’exécuter directement pour observer le résultat. Une fois vérifié qu’il n’y a pas de problème, utilisez le bouton Copier pour copier le code modifié, puis ouvrez le code source dans le Terminal via la commande <code class="docutils literal notranslate"><span class="pre">nano</span></code> et collez-le.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="c1"># Broches GPIO connectées au registre à décalage 74HC595</span>
+<span class="n">SDI</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>   <span class="c1"># Entrée de données série</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>  <span class="c1"># Entrée d&#39;horloge de la mémoire (registre)</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span> <span class="c1"># Horloge de décalage du registre</span>
+
+<span class="c1"># Codes hexadécimaux pour un afficheur 7 segments à cathode commune</span>
+<span class="n">segCode</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mh">0x3f</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">,</span> <span class="mh">0x5b</span><span class="p">,</span> <span class="mh">0x4f</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0x6d</span><span class="p">,</span> <span class="mh">0x7d</span><span class="p">,</span>
+    <span class="mh">0x07</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">,</span> <span class="mh">0x6f</span><span class="p">,</span> <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0x7c</span><span class="p">,</span> <span class="mh">0x39</span><span class="p">,</span> <span class="mh">0x5e</span><span class="p">,</span> <span class="mh">0x79</span><span class="p">,</span> <span class="mh">0x71</span>
+<span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Décale 8 bits de données dans le 74HC595</span>
+    <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="c1"># Définit SDI à haut ou bas selon le bit de donnée</span>
+        <span class="n">SDI</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">bit</span><span class="p">)</span>
+        <span class="c1"># Déclenche l&#39;horloge du registre de décalage</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="c1"># Verrouille les données en déclenchant l&#39;horloge de mémoire</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">display_all_on</span><span class="p">():</span>
+    <span class="c1"># Fonction pour allumer tous les segments (afficheur 7 segments à cathode commune)</span>
+    <span class="n">all_on_code</span> <span class="o">=</span> <span class="mh">0x3f</span>
+    <span class="n">hc595_shift</span><span class="p">(</span><span class="n">all_on_code</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Displaying all segments on&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Affiche chaque chiffre hexadécimal sur l&#39;afficheur 7 segments</span>
+        <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">segCode</span><span class="p">:</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>  <span class="c1"># Transfère le code dans le 74HC595</span>
+            <span class="c1"># Affiche le code segmenté</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Displaying segCode[</span><span class="si">{</span><span class="n">segCode</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="si">}</span><span class="s2">]: 0x</span><span class="si">{</span><span class="n">code</span><span class="si">:</span><span class="s2">02X</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># Pause entre chaque affichage</span>
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Gère proprement l&#39;interruption du script (ex. Ctrl+C)</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p><strong>Explication du code</strong></p>
+<ol class="arabic">
+<li><p>Ce snippet importe les classes nécessaires au projet. <code class="docutils literal notranslate"><span class="pre">OutputDevice</span></code> de <code class="docutils literal notranslate"><span class="pre">gpiozero</span></code> est utilisé pour contrôler les composants matériels connectés aux broches GPIO, et <code class="docutils literal notranslate"><span class="pre">sleep</span></code> de <code class="docutils literal notranslate"><span class="pre">time</span></code> est utilisé pour ajouter des délais.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+</pre></div>
+</div>
+</li>
+<li><p>SDI, RCLK et SRCLK correspondent respectivement aux broches d’entrée de données série, d’horloge mémoire et d’horloge de décalage du 74HC595.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Broches GPIO connectées au registre à décalage 74HC595</span>
+<span class="n">SDI</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>   <span class="c1"># Entrée de données série</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>  <span class="c1"># Entrée d&#39;horloge de la mémoire (registre)</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span> <span class="c1"># Horloge de décalage du registre</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">segCode</span></code> est un tableau contenant les codes hexadécimaux pour chaque chiffre à afficher sur l’afficheur 7 segments.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Codes hexadécimaux pour un afficheur 7 segments à cathode commune</span>
+<span class="n">segCode</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mh">0x3f</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">,</span> <span class="mh">0x5b</span><span class="p">,</span> <span class="mh">0x4f</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0x6d</span><span class="p">,</span> <span class="mh">0x7d</span><span class="p">,</span>
+    <span class="mh">0x07</span><span class="p">,</span> <span class="mh">0x7f</span><span class="p">,</span> <span class="mh">0x6f</span><span class="p">,</span> <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0x7c</span><span class="p">,</span> <span class="mh">0x39</span><span class="p">,</span> <span class="mh">0x5e</span><span class="p">,</span> <span class="mh">0x79</span><span class="p">,</span> <span class="mh">0x71</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Cette fonction décale 8 bits de données dans le 74HC595. Elle entre chaque bit dans <code class="docutils literal notranslate"><span class="pre">SDI</span></code>, déclenche <code class="docutils literal notranslate"><span class="pre">SRCLK</span></code> pour décaler le bit, puis utilise <code class="docutils literal notranslate"><span class="pre">RCLK</span></code> pour verrouiller les données.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Décale 8 bits de données dans le 74HC595</span>
+    <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="c1"># Définit SDI à haut ou bas selon le bit de donnée</span>
+        <span class="n">SDI</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">bit</span><span class="p">)</span>
+        <span class="c1"># Déclenche l&#39;horloge du registre de décalage</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="c1"># Verrouille les données en déclenchant l&#39;horloge de mémoire</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+    <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Cette fonction allume tous les segments de l’afficheur en envoyant un code spécifique à <code class="docutils literal notranslate"><span class="pre">hc595_shift</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display_all_on</span><span class="p">():</span>
+    <span class="c1"># Fonction pour allumer tous les segments (afficheur 7 segments à cathode commune)</span>
+    <span class="n">all_on_code</span> <span class="o">=</span> <span class="mh">0x3f</span>
+    <span class="n">hc595_shift</span><span class="p">(</span><span class="n">all_on_code</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Displaying all segments on&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>La boucle principale envoie chaque code de <code class="docutils literal notranslate"><span class="pre">segCode</span></code> à l’afficheur, avec un délai entre chaque affichage.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Affiche chaque chiffre hexadécimal sur l&#39;afficheur 7 segments</span>
+        <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">segCode</span><span class="p">:</span>
+            <span class="n">hc595_shift</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>  <span class="c1"># Transfère le code dans le 74HC595</span>
+            <span class="c1"># Affiche le code segmenté</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Displaying segCode[</span><span class="si">{</span><span class="n">segCode</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="si">}</span><span class="s2">]: 0x</span><span class="si">{</span><span class="n">code</span><span class="si">:</span><span class="s2">02X</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># Pause entre chaque affichage</span>
+</pre></div>
+</div>
+</li>
+<li><p>Cette partie du code gère proprement l’interruption du script (ex. Ctrl+C).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Gère proprement l&#39;interruption du script (ex. Ctrl+C)</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="pi5_1.1.3_led_bar_graph_python.html" class="btn btn-neutral float-left" title="1.1.3 Graphique à LED" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="pi5_1.1.5_4-Digit_7-segment_display_python.html" class="btn btn-neutral float-right" title="1.1.5 Afficheur 7 segments à 4 chiffres" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

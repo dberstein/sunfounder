@@ -1,0 +1,458 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2.4 PIR &mdash; SunFounder davinci-kit-for-raspberry-pi  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=245627df"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=70a09b52"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/de/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="2.2.5 Ultraschallsensormodul" href="2.2.5_ultrasonic_sensor_module.html" />
+    <link rel="prev" title="2.2.3 DHT-11" href="2.2.3_dht-11.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-de" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/2.2.4_pir.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Komponentenliste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">GPIO-Erweiterungskarte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Laden Sie die Kode herunter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/preparation.html">Installation und Einrichtung des Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Für Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Bibliotheken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_output.html">1 Ausgabe</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="2_input.html">2 Eingabe</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="2.1.1_button.html">2.1.1 Button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.2_slide&#32;Switch.html">2.1.2 Schiebeschalter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.3_tilt_switch.html">2.1.3 Neigungsschalter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.4_potentiometer.html">2.1.4 Potentiometer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.5_keypad.html">2.1.5 Tastatur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.6_joystick.html">2.1.6 Joystick</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.1_photoresistor.html">2.2.1 Fotowiderstand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.2_thermistor.html">2.2.2 Thermistor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.3_dht-11.html">2.2.3 DHT-11</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="2.2.4_pir.html#">2.2.4 PIR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="2.2.4_pir.html#einfuhrung">Einführung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.4_pir.html#komponenten">Komponenten</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.4_pir.html#prinzip">Prinzip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.4_pir.html#schematische-darstellung">Schematische Darstellung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.4_pir.html#experimentelle-verfahren">Experimentelle Verfahren</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.4_pir.html#phanomen-bild">Phänomen Bild</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html">2.2.5 Ultraschallsensormodul</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.6_mpu6050_module.html">2.2.6 MPU6050-Modul</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.7_mfrc522_rfid_module.html">2.2.7 MFRC522 RFID-Modul</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3_extension.html">3 Erweiterung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Spielen Sie mit der Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Spiel mit Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Spielen mit Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Python Videokurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Thank You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a></li>
+          <li class="breadcrumb-item"><a href="2_input.html">2 Eingabe</a></li>
+      <li class="breadcrumb-item active">2.2.4 PIR</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/2.2.4_pir.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Hallo und willkommen in der SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.</p>
+<p><strong>Warum beitreten?</strong></p>
+<ul class="simple">
+<li><p><strong>Expertenunterstützung</strong>: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.</p></li>
+<li><p><strong>Lernen &amp; Teilen</strong>: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.</p></li>
+<li><p><strong>Exklusive Vorschauen</strong>: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.</p></li>
+<li><p><strong>Spezialrabatte</strong>: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.</p></li>
+<li><p><strong>Festliche Aktionen und Gewinnspiele</strong>: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.</p></li>
+</ul>
+<p>👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [<a href="https://bit.ly/raphaelkit " target="_blank">hier</a>] und treten Sie heute bei!</p>
+</div>
+<section id="pir">
+<h1>2.2.4 PIR<a class="headerlink" href="2.2.4_pir.html#pir" title="Link to this heading"></a></h1>
+<section id="einfuhrung">
+<h2>Einführung<a class="headerlink" href="2.2.4_pir.html#einfuhrung" title="Link to this heading"></a></h2>
+<p>In diesem Projekt werden wir ein Gerät unter Verwendung der pyroelektrischen Infrarotsensoren des menschlichen Körpers herstellen. Wenn sich jemand der LED nähert, leuchtet die LED automatisch auf. Wenn nicht, geht das Licht aus. Dieser Infrarot-Bewegungssensor ist ein Typ Sensor, der das von Mensch und Tier emittierte Infrarot erfassen kann.</p>
+</section>
+<section id="komponenten">
+<h2>Komponenten<a class="headerlink" href="2.2.4_pir.html#komponenten" title="Link to this heading"></a></h2>
+<img alt="_images/list_2.2.4_pir.png" src="_images/list_2.2.4_pir.png" />
+</section>
+<section id="prinzip">
+<h2>Prinzip<a class="headerlink" href="2.2.4_pir.html#prinzip" title="Link to this heading"></a></h2>
+<p>Der PIR-Sensor erfasst Infrarot-Wärmestrahlung,
+mit der das Vorhandensein von Organismen erfasst werden kann, die Infrarot-Wärmestrahlung emittieren.</p>
+<p>Der PIR-Sensor ist in zwei Steckplätze unterteilt,
+die an einen Differenzverstärker angeschlossen sind.
+Wenn sich ein stationäres Objekt vor dem Sensor befindet,
+empfangen die beiden Schlitze die gleiche Strahlungsmenge und der Ausgang ist Null.
+Wenn sich ein sich bewegendes Objekt vor dem Sensor befindet,
+empfängt einer der Schlitze mehr Strahlung als der andere,
+wodurch der Ausgang stark oder niedrig schwankt.
+Diese Änderung der Ausgangsspannung ist ein Ergebnis der Bewegungserkennung.</p>
+<a class="reference internal image-reference" href="_images/image211.png"><img alt="_images/image211.png" src="_images/image211.png" style="width: 200px;" />
+</a>
+<p>Nach dem Verdrahten des Sensormoduls erfolgt eine einminütige Initialisierung. Während der Initialisierung wird das Modul in Intervallen 0 bis 3 Mal ausgegeben. Dann befindet sich das Modul im Standby-Modus. Bitte halten Sie die Interferenz von Lichtquellen und anderen Quellen von der Oberfläche des Moduls fern, um Fehlfunktionen durch das Störsignal zu vermeiden. Und Sie sollten das Modul besser ohne zu viel Wind verwenden, da der Wind auch den Sensor stören kann.</p>
+<a class="reference internal image-reference" href="_images/image212.png"><img alt="_images/image212.png" src="_images/image212.png" style="width: 400px;" />
+</a>
+<p><strong>Abstandseinstellung</strong></p>
+<p>Durch Drehen des Knopfes des Potentiometers zur Entfernungseinstellung im Uhrzeigersinn vergrößert sich der Bereich der Erfassungsentfernung und der maximale Erfassungsentfernungsbereich beträgt etwa 0 bis 7 Meter. Wenn Sie ihn gegen den Uhrzeigersinn drehen, verringert sich die Reichweite der Erfassungsentfernung, und die minimale Reichweite der Erfassungsentfernung beträgt etwa 0 bis 3 Meter.</p>
+<p><strong>Verzögerungseinstellung</strong></p>
+<p>Drehen Sie die Taste des Potentiometers für die Verzögerungseinstellung im Uhrzeigersinn. Sie können auch sehen, wie die Erfassungsverzögerung zunimmt. Das Maximum der Erfassungsverzögerung kann bis zu 300 s erreichen. Im Gegenteil, wenn Sie es gegen den Uhrzeigersinn drehen, können Sie die Verzögerung um mindestens 5 Sekunden verkürzen.</p>
+<p>Zwei Triggermodus: (Auswahl verschiedener Modus mit der Überbrückungskappe).</p>
+<ul class="simple">
+<li><p><strong>H:</strong> Wiederholbarer Triggermodus, nachdem der menschliche Körper erfasst wurde, gibt das Modul einen hohen Niveau aus. Wenn während der nachfolgenden Verzögerungszeit jemand den Erfassungsbereich betritt, bleibt der Ausgang auf dem hohen Niveau.</p></li>
+<li><p><strong>L:</strong> Nicht wiederholbarer Triggermodus, gibt einen hohen Pegel aus, wenn der menschliche Körper erfasst wird. Nach der Verzögerung wechselt der Ausgang automatisch von High- auf Low-Pegel.</p></li>
+</ul>
+</section>
+<section id="schematische-darstellung">
+<h2>Schematische Darstellung<a class="headerlink" href="2.2.4_pir.html#schematische-darstellung" title="Link to this heading"></a></h2>
+<img alt="_images/image327.png" src="_images/image327.png" />
+</section>
+<section id="experimentelle-verfahren">
+<h2>Experimentelle Verfahren<a class="headerlink" href="2.2.4_pir.html#experimentelle-verfahren" title="Link to this heading"></a></h2>
+<p>Schritt 1: Bauen Sie die Schaltung auf.</p>
+<a class="reference internal image-reference" href="_images/image214.png"><img alt="_images/image214.png" src="_images/image214.png" style="width: 800px;" />
+</a>
+<section id="fur-benutzer-in-c-sprache">
+<h3>Für Benutzer in C-Sprache<a class="headerlink" href="2.2.4_pir.html#fur-benutzer-in-c-sprache" title="Link to this heading"></a></h3>
+<p>Schritt 2: Gehen Sie zum Ordner der Kode.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">2.2.4</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Schritt 3: Kompilieren Sie die Kode.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">2.2.4</span><span class="n">_PIR</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p>Schritt 4: Führen Sie die ausführbare Datei aus.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>After the code runs, PIR detects surroundings and let RGB LED glow yellow if it senses someone walking by. There are two potentiometers on the PIR module: one is to adjust sensitivity and the other is to adjust the detection distance. To make the PIR module work better, you You need to turn both of them counterclockwise to the end.</p>
+<img alt="_images/PIR_TTE.png" src="_images/PIR_TTE.png" />
+<p><strong>Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;softPwm.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#define uchar unsigned char</span>
+
+<span class="cp">#define pirPin    0     </span><span class="c1">//the pir connect to GPIO0</span>
+<span class="cp">#define redPin    1</span>
+<span class="cp">#define greenPin  2</span>
+<span class="cp">#define bluePin   3</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">ledInit</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+<span class="w">    </span><span class="n">softPwmCreate</span><span class="p">(</span><span class="n">redPin</span><span class="p">,</span><span class="w">  </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="n">softPwmCreate</span><span class="p">(</span><span class="n">greenPin</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="n">softPwmCreate</span><span class="p">(</span><span class="n">bluePin</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ledColorSet</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">r_val</span><span class="p">,</span><span class="w"> </span><span class="n">uchar</span><span class="w"> </span><span class="n">g_val</span><span class="p">,</span><span class="w"> </span><span class="n">uchar</span><span class="w"> </span><span class="n">b_val</span><span class="p">){</span>
+<span class="w">    </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">redPin</span><span class="p">,</span><span class="w">   </span><span class="n">r_val</span><span class="p">);</span>
+<span class="w">    </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">greenPin</span><span class="p">,</span><span class="w"> </span><span class="n">g_val</span><span class="p">);</span>
+<span class="w">    </span><span class="n">softPwmWrite</span><span class="p">(</span><span class="n">bluePin</span><span class="p">,</span><span class="w">  </span><span class="n">b_val</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pir_val</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span><span class="w"> </span><span class="c1">//when initialize wiring failed,print message to screen</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">ledInit</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">pirPin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">    </span><span class="n">pir_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">pirPin</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">pir_val</span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"> </span><span class="c1">//if read pir is HIGH level</span>
+<span class="w">            </span><span class="n">ledColorSet</span><span class="p">(</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0x00</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ledColorSet</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0xff</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Code Erklärung</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">ledInit</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ledColorSet</span><span class="p">(</span><span class="n">uchar</span><span class="w"> </span><span class="n">r_val</span><span class="p">,</span><span class="w"> </span><span class="n">uchar</span><span class="w"> </span><span class="n">g_val</span><span class="p">,</span><span class="w"> </span><span class="n">uchar</span><span class="w"> </span><span class="n">b_val</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Mit dieser Kode wird die Farbe der RGB-LED eingestellt.
+Weitere Informationen finden Sie unter <a class="reference internal" href="c_pi5/1.1.2_rgb_led.html#py-rgb-led"><span class="std std-ref">1.1.2 RGB-LED</span></a> for more details.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pir_val</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">//……</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">pirPin</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">    </span><span class="n">pir_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">pirPin</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">pir_val</span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span><span class="w"> </span><span class="c1">//if read pir is HIGH level</span>
+<span class="w">            </span><span class="n">ledColorSet</span><span class="p">(</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0x00</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ledColorSet</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0xff</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Wenn PIR das menschliche Infrarotspektrum erkennt, sendet die RGB-LED das gelbe Licht aus. Wenn nicht, wird das blaue Licht ausgesendet.</p>
+</section>
+<section id="fur-python-sprachbenutzer">
+<h3>Für Python-Sprachbenutzer<a class="headerlink" href="2.2.4_pir.html#fur-python-sprachbenutzer" title="Link to this heading"></a></h3>
+<p>Schritt 2: Gehen Sie zum Ordner der Kode.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Schritt 3: Führen Sie die ausführbare Datei aus.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">2.2.4</span><span class="n">_PIR</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>After the code runs, PIR detects surroundings and let RGB LED glow yellow if it senses someone walking by.
+There are two potentiometers on the PIR module:
+one is to adjust sensitivity and the other is to adjust the detection distance.
+To make the PIR module work better, you You need to turn both of them counterclockwise to the end.</p>
+<img alt="_images/PIR_TTE.png" src="_images/PIR_TTE.png" />
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Sie können den folgenden Code <strong>Ändern/Zurücksetzen/Kopieren/Ausführen/Stoppen</strong> . Zuvor müssen Sie jedoch zu einem Quellcodepfad wie <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code> gehen.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">rgbPins</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Red&#39;</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">:</span><span class="mi">27</span><span class="p">,</span> <span class="s1">&#39;Blue&#39;</span><span class="p">:</span><span class="mi">22</span><span class="p">}</span>
+<span class="n">pirPin</span> <span class="o">=</span> <span class="mi">17</span>    <span class="c1"># the pir connect to pin17</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">p_R</span><span class="p">,</span> <span class="n">p_G</span><span class="p">,</span> <span class="n">p_B</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>          <span class="c1"># Set the GPIO modes to BCM Numbering</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">pirPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>    <span class="c1"># Set pirPin to input</span>
+    <span class="c1"># Set all LedPin&#39;s mode to output and initial level to High(3.3v)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rgbPins</span><span class="p">:</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">rgbPins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+
+    <span class="c1"># Set all led as pwm channel and frequece to 2KHz</span>
+    <span class="n">p_R</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">rgbPins</span><span class="p">[</span><span class="s1">&#39;Red&#39;</span><span class="p">],</span> <span class="mi">2000</span><span class="p">)</span>
+    <span class="n">p_G</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">rgbPins</span><span class="p">[</span><span class="s1">&#39;Green&#39;</span><span class="p">],</span> <span class="mi">2000</span><span class="p">)</span>
+    <span class="n">p_B</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">rgbPins</span><span class="p">[</span><span class="s1">&#39;Blue&#39;</span><span class="p">],</span> <span class="mi">2000</span><span class="p">)</span>
+
+    <span class="c1"># Set all begin with value 0</span>
+    <span class="n">p_R</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">p_G</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">p_B</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Define a MAP function for mapping values.  Like from 0~255 to 0~100</span>
+<span class="k">def</span> <span class="nf">MAP</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">in_min</span><span class="p">,</span> <span class="n">in_max</span><span class="p">,</span> <span class="n">out_min</span><span class="p">,</span> <span class="n">out_max</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">out_max</span> <span class="o">-</span> <span class="n">out_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">in_max</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">out_min</span>
+
+<span class="c1"># Define a function to set up colors</span>
+<span class="k">def</span> <span class="nf">setColor</span><span class="p">(</span><span class="n">color</span><span class="p">):</span>
+<span class="c1"># configures the three LEDs&#39; luminance with the inputted color value .</span>
+    <span class="c1"># Devide colors from &#39;color&#39; veriable</span>
+    <span class="n">R_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">color</span> <span class="o">&amp;</span> <span class="mh">0xFF0000</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span>
+    <span class="n">G_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">color</span> <span class="o">&amp;</span> <span class="mh">0x00FF00</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span>
+    <span class="n">B_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">color</span> <span class="o">&amp;</span> <span class="mh">0x0000FF</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span>
+    <span class="c1"># Map color value from 0~255 to 0~100</span>
+    <span class="n">R_val</span> <span class="o">=</span> <span class="n">MAP</span><span class="p">(</span><span class="n">R_val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">G_val</span> <span class="o">=</span> <span class="n">MAP</span><span class="p">(</span><span class="n">G_val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">B_val</span> <span class="o">=</span> <span class="n">MAP</span><span class="p">(</span><span class="n">B_val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+    <span class="c1">#Assign the mapped duty cycle value to the corresponding PWM channel to change the luminance.</span>
+    <span class="n">p_R</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">R_val</span><span class="p">)</span>
+    <span class="n">p_G</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">G_val</span><span class="p">)</span>
+    <span class="n">p_B</span><span class="o">.</span><span class="n">ChangeDutyCycle</span><span class="p">(</span><span class="n">B_val</span><span class="p">)</span>
+    <span class="c1">#print (&quot;color_msg: R_val = %s, G_val = %s,     B_val = %s&quot;%(R_val, G_val, B_val))</span>
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">pir_val</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">pirPin</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pir_val</span><span class="o">==</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">:</span>
+            <span class="n">setColor</span><span class="p">(</span><span class="mh">0xFFFF00</span><span class="p">)</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="n">setColor</span><span class="p">(</span><span class="mh">0x0000FF</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="n">p_R</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">p_G</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">p_B</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>                     <span class="c1"># Release resource</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>     <span class="c1"># Program start from here</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">loop</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>  <span class="c1"># When &#39;Ctrl+C&#39; is pressed, the child program destroy() will be  executed.</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Code Erklärung</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rgbPins</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Red&#39;</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">:</span><span class="mi">27</span><span class="p">,</span> <span class="s1">&#39;Blue&#39;</span><span class="p">:</span><span class="mi">22</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">p_R</span><span class="p">,</span> <span class="n">p_G</span><span class="p">,</span> <span class="n">p_B</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+    <span class="c1"># ……</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rgbPins</span><span class="p">:</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">rgbPins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+    <span class="n">p_R</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">rgbPins</span><span class="p">[</span><span class="s1">&#39;Red&#39;</span><span class="p">],</span> <span class="mi">2000</span><span class="p">)</span>
+    <span class="n">p_G</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">rgbPins</span><span class="p">[</span><span class="s1">&#39;Green&#39;</span><span class="p">],</span> <span class="mi">2000</span><span class="p">)</span>
+    <span class="n">p_B</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">rgbPins</span><span class="p">[</span><span class="s1">&#39;Blue&#39;</span><span class="p">],</span> <span class="mi">2000</span><span class="p">)</span>
+    <span class="n">p_R</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">p_G</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">p_B</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">MAP</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">in_min</span><span class="p">,</span> <span class="n">in_max</span><span class="p">,</span> <span class="n">out_min</span><span class="p">,</span> <span class="n">out_max</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">out_max</span> <span class="o">-</span> <span class="n">out_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">in_max</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">out_min</span>
+
+<span class="k">def</span> <span class="nf">setColor</span><span class="p">(</span><span class="n">color</span><span class="p">):</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Mit dieser Kode wird die Farbe der RGB-LED eingestellt.
+Weitere Informationen finden Sie unter <a class="reference internal" href="c_pi5/1.1.2_rgb_led.html#py-rgb-led"><span class="std std-ref">1.1.2 RGB-LED</span></a> .</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">pir_val</span> <span class="o">=</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">pirPin</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pir_val</span><span class="o">==</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">:</span>
+            <span class="n">setColor</span><span class="p">(</span><span class="mh">0xFFFF00</span><span class="p">)</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="n">setColor</span><span class="p">(</span><span class="mh">0x0000FF</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Wenn PIR das menschliche Infrarotspektrum erkennt, sendet die RGB-LED das gelbe Licht aus. Wenn nicht, wird das blaue Licht ausgesendet.</p>
+</section>
+</section>
+<section id="phanomen-bild">
+<h2>Phänomen Bild<a class="headerlink" href="2.2.4_pir.html#phanomen-bild" title="Link to this heading"></a></h2>
+<img alt="_images/image215.jpeg" src="_images/image215.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2.2.3_dht-11.html" class="btn btn-neutral float-left" title="2.2.3 DHT-11" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="2.2.5_ultrasonic_sensor_module.html" class="btn btn-neutral float-right" title="2.2.5 Ultraschallsensormodul" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

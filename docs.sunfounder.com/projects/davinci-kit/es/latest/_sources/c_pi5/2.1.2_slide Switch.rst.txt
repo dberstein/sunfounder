@@ -1,0 +1,204 @@
+.. note::
+
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
+
+    **¿Por qué unirte?**
+
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Accede anticipadamente a anuncios de nuevos productos y vistas previas.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones navideñas.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
+
+2.1.2 Interruptor deslizante
+============================
+
+Introducción
+-----------------
+
+En esta lección, aprenderemos a utilizar un interruptor deslizante. 
+Generalmente, el interruptor deslizante se suelda en la placa de circuito 
+impreso (PCB) como un interruptor de encendido, pero aquí necesitamos 
+insertarlo en la placa de pruebas, por lo que puede no estar fijo. 
+Lo usaremos en la placa de pruebas para demostrar su función.
+
+Componentes
+--------------
+
+.. image:: img/list_2.1.2_slide_switch.png
+
+
+Principio
+------------
+
+**Interruptor deslizante**
+
+.. image:: img/image156.jpeg
+
+Un interruptor deslizante, como su nombre indica, se utiliza para deslizar 
+la barra del interruptor para conectar o romper el circuito, y así cambiar 
+circuitos. Los tipos más comunes son SPDT, SPTT, DPDT, DPTT, etc. El interruptor 
+deslizante se utiliza comúnmente en circuitos de baja tensión. Presenta 
+características de flexibilidad y estabilidad, y se aplica ampliamente en 
+instrumentos eléctricos y juguetes eléctricos.
+
+¿Cómo funciona? Se establece el pin del medio como el fijo. Cuando deslizas 
+el interruptor hacia la izquierda, los dos pines de la izquierda están 
+conectados; cuando lo deslizas hacia la derecha, los dos pines de la derecha 
+están conectados. Así, funciona como un interruptor que conecta o desconecta 
+circuitos. Consulta la figura a continuación:
+
+.. image:: img/image304.png
+
+El símbolo del circuito del interruptor deslizante se muestra a continuación. 
+El pin 2 en la figura se refiere al pin del medio.
+
+.. image:: img/image159.png
+
+
+**Condensador**
+
+El condensador es un componente que tiene la capacidad de almacenar energía en 
+forma de carga eléctrica o de producir una diferencia de potencial (voltaje 
+estático) entre sus placas, similar a una pequeña batería recargable.
+
+Unidades estándar de capacitancia
+
+Microfaradio (μF) 1μF = 1/1,000,000 = 0.000001 = :math:`10^{- 6}` F
+
+Nanofarad (nF) 1nF = 1/1,000,000,000 = 0.000000001 = :math:`10^{- 9}`\ F
+
+Picofarad (pF) 1pF = 1/1,000,000,000,000 = 0.000000000001 = :math:`10^{- 12}`\ F
+
+.. note::
+    Aquí usamos un **condensador 104 (10 x 10\ 4\ PF)**. Al igual que el código 
+    de colores en los resistores, los números en los condensadores ayudan a leer 
+    los valores una vez ensamblados en la placa. Los dos primeros dígitos 
+    representan el valor y el último dígito del número indica el multiplicador. 
+    Así, 104 representa una potencia de 10 x 10 a la 4 (en pF), equivalente a 100 nF.
+
+Diagrama Esquemático
+-----------------------
+
+Conecta el pin del medio del interruptor deslizante al GPIO17, y dos LEDs a los pines 
+GPIO22 y GPIO27 respectivamente. Así, cuando deslices el interruptor, podrás ver 
+los dos LEDs encenderse alternativamente.
+
+.. image:: img/image305.png
+
+
+.. image:: img/image306.png
+
+
+Procedimientos Experimentales
+----------------------------------
+
+**Paso 1:** Construir el circuito.
+
+.. image:: img/image161.png
+    :width: 800
+
+**Paso 2:** Abre el archivo de código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.1.2
+
+**Paso 3:** Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.2_Slider.c -lwiringPi 
+
+**Paso 4:** Ejecuta el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Mientras el código se está ejecutando, conecta el interruptor hacia la izquierda, 
+entonces el LED amarillo se encenderá; hacia la derecha, se encenderá la luz roja.
+
+.. note::
+
+    Si no funciona después de ejecutarlo, o si aparece un mensaje de error: "wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
+
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #define slidePin        0
+    #define led1            3
+    #define led2            2
+
+    int main(void)
+    {
+        // Cuando la inicialización falla, imprime un mensaje en pantalla
+        if(wiringPiSetup() == -1){
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(slidePin, INPUT);
+        pinMode(led1, OUTPUT);
+        pinMode(led2, OUTPUT);
+        while(1){
+            // Interruptor deslizante alto, led1 encendido
+            if(digitalRead(slidePin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+                delay(100);
+            }
+            // Interruptor deslizante bajo, led2 encendido
+            if(digitalRead(slidePin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+                delay(100);
+            }
+        }
+        return 0;
+    }
+
+**Explicación del Código**
+
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 1){
+                digitalWrite(led1, LOW);
+                digitalWrite(led2, HIGH);
+                printf("LED1 on\n");
+        }
+
+Cuando el interruptor se desliza hacia la derecha, el pin del medio y el 
+de la derecha están conectados; la Raspberry Pi lee un nivel alto en el 
+pin del medio, por lo que el LED1 está encendido y el LED2 apagado.
+
+.. code-block:: c
+
+    if(digitalRead(slidePin) == 0){
+                digitalWrite(led2, LOW);
+                digitalWrite(led1, HIGH);
+                printf(".....LED2 on\n");
+            }
+
+Cuando el interruptor se desliza hacia la izquierda, el pin del medio y el 
+de la izquierda están conectados; la Raspberry Pi lee un nivel bajo, por lo 
+que el LED2 está encendido y el LED1 apagado.

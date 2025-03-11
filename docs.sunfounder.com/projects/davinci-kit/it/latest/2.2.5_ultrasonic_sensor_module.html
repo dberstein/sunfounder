@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="it" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2.5 Modulo Sensore a Ultrasuoni &mdash; SunFounder davinci-kit-for-raspberry-pi  documentazione</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=3fd72285"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=0173e136"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/it/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Indice" href="genindex.html" />
+    <link rel="search" title="Cerca" href="search.html" />
+    <link rel="next" title="2.2.6 Modulo MPU6050" href="2.2.6_mpu6050_module.html" />
+    <link rel="prev" title="2.2.4 PIR" href="2.2.4_pir.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-it" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/2.2.5_ultrasonic_sensor_module.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Cerca documenti" aria-label="Cerca documenti" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu di navigazione">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Elenco dei Componenti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">Scheda di Estensione GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Scarica il Codice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Installazione e configurazione di Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Per Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Librerie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_output.html">1 Output</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="2_input.html">2 Ingresso</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="2.1.1_button.html">2.1.1 Pulsante</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.2_slide&#32;Switch.html">2.1.2 Interruttore a Slitta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.3_tilt_switch.html">2.1.3 Interruttore di Inclinazione</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.4_potentiometer.html">2.1.4 Potenziometro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.5_keypad.html">2.1.5 Tastierino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.6_joystick.html">2.1.6 Joystick</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.1_photoresistor.html">2.2.1 Fotoresistore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.2_thermistor.html">2.2.2 Termistore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.3_dht-11.html">2.2.3 DHT-11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.4_pir.html">2.2.4 PIR</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="2.2.5_ultrasonic_sensor_module.html#">2.2.5 Modulo Sensore a Ultrasuoni</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html#introduzione">Introduzione</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html#componenti">Componenti</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html#principio-di-funzionamento">Principio di Funzionamento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html#schema-elettrico">Schema Elettrico</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html#procedura-sperimentale">Procedura Sperimentale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html#immagine-del-fenomeno">Immagine del Fenomeno</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.6_mpu6050_module.html">2.2.6 Modulo MPU6050</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2.7_mfrc522_rfid_module.html">2.2.7 Modulo RFID MFRC522</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3_extension.html">3 Estensioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Gioca con Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Gioca con Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Gioca con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Corso Video Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Grazie</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu navigazione dispositivi mobili" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Naviga tra le pagine">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a></li>
+          <li class="breadcrumb-item"><a href="2_input.html">2 Ingresso</a></li>
+      <li class="breadcrumb-item active">2.2.5 Modulo Sensore a Ultrasuoni</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/2.2.5_ultrasonic_sensor_module.rst.txt" rel="nofollow"> Visualizza sorgente pagina</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.</p>
+<p><strong>Perché unirsi?</strong></p>
+<ul class="simple">
+<li><p><strong>Supporto Esperto</strong>: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.</p></li>
+<li><p><strong>Impara e Condividi</strong>: Scambia consigli e tutorial per migliorare le tue competenze.</p></li>
+<li><p><strong>Anteprime Esclusive</strong>: Accedi in anteprima ai nuovi annunci di prodotti e alle anteprime esclusive.</p></li>
+<li><p><strong>Sconti Speciali</strong>: Approfitta di sconti esclusivi sui nostri prodotti più recenti.</p></li>
+<li><p><strong>Promozioni Festive e Giveaway</strong>: Partecipa a promozioni festive e concorsi a premi.</p></li>
+</ul>
+<p>👉 Pronto a esplorare e creare con noi? Clicca su [<a href="https://bit.ly/raphaelkit " target="_blank">Qui</a>] e unisciti oggi!</p>
+</div>
+<section id="modulo-sensore-a-ultrasuoni">
+<h1>2.2.5 Modulo Sensore a Ultrasuoni<a class="headerlink" href="2.2.5_ultrasonic_sensor_module.html#modulo-sensore-a-ultrasuoni" title="Link to this heading"></a></h1>
+<section id="introduzione">
+<h2>Introduzione<a class="headerlink" href="2.2.5_ultrasonic_sensor_module.html#introduzione" title="Link to this heading"></a></h2>
+<p>Il sensore a ultrasuoni utilizza onde ultrasoniche per rilevare oggetti
+e misurare le distanze con precisione. Emette onde ultrasoniche e le converte
+in segnali elettronici.</p>
+</section>
+<section id="componenti">
+<h2>Componenti<a class="headerlink" href="2.2.5_ultrasonic_sensor_module.html#componenti" title="Link to this heading"></a></h2>
+<img alt="_images/list_2.2.5.png" src="_images/list_2.2.5.png" />
+</section>
+<section id="principio-di-funzionamento">
+<h2>Principio di Funzionamento<a class="headerlink" href="2.2.5_ultrasonic_sensor_module.html#principio-di-funzionamento" title="Link to this heading"></a></h2>
+<p><strong>Ultrasuoni</strong></p>
+<p>Il modulo di rilevamento a ultrasuoni offre una funzione di misurazione senza
+contatto da 2 cm a 400 cm, con una precisione fino a 3 mm. Garantisce un segnale
+stabile entro i 5 m, che si indebolisce gradualmente oltre i 5 m fino a scomparire
+alla distanza di 7 m.</p>
+<p>Il modulo include trasmettitori e ricevitori a ultrasuoni, oltre a un circuito
+di controllo. I principi di funzionamento sono i seguenti:</p>
+<p>(1) Utilizzare un flip-flop IO per generare un segnale di livello alto di almeno
+10us.</p>
+<p>(2) Il modulo invia automaticamente otto impulsi a 40kHz e rileva l’eventuale
+ritorno di un segnale a impulso.</p>
+<p>(3) Se il segnale ritorna, il livello alto di output IO indica la durata del
+tempo trascorso tra la trasmissione e il ritorno dell’onda ultrasonica.
+La formula per calcolare la distanza è: distanza misurata = (tempo di livello
+alto x velocità del suono (340 m/s)) / 2.</p>
+<a class="reference internal image-reference" href="_images/image217.png"><img alt="_images/image217.png" src="_images/image217.png" style="width: 200px;" />
+</a>
+<a class="reference internal image-reference" href="_images/image328.png"><img alt="_images/image328.png" src="_images/image328.png" style="width: 500px;" />
+</a>
+<p>Il diagramma temporale è mostrato di seguito. È sufficiente fornire un breve
+impulso di 10us all’ingresso trigger per avviare la misurazione. Il modulo
+emetterà una raffica di 8 cicli di ultrasuoni a 40 kHz e alzerà il segnale
+di eco. È possibile calcolare la distanza in base all’intervallo di tempo tra
+l’invio del segnale di trigger e la ricezione del segnale di eco.</p>
+<p>Formula: us / 58 = centimetri o us / 148 = pollici; oppure: distanza = tempo
+di livello alto * velocità del suono (340 m/s) / 2. Si consiglia di utilizzare
+un ciclo di misurazione superiore a 60 ms per evitare collisioni di segnale tra
+il trigger e il segnale di eco.</p>
+<a class="reference internal image-reference" href="_images/image218.png"><img alt="_images/image218.png" src="_images/image218.png" style="width: 800px;" />
+</a>
+</section>
+<section id="schema-elettrico">
+<h2>Schema Elettrico<a class="headerlink" href="2.2.5_ultrasonic_sensor_module.html#schema-elettrico" title="Link to this heading"></a></h2>
+<img alt="_images/image329.png" src="_images/image329.png" />
+</section>
+<section id="procedura-sperimentale">
+<h2>Procedura Sperimentale<a class="headerlink" href="2.2.5_ultrasonic_sensor_module.html#procedura-sperimentale" title="Link to this heading"></a></h2>
+<p><strong>Passo 1:</strong> Costruire il circuito.</p>
+<a class="reference internal image-reference" href="_images/image220.png"><img alt="_images/image220.png" src="_images/image220.png" style="width: 800px;" />
+</a>
+<section id="per-utenti-del-linguaggio-c">
+<h3>Per Utenti del Linguaggio C<a class="headerlink" href="2.2.5_ultrasonic_sensor_module.html#per-utenti-del-linguaggio-c" title="Link to this heading"></a></h3>
+<p><strong>Passo 2:</strong> Vai nella cartella del codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">2.2.5</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Passo 3:</strong> Compila il codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">2.2.5</span><span class="n">_Ultrasonic</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Passo 4:</strong> Esegui il file eseguibile.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Dopo aver eseguito il codice, il modulo sensore a ultrasuoni rileverà la
+distanza tra l’ostacolo davanti e il modulo stesso; il valore della distanza
+verrà poi stampato sullo schermo.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Se non funziona dopo l’esecuzione o viene visualizzato un errore che indica: &quot;wiringPi.h: No such file or directory&quot;, fai riferimento a <a class="reference internal" href="faq.html#il-codice-c-non-funziona"><span class="std std-ref">Il codice C non funziona?</span></a>.</p>
+</div>
+<p><strong>Codice</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/time.h&gt;</span>
+
+<span class="cp">#define Trig    4</span>
+<span class="cp">#define Echo    5</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">ultraInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">Echo</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">Trig</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">float</span><span class="w"> </span><span class="nf">disMeasure</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">timeval</span><span class="w"> </span><span class="n">tv1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">timeval</span><span class="w"> </span><span class="n">tv2</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">time1</span><span class="p">,</span><span class="w"> </span><span class="n">time2</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">dis</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">Trig</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">Trig</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">Trig</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">Echo</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+<span class="w">    </span><span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tv1</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">Echo</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+<span class="w">    </span><span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tv2</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">time1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tv1</span><span class="p">.</span><span class="n">tv_sec</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000000</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tv1</span><span class="p">.</span><span class="n">tv_usec</span><span class="p">;</span>
+<span class="w">    </span><span class="n">time2</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">tv2</span><span class="p">.</span><span class="n">tv_sec</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000000</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tv2</span><span class="p">.</span><span class="n">tv_usec</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">dis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)(</span><span class="n">time2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">time1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">34000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">dis</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">dis</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span><span class="w"> </span><span class="c1">//se l&#39;inizializzazione di wiring fallisce, stampa un messaggio a schermo</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">ultraInit</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">dis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">disMeasure</span><span class="p">();</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%0.2f cm</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">dis</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Spiegazione del Codice</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">ultraInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">Echo</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">Trig</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Inizializza il pin del sensore a ultrasuoni; contemporaneamente, imposta
+Echo come ingresso e Trig come uscita.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="nf">disMeasure</span><span class="p">(</span><span class="kt">void</span><span class="p">){};</span>
+</pre></div>
+</div>
+<p>Questa funzione realizza la funzionalità del sensore a ultrasuoni calcolando
+la distanza rilevata dal ritorno dell’eco.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">timeval</span><span class="w"> </span><span class="n">tv1</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">timeval</span><span class="w"> </span><span class="n">tv2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Struct timeval è una struttura utilizzata per memorizzare l’ora corrente.
+La struttura completa è la seguente:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">timeval</span>
+<span class="p">{</span>
+<span class="n">__time_t</span><span class="w"> </span><span class="n">tv_sec</span><span class="p">;</span><span class="w">        </span><span class="cm">/* Secondi. */</span>
+<span class="n">__suseconds_t</span><span class="w"> </span><span class="n">tv_usec</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Microsecondi. */</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Qui, tv_sec rappresenta i secondi trascorsi dall’Epoch nel creare struct timeval.
+Tv_usec indica i microsecondi o una frazione di secondo.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">Trig</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">Trig</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Viene inviato un impulso ultrasonico di 10 µs.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">Echo</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+<span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tv1</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Questo ciclo vuoto garantisce che, quando il segnale di trigger è inviato,
+non ci sia un segnale di eco interferente; poi ottiene l’ora corrente.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">Echo</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+<span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tv2</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Questo ciclo vuoto assicura che il prossimo passaggio non venga eseguito
+finché non viene ricevuto il segnale di eco; successivamente, acquisisce
+l’ora corrente.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">time1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tv1</span><span class="p">.</span><span class="n">tv_sec</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000000</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tv1</span><span class="p">.</span><span class="n">tv_usec</span><span class="p">;</span>
+<span class="n">time2</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">tv2</span><span class="p">.</span><span class="n">tv_sec</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000000</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tv2</span><span class="p">.</span><span class="n">tv_usec</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Converte il tempo memorizzato dalla struct timeval in un tempo totale espresso in microsecondi.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">dis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)(</span><span class="n">time2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">time1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">34000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>La distanza viene calcolata in base all’intervallo di tempo e alla velocità di
+propagazione del suono. La velocità del suono nell’aria è di 34000 cm/s.</p>
+</section>
+<section id="per-gli-utenti-del-linguaggio-python">
+<h3>Per gli Utenti del Linguaggio Python<a class="headerlink" href="2.2.5_ultrasonic_sensor_module.html#per-gli-utenti-del-linguaggio-python" title="Link to this heading"></a></h3>
+<p><strong>Passo 2:</strong> Vai nella cartella del codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Passo 3:</strong> Esegui il file eseguibile.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">2.2.5</span><span class="n">_Ultrasonic</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Dopo l’esecuzione del codice, il modulo sensore a ultrasuoni rileva la
+distanza tra l’ostacolo di fronte e il modulo stesso, quindi il valore
+della distanza verrà stampato sullo schermo.</p>
+<p><strong>Codice</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puoi <strong>Modificare/Reimpostare/Copiare/Eseguire/Interrompere</strong> il codice qui sotto. Tuttavia, prima di fare ciò, è necessario andare al percorso del codice sorgente, come <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">TRIG</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">ECHO</span> <span class="o">=</span> <span class="mi">18</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BOARD</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">TRIG</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">ECHO</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">distance</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">TRIG</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.000002</span><span class="p">)</span>
+
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">TRIG</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.00001</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">TRIG</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+
+    <span class="k">while</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">ECHO</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">time1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">ECHO</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">time2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="n">during</span> <span class="o">=</span> <span class="n">time2</span> <span class="o">-</span> <span class="n">time1</span>
+    <span class="k">return</span> <span class="n">during</span> <span class="o">*</span> <span class="mi">340</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">dis</span> <span class="o">=</span> <span class="n">distance</span><span class="p">()</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Distance: </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">dis</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">loop</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Spiegazione del Codice</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distance</span><span class="p">():</span>
+</pre></div>
+</div>
+<p>Questa funzione è utilizzata per calcolare la distanza rilevata dal sensore
+a ultrasuoni.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">TRIG</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.00001</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">TRIG</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Questo invia un impulso ultrasonico di 10 µs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">ECHO</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">time1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Questo ciclo vuoto garantisce che, quando viene inviato il segnale di trigger,
+non ci sia un segnale di eco interferente; quindi acquisisce l’ora corrente.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">ECHO</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">time2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Questo ciclo vuoto assicura che il prossimo passaggio non venga eseguito finché
+non viene ricevuto il segnale di eco, quindi acquisisce l’ora corrente.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">during</span> <span class="o">=</span> <span class="n">time2</span> <span class="o">-</span> <span class="n">time1</span>
+</pre></div>
+</div>
+<p>Esegue il calcolo dell’intervallo di tempo.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">during</span> <span class="o">*</span> <span class="mi">340</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>La distanza viene calcolata in base all’intervallo di tempo e alla velocità
+di propagazione del suono. La velocità del suono nell’aria è di 340 m/s.</p>
+</section>
+</section>
+<section id="immagine-del-fenomeno">
+<h2>Immagine del Fenomeno<a class="headerlink" href="2.2.5_ultrasonic_sensor_module.html#immagine-del-fenomeno" title="Link to this heading"></a></h2>
+<img alt="_images/image221.jpeg" src="_images/image221.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Piè di pagina">
+        <a href="2.2.4_pir.html" class="btn btn-neutral float-left" title="2.2.4 PIR" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Precedente</a>
+        <a href="2.2.6_mpu6050_module.html" class="btn btn-neutral float-right" title="2.2.6 Modulo MPU6050" accesskey="n" rel="next">Prossimo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, SunFounder.</p>
+  </div>
+
+  Realizzato con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornito da <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

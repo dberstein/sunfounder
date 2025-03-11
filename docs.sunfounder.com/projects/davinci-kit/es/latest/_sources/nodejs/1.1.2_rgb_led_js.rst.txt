@@ -1,0 +1,177 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el apasionante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
+
+    **¿Por qué unirte?**
+
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+1.1.2 LED RGB
+=============
+
+Introducción
+------------
+
+En este proyecto, aprenderemos a controlar un LED RGB para que muestre varios colores.
+
+Componentes
+--------------
+
+.. image:: img/list_rgb_led.png
+    :align: center
+
+Diagrama del Circuito
+-------------------------
+
+Después de conectar los pines de R, G y B a una resistencia limitadora de 
+corriente, conéctalos a los GPIO17, GPIO18 y GPIO27 respectivamente. El pin 
+más largo (GND) del LED se conecta a GND en la Raspberry Pi. Cuando los tres 
+pines reciben diferentes valores PWM, el LED RGB mostrará distintos colores.
+
+.. image:: img/rgb_led_schematic.png
+
+Procedimiento Experimental
+-----------------------------
+
+**Paso 1:** Construye el circuito.
+
+.. image:: img/image61.png
+   :width: 6.59097in
+   :height: 4.29722in
+
+**Paso 2:** Dirígete a la carpeta del código.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Paso 3:** Ejecuta el código.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo node rgb_led.js
+
+Después de ejecutar el código, verás que el LED RGB muestra los colores rojo, verde, azul, amarillo, rosa y cian.   
+
+**Código**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const ledred = new Gpio(17, { mode: Gpio.OUTPUT });
+    const ledgreen = new Gpio(18, { mode: Gpio.OUTPUT });
+    const ledblue = new Gpio(27, { mode: Gpio.OUTPUT });
+
+    function colorset(r, g, b) {
+        ledred.pwmWrite(r);
+        ledgreen.pwmWrite(g);
+        ledblue.pwmWrite(b);
+    }
+
+    var color_index = -1;
+
+    setInterval(() => {
+    color_index += 1;
+    switch (color_index) {
+        case 0:
+            colorset(0xff, 0x00, 0xFF);
+            break;
+        case 1:
+            colorset(0x00, 0xff, 0x00);
+            break;
+        case 2:
+            colorset(0x00, 0x00, 0xff);
+            break;
+        case 3:
+            colorset(0xff, 0xff, 0x00);
+            break;
+        case 4:
+            colorset(0xff, 0x00, 0xff);
+            break;
+        case 5:
+            colorset(0xc0, 0xff, 0x3e);
+            break;
+        default:
+            color_index=-1;
+        }
+    }, 500);  
+
+**Explicación del Código**
+
+.. code-block:: js
+
+    const ledred = new Gpio(17,{mode: Gpio.OUTPUT});
+    const ledgreen = new Gpio(18,{mode: Gpio.OUTPUT});
+    const ledblue = new Gpio(27,{mode: Gpio.OUTPUT});
+
+Inicializa los pines 17, 18 y 27 en modo de salida y asígnalos a las constantes ``ledred``, ``ledgreen`` y ``ledblue`` respectivamente.
+
+.. code-block:: js
+
+    function colorset(r,g,b){
+        ledred.pwmWrite(r);
+        ledgreen.pwmWrite(g);
+        ledblue.pwmWrite(b);
+    }
+
+Implementa una función ``colorset(r,g,b)`` para escribir valores de pulso en los pines 17, 18 y 27. La biblioteca Gpio encapsula la función ``pwmWrite()`` para escribir valores de pulso (de 0x00 a 0xff) en los pines. Así, puedes asignar valores RGB al LED RGB mediante la función ``colorset(r,g,b)``, permitiéndole mostrar varios colores. 
+
+.. note::
+    Para más información sobre RGB, consulta el sitio web: https://www.rapidtables.com/web/color/RGB_Color.html
+
+.. code-block:: js
+
+    var color_index = -1;
+
+    setInterval(() => {
+    color_index += 1;
+    switch (color_index) {
+        case 0:
+            colorset(0xff, 0x00, 0xFF);
+            break;
+        case 1:
+            colorset(0x00, 0xff, 0x00);
+            break;
+        case 2:
+            colorset(0x00, 0x00, 0xff);
+            break;
+        case 3:
+            colorset(0xff, 0xff, 0x00);
+            break;
+        case 4:
+            colorset(0xff, 0x00, 0xff);
+            break;
+        case 5:
+            colorset(0xc0, 0xff, 0x3e);
+            break;
+        default:
+            color_index=-1;
+        }
+    }, 500);  
+
+El LED RGB es controlado por ``colorset()`` ejecutado cada 500ms.
+Aquí se utiliza un switch case para seleccionar el color emitido por los LEDs RGB.
+Dado que ``color_index`` cambia en cada ciclo, el color del LED RGB cambia en secuencia.
+
+
+Imagen del Fenómeno
+----------------------
+
+.. image:: img/image62.jpeg
+
+
+

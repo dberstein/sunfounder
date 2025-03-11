@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.14 JUEGO – Not Not &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Play with C" href="../c_pi5/play_with_c.html" />
+    <link rel="prev" title="3.1.13 JUEGO - 10 Segundos" href="pi5_3.1.13_game_10_second_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_3.1.14_game_not_not_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Para Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Juega con Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Verificar <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">Salida</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">Entrada</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_extension_python.html">Extensión</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.1_counting_device_python.html">3.1.1 Dispositivo Contador</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.2_welcome_python.html">3.1.2 Bienvenido</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.3_reversing_alarm_python.html">3.1.3 Alarma de Reversa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.4_smart_fan_python.html">3.1.4 Ventilador Inteligente</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.5_battery_indicator_python.html">3.1.5 Indicador de Batería</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.6_motion_control_python.html">3.1.6 Control de Movimiento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.7_traffic_light_python.html">3.1.7 Semáforo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.8_overheat_monitor_python.html">3.1.8 Monitor de Sobrecalentamiento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.9_password_lock_python.html">3.1.9 Cerradura con Contraseña</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.10_alarm_bell_python.html">3.1.10 Alarma</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.11_morse_code_generator_python.html">3.1.11 Generador de Código Morse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.12_game_guess_number_python.html">3.1.12 JUEGO - Adivina el Número</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.13_game_10_second_python.html">3.1.13 JUEGO - 10 Segundos</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_3.1.14_game_not_not_python.html#">3.1.14 JUEGO – Not Not</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Play with C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Juega con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Para Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Juega con Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_extension_python.html">Extensión</a></li>
+      <li class="breadcrumb-item active">3.1.14 JUEGO – Not Not</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_3.1.14_game_not_not_python.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete junto a otros entusiastas en el fascinante mundo de Raspberry Pi, Arduino y ESP32.</p>
+<p><strong>¿Por qué unirte?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte experto</strong>: Resuelve problemas posventa y desafíos técnicos con ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprende y comparte</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Preestrenos exclusivos</strong>: Accede anticipadamente a anuncios y adelantos de nuevos productos.</p></li>
+<li><p><strong>Descuentos especiales</strong>: Aprovecha descuentos exclusivos en nuestros productos más recientes.</p></li>
+<li><p><strong>Promociones y sorteos festivos</strong>: Participa en sorteos y promociones especiales en días festivos.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy mismo.</p>
+</div>
+<section id="juego-not-not">
+<span id="py-pi5"></span><h1>3.1.14 JUEGO – Not Not<a class="headerlink" href="pi5_3.1.14_game_not_not_python.html#juego-not-not" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="pi5_3.1.14_game_not_not_python.html#introduccion" title="Link to this heading"></a></h2>
+<p>En esta lección, crearemos un divertido dispositivo de juego llamado «Not Not».</p>
+<p>Durante el juego, la matriz de puntos mostrará una flecha en una dirección al azar. Debes presionar el botón en la dirección opuesta a la flecha dentro de un tiempo limitado. Si el tiempo se acaba o presionas el botón en la misma dirección de la flecha, pierdes.</p>
+<p>Este juego realmente puede ayudarte a practicar el pensamiento inverso. ¿Listo para intentarlo?</p>
+</section>
+<section id="componentes-necesarios">
+<h2>Componentes necesarios<a class="headerlink" href="pi5_3.1.14_game_not_not_python.html#componentes-necesarios" title="Link to this heading"></a></h2>
+<p>En este proyecto, necesitaremos los siguientes componentes.</p>
+<a class="reference internal image-reference" href="../_images/3.1.14_game_not_not_list.png"><img alt="../_images/3.1.14_game_not_not_list.png" class="align-center" src="../_images/3.1.14_game_not_not_list.png" style="width: 800px;" />
+</a>
+</section>
+<section id="diagrama-de-esquema">
+<h2>Diagrama de Esquema<a class="headerlink" href="pi5_3.1.14_game_not_not_python.html#diagrama-de-esquema" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO20</p></td>
+<td><p>Pin 38</p></td>
+<td><p>28</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO26</p></td>
+<td><p>Pin 37</p></td>
+<td><p>25</p></td>
+<td><p>26</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/3.1.14_game_not_not_schematic.png" class="align-center" src="../_images/3.1.14_game_not_not_schematic.png" />
+</section>
+<section id="procedimiento-experimental">
+<h2>Procedimiento Experimental<a class="headerlink" href="pi5_3.1.14_game_not_not_python.html#procedimiento-experimental" title="Link to this heading"></a></h2>
+<p><strong>Paso 1:</strong> Monta el circuito.</p>
+<img alt="../_images/3.1.14_game_not_not_circuit.png" src="../_images/3.1.14_game_not_not_circuit.png" />
+<p><strong>Paso 2:</strong> Abre el archivo de código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Paso 3:</strong> Ejecuta el programa.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.14</span><span class="n">_MotionControl</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Al iniciar el programa, aparece una flecha en la matriz de puntos apuntando
+hacia la derecha o la izquierda. Lo que debes hacer es presionar el botón en
+la dirección opuesta a la flecha dentro de un tiempo límite. Entonces, aparecerá
+un &quot;<strong>√</strong>&quot; en la matriz de puntos. Si se acaba el tiempo o presionas el botón
+en la misma dirección que la flecha, pierdes y la matriz de puntos muestra una
+&quot;x&quot;. También puedes agregar 2 botones nuevos o reemplazarlos por los controles
+de un joystick para tener 4 direcciones: arriba, abajo, izquierda y derecha,
+aumentando así la dificultad del juego.</p>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Si aparece el mensaje de error <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code>, consulta la sección <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">Si gpiozero no funciona.</span></a></p>
+</div>
+<p><strong>Código</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puedes <strong>Modificar/Restablecer/Copiar/Ejecutar/Detener</strong> el código a continuación. Sin embargo, antes de hacerlo, dirígete a la ruta de código fuente, como <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python-pi5</span></code>. Tras realizar cambios, puedes ejecutarlo directamente para ver el efecto.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span><span class="p">,</span> <span class="n">Button</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Pines GPIO para el registro de desplazamiento 74HC595</span>
+<span class="n">SDI</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>   <span class="c1"># Entrada de Datos Serial</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>  <span class="c1"># Reloj de Registro</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span> <span class="c1"># Reloj de Registro de Desplazamiento</span>
+
+<span class="c1"># Pines GPIO para los botones</span>
+<span class="n">AButtonPin</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># Botón A</span>
+<span class="n">BButtonPin</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span>  <span class="c1"># Botón B</span>
+
+<span class="c1"># Inicialización de variables del juego</span>
+<span class="n">timerPlay</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">timerCheck</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">waypoint</span> <span class="o">=</span> <span class="s2">&quot;NULL&quot;</span>
+<span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;NULL&quot;</span>
+
+<span class="c1"># Flechas para la matriz LED</span>
+<span class="n">arrow</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xEF</span><span class="p">,</span> <span class="mh">0xDF</span><span class="p">,</span> <span class="mh">0x81</span><span class="p">,</span> <span class="mh">0xDF</span><span class="p">,</span> <span class="mh">0xEF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">],</span>
+    <span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0xFB</span><span class="p">,</span> <span class="mh">0x81</span><span class="p">,</span> <span class="mh">0xFB</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># Iconos de respuesta para respuestas correctas/incorrectas</span>
+<span class="n">check</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;wrong&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xBB</span><span class="p">,</span> <span class="mh">0xD7</span><span class="p">,</span> <span class="mh">0xEF</span><span class="p">,</span> <span class="mh">0xD7</span><span class="p">,</span> <span class="mh">0xBB</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">],</span>
+    <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0xEB</span><span class="p">,</span> <span class="mh">0xDF</span><span class="p">,</span> <span class="mh">0xBF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">dat</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Shift data to the 74HC595 shift register. &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">SDI</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dat</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="n">glyphCode</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Display a glyph on the LED matrix. &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">glyphCode</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="mh">0x80</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">creatGlyph</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Create a new glyph for the game and start the play timer. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">waypoint</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">timerPlay</span>
+    <span class="n">waypoint</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">arrow</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;PLAY&quot;</span>
+    <span class="n">timerPlay</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">timeOut</span><span class="p">)</span>
+    <span class="n">timerPlay</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">checkPoint</span><span class="p">(</span><span class="n">inputKey</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Check player&#39;s input and update game state. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">waypoint</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">timerCheck</span>
+    <span class="k">if</span> <span class="n">inputKey</span> <span class="o">==</span> <span class="s2">&quot;empty&quot;</span> <span class="ow">or</span> <span class="n">inputKey</span> <span class="o">==</span> <span class="n">waypoint</span><span class="p">:</span>
+        <span class="n">waypoint</span> <span class="o">=</span> <span class="s2">&quot;wrong&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">waypoint</span> <span class="o">=</span> <span class="s2">&quot;right&quot;</span>
+    <span class="n">timerPlay</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+    <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;CHECK&quot;</span>
+    <span class="n">timerCheck</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">creatGlyph</span><span class="p">)</span>
+    <span class="n">timerCheck</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">timeOut</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Handle game timeout scenario. &quot;&quot;&quot;</span>
+    <span class="n">checkPoint</span><span class="p">(</span><span class="s2">&quot;empty&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">getKey</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Detect button press and trigger checkpoint. &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">AButtonPin</span><span class="o">.</span><span class="n">is_pressed</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">BButtonPin</span><span class="o">.</span><span class="n">is_pressed</span><span class="p">:</span>
+        <span class="n">checkPoint</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">AButtonPin</span><span class="o">.</span><span class="n">is_pressed</span> <span class="ow">and</span> <span class="n">BButtonPin</span><span class="o">.</span><span class="n">is_pressed</span><span class="p">:</span>
+        <span class="n">checkPoint</span><span class="p">(</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Main game loop. &quot;&quot;&quot;</span>
+    <span class="n">creatGlyph</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;PLAY&quot;</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">arrow</span><span class="p">[</span><span class="n">waypoint</span><span class="p">])</span>
+            <span class="n">getKey</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;CHECK&quot;</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">waypoint</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Clean up resources on program exit. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">timerPlay</span><span class="p">,</span> <span class="n">timerCheck</span>
+    <span class="n">timerPlay</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>  <span class="c1"># Cancela el temporizador de juego</span>
+    <span class="n">timerCheck</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>  <span class="c1"># Cancela el temporizador de verificación</span>
+
+<span class="c1"># Ejecuta el juego, maneja la interrupción de teclado para salir limpiamente</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<p>Basado en <strong>1.1.6 Matriz de Puntos LED</strong>, en esta lección se añaden <strong>2</strong> botones para crear un dispositivo de juego divertido. Si aún no estás familiarizado con la matriz de puntos, por favor consulta <a class="reference internal" href="pi5_1.1.6_led_dot_matrix_python.html#py-pi5"><span class="std std-ref">1.1.6 Matriz de Puntos LED</span></a>.</p>
+<ol class="arabic">
+<li><p>El código comienza importando las librerías necesarias. Se utiliza <code class="docutils literal notranslate"><span class="pre">gpiozero</span></code> para interactuar con pines GPIO como botones y dispositivos de salida. <code class="docutils literal notranslate"><span class="pre">time</span></code> permite agregar retrasos, <code class="docutils literal notranslate"><span class="pre">threading</span></code> habilita la ejecución de múltiples tareas simultáneamente, y <code class="docutils literal notranslate"><span class="pre">random</span></code> es útil para introducir aleatoriedad en el proyecto.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span><span class="p">,</span> <span class="n">Button</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</li>
+<li><p>Se inicializan los pines GPIO para el registro de desplazamiento (<code class="docutils literal notranslate"><span class="pre">SDI</span></code>, <code class="docutils literal notranslate"><span class="pre">RCLK</span></code>, <code class="docutils literal notranslate"><span class="pre">SRCLK</span></code>) y los botones (<code class="docutils literal notranslate"><span class="pre">AButtonPin</span></code>, <code class="docutils literal notranslate"><span class="pre">BButtonPin</span></code>). El registro de desplazamiento se utiliza para controlar múltiples LEDs con menos pines GPIO, lo cual es crucial para la pantalla de la matriz LED.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pines GPIO para el registro de desplazamiento 74HC595</span>
+<span class="n">SDI</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>   <span class="c1"># Entrada de Datos Serial</span>
+<span class="n">RCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>  <span class="c1"># Reloj de Registro</span>
+<span class="n">SRCLK</span> <span class="o">=</span> <span class="n">OutputDevice</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span> <span class="c1"># Reloj de Registro de Desplazamiento</span>
+
+<span class="c1"># Pines GPIO para los botones</span>
+<span class="n">AButtonPin</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># Botón A</span>
+<span class="n">BButtonPin</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span>  <span class="c1"># Botón B</span>
+</pre></div>
+</div>
+</li>
+<li><p>Se inicializan variables utilizadas en la lógica del juego, como temporizadores e indicadores de estado del juego.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inicialización de variables del juego</span>
+<span class="n">timerPlay</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">timerCheck</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">waypoint</span> <span class="o">=</span> <span class="s2">&quot;NULL&quot;</span>
+<span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;NULL&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Se definen patrones binarios para mostrar flechas y respuestas (correcto/incorrecto) en la matriz LED. Cada elemento del arreglo representa una fila de la matriz LED, donde <code class="docutils literal notranslate"><span class="pre">1</span></code> y <code class="docutils literal notranslate"><span class="pre">0</span></code> indican si el LED está encendido o apagado, respectivamente.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Flechas para la pantalla de la matriz LED</span>
+<span class="n">arrow</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xEF</span><span class="p">,</span> <span class="mh">0xDF</span><span class="p">,</span> <span class="mh">0x81</span><span class="p">,</span> <span class="mh">0xDF</span><span class="p">,</span> <span class="mh">0xEF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">],</span>
+    <span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0xFB</span><span class="p">,</span> <span class="mh">0x81</span><span class="p">,</span> <span class="mh">0xFB</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># Íconos de respuesta para respuestas correctas/incorrectas</span>
+<span class="n">check</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;wrong&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xBB</span><span class="p">,</span> <span class="mh">0xD7</span><span class="p">,</span> <span class="mh">0xEF</span><span class="p">,</span> <span class="mh">0xD7</span><span class="p">,</span> <span class="mh">0xBB</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">],</span>
+    <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0xEB</span><span class="p">,</span> <span class="mh">0xDF</span><span class="p">,</span> <span class="mh">0xBF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Esta función desplaza un byte de datos hacia el registro de desplazamiento 74HC595. Itera sobre cada bit del byte <code class="docutils literal notranslate"><span class="pre">dat</span></code>, configurando el pin <code class="docutils literal notranslate"><span class="pre">SDI</span></code> alto o bajo según corresponda, y alterna el pin <code class="docutils literal notranslate"><span class="pre">SRCLK</span></code> para desplazar el bit en el registro.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hc595_shift</span><span class="p">(</span><span class="n">dat</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Shift data to the 74HC595 shift register. &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">SDI</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mh">0x80</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dat</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">SRCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Esta función muestra un glifo en la matriz LED. Envía cada fila del glifo (representado por <code class="docutils literal notranslate"><span class="pre">glyphCode</span></code>) y la dirección de la fila al registro de desplazamiento usando <code class="docutils literal notranslate"><span class="pre">hc595_shift</span></code>, y luego alterna el pin <code class="docutils literal notranslate"><span class="pre">RCLK</span></code> para actualizar la pantalla.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="n">glyphCode</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Display a glyph on the LED matrix. &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="n">glyphCode</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">hc595_shift</span><span class="p">(</span><span class="mh">0x80</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">RCLK</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+        <span class="n">RCLK</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Esta función selecciona un glifo al azar del diccionario <code class="docutils literal notranslate"><span class="pre">arrow</span></code>, inicia el temporizador de juego y establece el estado del juego en «PLAY». Se utiliza <code class="docutils literal notranslate"><span class="pre">threading.Timer</span></code> para el control del tiempo en el juego.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">creatGlyph</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Create a new glyph for the game and start the play timer. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">waypoint</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">timerPlay</span>
+    <span class="n">waypoint</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">arrow</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;PLAY&quot;</span>
+    <span class="n">timerPlay</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">timeOut</span><span class="p">)</span>
+    <span class="n">timerPlay</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Esta función verifica la entrada del jugador en comparación con el glifo actual. Si la entrada es correcta, establece el waypoint en «right», de lo contrario en «wrong». Luego cancela el temporizador de juego actual e inicia un nuevo temporizador para el próximo glifo.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">checkPoint</span><span class="p">(</span><span class="n">inputKey</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Check player&#39;s input and update game state. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">waypoint</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">timerCheck</span>
+    <span class="k">if</span> <span class="n">inputKey</span> <span class="o">==</span> <span class="s2">&quot;empty&quot;</span> <span class="ow">or</span> <span class="n">inputKey</span> <span class="o">==</span> <span class="n">waypoint</span><span class="p">:</span>
+        <span class="n">waypoint</span> <span class="o">=</span> <span class="s2">&quot;wrong&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">waypoint</span> <span class="o">=</span> <span class="s2">&quot;right&quot;</span>
+    <span class="n">timerPlay</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+    <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;CHECK&quot;</span>
+    <span class="n">timerCheck</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">creatGlyph</span><span class="p">)</span>
+    <span class="n">timerCheck</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Esta función se llama cuando se agota el tiempo del juego. Invoca <code class="docutils literal notranslate"><span class="pre">checkPoint</span></code> con «empty» para indicar que no se presionó ningún botón a tiempo.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">timeOut</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Handle game timeout scenario. &quot;&quot;&quot;</span>
+    <span class="n">checkPoint</span><span class="p">(</span><span class="s2">&quot;empty&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Esta función verifica el estado de los botones. Si <code class="docutils literal notranslate"><span class="pre">AButtonPin</span></code> está presionado (y <code class="docutils literal notranslate"><span class="pre">BButtonPin</span></code> no), llama a <code class="docutils literal notranslate"><span class="pre">checkPoint</span></code> con «right». Si <code class="docutils literal notranslate"><span class="pre">BButtonPin</span></code> está presionado (y <code class="docutils literal notranslate"><span class="pre">AButtonPin</span></code> no), llama a <code class="docutils literal notranslate"><span class="pre">checkPoint</span></code> con «left».</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getKey</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Detect button press and trigger checkpoint. &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">AButtonPin</span><span class="o">.</span><span class="n">is_pressed</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">BButtonPin</span><span class="o">.</span><span class="n">is_pressed</span><span class="p">:</span>
+        <span class="n">checkPoint</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">AButtonPin</span><span class="o">.</span><span class="n">is_pressed</span> <span class="ow">and</span> <span class="n">BButtonPin</span><span class="o">.</span><span class="n">is_pressed</span><span class="p">:</span>
+        <span class="n">checkPoint</span><span class="p">(</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">main</span></code> controla el flujo del juego. Comienza creando un glifo, luego verifica continuamente el estado del juego. Si está en el estado «PLAY», muestra el glifo actual y verifica las pulsaciones de botón. En el estado «CHECK», muestra la retroalimentación según la acción del jugador.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Main game loop. &quot;&quot;&quot;</span>
+    <span class="n">creatGlyph</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;PLAY&quot;</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">arrow</span><span class="p">[</span><span class="n">waypoint</span><span class="p">])</span>
+            <span class="n">getKey</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;CHECK&quot;</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="n">waypoint</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><p>Esta función cancela cualquier temporizador activo al salir del programa, asegurando un apagado limpio.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Clean up resources on program exit. &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">timerPlay</span><span class="p">,</span> <span class="n">timerCheck</span>
+    <span class="n">timerPlay</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>  <span class="c1"># Cancela el temporizador de juego</span>
+    <span class="n">timerCheck</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>  <span class="c1"># Cancela el temporizador de verificación</span>
+</pre></div>
+</div>
+</li>
+<li><p>El juego se ejecuta en un bloque <code class="docutils literal notranslate"><span class="pre">try</span></code>. Si ocurre una <code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> (como presionar Ctrl+C), captura la excepción y llama a <code class="docutils literal notranslate"><span class="pre">destroy</span></code> para limpiar antes de salir.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejecuta el juego y maneja KeyboardInterrupt para salir limpiamente</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="pi5_3.1.13_game_10_second_python.html" class="btn btn-neutral float-left" title="3.1.13 JUEGO - 10 Segundos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../c_pi5/play_with_c.html" class="btn btn-neutral float-right" title="Play with C" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

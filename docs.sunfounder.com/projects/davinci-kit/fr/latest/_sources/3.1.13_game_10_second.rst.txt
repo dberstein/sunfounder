@@ -1,0 +1,356 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez au cœur de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprendre & partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits.
+    - **Remises spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des tirages au sort et à des promotions spéciales.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+3.1.13 JEU – 10 Secondes
+==============================
+
+Introduction
+-------------------
+
+Ensuite, suivez-moi pour fabriquer un dispositif de jeu qui défiera votre 
+concentration. Attachez le commutateur d'inclinaison à un bâton pour en faire 
+une baguette magique. Secouez la baguette, l'afficheur 4 chiffres commencera 
+à compter ; secouez à nouveau pour arrêter le comptage. Si vous réussissez à 
+garder le compteur affiché sur **10.00**, vous gagnez. Jouez avec vos amis pour 
+voir qui est le maître du temps.
+
+Composants
+----------------
+
+.. image:: img/list_GAME_10_Second.png
+    :align: center
+
+Schéma de Connexion
+------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one13.png
+   :align: center
+
+Procédure Expérimentale
+---------------------------------
+
+**Étape 1** : Construisez le circuit.
+
+.. image:: img/image277.png
+   :width: 800
+
+**Pour les utilisateurs du langage C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 2** : Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.13/
+
+**Étape 3** : Compilez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 3.1.13_GAME_10Second.c -lwiringPi
+
+**Étape 4** : Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Secouez la baguette, l'afficheur 4 chiffres commencera à compter ; secouez à 
+nouveau pour arrêter le comptage. Si vous parvenez à atteindre **10.00**, vous 
+gagnez. Secouez encore une fois pour lancer la manche suivante.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution, ou si un message d'erreur indique : \"wiringPi.h: Aucun fichier ou répertoire de ce type", veuillez vous référer à :ref:`C code is not working?`.
+
+**Explication du code**
+
+.. code-block:: c
+
+    void stateChange(){
+        if (gameState == 0){
+            counter = 0;
+            delay(1000);
+            ualarm(10000,10000); 
+        }else{
+            alarm(0);
+            delay(1000);
+        }
+        gameState = (gameState + 1)%2;
+    }
+
+Le jeu est divisé en deux modes :
+
+gameState=0 est le mode "démarrage", dans lequel le temps est mesuré et affiché 
+sur l'afficheur à segments, et le commutateur d'inclinaison est secoué pour entrer 
+dans le mode "affichage".
+
+GameState=1 est le mode "affichage", qui arrête le chronométrage et montre le 
+temps sur l'afficheur. Secouer à nouveau le commutateur d'inclinaison réinitialise 
+le chronomètre et relance le jeu.
+
+.. code-block:: c
+
+    void loop(){
+        int currentState =0;
+        int lastState=0;
+        while(1){
+            display();
+            currentState=digitalRead(sensorPin);
+            if((currentState==0)&&(lastState==1)){
+                stateChange();
+            }
+            lastState=currentState;
+        }
+    }
+
+Loop() est la fonction principale. Elle affiche le temps sur l'afficheur à 4 
+segments et lit la valeur du commutateur d'inclinaison. Si l'état du commutateur 
+change, stateChange() est appelé.
+
+**Pour les utilisateurs du langage Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 2** : Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python/
+
+**Étape 3** : Exécutez le fichier exécutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.13_GAME_10Second.py
+
+Secouez la baguette, l'afficheur 4 chiffres commencera à compter ; secouez à 
+nouveau pour arrêter le comptage. Si vous parvenez à atteindre **10.00**, vous 
+gagnez. Secouez encore une fois pour lancer la manche suivante.
+
+**Code**
+
+.. note::
+
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez aller au chemin du code source comme ``davinci-kit-for-raspberry-pi/python``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+    import threading
+
+    sensorPin = 26
+
+    SDI = 24
+    RCLK = 23
+    SRCLK = 18
+
+    placePin = (10, 22, 27, 17)
+    number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+    counter = 0
+    timer =0
+    gameState =0
+
+    def clearDisplay():
+        for i in range(8):
+            GPIO.output(SDI, 1)
+            GPIO.output(SRCLK, GPIO.HIGH)
+            GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.HIGH)
+        GPIO.output(RCLK, GPIO.LOW)    
+
+    def hc595_shift(data): 
+        for i in range(8):
+            GPIO.output(SDI, 0x80 & (data << i))
+            GPIO.output(SRCLK, GPIO.HIGH)
+            GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.HIGH)
+        GPIO.output(RCLK, GPIO.LOW)
+
+    def pickDigit(digit):
+        for i in placePin:
+            GPIO.output(i,GPIO.LOW)
+        GPIO.output(placePin[digit], GPIO.HIGH)
+
+    def display():
+        global counter                    
+        clearDisplay() 
+        pickDigit(0)  
+        hc595_shift(number[counter % 10])
+
+        clearDisplay()
+        pickDigit(1)
+        hc595_shift(number[counter % 100//10])
+
+        clearDisplay()
+        pickDigit(2)
+        hc595_shift(number[counter % 1000//100]-0x80)
+
+        clearDisplay()
+        pickDigit(3)
+        hc595_shift(number[counter % 10000//1000])
+
+    def stateChange():
+        global gameState
+        global counter
+        global timer1
+        if gameState == 0:
+            counter = 0
+            time.sleep(1)
+            timer() 
+        elif gameState ==1:
+            timer1.cancel()
+            time.sleep(1)
+        gameState = (gameState+1)%2
+
+    def loop():
+        global counter
+        currentState = 0
+        lastState = 0
+        while True:
+            display()
+            currentState=GPIO.input(sensorPin)
+            if (currentState == 0) and (lastState == 1):
+                stateChange()
+            lastState=currentState
+
+    def timer():  
+        global counter
+        global timer1
+        timer1 = threading.Timer(0.01, timer) 
+        timer1.start()  
+        counter += 1
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(SDI, GPIO.OUT)
+        GPIO.setup(RCLK, GPIO.OUT)
+        GPIO.setup(SRCLK, GPIO.OUT)
+        for i in placePin:
+            GPIO.setup(i, GPIO.OUT)
+        GPIO.setup(sensorPin, GPIO.IN)
+
+    def destroy():   # Quand "Ctrl+C" est pressé, la fonction est exécutée.
+        GPIO.cleanup()
+        global timer1
+        timer1.cancel()
+
+    if __name__ == '__main__':  # Le programme commence ici
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt:
+            destroy()
+
+**Explication du Code**
+
+.. code-block:: python
+
+    def stateChange():
+        global gameState
+        global counter
+        global timer1
+        if gameState == 0:
+            counter = 0
+            time.sleep(1)
+            timer() 
+        elif gameState ==1:
+            timer1.cancel()
+            time.sleep(1)
+        gameState = (gameState+1)%2
+
+Le jeu est divisé en deux modes :
+
+gameState=0 est le mode "démarrage", où le temps est chronométré et affiché sur 
+l'afficheur à segments, et le commutateur d'inclinaison est secoué pour passer 
+au mode "affichage".
+
+GameState=1 est le mode "affichage", qui arrête le chronométrage et montre le 
+temps sur l'afficheur. Secouer à nouveau le commutateur d'inclinaison réinitialisera 
+le chronomètre et redémarrera le jeu.
+
+.. code-block:: python
+
+    def loop():
+        global counter
+        currentState = 0
+        lastState = 0
+        while True:
+            display()
+            currentState=GPIO.input(sensorPin)
+            if (currentState == 0) and (lastState == 1):
+                stateChange()
+            lastState=currentState
+
+Loop() est la fonction principale. D'abord, le temps est affiché sur l'afficheur 
+4 chiffres et la valeur du commutateur d'inclinaison est lue. Si l'état du commutateur 
+change, stateChange() est appelé.
+
+.. code-block:: python
+
+    def timer():  
+        global counter
+        global timer1
+        timer1 = threading.Timer(0.01, timer) 
+        timer1.start()  
+        counter += 1
+
+Après que l'intervalle atteigne 0,01s, la fonction timer est appelée ; on ajoute 1 
+au compteur, et le timer est utilisé à nouveau pour s'exécuter lui-même toutes les 0,01s.
+
+Photo de Phénomène
+-----------------------
+
+.. image:: img/image278.jpeg
+   :align: center
+
+
+

@@ -1,0 +1,140 @@
+.. note::
+
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara & Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima agli annunci dei nuovi prodotti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Omaggi**: Partecipa a omaggi e promozioni speciali per le festività.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+2.1.1 Pulsante
+================
+
+Introduzione
+------------------
+
+In questo progetto, impareremo come accendere e spegnere un LED utilizzando 
+un pulsante.
+
+Componenti
+----------------
+
+.. image:: ../img/list_2.1.1_Button.png
+
+
+
+Schema a Blocchi
+---------------------
+
+Utilizziamo un pulsante normalmente aperto come input per Raspberry Pi, 
+come illustrato nello schema sottostante. Quando si preme il pulsante, 
+GPIO18 passerà a livello basso (0V). Possiamo rilevare lo stato di GPIO18 
+tramite programmazione; se GPIO18 diventa a livello basso, significa che 
+il pulsante è stato premuto. A questo punto, possiamo eseguire il codice 
+corrispondente per accendere il LED.
+
+.. note::
+    Il pin più lungo del LED è l'anodo, mentre quello più corto è il catodo.
+
+.. image:: ../img/image302.png
+
+.. image:: ../img/image303.png
+
+Procedure Sperimentali
+---------------------------
+
+**Passo 1**: Costruisci il circuito.
+
+.. image:: ../img/image152.png
+
+**Passo 2**: Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Passo 3**: Esegui il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo node button.js
+
+Ora, premi il pulsante e il LED si accenderà; rilascia il pulsante e il 
+LED si spegnerà. 
+
+**Codice**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+
+    const led = new Gpio(17, {mode: Gpio.OUTPUT});
+   
+    const button = new Gpio(18, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_DOWN,     
+      edge: Gpio.EITHER_EDGE        
+    });
+
+
+    button.on('interrupt', (level) => {  
+      led.digitalWrite(level);          
+    });
+
+**Spiegazione del Codice**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;    
+
+    const led = new Gpio(17, {mode: Gpio.OUTPUT});
+
+Importa il modulo ``pigpio`` e crea un oggetto led per controllare la porta GPIO17, impostandola in modalità output.
+
+.. code-block:: js
+
+    const button = new Gpio(18, {
+      mode: Gpio.INPUT,
+      pullUpDown: Gpio.PUD_DOWN,     
+      edge: Gpio.EITHER_EDGE       
+    });
+
+Crea un oggetto button per controllare la porta GPIO18, impostandola in 
+modalità input e su "pull-down" (basso quando il pulsante non è premuto, 
+alto quando il pulsante è premuto). Imposta la funzione di interrupt in 
+modalità EITHER_EDGE, ovvero sia per il fronte di salita che per quello 
+di discesa.
+
+.. code-block:: js
+
+    button.on('interrupt', (level) => {  
+      led.digitalWrite(level);          
+    });
+
+Scrivi una funzione di interrupt: quando il pulsante è premuto, il segnale 
+va a livello basso, attivando la funzione di interrupt, che scrive il livello 
+basso della porta GPIO del pulsante alla porta GPIO del LED, accendendo il LED.
+
+Quando il pulsante viene rilasciato, il segnale va a livello alto, riattivando 
+la funzione di interrupt che spegne il LED.
+
+Immagine del Fenomeno
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: ../img/image153.jpeg
+
+

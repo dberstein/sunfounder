@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.6 Contrôle de mouvement &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="3.1.7 Feu de circulation" href="3.1.7_traffic_light.html" />
+    <link rel="prev" title="3.1.5 Indicateur de batterie" href="3.1.5_battery_indicator.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/3.1.6_motion_control.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Pour le Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Bibliothèques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_output.html">1 Sorties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_input.html">2 Entrée</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="3_extension.html">3 Extension</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="3.1.1_counting_device.html">3.1.1 Dispositif de comptage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.2_welcome.html">3.1.2 Bienvenue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.3_reversing_alarm.html">3.1.3 Avertisseur de recul</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.4_smart_fan.html">3.1.4 Ventilateur intelligent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.5_battery_indicator.html">3.1.5 Indicateur de batterie</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="3.1.6_motion_control.html#">3.1.6 Contrôle de mouvement</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="3.1.6_motion_control.html#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.6_motion_control.html#composants">Composants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.6_motion_control.html#schema-de-cablage">Schéma de câblage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.6_motion_control.html#procedures-experimentales">Procédures expérimentales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.6_motion_control.html#image-du-phenomene">Image du phénomène</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.7_traffic_light.html">3.1.7 Feu de circulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.8_overheat_monitor.html">3.1.8 Moniteur de surchauffe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.9_password_lock.html">3.1.9 Serrure à code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.10_alarm_bell.html">3.1.10 Alarme Sonore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.11_morse_code_generator.html">3.1.11 Générateur de Code Morse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.12_game_guess_number.html">3.1.12 JEU – Devine le Nombre</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.13_game_10_second.html">3.1.13 JEU – 10 Secondes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.14_game_not_not.html">3.1.14 JEU - Not Not</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Jouer avec Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Jouer avec Node.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+          <li class="breadcrumb-item"><a href="3_extension.html">3 Extension</a></li>
+      <li class="breadcrumb-item active">3.1.6 Contrôle de mouvement</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/3.1.6_motion_control.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour et bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l’univers de Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez vos problèmes après-vente et vos défis techniques grâce à l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprendre &amp; Partager</strong> : Échangez des astuces et des tutoriels pour perfectionner vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus exclusifs.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de réductions exclusives sur nos nouveaux produits.</p></li>
+<li><p><strong>Promotions festives et concours</strong> : Participez à des concours et à des promotions spéciales pendant les fêtes.</p></li>
+</ul>
+<p>👉 Prêt à explorer et créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="controle-de-mouvement">
+<h1>3.1.6 Contrôle de mouvement<a class="headerlink" href="3.1.6_motion_control.html#controle-de-mouvement" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="3.1.6_motion_control.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>Dans cette leçon, nous allons créer un dispositif simple de détection et de contrôle
+de mouvement. Le MPU6050 est utilisé comme capteur et le moteur pas à pas comme dispositif
+contrôlé. En fixant le MPU6050 sur un gant, vous pouvez contrôler le moteur pas à pas en
+faisant pivoter votre poignet.</p>
+</section>
+<section id="composants">
+<h2>Composants<a class="headerlink" href="3.1.6_motion_control.html#composants" title="Lien vers cette rubrique"></a></h2>
+<img alt="_images/list_Motion_Control.png" class="align-center" src="_images/list_Motion_Control.png" />
+</section>
+<section id="schema-de-cablage">
+<h2>Schéma de câblage<a class="headerlink" href="3.1.6_motion_control.html#schema-de-cablage" title="Lien vers cette rubrique"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO23</p></td>
+<td><p>Pin 16</p></td>
+<td><p>4</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO24</p></td>
+<td><p>Pin 18</p></td>
+<td><p>5</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO25</p></td>
+<td><p>Pin 22</p></td>
+<td><p>6</p></td>
+<td><p>25</p></td>
+</tr>
+<tr class="row-even"><td><p>SDA1</p></td>
+<td><p>Pin 3</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>SCL1</p></td>
+<td><p>Pin 5</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/Schematic_three_one6.png" class="align-center" src="_images/Schematic_three_one6.png" />
+</section>
+<section id="procedures-experimentales">
+<h2>Procédures expérimentales<a class="headerlink" href="3.1.6_motion_control.html#procedures-experimentales" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1 :</strong> Construisez le circuit.</p>
+<a class="reference internal image-reference" href="_images/image251.png"><img alt="_images/image251.png" class="align-center" src="_images/image251.png" style="width: 800px;" />
+</a>
+<section id="pour-les-utilisateurs-du-langage-c">
+<h3><strong>Pour les utilisateurs du langage C</strong><a class="headerlink" href="3.1.6_motion_control.html#pour-les-utilisateurs-du-langage-c" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Étape 2 :</strong> Accédez au dossier du code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">3.1.6</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Étape 3 :</strong> Compilez le code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">3.1.6</span><span class="n">_MotionControl</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span> <span class="o">-</span><span class="n">lm</span>
+</pre></div>
+</div>
+<p><strong>Étape 4 :</strong> Exécutez le fichier exécutable.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Lorsque le code s’exécute, si l’angle d’inclinaison du <strong>mpu6050</strong> sur l’axe
+<a class="reference external" href="https://cn.bing.com/dict/search?q=Y&amp;FORM=BDVSP6&amp;mkt=zh-cn">Y</a>-<a class="reference external" href="https://cn.bing.com/dict/search?q=axis&amp;FORM=BDVSP6&amp;mkt=zh-cn">axis</a>
+dépasse <strong>45</strong> °, le moteur pas à pas tourne dans le sens antihoraire ; s’il est inférieur à <strong>-45</strong> °,
+le moteur tourne dans le sens horaire.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Si cela ne fonctionne pas après l’exécution ou si un message d’erreur apparaît : &quot;wiringPi.h: Aucun fichier ou dossier de ce type », veuillez vous référer à <a class="reference internal" href="faq.html#c-code-is-not-working"><span class="std std-ref">C code is not working?</span></a>.</p>
+</div>
+<p><strong>Explication du code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">mpu6050</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">acclX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3B</span><span class="p">);</span>
+<span class="w">    </span><span class="n">acclY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3D</span><span class="p">);</span>
+<span class="w">    </span><span class="n">acclZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3F</span><span class="p">);</span>
+<span class="w">    </span><span class="n">acclX_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acclX</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">16384.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">acclY_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acclY</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">16384.0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">acclZ_scaled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acclZ</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">16384.0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">angle</span><span class="o">=</span><span class="n">get_y_rotation</span><span class="p">(</span><span class="n">acclX_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">acclY_scaled</span><span class="p">,</span><span class="w"> </span><span class="n">acclZ_scaled</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">angle</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La fonction <cite>mpu6050</cite> obtient l’angle d’inclinaison dans la direction de l’axe Y.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">rotary</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">direction</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">direction</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;c&#39;</span><span class="p">){</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">                </span><span class="p">{</span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&gt;&gt;</span><span class="n">j</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="mh">0x08</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">));}</span>
+<span class="w">            </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">direction</span><span class="w"> </span><span class="o">==</span><span class="sc">&#39;a&#39;</span><span class="p">){</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">                </span><span class="p">{</span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&lt;&lt;</span><span class="n">j</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="mh">0x80</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">));}</span>
+<span class="w">            </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Si la <strong>touche</strong> de direction reçue est “<strong>c</strong>”, le moteur pas à pas tourne dans le sens
+horaire ; si la <strong>touche</strong> est “<strong>a</strong>”, le moteur tourne dans le sens antihoraire. Pour
+plus de détails sur le calcul de la direction de rotation du moteur pas à pas, référez-vous
+à <a class="reference internal" href="1.3.3_stepper_motor.html#stepper-motor"><span class="std std-ref">1.3.3 Stepper Motor</span></a>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">setup</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">angle</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mpu6050</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">&gt;=</span><span class="mi">45</span><span class="p">){</span><span class="n">rotary</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="p">);}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">angle</span><span class="o">&lt;=</span><span class="mi">-45</span><span class="p">){</span><span class="n">rotary</span><span class="p">(</span><span class="sc">&#39;c&#39;</span><span class="p">);}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>L’angle d’inclinaison dans la direction de l’axe Y est lu depuis <strong>mpu6050</strong>,
+et s’il est supérieur à <strong>45</strong> °, le moteur pas à pas tourne dans le sens
+antihoraire ; s’il est inférieur à <strong>-45</strong> °, le moteur tourne dans le sens horaire.</p>
+</section>
+<section id="pour-les-utilisateurs-du-langage-python">
+<h3><strong>Pour les utilisateurs du langage Python</strong><a class="headerlink" href="3.1.6_motion_control.html#pour-les-utilisateurs-du-langage-python" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Étape 2 :</strong> Accédez au dossier du code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Étape 3 :</strong> Exécutez le fichier exécutable.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.6</span><span class="n">_MotionControl</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Lorsque le code s’exécute, si l’angle d’inclinaison du <strong>mpu6050</strong> sur l’axe
+<a class="reference external" href="https://cn.bing.com/dict/search?q=Y&amp;FORM=BDVSP6&amp;mkt=zh-cn">Y</a> <strong>-</strong> <a class="reference external" href="https://cn.bing.com/dict/search?q=axis&amp;FORM=BDVSP6&amp;mkt=zh-cn">axis</a>
+dépasse <strong>45</strong> °, le moteur pas à pas tourne dans le sens antihoraire ; s’il est inférieur à <strong>-45</strong> °, le moteur tourne dans le sens horaire.</p>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vous pouvez <strong>modifier/réinitialiser/copier/exécuter/arrêter</strong> le code ci-dessous. Mais avant cela, vous devez vous rendre sur le chemin du code source comme <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">smbus</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+
+<span class="c1"># Power management registers</span>
+<span class="n">power_mgmt_1</span> <span class="o">=</span> <span class="mh">0x6b</span>
+<span class="n">power_mgmt_2</span> <span class="o">=</span> <span class="mh">0x6c</span>
+
+<span class="n">bus</span> <span class="o">=</span> <span class="n">smbus</span><span class="o">.</span><span class="n">SMBus</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">address</span> <span class="o">=</span> <span class="mh">0x68</span>
+<span class="n">bus</span><span class="o">.</span><span class="n">write_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">power_mgmt_1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#Stepper motor pins</span>
+<span class="n">motorPin</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">rolePerMinute</span> <span class="o">=</span><span class="mi">15</span>
+<span class="n">stepsPerRevolution</span> <span class="o">=</span> <span class="mi">2048</span>
+<span class="n">stepSpeed</span> <span class="o">=</span> <span class="p">(</span><span class="mi">60</span><span class="o">/</span><span class="n">rolePerMinute</span><span class="p">)</span><span class="o">/</span><span class="n">stepsPerRevolution</span>
+
+<span class="c1">#mpu6050</span>
+<span class="k">def</span> <span class="nf">read_byte</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">low</span>
+    <span class="k">return</span> <span class="n">val</span>
+
+<span class="k">def</span> <span class="nf">read_word_2c</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">&gt;=</span> <span class="mh">0x8000</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="p">((</span><span class="mi">65535</span> <span class="o">-</span> <span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">val</span>
+
+<span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">get_y_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_x_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">mpu6050</span><span class="p">():</span>
+    <span class="n">accel_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3b</span><span class="p">)</span>
+    <span class="n">accel_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3d</span><span class="p">)</span>
+    <span class="n">accel_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3f</span><span class="p">)</span>
+    <span class="n">accel_xout_scaled</span> <span class="o">=</span> <span class="n">accel_xout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_yout_scaled</span> <span class="o">=</span> <span class="n">accel_yout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_zout_scaled</span> <span class="o">=</span> <span class="n">accel_zout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">angle</span><span class="o">=</span><span class="n">get_y_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">angle</span>
+
+<span class="c1">#Stepper Motor</span>
+<span class="k">def</span> <span class="nf">rotary</span><span class="p">(</span><span class="n">direction</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&gt;&gt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x08</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+
+    <span class="k">elif</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&lt;&lt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x80</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setwarnings</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">motorPin</span><span class="p">:</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">angle</span><span class="o">=</span><span class="n">mpu6050</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">angle</span> <span class="o">&gt;=</span><span class="mi">45</span> <span class="p">:</span>
+            <span class="n">rotary</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">angle</span> <span class="o">&lt;=-</span><span class="mi">45</span><span class="p">:</span>
+            <span class="n">rotary</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">loop</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Explication du code</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mpu6050</span><span class="p">():</span>
+    <span class="n">accel_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3b</span><span class="p">)</span>
+    <span class="n">accel_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3d</span><span class="p">)</span>
+    <span class="n">accel_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3f</span><span class="p">)</span>
+    <span class="n">accel_xout_scaled</span> <span class="o">=</span> <span class="n">accel_xout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_yout_scaled</span> <span class="o">=</span> <span class="n">accel_yout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_zout_scaled</span> <span class="o">=</span> <span class="n">accel_zout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">angle</span><span class="o">=</span><span class="n">get_y_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">angle</span>
+</pre></div>
+</div>
+<p>La fonction <cite>mpu6050</cite> obtient l’angle d’inclinaison dans la direction de l’axe Y.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rotary</span><span class="p">(</span><span class="n">direction</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&gt;&gt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x08</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+
+    <span class="k">elif</span><span class="p">(</span><span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mh">0x99</span><span class="o">&lt;&lt;</span><span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x80</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Si la <strong>touche</strong> de direction reçue est “<strong>c</strong>”, le moteur pas à pas tourne dans
+le sens horaire ; si la <strong>touche</strong> est “<strong>a</strong>”, le moteur tourne dans le sens
+antihoraire. Pour plus de détails sur le calcul de la direction de rotation du
+moteur pas à pas, référez-vous à <a class="reference internal" href="1.3.3_stepper_motor.html#stepper-motor"><span class="std std-ref">1.3.3 Stepper Motor</span></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">angle</span><span class="o">=</span><span class="n">mpu6050</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">angle</span> <span class="o">&gt;=</span><span class="mi">45</span> <span class="p">:</span>
+            <span class="n">rotary</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">angle</span> <span class="o">&lt;=-</span><span class="mi">45</span><span class="p">:</span>
+            <span class="n">rotary</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>L’angle d’inclinaison dans la direction de l”<strong>axe Y</strong> est lu depuis <strong>mpu6050</strong>, et
+s’il est supérieur à <strong>45</strong> °, la fonction <cite>rotary()</cite> est appelée pour faire tourner
+le moteur pas à pas dans le sens antihoraire ; s’il est inférieur à <strong>-45</strong> °, le moteur
+tourne dans le sens horaire.</p>
+</section>
+</section>
+<section id="image-du-phenomene">
+<h2>Image du phénomène<a class="headerlink" href="3.1.6_motion_control.html#image-du-phenomene" title="Lien vers cette rubrique"></a></h2>
+<img alt="_images/image252.jpeg" class="align-center" src="_images/image252.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="3.1.5_battery_indicator.html" class="btn btn-neutral float-left" title="3.1.5 Indicateur de batterie" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="3.1.7_traffic_light.html" class="btn btn-neutral float-right" title="3.1.7 Feu de circulation" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

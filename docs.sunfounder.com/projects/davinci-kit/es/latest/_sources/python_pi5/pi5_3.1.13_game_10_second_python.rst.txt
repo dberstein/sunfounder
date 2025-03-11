@@ -1,0 +1,387 @@
+.. note::
+
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete más en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
+
+    **¿Por qué unirse?**
+
+    - **Soporte experto**: Resuelve problemas posventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a nuevos lanzamientos y adelantos de productos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones en temporadas especiales.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _py_pi5_10s:
+
+3.1.13 JUEGO - 10 Segundos
+=============================
+
+Introducción
+----------------------
+
+A continuación, te invito a construir un dispositivo de juego para desafiar 
+tu concentración. Ata el interruptor de inclinación a una vara para hacer una 
+varita mágica. Agita la varita y el display de 4 dígitos comenzará a contar. 
+Si logras que el contador se detenga en **10.00**, entonces ganas. Puedes jugar 
+con tus amigos para ver quién es el maestro del tiempo.
+
+
+Componentes Necesarios
+------------------------------
+
+Para este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../python_pi5/img/4.1.18_game_10_second_list.png
+    :width: 800
+    :align: center
+
+.. Sería conveniente comprar un kit completo. Aquí tienes el enlace: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Nombre
+..         - ELEMENTOS EN ESTE KIT
+..         - ENLACE
+..     *   - Kit Raphael
+..         - 337
+..         - |link_Raphael_kit|
+
+.. También puedes comprarlos por separado en los enlaces a continuación.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - INTRODUCCIÓN A LOS COMPONENTES
+..         - ENLACE DE COMPRA
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`4_digit`
+..         - \-
+..     *   - :ref:`74hc595`
+..         - |link_74hc595_buy|
+..     *   - :ref:`tilt_switch`
+..         - \-
+
+Diagrama Esquemático
+------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/4.1.18_game_10_second_schematic.png
+   :align: center
+
+Procedimientos Experimentales
+---------------------------------
+
+**Paso 1**: Monta el circuito.
+
+.. image:: ../python_pi5/img/4.1.18_game_10_second_circuit.png
+
+**Paso 2**: Ve a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Paso 3**: Ejecuta el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.13_GAME_10Second.py
+
+Agita la varita, y el display de 4 dígitos comenzará a contar; 
+agítala de nuevo para detener el conteo. Si logras que el contador 
+se detenga en **10.00**, ¡ganas! Agítala una vez más para comenzar 
+la siguiente ronda del juego.
+
+.. warning::
+
+    Si aparece un mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc`.
+
+**Código**
+
+.. note::
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes, debes dirigirte a la ruta de código fuente como ``raphael-kit/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    from gpiozero import OutputDevice, Button
+    import time
+    import threading
+
+    # Inicializa el botón conectado al GPIO 26
+    sensorPin = Button(26)
+
+    # Define los pines GPIO conectados al registro de desplazamiento 74HC595
+    SDI = OutputDevice(24)   # Entrada de Datos Serial
+    RCLK = OutputDevice(23)  # Reloj de Registro
+    SRCLK = OutputDevice(18) # Reloj de Registro de Desplazamiento
+
+    # Define los pines GPIO para la selección de dígitos en el display de 7 segmentos
+    placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+    # Define los códigos de segmentos para los números del 0 al 9 en el display de 7 segmentos
+    number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+    # Variables de contador y temporizador
+    counter = 0
+    timer1 = None
+    gameState = 0
+
+    def clearDisplay():
+        """ Clear all segments on the 7-segment display. """
+        for _ in range(8):
+            SDI.on()
+            SRCLK.on()
+            SRCLK.off()
+        RCLK.on()
+        RCLK.off()
+
+    def hc595_shift(data):
+        """ Shift data to the 74HC595 shift register to display a digit. """
+        for i in range(8):
+            SDI.value = 0x80 & (data << i)
+            SRCLK.on()
+            SRCLK.off()
+        RCLK.on()
+        RCLK.off()
+
+    def pickDigit(digit):
+        """ Select which digit to display on the 7-segment display. """
+        for pin in placePin:
+            pin.off()
+        placePin[digit].on()
+
+    def display():
+        """ Display the current counter value on the 7-segment display. """
+        global counter
+        clearDisplay()
+        pickDigit(0)
+        hc595_shift(number[counter % 10])
+
+        clearDisplay()
+        pickDigit(1)
+        hc595_shift(number[counter % 100 // 10])
+
+        clearDisplay()
+        pickDigit(2)
+        hc595_shift(number[counter % 1000 // 100] - 0x80)
+
+        clearDisplay()
+        pickDigit(3)
+        hc595_shift(number[counter % 10000 // 1000])
+
+    def stateChange():
+        """ Handle state changes for the counter based on button presses. """
+        global gameState, counter, timer1
+        if gameState == 0:
+            counter = 0
+            time.sleep(1)
+            timer()
+        elif gameState == 1 and timer1 is not None:
+            timer1.cancel()
+            time.sleep(1)
+        gameState = (gameState + 1) % 2
+
+    def loop():
+        """ Main loop to check for button presses and update the display. """
+        global counter
+        currentState = 0
+        lastState = 0
+        while True:
+            display()
+            currentState = sensorPin.value
+            if (currentState == 0) and (lastState == 1):
+                stateChange()
+            lastState = currentState
+
+    def timer():
+        """ Timer function that increments the counter every 0.01 second. """
+        global counter, timer1
+        timer1 = threading.Timer(0.01, timer)
+        timer1.start()
+        counter += 1
+
+    try:
+        loop()
+    except KeyboardInterrupt:
+        if timer1:
+            timer1.cancel()
+
+            
+**Explicación del Código**
+
+#. El script comienza importando los módulos necesarios. La biblioteca ``gpiozero`` se utiliza para la interfaz con dispositivos GPIO como botones, y los módulos ``time`` y ``threading`` pueden emplearse para gestionar tareas relacionadas con el tiempo o para operaciones concurrentes.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       from gpiozero import OutputDevice, Button
+       import time
+       import threading
+
+#. Inicializa un objeto ``Button`` de la biblioteca GPIO Zero, conectándolo al pin GPIO 26. Esta configuración permite detectar las pulsaciones del botón.
+
+   .. code-block:: python
+
+       # Inicializa el botón conectado al GPIO 26
+       sensorPin = Button(26)
+
+#. Configura los pines GPIO conectados a las entradas del registro de desplazamiento: Entrada de Datos Serial (SDI), Entrada de Reloj del Registro (RCLK) y Entrada de Reloj del Registro de Desplazamiento (SRCLK).
+
+   .. code-block:: python
+
+       # Define los pines GPIO conectados al registro de desplazamiento 74HC595
+       SDI = OutputDevice(24)   # Entrada de Datos Serial
+       RCLK = OutputDevice(23)  # Reloj de Registro
+       SRCLK = OutputDevice(18) # Reloj de Registro de Desplazamiento
+
+#. Inicializa los pines para cada dígito del display de 7 segmentos y define los códigos binarios para mostrar los números del 0 al 9.
+
+   .. code-block:: python
+
+       # Define los pines GPIO para la selección de dígitos en el display de 7 segmentos
+       placePin = [OutputDevice(pin) for pin in (10, 22, 27, 17)]
+
+       # Define códigos de segmentos para los números del 0 al 9 en el display de 7 segmentos
+       number = (0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90)
+
+#. Funciones para controlar el display de 7 segmentos. ``clearDisplay`` apaga todos los segmentos, ``hc595_shift`` desplaza los datos al registro de desplazamiento, y ``pickDigit`` activa un dígito específico en el display.
+
+   .. code-block:: python
+
+       def clearDisplay():
+           """ Clear all segments on the 7-segment display. """
+           for _ in range(8):
+               SDI.on()
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+       def hc595_shift(data):
+           """ Shift data to the 74HC595 shift register to display a digit. """
+           for i in range(8):
+               SDI.value = 0x80 & (data << i)
+               SRCLK.on()
+               SRCLK.off()
+           RCLK.on()
+           RCLK.off()
+
+       def pickDigit(digit):
+           """ Select which digit to display on the 7-segment display. """
+           for pin in placePin:
+               pin.off()
+           placePin[digit].on()
+
+#. Función para mostrar el valor actual del contador en el display de 7 segmentos.
+
+   .. code-block:: python
+
+       def display():
+           """ Display the current counter value on the 7-segment display. """
+           global counter
+           clearDisplay()
+           pickDigit(0)
+           hc595_shift(number[counter % 10])
+
+           clearDisplay()
+           pickDigit(1)
+           hc595_shift(number[counter % 100 // 10])
+
+           clearDisplay()
+           pickDigit(2)
+           hc595_shift(number[counter % 1000 // 100] - 0x80)
+
+           clearDisplay()
+           pickDigit(3)
+           hc595_shift(number[counter % 10000 // 1000])
+
+#. Función para gestionar los cambios de estado (inicio/detención) del contador según las pulsaciones del botón.
+
+   .. code-block:: python
+
+       def stateChange():
+           """ Handle state changes for the counter based on button presses. """
+           global gameState, counter, timer1
+           if gameState == 0:
+               counter = 0
+               time.sleep(1)
+               timer()
+           elif gameState == 1 and timer1 is not None:
+               timer1.cancel()
+               time.sleep(1)
+           gameState = (gameState + 1) % 2
+
+#. Bucle principal que verifica continuamente el estado del botón y actualiza el display. Llama a ``stateChange`` cuando cambia el estado del botón.
+
+   .. code-block:: python
+
+       def loop():
+           """ Main loop to check for button presses and update the display. """
+           global counter
+           currentState = 0
+           lastState = 0
+           while True:
+               display()
+               currentState = sensorPin.value
+               if (currentState == 0) and (lastState == 1):
+                   stateChange()
+               lastState = currentState
+
+#. Función de temporizador que incrementa el contador a intervalos regulares (cada 0.01 segundos).
+
+   .. code-block:: python
+
+       def timer():
+           """ Timer function that increments the counter every 0.01 second. """
+           global counter, timer1
+           timer1 = threading.Timer(0.01, timer)
+           timer1.start()
+           counter += 1
+
+#. Ejecuta el bucle principal y permite una salida limpia del programa usando una interrupción de teclado (Ctrl+C).
+
+   .. code-block:: python
+
+       try:
+           loop()
+       except KeyboardInterrupt:
+           if timer1:
+               timer1.cancel()

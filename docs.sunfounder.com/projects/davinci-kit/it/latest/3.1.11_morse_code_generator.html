@@ -1,0 +1,540 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="it" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.11 Generatore di Codice Morse &mdash; SunFounder davinci-kit-for-raspberry-pi  documentazione</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=3fd72285"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=0173e136"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/it/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Indice" href="genindex.html" />
+    <link rel="search" title="Cerca" href="search.html" />
+    <link rel="next" title="3.1.12 GIOCO - Indovina il Numero" href="3.1.12_game_guess_number.html" />
+    <link rel="prev" title="3.1.10 Campanello di Allarme" href="3.1.10_alarm_bell.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-it" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/3.1.11_morse_code_generator.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Cerca documenti" aria-label="Cerca documenti" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu di navigazione">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Elenco dei Componenti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">Scheda di Estensione GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Scarica il Codice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Installazione e configurazione di Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Per Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Librerie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_output.html">1 Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_input.html">2 Ingresso</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="3_extension.html">3 Estensioni</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="3.1.1_counting_device.html">3.1.1 Dispositivo Contatore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.2_welcome.html">3.1.2 Benvenuto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.3_reversing_alarm.html">3.1.3 Allarme Retromarcia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.4_smart_fan.html">3.1.4 Ventilatore Intelligente</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.5_battery_indicator.html">3.1.5 Indicatore di Batteria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.6_motion_control.html">3.1.6 Controllo del Movimento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.7_traffic_light.html">3.1.7 Semaforo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.8_overheat_monitor.html">3.1.8 Monitor di Surriscaldamento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.9_password_lock.html">3.1.9 Serratura con Password</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.10_alarm_bell.html">3.1.10 Campanello di Allarme</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="3.1.11_morse_code_generator.html#">3.1.11 Generatore di Codice Morse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="3.1.11_morse_code_generator.html#introduzione">Introduzione</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.11_morse_code_generator.html#componenti">Componenti</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.11_morse_code_generator.html#schema-elettrico">Schema Elettrico</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.11_morse_code_generator.html#procedure-sperimentali">Procedure Sperimentali</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.11_morse_code_generator.html#immagine-del-fenomeno">Immagine del Fenomeno</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.12_game_guess_number.html">3.1.12 GIOCO - Indovina il Numero</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.13_game_10_second.html">3.1.13 GIOCO– 10 Secondi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3.1.14_game_not_not.html">3.1.14 GIOCO– Not Not</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Gioca con Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Gioca con Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Gioca con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Corso Video Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Grazie</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu navigazione dispositivi mobili" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Naviga tra le pagine">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a></li>
+          <li class="breadcrumb-item"><a href="3_extension.html">3 Estensioni</a></li>
+      <li class="breadcrumb-item active">3.1.11 Generatore di Codice Morse</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/3.1.11_morse_code_generator.rst.txt" rel="nofollow"> Visualizza sorgente pagina</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Ciao! Benvenuto nella SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasts Community su Facebook! Esplora più a fondo il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.</p>
+<p><strong>Perché unirti?</strong></p>
+<ul class="simple">
+<li><p><strong>Supporto Esperto</strong>: Risolvi problematiche post-vendita e sfide tecniche con l’aiuto del nostro team e della community.</p></li>
+<li><p><strong>Impara e Condividi</strong>: Scambia consigli e tutorial per migliorare le tue competenze.</p></li>
+<li><p><strong>Anteprime Esclusive</strong>: Ottieni accesso anticipato alle novità sui prodotti e anticipazioni.</p></li>
+<li><p><strong>Sconti Speciali</strong>: Approfitta di sconti esclusivi sui nostri ultimi prodotti.</p></li>
+<li><p><strong>Promozioni e Giveaway Festivi</strong>: Partecipa a giveaway e promozioni durante le festività.</p></li>
+</ul>
+<p>👉 Sei pronto a esplorare e creare con noi? Clicca [<a href="https://bit.ly/raphaelkit " target="_blank">Qui</a>] e unisciti oggi stesso!</p>
+</div>
+<section id="generatore-di-codice-morse">
+<h1>3.1.11 Generatore di Codice Morse<a class="headerlink" href="3.1.11_morse_code_generator.html#generatore-di-codice-morse" title="Link to this heading"></a></h1>
+<section id="introduzione">
+<h2>Introduzione<a class="headerlink" href="3.1.11_morse_code_generator.html#introduzione" title="Link to this heading"></a></h2>
+<p>In questa lezione, realizzeremo un generatore di codice Morse, dove puoi
+digitare una serie di lettere in inglese sul Raspberry Pi per farle apparire
+come codice Morse.</p>
+</section>
+<section id="componenti">
+<h2>Componenti<a class="headerlink" href="3.1.11_morse_code_generator.html#componenti" title="Link to this heading"></a></h2>
+<img alt="_images/3.1.10.png" class="align-center" src="_images/3.1.10.png" />
+</section>
+<section id="schema-elettrico">
+<h2>Schema Elettrico<a class="headerlink" href="3.1.11_morse_code_generator.html#schema-elettrico" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO22</p></td>
+<td><p>Pin 15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/Schematic_three_one11.png" class="align-center" src="_images/Schematic_three_one11.png" />
+</section>
+<section id="procedure-sperimentali">
+<h2>Procedure Sperimentali<a class="headerlink" href="3.1.11_morse_code_generator.html#procedure-sperimentali" title="Link to this heading"></a></h2>
+<p><strong>Passo 1:</strong> Costruisci il circuito. (Presta attenzione ai poli del
+buzzer: il polo positivo è contrassegnato con +, l’altro è il polo negativo.)</p>
+<a class="reference internal image-reference" href="_images/image269.png"><img alt="_images/image269.png" src="_images/image269.png" style="width: 800px;" />
+</a>
+<section id="per-utenti-linguaggio-c">
+<h3><strong>Per Utenti Linguaggio C</strong><a class="headerlink" href="3.1.11_morse_code_generator.html#per-utenti-linguaggio-c" title="Link to this heading"></a></h3>
+<p><strong>Passo 2</strong>: Apri il file del codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">3.1.11</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Passo 3</strong>: Compila il codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">3.1.11</span><span class="n">_MorseCodeGenerator</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Passo 4</strong>: Esegui il file eseguibile sopra.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Dopo l’avvio del programma, digita una serie di caratteri e il
+buzzer e il LED invieranno i segnali corrispondenti in codice Morse.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Se il programma non funziona dopo l’esecuzione o compare un messaggio di errore: &quot;wiringPi.h: File o directory non trovato&quot;, consulta <a class="reference internal" href="faq.html#il-codice-c-non-funziona"><span class="std std-ref">Il codice C non funziona?</span></a>.</p>
+</div>
+<p><strong>Spiegazione del Codice</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">MORSE</span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">word</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">code</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">MORSE</span><span class="w"> </span><span class="n">morseDict</span><span class="p">[]</span><span class="o">=</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span><span class="s">&quot;01&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;B&#39;</span><span class="p">,</span><span class="s">&quot;1000&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span><span class="s">&quot;1010&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;D&#39;</span><span class="p">,</span><span class="s">&quot;100&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;E&#39;</span><span class="p">,</span><span class="s">&quot;0&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="sc">&#39;F&#39;</span><span class="p">,</span><span class="s">&quot;0010&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;G&#39;</span><span class="p">,</span><span class="s">&quot;110&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;H&#39;</span><span class="p">,</span><span class="s">&quot;0000&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;I&#39;</span><span class="p">,</span><span class="s">&quot;00&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;J&#39;</span><span class="p">,</span><span class="s">&quot;0111&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="sc">&#39;K&#39;</span><span class="p">,</span><span class="s">&quot;101&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;L&#39;</span><span class="p">,</span><span class="s">&quot;0100&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;M&#39;</span><span class="p">,</span><span class="s">&quot;11&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;N&#39;</span><span class="p">,</span><span class="s">&quot;10&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;O&#39;</span><span class="p">,</span><span class="s">&quot;111&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="sc">&#39;P&#39;</span><span class="p">,</span><span class="s">&quot;0110&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;Q&#39;</span><span class="p">,</span><span class="s">&quot;1101&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;R&#39;</span><span class="p">,</span><span class="s">&quot;010&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;S&#39;</span><span class="p">,</span><span class="s">&quot;000&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;T&#39;</span><span class="p">,</span><span class="s">&quot;1&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="sc">&#39;U&#39;</span><span class="p">,</span><span class="s">&quot;001&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;V&#39;</span><span class="p">,</span><span class="s">&quot;0001&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;W&#39;</span><span class="p">,</span><span class="s">&quot;011&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;X&#39;</span><span class="p">,</span><span class="s">&quot;1001&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;Y&#39;</span><span class="p">,</span><span class="s">&quot;1011&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="sc">&#39;Z&#39;</span><span class="p">,</span><span class="s">&quot;1100&quot;</span><span class="p">},{</span><span class="sc">&#39;1&#39;</span><span class="p">,</span><span class="s">&quot;01111&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;2&#39;</span><span class="p">,</span><span class="s">&quot;00111&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;3&#39;</span><span class="p">,</span><span class="s">&quot;00011&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;4&#39;</span><span class="p">,</span><span class="s">&quot;00001&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="sc">&#39;5&#39;</span><span class="p">,</span><span class="s">&quot;00000&quot;</span><span class="p">},{</span><span class="sc">&#39;6&#39;</span><span class="p">,</span><span class="s">&quot;10000&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;7&#39;</span><span class="p">,</span><span class="s">&quot;11000&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;8&#39;</span><span class="p">,</span><span class="s">&quot;11100&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;9&#39;</span><span class="p">,</span><span class="s">&quot;11110&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="sc">&#39;0&#39;</span><span class="p">,</span><span class="s">&quot;11111&quot;</span><span class="p">},{</span><span class="sc">&#39;?&#39;</span><span class="p">,</span><span class="s">&quot;001100&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;/&#39;</span><span class="p">,</span><span class="s">&quot;10010&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;,&#39;</span><span class="p">,</span><span class="s">&quot;110011&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;.&#39;</span><span class="p">,</span><span class="s">&quot;010101&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="sc">&#39;;&#39;</span><span class="p">,</span><span class="s">&quot;101010&quot;</span><span class="p">},{</span><span class="sc">&#39;!&#39;</span><span class="p">,</span><span class="s">&quot;101011&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;@&#39;</span><span class="p">,</span><span class="s">&quot;011010&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;:&#39;</span><span class="p">,</span><span class="s">&quot;111000&quot;</span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Questa struttura MORSE è il dizionario del codice Morse, che contiene i
+caratteri da A-Z, i numeri 0-9 e i simboli &quot;?&quot; &quot;/&quot; &quot;:&quot; &quot;,&quot; &quot;.&quot; &quot;;&quot; &quot;!&quot; &quot;&#64;&quot;.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">lookup</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="k">struct</span><span class="w"> </span><span class="nc">MORSE</span><span class="w"> </span><span class="o">*</span><span class="n">dict</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">length</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">length</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">dict</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">word</span><span class="o">==</span><span class="n">key</span><span class="p">){</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">dict</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">code</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La funzione <strong>lookup()</strong> serve per «consultare il dizionario». Definisce
+una <strong>key</strong>, ricerca le parole identiche nella struttura <strong>morseDict</strong> e
+restituisce il corrispondente codice Morse.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">on</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ALedPin</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Crea la funzione on() per attivare il buzzer e il LED.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">off</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ALedPin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La funzione off() disattiva il buzzer e il LED.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">beep</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">dt</span><span class="p">){</span>
+<span class="w">    </span><span class="n">on</span><span class="p">();</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="w">    </span><span class="n">off</span><span class="p">();</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Definisci la funzione beep() per fare in modo che il buzzer e il LED
+emettano segnali a intervalli di <strong>dt</strong>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">morsecode</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">code</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">pause</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">250</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">morseDict</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="n">morseDict</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">strlen</span><span class="p">(</span><span class="n">code</span><span class="p">);</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">point</span><span class="o">=</span><span class="n">lookup</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">morseDict</span><span class="p">,</span><span class="n">length</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">strlen</span><span class="p">(</span><span class="n">point</span><span class="p">);</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="sc">&#39;0&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">beep</span><span class="p">(</span><span class="n">pause</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="sc">&#39;1&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">beep</span><span class="p">(</span><span class="n">pause</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="n">pause</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La funzione morsecode() processa il codice Morse dei caratteri di input,
+facendo in modo che i segnali «1» durino più a lungo e quelli «0» siano
+brevi, ad esempio, digitando «SOS» si otterrà un segnale di tre brevi,
+tre lunghi e tre brevi « · · · - - - · · · «.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">toupper</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">c</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="sc">&#39;z&#39;</span><span class="p">))</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="sc">&#39;A&#39;</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">strupr</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">str</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">orign</span><span class="o">=</span><span class="n">str</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(;</span><span class="w"> </span><span class="o">*</span><span class="n">str</span><span class="o">!=</span><span class="sc">&#39;\0&#39;</span><span class="p">;</span><span class="w"> </span><span class="n">str</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="o">*</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">toupper</span><span class="p">(</span><span class="o">*</span><span class="n">str</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="n">orign</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Prima della codifica, è necessario convertire tutte le lettere in maiuscole.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">setup</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">code</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">length</span><span class="o">=</span><span class="mi">8</span><span class="p">;</span>
+<span class="w">    </span><span class="n">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="o">*</span><span class="n">length</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Please input the messenger:&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="n">code</span><span class="p">);</span>
+<span class="w">        </span><span class="n">code</span><span class="o">=</span><span class="n">strupr</span><span class="p">(</span><span class="n">code</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">code</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">morsecode</span><span class="p">(</span><span class="n">code</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Quando digiti i caratteri con la tastiera, code = strupr(code) converte
+le lettere inserite in maiuscole.</p>
+<p>La funzione Printf() stampa quindi il testo chiaro sullo schermo, e la
+funzione morsecod() fa sì che il buzzer e il LED emettano il codice Morse.</p>
+<p>Nota: la lunghezza del carattere in input non deve superare il valore
+di <strong>length</strong> (può essere modificato).</p>
+</section>
+<section id="per-utenti-python">
+<h3><strong>Per Utenti Python</strong><a class="headerlink" href="3.1.11_morse_code_generator.html#per-utenti-python" title="Link to this heading"></a></h3>
+<p><strong>Passo 2</strong>: Apri il file del codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<p><strong>Passo 3</strong>: Esegui.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.11</span><span class="n">_MorseCodeGenerator</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Dopo l’avvio del programma, digita una serie di caratteri, e il buzzer e il
+LED invieranno i segnali Morse corrispondenti.</p>
+<p><strong>Codice</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Puoi <strong>Modificare/Reset/Copiare/Eseguire/Fermare</strong> il codice qui sotto.
+Tuttavia, prima di farlo, è necessario accedere al percorso del codice
+sorgente come <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">BeepPin</span><span class="o">=</span><span class="mi">22</span>
+<span class="n">ALedPin</span><span class="o">=</span><span class="mi">17</span>
+
+<span class="n">MORSECODE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span><span class="s1">&#39;1000&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="s1">&#39;1010&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span><span class="s1">&#39;100&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">:</span><span class="s1">&#39;0010&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span><span class="s1">&#39;110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;H&#39;</span><span class="p">:</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span><span class="s1">&#39;0111&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">:</span><span class="s1">&#39;101&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span><span class="s1">&#39;0100&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="s1">&#39;11&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span><span class="s1">&#39;10&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;O&#39;</span><span class="p">:</span><span class="s1">&#39;111&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">:</span><span class="s1">&#39;0110&#39;</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span><span class="s1">&#39;1101&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">:</span><span class="s1">&#39;010&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span><span class="s1">&#39;000&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;U&#39;</span><span class="p">:</span><span class="s1">&#39;001&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span><span class="s1">&#39;0001&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span><span class="s1">&#39;011&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span><span class="s1">&#39;1001&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="s1">&#39;1011&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span><span class="s1">&#39;1100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;1&#39;</span><span class="p">:</span><span class="s1">&#39;01111&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span><span class="s1">&#39;00111&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span><span class="s1">&#39;00011&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">:</span><span class="s1">&#39;00001&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">:</span><span class="s1">&#39;00000&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;6&#39;</span><span class="p">:</span><span class="s1">&#39;10000&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">:</span><span class="s1">&#39;11000&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">:</span><span class="s1">&#39;11100&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">:</span><span class="s1">&#39;11110&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span><span class="s1">&#39;11111&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;?&#39;</span><span class="p">:</span><span class="s1">&#39;001100&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span><span class="s1">&#39;10010&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">:</span><span class="s1">&#39;110011&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">:</span><span class="s1">&#39;010101&#39;</span><span class="p">,</span> <span class="s1">&#39;;&#39;</span><span class="p">:</span><span class="s1">&#39;101010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;!&#39;</span><span class="p">:</span><span class="s1">&#39;101011&#39;</span><span class="p">,</span> <span class="s1">&#39;@&#39;</span><span class="p">:</span><span class="s1">&#39;011010&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">:</span><span class="s1">&#39;111000&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">ALedPin</span><span class="p">,</span><span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ALedPin</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">off</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ALedPin</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">beep</span><span class="p">(</span><span class="n">dt</span><span class="p">):</span>    <span class="c1"># dt per il tempo di ritardo.</span>
+    <span class="n">on</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+    <span class="n">off</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">morsecode</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+    <span class="n">pause</span> <span class="o">=</span> <span class="mf">0.25</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">code</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">tap</span> <span class="ow">in</span> <span class="n">MORSECODE</span><span class="p">[</span><span class="n">letter</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">tap</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span>
+                <span class="n">beep</span><span class="p">(</span><span class="n">pause</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">tap</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+                <span class="n">beep</span><span class="p">(</span><span class="n">pause</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">pause</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">code</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please input the messenger:&quot;</span><span class="p">)</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="n">code</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+        <span class="n">morsecode</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ALedPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">main</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Spiegazione del Codice</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MORSECODE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span><span class="s1">&#39;1000&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="s1">&#39;1010&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span><span class="s1">&#39;100&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">:</span><span class="s1">&#39;0010&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span><span class="s1">&#39;110&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;H&#39;</span><span class="p">:</span><span class="s1">&#39;0000&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span><span class="s1">&#39;00&#39;</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span><span class="s1">&#39;0111&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">:</span><span class="s1">&#39;101&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span><span class="s1">&#39;0100&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="s1">&#39;11&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span><span class="s1">&#39;10&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;O&#39;</span><span class="p">:</span><span class="s1">&#39;111&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">:</span><span class="s1">&#39;0110&#39;</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span><span class="s1">&#39;1101&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">:</span><span class="s1">&#39;010&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span><span class="s1">&#39;000&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;U&#39;</span><span class="p">:</span><span class="s1">&#39;001&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span><span class="s1">&#39;0001&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span><span class="s1">&#39;011&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span><span class="s1">&#39;1001&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="s1">&#39;1011&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span><span class="s1">&#39;1100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;1&#39;</span><span class="p">:</span><span class="s1">&#39;01111&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span><span class="s1">&#39;00111&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span><span class="s1">&#39;00011&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">:</span><span class="s1">&#39;00001&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">:</span><span class="s1">&#39;00000&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;6&#39;</span><span class="p">:</span><span class="s1">&#39;10000&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">:</span><span class="s1">&#39;11000&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">:</span><span class="s1">&#39;11100&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">:</span><span class="s1">&#39;11110&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span><span class="s1">&#39;11111&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;?&#39;</span><span class="p">:</span><span class="s1">&#39;001100&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span><span class="s1">&#39;10010&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">:</span><span class="s1">&#39;110011&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">:</span><span class="s1">&#39;010101&#39;</span><span class="p">,</span> <span class="s1">&#39;;&#39;</span><span class="p">:</span><span class="s1">&#39;101010&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;!&#39;</span><span class="p">:</span><span class="s1">&#39;101011&#39;</span><span class="p">,</span> <span class="s1">&#39;@&#39;</span><span class="p">:</span><span class="s1">&#39;011010&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">:</span><span class="s1">&#39;111000&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Questa struttura MORSE è il dizionario del codice Morse, contenente</dt><dd><p>i caratteri da A-Z, i numeri da 0-9 e i simboli come &quot;?&quot; &quot;/&quot; &quot;:&quot; &quot;,&quot; &quot;.&quot; &quot;;&quot; &quot;!&quot; &quot;&#64;&quot;.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ALedPin</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>La funzione on() attiva il buzzer e il LED.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">off</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">BeepPin</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ALedPin</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>La funzione off() è utilizzata per spegnere il buzzer e il LED.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">beep</span><span class="p">(</span><span class="n">dt</span><span class="p">):</span>   <span class="c1"># x for dalay time.</span>
+    <span class="n">on</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+    <span class="n">off</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Definisce una funzione beep() per far emettere suoni e lampeggiare il
+buzzer e il LED in un certo intervallo di <strong>dt</strong>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">morsecode</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+    <span class="n">pause</span> <span class="o">=</span> <span class="mf">0.25</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">code</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">tap</span> <span class="ow">in</span> <span class="n">MORSECODE</span><span class="p">[</span><span class="n">letter</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">tap</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span>
+                <span class="n">beep</span><span class="p">(</span><span class="n">pause</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">tap</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+                <span class="n">beep</span><span class="p">(</span><span class="n">pause</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">pause</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>La funzione morsecode() processa il codice Morse dei caratteri di input,
+facendo in modo che i segnali «1» siano prolungati e quelli «0» siano brevi.
+Ad esempio, digitando «SOS», si ottiene un segnale di tre brevi, tre lunghi
+e tre brevi « · · · - - - · · · «.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">code</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please input the messenger:&quot;</span><span class="p">)</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="n">code</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+        <span class="n">morsecode</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Quando si digita il messaggio con la tastiera, upper() converte le
+lettere inserite in maiuscole.</p>
+<p>La funzione Printf() stampa quindi il testo chiaro sullo schermo, e
+a funzione morsecode() fa sì che il buzzer e il LED emettano il codice Morse.</p>
+</section>
+</section>
+<section id="immagine-del-fenomeno">
+<h2>Immagine del Fenomeno<a class="headerlink" href="3.1.11_morse_code_generator.html#immagine-del-fenomeno" title="Link to this heading"></a></h2>
+<img alt="_images/image270.jpeg" class="align-center" src="_images/image270.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Piè di pagina">
+        <a href="3.1.10_alarm_bell.html" class="btn btn-neutral float-left" title="3.1.10 Campanello di Allarme" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Precedente</a>
+        <a href="3.1.12_game_guess_number.html" class="btn btn-neutral float-right" title="3.1.12 GIOCO - Indovina il Numero" accesskey="n" rel="next">Prossimo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, SunFounder.</p>
+  </div>
+
+  Realizzato con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornito da <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

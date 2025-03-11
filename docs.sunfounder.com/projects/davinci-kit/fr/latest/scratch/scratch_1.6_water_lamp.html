@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.6 Lampe à Eau &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="1.7 Sonnette" href="scratch_1.7_doorbell.html" />
+    <link rel="prev" title="1.5 Réveiller le Hibou" href="scratch_1.5_wake_up_the_owl.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/scratch/scratch_1.6_water_lamp.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Pour le Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html">Bibliothèques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 Sorties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 Entrée</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/play_with_processing.html">Jouer avec Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nodejs/play_with_nodejs.html">Jouer avec Node.js</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_scratch.html">Jouer avec Scratch</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_quide_on_scratch.html">Guide rapide sur Scratch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="scratch_project.html">Projets</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.1_wand.html">1.1 Baguette Magique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.2_colorful_balls.html">1.2 Boules Colorées</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.3_tumbler.html">1.3 Culbuto</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.4_hare.html">1.4 Lièvre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.5_wake_up_the_owl.html">1.5 Réveiller le Hibou</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="scratch_1.6_water_lamp.html#">1.6 Lampe à Eau</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.7_doorbell.html">1.7 Sonnette</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.8_123_wooden_man.html">1.8 Jeu du 1, 2, 3 Soleil</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.9_inflating_the_balloon.html">1.9 Gonfler le ballon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.10_rotating_fan.html">1.10 Ventilateur rotatif</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+          <li class="breadcrumb-item"><a href="play_with_scratch.html">Jouer avec Scratch</a></li>
+          <li class="breadcrumb-item"><a href="scratch_project.html">Projets</a></li>
+      <li class="breadcrumb-item active">1.6 Lampe à Eau</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/scratch/scratch_1.6_water_lamp.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour, bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, d’Arduino et de l’ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez les problèmes après-vente et relevez les défis techniques grâce à l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprendre &amp; Partager</strong> : Échangez des astuces et des tutoriels pour améliorer vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Bénéficiez d’un accès anticipé aux annonces de nouveaux produits et aux aperçus en avant-première.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de réductions exclusives sur nos derniers produits.</p></li>
+<li><p><strong>Promotions festives et concours</strong> : Participez à des tirages au sort et à des promotions spéciales pendant les fêtes.</p></li>
+</ul>
+<p>👉 Prêt à explorer et créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="lampe-a-eau">
+<h1>1.6 Lampe à Eau<a class="headerlink" href="scratch_1.6_water_lamp.html#lampe-a-eau" title="Lien vers cette rubrique"></a></h1>
+<p>Aujourd’hui, nous allons utiliser une barre de LED, un Raspberry Pi et Scratch pour créer une <strong>lampe à eau</strong>.</p>
+<p>Les LEDs de la barre de LED s’allumeront dans l’ordre indiqué par les flèches sur la scène.</p>
+<img alt="../_images/1.12_header.png" src="../_images/1.12_header.png" />
+<section id="composants-requis">
+<h2>Composants Requis<a class="headerlink" href="scratch_1.6_water_lamp.html#composants-requis" title="Lien vers cette rubrique"></a></h2>
+<img alt="../_images/1.12_list.png" src="../_images/1.12_list.png" />
+</section>
+<section id="construire-le-circuit">
+<h2>Construire le Circuit<a class="headerlink" href="scratch_1.6_water_lamp.html#construire-le-circuit" title="Lien vers cette rubrique"></a></h2>
+<img alt="../_images/1.12_image66.png" src="../_images/1.12_image66.png" />
+</section>
+<section id="charger-le-code-et-observer-le-resultat">
+<h2>Charger le Code et Observer le Résultat<a class="headerlink" href="scratch_1.6_water_lamp.html#charger-le-code-et-observer-le-resultat" title="Lien vers cette rubrique"></a></h2>
+<p>Chargez le fichier de code (<code class="docutils literal notranslate"><span class="pre">1.6_water_lamp.sb3</span></code>) depuis votre ordinateur dans Scratch 3.</p>
+<p>En cliquant sur <strong>Arrow1</strong>, les LEDs de la barre s’allument une par une de la gauche vers la droite, puis s’éteignent dans le même ordre. En cliquant sur <strong>Arrow2</strong>, les LEDs s’allument dans l’ordre inverse.</p>
+</section>
+<section id="conseils-pour-les-sprites">
+<h2>Conseils pour les Sprites<a class="headerlink" href="scratch_1.6_water_lamp.html#conseils-pour-les-sprites" title="Lien vers cette rubrique"></a></h2>
+<p>Supprimez le sprite par défaut et choisissez le sprite <strong>Arrow1</strong>.</p>
+<img alt="../_images/1.12_graph1.png" src="../_images/1.12_graph1.png" />
+<p>Nous aurons besoin de 2 sprites <strong>Arrow1</strong>, que vous pouvez dupliquer en utilisant le bouton de duplication.</p>
+<img alt="../_images/1.12_scratch_duplicate.png" src="../_images/1.12_scratch_duplicate.png" />
+<p>Cliquez sur le sprite <strong>Arrow2</strong> et modifiez la direction de la flèche en sélectionnant le costume 2.</p>
+<img alt="../_images/1.12_graph2.png" src="../_images/1.12_graph2.png" />
+<p>Créons maintenant une variable.</p>
+<img alt="../_images/1.12_graph3.png" src="../_images/1.12_graph3.png" />
+<p>Nommez-la <strong>num</strong>.</p>
+<img alt="../_images/1.12_graph4.png" src="../_images/1.12_graph4.png" />
+<p>De la même manière, créez une liste appelée <strong>led</strong>.</p>
+<img alt="../_images/1.12_graph6.png" src="../_images/1.12_graph6.png" />
+<p>Après ajout, vous devriez voir la variable <strong>num</strong> et la liste <strong>led</strong> s’afficher dans la zone de la scène.</p>
+<p>Cliquez sur <strong>+</strong> pour ajouter 10 éléments à la liste et entrez les numéros de broches dans l’ordre suivant : (17,18,27,22,23,24,25,2,3,8).</p>
+<img alt="../_images/1.12_graph7.png" src="../_images/1.12_graph7.png" />
+</section>
+<section id="conseils-pour-le-code">
+<h2>Conseils pour le Code<a class="headerlink" href="scratch_1.6_water_lamp.html#conseils-pour-le-code" title="Lien vers cette rubrique"></a></h2>
+<a class="reference internal image-reference" href="../_images/1.12_graph10.png"><img alt="../_images/1.12_graph10.png" src="../_images/1.12_graph10.png" style="width: 300px;" />
+</a>
+<p>Ceci est un bloc d’événement déclenché lorsque le sprite actuel est cliqué.</p>
+<a class="reference internal image-reference" href="../_images/1.12_graph8.png"><img alt="../_images/1.12_graph8.png" src="../_images/1.12_graph8.png" style="width: 300px;" />
+</a>
+<p>La valeur initiale de la variable <strong>num</strong> détermine quelle LED s’allume en premier.</p>
+<img alt="../_images/1.12_graph9.png" src="../_images/1.12_graph9.png" />
+<p>Définissez la broche correspondant à <strong>num</strong> dans la liste <strong>led</strong> sur <strong>low</strong> pour allumer la LED, puis définissez la broche correspondant à <strong>num-1</strong> sur <strong>high</strong> pour éteindre la LED précédente.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="scratch_1.5_wake_up_the_owl.html" class="btn btn-neutral float-left" title="1.5 Réveiller le Hibou" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="scratch_1.7_doorbell.html" class="btn btn-neutral float-right" title="1.7 Sonnette" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

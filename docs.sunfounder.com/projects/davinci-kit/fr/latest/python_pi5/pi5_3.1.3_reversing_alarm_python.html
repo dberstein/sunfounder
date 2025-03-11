@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.3 Alarme de Recul &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="3.1.4 Ventilateur intelligent" href="pi5_3.1.4_smart_fan_python.html" />
+    <link rel="prev" title="3.1.2 Bienvenue" href="pi5_3.1.2_welcome_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_3.1.3_reversing_alarm_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Pour le Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Jouez avec Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Vérifiez l’installation de <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">Input</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_extension_python.html">Extension</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.1_counting_device_python.html">3.1.1 Dispositif de Comptage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.2_welcome_python.html">3.1.2 Bienvenue</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_3.1.3_reversing_alarm_python.html#">3.1.3 Alarme de Recul</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.4_smart_fan_python.html">3.1.4 Ventilateur intelligent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.5_battery_indicator_python.html">3.1.5 Indicateur de Batterie</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.6_motion_control_python.html">3.1.6 Contrôle de Mouvement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.7_traffic_light_python.html">3.1.7 Feu de Signalisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.8_overheat_monitor_python.html">3.1.8 Moniteur de surchauffe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.9_password_lock_python.html">3.1.9 Serrure à Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.10_alarm_bell_python.html">3.1.10 Alarme Manuelle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.11_morse_code_generator_python.html">3.1.11 Générateur de Code Morse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.12_game_guess_number_python.html">3.1.12 JEU – Devine le Nombre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.13_game_10_second_python.html">3.1.13 JEU – 10 Secondes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.14_game_not_not_python.html">3.1.14 JEU – Not Not</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Play with C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Pour le Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Jouez avec Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_extension_python.html">Extension</a></li>
+      <li class="breadcrumb-item active">3.1.3 Alarme de Recul</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_3.1.3_reversing_alarm_python.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour et bienvenue dans la communauté SunFounder des passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez au cœur du Raspberry Pi, de l’Arduino et de l’ESP32 aux côtés d’autres passionnés.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez les problèmes post-vente et les défis techniques grâce à l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprendre et partager</strong> : Échangez des astuces et des tutoriels pour perfectionner vos compétences.</p></li>
+<li><p><strong>Avant-premières exclusives</strong> : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de remises exclusives sur nos derniers produits.</p></li>
+<li><p><strong>Promotions festives et concours</strong> : Participez à des tirages au sort et à des promotions spéciales.</p></li>
+</ul>
+<p>👉 Prêt à explorer et créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="alarme-de-recul">
+<span id="py-pi5-alarm"></span><h1>3.1.3 Alarme de Recul<a class="headerlink" href="pi5_3.1.3_reversing_alarm_python.html#alarme-de-recul" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="pi5_3.1.3_reversing_alarm_python.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>Dans ce projet, nous allons utiliser un écran LCD, un buzzer et des capteurs
+ultrasoniques pour créer un système d’assistance au stationnement en marche
+arrière. Nous pourrons le placer sur un véhicule télécommandé pour simuler le
+processus réel de recul d’une voiture dans un garage.</p>
+</section>
+<section id="composants-necessaires">
+<h2>Composants Nécessaires<a class="headerlink" href="pi5_3.1.3_reversing_alarm_python.html#composants-necessaires" title="Lien vers cette rubrique"></a></h2>
+<p>Pour ce projet, nous aurons besoin des composants suivants :</p>
+<a class="reference internal image-reference" href="../_images/4.1.9_reversing_alarm_list.png"><img alt="../_images/4.1.9_reversing_alarm_list.png" class="align-center" src="../_images/4.1.9_reversing_alarm_list.png" style="width: 800px;" />
+</a>
+</section>
+<section id="schema-de-cablage">
+<h2>Schéma de Câblage<a class="headerlink" href="pi5_3.1.3_reversing_alarm_python.html#schema-de-cablage" title="Lien vers cette rubrique"></a></h2>
+<p>Le capteur ultrasonique détecte la distance entre lui-même et l’obstacle, qui
+sera affichée sur l’écran LCD sous forme de valeur numérique. Simultanément,
+le capteur active le buzzer, émettant des sons d’alerte de fréquences différentes
+selon la valeur de la distance.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO23</p></td>
+<td><p>Pin 16</p></td>
+<td><p>4</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO24</p></td>
+<td><p>Pin 18</p></td>
+<td><p>5</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>SDA1</p></td>
+<td><p>Pin 3</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>SCL1</p></td>
+<td><p>Pin 5</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/4.1.9_reversing_alarm_schematic.png" class="align-center" src="../_images/4.1.9_reversing_alarm_schematic.png" />
+</section>
+<section id="procedures-experimentales">
+<h2>Procédures Expérimentales<a class="headerlink" href="pi5_3.1.3_reversing_alarm_python.html#procedures-experimentales" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1 :</strong> Montez le circuit.</p>
+<img alt="../_images/4.1.9_reversing_alarm_circuit.png" class="align-center" src="../_images/4.1.9_reversing_alarm_circuit.png" />
+<p><strong>Étape 2 :</strong> Changez le répertoire.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Étape 3 :</strong> Exécutez le programme.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.3</span><span class="n">_ReversingAlarm</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Lorsque le programme s’exécute, le module de capteur ultrasonique détecte la
+distance jusqu’à l’obstacle, affiche l’information sur l’écran LCD1602 et émet
+des tonalités d’avertissement dont la fréquence varie en fonction de la distance détectée.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Si vous recevez l’erreur <code class="docutils literal notranslate"><span class="pre">FileNotFoundError:</span> <span class="pre">[Errno</span> <span class="pre">2]</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory:</span> <span class="pre">'/dev/i2c-1'</span></code>, veuillez consulter <a class="reference internal" href="../appendix/i2c_configuration.html#i2c-config"><span class="std std-ref">I2C Configuration</span></a> pour activer l’I2C.</p></li>
+<li><p>Si vous recevez l’erreur <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'smbus2'</span></code>, exécutez la commande <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">smbus2</span></code>.</p></li>
+<li><p>Si l’erreur <code class="docutils literal notranslate"><span class="pre">OSError:</span> <span class="pre">[Errno</span> <span class="pre">121]</span> <span class="pre">Remote</span> <span class="pre">I/O</span> <span class="pre">error</span></code> apparaît, cela signifie que le module est mal câblé ou qu’il est défectueux.</p></li>
+<li><p>Si le code et le câblage sont corrects, mais que l’écran LCD n’affiche toujours pas de contenu, vous pouvez tourner le potentiomètre à l’arrière pour augmenter le contraste.</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>Si un message d’erreur du type <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code> apparaît, veuillez vous référer à <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">Si gpiozero ne fonctionne pas.</span></a>.</p>
+</div>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vous pouvez <strong>modifier/réinitialiser/copier/exécuter/arrêter</strong> le code ci-dessous. Cependant, avant cela, assurez-vous d’être dans le répertoire source comme <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python-pi5</span></code>. Après modification, vous pouvez exécuter le code pour observer les résultats.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">LCD1602</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">DistanceSensor</span><span class="p">,</span> <span class="n">Buzzer</span>
+
+<span class="c1"># Initialisation du capteur ultrasonique avec les broches GPIO</span>
+<span class="n">sensor</span> <span class="o">=</span> <span class="n">DistanceSensor</span><span class="p">(</span><span class="n">echo</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">trigger</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>  <span class="c1"># Broche Echo : GPIO 24, Broche Trigger : GPIO 23</span>
+
+<span class="c1"># Initialisation du buzzer connecté à la broche GPIO 17</span>
+<span class="n">buzzer</span> <span class="o">=</span> <span class="n">Buzzer</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">lcdsetup</span><span class="p">():</span>
+    <span class="c1"># Initialisation de l&#39;écran LCD avec l&#39;adresse I2C et activation du rétroéclairage</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="mh">0x27</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 0x27 est l&#39;adresse I2C de l&#39;écran LCD</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>  <span class="c1"># Effacer l&#39;écran LCD</span>
+    <span class="c1"># Affichage des messages de démarrage sur l&#39;écran LCD</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Ultrasonic Starting&#39;</span><span class="p">)</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;By SunFounder&#39;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Attendre 2 secondes</span>
+
+<span class="k">def</span> <span class="nf">distance</span><span class="p">():</span>
+    <span class="c1"># Calculer et retourner la distance mesurée par le capteur</span>
+    <span class="n">dis</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">.</span><span class="n">distance</span> <span class="o">*</span> <span class="mi">100</span>  <span class="c1"># Convertir la distance en centimètres</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Distance: </span><span class="si">{:.2f}</span><span class="s1"> cm&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dis</span><span class="p">))</span>  <span class="c1"># Afficher la distance avec deux décimales</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># Attendre 0,3 seconde avant la prochaine mesure</span>
+    <span class="k">return</span> <span class="n">dis</span>
+
+<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="c1"># Mesurer la distance en continu et mettre à jour l&#39;écran LCD et le buzzer</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">dis</span> <span class="o">=</span> <span class="n">distance</span><span class="p">()</span>  <span class="c1"># Obtenir la distance actuelle</span>
+        <span class="c1"># Afficher la distance et gérer les alertes en fonction de celle-ci</span>
+        <span class="k">if</span> <span class="n">dis</span> <span class="o">&gt;</span> <span class="mi">400</span><span class="p">:</span>  <span class="c1"># Vérifier si la distance est hors de portée</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Error&#39;</span><span class="p">)</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Out of range&#39;</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Afficher la distance actuelle sur l&#39;écran LCD</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Distance is&#39;</span><span class="p">)</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">dis</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; cm&#39;</span><span class="p">)</span>
+            <span class="c1"># Ajuster la fréquence du buzzer en fonction de la distance</span>
+            <span class="k">if</span> <span class="n">dis</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">:</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="mi">20</span> <span class="o">&lt;</span> <span class="n">dis</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+                <span class="c1"># Distance moyenne : fréquence moyenne du buzzer</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+                    <span class="n">buzzer</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+                    <span class="n">buzzer</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">dis</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">:</span>
+                <span class="c1"># Distance proche : fréquence élevée du buzzer</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+                    <span class="n">buzzer</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+                    <span class="n">buzzer</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">lcdsetup</span><span class="p">()</span>  <span class="c1"># Configurer l&#39;écran LCD</span>
+    <span class="n">loop</span><span class="p">()</span>      <span class="c1"># Démarrer la boucle de mesure</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Éteindre le buzzer et effacer l&#39;écran LCD en cas d&#39;interruption par l&#39;utilisateur (ex. Ctrl+C)</span>
+    <span class="n">buzzer</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+<span class="n">LCD1602</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Explication du Code</strong></p>
+<ol class="arabic">
+<li><p>Ce script utilise plusieurs bibliothèques pour son bon fonctionnement. La bibliothèque <code class="docutils literal notranslate"><span class="pre">LCD1602</span></code> gère l’affichage de l’écran LCD, tandis que <code class="docutils literal notranslate"><span class="pre">time</span></code> fournit les fonctions liées au temps. La bibliothèque <code class="docutils literal notranslate"><span class="pre">gpiozero</span></code> est essentielle pour les interactions avec les broches GPIO du Raspberry Pi, en particulier pour contrôler le capteur de distance et le buzzer.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">LCD1602</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">DistanceSensor</span><span class="p">,</span> <span class="n">Buzzer</span>
+</pre></div>
+</div>
+</li>
+<li><p>Le capteur ultrasonique est configuré avec ses broches Echo et Trigger connectées respectivement aux broches GPIO 24 et 23. De plus, un buzzer est connecté à la broche GPIO 17.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialisation du capteur ultrasonique avec les broches GPIO</span>
+<span class="n">sensor</span> <span class="o">=</span> <span class="n">DistanceSensor</span><span class="p">(</span><span class="n">echo</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">trigger</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>  <span class="c1"># Broche Echo : GPIO 24, Broche Trigger : GPIO 23</span>
+
+<span class="c1"># Initialisation du buzzer connecté à la broche GPIO 17</span>
+<span class="n">buzzer</span> <span class="o">=</span> <span class="n">Buzzer</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>L’initialisation de l’écran LCD consiste à le configurer, à effacer l’affichage et à afficher un message de démarrage.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lcdsetup</span><span class="p">():</span>
+    <span class="c1"># Initialisation de l&#39;écran LCD avec l&#39;adresse I2C et activation du rétroéclairage</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="mh">0x27</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 0x27 est l&#39;adresse I2C de l&#39;écran LCD</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>  <span class="c1"># Effacer l&#39;écran LCD</span>
+    <span class="c1"># Affichage des messages de démarrage sur l&#39;écran LCD</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Ultrasonic Starting&#39;</span><span class="p">)</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;By SunFounder&#39;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Attendre 2 secondes</span>
+</pre></div>
+</div>
+</li>
+<li><p>La fonction <code class="docutils literal notranslate"><span class="pre">distance</span></code> calcule la distance mesurée par le capteur ultrasonique et l’affiche, puis retourne la valeur en centimètres.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distance</span><span class="p">():</span>
+    <span class="c1"># Calculer et retourner la distance mesurée par le capteur</span>
+    <span class="n">dis</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">.</span><span class="n">distance</span> <span class="o">*</span> <span class="mi">100</span>  <span class="c1"># Convertir la distance en centimètres</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Distance: </span><span class="si">{:.2f}</span><span class="s1"> cm&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dis</span><span class="p">))</span>  <span class="c1"># Afficher la distance avec deux décimales</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>  <span class="c1"># Attendre 0,3 seconde avant la prochaine mesure</span>
+    <span class="k">return</span> <span class="n">dis</span>
+</pre></div>
+</div>
+</li>
+<li><p>La boucle principale mesure continuellement la distance, met à jour l’écran LCD et le buzzer. Elle gère les différentes plages de distance avec des actions spécifiques, comme l’affichage de messages d’erreur ou la variation de la fréquence du buzzer en fonction de la distance mesurée.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
+    <span class="c1"># Mesurer continuellement la distance et mettre à jour l&#39;écran LCD et le buzzer</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">dis</span> <span class="o">=</span> <span class="n">distance</span><span class="p">()</span>  <span class="c1"># Obtenir la distance actuelle</span>
+        <span class="c1"># Afficher la distance et gérer les alertes en fonction de celle-ci</span>
+        <span class="k">if</span> <span class="n">dis</span> <span class="o">&gt;</span> <span class="mi">400</span><span class="p">:</span>  <span class="c1"># Vérifier si la distance est hors de portée</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Error&#39;</span><span class="p">)</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Out of range&#39;</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Afficher la distance actuelle sur l&#39;écran LCD</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Distance is&#39;</span><span class="p">)</span>
+            <span class="n">LCD1602</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">dis</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; cm&#39;</span><span class="p">)</span>
+            <span class="c1"># Ajuster la fréquence du buzzer en fonction de la distance</span>
+            <span class="k">if</span> <span class="n">dis</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">:</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="mi">20</span> <span class="o">&lt;</span> <span class="n">dis</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+                <span class="c1"># Distance moyenne : fréquence moyenne du buzzer</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+                    <span class="n">buzzer</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+                    <span class="n">buzzer</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">dis</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">:</span>
+                <span class="c1"># Distance proche : fréquence élevée du buzzer</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+                    <span class="n">buzzer</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+                    <span class="n">buzzer</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Lors de l’exécution, le script initialise l’écran LCD et entre dans la boucle principale. Il peut être interrompu par une commande clavier (Ctrl+C), ce qui éteint le buzzer et efface l’écran LCD.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">lcdsetup</span><span class="p">()</span>  <span class="c1"># Configurer l&#39;écran LCD</span>
+    <span class="n">loop</span><span class="p">()</span>      <span class="c1"># Démarrer la boucle de mesure</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Éteindre le buzzer et effacer l&#39;écran LCD en cas d&#39;interruption par l&#39;utilisateur (ex. Ctrl+C)</span>
+    <span class="n">buzzer</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">LCD1602</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="pi5_3.1.2_welcome_python.html" class="btn btn-neutral float-left" title="3.1.2 Bienvenue" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="pi5_3.1.4_smart_fan_python.html" class="btn btn-neutral float-right" title="3.1.4 Ventilateur intelligent" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

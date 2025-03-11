@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2.7 Module RFID MFRC522 &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="3 Extension" href="3_extension.html" />
+    <link rel="prev" title="2.2.6 Module MPU6050" href="2.2.6_mpu6050_module.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/c_pi5/2.2.7_mfrc522_rfid_module.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Pour le Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Jouez avec Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_c.html">Play with C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_wiringpi_c.html">Installer et vérifier WiringPi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1_output.html">1 Sortie</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="2_input.html">2 Entrée</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="2.1.1_button.html">2.1.1 Bouton</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.2_slide&#32;Switch.html">2.1.2 Interrupteur à glissière</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.3_tilt_switch.html">2.1.3 Interrupteur à bascule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.4_potentiometer.html">2.1.4 Potentiomètre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.5_keypad.html">2.1.5 Clavier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.6_joystick.html">2.1.6 Joystick</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.1_photoresistor.html">2.2.1 Photoresistor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.2_thermistor.html">2.2.2 Thermistor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.3_dht-11.html">2.2.3 DHT-11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.4_pir.html">2.2.4 Détecteur PIR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html">2.2.5 Module de Capteur Ultrasonique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.6_mpu6050_module.html">2.2.6 Module MPU6050</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="2.2.7_mfrc522_rfid_module.html#">2.2.7 Module RFID MFRC522</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="3_extension.html">3 Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Pour le Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_c.html">Play with C</a></li>
+          <li class="breadcrumb-item"><a href="2_input.html">2 Entrée</a></li>
+      <li class="breadcrumb-item active">2.2.7 Module RFID MFRC522</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c_pi5/2.2.7_mfrc522_rfid_module.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l’univers de Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez les problèmes après-vente et relevez vos défis techniques grâce à l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprenez et Partagez</strong> : Échangez des astuces et des tutoriels pour perfectionner vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Bénéficiez d’un accès anticipé aux nouvelles annonces de produits et aux avant-premières.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de réductions exclusives sur nos nouveaux produits.</p></li>
+<li><p><strong>Promotions festives et concours</strong> : Participez à des concours et des promotions lors des fêtes.</p></li>
+</ul>
+<p>👉 Prêt à explorer et à créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="module-rfid-mfrc522">
+<h1>2.2.7 Module RFID MFRC522<a class="headerlink" href="2.2.7_mfrc522_rfid_module.html#module-rfid-mfrc522" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="2.2.7_mfrc522_rfid_module.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>L’identification par radiofréquence (RFID) désigne les technologies utilisant
+la communication sans fil entre un objet (ou étiquette) et un dispositif
+d’interrogation (ou lecteur) pour suivre et identifier automatiquement ces objets.</p>
+<p>Parmi les applications courantes de cette technologie, on retrouve les chaînes
+d’approvisionnement dans la grande distribution, les chaînes d’approvisionnement
+militaires, les méthodes de paiement automatisées, le suivi des bagages, la gestion
+de documents et la gestion pharmaceutique, pour n’en nommer que quelques-unes.</p>
+<p>Dans ce projet, nous utiliserons le RFID pour la lecture et l’écriture de données.</p>
+</section>
+<section id="composants">
+<h2>Composants<a class="headerlink" href="2.2.7_mfrc522_rfid_module.html#composants" title="Lien vers cette rubrique"></a></h2>
+<img alt="../_images/list_2.2.71.png" src="../_images/list_2.2.71.png" />
+</section>
+<section id="principe">
+<h2>Principe<a class="headerlink" href="2.2.7_mfrc522_rfid_module.html#principe" title="Lien vers cette rubrique"></a></h2>
+<p><strong>RFID</strong></p>
+<p>L’identification par radiofréquence (RFID) utilise la communication sans fil entre un
+objet (ou tag) et un dispositif d’interrogation (ou lecteur) pour suivre et identifier
+automatiquement ces objets. La portée de transmission du tag est limitée à quelques mètres
+du lecteur. Une ligne de vue directe entre le lecteur et le tag n’est pas nécessaire.</p>
+<p>La plupart des tags contiennent au moins un circuit intégré (CI) et une antenne. La puce
+stocke les informations et gère la communication radiofréquence (RF) avec le lecteur.
+Les tags passifs ne possèdent pas de source d’énergie indépendante et dépendent d’un
+signal électromagnétique externe, fourni par le lecteur, pour alimenter leur fonctionnement.
+Les tags actifs contiennent une source d’énergie autonome, comme une batterie.
+Par conséquent, ils peuvent disposer de capacités accrues de traitement, de transmission
+et d’une plus grande portée.
+.. image:: img/image230.png</p>
+<p><strong>MFRC522</strong></p>
+<p>Le MFRC522 est une puce intégrée de lecture et d’écriture de cartes, couramment utilisée
+dans la communication radiofréquence à 13,56 MHz. Développé par la société NXP, il s’agit
+d’une puce de carte sans contact, à faible coût et basse tension, idéale pour les instruments
+intelligents et les dispositifs portables.</p>
+<p>Le MFRC522 utilise un concept avancé de modulation et de démodulation, entièrement
+compatible avec tous les types de méthodes de communication et protocoles sans contact
+passifs à 13,56 MHz. Il prend en charge l’algorithme de chiffrement rapide CRYPTO1 pour
+vérifier les produits MIFARE. Le MFRC522 prend également en charge les communications
+sans contact haute vitesse de la série MIFARE, avec une vitesse de transmission
+bidirectionnelle pouvant atteindre 424 kbit/s. En tant que nouveau membre de la série de
+lecteurs de cartes hautement intégrés à 13,56 MHz, le MFRC522 est similaire aux MF RC500
+et MF RC530, tout en présentant des différences significatives. Il communique avec l’hôte
+via une interface série, ce qui réduit le câblage. Vous pouvez choisir entre les modes SPI,
+I2C et UART (similaire à RS232), ce qui facilite la connexion, économise de l’espace sur la
+carte PCB (plus petite taille) et réduit les coûts.</p>
+</section>
+<section id="schema-de-cablage">
+<h2>Schéma de câblage<a class="headerlink" href="2.2.7_mfrc522_rfid_module.html#schema-de-cablage" title="Lien vers cette rubrique"></a></h2>
+<img alt="../_images/image3311.png" src="../_images/image3311.png" />
+</section>
+<section id="procedures-experimentales">
+<h2>Procédures expérimentales<a class="headerlink" href="2.2.7_mfrc522_rfid_module.html#procedures-experimentales" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1 :</strong> Construisez le circuit.</p>
+<a class="reference internal image-reference" href="../_images/image2321.png"><img alt="../_images/image2321.png" src="../_images/image2321.png" style="width: 800px;" />
+</a>
+<p><strong>Étape 2 :</strong> Configurez le SPI (voir <a class="reference internal" href="../appendix/spi_configuration.html#spi-configuration"><span class="std std-ref">SPI Configuration</span></a> pour plus de détails. Si le SPI
+est déjà configuré, passez cette étape.)</p>
+<p><strong>Étape 3 :</strong> Accédez au dossier du code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">2.2.7</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Étape 4 :</strong> Compilez le code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">read</span>
+<span class="n">make</span> <span class="n">write</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Deux exemples sont disponibles pour lire ou écrire l’ID de la carte. Vous pouvez
+choisir celui qui correspond à votre besoin.</p>
+</div>
+<p><strong>Étape 5 :</strong> Après avoir exécuté <code class="docutils literal notranslate"><span class="pre">./write</span></code>, entrez les informations, telles que le nom de la personne, puis placez le tag ou la carte sur le module MRC522 et attendez que l’écriture soit terminée.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">write</span>
+</pre></div>
+</div>
+<p><strong>Étape 6 :</strong> Maintenant, exécutez <code class="docutils literal notranslate"><span class="pre">./read</span></code> pour lire les informations du tag ou de la carte que vous avez écrites.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">read</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Si cela ne fonctionne pas après l’exécution ou s’il y a un message d’erreur indiquant : « wiringPi.h : Aucun fichier ou répertoire de ce type », veuillez vous référer à <a class="reference internal" href="../faq.html#c-code-is-not-working"><span class="std std-ref">C code is not working?</span></a>.</p>
+</div>
+<p><strong>Explication du Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">InitRc522</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Cette fonction initialise le module RFID RC522.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">read_card_data</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Cette fonction lit les données de la carte et renvoie « 1 » si la lecture est réussie.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">write_card_data</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Cette fonction écrit les données sur la carte et renvoie « 1 » si l’écriture est réussie.</dt><dd><p>*data correspond aux informations qui seront inscrites sur la carte.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="2.2.6_mpu6050_module.html" class="btn btn-neutral float-left" title="2.2.6 Module MPU6050" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="3_extension.html" class="btn btn-neutral float-right" title="3 Extension" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

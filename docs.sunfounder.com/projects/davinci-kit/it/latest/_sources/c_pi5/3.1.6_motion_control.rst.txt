@@ -1,0 +1,153 @@
+.. note::
+
+    Ciao, benvenuto nella Community su Facebook per gli appassionati di SunFounder Raspberry Pi, Arduino e ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
+
+    **Perché unirti a noi?**
+
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e anteprime esclusive.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Giveaway Festivi**: Partecipa a concorsi e promozioni in occasione delle festività.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+3.1.6 Controllo del Movimento
+==================================
+
+Introduzione
+-----------------
+
+In questa lezione, realizzeremo un semplice dispositivo di rilevamento e 
+controllo del movimento. L’MPU6050 sarà utilizzato come sensore e il motore 
+passo-passo come dispositivo controllato. Montando l’MPU6050 su un guanto, 
+potrai controllare il motore passo-passo ruotando il polso.
+
+Componenti
+------------
+
+.. image:: img/list_Motion_Control.png
+    :align: center
+
+Schema di Collegamento
+-------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SDA1         Pin 3             
+SCL1         Pin 5             
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one6.png
+   :align: center
+
+Procedure Sperimentali
+--------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: img/image251.png
+   :width: 800
+   :align: center
+
+**Passo 2**: Accedi alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.6/
+
+**Passo 3**: Compila il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.6_MotionControl.c -lwiringPi -lm
+
+**Passo 4**: Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Quando il codice è in esecuzione, se l’angolo di inclinazione di **mpu6050** 
+sull’asse Y è superiore a **45°**, il motore passo-passo ruota in senso antiorario; 
+se è inferiore a **-45°**, il motore ruota in senso orario.
+
+.. note::
+
+    Se non funziona dopo l'esecuzione o compare un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta :ref:`Il codice C non funziona?`.
+
+**Spiegazione del Codice**
+
+.. code-block:: c
+
+    double mpu6050(){
+        acclX = read_word_2c(0x3B);
+        acclY = read_word_2c(0x3D);
+        acclZ = read_word_2c(0x3F);
+        acclX_scaled = acclX / 16384.0;
+        acclY_scaled = acclY / 16384.0;
+        acclZ_scaled = acclZ / 16384.0;
+        double angle=get_y_rotation(acclX_scaled, acclY_scaled, acclZ_scaled);
+        return angle;
+    }
+
+La funzione mpu6050 calcola l’angolo di inclinazione nella direzione dell’asse Y.
+
+.. code-block:: c
+
+    void rotary(char direction){
+        if(direction == 'c'){
+            for(int j=0;j<4;j++){
+                for(int i=0;i<4;i++)
+                    {digitalWrite(motorPin[i],0x99>>j & (0x08>>i));}
+                delayMicroseconds(stepSpeed);
+            }        
+        }
+        else if(direction =='a'){
+            for(int j=0;j<4;j++){
+                for(int i=0;i<4;i++)
+                    {digitalWrite(motorPin[i],0x99<<j & (0x80>>i));}
+                delayMicroseconds(stepSpeed);
+            }   
+        }
+    }
+
+Se il **tasto** della direzione ricevuto è **\'c\'**, il motore passo-passo 
+ruota in senso orario; se il **tasto** è **\'a\'**, il motore ruota in senso 
+antiorario. Consulta :ref:`1.3.3 Motore Passo-Passo` per ulteriori dettagli 
+sul calcolo della direzione di rotazione del motore passo-passo.
+
+.. code-block:: c
+
+    int main()
+    {
+        setup();
+        double angle;
+        while(1) {
+            angle = mpu6050();
+            if (angle >=45){rotary('a');}
+            else if (angle<=-45){rotary('c');}
+        }
+        return 0;
+    }
+
+La funzione **main()** legge l’angolo di inclinazione nella direzione dell’asse 
+Y da **mpu6050** e, se è maggiore di **45°**, il motore passo-passo ruota in 
+senso antiorario; se è minore di **-45°**, il motore ruota in senso orario.
+

@@ -1,0 +1,148 @@
+.. note::
+
+    Ciao, benvenuto nella Community su Facebook per gli appassionati di SunFounder Raspberry Pi, Arduino e ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
+
+    **Perché unirti a noi?**
+
+    - **Supporto esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e anteprime esclusive.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Giveaway Festivi**: Partecipa a concorsi e promozioni in occasione delle festività.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+3.1.5 Indicatore di Batteria
+============================
+
+Introduzione
+---------------
+
+In questo corso, realizzeremo un dispositivo indicatore di batteria che può visualizzare visivamente il livello di carica su un Bargraph LED.
+
+Componenti
+-------------
+
+.. image:: img/list_Battery_Indicator.png
+    :align: center
+
+Schema di Collegamento
+------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO25       Pin 22   6        25
+GPIO12       Pin 32   26       12
+GPIO16       Pin 36   27       16
+GPIO20       Pin 38   28       20
+GPIO21       Pin 40   29       21
+GPIO5        Pin 29   21       5
+GPIO6        Pin 31   22       6
+GPIO13       Pin 33   23       13
+GPIO19       Pin 35   24       19
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one5.png
+   :align: center
+
+Procedure Sperimentali
+--------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: img/image248.png
+   :width: 800
+   :align: center
+
+**Passo 2:** Accedi alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.5/
+
+**Passo 3:** Compila il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.5_BatteryIndicator.c -lwiringPi
+
+**Passo 4:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Dopo aver avviato il programma, collega il terzo pin di ADC0834 al GND e 
+collegali ai due poli della batteria. Vedrai i LED corrispondenti accendersi 
+sul Bargraph LED, visualizzando il livello della batteria (intervallo di 
+misurazione: 0-5V).
+
+.. note::
+
+    Se non funziona dopo l'esecuzione o compare un messaggio di errore: \"wiringPi.h: No such file or directory\", consulta  :ref:`Il codice C non funziona?`.
+
+**Spiegazione del Codice**
+
+.. code-block:: c
+
+    void LedBarGraph(int value){
+        for(int i=0;i<10;i++){
+            digitalWrite(pins[i],HIGH);
+        }
+        for(int i=0;i<value;i++){
+            digitalWrite(pins[i],LOW);
+        }
+    }
+
+Questa funzione controlla l'accensione o lo spegnimento dei 10 LED sul 
+Bargraph LED. Inizialmente, impostiamo i 10 LED su un livello alto per 
+spegnerli, quindi determiniamo quanti LED accendere in base al valore 
+analogico ricevuto.
+
+.. code-block:: c
+
+    int main(void)
+    {
+        uchar analogVal;
+        if(wiringPiSetup() == -1){ //when initialize wiring failed,print messageto screen
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        pinMode(ADC_CS,  OUTPUT);
+        pinMode(ADC_CLK, OUTPUT);
+        for(int i=0;i<10;i++){       //make led pins' mode is output
+            pinMode(pins[i], OUTPUT);
+            digitalWrite(pins[i],HIGH);
+        }
+        while(1){
+            analogVal = get_ADC_Result(0);
+            LedBarGraph(analogVal/25);
+            delay(100);
+        }
+        return 0;
+    }
+
+La variabile **analogVal** produce valori tra **0-255** al variare della 
+tensione (**0-5V**). Ad esempio, se viene rilevata una tensione di 3V su 
+una batteria, il valore corrispondente **152** verrà visualizzato sul voltmetro.
+
+I **10** LED sul Bargraph LED visualizzano la lettura di **analogVal**. 
+Poiché 255/10=25, ogni incremento di **25** del valore analogico accende 
+un LED in più. Ad esempio, se **analogVal=150** (circa 3V), si accenderanno 6 LED.
+

@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2.2 Thermistor &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="2.2.3 DHT-11" href="2.2.3_dht-11.html" />
+    <link rel="prev" title="2.2.1 Fotoresistor" href="2.2.1_photoresistor.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/c_pi5/2.2.2_thermistor.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Para Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Juega con Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_c.html">Play with C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_wiringpi_c.html">Instalar y Verificar WiringPi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1_output.html">1 Salida</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="2_input.html">2 Entrada</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="2.1.1_button.html">2.1.1 Botón</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.2_slide&#32;Switch.html">2.1.2 Interruptor deslizante</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.3_tilt_switch.html">2.1.3 Interruptor de inclinación</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.4_potentiometer.html">2.1.4 Potenciómetro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.5_keypad.html">2.1.5 Teclado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.1.6_joystick.html">2.1.6 Joystick</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.1_photoresistor.html">2.2.1 Fotoresistor</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="2.2.2_thermistor.html#">2.2.2 Thermistor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.3_dht-11.html">2.2.3 DHT-11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.4_pir.html">2.2.4 PIR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.5_ultrasonic_sensor_module.html">2.2.5 Módulo Sensor Ultrasónico</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.6_mpu6050_module.html">2.2.6 Módulo MPU6050</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2.2.7_mfrc522_rfid_module.html">2.2.7 Módulo RFID MFRC522</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="3_extension.html">3 Extensiones</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Juega con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Para Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_c.html">Play with C</a></li>
+          <li class="breadcrumb-item"><a href="2_input.html">2 Entrada</a></li>
+      <li class="breadcrumb-item active">2.2.2 Thermistor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c_pi5/2.2.2_thermistor.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.</p>
+<p><strong>¿Por qué unirse?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte Experto</strong>: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprender y Compartir</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Vistas Exclusivas</strong>: Obtén acceso anticipado a anuncios de nuevos productos y adelantos.</p></li>
+<li><p><strong>Descuentos Especiales</strong>: Disfruta de descuentos exclusivos en nuestros productos más nuevos.</p></li>
+<li><p><strong>Promociones Festivas y Sorteos</strong>: Participa en sorteos y promociones navideñas.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy.</p>
+</div>
+<section id="thermistor">
+<h1>2.2.2 Thermistor<a class="headerlink" href="2.2.2_thermistor.html#thermistor" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="2.2.2_thermistor.html#introduccion" title="Link to this heading"></a></h2>
+<p>Al igual que el fotoresistor puede detectar la luz, el termistor es un
+dispositivo electrónico sensible a la temperatura que se puede utilizar
+para realizar funciones de control de temperatura, como la activación de
+una alarma de calor.</p>
+</section>
+<section id="componentes">
+<h2>Componentes<a class="headerlink" href="2.2.2_thermistor.html#componentes" title="Link to this heading"></a></h2>
+<img alt="../_images/list_2.2.2_thermistor1.png" src="../_images/list_2.2.2_thermistor1.png" />
+</section>
+<section id="principio">
+<h2>Principio<a class="headerlink" href="2.2.2_thermistor.html#principio" title="Link to this heading"></a></h2>
+<p>Un termistor es un resistor térmicamente sensible que presenta un cambio
+preciso y predecible en su resistencia proporcional a pequeñas variaciones
+de temperatura. El grado de cambio en su resistencia depende de su composición
+única. Los termistores son parte de un grupo más amplio de componentes pasivos.
+A diferencia de sus contrapartes activas, los dispositivos pasivos no son capaces
+de proporcionar ganancia de potencia o amplificación a un circuito.</p>
+<p>El termistor es un elemento sensible y tiene dos tipos: Coeficiente de Temperatura
+Negativo (NTC) y Coeficiente de Temperatura Positivo (PTC), también conocidos como NTC y PTC.
+Su resistencia varía significativamente con la temperatura. La resistencia del termistor PTC aumenta
+con la temperatura, mientras que en el caso del NTC es lo contrario. En este experimento utilizamos NTC.</p>
+<img alt="../_images/image3251.png" src="../_images/image3251.png" />
+<p>El principio es que la resistencia del termistor NTC cambia con la temperatura del entorno.
+Detecta la temperatura en tiempo real del ambiente. Cuando la temperatura aumenta, la resistencia
+del termistor disminuye. Luego, los datos de voltaje se convierten en cantidades digitales mediante
+el adaptador A/D. La temperatura en grados Celsius o Fahrenheit se presenta a través de la programación.</p>
+<p>En este experimento, se utiliza un termistor y un resistor pull-up de 10k. Cada termistor tiene una resistencia
+normal. En este caso, es de 10k ohmios, medida a 25 grados Celsius.</p>
+<p>Aquí está la relación entre la resistencia y la temperatura:</p>
+<p>R<sub>T</sub> =R<sub>N</sub> exp<sup>B(1/TK – 1/TN)</sup></p>
+<p><strong>RT</strong> es la resistencia del termistor NTC cuando la temperatura es <strong>TK</strong>.</p>
+<p><strong>RN</strong> es la resistencia del termistor NTC a la temperatura nominal <strong>TN</strong>. Aquí, el valor numérico de <strong>RN</strong> es 10k.</p>
+<p><strong>TK</strong> es la temperatura en Kelvin y la unidad es K. Aquí, el valor numérico de <strong>TK</strong> es 273.15 + grados Celsius.</p>
+<p><strong>TN</strong> es una temperatura nominal en Kelvin; la unidad también es K. Aquí, el valor numérico de <strong>TN</strong> es 273.15 + 25.</p>
+<p>Y <strong>B</strong> (beta), la constante material del termistor NTC, también se conoce como índice de sensibilidad térmica, con un valor numérico de 3950.</p>
+<p><strong>exp</strong> es la abreviatura de exponencial, y el número base e es un número natural que es aproximadamente igual a 2.7.</p>
+<p>Convierte esta fórmula T<sub>K</sub>=1/(ln(R<sub>T</sub>/R<sub>N</sub>)/B+1/T<sub>N</sub>) para obtener la temperatura en Kelvin que menos 273.15 es igual a grados Celsius.</p>
+<p>Esta relación es una fórmula empírica. Es precisa solo cuando la temperatura
+y la resistencia están dentro del rango efectivo.</p>
+</section>
+<section id="diagrama-esquematico">
+<h2>Diagrama Esquemático<a class="headerlink" href="2.2.2_thermistor.html#diagrama-esquematico" title="Link to this heading"></a></h2>
+<img alt="../_images/image3231.png" src="../_images/image3231.png" />
+<img alt="../_images/image3241.png" src="../_images/image3241.png" />
+</section>
+<section id="procedimientos-experimentales">
+<h2>Procedimientos Experimentales<a class="headerlink" href="2.2.2_thermistor.html#procedimientos-experimentales" title="Link to this heading"></a></h2>
+<p><strong>Paso 1:</strong> Construir el circuito.</p>
+<a class="reference internal image-reference" href="../_images/image2021.png"><img alt="../_images/image2021.png" src="../_images/image2021.png" style="width: 800px;" />
+</a>
+<p><strong>Paso 2:</strong> Acceder a la carpeta del código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">2.2.2</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Paso 3:</strong> Compilar el código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">2.2.2</span><span class="n">_Thermistor</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span> <span class="o">-</span><span class="n">lm</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>-lm se usa para cargar la biblioteca de matemáticas. No lo omitas, o se generará un error.</p>
+<p><strong>Paso 4:</strong> Ejecuta el archivo ejecutable.</p>
+</div>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Al ejecutar el código, el termistor detectará la temperatura ambiente,
+que se imprimirá en la pantalla una vez que termine el cálculo del programa.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si no funciona después de ejecutar, o aparece un mensaje de error: &quot;wiringPi.h: No such file or directory», consulta <a class="reference internal" href="../faq.html#c-code-is-not-working"><span class="std std-ref">c code is not working?</span></a>.</p>
+</div>
+<p><strong>Código</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">uchar</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">uint</span><span class="p">;</span>
+
+<span class="cp">#define     ADC_CS    0</span>
+<span class="cp">#define     ADC_CLK   1</span>
+<span class="cp">#define     ADC_DIO   2</span>
+
+<span class="n">uchar</span><span class="w"> </span><span class="nf">get_ADC_Result</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">channel</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w"> </span><span class="n">dat1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">dat2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">odd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Bit de inicio</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Modo de extremo único</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// IMPAR</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="n">odd</span><span class="p">);</span><span class="w">  </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Selección</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="n">sel</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">);</span>
+<span class="w">        </span><span class="n">dat1</span><span class="o">=</span><span class="n">dat1</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">dat2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">((</span><span class="n">uchar</span><span class="p">)(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">))</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w">    </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_DIO</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">(</span><span class="n">dat1</span><span class="o">==</span><span class="n">dat2</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">dat1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">analogVal</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">Vr</span><span class="p">,</span><span class="w"> </span><span class="n">Rt</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="n">cel</span><span class="p">,</span><span class="w"> </span><span class="n">Fah</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span><span class="w"> </span><span class="c1">// cuando la inicialización de wiring falla, imprime mensaje en la pantalla</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_CS</span><span class="p">,</span><span class="w">  </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">ADC_CLK</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">analogVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_ADC_Result</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Vr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">analogVal</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Rt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">Vr</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">Vr</span><span class="p">));</span>
+<span class="w">        </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(((</span><span class="n">log</span><span class="p">(</span><span class="n">Rt</span><span class="o">/</span><span class="mi">10000</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3950</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">273.15</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">25</span><span class="p">)));</span>
+<span class="w">        </span><span class="n">cel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">273.15</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Fah</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cel</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.8</span><span class="w"> </span><span class="o">+</span><span class="mi">32</span><span class="p">;</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Celsius: %.2f C  Fahrenheit: %.2f F</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cel</span><span class="p">,</span><span class="w"> </span><span class="n">Fah</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+</pre></div>
+</div>
+<p>Aquí se incluye una biblioteca numérica de C que declara un conjunto de
+funciones para calcular operaciones y transformaciones matemáticas comunes.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">analogVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_ADC_Result</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Esta función se utiliza para leer el valor del termistor.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Vr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">analogVal</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+<span class="n">Rt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">Vr</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">Vr</span><span class="p">));</span>
+<span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(((</span><span class="n">log</span><span class="p">(</span><span class="n">Rt</span><span class="o">/</span><span class="mi">10000</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3950</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">273.15</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">25</span><span class="p">)));</span>
+<span class="n">cel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">273.15</span><span class="p">;</span>
+<span class="n">Fah</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cel</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.8</span><span class="w"> </span><span class="o">+</span><span class="mi">32</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Celsius: %.2f C  Fahrenheit: %.2f F</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cel</span><span class="p">,</span><span class="w"> </span><span class="n">Fah</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Estos cálculos convierten los valores del termistor en valores en grados Celsius.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Vr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">analogVal</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+<span class="n">Rt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">Vr</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">Vr</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Estas dos líneas de código calculan la distribución de voltaje con el valor
+analógico leído para obtener Rt (resistencia del termistor).</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(((</span><span class="n">log</span><span class="p">(</span><span class="n">Rt</span><span class="o">/</span><span class="mi">10000</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3950</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">273.15</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">25</span><span class="p">)));</span>
+</pre></div>
+</div>
+<p>Este código se refiere a la inserción de Rt en la fórmula
+<strong>TK=1/(ln(RT/RN)/B+1/TN)</strong> para obtener la temperatura en Kelvin.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">273.15</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Convierte la temperatura en Kelvin a grados Celsius.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Fah</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cel</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.8</span><span class="w"> </span><span class="o">+</span><span class="mi">32</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Convierte los grados Celsius a Fahrenheit.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Celsius: %.2f C  Fahrenheit: %.2f F</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cel</span><span class="p">,</span><span class="w"> </span><span class="n">Fah</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Imprime el grado centígrado, el grado Fahrenheit y sus unidades en la pantalla.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="2.2.1_photoresistor.html" class="btn btn-neutral float-left" title="2.2.1 Fotoresistor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="2.2.3_dht-11.html" class="btn btn-neutral float-right" title="2.2.3 DHT-11" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

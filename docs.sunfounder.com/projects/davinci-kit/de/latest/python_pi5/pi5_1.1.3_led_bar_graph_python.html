@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.3 LED-Balkendiagramm &mdash; SunFounder davinci-kit-for-raspberry-pi  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=245627df"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=70a09b52"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/de/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="1.1.4 7-Segment-Anzeige" href="pi5_1.1.4_7-segment_display_python.html" />
+    <link rel="prev" title="1.1.2 RGB-LED" href="pi5_1.1.2_rgb_led_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-de" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_1.1.3_led_bar_graph_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Komponentenliste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO-Erweiterungskarte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Laden Sie die Kode herunter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/preparation.html">Installation und Einrichtung des Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Für Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Spielen Sie mit Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">Überprüfen Sie <code class="docutils literal notranslate"><span class="pre">GPIO</span> <span class="pre">Zero</span></code></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_output_python.html">1 Ausgabe</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.1_blinking_led_python.html">1.1.1 Blinkende LED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.2_rgb_led_python.html">1.1.2 RGB-LED</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_1.1.3_led_bar_graph_python.html#">1.1.3 LED-Balkendiagramm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.4_7-segment_display_python.html">1.1.4 7-Segment-Anzeige</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.5_4-Digit_7-segment_display_python.html">1.1.5 4-stellige 7-Segment-Anzeige</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.6_led_dot_matrix_python.html">1.1.6 LED-Punktmatrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.1.7_i2c_lcd1602_python.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.2.1_active_buzzer_python.html">1.2.1 Aktiver Summer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.2.2_passive_buzzer_python.html">1.2.2 Passiver Summer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.3.1_motor_python.html">1.3.1 Motor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.3.2_servo_python.html">1.3.2 Servo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.3.3_stepper_motor_python.html">1.3.3 Schrittmotor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_1.3.4_relay_python.html">1.3.4 Relais</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">2 Eingabe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_extension_python.html">3 Erweiterung</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Spielen Sie mit C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Spielen mit Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Videokurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Für Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Spielen Sie mit Python</a></li>
+          <li class="breadcrumb-item"><a href="pi5_output_python.html">1 Ausgabe</a></li>
+      <li class="breadcrumb-item active">1.1.3 LED-Balkendiagramm</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_1.1.3_led_bar_graph_python.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Hallo und willkommen in der SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.</p>
+<p><strong>Warum beitreten?</strong></p>
+<ul class="simple">
+<li><p><strong>Expertenunterstützung</strong>: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.</p></li>
+<li><p><strong>Lernen &amp; Teilen</strong>: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.</p></li>
+<li><p><strong>Exklusive Vorschauen</strong>: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.</p></li>
+<li><p><strong>Spezialrabatte</strong>: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.</p></li>
+<li><p><strong>Festliche Aktionen und Gewinnspiele</strong>: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.</p></li>
+</ul>
+<p>👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [<a href="https://bit.ly/raphaelkit " target="_blank">hier</a>] und treten Sie heute bei!</p>
+</div>
+<section id="led-balkendiagramm">
+<span id="py-pi5"></span><h1>1.1.3 LED-Balkendiagramm<a class="headerlink" href="pi5_1.1.3_led_bar_graph_python.html#led-balkendiagramm" title="Link to this heading"></a></h1>
+<section id="einfuhrung">
+<h2>Einführung<a class="headerlink" href="pi5_1.1.3_led_bar_graph_python.html#einfuhrung" title="Link to this heading"></a></h2>
+<p>In diesem Projekt beleuchten wir die Lichter des LED-Balkendiagramms nacheinander.</p>
+</section>
+<section id="benotigte-komponenten">
+<h2>Benötigte Komponenten<a class="headerlink" href="pi5_1.1.3_led_bar_graph_python.html#benotigte-komponenten" title="Link to this heading"></a></h2>
+<p>Für dieses Projekt benötigen wir die folgenden Komponenten.</p>
+<img alt="../_images/1.1.3_led_bar_list.png" src="../_images/1.1.3_led_bar_list.png" />
+</section>
+<section id="schaltplan">
+<h2>Schaltplan<a class="headerlink" href="pi5_1.1.3_led_bar_graph_python.html#schaltplan" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO23</p></td>
+<td><p>Pin 16</p></td>
+<td><p>4</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO24</p></td>
+<td><p>Pin 18</p></td>
+<td><p>5</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO25</p></td>
+<td><p>Pin 22</p></td>
+<td><p>6</p></td>
+<td><p>25</p></td>
+</tr>
+<tr class="row-even"><td><p>SPICE0</p></td>
+<td><p>Pin 24</p></td>
+<td><p>10</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPICE1</p></td>
+<td><p>Pin 26</p></td>
+<td><p>11</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO12</p></td>
+<td><p>Pin 32</p></td>
+<td><p>26</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO16</p></td>
+<td><p>Pin 36</p></td>
+<td><p>27</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO20</p></td>
+<td><p>Pin 38</p></td>
+<td><p>28</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO21</p></td>
+<td><p>Pin 40</p></td>
+<td><p>29</p></td>
+<td><p>21</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/1.1.3_LedBarGraph_schematic.png" src="../_images/1.1.3_LedBarGraph_schematic.png" />
+</section>
+<section id="experimentelle-verfahren">
+<h2>Experimentelle Verfahren<a class="headerlink" href="pi5_1.1.3_led_bar_graph_python.html#experimentelle-verfahren" title="Link to this heading"></a></h2>
+<p><strong>Schritt 1</strong>: Bauen Sie den Schaltkreis auf.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Achten Sie auf die Richtung beim Anschließen. Wenn Sie es verkehrt herum anschließen, wird es nicht leuchten.</p>
+</div>
+<img alt="../_images/1.1.3_LedBarGraph_circuit.png" src="../_images/1.1.3_LedBarGraph_circuit.png" />
+<p><strong>Schritt 2:</strong> Gehen Sie zum Ordner des Codes.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>Schritt 3</strong>: Führen Sie die ausführbare Datei aus.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.1.3</span><span class="n">_LedBarGraph_zero</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Nachdem der Code ausgeführt wurde, sehen Sie, dass die LEDs auf dem LED-Balken regelmäßig ein- und ausschalten.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>Wenn die Fehlermeldung <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code> angezeigt wird, lesen Sie bitte <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">Wenn gpiozero nicht funktioniert.</span></a></p>
+</div>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Sie können den unten stehenden Code <strong>Modifizieren/Zurücksetzen/Kopieren/Ausführen/Stoppen</strong>. Aber bevor Sie das tun, müssen Sie zum Quellcode-Pfad wie <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python-pi5</span></code> gehen. Nachdem Sie den Code geändert haben, können Sie ihn direkt ausführen, um die Auswirkungen zu sehen.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">LED</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="c1"># Definieren Sie die GPIO-Pins, an denen die LEDs angeschlossen sind</span>
+<span class="n">led_pins</span> <span class="o">=</span> <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">]</span>
+
+<span class="c1"># Erstellen Sie LED-Objekte für jeden Pin</span>
+<span class="n">leds</span> <span class="o">=</span> <span class="p">[</span><span class="n">LED</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span> <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="n">led_pins</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">odd_led_bar_graph</span><span class="p">():</span>
+    <span class="c1"># Nacheinander die ungerade nummerierten LEDs beleuchten (Index 0, 2, 4, usw.)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># Ungerade Index berechnen</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>  <span class="c1"># Ungerade nummerierte LED einschalten</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>    <span class="c1"># Verzögerung für visuellen Effekt</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">off</span><span class="p">()</span> <span class="c1"># LED ausschalten</span>
+
+<span class="k">def</span> <span class="nf">even_led_bar_graph</span><span class="p">():</span>
+    <span class="c1"># Nacheinander die gerade nummerierten LEDs beleuchten (Index 1, 3, 5, usw.)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Gerade Index berechnen</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>   <span class="c1"># Gerade nummerierte LED einschalten</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>     <span class="c1"># Verzögerung für visuellen Effekt</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>  <span class="c1"># LED ausschalten</span>
+
+<span class="k">def</span> <span class="nf">all_led_bar_graph</span><span class="p">():</span>
+    <span class="c1"># Nacheinander alle LEDs einzeln beleuchten</span>
+    <span class="k">for</span> <span class="n">led</span> <span class="ow">in</span> <span class="n">leds</span><span class="p">:</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>       <span class="c1"># LED einschalten</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>     <span class="c1"># Verzögerung für visuellen Effekt</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>      <span class="c1"># LED ausschalten</span>
+
+<span class="k">def</span> <span class="nf">turn_off_all_leds</span><span class="p">():</span>
+    <span class="c1"># Alle LEDs auf einmal ausschalten</span>
+    <span class="k">for</span> <span class="n">led</span> <span class="ow">in</span> <span class="n">leds</span><span class="p">:</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Hauptloop zum Durchlaufen der LED-Muster</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">odd_led_bar_graph</span><span class="p">()</span>   <span class="c1"># Ungerade nummerierte LEDs aktivieren</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>            <span class="c1"># Pause zwischen den Mustern</span>
+        <span class="n">even_led_bar_graph</span><span class="p">()</span>  <span class="c1"># Gerade nummerierte LEDs aktivieren</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>            <span class="c1"># Pause zwischen den Mustern</span>
+        <span class="n">all_led_bar_graph</span><span class="p">()</span>   <span class="c1"># Alle LEDs aktivieren</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>            <span class="c1"># Pause vor Neustart</span>
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Unterbrechung (Ctrl+C) auf elegante Weise behandeln</span>
+    <span class="n">turn_off_all_leds</span><span class="p">()</span>      <span class="c1"># Sicherstellen, dass alle LEDs beim Beenden ausgeschaltet sind</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p><strong>Code-Erklärung</strong></p>
+<ol class="arabic">
+<li><p>Diese Zeilen importieren die notwendigen Klassen und Funktionen. <code class="docutils literal notranslate"><span class="pre">LED</span></code> aus <code class="docutils literal notranslate"><span class="pre">gpiozero</span></code> zur LED-Steuerung und <code class="docutils literal notranslate"><span class="pre">sleep</span></code> aus <code class="docutils literal notranslate"><span class="pre">time</span></code> für Verzögerungen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">LED</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+</pre></div>
+</div>
+</li>
+<li><p>Die Liste <code class="docutils literal notranslate"><span class="pre">led_pins</span></code> enthält die GPIO-Pinnummern. <code class="docutils literal notranslate"><span class="pre">leds</span></code> ist eine Liste von <code class="docutils literal notranslate"><span class="pre">LED</span></code>-Objekten, von denen jedes einem Pin in <code class="docutils literal notranslate"><span class="pre">led_pins</span></code> entspricht.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definieren Sie die GPIO-Pins, an denen die LEDs angeschlossen sind</span>
+<span class="n">led_pins</span> <span class="o">=</span> <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">]</span>
+
+<span class="c1"># Erstellen Sie LED-Objekte für jeden Pin</span>
+<span class="n">leds</span> <span class="o">=</span> <span class="p">[</span><span class="n">LED</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span> <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="n">led_pins</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Lassen Sie die LED an der ungeraden Ziffer des LED-Balkendiagramms nacheinander aufleuchten.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">odd_led_bar_graph</span><span class="p">():</span>
+    <span class="c1"># Nacheinander die ungerade nummerierten LEDs beleuchten (Index 0, 2, 4, usw.)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># Ungerade Index berechnen</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>  <span class="c1"># Ungerade nummerierte LED einschalten</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>    <span class="c1"># Verzögerung für visuellen Effekt</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">off</span><span class="p">()</span> <span class="c1"># LED ausschalten</span>
+</pre></div>
+</div>
+</li>
+<li><p>Lassen Sie die LED an der geraden Ziffer des LED-Balkendiagramms nacheinander aufleuchten.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">even_led_bar_graph</span><span class="p">():</span>
+    <span class="c1"># Nacheinander die gerade nummerierten LEDs beleuchten (Index 1, 3, 5, usw.)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Gerade Index berechnen</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>   <span class="c1"># Gerade nummerierte LED einschalten</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>     <span class="c1"># Verzögerung für visuellen Effekt</span>
+        <span class="n">leds</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>  <span class="c1"># LED ausschalten</span>
+</pre></div>
+</div>
+</li>
+<li><p>Lassen Sie die LED am LED-Balkendiagramm nacheinander aufleuchten.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">all_led_bar_graph</span><span class="p">():</span>
+    <span class="c1"># Nacheinander alle LEDs einzeln beleuchten</span>
+    <span class="k">for</span> <span class="n">led</span> <span class="ow">in</span> <span class="n">leds</span><span class="p">:</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>       <span class="c1"># LED einschalten</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>     <span class="c1"># Verzögerung für visuellen Effekt</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>      <span class="c1"># LED ausschalten</span>
+</pre></div>
+</div>
+</li>
+<li><p>Die Schleife <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True</span></code> durchläuft kontinuierlich die LED-Muster. Der <code class="docutils literal notranslate"><span class="pre">except</span></code>-Block behandelt ein KeyboardInterrupt (Ctrl+C) und stellt sicher, dass alle LEDs beim Beenden ausgeschaltet sind.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Hauptloop zum Durchlaufen der LED-Muster</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">odd_led_bar_graph</span><span class="p">()</span>   <span class="c1"># Ungerade nummerierte LEDs aktivieren</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>            <span class="c1"># Pause zwischen den Mustern</span>
+        <span class="n">even_led_bar_graph</span><span class="p">()</span>  <span class="c1"># Gerade nummerierte LEDs aktivieren</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>            <span class="c1"># Pause zwischen den Mustern</span>
+        <span class="n">all_led_bar_graph</span><span class="p">()</span>   <span class="c1"># Alle LEDs aktivieren</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>            <span class="c1"># Pause vor Neustart</span>
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Unterbrechung (Ctrl+C) auf elegante Weise behandeln</span>
+    <span class="n">turn_off_all_leds</span><span class="p">()</span>      <span class="c1"># Sicherstellen, dass alle LEDs beim Beenden ausgeschaltet sind</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pi5_1.1.2_rgb_led_python.html" class="btn btn-neutral float-left" title="1.1.2 RGB-LED" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="pi5_1.1.4_7-segment_display_python.html" class="btn btn-neutral float-right" title="1.1.4 7-Segment-Anzeige" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

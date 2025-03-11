@@ -1,0 +1,481 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi, Arduino & ESP32 sur Facebook ! Plongez plus profondément dans l'univers du Raspberry Pi, de l'Arduino et de l'ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    - **Apprenez & Partagez** : Échangez des astuces et tutoriels pour perfectionner vos compétences.
+    - **Avant-premières exclusives** : Bénéficiez d'un accès anticipé aux nouvelles annonces de produits et aux aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos produits les plus récents.
+    - **Promotions festives et cadeaux** : Participez à des concours et promotions spéciales pour les fêtes.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+.. _py_pi5_guess_num:
+
+3.1.12 JEU – Devine le Nombre
+=================================
+
+Introduction
+------------
+
+Le jeu « Devine le Nombre » est un jeu amusant où vous et vos amis jouez à 
+tour de rôle en entrant un nombre (0~99). La plage de valeurs se réduit à 
+chaque saisie jusqu'à ce qu'un joueur trouve le nombre mystère. Le joueur 
+qui trouve le nombre est considéré comme perdant et doit recevoir une pénalité. 
+Par exemple, si le nombre chanceux est 51 (invisible pour les joueurs), et que 
+le joueur ① entre 50, l'intervalle affiché devient 50~99 ; si le joueur ② entre 70, 
+la plage devient 50~70 ; si le joueur ③ entre 51, ce joueur est l'infortuné perdant. 
+Ici, nous utilisons un clavier pour entrer les nombres et un écran LCD pour afficher 
+les résultats.
+
+Composants nécessaires
+---------------------------
+
+Dans ce projet, nous aurons besoin des composants suivants.
+
+.. image:: ../python_pi5/img/4.1.17_game_guess_number_list.png
+    :width: 800
+    :align: center
+
+.. Il est certainement plus pratique d'acheter un kit complet, voici le lien :
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Nom
+..         - ÉLÉMENTS DANS CE KIT
+..         - LIEN
+..     *   - Kit Raphael
+..         - 337
+..         - |link_Raphael_kit|
+
+.. Vous pouvez également les acheter séparément via les liens ci-dessous.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - PRÉSENTATION DU COMPOSANT
+..         - LIEN D'ACHAT
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`keypad`
+..         - \-
+..     *   - :ref:`i2c_lcd1602`
+..         - |link_i2clcd1602_buy|
+
+
+Schéma de câblage
+---------------------
+
+============ ======== ======== =======
+T-Board Name physical wiringPi BCM
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SPIMOSI      Pin 19   12       10
+GPIO22       Pin 15   3        22
+GPIO27       Pin 13   2        27
+GPIO17       Pin 11   0        17
+SDA1         Pin 3    SDA1(8)  SDA1(2)
+SCL1         Pin 5    SCL1(9)  SDA1(3)
+============ ======== ======== =======
+
+.. image:: ../python_pi5/img/4.1.17_game_guess_number_schematic.png
+   :align: center
+
+Procédures expérimentales
+-----------------------------
+
+**Étape 1** : Assemblez le circuit.
+
+.. image:: ../python_pi5/img/4.1.17_game_guess_number_circuit.png
+
+**Étape 2** : Configurez l'I2C (voir :ref:`i2c_config`.)
+
+**Étape 3** : Changez de répertoire.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Étape 4** : Exécutez le programme.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.12_GAME_GuessNumber.py
+
+Après le démarrage du programme, l'écran LCD affiche la page d'accueil :
+
+.. code-block::
+
+   Welcome!
+   Press A to go!
+
+Appuyez sur ‘A’ pour démarrer le jeu, et la page de jeu s'affiche alors sur l'écran LCD.
+
+.. code-block::
+
+   Entrez le nombre :
+   0 ‹point‹ 99
+
+Un nombre aléatoire appelé « \ **point**\ » est généré mais n'est pas affiché sur l'écran. 
+Vous devez le deviner. Le nombre que vous saisissez apparaît à la fin de la première ligne 
+jusqu'à ce que le calcul final soit effectué. (Appuyez sur ‘D’ pour lancer la comparaison, 
+et si le nombre saisi est supérieur à **10**, la comparaison démarre automatiquement.)
+
+La plage de valeurs du « point » est affichée sur la deuxième ligne, et vous devez saisir 
+un nombre dans cette plage. Lorsque vous tapez un nombre, la plage se réduit ; si vous 
+trouvez le nombre chanceux (ou malchanceux), l'écran affiche « Vous l'avez trouvé ! ».
+.. note::
+
+    * Si vous rencontrez l'erreur ``FileNotFoundError: [Errno 2] No such file or directory: '/dev/i2c-1'``, vous devez vous référer à :ref:`i2c_config` pour activer l'I2C.
+    * Si vous obtenez l'erreur ``ModuleNotFoundError: No module named 'smbus2'``, exécutez la commande ``sudo pip3 install smbus2``.
+    * Si l'erreur ``OSError: [Errno 121] Remote I/O error`` apparaît, cela signifie que le module est mal câblé ou que le composant est défectueux.
+    * Si le code et le câblage sont corrects mais que l'écran LCD n'affiche toujours rien, vous pouvez ajuster le potentiomètre à l'arrière pour augmenter le contraste.
+
+.. warning::
+
+    En cas de message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address``, veuillez consulter :ref:`faq_soc`.
+
+**Code**
+
+.. note::
+    Vous pouvez **Modifier/Réinitialiser/Copier/Exécuter/Arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre dans le répertoire du code source tel que ``davinci-kit-for-raspberry-pi/python-pi5``. Après modification, vous pouvez l'exécuter directement pour voir l'effet.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+   from gpiozero import DigitalOutputDevice, Button
+   from time import sleep
+   import LCD1602
+   import random
+
+   class Keypad:
+      def __init__(self, rows_pins, cols_pins, keys):
+         """
+         Initialize the keypad with specified row and column pins and key layout.
+         :param rows_pins: List of GPIO pins for the rows.
+         :param cols_pins: List of GPIO pins for the columns.
+         :param keys: Layout of keys on the keypad.
+         """
+         self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]  # Setup row pins
+         self.cols = [Button(pin, pull_up=False) for pin in cols_pins]  # Setup column pins
+         self.keys = keys  # Define keypad layout
+
+      def read(self):
+         """
+         Read and return the currently pressed keys.
+         :return: List of pressed keys.
+         """
+         pressed_keys = []
+         for i, row in enumerate(self.rows):
+               row.on()  # Activate current row
+               for j, col in enumerate(self.cols):
+                  if col.is_pressed:
+                     index = i * len(self.cols) + j
+                     pressed_keys.append(self.keys[index])  # Append pressed key
+               row.off()  # Deactivate row
+         return pressed_keys
+
+   # Game-related variables
+   count = 0
+   pointValue = 0
+   upper = 99
+   lower = 0
+
+   def setup():
+      """
+      Setup function for initializing the keypad and LCD display.
+      """
+      global keypad, last_key_pressed, keys
+      rowsPins = [18, 23, 24, 25]
+      colsPins = [10, 22, 27, 17]
+      keys = ["1", "2", "3", "A",
+               "4", "5", "6", "B",
+               "7", "8", "9", "C",
+               "*", "0", "#", "D"]
+      keypad = Keypad(rowsPins, colsPins, keys)
+      last_key_pressed = []
+      LCD1602.init(0x27, 1)  # Initialize LCD
+      LCD1602.clear()
+      LCD1602.write(0, 0, 'Welcome!')
+      LCD1602.write(0, 1, 'Press A to Start!')
+
+   def init_new_value():
+      """
+      Initialize a new target value and reset game parameters.
+      """
+      global pointValue, upper, lower, count
+      pointValue = random.randint(0, 99)
+      upper = 99
+      lower = 0
+      count = 0
+      print('point is %d' % pointValue)
+
+   def detect_point():
+      """
+      Check if the guessed number is the target, too high, or too low.
+      :return: 1 if correct guess, 0 otherwise.
+      """
+      global count, upper, lower
+      if count > pointValue and count < upper:
+         upper = count
+      elif count < pointValue and count > lower:
+         lower = count
+      elif count == pointValue:
+         count = 0
+         return 1
+      count = 0
+      return 0
+
+   def lcd_show_input(result):
+      """
+      Display the current game state and results on the LCD.
+      :param result: Result of the last guess (0 or 1).
+      """
+      LCD1602.clear()
+      if result == 1:
+         LCD1602.write(0, 1, 'You have got it!')
+         sleep(5)
+         init_new_value()
+         lcd_show_input(0)
+      else:
+         LCD1602.write(0, 0, 'Enter number:')
+         LCD1602.write(13, 0, str(count))
+         LCD1602.write(0, 1, str(lower))
+         LCD1602.write(3, 1, ' < Point < ')
+         LCD1602.write(13, 1, str(upper))
+
+   def loop():
+      """
+      Main game loop for handling keypad input and updating game state.
+      """
+      global keypad, last_key_pressed, count
+      while True:
+         result = 0
+         pressed_keys = keypad.read()
+         if pressed_keys and pressed_keys != last_key_pressed:
+               if pressed_keys == ["A"]:
+                  init_new_value()
+                  lcd_show_input(0)
+               elif pressed_keys == ["D"]:
+                  result = detect_point()
+                  lcd_show_input(result)
+               elif pressed_keys[0] in keys:
+                  if pressed_keys[0] in ["A", "B", "C", "D", "#", "*"]:
+                     continue
+                  count = count * 10 + int(pressed_keys[0])
+                  if count >= 10:
+                     result = detect_point()
+                  lcd_show_input(result)
+               print(pressed_keys)
+         last_key_pressed = pressed_keys
+         sleep(0.1)
+
+   try:
+      setup()
+      loop()
+   except KeyboardInterrupt:
+      LCD1602.clear()  # Clear LCD on interrupt
+
+
+
+
+**Explication du Code**
+
+#. Cette section importe des classes essentielles de la bibliothèque GPIO Zero pour gérer les dispositifs de sortie numérique et les boutons. Elle inclut également la fonction ``sleep`` du module ``time`` pour introduire des délais dans le script. La bibliothèque ``LCD1602`` est importée pour contrôler l'affichage LCD, utile pour afficher du texte ou des résultats. De plus, la bibliothèque ``random`` est intégrée pour générer des nombres aléatoires, ce qui peut être utile pour divers aspects du projet.
+
+   .. code-block:: python
+
+      #!/usr/bin/env python3
+
+      from gpiozero import DigitalOutputDevice, Button
+      from time import sleep
+      import LCD1602
+      import random
+
+#. Définit une classe pour le clavier, l'initialise avec des broches de ligne et de colonne, et définit une méthode pour lire les touches pressées.
+
+   .. code-block:: python
+
+      class Keypad:
+         def __init__(self, rows_pins, cols_pins, keys):
+            """
+            Initialize the keypad with specified row and column pins and key layout.
+            :param rows_pins: List of GPIO pins for the rows.
+            :param cols_pins: List of GPIO pins for the columns.
+            :param keys: Layout of keys on the keypad.
+            """
+            self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]  # Setup row pins
+            self.cols = [Button(pin, pull_up=False) for pin in cols_pins]  # Setup column pins
+            self.keys = keys  # Define keypad layout
+
+         def read(self):
+            """
+            Read and return the currently pressed keys.
+            :return: List of pressed keys.
+            """
+            pressed_keys = []
+            for i, row in enumerate(self.rows):
+                  row.on()  # Activate current row
+                  for j, col in enumerate(self.cols):
+                     if col.is_pressed:
+                        index = i * len(self.cols) + j
+                        pressed_keys.append(self.keys[index])  # Append pressed key
+                  row.off()  # Deactivate row
+            return pressed_keys
+
+#. Initialise les variables de jeu : ``count`` à zéro pour suivre les tentatives, ``pointValue`` pour la valeur cible, ainsi que les limites ``upper`` et ``lower`` pour gérer les bornes du jeu.
+
+   .. code-block:: python
+
+      # Variables liées au jeu
+      count = 0
+      pointValue = 0
+      upper = 99
+      lower = 0
+
+#. Configure le clavier et l'afficheur LCD avec un message de bienvenue et des instructions.
+
+   .. code-block:: python
+
+      def setup():
+         """
+         Setup function for initializing the keypad and LCD display.
+         """
+         global keypad, last_key_pressed, keys
+         rowsPins = [18, 23, 24, 25]
+         colsPins = [10, 22, 27, 17]
+         keys = ["1", "2", "3", "A",
+                  "4", "5", "6", "B",
+                  "7", "8", "9", "C",
+                  "*", "0", "#", "D"]
+         keypad = Keypad(rowsPins, colsPins, keys)
+         last_key_pressed = []
+         LCD1602.init(0x27, 1)  # Initialize LCD
+         LCD1602.clear()
+         LCD1602.write(0, 0, 'Welcome!')
+         LCD1602.write(0, 1, 'Press A to Start!')
+
+#. Initialise une nouvelle valeur cible pour le jeu et réinitialise les paramètres du jeu.
+
+   .. code-block:: python
+
+      def init_new_value():
+         """
+         Initialize a new target value and reset game parameters.
+         """
+         global pointValue, upper, lower, count
+         pointValue = random.randint(0, 99)
+         upper = 99
+         lower = 0
+         count = 0
+         print('point is %d' % pointValue)
+
+#. Vérifie si le nombre deviné correspond à la cible et met à jour les limites de déduction.
+
+   .. code-block:: python
+
+      def detect_point():
+         """
+         Check if the guessed number is the target, too high, or too low.
+         :return: 1 if correct guess, 0 otherwise.
+         """
+         global count, upper, lower
+         if count > pointValue and count < upper:
+            upper = count
+         elif count < pointValue and count > lower:
+            lower = count
+         elif count == pointValue:
+            count = 0
+            return 1
+         count = 0
+         return 0
+
+#. Affiche l'état du jeu sur l'écran LCD, indiquant la tentative actuelle, les bornes et le résultat.
+
+   .. code-block:: python
+
+      def lcd_show_input(result):
+         """
+         Display the current game state and results on the LCD.
+         :param result: Result of the last guess (0 or 1).
+         """
+         LCD1602.clear()
+         if result == 1:
+            LCD1602.write(0, 1, 'You have got it!')
+            sleep(5)
+            init_new_value()
+            lcd_show_input(0)
+         else:
+            LCD1602.write(0, 0, 'Enter number:')
+            LCD1602.write(13, 0, str(count))
+            LCD1602.write(0, 1, str(lower))
+            LCD1602.write(3, 1, ' < Point < ')
+            LCD1602.write(13, 1, str(upper))
+
+#. Boucle principale pour gérer l'entrée du clavier, mettre à jour l'état du jeu et afficher les résultats.
+
+   .. code-block:: python
+
+      def loop():
+         """
+         Main game loop for handling keypad input and updating game state.
+         """
+         global keypad, last_key_pressed, count
+         while True:
+            result = 0
+            pressed_keys = keypad.read()
+            if pressed_keys and pressed_keys != last_key_pressed:
+                  if pressed_keys == ["A"]:
+                     init_new_value()
+                     lcd_show_input(0)
+                  elif pressed_keys == ["D"]:
+                     result = detect_point()
+                     lcd_show_input(result)
+                  elif pressed_keys[0] in keys:
+                     if pressed_keys[0] in ["A", "B", "C", "D", "#", "*"]:
+                        continue
+                     count = count * 10 + int(pressed_keys[0])
+                     if count >= 10:
+                        result = detect_point()
+                     lcd_show_input(result)
+                  print(pressed_keys)
+            last_key_pressed = pressed_keys
+            sleep(0.1)
+
+#. Exécute la configuration et entre dans la boucle principale, avec une possibilité de sortie propre via un interrupteur clavier.
+
+   .. code-block:: python
+
+      try:
+         setup()
+         loop()
+      except KeyboardInterrupt:
+         LCD1602.clear()  # Effacer l'écran LCD en cas d'interruption
+

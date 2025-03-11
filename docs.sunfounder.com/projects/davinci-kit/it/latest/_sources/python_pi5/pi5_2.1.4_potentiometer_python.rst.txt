@@ -1,0 +1,229 @@
+.. note::
+
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Esplora a fondo il mondo di Raspberry Pi, Arduino ed ESP32 insieme a tanti altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto da Esperti**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti inediti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _2.1.4_py_pi5:
+
+2.1.4 Potenziometro
+===================
+
+Introduzione
+------------
+
+La funzione ADC può essere utilizzata per convertire segnali analogici in 
+segnali digitali e, in questo esperimento, si utilizza l'ADC0834 per ottenere 
+questa funzione. Qui, implementiamo questo processo utilizzando un potenziometro. 
+Il potenziometro cambia una grandezza fisica, ossia la tensione, che viene 
+convertita dalla funzione ADC.
+
+Componenti Necessari
+------------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti.
+
+.. image:: ../python_pi5/img/2.1.7_potentiometer_list.png
+
+.. È certamente comodo acquistare un intero kit, ecco il link: 
+
+.. .. list-table::
+..     :widths: 20 20 20
+..     :header-rows: 1
+
+..     *   - Nome	
+..         - COMPONENTI IN QUESTO KIT
+..         - LINK
+..     *   - Kit Raphael
+..         - 337
+..         - |link_Raphael_kit|
+
+.. Puoi anche acquistare i componenti separatamente dai link sottostanti.
+
+.. .. list-table::
+..     :widths: 30 20
+..     :header-rows: 1
+
+..     *   - INTRODUZIONE AI COMPONENTI
+..         - LINK DI ACQUISTO
+
+..     *   - :ref:`gpio_extension_board`
+..         - |link_gpio_board_buy|
+..     *   - :ref:`breadboard`
+..         - |link_breadboard_buy|
+..     *   - :ref:`wires`
+..         - |link_wires_buy|
+..     *   - :ref:`resistor`
+..         - |link_resistor_buy|
+..     *   - :ref:`led`
+..         - |link_led_buy|
+..     *   - :ref:`potentiometer`
+..         - |link_potentiometer_buy|
+..     *   - :ref:`adc0834`
+..         - \-
+
+
+Schema Elettrico
+-------------------
+
+.. image:: ../python_pi5/img/2.1.7_potentiometer_second_1.png
+
+
+.. image:: ../python_pi5/img/2.1.7_potentiometer_second_2.png
+
+Procedure Sperimentali
+--------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/2.1.7_Potentiometer_circuit.png
+
+
+.. note::
+    Posiziona il chip facendo riferimento alla posizione corrispondente 
+    nell'immagine. Nota che le scanalature sul chip dovrebbero essere a 
+    sinistra quando viene posizionato.
+
+**Passo 2:** Apri il file del codice
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Passo 3:** Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.1.4_Potentiometer.py
+
+Dopo l'esecuzione del codice, ruota la manopola del potenziometro e 
+l'intensità del LED cambierà di conseguenza.
+
+.. warning::
+
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, potrai eseguirlo direttamente per vedere il risultato.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+
+   from gpiozero import PWMLED
+   import ADC0834
+   import time
+
+   # Inizializza un LED PWM sul pin GPIO 22
+   led = PWMLED(22)
+
+   # Configura il modulo ADC0834
+   ADC0834.setup()
+
+   def MAP(x, in_min, in_max, out_min, out_max):
+       """
+       Map a value from one range to another.
+       :param x: The value to be mapped.
+       :param in_min: The lower bound of the value's current range.
+       :param in_max: The upper bound of the value's current range.
+       :param out_min: The lower bound of the value's target range.
+       :param out_max: The upper bound of the value's target range.
+       :return: The mapped value.
+       """
+       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+   try:
+       while True:
+           # Ottieni la lettura corrente dal modulo ADC0834
+           res = ADC0834.getResult()
+           print('res = %d' % res)
+
+           # Mappa il valore ADC a un intervallo adatto per impostare la luminosità del LED
+           R_val = MAP(res, 0, 255, 0, 100)
+
+           # Imposta la luminosità del LED
+           led.value = float(R_val / 100)
+
+           # Attendi 0,2 secondi prima di effettuare una nuova lettura
+           time.sleep(0.2)
+
+   # Uscita pulita quando viene premuto 'Ctrl+C'
+   except KeyboardInterrupt: 
+       led.value = 0  # Spegne il LED
+
+
+**Spiegazione del Codice**
+
+#. ``gpiozero`` per il controllo del LED PWM, ``ADC0834`` per la conversione analogico-digitale, e ``time`` per implementare i ritardi.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+
+       from gpiozero import PWMLED
+       import ADC0834
+       import time
+
+#. Inizializza un oggetto PWMLED collegato al pin GPIO 22 e configura il convertitore ADC0834.
+
+   .. code-block:: python
+
+       # Inizializza un LED PWM sul pin GPIO 22
+       led = PWMLED(22)
+
+       # Configura il modulo ADC0834
+       ADC0834.setup()
+
+#. Definisce una funzione chiamata ``MAP`` per convertire un intervallo di valori in un altro, utile per mappare i valori dell'ADC sui livelli di luminosità adeguati per il LED.
+
+   .. code-block:: python
+
+       def MAP(x, in_min, in_max, out_min, out_max):
+           return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+#. Legge continuamente il valore ADC in un ciclo, mappando il valore ADC (0-255) a un livello di luminosità (0-100) per il LED. Regola la luminosità del LED in base a questo valore mappato. Implementa un ritardo di 0,2 secondi per migliorare la leggibilità e stabilità.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # Ottieni la lettura corrente dal modulo ADC0834
+               res = ADC0834.getResult()
+               print('res = %d' % res)
+
+               # Mappa il valore ADC a un intervallo adatto per impostare la luminosità del LED
+               R_val = MAP(res, 0, 255, 0, 100)
+
+               # Imposta la luminosità del LED
+               led.value = float(R_val / 100)
+
+               # Attendi 0,2 secondi prima di effettuare una nuova lettura
+               time.sleep(0.2)
+
+       # Uscita pulita quando viene premuto 'Ctrl+C'
+       except KeyboardInterrupt: 
+           led.value = 0  # Spegne il LED

@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.6 モーションコントロール &mdash; SunFounder davinci-kit-for-raspberry-pi  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=c033477b"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=4dbe4bdc"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/ja/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="3.1.7 交通信号灯" href="pi5_3.1.7_traffic_light_python.html" />
+    <link rel="prev" title="3.1.5 バッテリーインジケータ" href="pi5_3.1.5_battery_indicator_python.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-ja" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/python_pi5/pi5_3.1.6_motion_control_python.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">部品一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO拡張ボード</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">コードをダウンロードする</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Raspberry Pi OSのインストールとセットアップ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">For Pi 5</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_python_pi5.html">Pythonで遊ぼう</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_gpiozero_python.html">「GPIO Zero」の確認</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_output_python.html">1 出力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pi5_input_python.html">2 入力</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pi5_extension_python.html">3 拡張</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.1_counting_device_python.html">3.1.1 カウンティングデバイス</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.2_welcome_python.html">3.1.2 ようこそ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.3_reversing_alarm_python.html">3.1.3 リバースアラーム</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.4_smart_fan_python.html">3.1.4 スマートファン</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.5_battery_indicator_python.html">3.1.5 バッテリーインジケータ</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="pi5_3.1.6_motion_control_python.html#">3.1.6 モーションコントロール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.7_traffic_light_python.html">3.1.7 交通信号灯</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.8_overheat_monitor_python.html">3.1.8 過熱モニター</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.9_password_lock_python.html">3.1.9 パスワードロック</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.10_alarm_bell_python.html">3.1.10 アラームベル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.11_morse_code_generator_python.html">3.1.11 モールス信号ジェネレータ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.12_game_guess_number_python.html">3.1.12 ゲーム – 数当て</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.13_game_10_second_python.html">3.1.13 GAME - 10秒間</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pi5_3.1.14_game_not_not_python.html">3.1.14 GAME– 逆逆</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Cと遊ぶ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Scratch で遊ぶ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python ビデオコース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">付録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">ありがとうございました</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">For Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_python_pi5.html">Pythonで遊ぼう</a></li>
+          <li class="breadcrumb-item"><a href="pi5_extension_python.html">3 拡張</a></li>
+      <li class="breadcrumb-item active">3.1.6 モーションコントロール</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_pi5/pi5_3.1.6_motion_control_python.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>こんにちは、SunFounderのRaspberry Pi &amp; Arduino &amp; ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。</p>
+<p><strong>参加する理由は？</strong></p>
+<ul class="simple">
+<li><p><strong>エキスパートサポート</strong>：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。</p></li>
+<li><p><strong>学び＆共有</strong>：ヒントやチュートリアルを交換してスキルを向上させましょう。</p></li>
+<li><p><strong>独占的なプレビュー</strong>：新製品の発表や先行プレビューに早期アクセスしましょう。</p></li>
+<li><p><strong>特別割引</strong>：最新製品の独占割引をお楽しみください。</p></li>
+<li><p><strong>祭りのプロモーションとギフト</strong>：ギフトや祝日のプロモーションに参加しましょう。</p></li>
+</ul>
+<p>👉 私たちと一緒に探索し、創造する準備はできていますか？[<a href="https://bit.ly/raphaelkit " target="_blank">ここ</a>]をクリックして今すぐ参加しましょう！</p>
+</div>
+<section id="py-pi5">
+<span id="id1"></span><h1>3.1.6 モーションコントロール<a class="headerlink" href="pi5_3.1.6_motion_control_python.html#py-pi5" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>はじめに<a class="headerlink" href="pi5_3.1.6_motion_control_python.html#id2" title="Link to this heading"></a></h2>
+<p>このレッスンでは、シンプルなモーションセンシングおよびコントロールデバイスを作成します。センサーとしてMPU6050を使用し、制御デバイスとしてステッパーモータを使用します。MPU6050を手袋に取り付けることで、手首を回転させることでステッパーモータを制御できます。</p>
+</section>
+<section id="id3">
+<h2>必要なコンポーネント<a class="headerlink" href="pi5_3.1.6_motion_control_python.html#id3" title="Link to this heading"></a></h2>
+<p>このプロジェクトには、以下のコンポーネントが必要です。</p>
+<a class="reference internal image-reference" href="../_images/3.1.6_motion_list.png"><img alt="../_images/3.1.6_motion_list.png" class="align-center" src="../_images/3.1.6_motion_list.png" style="width: 800px;" />
+</a>
+</section>
+<section id="id4">
+<h2>回路図<a class="headerlink" href="pi5_3.1.6_motion_control_python.html#id4" title="Link to this heading"></a></h2>
+<img alt="../_images/3.1.6_motion_schematic.png" class="align-center" src="../_images/3.1.6_motion_schematic.png" />
+</section>
+<section id="id5">
+<h2>実験手順<a class="headerlink" href="pi5_3.1.6_motion_control_python.html#id5" title="Link to this heading"></a></h2>
+<p><strong>ステップ 1:</strong> 回路を組み立てます。</p>
+<img alt="../_images/3.1.6_motion_control_circuit.png" src="../_images/3.1.6_motion_control_circuit.png" />
+<p><strong>ステップ 2:</strong> コードファイルを開きます。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">pi5</span>
+</pre></div>
+</div>
+<p><strong>ステップ 3:</strong> 実行します。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">3.1.6</span><span class="n">_MotionControl</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>コードが実行されると、 <strong>mpu6050</strong> の <cite>Y軸</cite> の傾斜角が <strong>45</strong> ℃ より大きい場合、ステッパーモータは反時計回りに回転し、 <strong>-45</strong> ℃ より小さい場合、ステッパーモータは時計回りに回転します。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>エラー メッセージ <code class="docutils literal notranslate"><span class="pre">RuntimeError:</span> <span class="pre">Cannot</span> <span class="pre">determine</span> <span class="pre">SOC</span> <span class="pre">peripheral</span> <span class="pre">base</span> <span class="pre">address</span></code> が表示された場合は、 <a class="reference internal" href="../faq.html#faq-soc"><span class="std std-ref">「gpiozero」が動作しない場合。</span></a> を参照してください。</p>
+</div>
+<p><strong>コード</strong></p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>以下のコードは、 <strong>変更/リセット/コピー/実行/停止</strong> ができます。ただし、それに先立ち、 <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python-pi5</span></code> のようなソースコードのパスに移動する必要があります。コードを変更した後、効果を確認するために直接実行できます。</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span>
+<span class="kn">import</span> <span class="nn">smbus</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># MPU6050の電源管理レジスタを初期化</span>
+<span class="n">power_mgmt_1</span> <span class="o">=</span> <span class="mh">0x6b</span>
+<span class="n">power_mgmt_2</span> <span class="o">=</span> <span class="mh">0x6c</span>
+
+<span class="c1"># MPU6050とのI2C通信の設定</span>
+<span class="n">bus</span> <span class="o">=</span> <span class="n">smbus</span><span class="o">.</span><span class="n">SMBus</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># SMBusの初期化</span>
+<span class="n">address</span> <span class="o">=</span> <span class="mh">0x68</span>        <span class="c1"># MPU6050のI2Cアドレス</span>
+<span class="n">bus</span><span class="o">.</span><span class="n">write_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">power_mgmt_1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># MPU6050を起動</span>
+
+<span class="c1"># ステッパーモータのピンをGPIOピン18, 23, 24, 25に初期化</span>
+<span class="n">motorPin</span> <span class="o">=</span> <span class="p">[</span><span class="n">OutputDevice</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span> <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">)]</span>
+
+<span class="c1"># モーターの回転速度パラメータを設定</span>
+<span class="n">rolePerMinute</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">stepsPerRevolution</span> <span class="o">=</span> <span class="mi">2048</span>
+<span class="c1"># 希望のRPMを達成するためのステップ間の遅延を計算</span>
+<span class="n">stepSpeed</span> <span class="o">=</span> <span class="p">(</span><span class="mi">60</span> <span class="o">/</span> <span class="n">rolePerMinute</span><span class="p">)</span> <span class="o">/</span> <span class="n">stepsPerRevolution</span>
+
+<span class="c1"># 指定されたI2Cアドレスから1バイトを読み取る</span>
+<span class="k">def</span> <span class="nf">read_byte</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+
+<span class="c1"># 指定されたI2Cアドレスからワード（2バイト）を読み取る</span>
+<span class="k">def</span> <span class="nf">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">low</span>
+    <span class="k">return</span> <span class="n">val</span>
+
+<span class="c1"># 2の補数形式でワードを読み取る</span>
+<span class="k">def</span> <span class="nf">read_word_2c</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">val</span> <span class="o">&gt;=</span> <span class="mh">0x8000</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="p">((</span><span class="mi">65535</span> <span class="o">-</span> <span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">val</span>
+
+<span class="c1"># 2点間のユークリッド距離を計算</span>
+<span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="n">b</span><span class="p">))</span>
+
+<span class="c1"># Y軸回転を計算</span>
+<span class="k">def</span> <span class="nf">get_y_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+
+<span class="c1"># X軸回転を計算</span>
+<span class="k">def</span> <span class="nf">get_x_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+
+<span class="c1"># MPU6050からの傾斜角を取得</span>
+<span class="k">def</span> <span class="nf">mpu6050</span><span class="p">():</span>
+    <span class="n">accel_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3b</span><span class="p">)</span>
+    <span class="n">accel_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3d</span><span class="p">)</span>
+    <span class="n">accel_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3f</span><span class="p">)</span>
+    <span class="n">accel_xout_scaled</span> <span class="o">=</span> <span class="n">accel_xout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_yout_scaled</span> <span class="o">=</span> <span class="n">accel_yout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_zout_scaled</span> <span class="o">=</span> <span class="n">accel_zout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">get_y_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">angle</span>
+
+<span class="c1"># ステッパーモータの回転を制御</span>
+<span class="k">def</span> <span class="nf">rotary</span><span class="p">(</span><span class="n">direction</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span>
+        <span class="c1"># 時計回りの回転シーケンス</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="k">if</span> <span class="mh">0x99</span> <span class="o">&gt;&gt;</span> <span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x08</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">):</span>
+                    <span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>
+        <span class="c1"># 反時計回りの回転シーケンス</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="k">if</span> <span class="mh">0x99</span> <span class="o">&lt;&lt;</span> <span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x08</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">):</span>
+                    <span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+
+<span class="c1"># 傾斜角を連続的に読み取り、モーターを制御するためのメインループ</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">mpu6050</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">angle</span> <span class="o">&gt;=</span> <span class="mi">45</span><span class="p">:</span>
+            <span class="n">rotary</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>  <span class="c1"># 正の傾斜の場合、反時計回りに回転</span>
+        <span class="k">elif</span> <span class="n">angle</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">45</span><span class="p">:</span>
+            <span class="n">rotary</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>  <span class="c1"># 負の傾斜の場合、時計回りに回転</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># キーボード割り込み時にすべてのモーターピンをオフにする</span>
+    <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="n">motorPin</span><span class="p">:</span>
+        <span class="n">pin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>コードの説明</strong></p>
+<ol class="arabic">
+<li><p>スクリプトは、必要なライブラリをインポートすることから始まります。GPIOピンを制御するための「gpiozero」、I2C通信用の「smbus」、数学的な操作に「math」、遅延を制御するための「time」をインポートします。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">OutputDevice</span>
+<span class="kn">import</span> <span class="nn">smbus</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+</li>
+<li><p>MPU6050センサーとのI2C通信をセットアップします。「power_mgmt_1」と「power_mgmt_2」はセンサーの電源を管理するためのレジスタです。「power_mgmt_1」に書き込むことで、センサーは「起動」状態になります。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># MPU6050の電源管理レジスタを初期化</span>
+<span class="n">power_mgmt_1</span> <span class="o">=</span> <span class="mh">0x6b</span>
+<span class="n">power_mgmt_2</span> <span class="o">=</span> <span class="mh">0x6c</span>
+
+<span class="c1"># MPU6050とのI2C通信のセットアップ</span>
+<span class="n">bus</span> <span class="o">=</span> <span class="n">smbus</span><span class="o">.</span><span class="n">SMBus</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># SMBusの初期化</span>
+<span class="n">address</span> <span class="o">=</span> <span class="mh">0x68</span>        <span class="c1"># MPU6050のI2Cアドレス</span>
+<span class="n">bus</span><span class="o">.</span><span class="n">write_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">power_mgmt_1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># MPU6050を起動</span>
+</pre></div>
+</div>
+</li>
+<li><p>Raspberry Pi上のGPIOピンを初期化して、ステッパーモータを制御します。各ピンはモーターのコイルに関連付けられています。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ステッパーモータのピンをGPIOピン18, 23, 24, 25に初期化</span>
+<span class="n">motorPin</span> <span class="o">=</span> <span class="p">[</span><span class="n">OutputDevice</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span> <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">)]</span>
+</pre></div>
+</div>
+</li>
+<li><p>モーターの回転数（RPM）と1回転あたりのステップ数を設定します。「stepSpeed」は、希望のRPMを達成するためのステップ間の遅延を計算し、スムーズなモーターの動作を確保します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># モーターの回転速度パラメータを設定</span>
+<span class="n">rolePerMinute</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">stepsPerRevolution</span> <span class="o">=</span> <span class="mi">2048</span>
+<span class="c1"># 希望のRPMを達成するためのステップ間の遅延を計算</span>
+<span class="n">stepSpeed</span> <span class="o">=</span> <span class="p">(</span><span class="mi">60</span> <span class="o">/</span> <span class="n">rolePerMinute</span><span class="p">)</span> <span class="o">/</span> <span class="n">stepsPerRevolution</span>
+</pre></div>
+</div>
+</li>
+<li><p>これらの関数はI2C通信に使用されます。「read_byte」は指定されたアドレスから1バイトを読み取り、「read_word」は2バイト（ワード）を読み取り、ビット演算（ <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> および <code class="docutils literal notranslate"><span class="pre">+</span></code> ）を使用してそれらを単一の値に結合します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 指定されたI2Cアドレスから1バイトを読み取る</span>
+<span class="k">def</span> <span class="nf">read_byte</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+
+<span class="c1"># 指定されたI2Cアドレスからワード（2バイト）を読み取る</span>
+<span class="k">def</span> <span class="nf">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span><span class="p">)</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">read_byte_data</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">adr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">low</span>
+    <span class="k">return</span> <span class="n">val</span>
+</pre></div>
+</div>
+</li>
+<li><p>この関数は、読み取ったワードを2の補数形式に変換し、センサーデータから符号付きの値を解釈するために使用されます。この変換は、負のセンサー値を処理するために必要です。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2の補数形式でワードを読み取る</span>
+<span class="k">def</span> <span class="nf">read_word_2c</span><span class="p">(</span><span class="n">adr</span><span class="p">):</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">read_word</span><span class="p">(</span><span class="n">adr</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">val</span> <span class="o">&gt;=</span> <span class="mh">0x8000</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="p">((</span><span class="mi">65535</span> <span class="o">-</span> <span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">val</span>
+</pre></div>
+</div>
+</li>
+<li><p>「dist」は2つのポイント間のユークリッド距離を計算し、回転計算に使用されます。「get_y_rotation」と「get_x_rotation」は「math」ライブラリの「atan2」関数を使用してY軸とX軸の回転角度を計算し、結果を度に変換します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2点間のユークリッド距離を計算</span>
+<span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="n">b</span><span class="p">))</span>
+
+<span class="c1"># Y軸回転を計算</span>
+<span class="k">def</span> <span class="nf">get_y_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+
+<span class="c1"># X軸回転を計算</span>
+<span class="k">def</span> <span class="nf">get_x_rotation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>この関数はMPU6050センサーから加速度計データを読み取り、読み取り値をスケーリングし、 <code class="docutils literal notranslate"><span class="pre">get_y_rotation</span></code> 関数を使用して傾斜角を計算します。「read_word_2c」関数は2の補数形式でセンサーデータを読み取り、負の値を処理するために必要です。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># MPU6050からの傾斜角を取得</span>
+<span class="k">def</span> <span class="nf">mpu6050</span><span class="p">():</span>
+    <span class="n">accel_xout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3b</span><span class="p">)</span>
+    <span class="n">accel_yout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3d</span><span class="p">)</span>
+    <span class="n">accel_zout</span> <span class="o">=</span> <span class="n">read_word_2c</span><span class="p">(</span><span class="mh">0x3f</span><span class="p">)</span>
+    <span class="n">accel_xout_scaled</span> <span class="o">=</span> <span class="n">accel_xout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_yout_scaled</span> <span class="o">=</span> <span class="n">accel_yout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">accel_zout_scaled</span> <span class="o">=</span> <span class="n">accel_zout</span> <span class="o">/</span> <span class="mf">16384.0</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">get_y_rotation</span><span class="p">(</span><span class="n">accel_xout_scaled</span><span class="p">,</span> <span class="n">accel_yout_scaled</span><span class="p">,</span> <span class="n">accel_zout_scaled</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">angle</span>
+</pre></div>
+</div>
+</li>
+<li><p>「rotary」関数はステッパーモーターの回転を制御します。指定された「direction」に基づいて時計回りまたは反時計回りの回転を実行し、特定のモーターピンをパターンに従ってオンまたはオフにします。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ステッパーモーターの回転を制御</span>
+<span class="k">def</span> <span class="nf">rotary</span><span class="p">(</span><span class="n">direction</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span>
+        <span class="c1"># 時計回りの回転シーケンス</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="k">if</span> <span class="mh">0x99</span> <span class="o">&gt;&gt;</span> <span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x08</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">):</span>
+                    <span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>
+        <span class="c1"># 反時計回りの回転シーケンス</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="k">if</span> <span class="mh">0x99</span> <span class="o">&lt;&lt;</span> <span class="n">j</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x08</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">):</span>
+                    <span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">motorPin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">stepSpeed</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>メインループはMPU6050センサーから傾斜角を連続して読み取り、角度に基づいてモーターの回転方向を制御します。プログラムが中断された場合（キーボード割り込みなど）、安全のためにすべてのモーターピンをオフにします。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 傾斜角を連続的に読み取り、モーターを制御するためのメインループ</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">mpu6050</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">angle</span> <span class="o">&gt;=</span> <span class="mi">45</span><span class="p">:</span>
+            <span class="n">rotary</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>  <span class="c1"># 正の傾斜の場合、反時計回りに回転</span>
+        <span class="k">elif</span> <span class="n">angle</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">45</span><span class="p">:</span>
+            <span class="n">rotary</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>  <span class="c1"># 負の傾斜の場合、時計回りに回転</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># キーボード割り込み時にすべてのモーターピンをオフにする</span>
+    <span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="n">motorPin</span><span class="p">:</span>
+        <span class="n">pin</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pi5_3.1.5_battery_indicator_python.html" class="btn btn-neutral float-left" title="3.1.5 バッテリーインジケータ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pi5_3.1.7_traffic_light_python.html" class="btn btn-neutral float-right" title="3.1.7 交通信号灯" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

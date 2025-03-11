@@ -1,0 +1,460 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales pendant les fêtes.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+3.1.7 Feu de circulation
+========================
+
+Introduction
+---------------
+
+Dans ce projet, nous allons utiliser des LEDs de trois couleurs pour simuler le changement 
+des feux de circulation, et un afficheur 7 segments à quatre chiffres sera utilisé pour 
+afficher le décompte de chaque état du feu.
+
+Composants
+------------
+
+.. image:: img/list_Traffic_Light.png
+    :align: center
+
+Schéma de câblage
+--------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SPICE0       Pin 24   10       8
+SPICE1       Pin 26   11       7
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one7.png
+   :align: center
+
+Procédures expérimentales
+------------------------------
+
+**Étape 1 :** Montez le circuit.
+
+.. image:: img/image254.png
+   :width: 800
+
+**Pour les utilisateurs du langage C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 2 :** Changez de répertoire.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.7/
+
+**Étape 3 :** Compilez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.7_TrafficLight.c -lwiringPi
+
+**Étape 4 :** Exécutez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Lorsque le code s'exécute, les LEDs simuleront le changement de couleur des feux de 
+circulation. D'abord, la LED rouge s'allume pendant 60s, puis la LED verte pendant 30s, 
+et ensuite la LED jaune pendant 5s. Après cela, la LED rouge se rallume pendant 60s. 
+Cette série d'actions se répétera continuellement.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution ou si un message d'erreur apparaît : « wiringPi.h: Aucun fichier ou dossier de ce type », veuillez vous référer à :ref:`C code is not working?`.
+
+**Explication du code**
+
+.. code-block:: c
+
+    #define     SDI     5 
+    #define     RCLK    4  
+    #define     SRCLK    1   
+
+    const int placePin[] = {12, 3, 2, 0};
+    unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
+
+    void pickDigit(int digit);
+    void hc595_shift(int8_t data);
+    void clearDisplay();
+    void display();
+
+Ces codes sont utilisés pour réaliser l'affichage des chiffres sur un afficheur 7 segments 
+à 4 chiffres. Référez-vous à :ref:`1.1.5 4-Digit 7-Segment Display` du document pour plus 
+de détails. Ici, les codes servent à afficher le décompte du temps des feux de circulation.
+
+.. code-block:: c
+
+    const int ledPin[] = {6, 10, 11};  
+
+    int colorState = 0;
+
+    void lightup()
+    {
+        for(int i=0;i<3;i++){
+            digitalWrite(ledPin[i],HIGH);
+        }
+        digitalWrite(ledPin[colorState],LOW);    
+    }
+
+Ces codes servent à allumer et éteindre les LEDs.
+
+.. code-block:: c
+
+    int greenLight = 30;
+    int yellowLight = 5;
+    int redLight = 60;
+    int colorState = 0;
+    char *lightColor[]={"Red","Green","Yellow"};
+    int counter = 60;
+
+    void timer(int timer1){       // Fonction du minuteur
+        if(timer1 == SIGALRM){   
+            counter --;         
+            alarm(1); 
+            if(counter == 0){
+                if(colorState == 0) counter = greenLight;
+                if(colorState == 1) counter = yellowLight;
+                if(colorState == 2) counter = redLight;
+                colorState = (colorState+1)%3; 
+            }
+            printf("counter : %d \t light color: %s \n",counter,lightColor[colorState]);
+        }
+    }
+
+Ces codes permettent de contrôler le minuteur. Référez-vous à :ref:`1.1.5 4-Digit 7-Segment Display` 
+pour plus de détails. Ici, lorsque le minuteur atteint zéro, `colorState` change pour alterner les LEDs,
+ et le minuteur est réinitialisé à une nouvelle valeur.
+
+.. code-block:: c
+
+    void loop()
+    {
+        while(1){
+        display();
+        lightup(); 
+        }
+    }
+
+    int main(void)
+    {
+        //…
+        signal(SIGALRM,timer);  
+        alarm(1); 
+        loop();
+        return 0;
+    }
+
+Le minuteur est lancé dans la fonction `main()`. Dans la fonction `loop()`, une boucle
+ **while(1)** est utilisée pour appeler les fonctions de l'afficheur 7 segments et des LEDs.
+
+
+**Pour les utilisateurs du langage Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 2 :** Changez de répertoire.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python/
+
+**Étape 3 :** Exécutez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.7_TrafficLight.py
+
+Lorsque le code s'exécute, les LEDs simuleront le changement de couleur des feux de 
+circulation. D'abord, la LED rouge s'allume pendant 60s, puis la LED verte pendant 30s, 
+et ensuite la LED jaune pendant 5s. Après cela, la LED rouge se rallume pendant 60s. 
+Ce cycle se répétera continuellement. Pendant ce temps, l'afficheur 7 segments à 4 chiffres 
+affiche en continu le décompte du temps.
+
+**Code**
+
+.. note::
+
+    Vous pouvez **modifier/réinitialiser/copier/exécuter/arrêter** le code ci-dessous. Mais avant cela, vous devez vous rendre sur le chemin du code source comme ``davinci-kit-for-raspberry-pi/python``.
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+    import threading
+
+    # Définir les broches connectées au 74HC595
+    SDI   = 24      # entrée de données série (DS)
+    RCLK  = 23     # entrée de l'horloge de mémoire (STCP)
+    SRCLK = 18      # entrée de l'horloge du registre à décalage (SHCP)
+    number = (0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90)
+
+    placePin = (10,22,27,17)
+    ledPin =(25,8,7)
+
+    greenLight = 30
+    yellowLight = 5
+    redLight = 60
+    lightColor=("Red","Green","Yellow")
+
+    colorState=0
+    counter = 60
+    timer1 = 0
+
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(SDI, GPIO.OUT)
+        GPIO.setup(RCLK, GPIO.OUT)
+        GPIO.setup(SRCLK, GPIO.OUT)
+        for pin in placePin:
+            GPIO.setup(pin,GPIO.OUT)
+        for pin in ledPin:
+            GPIO.setup(pin,GPIO.OUT)
+        global timer1
+        timer1 = threading.Timer(1.0,timer)
+        timer1.start()
+
+    def clearDisplay():
+        for i in range(8):
+            GPIO.output(SDI, 1)
+            GPIO.output(SRCLK, GPIO.HIGH)
+            GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.HIGH)
+        GPIO.output(RCLK, GPIO.LOW)
+
+    def hc595_shift(data):
+        for i in range(8):
+            GPIO.output(SDI, 0x80 & (data << i))
+            GPIO.output(SRCLK, GPIO.HIGH)
+            GPIO.output(SRCLK, GPIO.LOW)
+        GPIO.output(RCLK, GPIO.HIGH)
+        GPIO.output(RCLK, GPIO.LOW)
+
+    def pickDigit(digit):
+        for i in placePin:
+            GPIO.output(i,GPIO.LOW)
+        GPIO.output(placePin[digit], GPIO.HIGH)
+
+    def timer():        # Fonction minuteur
+        global counter
+        global colorState
+        global timer1
+        timer1 = threading.Timer(1.0,timer)
+        timer1.start()
+        counter-=1
+        if (counter is 0):
+            if(colorState is 0):
+                counter= greenLight
+            if(colorState is 1):
+                counter=yellowLight
+            if (colorState is 2):
+                counter=redLight
+            colorState=(colorState+1)%3
+        print ("counter : %d    color: %s "%(counter,lightColor[colorState]))
+
+    def lightup():
+        global colorState
+        for i in range(0,3):
+            GPIO.output(ledPin[i], GPIO.HIGH)
+        GPIO.output(ledPin[colorState], GPIO.LOW)
+
+    def display():
+        global counter
+
+        a = counter % 10000 // 1000 + counter % 1000 // 100
+        b = counter % 10000 // 1000 + counter % 1000 // 100 + counter % 100 // 10
+        c = counter % 10000 // 1000 + counter % 1000 // 100 + counter % 100 // 10 + counter % 10
+
+        if (counter % 10000//1000 == 0):
+            clearDisplay()
+        else:
+            clearDisplay()
+            pickDigit(3)
+            hc595_shift(number[counter % 10000//1000])
+
+        if (a == 0):
+            clearDisplay()
+        else:
+            clearDisplay()
+            pickDigit(2)
+            hc595_shift(number[counter % 1000//100])
+
+        if (b == 0):
+            clearDisplay()
+        else:
+            clearDisplay()
+            pickDigit(1)
+            hc595_shift(number[counter % 100//10])
+
+        if(c == 0):
+            clearDisplay()
+        else:
+            clearDisplay()
+            pickDigit(0)
+            hc595_shift(number[counter % 10])
+
+    def loop():
+        while True:
+            display()
+            lightup()
+
+    def destroy():   # Quand "Ctrl+C" est pressé, la fonction est exécutée.
+        global timer1
+        GPIO.cleanup()
+        timer1.cancel()      # Annuler le minuteur
+
+    if __name__ == '__main__': # Programme démarrant ici
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt:
+            destroy()
+
+
+**Explication du code**
+
+.. code-block:: python
+
+    SDI   = 24      # entrée de données série (DS)
+    RCLK  = 23     # entrée de l'horloge de mémoire (STCP)
+    SRCLK = 18      # entrée de l'horloge du registre à décalage (SHCP)
+    number = (0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90)
+    placePin = (10,22,27,17)   
+
+    def clearDisplay():
+    def hc595_shift(data): 
+    def pickDigit(digit):
+    def display():
+
+Ces codes sont utilisés pour réaliser l'affichage des chiffres sur un afficheur 7 
+segments à 4 chiffres. Référez-vous à :ref:`1.1.5 4-Digit 7-Segment Display` du 
+document pour plus de détails. Ici, les codes servent à afficher le décompte du temps 
+des feux de circulation.
+
+.. code-block:: python
+
+    ledPin =(25,8,7) 
+    colorState=0
+        
+    def lightup():
+        global colorState
+        for i in range(0,3):
+            GPIO.output(ledPin[i], GPIO.HIGH)
+        GPIO.output(ledPin[colorState], GPIO.LOW)
+
+Ces codes permettent de gérer l'allumage et l'extinction des LEDs.
+
+.. code-block:: python
+
+    greenLight = 30
+    yellowLight = 5
+    redLight = 60
+    lightColor=("Red","Green","Yellow")
+
+    colorState=0
+    counter = 60      
+    timer1 = 0         
+
+    def timer():        # Fonction minuteur
+        global counter
+        global colorState
+        global timer1
+        timer1 = threading.Timer(1.0,timer)  
+        timer1.start()     
+        counter-=1                          
+        if (counter is 0):
+            if(colorState is 0):
+                counter= greenLight
+            if(colorState is 1):
+                counter=yellowLight
+            if (colorState is 2):
+                counter=redLight
+            colorState=(colorState+1)%3
+        print ("counter : %d    color: %s "%(counter,lightColor[colorState]))
+
+Ces codes permettent de contrôler le minuteur. Référez-vous à :ref:`1.1.5 4-Digit 7-Segment Display` 
+pour plus de détails. Ici, lorsque le minuteur atteint zéro, `colorState` change pour alterner les LEDs, 
+et le minuteur est réinitialisé à une nouvelle valeur.
+
+.. code-block:: python
+
+    def setup():
+        # ... 
+        global timer1
+        timer1 = threading.Timer(1.0,timer)   
+        timer1.start()  
+
+    def loop():
+        while True:
+            display()
+            lightup()
+            
+    def destroy():   # Quand "Ctrl+C" est pressé, la fonction est exécutée.
+        global timer1
+        GPIO.cleanup()      
+        timer1.cancel()      # Annuler le minuteur
+
+    if __name__ == '__main__': # Programme démarrant ici
+        setup() 
+        try:
+            loop()  
+        except KeyboardInterrupt:  
+            destroy()  
+
+Dans la fonction `setup()`, le minuteur est démarré. Dans la fonction `loop()`, une 
+boucle ``while True`` est utilisée pour appeler les fonctions relatives de l'afficheur 
+7 segments et des LEDs de manière circulaire.
+
+Image du phénomène
+----------------------
+
+.. image:: img/IMG_8319.jpg
+    :width: 800
+    :align: center

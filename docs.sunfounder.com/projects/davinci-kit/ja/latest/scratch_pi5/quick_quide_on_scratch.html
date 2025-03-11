@@ -1,0 +1,243 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scratchに関するクイックガイド &mdash; SunFounder davinci-kit-for-raspberry-pi  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=c033477b"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=4dbe4bdc"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/ja/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="プロジェクト" href="scratch_project.html" />
+    <link rel="prev" title="Scratch で遊ぶ" href="play_with_scratch.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-ja" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/scratch_pi5/quick_quide_on_scratch.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">部品一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO拡張ボード</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">コードをダウンロードする</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Raspberry Pi OSのインストールとセットアップ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">For Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Pythonで遊ぼう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c_pi5/play_with_c.html">Cと遊ぶ</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_scratch.html">Scratch で遊ぶ</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="quick_quide_on_scratch.html#">Scratchに関するクイックガイド</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quick_quide_on_scratch.html#scratch3">Scratch3をインストールする</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quick_quide_on_scratch.html#id1">Scratch3のインターフェースについて</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scratch_project.html">プロジェクト</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python ビデオコース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">付録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">ありがとうございました</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">For Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_scratch.html">Scratch で遊ぶ</a></li>
+      <li class="breadcrumb-item active">Scratchに関するクイックガイド</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/scratch_pi5/quick_quide_on_scratch.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>こんにちは、SunFounderのRaspberry Pi &amp; Arduino &amp; ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。</p>
+<p><strong>参加する理由は？</strong></p>
+<ul class="simple">
+<li><p><strong>エキスパートサポート</strong>：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。</p></li>
+<li><p><strong>学び＆共有</strong>：ヒントやチュートリアルを交換してスキルを向上させましょう。</p></li>
+<li><p><strong>独占的なプレビュー</strong>：新製品の発表や先行プレビューに早期アクセスしましょう。</p></li>
+<li><p><strong>特別割引</strong>：最新製品の独占割引をお楽しみください。</p></li>
+<li><p><strong>祭りのプロモーションとギフト</strong>：ギフトや祝日のプロモーションに参加しましょう。</p></li>
+</ul>
+<p>👉 私たちと一緒に探索し、創造する準備はできていますか？[<a href="https://bit.ly/raphaelkit " target="_blank">ここ</a>]をクリックして今すぐ参加しましょう！</p>
+</div>
+<section id="scratch">
+<h1>Scratchに関するクイックガイド<a class="headerlink" href="quick_quide_on_scratch.html#scratch" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>Scratch 3でプログラミングする場合、より良いエクスペリエンスのために画面が必要になる場合があります。 もちろん、画面がない場合は、リモートで Raspberry Pi デスクトップにアクセスすることもできます。詳細なチュートリアルについては、 <a class="reference internal" href="../install_setup_os/set_up_your_raspberry_pi.html#set-up-raspberrypi"><span class="std std-ref">Raspberry Piのセットアップ</span></a>  を参照してください。</p>
+</div>
+<p>さらに、Scratch3を実行するには少なくとも1GBのRAMが必要です。
+少なくとも2GBのRAMを搭載したRaspberry Pi 4をお勧めします。
+Scratch3はRaspberry Pi 2、3、3B +、または1GBRAMのRaspberry 4で実行できますが、これらのモデルのパフォーマンスは低になります。
+その同時に、実行する他のソフトウェアの影響を受けて、メモリ不足が起こり、Scratch3が起動しない場合があります。</p>
+<section id="scratch3">
+<h2>Scratch3をインストールする<a class="headerlink" href="quick_quide_on_scratch.html#scratch3" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../install_setup_os/installing_the_os.html#install-os"><span class="std std-ref">OSのインストール（共通）</span></a> ときは、デスクトップ付きのバージョンを選択する必要があります。
+デスクトップのみ、またはデスクトップと推奨ソフトウェア付きのも問題ありません。</p>
+<p>推奨ソフトウェアを使用してバージョンをインストールすると、 <strong>Programming</strong> のシステムメニューにScratch 3が表示されます。</p>
+<p>デスクトップのみのバージョンをインストールした場合は、以下に説明するように、Scratchを手動でインストールする必要があります。</p>
+<p>メニューを開き、 <strong>Preferences</strong> -&gt; <strong>Recommended Software</strong> をクリックします。</p>
+<img alt="../_images/quick_scratch12.png" src="../_images/quick_scratch12.png" />
+<p>Scratch 3を見つけて確認し、 <strong>Apply</strong> をクリックして、最後にインストールが完了するのを待ちます。</p>
+<img alt="../_images/quick_scratch21.png" src="../_images/quick_scratch21.png" />
+<p>インストールが完了すると、システムメニューの <strong>Programming</strong> に表示されます。</p>
+<img alt="../_images/quick_scratch31.png" src="../_images/quick_scratch31.png" />
+</section>
+<section id="id1">
+<h2>Scratch3のインターフェースについて<a class="headerlink" href="quick_quide_on_scratch.html#id1" title="Link to this heading"></a></h2>
+<p>Scratch 3は、楽しく、教育的で、簡単に習得できるように設計されています。
+ブロックベースのプログラミングを使用して、インタラクティブなストーリー、ゲーム、アート、
+シミュレーションなどを作成するためのツールがあります。
+Scratchには、独自のペイントエディタとサウンドエディタも組み込まれています。</p>
+<p>スクラッチ3の上部にはいくつかの基本的なオプションがあり、左から右への最初のオプションは言語オプションです。
+プログラミング用にさまざまな言語を選択できます。 2つ目は File オプションです。
+このオプションを使用すると、新しいファイルを作成したり、ローカルファイルを読み取ったり、現在のファイルを保存したりできます。
+3つ目は、Edit オプションです。これを使用すると、一部の削除操作を再開して、加速モード（spritesの動きが特に速くなる）を有効にできます。
+4つ目は、Tutorials オプションです。これを使用すると、一部のプロジェクトのチュートリアルを表示できます。
+5つ目は、プロジェクトの名前を変更できるファイル名付けオプションです。</p>
+<img alt="../_images/quick_scratch131.png" src="../_images/quick_scratch131.png" />
+<p><strong>コード</strong></p>
+<p>ステージ領域、ブロックパレット、コーディング領域の3つの主要なセクションがあります。
+ブロックパレットのブロックをクリックしてコーディング領域にドラッグすることによるプログラミング。
+最後に、プログラミング結果がステージ領域に表示されます。</p>
+<img alt="../_images/quick_scratch41.png" src="../_images/quick_scratch41.png" />
+<p>これがScratch3のsprites areaです。
+この領域の上にspritesの基本パラメータがあり、Scratch 3に付属のspritesを追加したり、
+ローカルspritesをアップロードしたりできます。</p>
+<img alt="../_images/quick_scratch51.png" src="../_images/quick_scratch51.png" />
+<p>これがScratch3のbackdrop areaです。
+主にステージに適したbackdropを追加するために、
+Scratch 3に付属のbackdropを追加するか、
+ローカルのものをアップロードできます。</p>
+<img alt="../_images/quick_scratch61.png" src="../_images/quick_scratch61.png" />
+<p>これは <strong>Add Extension</strong> ボタンです。</p>
+<img alt="../_images/quick_scratch71.png" src="../_images/quick_scratch71.png" />
+<p>Scratch 3では、あらゆる種類の便利な拡張機能を追加できます。
+ここでは、 <strong>Video Sensing</strong> を例として取り上げ、それをクリックします。</p>
+<img alt="../_images/quick_scratch81.png" src="../_images/quick_scratch81.png" />
+<p>block paletteに表示され、この拡張機能に関連付けられている機能を使用できます。
+カメラを接続している場合は、stage areaにカメラ画面が表示されます。</p>
+<img alt="../_images/quick_scratch91.png" src="../_images/quick_scratch91.png" />
+<p><strong>コスチューム</strong></p>
+<p>左上隅の <strong>Costumes</strong> オプションをクリックして、costumes paletteに入ります。 costumesが異なれば、spritesの静的な動きも異なります。これらの静的な動きをつなぎ合わせると、一貫した動的な動きが形成されます。</p>
+<img alt="../_images/quick_scratch101.png" src="../_images/quick_scratch101.png" />
+<p><strong>音声</strong></p>
+<p>実験をより面白くするために、いくつかの音楽クリップを使用する必要があるかもしれません。 左上隅の <code class="docutils literal notranslate"><span class="pre">Sounds</span></code> オプションをクリックすると、現在のサウンドを編集したり、新しいサウンドを選択/アップロードしたりできます。</p>
+<img alt="../_images/quick_scratch111.png" src="../_images/quick_scratch111.png" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="play_with_scratch.html" class="btn btn-neutral float-left" title="Scratch で遊ぶ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scratch_project.html" class="btn btn-neutral float-right" title="プロジェクト" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

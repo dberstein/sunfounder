@@ -1,0 +1,419 @@
+.. note:: 
+
+    Ciao! Benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Esplora più a fondo il mondo di Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
+
+    **Perché unirti?**
+
+    - **Supporto Esperto**: Risolvi problematiche post-vendita e sfide tecniche con l'aiuto del nostro team e della community.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato alle novità sui prodotti e anticipazioni.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri ultimi prodotti.
+    - **Promozioni e Giveaway Festivi**: Partecipa a giveaway e promozioni durante le festività.
+
+    👉 Sei pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
+
+3.1.11 Generatore di Codice Morse
+===================================
+
+Introduzione
+-----------------
+
+In questa lezione, realizzeremo un generatore di codice Morse, dove puoi 
+digitare una serie di lettere in inglese sul Raspberry Pi per farle apparire 
+come codice Morse.
+
+Componenti
+---------------
+
+.. image:: img/3.1.10.png
+    :align: center
+
+Schema Elettrico
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO22       Pin 15   3        22
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one11.png
+   :align: center
+
+Procedure Sperimentali
+----------------------------
+
+**Passo 1:** Costruisci il circuito. (Presta attenzione ai poli del 
+buzzer: il polo positivo è contrassegnato con +, l'altro è il polo negativo.)
+
+.. image:: img/image269.png
+   :width: 800
+
+**Per Utenti Linguaggio C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Passo 2**: Apri il file del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.11/
+
+**Passo 3**: Compila il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 3.1.11_MorseCodeGenerator.c -lwiringPi
+
+**Passo 4**: Esegui il file eseguibile sopra.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Dopo l'avvio del programma, digita una serie di caratteri e il 
+buzzer e il LED invieranno i segnali corrispondenti in codice Morse.
+
+.. note::
+
+    Se il programma non funziona dopo l'esecuzione o compare un messaggio di errore: \"wiringPi.h: File o directory non trovato\", consulta :ref:`Il codice C non funziona?`.
+
+
+**Spiegazione del Codice**
+
+.. code-block:: c
+
+    struct MORSE{
+        char word;
+        unsigned char *code;
+    };
+
+    struct MORSE morseDict[]=
+    {
+        {'A',"01"}, {'B',"1000"}, {'C',"1010"}, {'D',"100"}, {'E',"0"}, 
+        {'F',"0010"}, {'G',"110"}, {'H',"0000"}, {'I',"00"}, {'J',"0111"}, 
+        {'K',"101"}, {'L',"0100"}, {'M',"11"}, {'N',"10"}, {'O',"111"}, 
+        {'P',"0110"}, {'Q',"1101"}, {'R',"010"}, {'S',"000"}, {'T',"1"},
+        {'U',"001"}, {'V',"0001"}, {'W',"011"}, {'X',"1001"}, {'Y',"1011"}, 
+        {'Z',"1100"},{'1',"01111"}, {'2',"00111"}, {'3',"00011"}, {'4',"00001"}, 
+        {'5',"00000"},{'6',"10000"}, {'7',"11000"}, {'8',"11100"}, {'9',"11110"},
+        {'0',"11111"},{'?',"001100"}, {'/',"10010"}, {',',"110011"}, {'.',"010101"},
+        {';',"101010"},{'!',"101011"}, {'@',"011010"}, {':',"111000"}
+    };
+
+Questa struttura MORSE è il dizionario del codice Morse, che contiene i 
+caratteri da A-Z, i numeri 0-9 e i simboli \"?\" \"/\" \":\" \",\" \".\" \";\" \"!\" \"@\".
+
+.. code-block:: c
+
+    char *lookup(char key,struct MORSE *dict,int length)
+    {
+        for (int i=0;i<length;i++)
+        {
+            if(dict[i].word==key){
+                return dict[i].code;
+            }
+        }    
+    }
+
+La funzione **lookup()** serve per "consultare il dizionario". Definisce 
+una **key**, ricerca le parole identiche nella struttura **morseDict** e 
+restituisce il corrispondente codice Morse.
+
+.. code-block:: c
+
+    void on(){
+        digitalWrite(ALedPin,HIGH);
+        digitalWrite(BeepPin,HIGH);     
+    }
+
+Crea la funzione on() per attivare il buzzer e il LED.
+
+.. code-block:: c
+
+    void off(){
+        digitalWrite(ALedPin,LOW);
+        digitalWrite(BeepPin,LOW);
+    }
+
+La funzione off() disattiva il buzzer e il LED.
+
+.. code-block:: c
+
+    void beep(int dt){
+        on();
+        delay(dt);
+        off();
+        delay(dt);
+    }
+
+Definisci la funzione beep() per fare in modo che il buzzer e il LED 
+emettano segnali a intervalli di **dt**.
+
+.. code-block:: c
+
+    void morsecode(char *code){
+        int pause = 250;
+        char *point = NULL;
+        int length = sizeof(morseDict)/sizeof(morseDict[0]);
+        for (int i=0;i<strlen(code);i++)
+        {
+            point=lookup(code[i],morseDict,length);
+            for (int j=0;j<strlen(point);j++){
+                if (point[j]=='0')
+                {
+                    beep(pause/2);
+                }else if(point[j]=='1')
+                {
+                    beep(pause);
+                }
+                delay(pause);
+            }
+        }
+    }
+
+La funzione morsecode() processa il codice Morse dei caratteri di input, 
+facendo in modo che i segnali "1" durino più a lungo e quelli "0" siano 
+brevi, ad esempio, digitando "SOS" si otterrà un segnale di tre brevi, 
+tre lunghi e tre brevi " · · · - - - · · · ".
+
+.. code-block:: c
+
+    int toupper(int c)
+    {
+        if ((c >= 'a') && (c <= 'z'))
+            return c + ('A' - 'a');
+        return c;
+    }
+    char *strupr(char *str)
+    {
+        char *orign=str;
+        for (; *str!='\0'; str++)
+            *str = toupper(*str);
+    return orign;
+    }
+
+Prima della codifica, è necessario convertire tutte le lettere in maiuscole.
+
+.. code-block:: c
+
+    void main(){
+        setup();
+        char *code;
+        int length=8;
+        code = (char*)malloc(sizeof(char)*length);
+        while (1){
+            printf("Please input the messenger:");
+            delay(100);
+            scanf("%s",code);
+            code=strupr(code);
+            printf("%s\n",code);
+            delay(100);
+            morsecode(code);
+        }
+    }
+
+Quando digiti i caratteri con la tastiera, code = strupr(code) converte 
+le lettere inserite in maiuscole.
+
+La funzione Printf() stampa quindi il testo chiaro sullo schermo, e la 
+funzione morsecod() fa sì che il buzzer e il LED emettano il codice Morse.
+
+Nota: la lunghezza del carattere in input non deve superare il valore 
+di **length** (può essere modificato).
+
+**Per Utenti Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Passo 2**: Apri il file del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python
+
+**Passo 3**: Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.11_MorseCodeGenerator.py
+
+Dopo l'avvio del programma, digita una serie di caratteri, e il buzzer e il 
+LED invieranno i segnali Morse corrispondenti.
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reset/Copiare/Eseguire/Fermare** il codice qui sotto. 
+    Tuttavia, prima di farlo, è necessario accedere al percorso del codice 
+    sorgente come ``davinci-kit-for-raspberry-pi/python``.
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+
+    BeepPin=22
+    ALedPin=17
+
+    MORSECODE = {
+        'A':'01', 'B':'1000', 'C':'1010', 'D':'100', 'E':'0', 'F':'0010', 'G':'110',
+        'H':'0000', 'I':'00', 'J':'0111', 'K':'101', 'L':'0100', 'M':'11', 'N':'10',
+        'O':'111', 'P':'0110', 'Q':'1101', 'R':'010', 'S':'000', 'T':'1',
+        'U':'001', 'V':'0001', 'W':'011', 'X':'1001', 'Y':'1011', 'Z':'1100',
+        '1':'01111', '2':'00111', '3':'00011', '4':'00001', '5':'00000',
+        '6':'10000', '7':'11000', '8':'11100', '9':'11110', '0':'11111',
+        '?':'001100', '/':'10010', ',':'110011', '.':'010101', ';':'101010',
+        '!':'101011', '@':'011010', ':':'111000',
+        }
+
+    def setup():
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(BeepPin, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(ALedPin,GPIO.OUT,initial=GPIO.LOW)
+
+    def on():
+        GPIO.output(BeepPin, 1)
+        GPIO.output(ALedPin, 1)
+
+    def off():
+        GPIO.output(BeepPin, 0)
+        GPIO.output(ALedPin, 0)
+
+    def beep(dt):    # dt per il tempo di ritardo.
+        on()
+        time.sleep(dt)
+        off()
+        time.sleep(dt)
+
+    def morsecode(code):
+        pause = 0.25
+        for letter in code:
+            for tap in MORSECODE[letter]:
+                if tap == '0':
+                    beep(pause/2)
+                if tap == '1':
+                    beep(pause)
+            time.sleep(pause)
+
+    def main():
+        while True:
+            code=input("Please input the messenger:")
+            code = code.upper()
+            print(code)
+            morsecode(code)
+
+    def destroy():
+        print("")
+        GPIO.output(BeepPin, GPIO.LOW)
+        GPIO.output(ALedPin, GPIO.LOW)
+        GPIO.cleanup()  
+
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy()
+
+**Spiegazione del Codice**
+
+.. code-block:: python
+
+    MORSECODE = {
+        'A':'01', 'B':'1000', 'C':'1010', 'D':'100', 'E':'0', 'F':'0010', 'G':'110',
+        'H':'0000', 'I':'00', 'J':'0111', 'K':'101', 'L':'0100', 'M':'11', 'N':'10',
+        'O':'111', 'P':'0110', 'Q':'1101', 'R':'010', 'S':'000', 'T':'1',
+        'U':'001', 'V':'0001', 'W':'011', 'X':'1001', 'Y':'1011', 'Z':'1100',
+        '1':'01111', '2':'00111', '3':'00011', '4':'00001', '5':'00000',
+        '6':'10000', '7':'11000', '8':'11100', '9':'11110', '0':'11111',
+        '?':'001100', '/':'10010', ',':'110011', '.':'010101', ';':'101010',
+        '!':'101011', '@':'011010', ':':'111000',
+        }
+
+Questa struttura MORSE è il dizionario del codice Morse, contenente
+ i caratteri da A-Z, i numeri da 0-9 e i simboli come \"?\" \"/\" \":\" \",\" \".\" \";\" \"!\" \"@\".
+
+.. code-block:: python
+
+    def on():
+        GPIO.output(BeepPin, 1)
+        GPIO.output(ALedPin, 1)
+
+La funzione on() attiva il buzzer e il LED.
+
+.. code-block:: python
+
+    def off():
+        GPIO.output(BeepPin, 0)
+        GPIO.output(ALedPin, 0)
+
+La funzione off() è utilizzata per spegnere il buzzer e il LED.
+
+.. code-block:: python
+
+    def beep(dt):   # x for dalay time.
+        on()
+        time.sleep(dt)
+        off()
+        time.sleep(dt)
+
+Definisce una funzione beep() per far emettere suoni e lampeggiare il 
+buzzer e il LED in un certo intervallo di **dt**.
+
+.. code-block:: python
+
+    def morsecode(code):
+        pause = 0.25
+        for letter in code:
+            for tap in MORSECODE[letter]:
+                if tap == '0':
+                    beep(pause/2)
+                if tap == '1':
+                    beep(pause)
+            time.sleep(pause)
+
+La funzione morsecode() processa il codice Morse dei caratteri di input, 
+facendo in modo che i segnali "1" siano prolungati e quelli "0" siano brevi. 
+Ad esempio, digitando "SOS", si ottiene un segnale di tre brevi, tre lunghi 
+e tre brevi " · · · - - - · · · ".
+
+.. code-block:: python
+
+    def main():
+        while True:
+            code=input("Please input the messenger:")
+            code = code.upper()
+            print(code)
+            morsecode(code)
+
+Quando si digita il messaggio con la tastiera, upper() converte le 
+lettere inserite in maiuscole.
+
+La funzione Printf() stampa quindi il testo chiaro sullo schermo, e 
+a funzione morsecode() fa sì che il buzzer e il LED emettano il codice Morse.
+
+Immagine del Fenomeno
+-----------------------
+
+.. image:: img/image270.jpeg
+   :align: center

@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.9 Aufblasen des Ballons &mdash; SunFounder davinci-kit-for-raspberry-pi  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=245627df"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=70a09b52"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/de/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="1.10 Rotierender Lüfter" href="scratch_1.10_rotating_fan.html" />
+    <link rel="prev" title="1.8 123 Holzmann" href="scratch_1.8_123_wooden_man.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-de" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/scratch/scratch_1.9_inflating_the_balloon.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Komponentenliste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO-Erweiterungskarte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Laden Sie die Kode herunter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/preparation.html">Installation und Einrichtung des Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Für Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html">Bibliotheken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 Ausgabe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 Eingabe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 Erweiterung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../processing/play_with_processing.html">Spielen Sie mit der Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nodejs/play_with_nodejs.html">Spiel mit Nodejs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_scratch.html">Spielen mit Scratch</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quick_quide_on_scratch.html">Kurzanleitung zu Scratch</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="scratch_project.html">Projekte</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.1_wand.html">1.1 Zauberstab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.2_colorful_balls.html">1.2 Bunte Kugeln</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.3_tumbler.html">1.3 Becher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.4_hare.html">1.4 Hase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.5_wake_up_the_owl.html">1.5 Weck die Eule auf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.6_water_lamp.html">1.6 Water Lamp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.7_doorbell.html">1.7 Türklingel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.8_123_wooden_man.html">1.8 123 Holzmann</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="scratch_1.9_inflating_the_balloon.html#">1.9 Aufblasen des Ballons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scratch_1.10_rotating_fan.html">1.10 Rotierender Lüfter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python Videokurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Anhang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Thank You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">Für Pi 4, 3 und alle anderen Pi-Modelle</a></li>
+          <li class="breadcrumb-item"><a href="play_with_scratch.html">Spielen mit Scratch</a></li>
+          <li class="breadcrumb-item"><a href="scratch_project.html">Projekte</a></li>
+      <li class="breadcrumb-item active">1.9 Aufblasen des Ballons</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/scratch/scratch_1.9_inflating_the_balloon.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Hallo und willkommen in der SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasten-Gemeinschaft auf Facebook! Tauchen Sie tiefer ein in die Welt von Raspberry Pi, Arduino und ESP32 mit anderen Enthusiasten.</p>
+<p><strong>Warum beitreten?</strong></p>
+<ul class="simple">
+<li><p><strong>Expertenunterstützung</strong>: Lösen Sie Nachverkaufsprobleme und technische Herausforderungen mit Hilfe unserer Gemeinschaft und unseres Teams.</p></li>
+<li><p><strong>Lernen &amp; Teilen</strong>: Tauschen Sie Tipps und Anleitungen aus, um Ihre Fähigkeiten zu verbessern.</p></li>
+<li><p><strong>Exklusive Vorschauen</strong>: Erhalten Sie frühzeitigen Zugang zu neuen Produktankündigungen und exklusiven Einblicken.</p></li>
+<li><p><strong>Spezialrabatte</strong>: Genießen Sie exklusive Rabatte auf unsere neuesten Produkte.</p></li>
+<li><p><strong>Festliche Aktionen und Gewinnspiele</strong>: Nehmen Sie an Gewinnspielen und Feiertagsaktionen teil.</p></li>
+</ul>
+<p>👉 Sind Sie bereit, mit uns zu erkunden und zu erschaffen? Klicken Sie auf [<a href="https://bit.ly/raphaelkit " target="_blank">hier</a>] und treten Sie heute bei!</p>
+</div>
+<section id="aufblasen-des-ballons">
+<h1>1.9 Aufblasen des Ballons<a class="headerlink" href="scratch_1.9_inflating_the_balloon.html#aufblasen-des-ballons" title="Link to this heading"></a></h1>
+<p>Hier spielen wir eine Ballonfahrt.</p>
+<p>Durch Umschalten von Slide nach links, um den Ballon aufzublasen, wird der Ballon zu diesem Zeitpunkt immer größer. Wenn der Ballon zu groß ist, bläst er auf; Wenn der Ballon zu klein ist, schwebt er nicht in der Luft. Sie müssen beurteilen, wann Sie den Schalter nach rechts schieben müssen, um das Pumpen zu stoppen.</p>
+<img alt="../_images/1.15_header.png" src="../_images/1.15_header.png" />
+<section id="erforderliche-komponenten">
+<h2>Erforderliche Komponenten<a class="headerlink" href="scratch_1.9_inflating_the_balloon.html#erforderliche-komponenten" title="Link to this heading"></a></h2>
+<img alt="../_images/1.15_component.png" src="../_images/1.15_component.png" />
+</section>
+<section id="baue-die-schaltung">
+<h2>Baue die Schaltung<a class="headerlink" href="scratch_1.9_inflating_the_balloon.html#baue-die-schaltung" title="Link to this heading"></a></h2>
+<img alt="../_images/1.15_scratch_fritzing.png" src="../_images/1.15_scratch_fritzing.png" />
+</section>
+<section id="laden-sie-den-code-und-sehen-sie-was-passiert">
+<h2>Laden Sie den Code und sehen Sie, was passiert<a class="headerlink" href="scratch_1.9_inflating_the_balloon.html#laden-sie-den-code-und-sehen-sie-was-passiert" title="Link to this heading"></a></h2>
+<p>Laden Sie die Codedatei (<code class="docutils literal notranslate"><span class="pre">1.9_inflating_the_balloon.sb3</span></code>) in Scratch 3.</p>
+<p>Durch Umschalten des Schiebereglers nach links, um mit dem Aufblasen des Ballons zu beginnen, wird der Ballon zu diesem Zeitpunkt immer größer. Wenn der Ballon zu groß ist, bläst er auf; Wenn der Ballon zu klein ist, schwebt er nicht in der Luft. Sie müssen beurteilen, wann Sie den Schalter nach rechts schieben müssen, um das Pumpen zu stoppen.</p>
+</section>
+<section id="tipps-zu-figur">
+<h2>Tipps zu Figur<a class="headerlink" href="scratch_1.9_inflating_the_balloon.html#tipps-zu-figur" title="Link to this heading"></a></h2>
+<p>Löschen Sie das vorherige Sprite1-Sprite und fügen Sie dann das <strong>Balloon1</strong> -Sprite hinzu.</p>
+<img alt="../_images/1.15_slide1.png" src="../_images/1.15_slide1.png" />
+<p>In diesem Projekt wird ein Ballonexplosions-Soundeffekt verwendet. Sehen wir uns also an, wie er hinzugefügt wurde.</p>
+<p>Klicken Sie oben auf die Option <strong>Sound</strong> und dann auf <strong>Upload Sound</strong> um <code class="docutils literal notranslate"><span class="pre">boom.wav</span></code>
+von <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/scratch/sound</span></code> hochzuladen. Pfad zu Scratch 3.</p>
+<img alt="../_images/1.15_slide2.png" src="../_images/1.15_slide2.png" />
+</section>
+<section id="tipps-zu-codes">
+<h2>Tipps zu Codes<a class="headerlink" href="scratch_1.9_inflating_the_balloon.html#tipps-zu-codes" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="../_images/1.15_slide3.png"><img alt="../_images/1.15_slide3.png" src="../_images/1.15_slide3.png" style="width: 500px;" />
+</a>
+<p>Dies ist ein Ereignisblock, und die Triggerbedingung ist, dass gpio17 hoch ist, dh der Schalter wird nach links geschaltet.</p>
+<a class="reference internal image-reference" href="../_images/1.15_slide4.png"><img alt="../_images/1.15_slide4.png" src="../_images/1.15_slide4.png" style="width: 400px;" />
+</a>
+<p>Stellen Sie die Größenschwelle des Ballon1-Sprites auf 120 .</p>
+<a class="reference internal image-reference" href="../_images/1.15_slide7.png"><img alt="../_images/1.15_slide7.png" src="../_images/1.15_slide7.png" style="width: 400px;" />
+</a>
+<p>Verschieben Sie die Koordinaten des Sprites Balloon1 auf (0,0), die Mitte des Bühnenbereichs.</p>
+<a class="reference internal image-reference" href="../_images/1.15_slide8.png"><img alt="../_images/1.15_slide8.png" src="../_images/1.15_slide8.png" style="width: 300px;" />
+</a>
+<p>Stellen Sie die Größe des Balloon1-Sprites auf 50 ein und zeigen Sie es im Bühnenbereich an.</p>
+<img alt="../_images/1.15_slide5.png" src="../_images/1.15_slide5.png" />
+<p>Richten Sie eine Schlaufe zum Aufblasen des Ballons ein. Diese Schlaufe stoppt, wenn der Schieberegler nach rechts geschoben wird.</p>
+<p>Innerhalb dieser Schleife wird die Ballongröße alle 0,1s um 1 erhöht, und wenn sie größer als <code class="docutils literal notranslate"><span class="pre">maxSize</span></code> ist, platzt die Sprechblase, woraufhin das Boom-Geräusch erzeugt und der Code verlassen wird.</p>
+<a class="reference internal image-reference" href="../_images/1.15_slide6.png"><img alt="../_images/1.15_slide6.png" src="../_images/1.15_slide6.png" style="width: 600px;" />
+</a>
+<p>Nachdem die letzte Schleife beendet wurde (Slider schaltet nach rechts), bestimmen Sie die Position des Balloon1-Sprites basierend auf seiner Größe. Wenn die Größe des Balloon1-Sprites größer als 90 ist, heben Sie ab (bewegen Sie die Koordinaten auf (0, 90), andernfalls landen Sie (bewegen Sie die Koordinaten auf (0, -149).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scratch_1.8_123_wooden_man.html" class="btn btn-neutral float-left" title="1.8 123 Holzmann" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="scratch_1.10_rotating_fan.html" class="btn btn-neutral float-right" title="1.10 Rotierender Lüfter" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

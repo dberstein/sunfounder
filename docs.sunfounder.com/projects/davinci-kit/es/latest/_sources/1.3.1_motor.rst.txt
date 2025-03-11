@@ -1,0 +1,417 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte experto**: Resuelve problemas técnicos y de postventa con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Preestrenos exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y sorteos festivos**: Participa en sorteos y promociones especiales de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
+
+1.3.1 Motor
+=============
+
+Introducción
+------------
+
+En esta lección, aprenderemos a usar el L293D para controlar un motor de 
+corriente continua (DC) y hacer que gire en sentido horario y antihorario. 
+Como el motor DC requiere una corriente mayor, utilizaremos el módulo de 
+alimentación para proporcionar energía al motor de forma segura.
+
+Componentes
+-------------
+
+.. image:: img/list_1.3.1.png
+
+Principio
+-----------
+
+**L293D**
+
+El L293D es un chip controlador de motores de 4 canales que soporta altos 
+voltajes y corrientes elevadas. Está diseñado para conectarse a niveles 
+lógicos estándar DTL y TTL, y puede manejar cargas inductivas (como bobinas 
+de relés, motores DC, motores paso a paso) y transistores de conmutación de 
+potencia. Los motores DC convierten la energía eléctrica en energía mecánica 
+y son ampliamente utilizados en sistemas de accionamiento eléctrico debido a 
+su excelente capacidad de regulación de velocidad.
+
+Observa la siguiente figura de los pines. El L293D tiene dos pines de 
+alimentación (Vcc1 y Vcc2). Vcc2 se usa para alimentar el motor, mientras que 
+Vcc1 alimenta el chip. Aquí se utiliza un motor DC de pequeño tamaño, por lo 
+que ambos pines se conectan a +5V.
+
+.. image:: img/image111.png
+
+A continuación, se muestra la estructura interna del L293D. El pin EN es el 
+pin de habilitación y solo funciona en nivel alto; A representa la entrada y 
+Y la salida. Puedes ver la relación entre estos en la parte inferior derecha. 
+Cuando el pin EN está en nivel alto, si A está en alto, Y proporciona nivel 
+alto; si A está en bajo, Y proporciona nivel bajo. Cuando el pin EN está en 
+bajo, el L293D no funciona.
+
+.. image:: img/image334.png
+
+**Motor DC**
+
+.. image:: img/image114.jpeg
+
+Este es un motor DC de 5V. Gira cuando los dos terminales de la lámina de cobre 
+reciben uno nivel alto y otro bajo. Para facilitar la conexión, puedes soldar 
+los pines al motor.
+
+.. image:: img/image335.png
+
+**Módulo de Alimentación**
+
+En este experimento, se necesitan grandes corrientes para accionar el motor, 
+especialmente al iniciar y detener, lo que puede interferir con el funcionamiento 
+normal de la Raspberry Pi. Por lo tanto, utilizamos un módulo de alimentación 
+separado para el motor, permitiendo que funcione de manera segura y estable.
+
+Puedes conectarlo directamente en la protoboard para suministrar energía. 
+Proporciona voltajes de 3.3V y 5V, que se pueden seleccionar mediante un jumper.
+
+.. image:: img/image115.png
+
+Diagrama de Conexión
+--------------------
+
+Conecta el módulo de alimentación en la protoboard e inserta el jumper en el 
+pin de 5V para que emita una tensión de 5V. Conecta el pin 1 del L293D al GPIO22 
+y configúralo en nivel alto. Conecta el pin 2 al GPIO27 y el pin 7 al GPIO17, 
+luego configura un pin en alto y el otro en bajo para cambiar la dirección de 
+rotación del motor.
+
+.. image:: img/image336.png
+
+Procedimiento Experimental
+-----------------------------
+**Paso 1:** Monta el circuito.
+
+.. image:: img/1.3.1.png
+    :width: 800
+
+.. note::
+    El módulo de alimentación puede utilizar una batería de 9V con el conector 
+    de batería de 9V incluido en el kit. Inserta el jumper del módulo de 
+    alimentación en el bus de 5V de la protoboard.
+
+.. image:: img/image118.jpeg
+
+
+Para Usuarios de Lenguaje C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Paso 2:** Accede a la carpeta del código.
+
+.. raw:: html
+
+    <run></run>
+    
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/1.3.1/
+
+**Paso 3:** Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.3.1_Motor.c -lwiringPi
+
+**Paso 4:** Ejecuta el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Cuando el código se ejecute, el motor primero girará en sentido horario 
+durante 5 segundos, luego se detendrá durante 5 segundos, después girará 
+en sentido antihorario durante 5 segundos y, posteriormente, se detendrá 
+otros 5 segundos. Esta secuencia de acciones se repetirá continuamente.
+
+.. note::
+
+    Si no funciona después de ejecutarlo o aparece un mensaje de error: \"wiringPi.h: No such file or directory\", consulta :ref:`c code is not working?`.
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define MotorPin1       0
+    #define MotorPin2       2
+    #define MotorEnable     3
+
+    int main(void){
+        int i;
+        if(wiringPiSetup() == -1){ //si falla la inicialización de wiringPi, imprime mensaje en pantalla
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        
+        pinMode(MotorPin1, OUTPUT);
+        pinMode(MotorPin2, OUTPUT);
+        pinMode(MotorEnable, OUTPUT);
+        while(1){
+            printf("Clockwise\n");
+            delay(100);
+            digitalWrite(MotorEnable, HIGH);
+            digitalWrite(MotorPin1, HIGH);
+            digitalWrite(MotorPin2, LOW);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+
+            printf("Stop\n");
+            delay(100);
+            digitalWrite(MotorEnable, LOW);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+
+            printf("Anti-clockwise\n");
+            delay(100);
+            digitalWrite(MotorEnable, HIGH);
+            digitalWrite(MotorPin1, LOW);
+            digitalWrite(MotorPin2, HIGH);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+
+            printf("Stop\n");
+            delay(100);
+            digitalWrite(MotorEnable, LOW);
+            for(i=0;i<3;i++){
+                delay(1000);
+            }
+        }
+        return 0;
+    }
+
+**Explicación del Código**
+
+.. code-block:: c
+
+    digitalWrite(MotorEnable, HIGH);
+
+Habilita el L239D.
+
+.. code-block:: c
+
+    digitalWrite(MotorPin1, HIGH);
+    digitalWrite(MotorPin2, LOW);
+
+Configura un nivel alto para 2A (pin 7); dado que 1,2EN (pin 1) está en 
+nivel alto, 2Y emitirá nivel alto.
+
+Configura un nivel bajo para 1A; entonces, 1Y emitirá nivel bajo, y 
+el motor girará.
+
+.. code-block:: c
+
+    for(i=0;i<3;i++){
+    delay(1000);
+    }
+
+Este bucle es para generar una demora de 3*1000 ms.
+
+.. code-block:: c
+
+    digitalWrite(MotorEnable, LOW)
+
+Si 1,2EN (pin 1) está en nivel bajo, el L293D no funciona. El motor deja de girar.
+
+.. code-block:: c
+
+    digitalWrite(MotorPin1, LOW)
+    digitalWrite(MotorPin2, HIGH)
+
+Invierte el flujo de corriente del motor, y el motor girará en sentido inverso.
+
+Para Usuarios de Lenguaje Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Paso 2**: Entra en la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python
+
+**Paso 3**: Ejecuta el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.1_Motor.py
+
+Cuando se ejecuta el código, el motor primero gira en sentido horario 
+durante 5 segundos, luego se detiene durante 5 segundos; después, gira 
+en sentido antihorario durante 5 segundos, y finalmente se detiene nuevamente 
+por 5 segundos. Esta serie de acciones se repetirá continuamente.  
+
+**Código**
+
+.. note::
+
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes de hacerlo, necesitas ir a la ruta del código fuente, como ``davinci-kit-for-raspberry-pi/python``. 
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    #!/usr/bin/env python3
+
+    import RPi.GPIO as GPIO
+    import time
+    
+    # Configuración de pines
+    MotorPin1   = 17
+    MotorPin2   = 27
+    MotorEnable = 22
+    
+    def setup():
+        # Configura el modo de numeración GPIO en BCM
+        GPIO.setmode(GPIO.BCM)
+        # Configura los pines como salida
+        GPIO.setup(MotorPin1, GPIO.OUT)
+        GPIO.setup(MotorPin2, GPIO.OUT)
+        GPIO.setup(MotorEnable, GPIO.OUT, initial=GPIO.LOW)
+    
+    # Define una función para hacer girar el motor
+    # la dirección debe ser
+    # 1(sentido horario), 0(detener), -1(sentido antihorario)
+    def motor(direction):
+        # Sentido horario
+        if direction == 1:
+            # Configura la dirección
+            GPIO.output(MotorPin1, GPIO.HIGH)
+            GPIO.output(MotorPin2, GPIO.LOW)
+            # Habilita el motor
+            GPIO.output(MotorEnable, GPIO.HIGH)
+    		print ("Clockwise")
+        # Sentido antihorario
+        if direction == -1:
+            # Configura la dirección
+            GPIO.output(MotorPin1, GPIO.LOW)
+            GPIO.output(MotorPin2, GPIO.HIGH)
+            # Habilita el motor
+            GPIO.output(MotorEnable, GPIO.HIGH)
+    		print ("Counterclockwise")
+        # Detener
+        if direction == 0:
+            # Desactiva el motor
+            GPIO.output(MotorEnable, GPIO.LOW)
+    		print ("Stop")
+    
+    def main():
+    
+        # Define un diccionario para hacer el script más legible
+        # CW como sentido horario, CCW como sentido antihorario, STOP como detener
+        directions = {'CW': 1, 'CCW': -1, 'STOP': 0}
+        while True:
+            # Sentido horario
+            motor(directions['CW'])
+            time.sleep(5)
+            # Detener
+            motor(directions['STOP'])
+            time.sleep(5)
+            # Sentido antihorario
+            motor(directions['CCW'])
+            time.sleep(5)
+            # Detener
+            motor(directions['STOP'])
+            time.sleep(5)
+    
+    def destroy():
+        # Detiene el motor
+        GPIO.output(MotorEnable, GPIO.LOW)
+        # Libera los recursos
+        GPIO.cleanup()    
+    
+    # Si ejecutas este script directamente, haz:
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        # Cuando se presiona 'Ctrl+C', se ejecutará el programa destroy().
+        except KeyboardInterrupt:
+            destroy()
+
+**Explicación del Código**
+
+.. code-block:: python
+
+    def motor(direction):
+        # Sentido horario
+        if direction == 1:
+            # Configura la dirección
+            GPIO.output(MotorPin1, GPIO.HIGH)
+            GPIO.output(MotorPin2, GPIO.LOW)
+            # Habilita el motor
+            GPIO.output(MotorEnable, GPIO.HIGH)
+            print ("Clockwise")
+    ...
+
+Crea una función, **motor()**, cuyo parámetro es dirección. Cuando la
+condición es dirección=1, el motor gira en sentido horario; si
+dirección=-1, el motor gira en sentido antihorario; y cuando
+dirección=0, se detiene.
+
+.. code-block:: python
+
+    def main():
+        # Define un diccionario para hacer el script más legible
+        # CW como sentido horario, CCW como sentido antihorario, STOP como detener
+        directions = {'CW': 1, 'CCW': -1, 'STOP': 0}
+        while True:
+            # Sentido horario
+            motor(directions['CW'])
+            time.sleep(5)
+            # Detener
+            motor(directions['STOP'])
+            time.sleep(5)
+            # Sentido antihorario
+            motor(directions['CCW'])
+            time.sleep(5)
+            # Detener
+            motor(directions['STOP'])
+            time.sleep(5)
+        
+En la función main(), crea un diccionario, directions[], en el cual CW
+es igual a 1, CCW es -1, y el número 0 se refiere a Stop (detener).
+
+Al ejecutarse el código, el motor primero gira en sentido horario durante 
+5 segundos, luego se detiene durante 5 segundos; después, gira en sentido 
+antihorario durante 5 segundos y finalmente se detiene nuevamente por 5 segundos. 
+Esta serie de acciones se repetirá continuamente.
+
+Ahora deberías ver la hélice del motor girando.
+
+Imagen de Fenómeno
+---------------------
+
+.. image:: img/image119.jpeg

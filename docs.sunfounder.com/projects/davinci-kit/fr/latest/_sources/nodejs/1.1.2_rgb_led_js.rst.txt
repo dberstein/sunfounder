@@ -1,0 +1,175 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté des passionnés de SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez dans l'univers du Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez vos problèmes après-vente et surmontez vos défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Obtenez un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et à des promotions pendant les fêtes.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+1.1.2 LED RGB
+================
+
+Introduction
+--------------
+
+Dans ce projet, nous allons contrôler une LED RGB pour afficher différentes couleurs.
+
+Composants
+-------------
+
+.. image:: img/list_rgb_led.png
+    :align: center
+
+Schéma de câblage
+--------------------
+
+Après avoir connecté les broches R, G et B à une résistance de limitation de 
+courant, reliez-les respectivement aux GPIO17, GPIO18 et GPIO27. La broche la 
+plus longue (GND) de la LED se connecte au GND du Raspberry Pi. Lorsque les 
+trois broches reçoivent différentes valeurs PWM, la LED RGB affichera diverses couleurs.
+
+.. image:: img/rgb_led_schematic.png
+
+Procédures expérimentales
+----------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: img/image61.png
+   :width: 6.59097in
+   :height: 4.29722in
+
+**Étape 2 :** Accéder au dossier du code.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Étape 3 :** Exécuter le code.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block::
+
+    sudo node rgb_led.js
+
+Après l'exécution du code, vous verrez la LED RGB afficher successivement les couleurs 
+rouge, vert, bleu, jaune, rose et cyan.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const ledred = new Gpio(17, { mode: Gpio.OUTPUT });
+    const ledgreen = new Gpio(18, { mode: Gpio.OUTPUT });
+    const ledblue = new Gpio(27, { mode: Gpio.OUTPUT });
+
+    function colorset(r, g, b) {
+        ledred.pwmWrite(r);
+        ledgreen.pwmWrite(g);
+        ledblue.pwmWrite(b);
+    }
+
+    var color_index = -1;
+
+    setInterval(() => {
+    color_index += 1;
+    switch (color_index) {
+        case 0:
+            colorset(0xff, 0x00, 0xFF);
+            break;
+        case 1:
+            colorset(0x00, 0xff, 0x00);
+            break;
+        case 2:
+            colorset(0x00, 0x00, 0xff);
+            break;
+        case 3:
+            colorset(0xff, 0xff, 0x00);
+            break;
+        case 4:
+            colorset(0xff, 0x00, 0xff);
+            break;
+        case 5:
+            colorset(0xc0, 0xff, 0x3e);
+            break;
+        default:
+            color_index=-1;
+        }
+    }, 500);
+
+**Explication du code**
+
+.. code-block:: js
+
+    const ledred = new Gpio(17, {mode: Gpio.OUTPUT});
+    const ledgreen = new Gpio(18, {mode: Gpio.OUTPUT});
+    const ledblue = new Gpio(27, {mode: Gpio.OUTPUT});
+
+Initialiser les broches 17, 18 et 27 en mode sortie, et les assigner respectivement aux constantes ``ledred``, ``ledgreen`` et ``ledblue``.
+
+.. code-block:: js
+
+    function colorset(r,g,b){
+        ledred.pwmWrite(r);
+        ledgreen.pwmWrite(g);
+        ledblue.pwmWrite(b);
+    }
+
+Implémenter une fonction ``colorset(r, g, b)`` qui permet d’écrire des valeurs de pulsation sur les broches 17, 18 et 27. La bibliothèque ``Gpio`` encapsule la fonction ``pwmWrite()`` pour transmettre des valeurs de pulsation, qui varient de 0x00 à 0xff. En utilisant la fonction ``colorset(r, g, b)``, vous pouvez attribuer des valeurs RGB à la LED pour afficher une variété de couleurs.
+
+.. note::
+    Pour en savoir plus sur les valeurs RGB, consultez le site suivant : https://www.rapidtables.com/web/color/RGB_Color.html
+
+.. code-block:: js
+
+    var color_index = -1;
+
+    setInterval(() => {
+    color_index += 1;
+    switch (color_index) {
+        case 0:
+            colorset(0xff, 0x00, 0xFF);
+            break;
+        case 1:
+            colorset(0x00, 0xff, 0x00);
+            break;
+        case 2:
+            colorset(0x00, 0x00, 0xff);
+            break;
+        case 3:
+            colorset(0xff, 0xff, 0x00);
+            break;
+        case 4:
+            colorset(0xff, 0x00, 0xff);
+            break;
+        case 5:
+            colorset(0xc0, 0xff, 0x3e);
+            break;
+        default:
+            color_index=-1;
+        }
+    }, 500);
+
+La LED RGB est contrôlée par ``colorset()`` toutes les 500 ms. Un switch case 
+est utilisé ici pour choisir la couleur émise par la LED RGB. Étant donné que ``color_index`` augmente à chaque cycle, la couleur de la LED RGB change dans 
+un ordre séquentiel.
+
+
+Image du résultat
+---------------------
+
+.. image:: img/image62.jpeg

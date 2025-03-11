@@ -1,0 +1,396 @@
+.. note::
+
+    Bonjour et bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez dans l'univers de Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
+
+    **Pourquoi rejoindre ?**
+
+    - **Support d'experts** : Résolvez vos problèmes après-vente et vos défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus exclusifs.
+    - **Réductions spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    - **Promotions festives et concours** : Participez à des concours et des promotions spéciales pendant les fêtes.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+3.1.4 Ventilateur intelligent
+=============================
+
+Introduction
+----------------
+
+Dans ce cours, nous allons utiliser des moteurs, des boutons et des thermistances 
+pour créer un ventilateur intelligent manuel + automatique dont la vitesse de 
+ventilation est réglable.
+
+Composants
+-------------
+
+.. image:: img/list_Smart_Fan.png
+    :align: center
+
+Schéma de câblage
+----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+GPIO5        Pin 29   21       5
+GPIO6        Pin 31   22       6
+GPIO13       Pin 33   23       13
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one4.png
+    :width: 500
+    :align: center
+
+Procédures expérimentales
+-----------------------------
+
+**Étape 1 :** Montez le circuit.
+
+.. image:: img/image245.png
+   :width: 800
+   :align: center
+
+.. note::
+    Le module d'alimentation peut utiliser une batterie de 9V avec le clip 
+    de batterie 9V fourni dans le kit. Insérez le cavalier du module 
+    d'alimentation dans les bandes de bus 5V de la breadboard.
+
+.. image:: img/image118.jpeg
+   :width: 2.80694in
+   :height: 0.94375in
+   :align: center
+
+**Pour les utilisateurs du langage C**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.4/
+
+**Étape 3 :** Compilez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.4_SmartFan.c -lwiringPi -lm
+
+**Étape 4 :** Exécutez le fichier exécutable ci-dessus.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Lorsque le code s'exécute, démarrez le ventilateur en appuyant sur le bouton. 
+Chaque pression ajuste la vitesse d'un cran vers le haut ou vers le bas. Il y 
+a **5** niveaux de vitesse : **0~4**. Lorsque la vitesse atteint le **4\ :sup:`ème`** 
+niveau et que vous appuyez de nouveau, le ventilateur s'arrête avec une vitesse de **0**.
+
+.. note::
+
+    Si cela ne fonctionne pas après l'exécution ou si un message d'erreur apparaît : \"wiringPi.h: Aucun fichier ou dossier de ce type », veuillez vous référer à :ref:`C code is not working?`.
+
+Une variation de température supérieure ou inférieure à 2℃ entraîne automatiquement 
+une augmentation ou une diminution d'un cran de la vitesse.
+
+
+**Explication du code**
+
+.. code-block:: c
+
+    int temperture(){
+        unsigned char analogVal;
+        double Vr, Rt, temp, cel, Fah;
+        analogVal = get_ADC_Result(0);
+        Vr = 5 * (double)(analogVal) / 255;
+        Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+        temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+        cel = temp - 273.15;
+        Fah = cel * 1.8 +32;
+        int t=cel;
+        return t;
+    }
+
+La fonction `temperture()` convertit les valeurs de la thermistance lues par l'ADC0834 
+en valeurs de température. Pour plus de détails, reportez-vous à :ref:`2.2.2 Thermistor`.
+
+.. code-block:: c
+
+    int motor(int level){
+        if(level==0){
+            digitalWrite(MotorEnable,LOW);
+            return 0;
+        }
+        if (level>=4){
+            level =4;
+        }
+        digitalWrite(MotorEnable,HIGH);
+        softPwmWrite(MotorPin1, level*25);
+        return level;    
+    }
+
+Cette fonction contrôle la vitesse de rotation du moteur. La plage du **niveau** : **0-4** 
+(le niveau **0** arrête le moteur). Chaque ajustement de niveau représente un changement de
+ **25%** de la vitesse du ventilateur.
+
+.. code-block:: c
+
+    int main(void)
+    {
+        setup();
+        int currentState,lastState=0;
+        int level = 0;
+        int currentTemp,markTemp=0;
+        while(1){
+            currentState=digitalRead(BtnPin);
+            currentTemp=temperture();
+            if (currentTemp<=0){continue;}
+            if (currentState==1&&lastState==0){
+                level=(level+1)%5;
+                markTemp=currentTemp;
+                delay(500);
+            }
+            lastState=currentState;
+            if (level!=0){
+                if (currentTemp-markTemp<=-2){
+                    level=level-1;
+                    markTemp=currentTemp;
+                }
+                if (currentTemp-markTemp>=2){
+                    level=level+1;
+                    markTemp=currentTemp;
+                }
+            }
+            level=motor(level);
+        }
+        return 0;
+    }
+
+La fonction **main()** contient le processus global du programme :
+
+
+
+1) Lecture constante de l'état du bouton et de la température actuelle.
+
+2) Chaque pression du bouton incrémente le niveau de **+1** et met à jour la température. 
+Les niveaux vont de **1 à 4**.
+
+3) Tant que le ventilateur fonctionne (niveau différent de **0**), la température est 
+surveillée. Un changement de **2℃\ +** entraîne une augmentation ou une diminution du niveau.
+
+4) Le moteur ajuste sa vitesse de rotation en fonction du **niveau**.
+
+
+**Pour les utilisateurs du langage Python**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Étape 2 :** Accédez au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/python
+
+**Étape 3 :** Exécutez.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 3.1.4_SmartFan.py
+
+Lorsque le code s'exécute, démarrez le ventilateur en appuyant sur le bouton. Chaque 
+pression ajuste la vitesse d'un cran vers le haut ou vers le bas. Il y a **5** niveaux 
+de vitesse : **0~4**. Lorsque le ventilateur est réglé sur le **4\ :sup:`ème`** niveau 
+de vitesse et que vous appuyez de nouveau, il s'arrête avec une vitesse de **0**.
+
+
+Une variation de température supérieure ou inférieure à 2℃ entraîne automatiquement une 
+augmentation ou une diminution d'un cran de la vitesse.
+
+**Code**
+
+.. note::
+
+    Vous pouvez **modifier/réinitialiser/copier/exécuter/arrêter** le code ci-dessous. 
+    Mais avant cela, vous devez vous rendre sur le chemin du code source comme ``davinci-kit-for-raspberry-pi/python``.
+    
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+    import ADC0834
+    import math
+
+    # Configuration des broches
+    MotorPin1   = 5
+    MotorPin2   = 6
+    MotorEnable = 13
+    BtnPin  = 22
+
+
+    def setup():
+        global p_M1,p_M2
+        ADC0834.setup()
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(MotorPin1, GPIO.OUT)
+        GPIO.setup(MotorPin2, GPIO.OUT)
+        p_M1=GPIO.PWM(MotorPin1,2000)
+        p_M2=GPIO.PWM(MotorPin2,2000)
+        p_M1.start(0)
+        p_M2.start(0)
+        GPIO.setup(MotorEnable, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(BtnPin, GPIO.IN)
+
+    def temperature():
+        analogVal = ADC0834.getResult()
+        Vr = 5 * float(analogVal) / 255
+        Rt = 10000 * Vr / (5 - Vr)
+        temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
+        Cel = temp - 273.15
+        Fah = Cel * 1.8 + 32
+        return Cel
+
+    def motor(level):
+        if level == 0:
+            GPIO.output(MotorEnable, GPIO.LOW)
+            return 0
+        if level>=4:
+            level = 4
+        GPIO.output(MotorEnable, GPIO.HIGH)
+        p_M1.ChangeDutyCycle(level*25)
+        return level
+
+
+    def main():
+        lastState=0
+        level=0
+        markTemp = temperature()
+        while True:
+            currentState =GPIO.input(BtnPin)
+            currentTemp=temperature()
+            if currentState == 1 and lastState == 0:
+                level=(level+1)%5
+                markTemp = currentTemp
+                time.sleep(0.5)
+            lastState=currentState
+            if level!=0:
+                if currentTemp-markTemp <= -2:
+                    level = level -1
+                    markTemp=currentTemp            
+                if currentTemp-markTemp >= 2:
+                    level = level +1
+                    markTemp=currentTemp             
+            level = motor(level)
+            
+
+    def destroy():
+        GPIO.output(MotorEnable, GPIO.LOW)
+        p_M1.stop()
+        p_M2.stop()
+        GPIO.cleanup()    
+
+    if __name__ == '__main__':
+        setup()
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy()
+
+**Explication du code**
+
+.. code-block:: python
+
+    def temperature():
+        analogVal = ADC0834.getResult()
+        Vr = 5 * float(analogVal) / 255
+        Rt = 10000 * Vr / (5 - Vr)
+        temp = 1/(((math.log(Rt / 10000)) / 3950) + (1 / (273.15+25)))
+        Cel = temp - 273.15
+        Fah = Cel * 1.8 + 32
+        return Cel
+
+La fonction `temperature()` convertit les valeurs de la thermistance lues 
+par **ADC0834** en valeurs de température. Pour plus de détails, reportez-vous 
+à :ref:`2.2.2 Thermistor`.
+
+.. code-block:: python
+
+    def motor(level):
+        if level == 0:
+            GPIO.output(MotorEnable, GPIO.LOW)
+            return 0
+        if level >= 4:
+            level = 4
+        GPIO.output(MotorEnable, GPIO.HIGH)
+        p_M1.ChangeDutyCycle(level * 25)
+        return level
+
+Cette fonction contrôle la vitesse de rotation du moteur. La plage de **niveau** : 
+**0-4** (le niveau **0** arrête le moteur). Chaque ajustement de niveau représente un 
+changement de **25%** de la vitesse du ventilateur.
+
+.. code-block:: python
+
+    def main():
+        lastState=0
+        level=0
+        markTemp = temperature()
+        while True:
+            currentState =GPIO.input(BtnPin)
+            currentTemp=temperature()
+            if currentState == 1 and lastState == 0:
+                level=(level+1)%5
+                markTemp = currentTemp
+                time.sleep(0.5)
+            lastState=currentState
+            if level!=0:
+                if currentTemp-markTemp <= -2:
+                    level = level -1
+                    markTemp=currentTemp            
+                if currentTemp-markTemp >= 2:
+                    level = level +1
+                    markTemp=currentTemp             
+            level = motor(level)
+
+La fonction **main()** suit le processus global du programme :
+
+1) Lecture constante de l'état du bouton et de la température actuelle.
+
+2) Chaque pression sur le bouton augmente le **niveau** de **+1** et met à jour la température. Les niveaux vont de **1 à 4**.
+
+3) Tant que le ventilateur fonctionne (niveau différent de **0**), la température est surveillée. Une variation de **2℃\ +** entraîne une augmentation ou une diminution du niveau.
+
+4) Le moteur ajuste sa vitesse de rotation en fonction du **niveau**.
+
+Image du phénomène
+----------------------
+
+.. image:: img/image246.png
+   :align: center

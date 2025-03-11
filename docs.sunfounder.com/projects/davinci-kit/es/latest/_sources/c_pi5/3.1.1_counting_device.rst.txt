@@ -1,0 +1,151 @@
+.. note::
+
+    ¡Hola! Bienvenidos a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto con otros apasionados.
+
+    **¿Por qué unirse?**
+
+    - **Soporte de Expertos**: Soluciona problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones especiales en días festivos.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
+
+3.1.1 Dispositivo Contador
+==============================
+
+Introducción
+-----------------
+
+Aquí crearemos un sistema contador que muestra el número de personas, 
+compuesto por un sensor PIR y un display de 4 dígitos. Cuando el PIR 
+detecta que alguien pasa, el número en el display de 4 dígitos incrementará 
+en 1. Puedes usar este contador para contar el número de personas que 
+atraviesan un pasillo.
+
+Componentes
+---------------
+
+.. image:: img/list_Counting_Device1.png
+    :align: center
+
+.. image:: img/list_Counting_Device2.png
+    :align: center
+
+Diagrama de Circuito
+------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one1.png
+   :align: center
+
+Procedimientos Experimentales
+---------------------------------
+
+**Paso 1**: Construye el circuito.
+
+.. image:: img/image235.png
+   :alt: 计数器_bb
+   :width: 800
+
+**Paso 2**: Accede a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.1/
+
+**Paso 3**: Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.1_CountingDevice.c -lwiringPi
+
+**Paso 4**: Ejecuta el archivo ejecutable.
+
+.. raw:: html
+
+    <run></run>
+ 
+.. code-block:: 
+ 
+    sudo ./a.out
+ 
+Cuando el código se ejecute, cada vez que el PIR detecte que alguien 
+pasa, el número en el display de 4 dígitos incrementará en 1.
+
+El módulo PIR tiene dos potenciómetros: uno para ajustar la sensibilidad 
+y el otro para ajustar la distancia de detección. Para optimizar el 
+funcionamiento del módulo PIR, ajusta ambos potenciómetros al máximo en 
+sentido antihorario.
+
+.. note::
+
+    Si no funciona después de ejecutar el código, o aparece el mensaje de error: "wiringPi.h: No such file or directory", consulta :ref:`c code is not working?`.
+    
+**Explicación del Código**
+
+.. code-block:: c
+
+    void display()
+    {
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[counter % 10]);
+
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[counter % 100 / 10]);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[counter % 1000 / 100]);
+     
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[counter % 10000 / 1000]);
+    }
+
+Primero, se inicia el display del cuarto segmento y se escribe el dígito 
+de las unidades. Luego se inicia el tercer segmento para mostrar las decenas; 
+después se activan respectivamente el segundo y el primer segmento, mostrando 
+los valores de centenas y millares. Debido a la rápida velocidad de actualización, 
+se observa un display completo de cuatro dígitos.
+
+.. code-block:: c
+
+    void loop(){
+        int currentState =0;
+        int lastState=0;
+        while(1){
+            display();
+            currentState=digitalRead(sensorPin);
+            if((currentState==0)&&(lastState==1)){
+                counter +=1;
+            }
+            lastState=currentState;
+        }
+    }
+
+Esta es la función principal: muestra el número en el display de 4 dígitos 
+y lee el valor del PIR. Cuando el PIR detecta que alguien pasa, el número 
+en el display de 4 dígitos se incrementará en 1.

@@ -1,0 +1,131 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi & Arduino & ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Assistance d'experts** : Résolvez les problèmes après-vente et surmontez les défis techniques avec l’aide de notre communauté et de notre équipe.
+    - **Apprenez & Partagez** : Échangez des conseils et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d’un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et concours** : Participez à des concours et à des promotions spéciales.
+
+    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+2.1.6 Joystick
+================
+
+Introduction
+--------------
+
+Dans ce projet, nous allons apprendre comment fonctionne un joystick. Nous 
+manipulons le joystick et affichons les résultats à l'écran.
+
+Composants
+-----------
+
+.. image:: ../img/image317.png
+
+
+Schéma de câblage
+-------------------
+
+Lorsque les données du joystick sont lues, il y a des différences entre les axes : 
+les données des axes X et Y sont analogiques et nécessitent l'utilisation de l'ADC0834 
+pour convertir la valeur analogique en valeur numérique. Les données de l'axe Z sont 
+numériques, vous pouvez donc utiliser directement le GPIO pour les lire, ou utiliser 
+également l'ADC pour les lire.
+
+.. image:: ../img/image319.png
+
+
+.. image:: ../img/image320.png
+
+
+Procédures expérimentales
+---------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image193.png
+
+**Étape 2 :** Accédez au répertoire contenant le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Étape 3 :** Exécutez le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node joystick.js
+
+Une fois le code exécuté, bougez le joystick, les valeurs correspondantes 
+de x, y, et Btn seront affichées à l'écran.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+    const adc = new ADC0834(17, 18, 22);
+    const btn = new Gpio(25, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_UP,
+    });
+
+    setInterval(async() => {
+
+        x_val = await adc.read(0);
+        y_val = await adc.read(1);
+
+        btn_val = btn.digitalRead();
+        console.log(`x = ${x_val}, y = ${y_val}, btn = ${btn_val}\n`);
+    }, 100);
+
+**Explication du code**
+
+.. code-block:: js
+
+    const ADC0834 = require('./adc0834.js').ADC0834;
+
+Nous importons le constructeur ``ADC0834`` pour utiliser le module adc0834.
+
+.. code-block:: js
+
+    setInterval(async() => {
+
+        x_val = await adc.read(0);
+        y_val = await adc.read(1);
+
+        btn_val = btn.digitalRead();
+        console.log(`x = ${x_val}, y = ${y_val}, btn = ${btn_val}\n`);
+    }, 100);
+
+Lors de la lecture simultanée des valeurs de plusieurs canaux de l'ADC0834, une 
+programmation asynchrone est nécessaire. Nous créons ici une fonction de promesse, 
+et utilisons l'instruction await de la fonction async pour écrire cette tâche complexe 
+de manière plus élégante.
+
+* `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+* `Async Function <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function>`_
+
+
+
+Image du résultat
+--------------------
+
+.. image:: ../img/image194.jpeg
+
+

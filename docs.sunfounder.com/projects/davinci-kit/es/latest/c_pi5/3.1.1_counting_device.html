@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.1 Dispositivo Contador &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="3.1.2 Bienvenida" href="3.1.2_welcome.html" />
+    <link rel="prev" title="3 Extensiones" href="3_extension.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/c_pi5/3.1.1_counting_device.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Para Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Juega con Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_c.html">Play with C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_wiringpi_c.html">Instalar y Verificar WiringPi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1_output.html">1 Salida</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_input.html">2 Entrada</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="3_extension.html">3 Extensiones</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="3.1.1_counting_device.html#">3.1.1 Dispositivo Contador</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.2_welcome.html">3.1.2 Bienvenida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.3_reversing_alarm.html">3.1.3 Alarma de Reversa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.4_smart_fan.html">3.1.4 Ventilador Inteligente</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.5_battery_indicator.html">3.1.5 Indicador de Batería</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.6_motion_control.html">3.1.6 Control de Movimiento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.7_traffic_light.html">3.1.7 Semáforo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.8_overheat_monitor.html">3.1.8 Monitor de Sobrecalentamiento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.9_password_lock.html">3.1.9 Cerradura con Contraseña</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.10_alarm_bell.html">3.1.10 Alarma de Emergencia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.11_morse_code_generator.html">3.1.11 Generador de Código Morse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.12_game_guess_number.html">3.1.12 JUEGO - Adivina el Número</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.13_game_10_second.html">3.1.13 JUEGO– 10 Segundos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.14_game_not_not.html">3.1.14 JUEGO – Not Not</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Juega con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Para Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_c.html">Play with C</a></li>
+          <li class="breadcrumb-item"><a href="3_extension.html">3 Extensiones</a></li>
+      <li class="breadcrumb-item active">3.1.1 Dispositivo Contador</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c_pi5/3.1.1_counting_device.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>¡Hola! Bienvenidos a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto con otros apasionados.</p>
+<p><strong>¿Por qué unirse?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte de Expertos</strong>: Soluciona problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprende y Comparte</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Avances Exclusivos</strong>: Accede anticipadamente a anuncios de nuevos productos y adelantos.</p></li>
+<li><p><strong>Descuentos Especiales</strong>: Disfruta de descuentos exclusivos en nuestros productos más recientes.</p></li>
+<li><p><strong>Promociones y Sorteos Festivos</strong>: Participa en sorteos y promociones especiales en días festivos.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy.</p>
+</div>
+<section id="dispositivo-contador">
+<h1>3.1.1 Dispositivo Contador<a class="headerlink" href="3.1.1_counting_device.html#dispositivo-contador" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="3.1.1_counting_device.html#introduccion" title="Link to this heading"></a></h2>
+<p>Aquí crearemos un sistema contador que muestra el número de personas,
+compuesto por un sensor PIR y un display de 4 dígitos. Cuando el PIR
+detecta que alguien pasa, el número en el display de 4 dígitos incrementará
+en 1. Puedes usar este contador para contar el número de personas que
+atraviesan un pasillo.</p>
+</section>
+<section id="componentes">
+<h2>Componentes<a class="headerlink" href="3.1.1_counting_device.html#componentes" title="Link to this heading"></a></h2>
+<img alt="../_images/list_Counting_Device11.png" class="align-center" src="../_images/list_Counting_Device11.png" />
+<img alt="../_images/list_Counting_Device21.png" class="align-center" src="../_images/list_Counting_Device21.png" />
+</section>
+<section id="diagrama-de-circuito">
+<h2>Diagrama de Circuito<a class="headerlink" href="3.1.1_counting_device.html#diagrama-de-circuito" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO22</p></td>
+<td><p>Pin 15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPIMOSI</p></td>
+<td><p>Pin 19</p></td>
+<td><p>12</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO23</p></td>
+<td><p>Pin 16</p></td>
+<td><p>4</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO24</p></td>
+<td><p>Pin 18</p></td>
+<td><p>5</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO26</p></td>
+<td><p>Pin 37</p></td>
+<td><p>25</p></td>
+<td><p>26</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../_images/Schematic_three_one15.png" class="align-center" src="../_images/Schematic_three_one15.png" />
+</section>
+<section id="procedimientos-experimentales">
+<h2>Procedimientos Experimentales<a class="headerlink" href="3.1.1_counting_device.html#procedimientos-experimentales" title="Link to this heading"></a></h2>
+<p><strong>Paso 1</strong>: Construye el circuito.</p>
+<a class="reference internal image-reference" href="../_images/image2351.png"><img alt="计数器_bb" src="../_images/image2351.png" style="width: 800px;" />
+</a>
+<p><strong>Paso 2</strong>: Accede a la carpeta del código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">3.1.1</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Paso 3</strong>: Compila el código.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">3.1.1</span><span class="n">_CountingDevice</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Paso 4</strong>: Ejecuta el archivo ejecutable.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Cuando el código se ejecute, cada vez que el PIR detecte que alguien
+pasa, el número en el display de 4 dígitos incrementará en 1.</p>
+<p>El módulo PIR tiene dos potenciómetros: uno para ajustar la sensibilidad
+y el otro para ajustar la distancia de detección. Para optimizar el
+funcionamiento del módulo PIR, ajusta ambos potenciómetros al máximo en
+sentido antihorario.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si no funciona después de ejecutar el código, o aparece el mensaje de error: «wiringPi.h: No such file or directory», consulta <a class="reference internal" href="../faq.html#c-code-is-not-working"><span class="std std-ref">c code is not working?</span></a>.</p>
+</div>
+<p><strong>Explicación del Código</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">display</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">100</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">clearDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pickDigit</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">hc595_shift</span><span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">counter</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Primero, se inicia el display del cuarto segmento y se escribe el dígito
+de las unidades. Luego se inicia el tercer segmento para mostrar las decenas;
+después se activan respectivamente el segundo y el primer segmento, mostrando
+los valores de centenas y millares. Debido a la rápida velocidad de actualización,
+se observa un display completo de cuatro dígitos.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">(){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">currentState</span><span class="w"> </span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">lastState</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">display</span><span class="p">();</span>
+<span class="w">        </span><span class="n">currentState</span><span class="o">=</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">sensorPin</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">((</span><span class="n">currentState</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">lastState</span><span class="o">==</span><span class="mi">1</span><span class="p">)){</span>
+<span class="w">            </span><span class="n">counter</span><span class="w"> </span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">lastState</span><span class="o">=</span><span class="n">currentState</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Esta es la función principal: muestra el número en el display de 4 dígitos
+y lee el valor del PIR. Cuando el PIR detecta que alguien pasa, el número
+en el display de 4 dígitos se incrementará en 1.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="3_extension.html" class="btn btn-neutral float-left" title="3 Extensiones" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="3.1.2_welcome.html" class="btn btn-neutral float-right" title="3.1.2 Bienvenida" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

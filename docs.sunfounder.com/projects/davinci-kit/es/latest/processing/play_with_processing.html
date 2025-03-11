@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juega con Processing &mdash; documentación de SunFounder davinci-kit-for-raspberry-pi - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=e2bb6099"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=efdbd0b9"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/es/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Dibuja un Matchmaker" href="draw_a_matchmaker.html" />
+    <link rel="prev" title="3.1.14 JUEGO – Not Not" href="../3.1.14_game_not_not.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-es" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/processing/play_with_processing.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Lista de Componentes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Tarjeta de Extensión GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Descarga el Código</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Instalar y Configurar Raspberry Pi OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Para Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../libraries.html">Bibliotecas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_output.html">1 Salida</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_input.html">2 Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_extension.html">3 Extensiones</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="play_with_processing.html#">Juega con Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="play_with_processing.html#que-es-processing">¿Qué es Processing?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="play_with_processing.html#instalar-processing">Instalar Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="play_with_processing.html#instalar-hardware-i-o">Instalar Hardware I/O</a></li>
+<li class="toctree-l3"><a class="reference internal" href="play_with_processing.html#proyectos">Proyectos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="draw_a_matchmaker.html">Dibuja un Matchmaker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hello_mouse.html">Hola Ratón</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blinking_dot.html">Blinking Dot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clickable_dot.html">Clickable Dot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clickable_color_blocks.html">Bloques de Color Clicables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inflating_the_dot.html">Inflando el Punto</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dot_on_the_swing.html">Punto en el Oscilador</a></li>
+<li class="toctree-l4"><a class="reference internal" href="metronome.html">Metronome</a></li>
+<li class="toctree-l4"><a class="reference internal" href="show_number.html">Show Number</a></li>
+<li class="toctree-l4"><a class="reference internal" href="drag_number.html">Control Deslizante de Números</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../nodejs/play_with_nodejs.html">Juega con Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch/play_with_scratch.html">Experimenta con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Curso de Video en Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Gracias</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_other_models.html">Para Pi 4, 3 y Todos los Demás Modelos de Pi</a></li>
+      <li class="breadcrumb-item active">Juega con Processing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/processing/play_with_processing.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.</p>
+<p><strong>¿Por qué unirse?</strong></p>
+<ul class="simple">
+<li><p><strong>Soporte Experto</strong>: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.</p></li>
+<li><p><strong>Aprende y Comparte</strong>: Intercambia consejos y tutoriales para mejorar tus habilidades.</p></li>
+<li><p><strong>Avances Exclusivos</strong>: Accede anticipadamente a anuncios de nuevos productos y adelantos exclusivos.</p></li>
+<li><p><strong>Descuentos Especiales</strong>: Aprovecha descuentos exclusivos en nuestros productos más recientes.</p></li>
+<li><p><strong>Promociones Festivas y Sorteos</strong>: Participa en sorteos y promociones especiales.</p></li>
+</ul>
+<p>👉 ¿Listo para explorar y crear con nosotros? Haz clic en [<a href="https://bit.ly/raphaelkit " target="_blank">Aquí</a>] y únete hoy mismo.</p>
+</div>
+<section id="juega-con-processing">
+<h1>Juega con Processing<a class="headerlink" href="play_with_processing.html#juega-con-processing" title="Link to this heading"></a></h1>
+<section id="que-es-processing">
+<h2>¿Qué es Processing?<a class="headerlink" href="play_with_processing.html#que-es-processing" title="Link to this heading"></a></h2>
+<p>Processing es un entorno de programación sencillo creado para facilitar
+el desarrollo de aplicaciones visuales, especialmente las enfocadas en
+animación y en brindar retroalimentación instantánea a los usuarios mediante
+la interacción. Los desarrolladores buscaban una forma de “bosquejar”
+ideas en código. A medida que sus capacidades se han expandido en la última
+década, Processing se ha utilizado no solo para crear bosquejos, sino también
+en trabajos de producción avanzados. Originalmente concebido como una extensión
+de Java orientada a artistas y diseñadores, Processing ha evolucionado hasta
+convertirse en una herramienta de diseño y prototipado utilizada en instalaciones
+a gran escala, gráficos en movimiento y visualización de datos complejos.</p>
+<p>Processing está basado en Java, pero como los elementos de programación en Processing son bastante simples, puedes aprender a usarlo incluso si no conoces Java. Si estás familiarizado con Java, es recomendable dejar de lado por un momento la relación de Processing con Java hasta que te acostumbres a cómo funciona la API.</p>
+<p>Este texto proviene del tutorial, <a class="reference external" href="https://processing.org/tutorials/overview/">Processing Overview</a>.</p>
+</section>
+<section id="instalar-processing">
+<h2>Instalar Processing<a class="headerlink" href="play_with_processing.html#instalar-processing" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Antes de que puedas utilizar Processing, debes acceder al escritorio de Raspberry Pi de forma remota (<a class="reference internal" href="../install_setup_os/remote_desktop.html#remote-desktop"><span class="std std-ref">Acceso a Escritorio Remoto para Raspberry Pi</span></a>) o conectar una pantalla a la Raspberry Pi.</p>
+</div>
+<p>Bienvenido a Processing! Primero visita <a class="reference external" href="https://processing.org/download">https://processing.org/download</a> y selecciona la versión <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">ARM32-bit</span></code>.</p>
+<p>Luego, descarga un archivo <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code>, común entre los usuarios de Linux. Descarga el archivo en tu directorio de inicio, luego abre una ventana de terminal y escribe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="n">xvfz</span> <span class="n">processing</span><span class="o">-</span><span class="n">xxxx</span><span class="o">.</span><span class="n">tgz</span>
+</pre></div>
+</div>
+<p>(Reemplaza xxxx con el resto del nombre del archivo, que corresponde al número de versión). Esto creará una carpeta llamada processing-2.0 o algo similar. Luego, cambia a ese directorio:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">processing</span><span class="o">-</span><span class="n">xxxx</span>
+</pre></div>
+</div>
+<p>y ejecútalo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">processing</span>
+</pre></div>
+</div>
+<p>Con suerte, ahora podrás ver la ventana principal de Processing.</p>
+<img alt="../_images/processing2.png" src="../_images/processing2.png" />
+</section>
+<section id="instalar-hardware-i-o">
+<h2>Instalar Hardware I/O<a class="headerlink" href="play_with_processing.html#instalar-hardware-i-o" title="Link to this heading"></a></h2>
+<p>Para poder usar los GPIO de la Raspberry Pi, necesitas agregar manualmente una <a class="reference external" href="https://processing.org/reference/libraries/io/index.html">Hardware I/O library</a>.</p>
+<p>Haz clic en <code class="docutils literal notranslate"><span class="pre">Sketch</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Import</span> <span class="pre">Library</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Library...</span></code></p>
+<img alt="../_images/import-00.png" src="../_images/import-00.png" />
+<p>Encuentra Hardware I/O, selecciónalo y luego haz clic en Instalar. Una vez finalizado, aparecerá un icono de verificación.</p>
+<img alt="../_images/import-02.png" src="../_images/import-02.png" />
+</section>
+<section id="proyectos">
+<h2>Proyectos<a class="headerlink" href="play_with_processing.html#proyectos" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="draw_a_matchmaker.html">Dibuja un Matchmaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hello_mouse.html">Hola Ratón</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blinking_dot.html">Blinking Dot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clickable_dot.html">Clickable Dot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clickable_color_blocks.html">Bloques de Color Clicables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inflating_the_dot.html">Inflando el Punto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dot_on_the_swing.html">Punto en el Oscilador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metronome.html">Metronome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="show_number.html">Show Number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drag_number.html">Control Deslizante de Números</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="../3.1.14_game_not_not.html" class="btn btn-neutral float-left" title="3.1.14 JUEGO – Not Not" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="draw_a_matchmaker.html" class="btn btn-neutral float-right" title="Dibuja un Matchmaker" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2025, SunFounder.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

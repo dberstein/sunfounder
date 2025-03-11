@@ -1,0 +1,117 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder pour les passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, de l’Arduino et de l’ESP32 avec d’autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d’experts** : Résolvez vos problèmes après-vente et surmontez vos défis techniques grâce à l’aide de notre communauté et de notre équipe.
+    - **Apprenez et Partagez** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    - **Aperçus exclusifs** : Bénéficiez d’un accès anticipé aux annonces de nouveaux produits et à des avant-premières.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions festives et cadeaux** : Participez à des concours et des promotions spéciales.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
+
+1.3.3 Relais
+==============
+
+Introduction
+--------------
+
+Dans ce projet, nous allons apprendre à utiliser un relais. Il s'agit de l'un des 
+composants les plus couramment utilisés dans les systèmes de contrôle automatique. 
+Lorsque la tension, le courant, la température, la pression, etc., atteignent, 
+dépassent ou sont inférieurs à la valeur prédéterminée, le relais se ferme ou s’ouvre 
+pour contrôler et protéger les équipements.
+
+Composants
+-------------
+
+.. image:: ../img/list_1.3.4.png
+
+
+
+Schéma de câblage
+--------------------
+
+.. image:: ../img/image345.png
+
+
+Procédures expérimentales
+----------------------------
+
+**Étape 1 :** Construire le circuit.
+
+.. image:: ../img/image144.png
+
+**Étape 2 :** Accéder au dossier du code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Étape 3 :** Exécuter le code.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node relay.js
+
+Pendant l’exécution du programme, la LED s’allume. De plus, vous entendrez un 
+déclic causé par la fermeture du contact normalement ouvert et l’ouverture du 
+contact normalement fermé.
+
+**Code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const relay = new Gpio(17,{mode: Gpio.OUTPUT});
+
+    setInterval(() => {
+        relay.digitalWrite(!relay.digitalRead());
+    }, 500);
+
+    process.on('SIGINT',function(){
+        relay.digitalWrite(0);
+        process.exit();
+    });
+
+**Explication du code**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio;
+    const relay = new Gpio(17,{mode: Gpio.OUTPUT});
+
+Importer le module ``pigpio`` et instancier un objet ``relay`` de la classe Gpio pour contrôler le port IO Gpio17, en le définissant en mode sortie.
+
+.. code-block:: js
+
+    setInterval(() => {
+        relay.digitalWrite(!relay.digitalRead());
+    }, 500);
+
+Le relais s’ouvre et se ferme en continu, et la LED s’allume et s’éteint toutes les 500 ms.
+
+.. code-block:: js
+
+    process.on('SIGINT',function(){
+        relay.digitalWrite(0);
+        process.exit();
+    });
+
+Lorsque **Ctrl+C** est détecté, le relais s’ouvre pour arrêter le fonctionnement.
+
+Image du résultat
+--------------------
+
+.. image:: ../img/image145.jpeg
+

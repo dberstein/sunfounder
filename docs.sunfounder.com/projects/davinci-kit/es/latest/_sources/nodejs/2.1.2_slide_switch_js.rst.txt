@@ -1,0 +1,128 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el fascinante mundo de Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
+
+    **¿Por qué unirte?**
+
+    - **Soporte Experto**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Obtén acceso anticipado a nuevos anuncios de productos y adelantos exclusivos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones especiales de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+
+2.1.2 Interruptor Deslizante
+=================================
+
+Introducción
+---------------
+
+En este proyecto, aprenderemos a usar un interruptor deslizante. 
+Usualmente, el interruptor deslizante se suelda en la PCB como interruptor de encendido; sin embargo, aquí lo insertaremos en una placa de pruebas, por lo que puede no quedar completamente fijo. Lo utilizaremos en la placa para mostrar su funcionamiento.
+
+Componentes
+--------------
+
+.. image:: ../img/list_2.1.2_slide_switch.png
+
+
+Diagrama del Circuito
+-----------------------
+
+Conecta el pin central del interruptor deslizante a GPIO17 y dos LEDs a 
+los pines GPIO22 y GPIO27, respectivamente. Al deslizar el interruptor, 
+verás que los dos LEDs se encienden alternadamente.
+
+.. image:: ../img/image305.png
+
+
+.. image:: ../img/image306.png
+
+
+Procedimientos Experimentales
+---------------------------------
+
+**Paso 1:** Construye el circuito.
+
+.. image:: ../img/image161.png
+
+**Paso 2:** Dirígete a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Paso 3:** Ejecuta el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node slide_switch.js
+
+Mientras el código esté en ejecución, conecta el interruptor hacia la 
+izquierda, y el LED amarillo se encenderá; hacia la derecha, se encenderá 
+el LED rojo.
+
+**Código**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+    const led1 = new Gpio(22, {mode: Gpio.OUTPUT});
+    const led2 = new Gpio(27, {mode: Gpio.OUTPUT});
+
+    const slideSwitch = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    });
+
+    slideSwitch.on('interrupt', (level) => {  
+        led1.digitalWrite(level);   
+        led2.digitalWrite(!level);       
+    });
+
+
+**Explicación del Código**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+    const led1 = new Gpio(22, {mode: Gpio.OUTPUT});
+    const led2 = new Gpio(27, {mode: Gpio.OUTPUT});
+
+    const slideSwitch = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    });
+
+Importa el módulo pigpio y crea tres objetos: led1, led2, slideSwitch. 
+Controla el encendido y apagado de led1 y led2 leyendo el nivel del 
+puerto IO de slideSwitch.
+
+.. code-block:: js
+
+    slideSwitch.on('interrupt', (level) => {  
+        led1.digitalWrite(level);   
+        led2.digitalWrite(!level);       
+    });
+
+Cuando cambia el nivel de lectura del puerto IO de slideSwitch, escribe el 
+mismo nivel en led1 y el nivel opuesto en led2.
+
+Imagen del Fenómeno
+------------------------
+
+.. image:: ../img/image162.jpeg

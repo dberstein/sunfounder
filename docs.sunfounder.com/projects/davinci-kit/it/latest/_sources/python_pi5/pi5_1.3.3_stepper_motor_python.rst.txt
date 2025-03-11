@@ -1,0 +1,267 @@
+.. note::
+
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Esplora a fondo il mondo di Raspberry Pi, Arduino ed ESP32 insieme a tanti altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto da Esperti**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti inediti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _1.3.3_py_pi5:
+
+1.3.3 Motore Passo-Passo
+=========================
+
+Introduzione
+---------------
+
+I motori passo-passo, grazie al loro design unico, possono essere controllati 
+con un'elevata precisione senza necessità di meccanismi di feedback. L'albero 
+di un motore passo-passo, montato con una serie di magneti, è controllato da 
+una serie di bobine elettromagnetiche caricate positivamente e negativamente 
+in una sequenza specifica, consentendogli di avanzare o retrocedere in piccoli 
+\"passi\".
+
+Componenti Necessari
+------------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti.
+
+.. image:: ../python_pi5/img/1.3.3_stepper_motor_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schema Elettrico
+-------------------
+
+
+.. image:: /python_pi5/img/1.3.3_stepper_motor_schematic.png
+
+
+Procedure Sperimentali
+-------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/1.3.3_stepper_motor_circuit.png
+
+**Passo 2:** Apri il file del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+
+**Passo 3:** Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.3_StepperMotor.py
+
+Quando il codice è in esecuzione, il motore passo-passo ruoterà in senso orario o antiorario a seconda dell'input 'a' o 'c' inserito.
+
+.. warning::
+
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, potrai eseguirlo direttamente per vedere il risultato.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice
+   from time import sleep
+
+   # Inizializza i pin del motore sui pin GPIO 18, 23, 24, 25
+   motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
+
+   # Imposta i parametri di velocità di rotazione del motore
+   rotationPerMinute = 15
+   stepsPerRevolution = 2048
+   # Calcola il tempo di attesa tra ogni passo per un funzionamento fluido del motore
+   stepSpeed = (60 / rotationPerMinute) / stepsPerRevolution
+
+   def rotary(direction):
+       """
+       Controls the rotation of the motor based on the specified direction.
+       
+       :param direction: 'c' for clockwise, 'a' for anti-clockwise
+       """
+       if direction == 'c':
+           # Esegue la sequenza di passi per la rotazione in senso orario
+           for j in range(4):
+               for i in range(4):
+                   if 0x99 << j & (0x08 >> i):
+                       motorPin[i].on()
+                   else:
+                       motorPin[i].off()
+                   sleep(stepSpeed)
+       elif direction == 'a':
+           # Esegue la sequenza di passi per la rotazione in senso antiorario
+           for j in range(4):
+               for i in range(4):
+                   if 0x99 >> j & (0x08 >> i):
+                       motorPin[i].on()
+                   else:
+                       motorPin[i].off()
+                   sleep(stepSpeed)
+
+   def loop():
+       """
+       Continuously prompts the user to select the motor rotation direction
+       and controls the motor based on this input.
+       """
+       while True:
+           direction = input('Select motor direction a=anticlockwise, c=clockwise: ')
+           if direction == 'c':
+               print('Motor running clockwise\n')
+               break
+           elif direction == 'a':
+               print('Motor running anti-clockwise\n')
+               break
+           else:
+               print('Input error, please try again!')
+
+       # Mantiene il motore in rotazione nella direzione selezionata
+       while True:
+           rotary(direction)
+
+   def destroy():
+       """
+       Safely turns off all motor pins, used for clean shutdown.
+       """
+       for pin in motorPin:
+           pin.off()
+
+   # Esecuzione principale del programma
+   try:
+       loop()
+   except KeyboardInterrupt:
+       destroy()  # Gestisce l'interruzione da tastiera per arrestare il motore in modo sicuro
+
+
+**Spiegazione del Codice**
+
+#. Questa sezione importa le librerie necessarie. ``gpiozero`` per il controllo dei pin GPIO e ``time`` per la funzione sleep utilizzata nel controllo temporale.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice
+       from time import sleep
+
+#. Inizializza i pin GPIO 18, 23, 24 e 25 come dispositivi di output per controllare il motore passo-passo.
+
+   .. code-block:: python
+
+       # Inizializza i pin del motore sui pin GPIO 18, 23, 24, 25
+       motorPin = [OutputDevice(pin) for pin in (18, 23, 24, 25)]
+
+#. Imposta la velocità di rotazione del motore e calcola l'intervallo di tempo tra ogni passo per un funzionamento fluido.
+
+   .. code-block:: python
+
+       # Imposta i parametri di velocità di rotazione del motore
+       rotationPerMinute = 15
+       stepsPerRevolution = 2048
+       # Calcola il tempo di attesa tra ogni passo per un funzionamento fluido del motore
+       stepSpeed = (60 / rotationPerMinute) / stepsPerRevolution
+
+#. La funzione ``rotary`` controlla la rotazione del motore. Utilizza operazioni sui bit e una sequenza di passi per attivare i pin del motore nell'ordine corretto per la rotazione in senso orario o antiorario.
+
+   .. code-block:: python
+
+       def rotary(direction):
+           """
+           Controls the rotation of the motor based on the specified direction.
+           
+           :param direction: 'c' for clockwise, 'a' for anti-clockwise
+           """
+           if direction == 'c':
+               # Esegue la sequenza di passi per la rotazione in senso orario
+               for j in range(4):
+                   for i in range(4):
+                       if 0x99 << j & (0x08 >> i):
+                           motorPin[i].on()
+                       else:
+                           motorPin[i].off()
+                       sleep(stepSpeed)
+           elif direction == 'a':
+               # Esegue la sequenza di passi per la rotazione in senso antiorario
+               for j in range(4):
+                   for i in range(4):
+                       if 0x99 >> j & (0x08 >> i):
+                           motorPin[i].on()
+                       else:
+                           motorPin[i].off()
+                       sleep(stepSpeed)
+
+#. Questa funzione chiede continuamente all'utente di scegliere la direzione di rotazione del motore e controlla il motore in base all'input ricevuto.
+
+   .. code-block:: python
+
+       def loop():
+           """
+           Continuously prompts the user to select the motor rotation direction
+           and controls the motor based on this input.
+           """
+           while True:
+               direction = input('Select motor direction a=anticlockwise, c=clockwise: ')
+               if direction == 'c':
+                   print('Motor running clockwise\n')
+                   break
+               elif direction == 'a':
+                   print('Motor running anti-clockwise\n')
+                   break
+               else:
+                   print('Input error, please try again!')
+
+           # Mantiene il motore in rotazione nella direzione selezionata
+           while True:
+               rotary(direction)
+
+#. La funzione ``destroy`` spegne tutti i pin del motore. È utilizzata per un arresto sicuro, garantendo che il motore si fermi quando il programma termina.
+
+   .. code-block:: python
+
+       def destroy():
+           """
+           Safely turns off all motor pins, used for clean shutdown.
+           """
+           for pin in motorPin:
+               pin.off()
+
+#. Il programma principale chiama ``loop`` e gestisce le interruzioni da tastiera (come Ctrl+C) per fermare il motore in modo sicuro utilizzando ``destroy``.
+
+   .. code-block:: python
+
+       # Esecuzione principale del programma
+       try:
+           loop()
+       except KeyboardInterrupt:
+           destroy()  # Gestisce l'interruzione da tastiera per arrestare il motore in modo sicuro
+

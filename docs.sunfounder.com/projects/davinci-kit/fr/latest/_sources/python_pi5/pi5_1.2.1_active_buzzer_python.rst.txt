@@ -1,0 +1,160 @@
+.. note::
+
+    Bonjour, bienvenue dans la communauté SunFounder dédiée aux passionnés de Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l'univers de Raspberry Pi, Arduino et ESP32 aux côtés d'autres passionnés.
+
+    **Pourquoi nous rejoindre ?**
+
+    - **Support d'experts** : Résolvez les problèmes après-vente et les défis techniques grâce à l'aide de notre communauté et de notre équipe.
+    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour développer vos compétences.
+    - **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits.
+    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
+    - **Promotions et cadeaux festifs** : Participez à des tirages au sort et à des offres promotionnelles spéciales pendant les fêtes.
+
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
+
+.. _1.2.1_py_pi5:
+
+1.2.1 Buzzer actif
+======================
+
+Introduction
+----------------
+
+Dans ce projet, nous allons apprendre à activer un buzzer actif à l'aide d'un transistor PNP.
+
+Composants requis
+---------------------
+
+Dans ce projet, nous aurons besoin des composants suivants :
+
+.. image:: ../python_pi5/img/1.2.1_active_buzzer_list.png
+
+.. raw:: html
+
+   <br/>
+
+
+Schéma de câblage
+----------------------
+
+Dans cette expérience, un buzzer actif, un transistor PNP et une résistance de 1kΩ 
+sont utilisés entre la base du transistor et le GPIO pour protéger le transistor. 
+Lorsque le GPIO17 du Raspberry Pi fournit un niveau haut (3,3 V), le transistor 
+devient conducteur en raison de la saturation de courant, et le buzzer émet un son. 
+En revanche, lorsque le niveau bas est appliqué au GPIO, le transistor se coupe et le 
+buzzer s'arrête.
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/1.2.1_active_buzzer_schematic.png
+
+
+Procédures expérimentales
+-----------------------------
+
+**Étape 1 :** Construisez le circuit. (Le buzzer actif possède une étiquette blanche sur la surface et un fond noir.)
+
+.. image:: ../python_pi5/img/1.2.1_ActiveBuzzer_circuit.png
+
+**Étape 2 :** Ouvrez le fichier de code.
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Étape 3 :** Exécutez le script.
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.2.1_ActiveBuzzer.py
+
+Lorsque le code s'exécute, le buzzer émet un bip.
+
+.. warning::
+
+    Si le message d'erreur ``RuntimeError: Cannot determine SOC peripheral base address`` apparaît, consultez :ref:`faq_soc`.
+
+**Code**
+
+.. note::
+
+    Vous pouvez **modifier/réinitialiser/copier/exécuter/arrêter** le code ci-dessous. Mais avant cela, assurez-vous de vous rendre dans le répertoire source comme ``davinci-kit-for-raspberry-pi/python-pi5``. Après modification du code, vous pouvez l'exécuter directement pour observer le résultat.
+.. raw:: html
+
+    <run></run>
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Buzzer
+   from time import sleep
+
+   # Initialiser un objet Buzzer sur le GPIO 17
+   buzzer = Buzzer(17)
+
+   try:
+       while True:
+           # Activer le buzzer
+           print('Buzzer On')
+           buzzer.on()
+           sleep(0.1)  # Laisser le buzzer activé pendant 0,1 seconde
+
+           # Désactiver le buzzer
+           print('Buzzer Off')
+           buzzer.off()
+           sleep(0.1)  # Laisser le buzzer désactivé pendant 0,1 seconde
+
+   except KeyboardInterrupt:
+       # Gérer une interruption clavier (Ctrl+C) pour arrêter proprement le script
+       pass
+
+
+**Explication du code**
+
+1. Ces lignes importent la classe ``Buzzer`` de la bibliothèque ``gpiozero`` ainsi que la fonction ``sleep`` du module ``time``.
+
+   .. code-block:: python
+       
+       #!/usr/bin/env python3
+       from gpiozero import Buzzer
+       from time import sleep
+
+2. Cette ligne crée un objet ``Buzzer`` connecté au GPIO 17 du Raspberry Pi.
+    
+   .. code-block:: python
+       
+       # Initialiser un objet Buzzer sur le GPIO 17
+       buzzer = Buzzer(17)
+
+3. Dans une boucle infinie (``while True``), le buzzer est activé et désactivé toutes les 0,1 secondes. Les instructions ``print`` fournissent un retour d'information dans la console pour chaque action.
+      
+   .. code-block:: python
+       
+       try:
+           while True:
+               # Activer le buzzer
+               print('Buzzer On')
+               buzzer.on()
+               sleep(0.1)  # Laisser le buzzer activé pendant 0,1 seconde
+
+               # Désactiver le buzzer
+               print('Buzzer Off')
+               buzzer.off()
+               sleep(0.1)  # Laisser le buzzer désactivé pendant 0,1 seconde
+
+4. Ce segment assure que le programme peut être interrompu proprement à l'aide d'une interruption clavier (Ctrl+C) sans générer d'erreurs.
+      
+   .. code-block:: python
+       
+       except KeyboardInterrupt:
+       # Gérer une interruption clavier (Ctrl+C) pour arrêter proprement le script
+       pass
+      

@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="it" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.8 Monitor di Surriscaldamento &mdash; SunFounder davinci-kit-for-raspberry-pi  documentazione</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=3fd72285"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=0173e136"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/it/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Indice" href="../genindex.html" />
+    <link rel="search" title="Cerca" href="../search.html" />
+    <link rel="next" title="3.1.9 Serratura a Codice" href="3.1.9_password_lock.html" />
+    <link rel="prev" title="3.1.7 Semaforo" href="3.1.7_traffic_light.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-it" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/c_pi5/3.1.8_overheat_monitor.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Cerca documenti" aria-label="Cerca documenti" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu di navigazione">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Elenco dei Componenti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Scheda di Estensione GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Scarica il Codice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installazione e configurazione di Raspberry Pi OS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Per Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Divertiti con Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_c.html">Gioca con C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_wiringpi_c.html">Installazione e verifica di WiringPi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1_output.html">1 Uscita</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_input.html">2 Ingresso</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="3_extension.html">3 Estensioni</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="3.1.1_counting_device.html">3.1.1 Dispositivo Contatore</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.2_welcome.html">3.1.2 Benvenuto</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.3_reversing_alarm.html">3.1.3 Allarme di Retromarcia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.4_smart_fan.html">3.1.4 Ventilatore Intelligente</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.5_battery_indicator.html">3.1.5 Indicatore di Batteria</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.6_motion_control.html">3.1.6 Controllo del Movimento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.7_traffic_light.html">3.1.7 Semaforo</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="3.1.8_overheat_monitor.html#">3.1.8 Monitor di Surriscaldamento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.9_password_lock.html">3.1.9 Serratura a Codice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.10_alarm_bell.html">3.1.10 Campanello di Allarme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.11_morse_code_generator.html">3.1.11 Generatore di Codice Morse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.12_game_guess_number.html">3.1.12 GIOCO – Indovina il Numero</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.13_game_10_second.html">3.1.13 GIOCO – 10 Secondi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3.1.14_game_not_not.html">3.1.14 GIOCO – Not Not</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Giocare con Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Per Pi 4, 3 e tutti gli altri modelli Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Corso Video Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Grazie</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu navigazione dispositivi mobili" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Naviga tra le pagine">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Per Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_c.html">Gioca con C</a></li>
+          <li class="breadcrumb-item"><a href="3_extension.html">3 Estensioni</a></li>
+      <li class="breadcrumb-item active">3.1.8 Monitor di Surriscaldamento</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c_pi5/3.1.8_overheat_monitor.rst.txt" rel="nofollow"> Visualizza sorgente pagina</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Ciao, benvenuto nella Community su Facebook per gli appassionati di SunFounder Raspberry Pi, Arduino e ESP32! Approfondisci le tue conoscenze su Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.</p>
+<p><strong>Perché unirti a noi?</strong></p>
+<ul class="simple">
+<li><p><strong>Supporto esperto</strong>: Risolvi i problemi post-vendita e le sfide tecniche con l’aiuto della nostra community e del nostro team.</p></li>
+<li><p><strong>Impara e Condividi</strong>: Scambia consigli e tutorial per migliorare le tue competenze.</p></li>
+<li><p><strong>Anteprime Esclusive</strong>: Ottieni accesso anticipato agli annunci dei nuovi prodotti e anteprime esclusive.</p></li>
+<li><p><strong>Sconti Speciali</strong>: Approfitta di sconti esclusivi sui nostri prodotti più recenti.</p></li>
+<li><p><strong>Promozioni e Giveaway Festivi</strong>: Partecipa a concorsi e promozioni in occasione delle festività.</p></li>
+</ul>
+<p>👉 Pronto a esplorare e creare con noi? Clicca su [<a href="https://bit.ly/raphaelkit " target="_blank">Qui</a>] e unisciti oggi stesso!</p>
+</div>
+<section id="monitor-di-surriscaldamento">
+<h1>3.1.8 Monitor di Surriscaldamento<a class="headerlink" href="3.1.8_overheat_monitor.html#monitor-di-surriscaldamento" title="Link to this heading"></a></h1>
+<section id="introduzione">
+<h2>Introduzione<a class="headerlink" href="3.1.8_overheat_monitor.html#introduzione" title="Link to this heading"></a></h2>
+<p>Potresti voler realizzare un dispositivo di monitoraggio della temperatura
+per rilevare il surriscaldamento in vari ambienti. Ad esempio, in fabbrica,
+per attivare un allarme e spegnere automaticamente la macchina in caso di
+surriscaldamento del circuito. In questa lezione, utilizzeremo un termistore,
+un joystick, un cicalino, un LED e un LCD per creare un dispositivo intelligente
+di monitoraggio della temperatura con soglia regolabile.</p>
+</section>
+<section id="componenti">
+<h2>Componenti<a class="headerlink" href="3.1.8_overheat_monitor.html#componenti" title="Link to this heading"></a></h2>
+<img alt="../_images/list_Overheat_Monitor1.png" class="align-center" src="../_images/list_Overheat_Monitor1.png" />
+<img alt="../_images/list_Overheat_Monitor21.png" class="align-center" src="../_images/list_Overheat_Monitor21.png" />
+</section>
+<section id="schema-di-collegamento">
+<h2>Schema di Collegamento<a class="headerlink" href="3.1.8_overheat_monitor.html#schema-di-collegamento" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO22</p></td>
+<td><p>Pin15</p></td>
+<td><p>3</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO23</p></td>
+<td><p>Pin16</p></td>
+<td><p>4</p></td>
+<td><p>23</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO24</p></td>
+<td><p>Pin18</p></td>
+<td><p>5</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-even"><td><p>SDA1</p></td>
+<td><p>Pin 3</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>SCL1</p></td>
+<td><p>Pin 5</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/Schematic_three_one81.png"><img alt="../_images/Schematic_three_one81.png" class="align-center" src="../_images/Schematic_three_one81.png" style="width: 700px;" />
+</a>
+</section>
+<section id="procedure-sperimentali">
+<h2>Procedure Sperimentali<a class="headerlink" href="3.1.8_overheat_monitor.html#procedure-sperimentali" title="Link to this heading"></a></h2>
+<p><strong>Passo 1:</strong> Costruisci il circuito.</p>
+<a class="reference internal image-reference" href="../_images/image2581.png"><img alt="../_images/image2581.png" src="../_images/image2581.png" style="width: 800px;" />
+</a>
+<p><strong>Passo 2:</strong> Vai nella cartella del codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">3.1.8</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Passo 3:</strong> Compila il codice.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">3.1.8</span><span class="n">_OverheatMonitor</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span> <span class="o">-</span><span class="n">lm</span>
+</pre></div>
+</div>
+<p><strong>Passo 4:</strong> Esegui il file eseguibile.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Quando il codice è in esecuzione, la temperatura attuale e la soglia
+di alta temperatura (<strong>40**°C) vengono visualizzate su **I2C LCD1602</strong>.
+Se la temperatura attuale supera la soglia, il cicalino e il LED si
+accendono per avvisare.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Se non funziona dopo l’esecuzione o compare un messaggio di errore: &quot;wiringPi.h: No such file or directory&quot;, consulta <a class="reference internal" href="../faq.html#il-codice-c-non-funziona"><span class="std std-ref">Il codice C non funziona?</span></a>.</p>
+</div>
+<p><strong>Joystick</strong>: il joystick serve per regolare la soglia di alta temperatura.
+Spostando il <strong>Joystick</strong> lungo gli assi X e Y si può aumentare o diminuire
+la soglia. Premere il <strong>Joystick</strong> una volta per reimpostare la soglia al
+valore iniziale.</p>
+<p><strong>Spiegazione del Codice</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">get_joystick_value</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w"> </span><span class="n">x_val</span><span class="p">;</span>
+<span class="w">    </span><span class="n">uchar</span><span class="w"> </span><span class="n">y_val</span><span class="p">;</span>
+<span class="w">    </span><span class="n">x_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_ADC_Result</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">y_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_ADC_Result</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x_val</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">200</span><span class="p">){</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">x_val</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">50</span><span class="p">){</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">y_val</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">200</span><span class="p">){</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-10</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">y_val</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">50</span><span class="p">){</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Questa funzione legge i valori di X e Y. Se <strong>X&gt;200</strong>, restituisce «<strong>1</strong>»;
+<strong>X&lt;50</strong>, restituisce «<strong>-1</strong>»; <strong>y&gt;200</strong>, restituisce «<strong>-10</strong>»; e <strong>y&lt;50</strong>,
+restituisce «<strong>10</strong>».</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">upper_tem_setting</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Upper Adjust:&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_joystick_value</span><span class="p">();</span>
+<span class="w">    </span><span class="n">upperTem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">upperTem</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">change</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">str</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+<span class="w">    </span><span class="n">snprintf</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="n">upperTem</span><span class="p">);</span>
+<span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">str</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+<span class="w">  </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+<span class="w">  </span><span class="n">write</span><span class="p">(</span><span class="n">len</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">&quot;             &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Questa funzione regola la soglia e la visualizza su <strong>I2C LCD1602</strong>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="nf">temperature</span><span class="p">(){</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">temp_value</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">Vr</span><span class="p">,</span><span class="w"> </span><span class="n">Rt</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="n">cel</span><span class="p">,</span><span class="w"> </span><span class="n">Fah</span><span class="p">;</span>
+<span class="w">    </span><span class="n">temp_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_ADC_Result</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Vr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">temp_value</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Rt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">Vr</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">Vr</span><span class="p">));</span>
+<span class="w">    </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(((</span><span class="n">log</span><span class="p">(</span><span class="n">Rt</span><span class="o">/</span><span class="mi">10000</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3950</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">273.15</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">25</span><span class="p">)));</span>
+<span class="w">    </span><span class="n">cel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">273.15</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Fah</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cel</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.8</span><span class="w"> </span><span class="o">+</span><span class="mi">32</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">cel</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Legge il valore analogico di <strong>CH0</strong> (termistore) di <strong>ADC0834</strong> e lo
+converte in temperatura.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">monitoring_temp</span><span class="p">(){</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">str</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">cel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temperature</span><span class="p">();</span>
+<span class="w">    </span><span class="n">snprintf</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="s">&quot;%.2f&quot;</span><span class="p">,</span><span class="n">cel</span><span class="p">);</span>
+<span class="w">    </span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Temp: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">write</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+<span class="w">    </span><span class="n">snprintf</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="n">upperTem</span><span class="p">);</span>
+<span class="w">    </span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Upper: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">write</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+<span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">cel</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">upperTem</span><span class="p">){</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">buzzPin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">cel</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">upperTem</span><span class="p">){</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">buzzPin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">LedPin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Quando il codice è in esecuzione, la temperatura attuale e la soglia
+di alta temperatura (<strong>40**°C) vengono visualizzate su **I2C LCD1602</strong>.
+Se la temperatura attuale supera la soglia, il cicalino e il LED si accendono
+per avvisare.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">setup</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">lastState</span><span class="w"> </span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">stage</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">currentState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digitalRead</span><span class="p">(</span><span class="n">Joy_BtnPin</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">currentState</span><span class="o">==</span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">lastState</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<span class="w">            </span><span class="n">stage</span><span class="o">=</span><span class="p">(</span><span class="n">stage</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span><span class="p">;</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">            </span><span class="n">lcd_clear</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">lastState</span><span class="o">=</span><span class="n">currentState</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stage</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">            </span><span class="n">upper_tem_setting</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="p">{</span>
+<span class="w">            </span><span class="n">monitoring_temp</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>La funzione main() include l’intero processo del programma:</p>
+<p>1) All’avvio del programma, il valore iniziale di <strong>stage</strong> è <strong>0</strong> e la
+temperatura attuale insieme alla soglia di alta temperatura (<strong>40**°C)
+vengono visualizzate su **I2C LCD1602</strong>. Se la temperatura supera la soglia,
+il cicalino e il LED si attivano per avvisare.</p>
+<p>2) Premendo il Joystick, <strong>stage</strong> diventa <strong>1</strong>, consentendo di regolare la
+soglia di alta temperatura. Spostando il Joystick lungo gli assi X e Y si può
+aumentare o diminuire la soglia corrente. Premere nuovamente il Joystick per
+reimpostare la soglia al valore iniziale.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Piè di pagina">
+        <a href="3.1.7_traffic_light.html" class="btn btn-neutral float-left" title="3.1.7 Semaforo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Precedente</a>
+        <a href="3.1.9_password_lock.html" class="btn btn-neutral float-right" title="3.1.9 Serratura a Codice" accesskey="n" rel="next">Prossimo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, SunFounder.</p>
+  </div>
+
+  Realizzato con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornito da <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

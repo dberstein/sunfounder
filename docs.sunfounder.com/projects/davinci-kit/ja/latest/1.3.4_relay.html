@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.3.4 リレー &mdash; SunFounder davinci-kit-for-raspberry-pi  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=c033477b"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=4dbe4bdc"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/ja/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="2 入力" href="2_input.html" />
+    <link rel="prev" title="1.3.3 ステッピングモーター" href="1.3.3_stepper_motor.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-ja" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/1.3.4_relay.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">部品一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">GPIO拡張ボード</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">コードをダウンロードする</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Raspberry Pi OSのインストールとセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">For Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">For Pi 4, 3, and All Other Pi Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">ライブラリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html#wiringpi">WiringPiをインストールして確認する</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="1_output.html">1 出力</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 点滅LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 RGB LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 LED棒グラフ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 7セグメントディスプレイ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 4桁7セグメントディスプレイ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 LEDドットマトリックス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 アクティブブザー</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 パッシブブザー</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.1_motor.html">1.3.1 モーター</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.2_servo.html">1.3.2 サーボ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 ステッピングモーター</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="1.3.4_relay.html#">1.3.4 リレー</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="1.3.4_relay.html#id2">前書き</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.4_relay.html#id3">部品</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.4_relay.html#id4">原理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.4_relay.html#id5">回路図</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.4_relay.html#id6">実験手順</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.4_relay.html#id7">現象画像</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2_input.html">2 入力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_extension.html">3 拡張</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Processingで遊ぶ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Play with Nodejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Scratch で遊ぶ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Python ビデオコース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">付録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">ありがとうございました</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+          <li class="breadcrumb-item"><a href="1_output.html">1 出力</a></li>
+      <li class="breadcrumb-item active">1.3.4 リレー</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/1.3.4_relay.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>こんにちは、SunFounderのRaspberry Pi &amp; Arduino &amp; ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。</p>
+<p><strong>参加する理由は？</strong></p>
+<ul class="simple">
+<li><p><strong>エキスパートサポート</strong>：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。</p></li>
+<li><p><strong>学び＆共有</strong>：ヒントやチュートリアルを交換してスキルを向上させましょう。</p></li>
+<li><p><strong>独占的なプレビュー</strong>：新製品の発表や先行プレビューに早期アクセスしましょう。</p></li>
+<li><p><strong>特別割引</strong>：最新製品の独占割引をお楽しみください。</p></li>
+<li><p><strong>祭りのプロモーションとギフト</strong>：ギフトや祝日のプロモーションに参加しましょう。</p></li>
+</ul>
+<p>👉 私たちと一緒に探索し、創造する準備はできていますか？[<a href="https://bit.ly/raphaelkit " target="_blank">ここ</a>]をクリックして今すぐ参加しましょう！</p>
+</div>
+<section id="id1">
+<h1>1.3.4 リレー<a class="headerlink" href="1.3.4_relay.html#id1" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>前書き<a class="headerlink" href="1.3.4_relay.html#id2" title="Link to this heading"></a></h2>
+<p>このレッスンでは、リレーの使用方法を学習する。
+これは、自動制御システムで一般的に使用される部品の1つである。
+電圧、電流、温度、圧力などが所定の値に到達、超過、または低下すると、リレーは回路を接続または中断して、機器を制御したり保護したりする。</p>
+</section>
+<section id="id3">
+<h2>部品<a class="headerlink" href="1.3.4_relay.html#id3" title="Link to this heading"></a></h2>
+<img alt="_images/list_1.3.4.png" src="_images/list_1.3.4.png" />
+</section>
+<section id="id4">
+<h2>原理<a class="headerlink" href="1.3.4_relay.html#id4" title="Link to this heading"></a></h2>
+<p><strong>ダイオード</strong></p>
+<p>ダイオードは一方向に電流が流れる電子機器の2端子部品である。
+電流の流れる方向に低い抵抗を提供し、反対方向に高い抵抗を提供する。
+ダイオードは主に、通常は分極している回路の起電力による部品の損傷を防ぐために使用される。</p>
+<img alt="_images/image344.png" src="_images/image344.png" />
+<p>ダイオードの2つの端子は極性があり、陽極と呼ばれる正の端と陰極と呼ばれる負の端がある。
+陰極は通常、銀でできているか、またあカラーバンドを持っている。
+電流の方向を制御することは、ダイオードの重要な機能の1つである。
+ダイオードの電流は陽極から陰極に流れる。ダイオードの動作は、逆止弁の動作に似ている。
+ダイオードの最も重要な特性の1つは、非線形電流電圧である。
+より高い電圧が陽極に接続されている場合、電流は陽極から陰極に流れ、プロセスは順方向バイアスと呼ばれる。
+ただし、より高い電圧が陰極に接続されている場合、ダイオードは電気を通さず、プロセスは逆方向バイアスと呼ばれる。</p>
+<p><strong>リレー</strong></p>
+<p>ご存知のように、リレーは、入力信号に応じて2つ以上のポイントまたはデバイス間の接続を提供するために使用されるデバイスである。
+つまり、デバイスはACとDCの両方で動作する可能性があるため、リレーはコントローラーとデバイスの間を分離する。
+しかしながら、DC上で動作するマイクロコントローラーから信号を受信するため、ギャップを埋めるためのリレーが必要である。
+小さな電気信号で大量の電流または電圧を制御する必要がある場合には、リレーは非常に有用である。</p>
+<p>すべてのリレーには5つのパーツがある：</p>
+<p><strong>電磁石</strong> - ワイヤーのコイルで巻かれた鉄心で構成されている。通電させると、磁気になります。したがって、電磁石と呼ばれる。</p>
+<p><strong>電機子</strong> - 可動磁気ストリップは電機子と呼ばれる。それらに電流が流れると、コイルが通電されて磁場が生成され、常開（N/O）または常閉（N/C）ポイントを作成したり切断したりするために使用される。また、電機子は直流（DC）と交流（AC）で移動できる。</p>
+<p><strong>スプリング</strong> - 電磁石のコイルに電流が流れない場合、スプリングは電機子を引き離し、回路を完成できない。</p>
+<p>電気 <strong>接点</strong> のセット-2つの接点がある：</p>
+<ul class="simple">
+<li><p>通常開-リレーがアクティブなときに接続され、非アクティブなときに切断されます。</p></li>
+<li><p>常閉-リレーが作動している時に接続しなく、リ</p></li>
+</ul>
+<p><strong>成形フレーム</strong> - 保護のため、リレーはプラスチックで覆われている。</p>
+<p><strong>リレーの動作</strong></p>
+<p>リレーの動作原理は非常に簡単である。リレーに電力が供給されると、制御コイルに電流が流れ始める。その結果、電磁石が通電を開始する。次に、電機子がコイルに引き付けられ、可動接点が一緒に引き下げられ、常開接点に接続される。したがって、負荷がかけられた回路が通電される。次に、可動接点がスプリングの力で常閉接点に引き上げられるため、回路を遮断することも同様のケースになる。このようにして、リレーのオンとオフの切り替えにより、負荷回路の状態を制御できる。</p>
+<img alt="_images/image142.jpeg" src="_images/image142.jpeg" />
+</section>
+<section id="id5">
+<h2>回路図<a class="headerlink" href="1.3.4_relay.html#id5" title="Link to this heading"></a></h2>
+<img alt="_images/image345.png" src="_images/image345.png" />
+</section>
+<section id="id6">
+<h2>実験手順<a class="headerlink" href="1.3.4_relay.html#id6" title="Link to this heading"></a></h2>
+<p>ステップ1： 回路を作る。</p>
+<a class="reference internal image-reference" href="_images/image144.png"><img alt="_images/image144.png" src="_images/image144.png" style="width: 800px;" />
+</a>
+<section id="c">
+<h3>C言語ユーザー向け<a class="headerlink" href="1.3.4_relay.html#c" title="Link to this heading"></a></h3>
+<p>ステップ2： コードファイルを開く。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.3.4</span>
+</pre></div>
+</div>
+<p>ステップ3： コードをコンパイルする。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.3.4</span><span class="n">_Relay</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p>ステップ4： EXEファイルを実行する。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>コードの実行後、LEDが点灯する。さらに、通常は閉じている接点を切断し、通常は開いている接点を閉じることによって発生するカチカチという声が聞こえる。</p>
+<p><strong>コード</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#define RelayPin 0</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span><span class="w"> </span><span class="c1">//when initialize wiring failed, print message to screen</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">RelayPin</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w">   </span><span class="c1">//set GPIO17(GPIO0) output</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="c1">// Tick</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Relay Open......</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RelayPin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Tock</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;......Relay Close</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RelayPin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>コードの説明</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RelayPin</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>I/Oポートを低レベル（0V）に設定すると、トランジスタに通電されず、コイルに電力が供給されない。
+電磁力がないため、リレーが開き、LEDは点灯しない。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RelayPin</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>I/Oポートを高レベル（5V）に設定して、トランジスタに通電する。
+リレーのコイルに電力を供給し、電磁力が発生すると、リレーが閉じてLEDが点灯する。</p>
+</section>
+<section id="python">
+<h3>Pythonユーザーの場合<a class="headerlink" href="1.3.4_relay.html#python" title="Link to this heading"></a></h3>
+<p>ステップ2： コードファイルを開く。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<p>ステップ3： 実行する。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.3.4</span><span class="n">_Relay</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>コードの実行中、LEDが点灯する。
+さらに、通常は閉じている接点を切断し、通常は開いている接点を閉じることによって発生するカチカチという声が聞こえる。</p>
+<p><strong>コード</strong></p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>以下のコードを <strong>変更/リセット/コピー/実行/停止</strong> できます。 ただし、その前に、 <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code> のようなソースコードパスに移動する必要があります。</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Set GPIO17 as control pin</span>
+<span class="n">relayPin</span> <span class="o">=</span> <span class="mi">17</span>
+
+<span class="c1"># Define a setup function for some setup</span>
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="c1"># Set the GPIO modes to BCM Numbering</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+    <span class="c1"># Set relayPin&#39;s mode to output,</span>
+    <span class="c1"># and initial level to High(3.3v)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">relayPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+
+<span class="c1"># Define a main function for main process</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Relay open...&#39;</span><span class="p">)</span>
+        <span class="c1"># Tick</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">relayPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;...Relay close&#39;</span><span class="p">)</span>
+        <span class="c1"># Tock</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">relayPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Define a destroy function for clean up everything after</span>
+<span class="c1"># the script finished</span>
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="c1"># Turn off LED</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">relayPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+    <span class="c1"># Release resource</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="c1"># If run this script directly, do:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">main</span><span class="p">()</span>
+    <span class="c1"># When &#39;Ctrl+C&#39; is pressed, the child program</span>
+    <span class="c1"># destroy() will be  executed.</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>コードの説明</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">relayPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>トランジスタのピンを低レベルに設定して、リレーを開く。LEDは点灯しない。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>1秒待つ。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">relayPin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>トランジスタのピンを低レベルに設定してリレーを作動させ、LEDが点灯する。</p>
+</section>
+</section>
+<section id="id7">
+<h2>現象画像<a class="headerlink" href="1.3.4_relay.html#id7" title="Link to this heading"></a></h2>
+<img alt="_images/image145.jpeg" src="_images/image145.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1.3.3_stepper_motor.html" class="btn btn-neutral float-left" title="1.3.3 ステッピングモーター" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2_input.html" class="btn btn-neutral float-right" title="2 入力" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+.. note::
+
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 con altri appassionati.
+
+    **Perché unirsi a noi?**
+
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e anteprime.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e omaggi festivi**: Partecipa a promozioni e omaggi in occasione delle festività.
+
+    👉 Pronto per esplorare e creare insieme a noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _3.1.14_py_pi5:
+
+3.1.14 GIOCO – Not Not
+=========================
+
+Introduzione
+--------------------
+
+In questa lezione, costruiremo un dispositivo per un gioco divertente chiamato "Not Not".
+
+Durante il gioco, la matrice a punti mostrerà casualmente una freccia. Il tuo compito è premere il pulsante nella direzione opposta alla freccia entro un tempo limitato. Se il tempo scade o se viene premuto il pulsante nella stessa direzione della freccia, perdi la partita.
+
+Questo gioco è un ottimo esercizio di pensiero inverso. Sei pronto per una prova?
+
+Componenti Necessari
+------------------------------
+
+Per questo progetto, ci servono i seguenti componenti.
+
+.. image:: ../python_pi5/img/3.1.14_game_not_not_list.png
+    :width: 800
+    :align: center
+
+Schema Elettrico
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO20       Pin 38   28       20
+GPIO26       Pin 37   25       26
+============ ======== ======== ===
+
+.. image:: ../python_pi5/img/3.1.14_game_not_not_schematic.png
+   :align: center
+
+Procedure Sperimentali
+---------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/3.1.14_game_not_not_circuit.png
+
+**Passo 2:** Apri il file del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+
+**Passo 3:** Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 3.1.14_MotionControl.py
+
+Dopo l'avvio del programma, sulla matrice a punti appare una freccia che 
+punta a destra o a sinistra. Devi premere il pulsante nella direzione 
+opposta alla freccia entro un tempo limitato. Successivamente, sulla 
+matrice a punti apparirà il simbolo \"**√**\". Se il tempo scade o se 
+viene premuto il pulsante nella stessa direzione della freccia, sei fuori 
+e la matrice visualizzerà una \"x\". Puoi anche aggiungere 2 nuovi pulsanti 
+o sostituirli con i tasti del Joystick per ottenere le quattro direzioni 
+(su, giù, sinistra e destra) e aumentare la difficoltà del gioco.
+
+.. warning::
+
+    Se appare il messaggio di errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Codice**
+
+.. note::
+
+    È possibile **Modificare/Reimpostare/Copiare/Eseguire/Arrestare** il codice qui sotto. Prima di farlo, però, è necessario accedere al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, è possibile eseguirlo direttamente per vederne l'effetto.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import OutputDevice, Button
+   import time
+   import threading
+   import random
+
+
+
+       # Pin GPIO per il registro a scorrimento 74HC595
+       SDI = OutputDevice(17)   # Input Dati Seriali
+       RCLK = OutputDevice(18)  # Clock del Registro
+       SRCLK = OutputDevice(27) # Clock del Registro a Scorrimento
+
+   # GPIO pins for buttons
+   AButtonPin = Button(20)  # Button A
+   BButtonPin = Button(26)  # Button B
+
+   # Game variables initialization
+       timerPlay = 0
+       timerCheck = 0
+       waypoint = "NULL"
+       stage = "NULL"
+
+   # Arrow glyphs for LED matrix display
+       arrow = {
+           "right": [0xFF, 0xEF, 0xDF, 0x81, 0xDF, 0xEF, 0xFF, 0xFF],
+           "left": [0xFF, 0xF7, 0xFB, 0x81, 0xFB, 0xF7, 0xFF, 0xFF]
+       }
+
+       # Feedback visivo per risposte corrette/sbagliate
+       check = {
+           "wrong": [0xFF, 0xBB, 0xD7, 0xEF, 0xD7, 0xBB, 0xFF, 0xFF],
+           "right": [0xFF, 0xFF, 0xF7, 0xEB, 0xDF, 0xBF, 0xFF, 0xFF]
+       }
+
+       def hc595_shift(dat):
+       """ Shift data to the 74HC595 shift register. """
+           for i in range(8):
+               SDI.value = 0x80 & (dat << i)
+               SRCLK.on()
+               SRCLK.off()
+
+       def display(glyphCode):
+       """ Display a glyph on the LED matrix. """
+           for i in range(0, 8):
+               hc595_shift(glyphCode[i])
+               hc595_shift(0x80 >> i)
+               RCLK.on()
+               RCLK.off()
+
+       def creatGlyph():
+       """ Create a new glyph for the game and start the play timer. """
+           global waypoint, stage, timerPlay
+           waypoint = random.choice(list(arrow.keys()))
+           stage = "PLAY"
+           timerPlay = threading.Timer(2.0, timeOut)
+           timerPlay.start()
+
+       def checkPoint(inputKey):
+       """ Check player's input and update game state. """
+           global waypoint, stage, timerCheck
+           if inputKey == "empty" or inputKey == waypoint:
+               waypoint = "wrong"
+           else:
+               waypoint = "right"
+           timerPlay.cancel()
+           stage = "CHECK"
+           timerCheck = threading.Timer(1.0, creatGlyph)
+           timerCheck.start()
+
+       def timeOut():
+       """ Handle game timeout scenario. """
+           checkPoint("empty")
+
+       def getKey():
+       """ Detect button press and trigger checkpoint. """
+           if AButtonPin.is_pressed and not BButtonPin.is_pressed:
+               checkPoint("right")
+           elif not AButtonPin.is_pressed and BButtonPin.is_pressed:
+               checkPoint("left")
+
+       def main():
+       """ Main game loop. """
+           creatGlyph()
+           while True:
+               if stage == "PLAY":
+                   display(arrow[waypoint])
+                   getKey()
+               elif stage == "CHECK":
+                   display(check[waypoint])
+
+       def destroy():
+       """ Clean up resources on program exit. """
+           global timerPlay, timerCheck
+       timerPlay.cancel()  # Cancel the play timer
+       timerCheck.cancel()  # Cancel the checkpoint timer
+
+   # Run the game, handle KeyboardInterrupt for clean exit
+       try:
+           main()
+       except KeyboardInterrupt:
+           destroy()
+
+**Spiegazione del Codice**
+
+Basato su **1.1.6 Matrice LED**, questa lezione aggiunge **2** pulsanti per creare un dispositivo di gioco divertente. Pertanto, se non hai familiarità con la matrice LED, consulta :ref:`1.1.6_py_pi5`.
+
+#. Il codice inizia importando le librerie necessarie. ``gpiozero`` viene utilizzata per interagire con i pin GPIO come pulsanti e dispositivi di uscita. ``time`` permette di aggiungere ritardi, ``threading`` consente di eseguire più attività contemporaneamente e ``random`` è utile per introdurre casualità nel progetto.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import OutputDevice, Button
+       import time
+       import threading
+       import random
+
+#. Inizializza i pin GPIO per il registro a scorrimento (``SDI``, ``RCLK``, ``SRCLK``) e i pulsanti (``AButtonPin``, ``BButtonPin``). Il registro a scorrimento consente di controllare più LED utilizzando meno pin GPIO, il che è essenziale per la matrice LED.
+
+   .. code-block:: python
+
+       # Pin GPIO per il registro a scorrimento 74HC595
+       SDI = OutputDevice(17)   # Ingresso dati seriale
+       RCLK = OutputDevice(18)  # Clock del Registro
+       SRCLK = OutputDevice(27) # Clock del Registro a Scorrimento
+
+       # Pin GPIO per i pulsanti
+       AButtonPin = Button(20)  # Pulsante A
+       BButtonPin = Button(26)  # Pulsante B
+
+#. Inizializza le variabili utilizzate nella logica di gioco, come i timer e gli indicatori dello stato di gioco.
+
+   .. code-block:: python
+
+       # Inizializzazione delle variabili di gioco
+       timerPlay = 0
+       timerCheck = 0
+       waypoint = "NULL"
+       stage = "NULL"
+
+#. Definisce schemi binari per la visualizzazione delle frecce e del feedback (corretto/errato) sulla matrice LED. Ogni elemento dell'array rappresenta una riga della matrice, dove ``1`` e ``0`` corrispondono rispettivamente a un LED acceso o spento.
+
+   .. code-block:: python
+
+       # Frecce per visualizzazione su matrice LED
+       arrow = {
+           "right": [0xFF, 0xEF, 0xDF, 0x81, 0xDF, 0xEF, 0xFF, 0xFF],
+           "left": [0xFF, 0xF7, 0xFB, 0x81, 0xFB, 0xF7, 0xFF, 0xFF]
+       }
+
+       # Feedback visivo per risposte corrette/sbagliate
+       check = {
+           "wrong": [0xFF, 0xBB, 0xD7, 0xEF, 0xD7, 0xBB, 0xFF, 0xFF],
+           "right": [0xFF, 0xFF, 0xF7, 0xEB, 0xDF, 0xBF, 0xFF, 0xFF]
+       }
+
+#. Questa funzione invia un byte di dati al registro a scorrimento 74HC595. Cicla su ogni bit del byte ``dat``, impostando il pin ``SDI`` alto o basso di conseguenza, e attiva il pin ``SRCLK`` per far scorrere il bit nel registro.
+
+   .. code-block:: python
+
+       def hc595_shift(dat):
+           """ Shift data to the 74HC595 shift register. """
+           for i in range(8):
+               SDI.value = 0x80 & (dat << i)
+               SRCLK.on()
+               SRCLK.off()
+
+#. Questa funzione visualizza un simbolo sulla matrice LED. Invia ogni riga del simbolo (rappresentata da ``glyphCode``) e l'indirizzo della riga al registro a scorrimento tramite ``hc595_shift``, quindi attiva il pin ``RCLK`` per aggiornare la visualizzazione.
+
+   .. code-block:: python
+
+       def display(glyphCode):
+           """ Display a glyph on the LED matrix. """
+           for i in range(0, 8):
+               hc595_shift(glyphCode[i])
+               hc595_shift(0x80 >> i)
+               RCLK.on()
+               RCLK.off()
+
+#. Questa funzione seleziona casualmente un simbolo dall'array ``arrow``, avvia il timer di gioco e imposta lo stato del gioco su "PLAY". ``threading.Timer`` viene utilizzato per il controllo del tempo nel gioco.
+
+   .. code-block:: python
+
+       def creatGlyph():
+           """ Create a new glyph for the game and start the play timer. """
+           global waypoint, stage, timerPlay
+           waypoint = random.choice(list(arrow.keys()))
+           stage = "PLAY"
+           timerPlay = threading.Timer(2.0, timeOut)
+           timerPlay.start()
+
+#. Questa funzione verifica la risposta del giocatore rispetto al simbolo corrente. Se la risposta è corretta, imposta ``waypoint`` su "right", altrimenti su "wrong". Cancella quindi il timer di gioco corrente e ne avvia uno nuovo per il prossimo simbolo.
+
+   .. code-block:: python
+
+       def checkPoint(inputKey):
+           """ Check player's input and update game state. """
+           global waypoint, stage, timerCheck
+           if inputKey == "empty" or inputKey == waypoint:
+               waypoint = "wrong"
+           else:
+               waypoint = "right"
+           timerPlay.cancel()
+           stage = "CHECK"
+           timerCheck = threading.Timer(1.0, creatGlyph)
+           timerCheck.start()
+
+#. Questa funzione viene chiamata quando il tempo del gioco scade. Invoca ``checkPoint`` con "empty" per indicare che nessun pulsante è stato premuto in tempo.
+
+   .. code-block:: python
+
+       def timeOut():
+           """ Handle game timeout scenario. """
+           checkPoint("empty")
+
+#. Questa funzione controlla lo stato dei pulsanti. Se ``AButtonPin`` è premuto (e ``BButtonPin`` non lo è), chiama ``checkPoint`` con "right". Se ``BButtonPin`` è premuto (e ``AButtonPin`` non lo è), chiama ``checkPoint`` con "left".
+
+   .. code-block:: python
+
+       def getKey():
+           """ Detect button press and trigger checkpoint. """
+           if AButtonPin.is_pressed and not BButtonPin.is_pressed:
+               checkPoint("right")
+           elif not AButtonPin.is_pressed and BButtonPin.is_pressed:
+               checkPoint("left")
+
+#. La funzione ``main`` controlla il flusso del gioco. Inizia creando un simbolo, quindi verifica continuamente lo stato del gioco. Se si trova nello stato "PLAY", visualizza il simbolo corrente e controlla i pulsanti. In stato "CHECK", visualizza il feedback in base all'azione del giocatore.
+
+   .. code-block:: python
+
+       def main():
+           """ Main game loop. """
+           creatGlyph()
+           while True:
+               if stage == "PLAY":
+                   display(arrow[waypoint])
+                   getKey()
+               elif stage == "CHECK":
+                   display(check[waypoint])
+
+#. Questa funzione annulla eventuali timer attivi quando il programma termina, assicurando una chiusura pulita.
+
+   .. code-block:: python
+
+       def destroy():
+           """ Clean up resources on program exit. """
+           global timerPlay, timerCheck
+           timerPlay.cancel()  # Annulla il timer di gioco
+           timerCheck.cancel()  # Annulla il timer di verifica
+
+#. Il gioco viene eseguito in un blocco ``try``. Se si verifica una ``KeyboardInterrupt`` (come premendo Ctrl+C), cattura l'eccezione e chiama ``destroy`` per ripulire prima di uscire.
+
+   .. code-block:: python
+
+       # Esegue il gioco, gestisce KeyboardInterrupt per un'uscita pulita
+       try:
+           main()
+       except KeyboardInterrupt:
+           destroy()
+
+

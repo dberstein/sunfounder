@@ -1,0 +1,191 @@
+.. note::
+
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Esplora a fondo il mondo di Raspberry Pi, Arduino ed ESP32 insieme a tanti altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto da Esperti**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti inediti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _1.3.2_py_pi5:
+
+1.3.2 Servo
+=============
+
+Introduzione
+----------------
+
+In questo progetto impareremo a far ruotare un servomotore.
+
+Componenti Necessari
+-------------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti.
+
+.. image:: ../python_pi5/img/1.3.2_servo_list.png
+
+
+
+Schema Elettrico
+--------------------
+
+.. image:: ../img/image337.png
+
+
+Procedure Sperimentali
+-------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../img/image125.png
+
+
+**Passo 2**: Entra nella cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Passo 3**: Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 1.3.2_Servo.py
+
+Dopo l'esecuzione del programma, il servomotore ruoterà da 0 a 90 a 180 gradi e poi da 180 a 90 a 0 gradi, in un ciclo continuo.
+
+.. warning::
+
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, potrai eseguirlo direttamente per vedere il risultato.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import Servo
+   from time import sleep
+
+   # Imposta il numero di pin GPIO a cui è collegato il servomotore
+   myGPIO = 18
+
+   # Definisce un fattore di correzione per regolare la larghezza degli impulsi del servo
+   myCorrection = 0.45
+   maxPW = (2.0 + myCorrection) / 1000  # Calcola la larghezza massima dell'impulso
+   minPW = (1.0 - myCorrection) / 1000  # Calcola la larghezza minima dell'impulso
+
+   # Inizializza l'oggetto Servo con larghezze di impulso personalizzate
+   servo = Servo(myGPIO, min_pulse_width=minPW, max_pulse_width=maxPW)
+
+   try:
+       while True:
+           # Posiziona il servo al centro e attendi
+           servo.mid()
+           print("mid")  # Indica la posizione corrente
+           sleep(0.5)       # Pausa di 0,5 secondi
+
+           # Muove il servo alla posizione minima e attende
+           servo.min()
+           print("min")     # Indica la posizione corrente
+           sleep(1)         # Mantieni la posizione per 1 secondo
+
+           # Riporta il servo alla posizione centrale e attende
+           servo.mid()
+           print("mid")  # Indica la posizione corrente
+           sleep(0.5)       # Pausa di 0,5 secondi
+
+           # Muove il servo alla posizione massima e attende
+           servo.max()
+           print("max")     # Indica la posizione corrente
+           sleep(1)         # Mantieni la posizione per 1 secondo
+
+   except KeyboardInterrupt:
+       # Termina il programma in modo sicuro con un'interruzione da tastiera (Ctrl+C)
+       pass
+   
+
+**Spiegazione del Codice**
+
+#. Queste istruzioni di importazione richiamano la classe ``Servo`` per il controllo del servo e la funzione ``sleep`` per la temporizzazione.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import Servo
+       from time import sleep
+
+#. Imposta il pin GPIO 18 per il collegamento del servomotore.
+
+   .. code-block:: python
+
+       # Imposta il numero di pin GPIO a cui è collegato il servomotore
+       myGPIO = 18
+
+#. Queste righe definiscono un fattore di correzione e lo utilizzano per calcolare la larghezza massima e minima degli impulsi per il servo, regolando il suo intervallo di movimento.
+
+   .. code-block:: python
+
+       # Definisce un fattore di correzione per regolare la larghezza degli impulsi del servo
+       myCorrection = 0.45
+       maxPW = (2.0 + myCorrection) / 1000  # Calcola la larghezza massima dell'impulso
+       minPW = (1.0 - myCorrection) / 1000  # Calcola la larghezza minima dell'impulso
+
+#. Inizializza l'oggetto Servo con il pin GPIO specificato e larghezze di impulso personalizzate.
+
+   .. code-block:: python
+
+       # Inizializza l'oggetto Servo con larghezze di impulso personalizzate
+       servo = Servo(myGPIO, min_pulse_width=minPW, max_pulse_width=maxPW)
+
+#. Il blocco `try` contiene un ciclo `while True` per muovere continuamente il servo. Il servo si posiziona ai punti centrale, minimo e massimo, con ciascuna posizione stampata e mantenuta per la durata specificata.
+
+   .. code-block:: python
+
+       try:
+           while True:
+               # Posiziona il servo al centro e attendi
+               servo.mid()
+               print("mid")  # Indica la posizione corrente
+               sleep(0.5)       # Pausa di 0,5 secondi
+
+               # Muove il servo alla posizione minima e attende
+               servo.min()
+               print("min")     # Indica la posizione corrente
+               sleep(1)         # Mantieni la posizione per 1 secondo
+
+               # Riporta il servo alla posizione centrale e attende
+               servo.mid()
+               print("mid")  # Indica la posizione corrente
+               sleep(0.5)       # Pausa di 0,5 secondi
+
+               # Muove il servo alla posizione massima e attende
+               servo.max()
+               print("max")     # Indica la posizione corrente
+               sleep(1)         # Mantieni la posizione per 1 secondo
+
+       except KeyboardInterrupt:
+           # Termina il programma in modo sicuro con un'interruzione da tastiera (Ctrl+C)
+           pass
+

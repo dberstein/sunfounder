@@ -1,0 +1,127 @@
+.. note::
+
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto Esperto**: Risolvi i problemi post-vendita e le sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara & Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima agli annunci dei nuovi prodotti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Omaggi**: Partecipa a omaggi e promozioni speciali per le festività.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+2.1.2 Interruttore a Scorrimento
+=====================================
+
+Introduzione
+--------------
+
+In questo progetto, impareremo come utilizzare un interruttore a scorrimento. 
+Di solito, l’interruttore a scorrimento è saldato su un PCB come interruttore 
+di alimentazione; qui, invece, lo inseriremo in una breadboard per mostrare il 
+suo funzionamento.
+
+Componenti
+-------------
+
+.. image:: ../img/list_2.1.2_slide_switch.png
+
+
+
+Schema a Blocchi
+--------------------
+
+Collega il pin centrale dell’interruttore a scorrimento a GPIO17 e due LED 
+ai pin GPIO22 e GPIO27, rispettivamente. Spostando l’interruttore, vedrai 
+accendersi i due LED alternativamente.
+
+.. image:: ../img/image305.png
+
+.. image:: ../img/image306.png
+
+
+Procedure Sperimentali
+--------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../img/image161.png
+
+**Passo 2**: Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/nodejs/
+
+**Passo 3**: Esegui il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo node slide_switch.js
+
+Durante l’esecuzione del codice, sposta l’interruttore verso sinistra: 
+il LED giallo si accenderà; spostalo verso destra, e si accenderà la luce rossa.
+
+**Codice**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+    const led1 = new Gpio(22, {mode: Gpio.OUTPUT});
+    const led2 = new Gpio(27, {mode: Gpio.OUTPUT});
+
+    const slideSwitch = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    });
+
+    slideSwitch.on('interrupt', (level) => {  
+        led1.digitalWrite(level);   
+        led2.digitalWrite(!level);       
+    });
+
+**Spiegazione del Codice**
+
+.. code-block:: js
+
+    const Gpio = require('pigpio').Gpio; 
+
+    const led1 = new Gpio(22, {mode: Gpio.OUTPUT});
+    const led2 = new Gpio(27, {mode: Gpio.OUTPUT});
+
+    const slideSwitch = new Gpio(17, {
+        mode: Gpio.INPUT,
+        pullUpDown: Gpio.PUD_DOWN,     
+        edge: Gpio.EITHER_EDGE        
+    });
+
+Importa il modulo pigpio e crea tre oggetti: led1, led2, e slideSwitch, 
+per controllare l'accensione e lo spegnimento di led1 e led2 in base al 
+livello del pin dell’interruttore a scorrimento.
+
+.. code-block:: js
+
+    slideSwitch.on('interrupt', (level) => {  
+        led1.digitalWrite(level);   
+        led2.digitalWrite(!level);       
+    });
+
+Quando cambia il livello del pin dell’interruttore, lo stesso livello 
+viene scritto su led1 e il livello opposto su led2.
+
+Immagine del Fenomeno
+------------------------
+
+.. image:: ../img/image162.jpeg

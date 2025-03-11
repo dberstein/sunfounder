@@ -1,0 +1,421 @@
+.. note:: 
+
+    Ciao, benvenuto nella SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme ad altri appassionati.
+
+    **Perché unirsi?**
+
+    - **Supporto tecnico esperto**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni l'accesso anticipato a nuovi annunci di prodotti e anteprime.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni e Concorsi Festivi**: Partecipa a concorsi e promozioni festive.
+
+    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti subito!
+
+2.1.3 Interruttore di Inclinazione
+====================================
+
+Introduzione
+---------------
+
+Questo è un interruttore di inclinazione a sfera con una pallina di metallo 
+all'interno, utilizzato per rilevare inclinazioni di piccoli angoli.
+
+Componenti
+-------------
+
+.. image:: img/list_2.1.3_tilt_switch.png
+
+
+Principio di Funzionamento
+-----------------------------
+
+**Inclinazione**
+
+Il principio è molto semplice. Quando l'interruttore viene inclinato di un 
+certo angolo, la pallina all'interno rotola verso il basso e tocca i due 
+contatti collegati ai pin esterni, chiudendo il circuito. In caso contrario, 
+la pallina rimane lontana dai contatti, interrompendo il circuito.
+
+.. image:: img/image167.png
+
+
+Schema Elettrico
+-------------------
+
+.. image:: img/image307.png
+
+
+.. image:: img/image308.png
+
+
+Procedure Sperimentali
+-------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: img/image169.png
+    :width: 800
+
+
+
+Per Utenti C
+^^^^^^^^^^^^^^
+
+**Passo 2:** Cambia la directory.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.1.3/
+
+**Passo 3:** Compila il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.1.3_Tilt.c -lwiringPi
+
+**Passo 4:** Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Posiziona l'interruttore di inclinazione orizzontalmente e il LED verde si 
+accenderà. Se lo inclini, apparirà "Tilt!" sullo schermo e il LED rosso si 
+accenderà. Rimettilo in posizione orizzontale e il LED verde si riaccenderà.
+
+.. note::
+
+    Se non funziona dopo l'esecuzione o compare un messaggio di errore: \"wiringPi.h: No such file or directory", consulta :ref:`Il codice C non funziona?`.
+**Codice** 
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    #define TiltPin     0
+    #define Gpin        2
+    #define Rpin        3
+
+    void LED(char* color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == "RED")
+        {
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == "GREEN")
+        {
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+        else
+            printf("LED Error");
+    }
+
+    int main(void)
+    {
+        if(wiringPiSetup() == -1){ //se l'inizializzazione di wiring fallisce, stampa un messaggio
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        pinMode(TiltPin, INPUT);
+        LED("GREEN");
+        
+        while(1){
+            if(0 == digitalRead(TiltPin)){
+                delay(10);
+                if(0 == digitalRead(TiltPin)){
+                    LED("RED");
+                    printf("Tilt!\n");
+                    delay(100);
+                }
+            }
+            else if(1 == digitalRead(TiltPin)){
+                delay(10);
+                if(1 == digitalRead(TiltPin)){
+                    LED("GREEN");
+                }
+            }
+        }
+        return 0;
+    }
+
+**Spiegazione del Codice**
+
+.. code-block:: c
+
+    void LED(char* color)
+    {
+        pinMode(Gpin, OUTPUT);
+        pinMode(Rpin, OUTPUT);
+        if (color == "RED")
+        {
+            digitalWrite(Rpin, HIGH);
+            digitalWrite(Gpin, LOW);
+        }
+        else if (color == "GREEN")
+        {
+            digitalWrite(Rpin, LOW);
+            digitalWrite(Gpin, HIGH);
+        }
+        else
+            printf("LED Error");
+    }
+
+Definisce la funzione LED() per accendere o spegnere i due LED. Se il 
+parametro color è "RED", si accende il LED rosso; allo stesso modo, se 
+il parametro color è "GREEN", si accende il LED verde.
+
+.. code-block:: c
+
+    while(1){
+            if(0 == digitalRead(TiltPin)){
+                delay(10);
+                if(0 == digitalRead(TiltPin)){
+                    LED("RED");
+                    printf("Tilt!\n");
+                }
+            }
+            else if(1 == digitalRead(TiltPin)){
+                delay(10);
+                if(1 == digitalRead(TiltPin)){
+                    LED("GREEN");
+                }
+            }
+        }
+
+Se il valore letto dall'interruttore di inclinazione è 0, significa che è 
+inclinato e quindi il parametro "RED" viene passato alla funzione LED per 
+accendere il LED rosso; altrimenti si accende il LED verde.
+
+Per Utenti Python
+^^^^^^^^^^^^^^^^^^^^
+
+**Passo 2:** Cambia la directory.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/python/
+
+**Passo 3:** Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.1.3_Tilt.py
+
+Posiziona l'interruttore di inclinazione orizzontalmente e si accenderà il 
+LED verde. Se lo inclini, apparirà "Inclinazione rilevata!" sullo schermo e 
+si accenderà il LED rosso. Rimettilo in posizione orizzontale e si riaccenderà il LED verde.
+ED will lights on.
+
+**Code**
+
+.. note::
+
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Arrestare** il codice qui sotto. Tuttavia, prima devi accedere al percorso del codice sorgente come ``davinci-kit-for-raspberry-pi/python``.
+
+
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+
+    dhtPin = 17
+
+    GPIO.setmode(GPIO.BCM)
+
+    MAX_UNCHANGE_COUNT = 100
+
+    STATE_INIT_PULL_DOWN = 1
+    STATE_INIT_PULL_UP = 2
+    STATE_DATA_FIRST_PULL_DOWN = 3
+    STATE_DATA_PULL_UP = 4
+    STATE_DATA_PULL_DOWN = 5
+
+    def readDht11():
+        GPIO.setup(dhtPin, GPIO.OUT)
+        GPIO.output(dhtPin, GPIO.HIGH)
+        time.sleep(0.05)
+        GPIO.output(dhtPin, GPIO.LOW)
+        time.sleep(0.02)
+        GPIO.setup(dhtPin, GPIO.IN, GPIO.PUD_UP)
+
+        unchanged_count = 0
+        last = -1
+        data = []
+        while True:
+            current = GPIO.input(dhtPin)
+            data.append(current)
+            if last != current:
+                unchanged_count = 0
+                last = current
+            else:
+                unchanged_count += 1
+                if unchanged_count > MAX_UNCHANGE_COUNT:
+                    break
+
+        state = STATE_INIT_PULL_DOWN
+
+        lengths = []
+        current_length = 0
+
+        for current in data:
+            current_length += 1
+
+            if state == STATE_INIT_PULL_DOWN:
+                if current == GPIO.LOW:
+                    state = STATE_INIT_PULL_UP
+                else:
+                    continue
+            if state == STATE_INIT_PULL_UP:
+                if current == GPIO.HIGH:
+                    state = STATE_DATA_FIRST_PULL_DOWN
+                else:
+                    continue
+            if state == STATE_DATA_FIRST_PULL_DOWN:
+                if current == GPIO.LOW:
+                    state = STATE_DATA_PULL_UP
+                else:
+                    continue
+            if state == STATE_DATA_PULL_UP:
+                if current == GPIO.HIGH:
+                    current_length = 0
+                    state = STATE_DATA_PULL_DOWN
+                else:
+                    continue
+            if state == STATE_DATA_PULL_DOWN:
+                if current == GPIO.LOW:
+                    lengths.append(current_length)
+                    state = STATE_DATA_PULL_UP
+                else:
+                    continue
+        if len(lengths) != 40:
+            #print ("Data not good, skip")
+            return False
+
+        shortest_pull_up = min(lengths)
+        longest_pull_up = max(lengths)
+        halfway = (longest_pull_up + shortest_pull_up) / 2
+        bits = []
+        the_bytes = []
+        byte = 0
+
+        for length in lengths:
+            bit = 0
+            if length > halfway:
+                bit = 1
+            bits.append(bit)
+        #print ("bits: %s, length: %d" % (bits, len(bits)))
+        for i in range(0, len(bits)):
+            byte = byte << 1
+            if (bits[i]):
+                byte = byte | 1
+            else:
+                byte = byte | 0
+            if ((i + 1) % 8 == 0):
+                the_bytes.append(byte)
+                byte = 0
+        #print (the_bytes)
+        checksum = (the_bytes[0] + the_bytes[1] + the_bytes[2] + the_bytes[3]) & 0xFF
+        if the_bytes[4] != checksum:
+            #print ("Data not good, skip")
+            return False
+
+        return the_bytes[0], the_bytes[2]
+
+    def main():
+
+        while True:
+            result = readDht11()
+            if result:
+                humidity, temperature = result
+                print ("humidity: %s %%,  Temperature: %s C`" % (humidity, temperature))
+            time.sleep(1)
+
+    def destroy():
+        GPIO.cleanup()
+
+    if __name__ == '__main__':
+        try:
+            main()
+        except KeyboardInterrupt:
+            destroy() 
+**Spiegazione del Codice**
+
+.. code-block:: python
+
+    GPIO.add_event_detect(TiltPin, GPIO.BOTH, callback=detect, bouncetime=200)
+
+Configura un rilevamento su TiltPin e la funzione di callback per rilevare.
+
+.. code-block:: python
+
+    def Led(x):
+        if x == 0:
+            GPIO.output(Rpin, 1)
+            GPIO.output(Gpin, 0)
+        if x == 1:
+            GPIO.output(Rpin, 0)
+            GPIO.output(Gpin, 1)
+
+Definisci una funzione Led() per accendere o spegnere i due LED. Se x=0, il 
+LED rosso si accende; altrimenti, si accende il LED verde.
+
+.. code-block:: python
+
+    def Print(x):
+        if x == 0:
+            print ('    *************')
+            print ('    *   Tilt!   *')
+            print ('    *************')
+
+Crea una funzione Print() per visualizzare i caratteri sopra riportati sullo schermo.
+
+.. code-block:: python
+
+    def detect(chn):
+        Led(GPIO.input(TiltPin))
+        Print(GPIO.input(TiltPin))
+
+Definisci una funzione di callback per il rilevamento dell'inclinazione. 
+Ottieni il valore letto dall’interruttore di inclinazione; successivamente, 
+la funzione Led() controlla l'accensione o lo spegnimento dei due LED in base 
+al valore letto.
+
+Immagine del Fenomeno
+--------------------------
+
+.. image:: img/image170.jpeg
+
+

@@ -1,0 +1,205 @@
+.. note::
+
+    Ciao, benvenuto nella community di appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Approfondisci il mondo di Raspberry Pi, Arduino ed ESP32 con altri appassionati.
+
+    **Perché unirsi a noi?**
+
+    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra comunità e del nostro team.
+    - **Impara e condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime esclusive**: Ottieni accesso anticipato agli annunci di nuovi prodotti e anteprime.
+    - **Sconti speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni durante le festività.
+
+    👉 Sei pronto per esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+1.1.3 Grafico a barre LED
+=============================
+
+Introduzione
+-----------------
+
+In questo progetto, illumineremo in sequenza le luci sul grafico a barre LED.
+
+Componenti
+----------------
+
+.. image:: img/list_led_bar.png
+
+Principio
+--------------
+
+**Grafico a barre LED**
+
+Il grafico a barre LED è un array di LED, utilizzato per collegarsi a un 
+circuito elettronico o a un microcontrollore. È semplice collegare il grafico 
+a barre LED al circuito, come collegare 10 LED individuali a 10 pin di uscita. 
+Generalmente, il grafico a barre LED può essere utilizzato come indicatore del 
+livello della batteria, in apparecchiature audio e pannelli di controllo 
+industriale. Esistono molte altre applicazioni per i grafici a barre LED.
+
+.. image:: img/led_bar_sche.png
+
+Diagramma schematico
+-------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+GPIO25       Pin 22   6        25
+SDA1         Pin 3    8        2
+SCL1         Pin 5    9        3
+SPICE0       Pin 24   10       8
+============ ======== ======== ===
+
+.. image:: img/schematic_led_bar.png
+
+Procedure sperimentali
+------------------------------
+
+**Passo 1**: Costruisci il circuito.
+
+.. image:: img/image66.png
+    :width: 800
+
+**Passo 2**: Vai alla cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/1.1.3/
+
+**Passo 3**: Compila il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.1.3_LedBarGraph.c -lwiringPi
+
+**Passo 4:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Dopo l'esecuzione del codice, vedrai i LED sul grafico a barre LED accendersi 
+e spegnersi regolarmente.
+
+
+.. note::
+
+    Se, dopo l'esecuzione, il programma non funziona o compare il messaggio di errore: \"wiringPi.h: No such file or directory", fai riferimento a :ref:`Il codice C non funziona?`.
+    
+**Codice**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+
+    int pins[10] = {0,1,2,3,4,5,6,8,9,10};
+    void oddLedBarGraph(void){
+        for(int i=0;i<5;i++){
+            int j=i*2;
+            digitalWrite(pins[j],HIGH);
+            delay(300);
+            digitalWrite(pins[j],LOW);
+        }
+    }
+    void evenLedBarGraph(void){
+        for(int i=0;i<5;i++){
+            int j=i*2+1;
+            digitalWrite(pins[j],HIGH);
+            delay(300);
+            digitalWrite(pins[j],LOW);
+        }
+    }
+    void allLedBarGraph(void){
+        for(int i=0;i<10;i++){
+            digitalWrite(pins[i],HIGH);
+            delay(300);
+            digitalWrite(pins[i],LOW);
+        }
+    }
+    int main(void)
+    {
+        if(wiringPiSetup() == -1){ //quando l'inizializzazione di wiring fallisce, stampa il messaggio sullo schermo
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+        for(int i=0;i<10;i++){       //imposta i pin dei LED in modalità output
+            pinMode(pins[i], OUTPUT);
+            digitalWrite(pins[i],LOW);
+        }
+        while(1){
+            oddLedBarGraph();
+            delay(300);
+            evenLedBarGraph();
+            delay(300);
+            allLedBarGraph();
+            delay(300);
+        }
+        return 0;
+    }
+
+**Spiegazione del codice**
+
+.. code-block:: c
+
+    int pins[10] = {0,1,2,3,4,5,6,8,9,10};
+
+Crea un array e assegnagli i numeri di pin corrispondenti al grafico a 
+barre LED (0,1,2,3,4,5,6,8,9,10) che verrà usato per controllare i LED.
+
+.. code-block:: c
+
+    void oddLedBarGraph(void){
+        for(int i=0;i<5;i++){
+            int j=i*2;
+            digitalWrite(pins[j],HIGH);
+            delay(300);
+            digitalWrite(pins[j],LOW);
+        }
+    }
+
+Accendi i LED nelle posizioni dispari del grafico a barre LED uno dopo l'altro.
+
+.. code-block:: c
+
+    void evenLedBarGraph(void){
+        for(int i=0;i<5;i++){
+            int j=i*2+1;
+            digitalWrite(pins[j],HIGH);
+            delay(300);
+            digitalWrite(pins[j],LOW);
+        }
+    }
+
+Accendi i LED nelle posizioni pari del grafico a barre LED uno dopo l'altro.
+
+.. code-block:: c
+
+    void allLedBarGraph(void){
+        for(int i=0;i<10;i++){
+            digitalWrite(pins[i],HIGH);
+            delay(300);
+            digitalWrite(pins[i],LOW);
+        }
+    }
+
+Accendi uno per uno i LED nel grafico a barre LED.
+

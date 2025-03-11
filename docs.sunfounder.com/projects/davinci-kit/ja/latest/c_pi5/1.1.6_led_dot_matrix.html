@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.6 LEDドットマトリックス &mdash; SunFounder davinci-kit-for-raspberry-pi  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=c033477b"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=4dbe4bdc"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/ja/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="1.1.7 I2C LCD1602" href="1.1.7_i2c_lcd1602.html" />
+    <link rel="prev" title="1.1.5 4桁7セグメントディスプレイ" href="1.1.5_4-Digit_7-segment_display.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-ja" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/c_pi5/1.1.6_led_dot_matrix.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">部品一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">GPIO拡張ボード</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">コードをダウンロードする</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Raspberry Pi OSのインストールとセットアップ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">For Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Pythonで遊ぼう</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_c.html">Cと遊ぶ</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_wiringpi_c.html">WiringPiのインストールと確認</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="1_output.html">1 出力</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 点滅LED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 RGB LED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 LED棒グラフ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 7セグメントディスプレイ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 4桁7セグメントディスプレイ</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="1.1.6_led_dot_matrix.html#">1.1.6 LEDドットマトリックス</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 アクティブブザー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 パッシブブザー</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.1_motor.html">1.3.1 モーター</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.2_servo.html">1.3.2 サーボ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 ステッピングモーター</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.4_relay.html">1.3.4 リレー</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2_input.html">2 入力</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_extension.html">3 拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Scratch で遊ぶ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">For Pi 4, 3, and All Other Pi Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Python ビデオコース</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">付録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">ありがとうございました</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">For Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_c.html">Cと遊ぶ</a></li>
+          <li class="breadcrumb-item"><a href="1_output.html">1 出力</a></li>
+      <li class="breadcrumb-item active">1.1.6 LEDドットマトリックス</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c_pi5/1.1.6_led_dot_matrix.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>こんにちは、SunFounderのRaspberry Pi &amp; Arduino &amp; ESP32愛好家コミュニティへようこそ！Facebook上でRaspberry Pi、Arduino、ESP32についてもっと深く掘り下げ、他の愛好家と交流しましょう。</p>
+<p><strong>参加する理由は？</strong></p>
+<ul class="simple">
+<li><p><strong>エキスパートサポート</strong>：コミュニティやチームの助けを借りて、販売後の問題や技術的な課題を解決します。</p></li>
+<li><p><strong>学び＆共有</strong>：ヒントやチュートリアルを交換してスキルを向上させましょう。</p></li>
+<li><p><strong>独占的なプレビュー</strong>：新製品の発表や先行プレビューに早期アクセスしましょう。</p></li>
+<li><p><strong>特別割引</strong>：最新製品の独占割引をお楽しみください。</p></li>
+<li><p><strong>祭りのプロモーションとギフト</strong>：ギフトや祝日のプロモーションに参加しましょう。</p></li>
+</ul>
+<p>👉 私たちと一緒に探索し、創造する準備はできていますか？[<a href="https://bit.ly/raphaelkit " target="_blank">ここ</a>]をクリックして今すぐ参加しましょう！</p>
+</div>
+<section id="led">
+<span id="py-led-matrix"></span><h1>1.1.6 LEDドットマトリックス<a class="headerlink" href="1.1.6_led_dot_matrix.html#led" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>前書き<a class="headerlink" href="1.1.6_led_dot_matrix.html#id1" title="Link to this heading"></a></h2>
+<p>名前が示すように、LEDドットマトリックスはLEDで構成されるマトリックスである。LEDの点灯と調光は、さまざまな文字とパターンを形成する。</p>
+</section>
+<section id="id2">
+<h2>部品<a class="headerlink" href="1.1.6_led_dot_matrix.html#id2" title="Link to this heading"></a></h2>
+<img alt="../_images/list_dot1.png" src="../_images/list_dot1.png" />
+</section>
+<section id="id3">
+<h2>原理<a class="headerlink" href="1.1.6_led_dot_matrix.html#id3" title="Link to this heading"></a></h2>
+<p><strong>LEDドットマトリックス</strong></p>
+<p>一般に、LEDドットマトリックスは、cathode (CC)とcommon anode (CA)の2つのタイプに分類できる。見た目は似ているが、内部的には違いがある。テストを行うとすぐに分かる。このキットではCAが使用される。側面に788BSというラベルが付いている。</p>
+<p>下の図を参照してください。ピンは背面の両端に配置されている。ラベル側を参考にしてください。この端のピンはピン1〜8で、もう一方のピンはピン9〜16である。</p>
+<p>外部ビュー：</p>
+<img alt="../_images/image841.png" src="../_images/image841.png" />
+<p>図の下に内部構造を示している。CA LEDドットマトリックスが見える。ROWはLEDのアノードを表し、COLはカソードを表す。CCの場合は逆である。共通点が1つある：両方のタイプで、ピン13、3、4、10、6、11、15、および16はすべてCOLである。ピン9、14、8、12、1、7、2、および5がすべてROWである。左上隅の最初のLEDをオンにする場合、CA LEDドットマトリックスに対して、ピン9をHigh、ピン13をLowに設定し、CC 1に対して、ピン13をHighに、ピン9をLowに設定する。CAの最初の列全体を点灯させる場合は、ピン13をLowに、行9、14、8、12、1、7、2、および5をHighに設定するCCの場合、ピン13をHighに、行9、14、8、12、1、7、2、および5をLowに設定する。理解を深めるために、次の図を検討してください。</p>
+<p>内部ビュー：</p>
+<a class="reference internal image-reference" href="../_images/image851.png"><img alt="../_images/image851.png" class="align-center" src="../_images/image851.png" style="width: 400px;" />
+</a>
+<p>上記の行と列に対応するピン番号：</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>COL</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>5</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>8</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Pin No.</strong></p></td>
+<td><p><strong>13</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>10</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>11</strong></p></td>
+<td><p><strong>15</strong></p></td>
+<td><p><strong>16</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ROW</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>5</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>8</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Pin No.</strong></p></td>
+<td><p><strong>9</strong></p></td>
+<td><p><strong>14</strong></p></td>
+<td><p><strong>8</strong></p></td>
+<td><p><strong>12</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>5</strong></p></td>
+</tr>
+</tbody>
+</table>
+<p>さらに、2つの74HC595チップがここで使用されている。1つはLEDドットマトリックスの行を制御し、もう1つは列を制御する。</p>
+</section>
+<section id="id4">
+<h2>回路図<a class="headerlink" href="1.1.6_led_dot_matrix.html#id4" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/schematic_dot1.png"><img alt="../_images/schematic_dot1.png" src="../_images/schematic_dot1.png" style="width: 800px;" />
+</a>
+</section>
+<section id="id5">
+<h2>実験手順<a class="headerlink" href="1.1.6_led_dot_matrix.html#id5" title="Link to this heading"></a></h2>
+<p>ステップ1: 回路を作る。配線が複雑なので、段階的に作りましょう。まず、T-Cobbler、LEDドットマトリックス、および2つの74HC595チップをブレッドボードに挿入する。
+T-Cobblerの3.3Vと接地をボードの両側の穴に接続し、2つの74HC595チップのピン16と10をVCCに、ピン13とピン8を接地に接続する。</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>上のFritzing画像では、ラベルのある側が下にある。</p>
+</div>
+<a class="reference internal image-reference" href="../_images/image871.png"><img alt="../_images/image871.png" src="../_images/image871.png" style="width: 800px;" />
+</a>
+<p>ステップ2: 2つの74HC595のピン11を一緒に接続し、GPIO27に接続する。
+次に、2つのチップのピン12を一緒に接続し、GPIO18に接続する。
+それから左側の74HC595のピン14をGPIO17に、ピン9を2番目の74HC595のピン14に接続する。</p>
+<a class="reference internal image-reference" href="../_images/image881.png"><img alt="../_images/image881.png" src="../_images/image881.png" style="width: 800px;" />
+</a>
+<p>ステップ3: 右側の74HC595は、LEDドットマトリックスの列を制御する。
+マッピングについては、以下の表を参照してください。
+したがって、74HC595のQ0〜Q7ピンは、それぞれピン13、3、4、10、6、11、15、および16にマップされる。</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>74HC595</strong></p></td>
+<td><p><strong>Q0</strong></p></td>
+<td><p><strong>Q1</strong></p></td>
+<td><p><strong>Q2</strong></p></td>
+<td><p><strong>Q3</strong></p></td>
+<td><p><strong>Q4</strong></p></td>
+<td><p><strong>Q5</strong></p></td>
+<td><p><strong>Q6</strong></p></td>
+<td><p><strong>Q7</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LED Dot Matrix</strong></p></td>
+<td><p><strong>13</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>10</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>11</strong></p></td>
+<td><p><strong>15</strong></p></td>
+<td><p><strong>16</strong></p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/image891.png"><img alt="../_images/image891.png" src="../_images/image891.png" style="width: 800px;" />
+</a>
+<p>ステップ4: 次に、LEDドットマトリックスの行を接続する。左側の74HC595はLEDドットマトリックスの行を制御する。
+マッピングについては、以下の表を参照してください。左側の74HC595のQ0〜Q7は、それぞれピン9、14、8、12、1、7、2、および5にマッピングされていることは分かった。</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>74HC595</strong></p></td>
+<td><p><strong>Q0</strong></p></td>
+<td><p><strong>Q1</strong></p></td>
+<td><p><strong>Q2</strong></p></td>
+<td><p><strong>Q3</strong></p></td>
+<td><p><strong>Q4</strong></p></td>
+<td><p><strong>Q5</strong></p></td>
+<td><p><strong>Q6</strong></p></td>
+<td><p><strong>Q7</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LED Dot Matrix</strong></p></td>
+<td><p><strong>9</strong></p></td>
+<td><p><strong>14</strong></p></td>
+<td><p><strong>8</strong></p></td>
+<td><p><strong>12</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>5</strong></p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/image901.png"><img alt="../_images/image901.png" src="../_images/image901.png" style="width: 800px;" />
+</a>
+<p>ステップ5: コードのフォルダーに移動する。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.1.6</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>ステップ6: コンパイルする。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.1.6</span><span class="n">_LedMatrix</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p>ステップ7: 実行する。</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>コードの実行後、LEDドットマトリックスが行ごとに、列ごとに点灯したり消灯したりする。</p>
+<p><strong>コード</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="cp">#define   SDI   0   </span><span class="c1">//serial data input</span>
+<span class="cp">#define   RCLK  1   </span><span class="c1">//memory clock input(STCP)</span>
+<span class="cp">#define   SRCLK 2   </span><span class="c1">//shift register clock input(SHCP)</span>
+
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">code_H</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0x02</span><span class="p">,</span><span class="mh">0x04</span><span class="p">,</span><span class="mh">0x08</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">};</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">code_L</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x7f</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0xfe</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0xfe</span><span class="p">,</span><span class="mh">0xfd</span><span class="p">,</span><span class="mh">0xfb</span><span class="p">,</span><span class="mh">0xf7</span><span class="p">,</span><span class="mh">0xef</span><span class="p">,</span><span class="mh">0xdf</span><span class="p">,</span><span class="mh">0xbf</span><span class="p">,</span><span class="mh">0x7f</span><span class="p">};</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+<span class="w">   </span><span class="n">pinMode</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">   </span><span class="n">pinMode</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">   </span><span class="n">pinMode</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">hc595_in</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">dat</span><span class="p">){</span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">   </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="mh">0x80</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">dat</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="p">));</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">hc595_out</span><span class="p">(){</span>
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">   </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span><span class="w"> </span><span class="c1">//when initialize wiring failed, print message to screen</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="n">init</span><span class="p">();</span>
+<span class="w">   </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">      </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">code_H</span><span class="p">);</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="n">hc595_out</span><span class="p">();</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="k">sizeof</span><span class="p">(</span><span class="n">code_H</span><span class="p">);</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">){</span>
+<span class="w">            </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="n">hc595_out</span><span class="p">();</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Code Explanation</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">code_H</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0x02</span><span class="p">,</span><span class="mh">0x04</span><span class="p">,</span><span class="mh">0x08</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">};</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">code_L</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x7f</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0xfe</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0xfe</span><span class="p">,</span><span class="mh">0xfd</span><span class="p">,</span><span class="mh">0xfb</span><span class="p">,</span><span class="mh">0xf7</span><span class="p">,</span><span class="mh">0xef</span><span class="p">,</span><span class="mh">0xdf</span><span class="p">,</span><span class="mh">0xbf</span><span class="p">,</span><span class="mh">0x7f</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>配列code_HはLEDドットマトリックス行の要素を表し、配列code_Lは列の要素を表す。
+文字が表示されると、行の要素と列の要素が取得され、それぞれ2つのHC595チップに割り当てられる。
+したがって、パターンはLEDドットマトリックスに表示される。例として、code_Hの最初の数字0x01とcode_Lの最初の数字0x00を取り上げる。</p>
+<p>二進法に変換された0x01は00000001になり、二進法に変換された0x00は0000 0000になる。</p>
+<p>このキットでは、アノードコモンLEDドットマトリックスディスプレイが適用されるため、
+8列目の8つのLEDのみが点灯する。コードHが0xffで、code_Lが0x7fであるという条件が同時に満たされると、最初の列のこれら8つのLEDが点灯する。</p>
+<img alt="../_images/anode_table1.png" src="../_images/anode_table1.png" />
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">hc595_in</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">dat</span><span class="p">){</span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">   </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="mh">0x80</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">dat</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="p">));</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>HC 595ビットのピンSDIにビット単位でDATの値を書き込みます。SRCLKの初期値は0に設定され、ここで1がセットされ、立ち上がりエッジパルスを生成し、次にPHSDI（DS）の日付をシフトレジスタにシフトさせる。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">hc595_out</span><span class="p">(){</span>
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">   </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>RCLKの初期値は元々に0に設定されていたが、ここでは1に設定されている。これは、立ち上がりエッジパルスを生成し、データーをシフトレジスタからストレージレジスターにシフトする。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">   </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">code_H</span><span class="p">);</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">      </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">      </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">      </span><span class="n">hc595_out</span><span class="p">();</span>
+<span class="w">      </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>このループでは、2つの配列code_Lおよびcode_Hのこれらの20個の要素が2つの74HC595チップに1つずつアップロードされる。次に、関数hc595_out()を呼び出して、データをシフトレジスタからストレージレジスタにシフトする。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1.1.5_4-Digit_7-segment_display.html" class="btn btn-neutral float-left" title="1.1.5 4桁7セグメントディスプレイ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="1.1.7_i2c_lcd1602.html" class="btn btn-neutral float-right" title="1.1.7 I2C LCD1602" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 SunFounder.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

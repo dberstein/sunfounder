@@ -1,0 +1,241 @@
+.. note::
+
+    Ciao e benvenuto nella Community di Appassionati di SunFounder per Raspberry Pi, Arduino ed ESP32 su Facebook! Esplora a fondo il mondo di Raspberry Pi, Arduino ed ESP32 insieme a tanti altri appassionati.
+
+    **Perché Unirsi?**
+
+    - **Supporto da Esperti**: Risolvi problemi post-vendita e sfide tecniche con l’aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Ottieni accesso anticipato agli annunci dei nuovi prodotti e a contenuti inediti.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a concorsi e promozioni festive.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
+
+.. _py_pi5_keypad:
+
+2.1.5 Tastierino
+===================
+
+Introduzione
+---------------
+
+Un tastierino è una matrice rettangolare di pulsanti. In questo progetto, 
+lo utilizzeremo per inserire caratteri.
+
+Componenti Necessari
+------------------------------
+
+In questo progetto, abbiamo bisogno dei seguenti componenti. 
+
+.. image:: ../python_pi5/img/2.1.5_keypad_list.png
+
+.. raw:: html
+
+   <br/>
+
+Schema Elettrico
+-------------------
+
+.. image:: ../python_pi5/img/2.1.5_keypad_chematic_1.png
+
+
+.. image:: ../python_pi5/img/2.1.5_keypad_chematic_2.png
+
+
+Procedure Sperimentali
+--------------------------
+
+**Passo 1:** Costruisci il circuito.
+
+.. image:: ../python_pi5/img/2.1.5_keypad_circuit.png
+
+**Passo 2:** Apri il file del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Passo 3:** Esegui.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo python3 2.1.5_Keypad.py
+
+Dopo l’esecuzione del codice, i valori dei pulsanti premuti sul tastierino 
+(button Value) verranno stampati sullo schermo.
+
+.. warning::
+
+    Se compare l'errore ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc` 
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Prima di farlo, però, vai al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python-pi5``. Dopo aver modificato il codice, potrai eseguirlo direttamente per vedere il risultato.
+
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import DigitalOutputDevice, Button
+   from time import sleep
+
+   class Keypad:
+       def __init__(self, rows_pins, cols_pins, keys):
+           """
+           Initialize the Keypad with specified row and column pins and keypad layout.
+           :param rows_pins: List of GPIO pins for the rows.
+           :param cols_pins: List of GPIO pins for the columns.
+           :param keys: List of keys in the keypad layout.
+           """
+           # Inizializza i pin delle righe come DigitalOutputDevice
+           self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]
+           # Inizializza i pin delle colonne come pulsanti
+           self.cols = [Button(pin, pull_up=False) for pin in cols_pins]
+           self.keys = keys  # Imposta il layout del tastierino
+
+       def read(self):
+           """
+           Read the currently pressed keys on the keypad.
+           :return: A list of pressed keys.
+           """
+           pressed_keys = []
+           # Scansiona ogni riga e colonna per identificare i tasti premuti
+           for i, row in enumerate(self.rows):
+               row.on()  # Attiva la riga corrente
+               for j, col in enumerate(self.cols):
+                   if col.is_pressed:  # Controlla se il pulsante della colonna è premuto
+                       # Calcola l'indice del tasto in base alla riga e colonna
+                       index = i * len(self.cols) + j
+                       pressed_keys.append(self.keys[index])
+               row.off()  # Disattiva la riga corrente
+           return pressed_keys
+
+   try:
+       # Configura le righe, le colonne e il layout del tastierino
+       rows_pins = [18, 23, 24, 25]
+       cols_pins = [10, 22, 27, 17]
+       keys = ["1", "2", "3", "A",
+               "4", "5", "6", "B",
+               "7", "8", "9", "C",
+               "*", "0", "#", "D"]
+
+       # Crea un'istanza della classe Keypad
+       keypad = Keypad(rows_pins, cols_pins, keys)
+       last_key_pressed = []
+
+       # Leggi continuamente il tastierino e stampa i tasti appena premuti
+       while True:
+           pressed_keys = keypad.read()
+           if pressed_keys and pressed_keys != last_key_pressed:
+               print(pressed_keys)  # Stampa la lista dei tasti premuti
+               last_key_pressed = pressed_keys
+           sleep(0.1)  # Breve ritardo per ridurre il carico sulla CPU
+
+   except KeyboardInterrupt:
+       # Gestisce un'interruzione da tastiera (Ctrl+C) per un'uscita pulita
+       pass
+
+
+**Spiegazione del Codice**
+
+#. Importa le classi ``DigitalOutputDevice`` e ``Button`` dalla libreria ``gpiozero`` e la funzione ``sleep`` per i ritardi.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import DigitalOutputDevice, Button
+       from time import sleep
+
+#. Definisce la classe ``Keypad``. Il metodo ``__init__`` inizializza il tastierino con i pin di riga e colonna e i tasti. Il metodo ``read`` scansiona il tastierino e restituisce una lista dei tasti premuti.
+
+   .. code-block:: python
+
+       class Keypad:
+           def __init__(self, rows_pins, cols_pins, keys):
+               """
+               Initialize the Keypad with specified row and column pins and keypad layout.
+               :param rows_pins: List of GPIO pins for the rows.
+               :param cols_pins: List of GPIO pins for the columns.
+               :param keys: List of keys in the keypad layout.
+               """
+               # Inizializza i pin delle righe come DigitalOutputDevice
+               self.rows = [DigitalOutputDevice(pin) for pin in rows_pins]
+               # Inizializza i pin delle colonne come pulsanti
+               self.cols = [Button(pin, pull_up=False) for pin in cols_pins]
+               self.keys = keys  # Imposta il layout del tastierino
+
+           def read(self):
+               """
+               Read the currently pressed keys on the keypad.
+               :return: A list of pressed keys.
+               """
+               pressed_keys = []
+               # Scansiona ogni riga e colonna per identificare i tasti premuti
+               for i, row in enumerate(self.rows):
+                   row.on()  # Attiva la riga corrente
+                   for j, col in enumerate(self.cols):
+                       if col.is_pressed:  # Controlla se il pulsante della colonna è premuto
+                           # Calcola l'indice del tasto in base alla riga e colonna
+                           index = i * len(self.cols) + j
+                           pressed_keys.append(self.keys[index])
+                   row.off()  # Disattiva la riga corrente
+               return pressed_keys
+
+#. Configura i pin GPIO per righe e colonne e definisce il layout del tastierino.
+
+   .. code-block:: python
+
+       try:
+           # Configura le righe, le colonne e il layout del tastierino
+           rows_pins = [18, 23, 24, 25]
+           cols_pins = [10, 22, 27, 17]
+           keys = ["1", "2", "3", "A",
+                   "4", "5", "6", "B",
+                   "7", "8", "9", "C",
+                   "*", "0", "#", "D"]
+
+#. Crea un'istanza della classe ``Keypad`` con la configurazione specificata.
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # Crea un'istanza della classe Keypad
+           keypad = Keypad(rows_pins, cols_pins, keys)
+           last_key_pressed = []
+
+#. Legge continuamente i tasti del tastierino, stampa i nuovi tasti premuti e introduce un breve ritardo per ridurre il carico sulla CPU. Gestisce un'interruzione da tastiera (come Ctrl+C) per un'uscita pulita dallo script.
+
+   .. code-block:: python
+
+       try:
+           ...
+
+           # Leggi continuamente il tastierino e stampa i tasti appena premuti
+           while True:
+               pressed_keys = keypad.read()
+               if pressed_keys and pressed_keys != last_key_pressed:
+                   print(pressed_keys)  # Stampa la lista dei tasti premuti
+                   last_key_pressed = pressed_keys
+               sleep(0.1)  # Breve ritardo per ridurre il carico sulla CPU
+
+       except KeyboardInterrupt:
+           # Gestisce un'interruzione da tastiera (Ctrl+C) per un'uscita pulita
+           pass
+

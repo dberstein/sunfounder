@@ -1,0 +1,267 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installer le Système d’Exploitation &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Configurer votre Raspberry Pi" href="set_up_your_raspberry_pi.html" />
+    <link rel="prev" title="De quoi avons-nous besoin ?" href="what_do_we_need.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/install_setup_os/installing_the_os.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="what_do_we_need.html">De quoi avons-nous besoin ?</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="installing_the_os.html#">Installer le Système d’Exploitation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="set_up_your_raspberry_pi.html">Configurer votre Raspberry Pi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_pi5.html">Pour le Pi 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+      <li class="breadcrumb-item active">Installer le Système d’Exploitation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/install_setup_os/installing_the_os.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour et bienvenue dans la Communauté Facebook des passionnés de Raspberry Pi, Arduino et ESP32 de SunFounder ! Plongez plus profondément dans l’univers des Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez les problèmes après-vente et les défis techniques avec l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprendre et partager</strong> : Échangez des astuces et des tutoriels pour améliorer vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de réductions exclusives sur nos produits les plus récents.</p></li>
+<li><p><strong>Promotions festives et cadeaux</strong> : Participez à des cadeaux et des promotions de vacances.</p></li>
+</ul>
+<p>👉 Prêt à explorer et à créer avec nous ? Cliquez [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous aujourd’hui !</p>
+</div>
+<section id="installer-le-systeme-d-exploitation">
+<span id="install-os"></span><h1>Installer le Système d’Exploitation<a class="headerlink" href="installing_the_os.html#installer-le-systeme-d-exploitation" title="Lien vers cette rubrique"></a></h1>
+<p><strong>Composants Nécessaires</strong></p>
+<ul class="simple">
+<li><p>Raspberry Pi 5</p></li>
+<li><p>Un ordinateur personnel</p></li>
+<li><p>Une carte Micro SD</p></li>
+</ul>
+<p><strong>Étapes d’Installation</strong></p>
+<ol class="arabic">
+<li><p>Visitez la page de téléchargement du logiciel Raspberry Pi à <a class="reference external" href="https://www.raspberrypi.org/software/">Raspberry Pi Imager</a>. Choisissez la version de l’Imager compatible avec votre système d’exploitation. Téléchargez et ouvrez le fichier pour lancer l’installation.</p>
+<blockquote>
+<div><img alt="../_images/os_install_imager.png" src="../_images/os_install_imager.png" />
+</div></blockquote>
+</li>
+<li><p>Un avertissement de sécurité peut apparaître pendant l’installation, selon votre système d’exploitation. Par exemple, Windows pourrait afficher un message d’avertissement. Dans ce cas, sélectionnez <strong>Plus d’infos</strong> puis <strong>Exécuter quand même</strong>. Suivez les instructions à l’écran pour terminer l’installation du Raspberry Pi Imager.</p>
+<blockquote>
+<div><img alt="../_images/os_info.png" src="../_images/os_info.png" />
+</div></blockquote>
+</li>
+<li><p>Insérez votre carte SD dans le lecteur de carte SD de votre ordinateur ou portable.</p></li>
+<li><p>Lancez l’application Raspberry Pi Imager en cliquant sur son icône ou en tapant <code class="docutils literal notranslate"><span class="pre">rpi-imager</span></code> dans votre terminal.</p>
+<blockquote>
+<div><img alt="../_images/os_open_imager.png" src="../_images/os_open_imager.png" />
+</div></blockquote>
+</li>
+<li><p>Cliquez sur <strong>CHOOSE DEVICE</strong> et sélectionnez votre modèle spécifique de Raspberry Pi dans la liste.</p>
+<blockquote>
+<div><img alt="../_images/os_choose_device.png" src="../_images/os_choose_device.png" />
+</div></blockquote>
+</li>
+<li><p>Cliquez ensuite sur Choose OS et sélectionnez un système d’exploitation pour l’installation.</p>
+<blockquote>
+<div><img alt="../_images/os_choose_os.png" src="../_images/os_choose_os.png" />
+</div></blockquote>
+</li>
+<li><p>Cliquez sur <strong>Choose Storage</strong> et sélectionnez le périphérique de stockage approprié pour l’installation.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Assurez-vous de sélectionner le bon périphérique de stockage. Pour éviter toute confusion, déconnectez tout périphérique de stockage supplémentaire si plusieurs sont connectés.</p>
+</div>
+<img alt="../_images/os_choose_sd.png" src="../_images/os_choose_sd.png" />
+</div></blockquote>
+</li>
+<li><p>Cliquez sur <strong>NEXT</strong> puis <strong>EDIT SETTINGS</strong> pour personnaliser les paramètres de votre OS. Si vous avez un moniteur pour votre Raspberry Pi, vous pouvez ignorer les étapes suivantes et cliquer sur “Yes” pour commencer l’installation. Vous pourrez ajuster les autres paramètres plus tard sur le moniteur.</p>
+<blockquote>
+<div><img alt="../_images/os_enter_setting.png" src="../_images/os_enter_setting.png" />
+</div></blockquote>
+</li>
+<li><p>Définissez un <strong>nom d’hôte</strong> pour votre Raspberry Pi.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Le nom d’hôte est l’identifiant réseau de votre Raspberry Pi. Vous pouvez accéder à votre Pi en utilisant <code class="docutils literal notranslate"><span class="pre">&lt;hostname&gt;.local</span></code> ou <code class="docutils literal notranslate"><span class="pre">&lt;hostname&gt;.lan</span></code>.</p>
+</div>
+<img alt="../_images/os_set_hostname.png" src="../_images/os_set_hostname.png" />
+</div></blockquote>
+</li>
+<li><p>Créez un <strong>nom d’utilisateur</strong> et un <strong>mot de passe</strong> pour le compte administrateur du Raspberry Pi.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Établir un nom d’utilisateur et un mot de passe uniques est essentiel pour sécuriser votre Raspberry Pi, qui n’a pas de mot de passe par défaut.</p>
+</div>
+<img alt="../_images/os_set_username.png" src="../_images/os_set_username.png" />
+</div></blockquote>
+</li>
+<li><p>Configurez le réseau sans fil en fournissant le <strong>SSID</strong> et le <strong>mot de passe</strong> de votre réseau.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Définissez le <code class="docutils literal notranslate"><span class="pre">pays</span> <span class="pre">du</span> <span class="pre">réseau</span> <span class="pre">sans</span> <span class="pre">fil</span></code> sur le code à deux lettres <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO/IEC alpha2 code</a> correspondant à votre emplacement.</p>
+</div>
+<img alt="../_images/os_set_wifi.png" src="../_images/os_set_wifi.png" />
+</div></blockquote>
+</li>
+<li><p>Cliquez sur <strong>SERVICES</strong> et activez <strong>SSH</strong> pour un accès distant sécurisé basé sur un mot de passe. N’oubliez pas de sauvegarder vos paramètres.</p>
+<blockquote>
+<div><img alt="../_images/os_enable_ssh.png" src="../_images/os_enable_ssh.png" />
+</div></blockquote>
+</li>
+<li><p>Confirmez vos paramètres sélectionnés en cliquant sur <strong>Yes</strong>.</p>
+<blockquote>
+<div><img alt="../_images/os_click_yes.png" src="../_images/os_click_yes.png" />
+</div></blockquote>
+</li>
+<li><p>Si la carte SD contient des données existantes, assurez-vous de les sauvegarder pour éviter toute perte de données. Cliquez sur <strong>Yes</strong> si aucune sauvegarde n’est nécessaire.</p>
+<blockquote>
+<div><img alt="../_images/os_continue.png" src="../_images/os_continue.png" />
+</div></blockquote>
+</li>
+<li><p>Le processus d’installation du système d’exploitation commencera sur la carte SD. Une boîte de dialogue de confirmation apparaîtra une fois l’installation terminée.</p>
+<blockquote>
+<div><img alt="../_images/os_finish.png" class="align-center" src="../_images/os_finish.png" />
+</div></blockquote>
+</li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="what_do_we_need.html" class="btn btn-neutral float-left" title="De quoi avons-nous besoin ?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="set_up_your_raspberry_pi.html" class="btn btn-neutral float-right" title="Configurer votre Raspberry Pi" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

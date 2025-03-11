@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.3.1 Moteur &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="1.3.2 Servo" href="1.3.2_servo.html" />
+    <link rel="prev" title="1.2.2 Buzzer Passif" href="1.2.2_passive_buzzer.html" /> 
+<script async type="text/javascript" src="../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/1.3.1_motor.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for_pi5.html">Pour le Pi 5</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Bibliothèques</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="1_output.html">1 Sorties</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 LED clignotante</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 RGB LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 Graphique à barres LED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 Affichage 7 segments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 4-Digit 7-Segment Display</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.6_led_dot_matrix.html">1.1.6 LED Dot Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 I2C LCD1602</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 Buzzer Actif</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 Buzzer Passif</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="1.3.1_motor.html#">1.3.1 Moteur</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="1.3.1_motor.html#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.1_motor.html#composants">Composants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.1_motor.html#principe">Principe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.1_motor.html#schema-de-cablage">Schéma de câblage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.1_motor.html#procedures-experimentales">Procédures expérimentales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.1_motor.html#image-du-phenomene">Image du phénomène</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.2_servo.html">1.3.2 Servo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 Stepper Motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3.4_relay.html">1.3.4 Relais</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2_input.html">2 Entrée</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_extension.html">3 Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processing/play_with_processing.html">Jouer avec Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nodejs/play_with_nodejs.html">Jouer avec Node.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scratch/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+          <li class="breadcrumb-item"><a href="1_output.html">1 Sorties</a></li>
+      <li class="breadcrumb-item active">1.3.1 Moteur</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/1.3.1_motor.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 Enthusiasts sur Facebook ! Plongez au cœur du Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez vos problèmes post-vente et défis techniques grâce à l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprendre &amp; Partager</strong> : Échangez des conseils et des tutoriels pour améliorer vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus exclusifs.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de réductions exclusives sur nos nouveaux produits.</p></li>
+<li><p><strong>Promotions festives et cadeaux</strong> : Participez à des concours et des promotions spéciales pendant les fêtes.</p></li>
+</ul>
+<p>👉 Prêt à explorer et créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="moteur">
+<h1>1.3.1 Moteur<a class="headerlink" href="1.3.1_motor.html#moteur" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="1.3.1_motor.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>Dans cette leçon, nous apprendrons à utiliser le L293D pour piloter un moteur à
+courant continu (DC) et le faire tourner dans le sens horaire et antihoraire.
+Comme le moteur DC nécessite un courant plus important, pour des raisons de sécurité,
+nous utilisons ici le module d’alimentation pour alimenter les moteurs.</p>
+</section>
+<section id="composants">
+<h2>Composants<a class="headerlink" href="1.3.1_motor.html#composants" title="Lien vers cette rubrique"></a></h2>
+<img alt="_images/list_1.3.1.png" src="_images/list_1.3.1.png" />
+</section>
+<section id="principe">
+<h2>Principe<a class="headerlink" href="1.3.1_motor.html#principe" title="Lien vers cette rubrique"></a></h2>
+<p><strong>L293D</strong></p>
+<p>Le L293D est un circuit intégré de pilote de moteur à 4 canaux avec haute tension et
+haut courant. Il est conçu pour se connecter aux niveaux logiques standards DTL, TTL,
+et pour piloter des charges inductives (comme des relais, moteurs DC, moteurs pas à pas)
+ainsi que des transistors de commutation de puissance, etc. Les moteurs DC sont des
+dispositifs qui transforment l’énergie électrique en énergie mécanique. Ils sont largement
+utilisés pour leur excellente performance de régulation de vitesse.</p>
+<p>Voyez l’image des broches ci-dessous. Le L293D dispose de deux broches (Vcc1 et Vcc2) pour
+l’alimentation. Vcc2 est utilisé pour alimenter le moteur, tandis que Vcc1 alimente la puce.
+Comme un petit moteur DC est utilisé ici, connectez les deux broches au +5V.</p>
+<img alt="_images/image111.png" src="_images/image111.png" />
+<p>L’image suivante montre la structure interne du L293D. La broche EN est une broche
+d’activation et ne fonctionne qu’avec un niveau haut. A représente l’entrée et Y la
+sortie. Vous pouvez voir la relation entre eux en bas à droite. Lorsque la broche EN
+est à un niveau haut, si A est à un niveau haut, Y envoie un niveau haut ; si A est à
+un niveau bas, Y envoie un niveau bas. Lorsque la broche EN est à un niveau bas, le
+L293D ne fonctionne pas.</p>
+<img alt="_images/image334.png" src="_images/image334.png" />
+<p><strong>Moteur DC</strong></p>
+<img alt="_images/image114.jpeg" src="_images/image114.jpeg" />
+<p>Voici un moteur DC 5V. Il tourne lorsque vous appliquez un niveau haut à une borne et
+un niveau bas à l’autre. Pour plus de commodité, vous pouvez souder des broches à ses bornes.</p>
+<img alt="_images/image335.png" src="_images/image335.png" />
+<p><strong>Module d’alimentation</strong></p>
+<p>Dans cette expérience, il faut des courants importants pour entraîner le moteur, surtout
+lors des démarrages et arrêts, ce qui peut interférer avec le fonctionnement normal du
+Raspberry Pi. Par conséquent, nous alimentons séparément le moteur via ce module afin
+qu’il fonctionne de manière sûre et stable.</p>
+<p>Vous pouvez simplement le brancher sur la breadboard pour l’alimenter. Il fournit une
+tension de 3,3V ou 5V, et vous pouvez choisir l’une ou l’autre avec un cavalier inclus.</p>
+<img alt="_images/image115.png" src="_images/image115.png" />
+</section>
+<section id="schema-de-cablage">
+<h2>Schéma de câblage<a class="headerlink" href="1.3.1_motor.html#schema-de-cablage" title="Lien vers cette rubrique"></a></h2>
+<p>Branchez le module d’alimentation sur la breadboard et insérez le cavalier sur la broche
+5V pour obtenir une sortie de 5V. Connectez la broche 1 du L293D au GPIO22, et réglez-la
+sur un niveau haut. Connectez la broche 2 au GPIO27, et la broche 7 au GPIO17. Réglez une
+broche sur un niveau haut et l’autre sur un niveau bas. Ainsi, vous pouvez changer la
+direction de rotation du moteur.</p>
+<img alt="_images/image336.png" src="_images/image336.png" />
+</section>
+<section id="procedures-experimentales">
+<h2>Procédures expérimentales<a class="headerlink" href="1.3.1_motor.html#procedures-experimentales" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1 :</strong> Montez le circuit.</p>
+<a class="reference internal image-reference" href="_images/1.3.1.png"><img alt="_images/1.3.1.png" src="_images/1.3.1.png" style="width: 800px;" />
+</a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Le module d’alimentation peut être utilisé avec une pile 9V grâce à l’attache de
+pile 9V fournie dans le kit. Insérez le cavalier du module d’alimentation dans les
+barres d’alimentation 5V de la breadboard.</p>
+</div>
+<img alt="_images/image118.jpeg" src="_images/image118.jpeg" />
+<section id="pour-les-utilisateurs-du-langage-c">
+<h3>Pour les utilisateurs du langage C<a class="headerlink" href="1.3.1_motor.html#pour-les-utilisateurs-du-langage-c" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Étape 2 :</strong> Accédez au dossier du code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.3.1</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Étape 3 :</strong> Compilez le code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.3.1</span><span class="n">_Motor</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Étape 4 :</strong> Exécutez le fichier exécutable ci-dessus.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Lorsque le code s’exécute, le moteur tourne d’abord dans le sens horaire pendant
+5 secondes, puis s’arrête pendant 5 secondes. Ensuite, il tourne dans le sens
+antihoraire pendant 5 secondes, puis s’arrête à nouveau pendant 5 secondes.
+Cette série d’actions sera exécutée en boucle.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Si cela ne fonctionne pas après exécution ou si un message d’erreur s’affiche : &quot;wiringPi.h: Aucun fichier ou répertoire de ce type », veuillez consulter <a class="reference internal" href="faq.html#c-code-is-not-working"><span class="std std-ref">C code is not working?</span></a>.</p>
+</div>
+<p><strong>Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="cp">#define MotorPin1       0</span>
+<span class="cp">#define MotorPin2       2</span>
+<span class="cp">#define MotorEnable     3</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span><span class="w"> </span><span class="c1">//en cas d&#39;échec de l&#39;initialisation de wiringPi, affichage du message à l&#39;écran</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">MotorPin1</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">MotorPin2</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pinMode</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Clockwise</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorPin1</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorPin2</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Stop</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Anti-clockwise</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorPin1</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorPin2</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Stop</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explication du code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Active le L239D.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorPin1</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorPin2</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Met un niveau haut pour 2A (broche 7) ; puisque 1,2EN (broche 1) est à un niveau
+haut, 2Y sortira un niveau haut.</p>
+<p>Met un niveau bas pour 1A, alors 1Y sortira un niveau bas, et le moteur tournera.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Cette boucle permet un délai de 3 * 1000ms.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Si 1,2EN (broche 1) est à un niveau bas, le L293D ne fonctionne pas. Le moteur s’arrête.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorPin1</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">)</span>
+<span class="n">digitalWrite</span><span class="p">(</span><span class="n">MotorPin2</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Inverse le sens du courant dans le moteur, puis le moteur tournera dans le sens inverse.</p>
+</section>
+<section id="pour-les-utilisateurs-de-python">
+<h3>Pour les utilisateurs de Python<a class="headerlink" href="1.3.1_motor.html#pour-les-utilisateurs-de-python" title="Lien vers cette rubrique"></a></h3>
+<p><strong>Étape 2 :</strong> Accédez au dossier du code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<p><strong>Étape 3 :</strong> Exécutez le code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python3</span> <span class="mf">1.3.1</span><span class="n">_Motor</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Lorsque le code s’exécute, le moteur tourne d’abord dans le sens horaire pendant 5s,
+puis s’arrête pendant 5s. Ensuite, il tourne dans le sens antihoraire pendant 5s,
+puis s’arrête à nouveau pendant 5s. Cette série d’actions sera exécutée en boucle.</p>
+<p><strong>Code</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vous pouvez <strong>Modifier/Réinitialiser/Copier/Exécuter/Arrêter</strong> le code ci-dessous. Mais avant cela, vous devez vous rendre sur le chemin du code source, par exemple <code class="docutils literal notranslate"><span class="pre">davinci-kit-for-raspberry-pi/python</span></code>.</p>
+</div>
+<run></run><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Configurer les broches</span>
+<span class="n">MotorPin1</span>   <span class="o">=</span> <span class="mi">17</span>
+<span class="n">MotorPin2</span>   <span class="o">=</span> <span class="mi">27</span>
+<span class="n">MotorEnable</span> <span class="o">=</span> <span class="mi">22</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="c1"># Configurer les modes GPIO selon la numérotation BCM</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+    <span class="c1"># Définir les broches en sortie</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">MotorPin1</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">MotorPin2</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+
+<span class="c1"># Définir une fonction pour faire tourner le moteur</span>
+<span class="c1"># La direction doit être</span>
+<span class="c1"># 1(sens horaire), 0(arrêt), -1(sens antihoraire)</span>
+<span class="k">def</span> <span class="nf">motor</span><span class="p">(</span><span class="n">direction</span><span class="p">):</span>
+    <span class="c1"># Sens horaire</span>
+    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Configurer la direction</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorPin1</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorPin2</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+        <span class="c1"># Activer le moteur</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Clockwise&quot;</span><span class="p">)</span>
+    <span class="c1"># Sens antihoraire</span>
+    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Configurer la direction</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorPin1</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorPin2</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+        <span class="c1"># Activer le moteur</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Counterclockwise&quot;</span><span class="p">)</span>
+    <span class="c1"># Arrêt</span>
+    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Désactiver le moteur</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Stop&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+    <span class="c1"># Définir un dictionnaire pour rendre le script plus lisible</span>
+    <span class="c1"># CW pour sens horaire, CCW pour sens antihoraire, STOP pour arrêt</span>
+    <span class="n">directions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;CW&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;CCW&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;STOP&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Sens horaire</span>
+        <span class="n">motor</span><span class="p">(</span><span class="n">directions</span><span class="p">[</span><span class="s1">&#39;CW&#39;</span><span class="p">])</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="c1"># Arrêt</span>
+        <span class="n">motor</span><span class="p">(</span><span class="n">directions</span><span class="p">[</span><span class="s1">&#39;STOP&#39;</span><span class="p">])</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="c1"># Sens antihoraire</span>
+        <span class="n">motor</span><span class="p">(</span><span class="n">directions</span><span class="p">[</span><span class="s1">&#39;CCW&#39;</span><span class="p">])</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="c1"># Arrêt</span>
+        <span class="n">motor</span><span class="p">(</span><span class="n">directions</span><span class="p">[</span><span class="s1">&#39;STOP&#39;</span><span class="p">])</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">destroy</span><span class="p">():</span>
+    <span class="c1"># Arrêter le moteur</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="c1"># Libérer les ressources</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="c1"># Si ce script est exécuté directement :</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">main</span><span class="p">()</span>
+    <span class="c1"># Lorsque &#39;Ctrl+C&#39; est pressé, la fonction destroy() est exécutée.</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Explication du Code</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">motor</span><span class="p">(</span><span class="n">direction</span><span class="p">):</span>
+    <span class="c1"># Sens horaire</span>
+    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Configurer la direction</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorPin1</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorPin2</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+        <span class="c1"># Activer le moteur</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">MotorEnable</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Clockwise&quot;</span><span class="p">)</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Créez une fonction, <strong>motor()</strong>, dont la variable est direction. Si la condition
+direction=1 est remplie, le moteur tourne dans le sens horaire ; lorsque direction=-1,
+le moteur tourne dans le sens antihoraire ; et sous la condition direction=0, il s’arrête.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Définir un dictionnaire pour rendre le script plus lisible</span>
+    <span class="c1"># CW pour sens horaire, CCW pour sens antihoraire, STOP pour arrêt</span>
+    <span class="n">directions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;CW&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;CCW&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;STOP&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Sens horaire</span>
+        <span class="n">motor</span><span class="p">(</span><span class="n">directions</span><span class="p">[</span><span class="s1">&#39;CW&#39;</span><span class="p">])</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="c1"># Arrêt</span>
+        <span class="n">motor</span><span class="p">(</span><span class="n">directions</span><span class="p">[</span><span class="s1">&#39;STOP&#39;</span><span class="p">])</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="c1"># Sens antihoraire</span>
+        <span class="n">motor</span><span class="p">(</span><span class="n">directions</span><span class="p">[</span><span class="s1">&#39;CCW&#39;</span><span class="p">])</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="c1"># Arrêt</span>
+        <span class="n">motor</span><span class="p">(</span><span class="n">directions</span><span class="p">[</span><span class="s1">&#39;STOP&#39;</span><span class="p">])</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Dans la fonction main(), créez un tableau directions[], dans lequel CW est égal à 1,
+CCW vaut -1 et 0 représente l’arrêt.</p>
+<p>Lorsque le code s’exécute, le moteur tourne d’abord dans le sens horaire pendant
+5 secondes, puis s’arrête pendant 5 secondes. Ensuite, il tourne dans le sens antihoraire
+pendant 5 secondes, puis s’arrête à nouveau pendant 5 secondes. Cette série d’actions se répète.</p>
+<p>Vous devriez maintenant voir la lame du moteur tourner.</p>
+</section>
+</section>
+<section id="image-du-phenomene">
+<h2>Image du phénomène<a class="headerlink" href="1.3.1_motor.html#image-du-phenomene" title="Lien vers cette rubrique"></a></h2>
+<img alt="_images/image119.jpeg" src="_images/image119.jpeg" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="1.2.2_passive_buzzer.html" class="btn btn-neutral float-left" title="1.2.2 Buzzer Passif" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="1.3.2_servo.html" class="btn btn-neutral float-right" title="1.3.2 Servo" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

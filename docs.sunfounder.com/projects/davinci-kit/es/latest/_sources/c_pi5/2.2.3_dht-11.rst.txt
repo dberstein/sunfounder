@@ -1,0 +1,359 @@
+.. note::
+
+    Hola, ¡bienvenido a la Comunidad de Entusiastas de SunFounder Raspberry Pi, Arduino y ESP32 en Facebook! Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas exclusivas**: Accede anticipadamente a anuncios de nuevos productos y avances.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones navideñas.
+
+    👉 ¿Listo para explorar y crear con nosotros? ¡Haz clic en [|link_sf_facebook|] y únete hoy!
+
+2.2.3 DHT-11
+===============
+
+Introducción
+---------------
+
+El sensor digital de temperatura y humedad DHT11 es un sensor compuesto 
+que contiene una salida digital calibrada de temperatura y humedad. 
+Se aplican tecnologías de módulos digitales dedicados y de detección de 
+temperatura y humedad para garantizar que el producto tenga alta fiabilidad 
+y excelente estabilidad.
+
+Los sensores incluyen un sensor resistivo de elemento húmedo y un sensor de 
+temperatura NTC, y están conectados a un microcontrolador de 8 bits de alto rendimiento.
+
+Componentes
+-------------
+
+.. image:: img/list_2.2.3_dht-11.png
+
+
+Principio
+------------
+
+El DHT11 es un sensor digital básico de temperatura y humedad de bajo costo. 
+Utiliza un sensor de humedad capacitivo y un termistor para medir el aire 
+circundante y emite una señal digital por el pin de datos (no se necesitan 
+pines de entrada analógica).
+
+.. image:: img/image205.png
+    :width: 200
+
+
+Solo hay tres pines disponibles: VCC, GND y DATA. El proceso de comunicación 
+comienza con la línea DATA enviando señales de inicio al DHT11, que recibe las 
+señales y devuelve una señal de respuesta. Luego, el host recibe la señal de 
+respuesta y comienza a recibir datos de humedad y temperatura de 40 bits (8 bits 
+de entero de humedad + 8 bits de decimal de humedad + 8 bits de entero de 
+temperatura + 8 bits de decimal de temperatura + 8 bits de suma de verificación). Para más información, consulta la hoja de datos del DHT11.
+
+
+
+Diagrama Esquemático
+-------------------------
+
+.. image:: img/image326.png
+
+
+Procedimientos Experimentales
+--------------------------------
+
+**Paso 1:** Construir el circuito.
+
+.. image:: img/image207.png
+    :width: 800
+
+
+**Paso 2:** Ir a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.2.3/
+
+**Paso 3:** Compilar el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.3_DHT.c -lwiringPi
+
+**Paso 4:** Ejecutar el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Después de ejecutar el código, el programa imprimirá la temperatura y la 
+humedad detectadas por el DHT11 en la pantalla del ordenador.
+
+.. note::
+
+    Si no funciona después de ejecutar, o aparece un mensaje de error: \"wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
+
+
+    **Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <stdint.h>
+
+    #define MAXTIMINGS 85  // Maximum number of timing transitions
+
+    int dht11_dat[5] = {0, 0, 0, 0, 0};  // Data array to hold sensor values
+
+    // Function to read data from DHT11 sensor
+    void read_dht11_dat(int GPIOPIN)
+    {
+        uint8_t currState;
+        uint8_t laststate = HIGH;
+        uint8_t counter = 0;
+        uint8_t j = 0;
+        uint8_t i;
+        float f; // Temperature in Fahrenheit
+
+        // Reset data array before each read
+        dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
+
+        // Pull pin down for 18 milliseconds to initiate communication
+        pinMode(GPIOPIN, OUTPUT);
+        digitalWrite(GPIOPIN, LOW);
+        delay(18);
+
+        // Then pull it up for 40 microseconds
+        digitalWrite(GPIOPIN, HIGH);
+        delayMicroseconds(40); 
+
+        // Prepare to read the pin
+        pinMode(GPIOPIN, INPUT);
+
+        // Detect change and read data
+        for (i = 0; i < MAXTIMINGS; i++) 
+        {
+            counter = 0;
+
+            // Count how long each state lasts
+            while (digitalRead(GPIOPIN) == laststate)
+            {
+                counter++;
+                delayMicroseconds(2);
+                if (counter == 255) 
+                {
+                    break;
+                }
+            }
+
+            // Save the current state
+            laststate = digitalRead(GPIOPIN);
+
+            if (counter == 255) break;
+
+            // Ignore first 3 transitions (DHT11 response signal)
+            if ((i >= 4) && (i % 2 == 0)) 
+            {
+                // Shift bits and store data
+                dht11_dat[j/8] <<= 1;
+                if (counter > 16)
+                {
+                    dht11_dat[j/8] |= 1;
+                }
+
+                j++;
+            }
+        }
+
+        // Check if we received 40 bits (5 bytes) and verify checksum
+        if ((j >= 40) && (dht11_dat[4] == ((dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF)) ) 
+        {
+            // Convert temperature to Fahrenheit
+            f = dht11_dat[2] * 9.0 / 5.0 + 32;
+            printf("Humidity = %d.%d %% Temperature = %d.%d °C (%.1f °F)\n",
+                   dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], f);
+        }
+        else
+        {
+            printf("Data not good, skip\n");
+        }
+    }
+
+    int main (void)
+    {
+        printf("Raspberry Pi wiringPi DHT11 Temperature test program\n");
+
+        // Initialize wiringPi using BCM GPIO pin numbering
+        if (wiringPiSetupGpio() == -1)
+        {
+            exit(1);
+        }
+
+        while(1) 
+        {
+            // Read data from DHT11 connected to GPIO pin 17
+            read_dht11_dat(17);
+            delay(1000); // Wait 1 second before next read
+        }
+
+        return 0;
+    }
+
+**Explicación del Código**
+
+#. Incluir Encabezados: El código incluye los encabezados necesarios para las funciones de wiringPi y la entrada/salida estándar.
+
+   .. code-block:: C
+
+        #include <wiringPi.h>
+        #include <stdio.h>
+        #include <stdlib.h>
+        #include <stdint.h>
+
+#. Definir Constantes:
+
+   * ``MAXTIMINGS``: El número máximo de transiciones de tiempo esperadas del sensor DHT11 (85).
+   
+   .. code-block:: C
+
+        #define MAXTIMINGS 85  // Número máximo de transiciones de tiempo
+
+#. Array de Datos Global:
+
+   * ``dht11_dat[5]``: Un array para almacenar los 5 bytes de datos recibidos del sensor DHT11.
+   
+   .. code-block:: C
+
+        int dht11_dat[5] = {0, 0, 0, 0, 0};  // Array de datos para almacenar los valores del sensor
+
+#. Función ``read_dht11_dat(int GPIOPIN)``: Lee datos del sensor DHT11 conectado al pin GPIO especificado.
+   
+   * Inicialización: Reinicia el array dht11_dat a cero antes de cada lectura.
+   
+     .. code-block:: C
+
+        dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
+
+   * Señal de Inicio: Baja el pin GPIO durante al menos 18 milisegundos para indicar al DHT11 que comience a enviar datos.
+   
+     .. code-block:: C
+
+        pinMode(GPIOPIN, OUTPUT);
+        digitalWrite(GPIOPIN, LOW);
+        delay(18);  // 18 milisegundos
+
+   * Levanta el pin GPIO durante 40 microsegundos.
+   
+     .. code-block:: C
+
+        digitalWrite(GPIOPIN, HIGH);
+        delayMicroseconds(40);  // 40 microsegundos
+
+   * Configura el pin GPIO en modo de entrada para leer datos del sensor.
+   
+     .. code-block:: C
+
+        pinMode(GPIOPIN, INPUT);
+
+   * Bucle de Lectura de Datos: El bucle se ejecuta hasta MAXTIMINGS veces para leer los bits de datos.
+
+     Para cada transición (de alto a bajo o de bajo a alto), mide cuánto tiempo permanece el pin en cada estado.
+
+     .. code-block:: C
+
+        for (i = 0; i < MAXTIMINGS; i++) 
+        {
+            counter = 0;
+            while (digitalRead(GPIOPIN) == laststate)
+            {
+                counter++;
+                delayMicroseconds(2);
+                if (counter == 255) 
+                {
+                    break;
+                }
+            }
+            laststate = digitalRead(GPIOPIN);
+            // ... resto del bucle
+        }
+
+   * Extracción de Bits de Datos: Las primeras 3 transiciones se ignoran ya que son parte de la respuesta inicial del DHT11.
+
+     Para cada bit de datos, determina si el bit es 0 o 1 según la duración que el pin permanece en alto.
+
+     .. code-block:: C
+
+        if ((i >= 4) && (i % 2 == 0)) 
+        {
+            dht11_dat[j/8] <<= 1;
+            if (counter > 16)
+            {
+                dht11_dat[j/8] |= 1;
+            }
+            j++;
+        }
+
+   * Verificación de Suma de Comprobación: Después de recibir todos los bits, el código verifica la suma de comprobación para asegurar la integridad de los datos.
+   
+     .. code-block:: C
+
+        if ((j >= 40) && (dht11_dat[4] == ((dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3]) & 0xFF)) )
+
+   * Si la suma de comprobación es correcta, imprime los valores de humedad y temperatura.
+   
+     .. code-block:: C
+
+        f = dht11_dat[2] * 9.0 / 5.0 + 32;
+        printf("Humedad = %d.%d %% Temperatura = %d.%d °C (%.1f °F)\n",
+               dht11_dat[0], dht11_dat[1], dht11_dat[2], dht11_dat[3], f);
+
+   * Si la suma de comprobación falla, imprime un mensaje de error.
+   
+     .. code-block:: C
+
+        else
+        {
+            printf("Datos incorrectos, omitir\n");
+        }
+
+#. Función Principal:
+
+   * Imprime un mensaje de inicio.
+
+   .. code-block:: C
+
+        printf("Programa de prueba de temperatura DHT11 con Raspberry Pi wiringPi\n");
+
+   * Inicializa wiringPi usando la numeración de pines GPIO de BCM.
+   
+   .. code-block:: C
+
+        if (wiringPiSetupGpio() == -1)
+        {
+            exit(1);
+        }
+
+   * Entra en un bucle infinito para leer datos del sensor DHT11 cada segundo.
+     
+     .. code-block:: C
+
+        while(1) 
+        {
+            read_dht11_dat(17);
+            delay(1000); // espera 1 segundo
+        }

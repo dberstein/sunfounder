@@ -1,0 +1,238 @@
+.. note::
+
+    ¡Hola! Bienvenidos a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Sumérgete en el mundo de Raspberry Pi, Arduino y ESP32 junto con otros apasionados.
+
+    **¿Por qué unirse?**
+
+    - **Soporte de Expertos**: Soluciona problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances Exclusivos**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones y Sorteos Festivos**: Participa en sorteos y promociones especiales en días festivos.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
+
+3.1.8 Monitor de Sobrecalentamiento
+======================================
+
+Introducción
+--------------
+
+Podrías necesitar un dispositivo de monitoreo de sobrecalentamiento para 
+diversas situaciones; por ejemplo, en una fábrica, donde se quiera activar 
+una alarma y apagar automáticamente la máquina en caso de sobrecalentamiento 
+en el circuito. En esta lección, usaremos un termistor, un joystick, un zumbador, 
+un LED y una pantalla LCD para crear un dispositivo inteligente de monitoreo 
+de temperatura con un umbral ajustable.
+
+Componentes
+-------------
+
+.. image:: img/list_Overheat_Monitor.png
+    :align: center
+
+.. image:: img/list_Overheat_Monitor2.png
+    :align: center
+
+Diagrama de Circuito
+-----------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO18       Pin 12   1        18
+GPIO27       Pin 13   2        27
+GPIO22       Pin15    3        22
+GPIO23       Pin16    4        23
+GPIO24       Pin18    5        24
+SDA1         Pin 3             
+SCL1         Pin 5             
+============ ======== ======== ===
+
+.. image:: img/Schematic_three_one8.png
+   :width: 700
+   :align: center
+
+Procedimientos Experimentales
+---------------------------------
+
+**Paso 1:** Construye el circuito.
+
+.. image:: img/image258.png
+   :alt: Overheat Monitor_bb
+   :width: 800
+
+**Paso 2**: Ingresa en la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    cd ~/davinci-kit-for-raspberry-pi/c/3.1.8/
+
+**Paso 3**: Compila el código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    gcc 3.1.8_OverheatMonitor.c -lwiringPi -lm
+
+**Paso 4**: Ejecuta el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block:: 
+
+    sudo ./a.out
+
+Cuando se ejecuta el código, la temperatura actual y el umbral de alta 
+temperatura (**40°**) se muestran en la pantalla **I2C LCD1602**. Si la 
+temperatura actual es mayor que el umbral, se activarán el zumbador y el 
+LED para alertar.
+
+.. note::
+
+    Si no funciona después de ejecutar el código, o aparece el mensaje de error: \"wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
+
+**Joystick**: se utiliza para ajustar el umbral de alta temperatura. 
+Al mover el **Joystick** en la dirección del eje X o Y, puedes subir 
+o bajar el valor del umbral. Presiona el **Joystick** nuevamente para 
+restablecer el umbral a su valor inicial.
+
+**Explicación del Código**
+
+.. code-block:: c
+
+    int get_joystick_value(){
+        uchar x_val;
+        uchar y_val;
+        x_val = get_ADC_Result(1);
+        y_val = get_ADC_Result(2);
+        if (x_val > 200){
+            return 1;
+        }
+        else if(x_val < 50){
+            return -1;
+        }
+        else if(y_val > 200){
+            return -10;
+        }
+        else if(y_val < 50){
+            return 10;
+        }
+        else{
+            return 0;
+        }
+    }
+
+Esta función lee los valores de X y Y del joystick. Si **X>200**, 
+devuelve "**1**"; si **X<50**, devuelve "**-1**"; si **y>200**, 
+devuelve "**-10**", y si **y<50**, devuelve "**10**".
+
+.. code-block:: c
+
+    void upper_tem_setting(){
+        write(0, 0, "Upper Adjust:");
+        int change = get_joystick_value();
+        upperTem = upperTem + change;
+        char str[6];
+        snprintf(str,3,"%d",upperTem);
+        write(0,1,str);
+    int len;
+      len = strlen(str);
+        write(len,1,"             ");
+        delay(100);
+    }
+
+Esta función ajusta el umbral de temperatura y lo muestra en la pantalla 
+I2C LCD1602.
+
+.. code-block:: c
+
+    double temperature(){
+        unsigned char temp_value;
+        double Vr, Rt, temp, cel, Fah;
+        temp_value = get_ADC_Result(0);
+        Vr = 5 * (double)(temp_value) / 255;
+        Rt = 10000 * (double)(Vr) / (5 - (double)(Vr));
+        temp = 1 / (((log(Rt/10000)) / 3950)+(1 / (273.15 + 25)));
+        cel = temp - 273.15;
+        Fah = cel * 1.8 +32;
+        return cel;
+    }
+
+Esta función lee el valor analógico del **CH0** (termistor) del **ADC0834** 
+y lo convierte en un valor de temperatura.
+
+.. code-block:: c
+
+    void monitoring_temp(){
+        char str[6];
+        double cel = temperature();
+        snprintf(str,6,"%.2f",cel);
+        write(0, 0, "Temp: ");
+        write(6, 0, str);
+        snprintf(str,3,"%d",upperTem);
+        write(0, 1, "Upper: ");
+        write(7, 1, str);
+        delay(100);
+        if(cel >= upperTem){
+            digitalWrite(buzzPin, HIGH);
+            digitalWrite(LedPin, HIGH);
+        }
+        else if(cel < upperTem){
+            digitalWrite(buzzPin, LOW);
+            digitalWrite(LedPin, LOW);
+        }
+    }
+
+Cuando se ejecuta el código, la temperatura actual y el umbral de alta 
+temperatura (**40°**) se muestran en la pantalla **I2C LCD1602**. Si la 
+temperatura actual supera el umbral, el zumbador y el LED se activarán 
+para alertar.
+
+.. code-block:: c
+
+    int main(void)
+    {
+        setup();
+        int lastState =1;
+        int stage=0;
+        while (1)
+        {
+            int currentState = digitalRead(Joy_BtnPin);
+            if(currentState==1 && lastState == 0){
+                stage=(stage+1)%2;
+                delay(100);
+                lcd_clear();
+            }
+            lastState=currentState;
+            if (stage==1){
+                upper_tem_setting();
+            }
+            else{
+                monitoring_temp();
+            }
+        }
+        return 0;
+    }
+
+La función main() contiene el proceso completo del programa:
+
+1) Cuando el programa comienza, el valor inicial de **stage** es **0**, 
+y la temperatura actual junto con el umbral de alta temperatura **40** 
+se muestran en la pantalla **I2C LCD1602**. Si la temperatura actual supera 
+el umbral, se activarán el zumbador y el LED para alertar.
+
+2) Presiona el joystick, y **stage** pasará a **1**, permitiendo ajustar 
+el umbral de alta temperatura. Al mover el joystick en la dirección del 
+eje X o Y, podrás aumentar o disminuir el valor del umbral. Presiona el 
+joystick nuevamente para restablecer el umbral al valor inicial.
+

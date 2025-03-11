@@ -1,0 +1,502 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="readthedocs-addons-api-version" content="1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1.6 Matrice de LED &mdash; Documentation SunFounder davinci-kit-for-raspberry-pi </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css%3Fv=80d5e7a1.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css%3Fv=e59714d7.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css%3Fv=76b2166b.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/index.css" />
+      <link rel="stylesheet" type="text/css" href="https://ezblock.cc/readDocFile/readTheDoc/src/css/xterm.css" />
+
+  
+      <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js%3Fv=d1a510d7"></script>
+      <script src="../_static/doctools.js%3Fv=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js%3Fv=dc90522c"></script>
+      <script src="../_static/clipboard.min.js%3Fv=a7894cd8"></script>
+      <script src="../_static/copybutton.js%3Fv=f281be69"></script>
+      <script src="../_static/translations.js%3Fv=bf059b8c"></script>
+      <script src="https://ezblock.cc/readDocFile/custom.js"></script>
+      <script src="https://docs.sunfounder.com/projects/davinci-kit/fr/latest/_static/lang.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ace.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/ext-language_tools.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/theme-chrome.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-python.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/mode-sh.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/monokai.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/xterm.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/FitAddon.js"></script>
+      <script src="https://ezblock.cc/readDocFile/readTheDoc/src/js/readTheDocIndex.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/versions.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="1.1.7 LCD1602 I2C" href="1.1.7_i2c_lcd1602.html" />
+    <link rel="prev" title="1.1.5 Afficheur 7 segments à 4 chiffres" href="1.1.5_4-Digit_7-segment_display.html" /> 
+<script async type="text/javascript" src="../../../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="davinci-kit-fr" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/c_pi5/1.1.6_led_dot_matrix.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+<nav id="nav-bar">
+  <ul class="nav-bar-items" id="nav-bar-items">
+    <li class="nav-bar-logo">
+      <a href="https://sunfounder.com">
+        <img class="logo-img" src="https://ezblock.cc/readDocFile/sunfounder_LOGO_160x@2x.png"/>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SunFounder davinci-kit-for-raspberry-pi
+          </a>
+              <div class="switch-menus">
+                <div class="version-switch"></div>
+                <div class="language-switch"></div>
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">About this Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../component_list.html">Liste des composants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gpio_extension_board.html">Carte d’extension GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download_the_code.html">Download the Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install_setup_os/install_setup_os.html">Installer et Configurer le Système d’Exploitation Raspberry Pi</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../for_pi5.html">Pour le Pi 5</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../python_pi5/play_with_python_pi5.html">Jouez avec Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="play_with_c.html">Play with C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="check_the_wiringpi_c.html">Installer et vérifier WiringPi</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="1_output.html">1 Sortie</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="1.1.1_blinking_led.html">1.1.1 LED Clignotante</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.2_rgb_led.html">1.1.2 LED RGB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.3_led_bar_graph.html">1.1.3 Barre de LED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.4_7-segment_display.html">1.1.4 Afficheur 7 segments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.5_4-Digit_7-segment_display.html">1.1.5 Afficheur 7 segments à 4 chiffres</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="1.1.6_led_dot_matrix.html#">1.1.6 Matrice de LED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.1.7_i2c_lcd1602.html">1.1.7 LCD1602 I2C</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.2.1_active_buzzer.html">1.2.1 Buzzer Actif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.2.2_passive_buzzer.html">1.2.2 Buzzer Passif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.1_motor.html">1.3.1 Moteur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.2_servo.html">1.3.2 Servo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.3_stepper_motor.html">1.3.3 Moteur Pas à Pas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1.3.4_relay.html">1.3.4 Relais</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2_input.html">2 Entrée</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3_extension.html">3 Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scratch_pi5/play_with_scratch.html">Jouer avec Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../for_other_models.html">Pour Pi 4, 3 et Tous les Autres Modèles de Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_video/python_video.html">Cours vidéo Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../thank-learning.html">Remerciements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SunFounder davinci-kit-for-raspberry-pi</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../for_pi5.html">Pour le Pi 5</a></li>
+          <li class="breadcrumb-item"><a href="play_with_c.html">Play with C</a></li>
+          <li class="breadcrumb-item"><a href="1_output.html">1 Sortie</a></li>
+      <li class="breadcrumb-item active">1.1.6 Matrice de LED</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/c_pi5/1.1.6_led_dot_matrix.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bonjour, bienvenue dans la communauté SunFounder Raspberry Pi &amp; Arduino &amp; ESP32 sur Facebook ! Plongez plus profondément dans l’univers du Raspberry Pi, de l’Arduino et de l’ESP32 avec d’autres passionnés.</p>
+<p><strong>Pourquoi nous rejoindre ?</strong></p>
+<ul class="simple">
+<li><p><strong>Support d’experts</strong> : Résolvez les problèmes après-vente et les défis techniques grâce à l’aide de notre communauté et de notre équipe.</p></li>
+<li><p><strong>Apprendre &amp; Partager</strong> : Échangez des astuces et tutoriels pour améliorer vos compétences.</p></li>
+<li><p><strong>Aperçus exclusifs</strong> : Accédez en avant-première aux annonces de nouveaux produits et bénéficiez de previews exclusives.</p></li>
+<li><p><strong>Réductions spéciales</strong> : Profitez de réductions exclusives sur nos nouveaux produits.</p></li>
+<li><p><strong>Promotions festives et cadeaux</strong> : Participez à des cadeaux et à des promotions spéciales lors des fêtes.</p></li>
+</ul>
+<p>👉 Prêt à explorer et à créer avec nous ? Cliquez sur [<a href="https://bit.ly/raphaelkit " target="_blank">Ici</a>] et rejoignez-nous dès aujourd’hui !</p>
+</div>
+<section id="matrice-de-led">
+<h1>1.1.6 Matrice de LED<a class="headerlink" href="1.1.6_led_dot_matrix.html#matrice-de-led" title="Lien vers cette rubrique"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="1.1.6_led_dot_matrix.html#introduction" title="Lien vers cette rubrique"></a></h2>
+<p>Comme son nom l’indique, une matrice de LED est un réseau constitué de LED.
+L’allumage et l’extinction de ces LED permettent de créer différents caractères et motifs.</p>
+</section>
+<section id="composants">
+<h2>Composants<a class="headerlink" href="1.1.6_led_dot_matrix.html#composants" title="Lien vers cette rubrique"></a></h2>
+<img alt="../_images/list_dot1.png" src="../_images/list_dot1.png" />
+</section>
+<section id="principe">
+<h2>Principe<a class="headerlink" href="1.1.6_led_dot_matrix.html#principe" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Matrice de LED</strong></p>
+<p>En général, les matrices de LED peuvent être classées en deux types : cathode
+commune (CC) et anode commune (CA). Elles se ressemblent beaucoup extérieurement,
+mais leur câblage interne diffère. Vous pouvez les identifier par un test. Ce kit
+utilise une matrice CA. Vous pouvez voir l’inscription « 788BS » sur le côté.</p>
+<p>Consultez la figure ci-dessous. Les broches sont disposées aux deux extrémités à
+l’arrière. Prenez la face avec le marquage comme référence : les broches de ce côté
+sont numérotées de 1 à 8, et de l’autre côté de 9 à 16.</p>
+<p>Vue externe :</p>
+<img alt="../_images/image841.png" src="../_images/image841.png" />
+<p>Les figures ci-dessous montrent la structure interne. Dans une matrice CA, les « ROW »
+représentent l’anode de la LED, et les « COL » la cathode ; c’est l’inverse pour une
+matrice CC. Un point commun : pour les deux types, les broches 13, 3, 4, 10, 6, 11, 15
+et 16 correspondent aux COL, tandis que les broches 9, 14, 8, 12, 1, 7, 2 et 5 correspondent
+aux ROW. Si vous souhaitez allumer la première LED en haut à gauche, dans une matrice CA,
+réglez la broche 9 sur High et la broche 13 sur Low ; pour une matrice CC, réglez la broche
+13 sur High et la broche 9 sur Low. Pour allumer toute la première colonne, pour une matrice
+CA, réglez la broche 13 sur Low et les ROW 9, 14, 8, 12, 1, 7, 2, et 5 sur High, alors que
+pour une CC, réglez la broche 13 sur High et les ROW 9, 14, 8, 12, 1, 7, 2, et 5 sur Low.
+Consultez les figures ci-dessous pour mieux comprendre.</p>
+<p>Vue interne :</p>
+<a class="reference internal image-reference" href="../_images/image851.png"><img alt="../_images/image851.png" class="align-center" src="../_images/image851.png" style="width: 400px;" />
+</a>
+<p>Numérotation des broches correspondant aux rangées et colonnes ci-dessus :</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>COL</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>5</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>8</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Pin No.</strong></p></td>
+<td><p><strong>13</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>10</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>11</strong></p></td>
+<td><p><strong>15</strong></p></td>
+<td><p><strong>16</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ROW</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>5</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>8</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Pin No.</strong></p></td>
+<td><p><strong>9</strong></p></td>
+<td><p><strong>14</strong></p></td>
+<td><p><strong>8</strong></p></td>
+<td><p><strong>12</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>5</strong></p></td>
+</tr>
+</tbody>
+</table>
+<p>De plus, deux puces 74HC595 sont utilisées ici. L’une contrôle les rangées de la matrice de LED, tandis que l’autre gère les colonnes.</p>
+</section>
+<section id="schema-de-cablage">
+<h2>Schéma de câblage<a class="headerlink" href="1.1.6_led_dot_matrix.html#schema-de-cablage" title="Lien vers cette rubrique"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>T-Board Name</p></td>
+<td><p>physical</p></td>
+<td><p>wiringPi</p></td>
+<td><p>BCM</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO17</p></td>
+<td><p>Pin 11</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPIO18</p></td>
+<td><p>Pin 12</p></td>
+<td><p>1</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-even"><td><p>GPIO27</p></td>
+<td><p>Pin 13</p></td>
+<td><p>2</p></td>
+<td><p>27</p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/schematic_dot1.png"><img alt="../_images/schematic_dot1.png" src="../_images/schematic_dot1.png" style="width: 800px;" />
+</a>
+</section>
+<section id="procedures-experimentales">
+<h2>Procédures expérimentales<a class="headerlink" href="1.1.6_led_dot_matrix.html#procedures-experimentales" title="Lien vers cette rubrique"></a></h2>
+<p><strong>Étape 1 :</strong> Construisez le circuit. Comme le câblage est complexe, suivez les
+étapes une à une. Insérez d’abord le T-Cobbler, la matrice de LED et les deux puces
+74HC595 dans la breadboard. Connectez les broches 3,3 V et GND du T-Cobbler aux trous
+sur les deux côtés de la carte, puis branchez la broche 16 et 10 des deux puces 74HC595
+à VCC, et les broches 13 et 8 à GND.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Dans l’image Fritzing ci-dessus, le côté avec l’étiquette est orienté vers le bas.</p>
+</div>
+<a class="reference internal image-reference" href="../_images/image871.png"><img alt="../_images/image871.png" src="../_images/image871.png" style="width: 800px;" />
+</a>
+<p><strong>Étape 2 :</strong> Connectez la broche 11 des deux 74HC595 ensemble, puis à GPIO27 ; ensuite,
+reliez la broche 12 des deux puces à GPIO18 ; et enfin, connectez la broche 14 du 74HC595
+à gauche à GPIO17 et la broche 9 à la broche 14 de la deuxième puce 74HC595.</p>
+<a class="reference internal image-reference" href="../_images/image881.png"><img alt="../_images/image881.png" src="../_images/image881.png" style="width: 800px;" />
+</a>
+<p><strong>Étape 3 :</strong> Le 74HC595 à droite est destiné à contrôler les colonnes de la matrice LED.
+Consultez le tableau ci-dessous pour la correspondance. Les broches Q0-Q7 du 74HC595 sont
+reliées respectivement aux broches 13, 3, 4, 10, 6, 11, 15 et 16.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>74HC595</strong></p></td>
+<td><p><strong>Q0</strong></p></td>
+<td><p><strong>Q1</strong></p></td>
+<td><p><strong>Q2</strong></p></td>
+<td><p><strong>Q3</strong></p></td>
+<td><p><strong>Q4</strong></p></td>
+<td><p><strong>Q5</strong></p></td>
+<td><p><strong>Q6</strong></p></td>
+<td><p><strong>Q7</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LED Dot Matrix</strong></p></td>
+<td><p><strong>13</strong></p></td>
+<td><p><strong>3</strong></p></td>
+<td><p><strong>4</strong></p></td>
+<td><p><strong>10</strong></p></td>
+<td><p><strong>6</strong></p></td>
+<td><p><strong>11</strong></p></td>
+<td><p><strong>15</strong></p></td>
+<td><p><strong>16</strong></p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/image891.png"><img alt="../_images/image891.png" src="../_images/image891.png" style="width: 800px;" />
+</a>
+<p><strong>Étape 4 :</strong> Connectez maintenant les rangées (ROW) de la matrice de LED. Le 74HC595
+situé à gauche contrôle les rangées de la matrice. Consultez le tableau ci-dessous pour
+la correspondance. On peut observer que les broches Q0-Q7 du 74HC595 à gauche sont
+respectivement reliées aux broches 9, 14, 8, 12, 1, 7, 2 et 5.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>74HC595</strong></p></td>
+<td><p><strong>Q0</strong></p></td>
+<td><p><strong>Q1</strong></p></td>
+<td><p><strong>Q2</strong></p></td>
+<td><p><strong>Q3</strong></p></td>
+<td><p><strong>Q4</strong></p></td>
+<td><p><strong>Q5</strong></p></td>
+<td><p><strong>Q6</strong></p></td>
+<td><p><strong>Q7</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LED Dot Matrix</strong></p></td>
+<td><p><strong>9</strong></p></td>
+<td><p><strong>14</strong></p></td>
+<td><p><strong>8</strong></p></td>
+<td><p><strong>12</strong></p></td>
+<td><p><strong>1</strong></p></td>
+<td><p><strong>7</strong></p></td>
+<td><p><strong>2</strong></p></td>
+<td><p><strong>5</strong></p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/image901.png"><img alt="../_images/image901.png" src="../_images/image901.png" style="width: 800px;" />
+</a>
+<p><strong>Étape 5 :</strong> Accédez au dossier contenant le code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">davinci</span><span class="o">-</span><span class="n">kit</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">raspberry</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="mf">1.1.6</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Étape 6 :</strong> Compilez le code.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="mf">1.1.6</span><span class="n">_LedMatrix</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lwiringPi</span>
+</pre></div>
+</div>
+<p><strong>Étape 7 :</strong> Exécutez le programme.</p>
+<run></run><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>Après l’exécution du code, la matrice de LED s’allume et s’éteint ligne par ligne et colonne par colonne.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Si cela ne fonctionne pas après l’exécution ou si un message d’erreur s’affiche : &quot;wiringPi.h: No such file or directory&quot;, veuillez vous référer à <a class="reference internal" href="../faq.html#c-code-is-not-working"><span class="std std-ref">C code is not working?</span></a>.</p>
+</div>
+<p><strong>Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;wiringPi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="cp">#define   SDI   0   </span><span class="c1">//entrée de données série</span>
+<span class="cp">#define   RCLK  1   </span><span class="c1">//entrée d&#39;horloge mémoire (STCP)</span>
+<span class="cp">#define   SRCLK 2   </span><span class="c1">//entrée d&#39;horloge de registre à décalage (SHCP)</span>
+
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">code_H</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0x02</span><span class="p">,</span><span class="mh">0x04</span><span class="p">,</span><span class="mh">0x08</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">};</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">code_L</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x7f</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0xfe</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0xfe</span><span class="p">,</span><span class="mh">0xfd</span><span class="p">,</span><span class="mh">0xfb</span><span class="p">,</span><span class="mh">0xf7</span><span class="p">,</span><span class="mh">0xef</span><span class="p">,</span><span class="mh">0xdf</span><span class="p">,</span><span class="mh">0xbf</span><span class="p">,</span><span class="mh">0x7f</span><span class="p">};</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+<span class="w">   </span><span class="n">pinMode</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">   </span><span class="n">pinMode</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+<span class="w">   </span><span class="n">pinMode</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span>
+
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">hc595_in</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">dat</span><span class="p">){</span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">   </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="mh">0x80</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">dat</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="p">));</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">hc595_out</span><span class="p">(){</span>
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">   </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="n">wiringPiSetup</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">){</span><span class="w"> </span><span class="c1">//si l&#39;initialisation de wiring échoue, afficher le message sur l&#39;écran</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;setup wiringPi failed !&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="n">init</span><span class="p">();</span>
+<span class="w">   </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">      </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">code_H</span><span class="p">);</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="n">hc595_out</span><span class="p">();</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="k">sizeof</span><span class="p">(</span><span class="n">code_H</span><span class="p">);</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">){</span>
+<span class="w">            </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="n">hc595_out</span><span class="p">();</span>
+<span class="w">            </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explication du Code</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">code_H</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0x01</span><span class="p">,</span><span class="mh">0x02</span><span class="p">,</span><span class="mh">0x04</span><span class="p">,</span><span class="mh">0x08</span><span class="p">,</span><span class="mh">0x10</span><span class="p">,</span><span class="mh">0x20</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">,</span><span class="mh">0xff</span><span class="p">};</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">code_L</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x7f</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0xfe</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0x00</span><span class="p">,</span><span class="mh">0xfe</span><span class="p">,</span><span class="mh">0xfd</span><span class="p">,</span><span class="mh">0xfb</span><span class="p">,</span><span class="mh">0xf7</span><span class="p">,</span><span class="mh">0xef</span><span class="p">,</span><span class="mh">0xdf</span><span class="p">,</span><span class="mh">0xbf</span><span class="p">,</span><span class="mh">0x7f</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>Le tableau <cite>code_H</cite> représente les éléments de la ligne de la matrice de LED, et le tableau <cite>code_L</cite> correspond aux éléments de la colonne. Lors de l’affichage des caractères, un élément de la ligne et un de la colonne sont sélectionnés et assignés respectivement aux deux puces HC595. Ainsi, un motif est affiché sur la matrice de LED.
+Prenons le premier nombre de <cite>code_H</cite>, <cite>0x01</cite> et le premier nombre de <cite>code_L</cite>, <cite>0x00</cite> comme exemples.</p>
+<p>0x01 converti en binaire devient 00000001 ; 0x00 converti en binaire devient 00000000.</p>
+<p>Dans ce kit, on utilise une matrice de LED à anode commune, donc seules les huit LED de la huitième ligne s’allument.
+Lorsque les conditions où <cite>code_H</cite> est 0xff et <cite>code_L</cite> est 0x7f sont remplies simultanément, les 8 LED de la première colonne s’allument.</p>
+<img alt="../_images/anode_table1.png" src="../_images/anode_table1.png" />
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">hc595_in</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">dat</span><span class="p">){</span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">   </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SDI</span><span class="p">,</span><span class="w"> </span><span class="mh">0x80</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">dat</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="p">));</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">SRCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Écrire la valeur de <cite>dat</cite> à la broche SDI du HC595 bit par bit. La valeur initiale de SRCLK était 0, et ici elle est définie sur 1 pour générer une impulsion de front montant, puis transférer la donnée de <cite>pinSDI(DS)</cite> au registre de décalage.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">hc595_out</span><span class="p">(){</span>
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">   </span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">   </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">RCLK</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>La valeur initiale de RCLK était 0, et ici elle est définie sur 1 pour générer une impulsion de front montant, puis transférer les données du registre de décalage au registre de stockage.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">   </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">code_H</span><span class="p">);</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">      </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">code_L</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">      </span><span class="n">hc595_in</span><span class="p">(</span><span class="n">code_H</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">      </span><span class="n">hc595_out</span><span class="p">();</span>
+<span class="w">      </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Dans cette boucle, les 20 éléments des deux tableaux <cite>code_L</cite> et <cite>code_H</cite> seront chargés dans les deux puces 74HC595 un par un. Ensuite, la fonction <cite>hc595_out()</cite> est appelée pour transférer les données du registre de décalage au registre de stockage.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="1.1.5_4-Digit_7-segment_display.html" class="btn btn-neutral float-left" title="1.1.5 Afficheur 7 segments à 4 chiffres" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="1.1.7_i2c_lcd1602.html" class="btn btn-neutral float-right" title="1.1.7 LCD1602 I2C" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, SunFounder.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

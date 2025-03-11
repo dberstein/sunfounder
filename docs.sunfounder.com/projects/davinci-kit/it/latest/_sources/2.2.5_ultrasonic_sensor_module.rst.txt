@@ -1,0 +1,417 @@
+.. note::
+
+    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi, Arduino e ESP32 su Facebook! Approfondisci le tue conoscenze su Raspberry Pi, Arduino e ESP32 insieme ad altri appassionati.
+
+    **Perché unirsi?**
+
+    - **Supporto Esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
+    - **Impara e Condividi**: Scambia consigli e tutorial per migliorare le tue competenze.
+    - **Anteprime Esclusive**: Accedi in anteprima ai nuovi annunci di prodotti e alle anteprime esclusive.
+    - **Sconti Speciali**: Approfitta di sconti esclusivi sui nostri prodotti più recenti.
+    - **Promozioni Festive e Giveaway**: Partecipa a promozioni festive e concorsi a premi.
+
+    👉 Pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi!
+
+2.2.5 Modulo Sensore a Ultrasuoni
+===================================
+
+Introduzione
+---------------
+
+Il sensore a ultrasuoni utilizza onde ultrasoniche per rilevare oggetti 
+e misurare le distanze con precisione. Emette onde ultrasoniche e le converte 
+in segnali elettronici.
+
+Componenti
+-------------
+
+.. image:: img/list_2.2.5.png
+
+
+Principio di Funzionamento
+-----------------------------
+
+**Ultrasuoni**
+
+Il modulo di rilevamento a ultrasuoni offre una funzione di misurazione senza 
+contatto da 2 cm a 400 cm, con una precisione fino a 3 mm. Garantisce un segnale 
+stabile entro i 5 m, che si indebolisce gradualmente oltre i 5 m fino a scomparire 
+alla distanza di 7 m.
+
+Il modulo include trasmettitori e ricevitori a ultrasuoni, oltre a un circuito 
+di controllo. I principi di funzionamento sono i seguenti:
+
+(1) Utilizzare un flip-flop IO per generare un segnale di livello alto di almeno 
+10us.
+
+(2) Il modulo invia automaticamente otto impulsi a 40kHz e rileva l'eventuale 
+ritorno di un segnale a impulso.
+
+(3) Se il segnale ritorna, il livello alto di output IO indica la durata del 
+tempo trascorso tra la trasmissione e il ritorno dell'onda ultrasonica. 
+La formula per calcolare la distanza è: distanza misurata = (tempo di livello 
+alto x velocità del suono (340 m/s)) / 2.
+
+.. image:: img/image217.png
+    :width: 200
+
+
+
+.. image:: img/image328.png
+    :width: 500
+
+
+
+Il diagramma temporale è mostrato di seguito. È sufficiente fornire un breve 
+impulso di 10us all'ingresso trigger per avviare la misurazione. Il modulo 
+emetterà una raffica di 8 cicli di ultrasuoni a 40 kHz e alzerà il segnale 
+di eco. È possibile calcolare la distanza in base all'intervallo di tempo tra 
+l'invio del segnale di trigger e la ricezione del segnale di eco.
+
+Formula: us / 58 = centimetri o us / 148 = pollici; oppure: distanza = tempo 
+di livello alto \* velocità del suono (340 m/s) / 2. Si consiglia di utilizzare 
+un ciclo di misurazione superiore a 60 ms per evitare collisioni di segnale tra 
+il trigger e il segnale di eco.
+
+.. image:: img/image218.png
+    :width: 800
+
+
+
+Schema Elettrico
+--------------------
+
+.. image:: img/image329.png
+
+
+Procedura Sperimentale
+-------------------------
+
+**Passo 1:** Costruire il circuito.
+
+.. image:: img/image220.png
+    :width: 800
+
+
+
+Per Utenti del Linguaggio C
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Passo 2:** Vai nella cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/2.2.5/
+
+**Passo 3:** Compila il codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 2.2.5_Ultrasonic.c -lwiringPi
+
+**Passo 4:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Dopo aver eseguito il codice, il modulo sensore a ultrasuoni rileverà la 
+distanza tra l'ostacolo davanti e il modulo stesso; il valore della distanza 
+verrà poi stampato sullo schermo.
+
+.. note::
+
+    Se non funziona dopo l'esecuzione o viene visualizzato un errore che indica: \"wiringPi.h: No such file or directory\", fai riferimento a :ref:`Il codice C non funziona?`.
+
+**Codice**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <sys/time.h>
+
+    #define Trig    4
+    #define Echo    5
+
+    void ultraInit(void)
+    {
+        pinMode(Echo, INPUT);
+        pinMode(Trig, OUTPUT);
+    }
+
+    float disMeasure(void)
+    {
+        struct timeval tv1;
+        struct timeval tv2;
+        long time1, time2;
+        float dis;
+
+        digitalWrite(Trig, LOW);
+        delayMicroseconds(2);
+
+        digitalWrite(Trig, HIGH);
+        delayMicroseconds(10);      
+        digitalWrite(Trig, LOW);
+                                    
+        while(!(digitalRead(Echo) == 1));   
+        gettimeofday(&tv1, NULL);           
+
+        while(!(digitalRead(Echo) == 0));   
+        gettimeofday(&tv2, NULL);           
+
+        time1 = tv1.tv_sec * 1000000 + tv1.tv_usec;   
+        time2  = tv2.tv_sec * 1000000 + tv2.tv_usec;
+
+        dis = (float)(time2 - time1) / 1000000 * 34000 / 2;  
+
+        return dis;
+    }
+
+    int main(void)
+    {
+        float dis;
+        if(wiringPiSetup() == -1){ //se l'inizializzazione di wiring fallisce, stampa un messaggio a schermo
+            printf("setup wiringPi failed !");
+            return 1;
+        }
+
+        ultraInit();
+        
+        while(1){
+            dis = disMeasure();
+            printf("%0.2f cm\n\n",dis);
+            delay(300);
+        }
+
+        return 0;
+    }
+**Spiegazione del Codice**
+
+.. code-block:: c
+
+    void ultraInit(void)
+    {
+        pinMode(Echo, INPUT);
+        pinMode(Trig, OUTPUT);
+    }
+
+Inizializza il pin del sensore a ultrasuoni; contemporaneamente, imposta 
+Echo come ingresso e Trig come uscita.
+
+.. code-block:: c
+
+    float disMeasure(void){};
+
+Questa funzione realizza la funzionalità del sensore a ultrasuoni calcolando 
+la distanza rilevata dal ritorno dell’eco.
+
+.. code-block:: c
+
+    struct timeval tv1;
+    struct timeval tv2;
+
+Struct timeval è una struttura utilizzata per memorizzare l'ora corrente. 
+La struttura completa è la seguente:
+
+.. code-block:: c
+
+    struct timeval
+    {
+    __time_t tv_sec;        /* Secondi. */
+    __suseconds_t tv_usec;  /* Microsecondi. */
+    };
+
+Qui, tv_sec rappresenta i secondi trascorsi dall'Epoch nel creare struct timeval. 
+Tv_usec indica i microsecondi o una frazione di secondo.
+
+.. code-block:: c
+
+    digitalWrite(Trig, HIGH);
+    delayMicroseconds(10);     
+    digitalWrite(Trig, LOW);
+
+Viene inviato un impulso ultrasonico di 10 µs.
+
+.. code-block:: c
+
+    while(!(digitalRead(Echo) == 1));
+    gettimeofday(&tv1, NULL);
+
+Questo ciclo vuoto garantisce che, quando il segnale di trigger è inviato, 
+non ci sia un segnale di eco interferente; poi ottiene l'ora corrente.
+
+.. code-block:: c
+
+    while(!(digitalRead(Echo) == 0)); 
+    gettimeofday(&tv2, NULL);
+
+Questo ciclo vuoto assicura che il prossimo passaggio non venga eseguito 
+finché non viene ricevuto il segnale di eco; successivamente, acquisisce 
+l'ora corrente.
+
+.. code-block:: c
+
+    time1 = tv1.tv_sec * 1000000 + tv1.tv_usec;
+    time2  = tv2.tv_sec * 1000000 + tv2.tv_usec;
+
+Converte il tempo memorizzato dalla struct timeval in un tempo totale espresso in microsecondi.
+
+.. code-block:: c
+
+    dis = (float)(time2 - time1) / 1000000 * 34000 / 2;  
+
+La distanza viene calcolata in base all’intervallo di tempo e alla velocità di 
+propagazione del suono. La velocità del suono nell’aria è di 34000 cm/s.
+
+Per gli Utenti del Linguaggio Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Passo 2:** Vai nella cartella del codice.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python/
+
+**Passo 3:** Esegui il file eseguibile.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.5_Ultrasonic.py
+
+Dopo l'esecuzione del codice, il modulo sensore a ultrasuoni rileva la 
+distanza tra l'ostacolo di fronte e il modulo stesso, quindi il valore 
+della distanza verrà stampato sullo schermo.
+
+
+
+**Codice**
+
+.. note::
+
+    Puoi **Modificare/Reimpostare/Copiare/Eseguire/Interrompere** il codice qui sotto. Tuttavia, prima di fare ciò, è necessario andare al percorso del codice sorgente, come ``davinci-kit-for-raspberry-pi/python``.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+    import RPi.GPIO as GPIO
+    import time
+
+    TRIG = 16
+    ECHO = 18
+
+    def setup():
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(TRIG, GPIO.OUT)
+        GPIO.setup(ECHO, GPIO.IN)
+
+    def distance():
+        GPIO.output(TRIG, 0)
+        time.sleep(0.000002)
+
+        GPIO.output(TRIG, 1)
+        time.sleep(0.00001)
+        GPIO.output(TRIG, 0)
+
+        
+        while GPIO.input(ECHO) == 0:
+            a = 0
+        time1 = time.time()
+        while GPIO.input(ECHO) == 1:
+            a = 1
+        time2 = time.time()
+
+        during = time2 - time1
+        return during * 340 / 2 * 100
+
+    def loop():
+        while True:
+            dis = distance()
+            print ('Distance: %.2f' % dis)
+            time.sleep(0.3)
+
+    def destroy():
+        GPIO.cleanup()
+
+    if __name__ == "__main__":
+        setup()
+        try:
+            loop()
+        except KeyboardInterrupt:
+            destroy()
+
+**Spiegazione del Codice**
+
+.. code-block:: python
+
+    def distance():
+
+Questa funzione è utilizzata per calcolare la distanza rilevata dal sensore 
+a ultrasuoni.
+
+.. code-block:: python
+
+    GPIO.output(TRIG, 1)
+    time.sleep(0.00001)
+    GPIO.output(TRIG, 0)
+
+Questo invia un impulso ultrasonico di 10 µs.
+
+.. code-block:: python
+
+    while GPIO.input(ECHO) == 0:
+        a = 0
+    time1 = time.time()
+
+Questo ciclo vuoto garantisce che, quando viene inviato il segnale di trigger, 
+non ci sia un segnale di eco interferente; quindi acquisisce l'ora corrente.
+
+.. code-block:: python
+
+    while GPIO.input(ECHO) == 1:
+        a = 1
+    time2 = time.time()
+
+Questo ciclo vuoto assicura che il prossimo passaggio non venga eseguito finché 
+non viene ricevuto il segnale di eco, quindi acquisisce l'ora corrente.
+
+.. code-block:: python
+
+    during = time2 - time1
+
+Esegue il calcolo dell'intervallo di tempo.
+
+.. code-block:: python
+
+    return during * 340 / 2 * 100
+
+La distanza viene calcolata in base all'intervallo di tempo e alla velocità 
+di propagazione del suono. La velocità del suono nell'aria è di 340 m/s.
+
+Immagine del Fenomeno
+-------------------------
+
+.. image:: img/image221.jpeg

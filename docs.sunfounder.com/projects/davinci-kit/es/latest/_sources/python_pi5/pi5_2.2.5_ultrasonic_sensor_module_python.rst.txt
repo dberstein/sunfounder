@@ -1,0 +1,143 @@
+.. note::
+
+    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Únete a otros apasionados y profundiza en el uso de Raspberry Pi, Arduino y ESP32.
+
+    **¿Por qué unirte?**
+
+    - **Soporte de expertos**: Resuelve problemas postventa y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Avances exclusivos**: Obtén acceso anticipado a anuncios de nuevos productos y adelantos exclusivos.
+    - **Descuentos especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones festivas y sorteos**: Participa en sorteos y promociones de temporada.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. _py_pi5_ultrasonic:
+
+2.2.5 Módulo de Sensor Ultrasónico
+=====================================
+
+Introducción
+---------------
+
+El sensor ultrasónico utiliza ultrasonidos para detectar objetos con 
+precisión y medir distancias. Emite ondas ultrasónicas y las convierte 
+en señales electrónicas.
+
+Componentes necesarios
+---------------------------
+
+En este proyecto, necesitamos los siguientes componentes.
+
+.. image:: ../python_pi5/img/2.2.5_ultrasonic_list.png
+
+.. raw:: html
+
+   <br/>
+
+Diagrama esquemático
+------------------------
+
+.. image:: ../python_pi5/img/2.2.5_ultrasonic_schematic.png
+
+
+Procedimientos experimentales
+-------------------------------
+
+**Paso 1:** Construye el circuito.
+
+.. image:: ../python_pi5/img/2.2.5_ultrasonic_circuit.png
+
+**Paso 2:** Ve a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/python-pi5
+
+**Paso 3:** Ejecuta el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo python3 2.2.5_Ultrasonic.py
+
+Con el código en ejecución, el módulo de sensor ultrasónico detecta la 
+distancia entre el obstáculo que tiene delante y el propio módulo, y luego 
+imprime el valor de la distancia en pantalla.
+
+.. warning::
+
+    Si aparece un mensaje de error ``RuntimeError: Cannot determine SOC peripheral base address``, consulta :ref:`faq_soc`
+
+**Código**
+
+.. note::
+
+    Puedes **Modificar/Restablecer/Copiar/Ejecutar/Detener** el código a continuación. Pero antes, debes ir a la ruta del código fuente como ``davinci-kit-for-raspberry-pi/python-pi5``. Después de modificar el código, puedes ejecutarlo directamente para ver el efecto.
+
+.. raw:: html
+
+    <run></run>
+
+.. code-block:: python
+
+   #!/usr/bin/env python3
+   from gpiozero import DistanceSensor
+   from time import sleep
+
+   # Inicializar el sensor de distancia usando la biblioteca GPIO Zero
+   # El pin de disparo está conectado a GPIO 23, el pin de eco a GPIO 24
+   sensor = DistanceSensor(echo=24, trigger=23)
+
+   try:
+       # Bucle principal para medir y reportar continuamente la distancia
+       while True:
+           dis = sensor.distance * 100  # Medir la distancia y convertir de metros a centímetros
+           print('Distance: {:.2f} cm'.format(dis))  # Imprimir la distancia con dos decimales de precisión
+           sleep(0.3)  # Esperar 0.3 segundos antes de la siguiente medición
+
+   except KeyboardInterrupt:
+       # Manejar KeyboardInterrupt (Ctrl+C) para salir del bucle de forma segura
+       pass
+
+
+**Explicación del código**
+
+#. Importa la clase ``DistanceSensor`` de la biblioteca ``gpiozero`` para la medición de distancia, y la función ``sleep`` del módulo ``time`` para crear pausas.
+
+   .. code-block:: python
+
+       #!/usr/bin/env python3
+       from gpiozero import DistanceSensor
+       from time import sleep
+
+#. Inicializa el sensor de distancia ultrasónico con el pin de eco conectado a GPIO 24 y el pin de disparo a GPIO 23.
+
+   .. code-block:: python
+
+       # Inicializar el sensor de distancia usando la biblioteca GPIO Zero
+       # El pin de disparo está conectado a GPIO 23, el pin de eco a GPIO 24
+       sensor = DistanceSensor(echo=24, trigger=23)
+
+#. El bucle principal mide continuamente la distancia, la convierte de metros a centímetros y la imprime con dos decimales de precisión. Luego espera 0.3 segundos y vuelve a medir la distancia. Captura una interrupción de teclado (como Ctrl+C) para permitir salir del script de forma segura.
+
+   .. code-block:: python
+
+       try:
+           # Bucle principal para medir y reportar continuamente la distancia
+           while True:
+               dis = sensor.distance * 100  # Medir la distancia y convertir de metros a centímetros
+               print('Distance: {:.2f} cm'.format(dis))  # Imprimir la distancia con dos decimales de precisión
+               sleep(0.3)  # Esperar 0.3 segundos antes de la siguiente medición
+
+       except KeyboardInterrupt:
+           # Manejar KeyboardInterrupt (Ctrl+C) para salir del bucle de forma segura
+           pass
+

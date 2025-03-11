@@ -1,0 +1,328 @@
+.. note::
+
+    ¡Hola! Bienvenido a la Comunidad de Entusiastas de Raspberry Pi, Arduino y ESP32 de SunFounder en Facebook. Profundiza en Raspberry Pi, Arduino y ESP32 con otros entusiastas.
+
+    **¿Por qué unirse?**
+
+    - **Soporte Experto**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    - **Aprender y Compartir**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    - **Vistas Exclusivas**: Accede anticipadamente a anuncios de nuevos productos y adelantos.
+    - **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más recientes.
+    - **Promociones Festivas y Sorteos**: Participa en sorteos y promociones navideñas.
+
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
+
+1.1.5 Pantalla de 7 Segmentos de 4 Dígitos
+===========================================
+
+Introducción
+--------------
+
+A continuación, acompáñame a controlar la pantalla de 7 segmentos de 4 dígitos.
+
+Componentes
+--------------
+
+.. image:: img/list_4_digit.png
+
+
+Principio
+----------
+
+**Pantalla de 7 Segmentos de 4 Dígitos**
+
+La pantalla de 7 segmentos de 4 dígitos consiste en cuatro pantallas de 7 segmentos que funcionan juntas.
+
+.. image:: img/4-digit-sche.png
+
+La pantalla de 4 dígitos de 7 segmentos funciona de forma independiente. 
+Utiliza el principio de la persistencia visual humana para mostrar rápidamente 
+los caracteres de cada 7 segmentos en un bucle, formando cadenas continuas.
+
+Por ejemplo, cuando se muestra "1234" en la pantalla, "1" se muestra en el 
+primer 7 segmentos, y "234" no se muestra. Después de un periodo de tiempo, 
+el segundo 7 segmentos muestra "2", mientras que los 1, 3 y 4 segmentos no 
+se muestran, y así sucesivamente, los cuatro dígitos se muestran en turnos. 
+Este proceso es muy corto (típicamente 5 ms), y gracias al efecto de afterglow 
+óptico y al principio de residuo visual, podemos ver los cuatro caracteres al 
+mismo tiempo.
+
+.. image:: img/image78.png
+
+**Códigos de Pantalla**
+
+Para ayudarte a conocer cómo las pantallas de 7 segmentos (Común Ánodo) muestran 
+números, hemos dibujado la siguiente tabla. Los números son del 0 al F que se 
+muestran en la pantalla de 7 segmentos; (DP) GFEDCBA se refiere a los LEDs 
+correspondientes configurados a 0 o 1. Por ejemplo, 11000000 significa que 
+DP y G están configurados a 1, mientras que los demás están configurados a 0. 
+Por lo tanto, el número 0 se muestra en la pantalla de 7 segmentos, mientras 
+que el Código HEX corresponde al número hexadecimal.
+
+.. image:: img/common_anode.png
+
+Diagrama Esquemático
+------------------------
+
+============ ======== ======== ===
+T-Board Name physical wiringPi BCM
+GPIO17       Pin 11   0        17
+GPIO27       Pin 13   2        27
+GPIO22       Pin 15   3        22
+SPIMOSI      Pin 19   12       10
+GPIO18       Pin 12   1        18
+GPIO23       Pin 16   4        23
+GPIO24       Pin 18   5        24
+============ ======== ======== ===
+
+.. image:: img/schmatic_4_digit.png
+
+
+Procedimientos Experimentales
+-------------------------------
+
+**Paso 1**: Construir el circuito.
+
+.. image:: img/image80.png
+    :width: 800
+
+**Paso 2**: Acceder a la carpeta del código.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    cd ~/davinci-kit-for-raspberry-pi/c/1.1.5/
+
+**Paso 3**: Compilar.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    gcc 1.1.5_4-Digit.c -lwiringPi
+
+**Paso 4**: Ejecutar el archivo ejecutable.
+
+.. raw:: html
+
+   <run></run>
+
+.. code-block::
+
+    sudo ./a.out
+
+Después de que el código se ejecute, el programa contará, aumentando de 1 por segundo, y la pantalla de 7 segmentos de 4 dígitos mostrará el conteo.
+
+.. note::
+
+    Si no funciona después de ejecutarlo, o si aparece un mensaje de error: "wiringPi.h: No such file or directory", consulta :ref:`C code is not working?`.
+**Código**
+
+.. code-block:: c
+
+    #include <wiringPi.h>
+    #include <stdio.h>
+    #include <wiringShift.h>
+    #include <signal.h>
+    #include <unistd.h>
+
+    #define SDI 5
+    #define RCLK 4
+    #define SRCLK 1
+
+    const int placePin[] = {12, 3, 2, 0};
+    unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
+
+    int counter = 0;
+
+    void pickDigit(int digit)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            digitalWrite(placePin[i], 0);
+        }
+        digitalWrite(placePin[digit], 1);
+    }
+
+    void hc595_shift(int8_t data)
+    {
+        int i;
+        for (i = 0; i < 8; i++)
+        {
+            digitalWrite(SDI, 0x80 & (data << i));
+            digitalWrite(SRCLK, 1);
+            delayMicroseconds(1);
+            digitalWrite(SRCLK, 0);
+        }
+        digitalWrite(RCLK, 1);
+        delayMicroseconds(1);
+        digitalWrite(RCLK, 0);
+    }
+
+    void clearDisplay()
+    {
+        int i;
+        for (i = 0; i < 8; i++)
+        {
+            digitalWrite(SDI, 1);
+            digitalWrite(SRCLK, 1);
+            delayMicroseconds(1);
+            digitalWrite(SRCLK, 0);
+        }
+        digitalWrite(RCLK, 1);
+        delayMicroseconds(1);
+        digitalWrite(RCLK, 0);
+    }
+
+    void loop()
+    {
+        while(1){
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[counter % 10]);
+
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[counter % 100 / 10]);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[counter % 1000 / 100]);
+    
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[counter % 10000 / 1000]);
+        }
+    }
+
+    void timer(int timer1)
+    { 
+        if (timer1 == SIGALRM)
+        { 
+            counter++;
+            alarm(1); 
+            printf("%d\n", counter);
+        }
+    }
+
+    void main(void)
+    {
+        if (wiringPiSetup() == -1)
+        { 
+            printf("setup wiringPi failed !");
+            return;
+        }
+        pinMode(SDI, OUTPUT); 
+        pinMode(RCLK, OUTPUT);
+        pinMode(SRCLK, OUTPUT);
+        
+        for (int i = 0; i < 4; i++)
+        {
+            pinMode(placePin[i], OUTPUT);
+            digitalWrite(placePin[i], HIGH);
+        }
+        signal(SIGALRM, timer); 
+        alarm(1);               
+        loop(); 
+    }
+
+**Explicación del Código**
+
+.. code-block:: c
+
+    const int placePin[] = {12, 3, 2, 0};
+
+Estos cuatro pines controlan los pines de ánodo común de los displays de 7 segmentos de cuatro dígitos.
+
+.. code-block:: c
+
+    unsigned char number[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
+
+Un array de códigos de segmentos del 0 al 9 en hexadecimal (ánodo común).
+
+.. code-block:: c
+
+    void pickDigit(int digit)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            digitalWrite(placePin[i], 0);
+        }
+        digitalWrite(placePin[digit], 1);
+    }
+
+Selecciona la posición del valor. Solo una posición debe estar habilitada en cada momento. La posición habilitada se establecerá en alto.
+
+.. code-block:: c
+
+    void loop()
+    {
+        while(1){
+        clearDisplay();
+        pickDigit(0);
+        hc595_shift(number[counter % 10]);
+
+        clearDisplay();
+        pickDigit(1);
+        hc595_shift(number[counter % 100 / 10]);
+
+        clearDisplay();
+        pickDigit(2);
+        hc595_shift(number[counter % 1000 / 100]);
+    
+        clearDisplay();
+        pickDigit(3);
+        hc595_shift(number[counter % 10000 / 1000]);
+        }
+    }
+
+Esta función se utiliza para establecer el número que se muestra en el display de 7 segmentos de 4 dígitos.
+
+* ``clearDisplay()``: escribe 11111111 para apagar los ocho LEDs en el display de 7 segmentos y así borrar el contenido mostrado.
+* ``pickDigit(0)``: selecciona el cuarto display de 7 segmentos.
+* ``hc595_shift(number[counter%10])``: el número en el dígito individual del contador se mostrará en el cuarto segmento.
+
+.. code-block:: c
+
+    signal(SIGALRM, timer); 
+
+Esta es una función proporcionada por el sistema, el prototipo del código es:
+
+.. code-block:: c
+
+    sig_t signal(int signum,sig_t handler);
+
+Después de ejecutar signal(), una vez que el proceso recibe el signum correspondiente (en este caso SIGALRM), inmediatamente pausa la tarea existente y procesa la función establecida (en este caso timer(sig)).
+
+.. code-block:: c
+
+    alarm(1);
+
+Esta también es una función proporcionada por el sistema. El prototipo del código es:
+
+.. code-block:: c
+
+    unsigned int alarm (unsigned int seconds);
+
+Genera una señal SIGALRM después de un cierto número de segundos.
+
+.. code-block:: c
+
+    void timer(int timer1)
+    { 
+        if (timer1 == SIGALRM)
+        { 
+            counter++;
+            alarm(1); 
+            printf("%d\n", counter);
+        }
+    }
+
+Utilizamos las funciones anteriores para implementar la función de temporizador. 
+Después de que ``alarm()`` genera la señal SIGALRM, se llama a la función de 
+temporizador. Se suma 1 al contador, y la función ``alarm(1)`` se llamará repetidamente después de 1 segundo.
