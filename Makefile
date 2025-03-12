@@ -5,3 +5,5 @@ build:
 	@docker build -t $(IMAGE) .
 run: build
 	@docker run --rm -p $(PORT):80 $(IMAGE)
+shell: build
+	@docker run --rm -p $(PORT):80 -it $(IMAGE) bash
